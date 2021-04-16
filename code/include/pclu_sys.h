@@ -597,7 +597,7 @@ typedef struct {
 	char 	*name;
 	errcode (*proc)();
 	bool	restricted;
-	PTABLE  *restrict;
+	PTABLE  *_restrict;
 	} TG_ENTRY;
 
 typedef struct {
