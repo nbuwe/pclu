@@ -13,7 +13,7 @@ FLUFF          = *~ *.old *.bak .*~ .*.old .*.bak
 
 OBJS  = _adv.o _anyize.o _bytevec.o _chan.o _cvt.o _environ.o _environs.o \
 	_event.o _get_pid.o _gprof.o _local_time.o _round_real.o _tagcell.o \
-	_unparse_real.o _vec.o array.o bool.o char.o connected_dir.o \
+	_unparse_real.o _vec.o alloc.o array.o bool.o char.o connected_dir.o \
 	delete_file.o force.o gprof.o int.o itertype.o log.o new_parm_util.o \
 	new_selector.o now.o null.o oneof.o proctype.o real.o record.o \
 	rename_file.o sequence.o string.o struct.o type.o \

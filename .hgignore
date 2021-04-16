@@ -1,5 +1,8 @@
 syntax: glob
 
+# --prefix for boehm gc to install into (instead of carrying our own copy)
+code/gc
+
 *~
 .\#*
 \#*\#

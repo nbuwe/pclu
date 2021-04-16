@@ -35,14 +35,6 @@
 #include <limits.h>
 #endif
 
-#include "gc.h"
-#include "gc_runtime.h"
-#include "gc_mark.h"
-#include "gc_tiny_fl.h"
-#include "gcconfig.h"
-#include "gc_hdrs.h"
-#include "gc_locks.h"
-#include "config.h"
 #ifdef LINUX
 #define gcollect GC_gcollect
 #define gccount GC_gc_no
