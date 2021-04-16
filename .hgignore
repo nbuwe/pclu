@@ -1,0 +1,11 @@
+syntax: glob
+
+*~
+.\#*
+\#*\#
+
+*.core
+*.d
+*.o
+.depend
+.log*
