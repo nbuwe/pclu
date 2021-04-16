@@ -31,15 +31,15 @@ RM = /bin/rm -f
 FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 
 opt: fictitious_file
-	cd Opt; make CFLAGS="${CFLAGS} ${OPT_FLAGS}" OBJS="${OBJS}"
+	cd Opt; make CC="${CC}" CFLAGS="${CFLAGS} ${OPT_FLAGS}" OBJS="${OBJS}"
 
 debugger: fictitious_file
 	cd Debugger; ${RM} *.c; ${LN} ../Opt/*.c .
-	cd Debugger; make CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
+	cd Debugger; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
 
 debug: fictitious_file
 	cd Debug; ${RM} *.c; ${LN} ../Opt/*.c .
-	cd Debug; make CFLAGS="${CFLAGS} ${DEBUG_FLAGS}" OBJS="${OBJS}"
+	cd Debug; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUG_FLAGS}" OBJS="${OBJS}"
 
 fictitious_file:
 

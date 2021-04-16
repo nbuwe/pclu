@@ -20,18 +20,18 @@ OBJS  = _adv.o _anyize.o _bytevec.o _chan.o _cvt.o _environ.o _environs.o \
 	type_of.o unimp.o unix_cmd.o util.o variant.o
 
 opt: fictitious_file
-	cd Opt; make CFLAGS="${CFLAGS} ${OPT_FLAGS}" OBJS="${OBJS}"
+	cd Opt; make CC="${CC}" CFLAGS="${CFLAGS} ${OPT_FLAGS}" OBJS="${OBJS}"
 
 debugger: fictitious_file
 	cd Debugger; ${RM} *.c *.h; ${LN} ../Opt/*.c . ; ${LN} ../Opt/*.h .
-	cd Debugger; make CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
+	cd Debugger; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
 
 fdebugger: fictitious_file
-	cd Debugger; make CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
+	cd Debugger; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
 
 debug: fictitious_file
 	cd Debug; ${RM} *.c *.h; ${LN} ../Opt/*.c . ; ${LN} ../Opt/*.h .
-	cd Debug; make CFLAGS="${CFLAGS} ${DEBUG_FLAGS}" OBJS="${OBJS}"
+	cd Debug; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUG_FLAGS}" OBJS="${OBJS}"
 
 fictitious_file:
 
