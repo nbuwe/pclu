@@ -13,7 +13,7 @@ FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 
 all:
 	$(PCLU) \#xf cmp.xfile \#opt time \#ccopt 0 \#co *.clu
-	cd ../cmp; make; cd ../../cmpclu
+	(cd ../code/cmp && make)
 
 lib:
 	${RM} ./cmp.lib
