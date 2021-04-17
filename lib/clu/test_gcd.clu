@@ -48,7 +48,7 @@ logit("Result: '" || gc_read[string](fn) || "'")
     end
 
 logit("")
-logit("ARRAY[INT] (expected result 0, 1, 2, 3, 5)")
+logit("ARRAY[INT] (expected result 0, 1, 2, 3, 4)")
 fn := file_name$create("/tmp/", "testarrayofints", "lib", "")
 ai:array[int]:= array[int]$[]
 array[int]$addh(ai, 0)
@@ -67,7 +67,7 @@ for i1:int in array[int]$elements(aix) do
 	end
 
 logit("")
-logit("ARRAY[STRING] (expecting to get asdf0, asdf1")
+logit("ARRAY[STRING] (expecting to get asdf0, asdf1)")
 fn := file_name$create("/tmp/", "testarrayofstrings", "lib", "")
 a:array[string]:= array[string]$[]
 array[string]$addh(a, "asdf0")
