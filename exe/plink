@@ -28,7 +28,6 @@ do
     if [ $# -ge 1 ]; then shift; fi
 done
 if [ -n "$verbose" ]; then
-    echo cc $syms -o $output $files -L$CLUHOME/code $lflag -lm  -lgc -lpthread
+    echo cc $syms -o $output $files -L$CLUHOME/code $lflag -lm  -lgc
 fi
-cc $syms -o $output $files -L$CLUHOME/code $lflag -lm -lgc -lpthread
-
+cc $syms -o $output $files -L$CLUHOME/code $lflag -lm -lgc
