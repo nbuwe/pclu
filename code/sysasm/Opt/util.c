@@ -59,11 +59,12 @@ extern void find_selops_init();
 #ifndef LINUX
 extern void expand_hp();
 extern struct obj * gc_malloc();
-#endif
 extern void gc_init();
+#else
+#include <gc/gc.h>
+#endif
 extern char *clu_errlist[];
 extern char *clu_uerrlist[];
-extern void clu_alloc();
 extern errcode clu_err_string_init();
 extern errcode clu_int_init();
 char **environ;
