@@ -64,7 +64,10 @@ USE_SPECS = \
 	${LIB_DIR}/maybe.spc 		${LIB_DIR}/mint.spc 		\
 	${LIB_DIR}/table.spc
 
-all:
+default: regen
+all: regen rebuild
+
+regen:
 	$(CLU) \#opt \#cfiles TRUE \
 	    \#spec ${MISC_SOURCES} \
             \#ce ${LOW_EQU} \
@@ -73,7 +76,9 @@ all:
             \#spec ${USE_SPECS} ${USELIB_SOURCES} ${USESYS_SOURCES} \
 	    \#clu gc_read, gcd_tab, gc_dump, test_gcd
 	cp gcd_tab.c gc_read.c gc_dump.c ${CLUHOME}/code/libclu/Opt
-	cd ${CLUHOME}/code; rm libpclu_opt.a;  make
+
+rebuild:
+	(cd ${CLUHOME}/code && { rm -f libpclu_opt.a; make; })
 	${CLUHOME}/exe/plink test_gcd.o -o test_gcd
 	./test_gcd
 
