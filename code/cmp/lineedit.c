@@ -2640,7 +2640,6 @@ CLUREF *ret_1;
 /**** END PROCEDURE replace ****/
 
 
-extern errcode lineedit_IB_1();
 extern errcode arrayOPnew();
 extern errcode arrayOPhigh();
 extern errcode streamOPscripts();
@@ -2658,6 +2657,7 @@ extern errcode intOPlt();
 extern errcode arrayOPfetch();
 extern errcode arrayOPlow();
 extern errcode find_word();
+extern errcode lineedit_IB_1();
 CLUREF STR__040_072_073_056_054_057_174;
 CLUREF STR__007;
 static int lineedit_own_init = 0;

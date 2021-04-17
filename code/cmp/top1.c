@@ -1698,8 +1698,6 @@ CLUREF *ret_1;
 /**** END PROCEDURE open_stream ****/
 
 
-extern errcode execute_command_IB_1();
-extern errcode execute_command_IB_2();
 extern errcode arrayOPset_low();
 extern errcode xfile_execute();
 extern errcode set_dir();
@@ -1745,6 +1743,8 @@ extern errcode arrayOPelements();
 extern errcode duOPforget_specs();
 extern errcode xlibOPlookup();
 extern errcode xlibOPunmerge();
+extern errcode execute_command_IB_1();
+extern errcode execute_command_IB_2();
 CLUREF STR_xfile;
 CLUREF STR_dir;
 CLUREF STR_DIR_040expects_0401_040argument;
@@ -3905,8 +3905,8 @@ CLUREF tyo;
 /**** END PROCEDURE dump_file ****/
 
 
-extern errcode all_input_names_IB_1();
 extern errcode all_derived_names();
+extern errcode all_input_names_IB_1();
 
 /**** BEGIN ITERATOR all_input_names ****/
 
@@ -4038,10 +4038,6 @@ struct {
 /**** END ITERATOR BODIES for all_input_names ****/
 
 
-extern errcode all_derived_names_IB_1();
-extern errcode all_derived_names_IB_2();
-extern errcode all_derived_names_IB_3();
-extern errcode all_derived_names_IB_4();
 extern errcode file_specOPparse();
 extern errcode file_specOPget_dir();
 extern errcode file_specOPget_name();
@@ -4051,6 +4047,10 @@ extern errcode working_dir();
 extern errcode file_specOPcreate();
 extern errcode file_specOPunparse();
 extern errcode all_file_names();
+extern errcode all_derived_names_IB_1();
+extern errcode all_derived_names_IB_2();
+extern errcode all_derived_names_IB_3();
+extern errcode all_derived_names_IB_4();
 CLUREF STR_xload;
 CLUREF STR__072_040no_040matching_040files;
 static int all_derived_names_own_init = 0;

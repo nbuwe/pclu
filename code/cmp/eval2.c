@@ -5,7 +5,6 @@
 #include "pclu_sys.h"
 
 
-extern errcode e_strop_IB_1();
 extern errcode stringOPequal();
 extern errcode sequenceOPfetch();
 extern errcode e_s2e();
@@ -43,6 +42,7 @@ extern errcode stringOPlt();
 extern errcode stringOPle();
 extern errcode stringOPge();
 extern errcode stringOPgt();
+extern errcode e_strop_IB_1();
 CLUREF STR_s2ac;
 CLUREF STR_ac2s;
 CLUREF STR_chars;
@@ -674,7 +674,7 @@ CLUREF *ret_1;
             }
             else {
                 CLUREF err_UNIQ;
-                locals.err_UNIQ.num = elist[0].num;
+                locals.err_UNIQ = _pclu_erstr(locals.err);
 
   LINE(73);
                 {
@@ -1991,7 +1991,7 @@ CLUREF *ret_1;
             }
             else {
                 CLUREF err_UNIQ;
-                err_UNIQ.num = elist[0].num;
+                err_UNIQ = _pclu_erstr(err);
 
   LINE(207);
                 {

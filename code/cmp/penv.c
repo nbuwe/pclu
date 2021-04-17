@@ -4075,7 +4075,7 @@ CLUREF a;
   LINE(605);
                 {
                 CLUREF T_2_1;
-                T_2_1.real = 1.892883e-308;
+                T_2_1.real = 9.999999e-39;
                 res.num = T_2_1.num;
                 }
             }

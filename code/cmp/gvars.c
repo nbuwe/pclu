@@ -4,6 +4,7 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
 extern errcode sequenceOPelements();
 extern errcode stmtOPget_abs();
 extern errcode g_proc_exprs();
@@ -1250,7 +1251,6 @@ typedef struct {
     struct OP_ENTRY equal;
 } addh_if_new_of_ty_OPS;
 extern errcode arrayOPelements();
-extern errcode equal();
 extern errcode arrayOPaddh();
 
 typedef struct {

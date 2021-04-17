@@ -1605,7 +1605,6 @@ typedef struct {
     OWNPTR op_owns;
     } p_order_of_t_OPS;
 
-extern errcode p_order_IB_1();
 extern errcode arrayOPnew();
 extern errcode intOPle();
 extern errcode stringOPgt();
@@ -1616,6 +1615,7 @@ extern errcode arrayOPstore();
 extern errcode arrayOPaddh();
 extern errcode intOPequal();
 extern errcode sequenceOPa2s();
+extern errcode p_order_IB_1();
 CLUREF STR_duplicate_040name_040_047;
 CLUREF STR__047_040in_040;
 CLUREF STR__137list;

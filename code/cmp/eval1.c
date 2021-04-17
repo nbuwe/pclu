@@ -2775,7 +2775,7 @@ CLUREF *ret_1;
             }
             else {
                 CLUREF err_UNIQ;
-                err_UNIQ.num = elist[0].num;
+                err_UNIQ = _pclu_erstr(err);
 
   LINE(307);
                 {
@@ -3286,7 +3286,7 @@ CLUREF *ret_1;
             }
             else {
                 CLUREF err_UNIQ;
-                err_UNIQ.num = elist[0].num;
+                err_UNIQ = _pclu_erstr(err);
 
   LINE(365);
                 {
@@ -3531,7 +3531,7 @@ CLUREF *ret_1;
             }
             else {
                 CLUREF err_UNIQ;
-                err_UNIQ.num = elist[0].num;
+                err_UNIQ = _pclu_erstr(err);
 
   LINE(393);
                 {

@@ -7,7 +7,6 @@
 
 /**** BEGIN CLUSTER xlib ****/
 
-extern errcode xlib_IB_1();
 extern errcode tableOPcreate();
 extern errcode hash();
 extern errcode stringOPequal();
@@ -38,6 +37,7 @@ extern errcode recordOPget_3();
 extern errcode recordOPget_2();
 extern errcode tableOPmbind();
 extern errcode duOPforget_specs();
+extern errcode xlib_IB_1();
 extern struct REQS *table_of_key_reqs;
 extern struct OPS *string_ops;
 extern struct REQS *table_of_val_reqs;

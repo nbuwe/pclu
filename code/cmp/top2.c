@@ -4,8 +4,7 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode compile_IB_1();
-extern errcode compile_IB_2();
+
 extern errcode setup_stuff();
 extern errcode all_input_names();
 extern errcode compile1();
@@ -22,6 +21,8 @@ extern errcode xrefOPadd_refs();
 extern errcode xrefOPrem_refs();
 extern errcode xrefOPoutput();
 extern errcode cmpvarOPexternals();
+extern errcode compile_IB_1();
+extern errcode compile_IB_2();
 CLUREF STR_Undefined;
 CLUREF STR_Referencing_040Modules;
 CLUREF STR_External;

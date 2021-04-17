@@ -1716,7 +1716,7 @@ extern struct OPS *record_arms_obj_others__ops;
 extern struct OPS *record_body_test_ops;
 struct OPS  *oneof_assn_bad_body_break__continue__decl_declinit_except__exit__for__force__if__invoke_resignal__return__signal__sugarassn_tag__while__yield__ops;
 extern struct OPS *oneof_assn_bad_body_break__continue__decl_declinit_except__exit__for__force__if__invoke_resignal__return__signal__sugarassn_tag__while__yield__ops;
-struct OPS  *record_line_stmt_ops;
+struct OPS  *record_line_stmt_1_ops;
 static int stmt_own_init = 0;
 OWN_req stmt_ownreqs = {0,0};
 errcode stmt_own_init_proc()
@@ -1875,7 +1875,7 @@ errcode stmt_own_init_proc()
         find_selector_ops("oneof", 20, &(oneof_assn_bad_body_break__continue__decl_declinit_except__exit__for__force__if__invoke_resignal__return__signal__sugarassn_tag__while__yield__ops));
         add_selector_info("line", 0, int_ops); 
         add_selector_info("stmt", 1, oneof_assn_bad_body_break__continue__decl_declinit_except__exit__for__force__if__invoke_resignal__return__signal__sugarassn_tag__while__yield__ops); 
-        find_selector_ops("record", 2, &(record_line_stmt_ops));
+        find_selector_ops("record", 2, &(record_line_stmt_1_ops));
         stmt_own_init = 1;
         {signal(ERR_ok);}
     ex_0: pclu_unhandled(err); {signal(ERR_failure);}
@@ -2299,7 +2299,7 @@ OWNPTR sequence_of_record_body_line_tags_var_owns;
 struct OPS  *record_arms_obj_others__ops;
 struct OPS  *record_body_test_ops;
 struct OPS  *oneof_assn_bad_body_break__continue__decl_declinit_except__exit__for__force__if__invoke_resignal__return__signal__sugarassn_tag__while__yield__ops;
-struct OPS  *record_line_stmt_ops;
+struct OPS  *record_line_stmt_1_ops;
 static int stmtOP_gcd_own_init = 0;
 
 /**** BEGIN PROCEDURE _gcd ****/
@@ -2325,7 +2325,7 @@ CLUREF *ret_1;
     {
     CLUREF T_1_1;
     generic_CLU_proc.type_owns = 0;
-    generic_CLU_proc.op_owns = record_line_stmt_ops->entry[6].fcn->op_owns;
+    generic_CLU_proc.op_owns = record_line_stmt_1_ops->entry[6].fcn->op_owns;
     generic_CLU_proc.proc = recordOP_gcd;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
     err = recordOP_gcd(s, tab, &T_1_1);

@@ -7,10 +7,6 @@
 
 /**** BEGIN CLUSTER ce ****/
 
-extern errcode ce_IB_1();
-extern errcode ce_IB_2();
-extern errcode ce_IB_3();
-extern errcode ce_IB_4();
 extern errcode sequenceOPnew();
 extern errcode xlibOPlookup();
 extern errcode tableOPcreate();
@@ -90,6 +86,10 @@ extern errcode tableOPget_pair();
 extern errcode recordOPset_2();
 extern errcode xlibOPget_du();
 extern errcode duOPget_unique();
+extern errcode ce_IB_1();
+extern errcode ce_IB_2();
+extern errcode ce_IB_3();
+extern errcode ce_IB_4();
 extern struct REQS *sequence_of_t_reqs;
 extern struct OPS *expr_ops;
 extern OWN_req sequence_ownreqs;

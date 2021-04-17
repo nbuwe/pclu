@@ -4,6 +4,7 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
 extern errcode get_stream();
 extern errcode streamOPputs();
 extern errcode duOPread_specs();
@@ -4355,9 +4356,8 @@ typedef struct {
     OWNPTR op_owns;
     } g_commalist_of_elt_OPS;
 
-extern errcode g_commalist_IB_1();
-extern errcode elements();
 extern errcode g_envOPputs();
+extern errcode g_commalist_IB_1();
 
 typedef struct {
     long g_commalist_own_init;

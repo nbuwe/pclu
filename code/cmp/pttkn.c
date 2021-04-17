@@ -1245,7 +1245,6 @@ CLUREF st;
 /**** END PROCEDURE pt_char ****/
 
 
-extern errcode pt_charseq_IB_1();
 extern errcode stringOPchars();
 extern errcode charOPlt();
 extern errcode charOPi2c();
@@ -1256,6 +1255,7 @@ extern errcode intOPlt();
 extern errcode intOPequal();
 extern errcode intOPmod();
 extern errcode intOPsub();
+extern errcode pt_charseq_IB_1();
 CLUREF STR__134_136;
 CLUREF STR__134_042;
 CLUREF STR__134_047;
