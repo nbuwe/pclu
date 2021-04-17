@@ -78,6 +78,6 @@ struct direct *dp;
 		if (err == ERR_iterforbodyreturn) signal(err);
 		if (err == ERR_iterforbodysignal) signal(err);
 		}
-	close(dirp);
+	closedir(dirp);
 	signal(ERR_ok);
 	}
