@@ -11,7 +11,7 @@ FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 
 CFLAGS = -c -O -w -I../include
 #CFLAGS = -c -g -I../include 
-LFLAGS = -L${CLUHOME}/code -lpclu_opt -lgc -lm -lc -lpthread -g
+LFLAGS = -L${CLUHOME}/code -lpclu_opt -lm -lgc
 
 O_FILES = build.o cconst.o cdchan.o cdefn1.o cdefn2.o ce.o cenv.o \
 	cexpr1.o cexpr2.o cmpvar.o coper.o cspecs.o cstmt1.o cstmt2.o \
