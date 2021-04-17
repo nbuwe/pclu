@@ -24,6 +24,13 @@ static char rcsid[] = "$Header: unimp.c,v 1.3 91/07/09 11:29:04 root Exp $";
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+#ifndef LINUX
+extern int gccount;
+#else
+#include <gc/gc.h>
+#define gccount (GC_get_gc_no())
+#endif
+
 long heaplo = 0xdead;
 long heaphi = 0xffff;
 long freelm = 0x0042;
@@ -45,12 +52,6 @@ errcode err;
 	  }
 */
 
-#ifndef LINUX
-extern int gccount;
-#else
-#include <gc/gc.h>
-#define gccount (GC_get_gc_no())
-#endif
 errcode _gcOPcount(ans)
 CLUREF *ans;
 {
