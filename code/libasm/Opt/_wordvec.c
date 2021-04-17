@@ -34,8 +34,8 @@ static char rcsid[] = "$Header: _wordvec.c,v 1.6 91/06/06 13:52:31 dcurtis Exp $
 /* TODO: comp, build, move_rl, move_b (not referenced) 	*/
 
 /*   mutable aggregate of bytes				*/
-/*	to hold 64-bit quantities and be accessed in    */
-/*		64-bit units				*/
+/*	to hold 32-bit quantities and be accessed in    */
+/*		32-bit units				*/
 
 #include <stdio.h>
 #include "pclu_err.h"
@@ -47,12 +47,12 @@ CLUREF *ans;
 {
 errcode err;
 CLUREF temp;
-int size = sz.num * 8;
+int size = sz.num * 4;
 int rounded_size;
 int i;
 
 	if (size > MAX_STR) signal(ERR_toobig);
-	rounded_size = ((size+7)/8)*8 + sizeof(CLU_string);
+	rounded_size = ((size+3)/4)*4 + sizeof(CLU_string);
 	clu_alloc(rounded_size, &temp);
 	temp.str->size = size;
 	temp.str->typ.val = CT_STRING;
@@ -71,7 +71,7 @@ errcode err;
 CLUREF temp;
 int i;
 
-	clu_alloc(((wv1.str->size+7)/8)*8 + sizeof(CLU_string), &temp);
+	clu_alloc(((wv1.str->size+3)/4)*4 + sizeof(CLU_string), &temp);
 	temp.str->size = wv1.str->size;
 	temp.str->typ.val = CT_STRING;
 	temp.str->typ.mark = 0;
@@ -93,7 +93,7 @@ CLUREF *ans;
 int bi;
 /* 1/10/91 : modified wrt gc_dump */
 
-	bi = (i.num-1)*8;
+	bi = (i.num-1)*4;
 	if (bi < 0) signal(ERR_bounds);
 	if (bi > (wv.str->size)) signal(ERR_bounds);
 	ans->num = wv.vec->data[i.num-1];
@@ -112,7 +112,7 @@ CLUREF w;
 {
 int bi;
 /* 1/10/91 : modified wrt gc_dump */
-	bi = (i.num-1)*8;
+	bi = (i.num-1)*4;
 	if (bi < 0) signal(ERR_bounds);
 	if (bi > wv.str->size) signal(ERR_bounds);
 	wv.vec->data[i.num-1] = w.num;
@@ -131,7 +131,7 @@ CLUREF *ans1, *ans2;
 {
 int bi, temp;
 
-	bi = (i.num-1)*8;
+	bi = (i.num-1)*4;
 	if (bi < 0) signal(ERR_bounds);
 	if (bi > (wv.str->size)) signal(ERR_bounds);
 	temp = wv.vec->data[i.num - 1];
@@ -151,7 +151,7 @@ CLUREF l, r;
 {
 int bi, temp;
 
-	bi = (i.num-1)*8;
+	bi = (i.num-1)*4;
 	if (bi < 0) signal(ERR_bounds);
 	if (bi > wv.str->size) signal(ERR_bounds);
 	wv.vec->data[i.num-1] = (r.num & 0xffff) | ((l.num & 0xffff) << 16);
@@ -171,7 +171,7 @@ CLUREF b, l;
 {
 int bi;
 
-	bi = (i.num-1)*8;
+	bi = (i.num-1)*4;
 	if (bi < 0) signal(ERR_bounds);
 	if (bi > wv.str->size) signal(ERR_bounds);
 	wv.vec->data[i.num-1] = l.num & 0xffffff | ((b.num & 0xff) << 24);
@@ -193,8 +193,8 @@ int bi, wi, sub_index, temp;
 	bi = (i.num-1);
 	if (bi < 0) signal(ERR_bounds);
 	if (bi > (wv.str->size)) signal(ERR_bounds);
-	wi = bi/8;
-	sub_index = bi - (wi*8) + 1;
+	wi = bi/4;
+	sub_index = bi - (wi*4) + 1;
 	temp = wv.vec->data[wi];
 	switch (sub_index) {
 		case 1:
@@ -232,8 +232,8 @@ int bi, wi, sub_index, temp;
 	if (bi < 0) signal(ERR_bounds);
 	if (bi > wv.str->size) signal(ERR_bounds);
 	c.num = c.num & 0xff;
-	wi = bi/8;
-	sub_index = bi - (wi*8) + 1;
+	wi = bi/4;
+	sub_index = bi - (wi*4) + 1;
 	temp = wv.vec->data[wi];
 	switch (sub_index) {
 		case 1:
@@ -272,8 +272,8 @@ int bi, temp, temp2, wi, sub_index;
 	bi = (i.num-1);
 	if (bi < 0) signal(ERR_bounds);
 	if (bi >= (wv.str->size-1)) signal(ERR_bounds);
-	wi = bi/8;
-	sub_index = bi - (wi*8) + 1;
+	wi = bi/4;
+	sub_index = bi - (wi*4) + 1;
 	temp = wv.vec->data[wi];
 	switch (sub_index) {
 		case 1:
@@ -316,8 +316,8 @@ int bi, temp, wi, sub_index;
 	if (bi < 0) signal(ERR_bounds);
 	if (bi >= wv.str->size-1) signal(ERR_bounds);
 	n.num = n.num & 0xffff;
-	wi = bi/8;
-	sub_index = bi - (wi*8) + 1;
+	wi = bi/4;
+	sub_index = bi - (wi*4) + 1;
 	temp = wv.vec->data[wi];
 	switch (sub_index) {
 		case 1:
@@ -363,8 +363,8 @@ int bi, temp, temp2, wi, sub_index;
 	bi = (i.num-1);
 	if (bi < 0) signal(ERR_bounds);
 	if (bi >= (wv.str->size-1)) signal(ERR_bounds);
-	wi = bi/8;
-	sub_index = bi - (wi*8) + 1;
+	wi = bi/4;
+	sub_index = bi - (wi*4) + 1;
 	temp = wv.vec->data[wi];
 	switch (sub_index) {
 		case 1:
@@ -405,8 +405,8 @@ int bi, temp, wi, sub_index;
 	bi = (i.num-1);
 	if (bi < 0) signal(ERR_bounds);
 	if (bi >= wv.str->size-1) signal(ERR_bounds);
-	wi = bi/8;
-	sub_index = bi - (wi*8) + 1;
+	wi = bi/4;
+	sub_index = bi - (wi*4) + 1;
 	temp = wv.vec->data[wi];
 	switch (sub_index) {
 		case 1:
@@ -447,7 +447,7 @@ errcode _wordvecOPsize(wv, ans)
 CLUREF wv;
 CLUREF *ans;
 {
-	ans->num = wv.str->size/8;
+	ans->num = wv.str->size/4;
 	signal(ERR_ok);
 	}
 
@@ -593,19 +593,19 @@ CLUREF w1, s1, w2, s2, len;
 	signal(ERR_failure);
 	}
 
-errcode _wordvecOPget_byte(wv, wrd, bit, len, ans)     /* Is this every used? */
+errcode _wordvecOPget_byte(wv, wrd, bit, len, ans)
 CLUREF wv, wrd, bit, len, *ans;
 {
 int n1, result, mask;
 
 	if (len.num <= 0) signal(ERR_illegal_size);
-	if (len.num > 32) signal(ERR_illegal_size);    /* 32 or 64?*/
+	if (len.num > 32) signal(ERR_illegal_size);
 	n1 = wrd.num << 2;
 	if (n1 <= 0) signal(ERR_bounds);
 	if (n1 > wv.str->size) signal(ERR_bounds);
 	if (len.num > bit.num) signal(ERR_bounds);
 	result = wv.vec->data[wrd.num - 1];
-	result = result >> (32 - bit.num);             /* 32 or 64? */
+	result = result >> (32 - bit.num);
 	mask =  (1 << len.num) - 1;
 	/* printf("before %X %X\n", mask, result); */
 	result = result & mask;
@@ -614,7 +614,7 @@ int n1, result, mask;
 	signal(ERR_ok);
 	}
 
-errcode _wordvecOPset_byte(wv, byte, wrd, bit, len)              /* Is this every used? */
+errcode _wordvecOPset_byte(wv, byte, wrd, bit, len)
 CLUREF wv, byte, wrd, bit, len;
 {
 int n1;
@@ -623,14 +623,14 @@ int new_field;
 int field_mask;
 
 	if (len.num <= 0) signal(ERR_illegal_size);
-	if (len.num > 32) signal(ERR_illegal_size);              /* 32 or 64? */
+	if (len.num > 32) signal(ERR_illegal_size);
 	n1 = wrd.num << 2;
 	if (n1 <= 0) signal(ERR_bounds);
 	if (n1 > wv.str->size) signal(ERR_bounds);
 	if (len.num > bit.num) signal(ERR_bounds);
 	field_mask = (1 << len.num) - 1;
-	new_field = (byte.num & field_mask) << (32 - bit.num);  /* 32 or 64? */
-	field_mask = field_mask << (32 - bit.num);              /* 32 or 64? */
+	new_field = (byte.num & field_mask) << (32 - bit.num);
+	field_mask = field_mask << (32 - bit.num);
 	slot = wv.vec->data[wrd.num - 1];
 	slot = slot & ~field_mask;
 	slot |= new_field;
@@ -649,14 +649,14 @@ CLUREF *ans;
 errcode _wordvecOPword_size(ans)
 CLUREF *ans;
 {
-	ans->num = 64;
+	ans->num = 32;
 	signal(ERR_ok);
 	}
 
 errcode _wordvecOPbytes_per_word(ans)
 CLUREF *ans;
 {
-	ans->num = 8;
+	ans->num = 4;
 	signal(ERR_ok);
 	}
 
@@ -716,8 +716,8 @@ CLUREF temp_oneof, sz;
 
         err = oneofOPnew(CLU_1, CLU_0, &temp_oneof);
         if (err != ERR_ok) resignal(err);
-/*                    8 for type + size, 1 for trailing 0, +7 &~7 to round up */
-	sz.num = 8 + (w.str->size+1 + 7)&~7;
+/*                    8 for type + size, 1 for trailing 0, +3 &~3 to round up */
+	sz.num = 8 + (w.str->size+1 + 3)&~3;
         err = gcd_tabOPinsert(tab, sz, temp_oneof, w, ans);
 	if (err != ERR_ok) resignal(err);
 	signal(ERR_ok);
