@@ -33,3 +33,7 @@ To avoid touching -I flags in the makefiles, at least for the initial
 attempts, it might be handy to create a symlink:
 
     cd code/include && ln -s ../gc/include/gc
+
+and, similarly, for the library:
+
+    cd code && ln -s gc/lib/libgc.a
