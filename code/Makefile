@@ -68,10 +68,10 @@ libpclu_g.a: ${G}
 	ranlib libpclu_g.a
 
 clean:
-	for i in ${CLIBDIRS} gc cmp; do (cd $$i; make clean); done
+	for i in ${CLIBDIRS} cmp; do (cd $$i; make clean); done
 	${RM} ${FLUFF}
 
 veryclean: clean
-	for i in ${CLIBDIRS} gc cmp; do (cd $$i; make veryclean); done
+	for i in ${CLIBDIRS} cmp; do (cd $$i; make veryclean); done
 	${RM} libpclu_opt.a libpclu_debug.a libpclu_g.a ${FLUFF}
 
