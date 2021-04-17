@@ -10,6 +10,8 @@ code/include/gc
 .\#*
 \#*\#
 
+ID
+
 *.a
 *.core
 *.d
