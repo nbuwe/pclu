@@ -28,14 +28,14 @@ debugger: fictitious_file
 	cd Debugger; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}" all
 
 debug: fictitious_file
-	cd Debug; ${RM} *.c; ${LN} ../Opt/*.c .
-	cd Debug; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUG_FLAGS}" OBJS="${OBJS}"
+	# cd Debug; ${RM} *.c; ${LN} ../Opt/*.c .
+	# cd Debug; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUG_FLAGS}" OBJS="${OBJS}"
 
 fictitious_file:
 
 clean:
 	${RM} */*.o Debugger/*.c Debug/*.c ${FLUFF}
-	cd Debug; make clean
+	# cd Debug; make clean
 	cd Debugger; make clean
 	cd Opt; make clean
 
