@@ -52,7 +52,7 @@ static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/util.c,v 1.8 91/
 #include <string.h>
 #include <errno.h>
 
-extern void *gc_malloc();
+
 extern void exit();
 extern void find_ops_init();
 extern void find_selops_init();
