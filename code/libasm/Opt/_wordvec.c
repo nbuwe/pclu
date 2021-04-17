@@ -17,7 +17,7 @@ static char rcsid[] = "$Header: _wordvec.c,v 1.6 91/06/06 13:52:31 dcurtis Exp $
  * Revision 1.3  91/02/11  12:05:57  dcurtis
  * added lfetch and lstore
  * fixed bfetch: avoid sign extensions
- * fixed wftetch : case 4 
+ * fixed wfetch : case 4 
  * 
  * Revision 1.2  91/02/06  13:57:38  dcurtis
  * no change

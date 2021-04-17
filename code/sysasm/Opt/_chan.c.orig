@@ -36,7 +36,7 @@ static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/_chan.c,v 1.11 9
  * 
  * Revision 1.3  91/02/11  11:32:06  dcurtis
  * _chanOPsendto: changed send to sendto & initialized size & asize
- * _chanOPputb: >= to > in bounds test on low: now single byte strings 
+ * _chanOPputb: >= to > in bounds test on low: now single byte strings
  * 		can be sent
  * 
  * Revision 1.2  91/02/08  15:20:19  dcurtis
