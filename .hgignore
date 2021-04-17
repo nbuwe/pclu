@@ -3,6 +3,9 @@ syntax: glob
 # --prefix for boehm gc to install into (instead of carrying our own copy)
 code/gc
 
+# ad-hack symlink to code/gc/include/gc
+code/include/gc
+
 *~
 .\#*
 \#*\#
