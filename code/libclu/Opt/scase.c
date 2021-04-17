@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode _case();
 
 /**** BEGIN PROCEDURE lower_case ****/

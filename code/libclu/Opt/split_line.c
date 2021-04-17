@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode arrayOPnew();
 extern errcode stringOPsize();
 extern errcode intOPfrom_to();

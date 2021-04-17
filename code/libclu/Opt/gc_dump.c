@@ -5,7 +5,6 @@
 #include "pclu_sys.h"
 
 
-
 typedef struct {
 long count;
     char *_gcd_name;

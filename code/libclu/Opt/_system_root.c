@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode _home_dir();
 CLUREF STR_CLU;
 static int _system_root_own_init = 0;

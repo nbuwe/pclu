@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode sequenceOPfetch();
 CLUREF STR_hangup;
 CLUREF STR_interrupt;

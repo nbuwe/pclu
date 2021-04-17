@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 CLUREF STR_UNIX;
 static int _operating_system_own_init = 0;
 

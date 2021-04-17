@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode _cvt();
 extern errcode _bytevecOPindexc();
 extern errcode intOPequal();

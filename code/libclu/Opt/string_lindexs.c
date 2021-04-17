@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode stringOPsize();
 extern errcode intOPfrom_to_by();
 extern errcode intOPsub();

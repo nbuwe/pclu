@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode _host_address();
 
 /**** BEGIN PROCEDURE host_address ****/

@@ -5,7 +5,6 @@
 #include "pclu_sys.h"
 
 
-
 typedef struct {
 long count;
 } quick_sort_of_t_REQS;

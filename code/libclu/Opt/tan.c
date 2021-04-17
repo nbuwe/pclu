@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode realOPdiv();
 extern errcode sin();
 extern errcode cos();

@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 /**** BEGIN CLUSTER istream ****/
 
 extern errcode boolOPnot();

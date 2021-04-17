@@ -5,7 +5,6 @@
 #include "pclu_sys.h"
 
 
-
 typedef struct {
 long count;
 } array_replace_of_t_REQS;
