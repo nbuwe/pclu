@@ -16,3 +16,6 @@ code/include/gc
 *.o
 .depend
 .log*
+
+# pclu output
+*.junk
