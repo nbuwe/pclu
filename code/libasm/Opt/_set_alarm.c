@@ -42,7 +42,7 @@ struct itimerval value;
 int which;
 
 	if (secs.num > 0) {
-		vec.sa_handler = alarm;
+		vec.sa_handler = clu_alarm;
 #if defined(LINUX) && !defined(OLD_LINUX)
 		vec.sa_mask.__val[0] = -1;
 #else
