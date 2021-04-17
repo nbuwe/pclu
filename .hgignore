@@ -12,6 +12,14 @@ code/include/gc
 
 ID
 
+cludent/cludent
+cludent/cludent.lib
+code/cmp/pclu
+exe/pclu
+lib/lowlev.lib
+lib/misc.lib
+lib/useful.lib
+
 *.a
 *.core
 *.d
@@ -21,3 +29,4 @@ ID
 
 # pclu output
 *.junk
+pclu.xref
