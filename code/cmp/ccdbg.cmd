@@ -1,1 +1,1 @@
-cc -I~CLU/include/debug -w -c -g
+${CLUCC-${CC-cc}} -I~CLU/include/debug -w -c -g

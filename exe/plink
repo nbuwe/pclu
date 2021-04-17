@@ -1,4 +1,8 @@
 #!/bin/sh
+
+# let the compiler be set in the environment
+cc=${CLUCC-${CC-cc}}
+
 output=a.out
 files=
 verbose=
@@ -28,6 +32,6 @@ do
     if [ $# -ge 1 ]; then shift; fi
 done
 if [ -n "$verbose" ]; then
-    echo cc $syms -o $output $files -L$CLUHOME/code $lflag -lm  -lgc
+    echo $cc $syms -o $output $files -L$CLUHOME/code $lflag -lm  -lgc
 fi
-cc $syms -o $output $files -L$CLUHOME/code $lflag -lm -lgc
+$cc $syms -o $output $files -L$CLUHOME/code $lflag -lm -lgc
