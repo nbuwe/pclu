@@ -21,8 +21,15 @@ currently do).  While this pclu-debian release claimed to support
 64-bit it actually didn't because of a bug, so for now you have to
 stick to 32-bit.
 
+
 Build it then run make install to get the headers in code/gc/include
 the libraries in code/gc/lib (and some docs in code/gc/share/gc).
+
 Since the code needs private headers you then need to either create a
 symlink code/gc/include/private that points to gc-7.2f/include/private
 or create that directory and copy over the headers.
+
+To avoid touching -I flags in the makefiles, at least for the initial
+attempts, it might be handy to create a symlink:
+
+    cd code/include && ln -s ../gc/include/gc

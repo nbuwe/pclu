@@ -47,6 +47,9 @@ errcode err;
 
 #ifndef LINUX
 extern int gccount;
+#else
+#include <gc/gc.h>
+#define gccount (GC_get_gc_no())
 #endif
 errcode _gcOPcount(ans)
 CLUREF *ans;

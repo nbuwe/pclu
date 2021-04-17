@@ -12,6 +12,8 @@ CLUREF *ans;
 	signal(ERR_ok);
 	}
 #else
+#include <gc/private/gc_priv.h>
+
 errcode _get_active_heap(ans)
 CLUREF *ans;
 {

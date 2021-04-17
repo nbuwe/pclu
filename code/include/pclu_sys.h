@@ -37,7 +37,6 @@
 
 #ifdef LINUX
 #define gcollect GC_gcollect
-#define gccount GC_gc_no
 #define gc_init GC_init
 #define expand_hp GC_expand_hp
 #define gc_malloc GC_malloc

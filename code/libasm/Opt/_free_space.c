@@ -38,6 +38,7 @@ CLUREF *ans;
 	}
 
 #else
+#include <gc/private/gc_priv.h>
 /*
 extern int GC_max_heapsize;
 extern int GC_composite_in_use;

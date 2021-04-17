@@ -55,6 +55,8 @@ static char rcsid[] = "$Header: array.c,v 1.7 91/06/06 13:26:29 root Exp $";
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+#include <gc/private/gc_priv.h>
+
 extern errcode arrayOPOPnewdesc();
 extern errcode arrayOPOPnewstore();
 extern errcode arrayOPOPsize_for_growth();

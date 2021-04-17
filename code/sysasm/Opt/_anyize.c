@@ -23,6 +23,8 @@ static char rcsid[] = "$Header: _anyize.c,v 1.2 91/06/06 13:25:21 root Exp $";
 extern OWN_ptr _anyize_own_init;
 #ifndef LINUX
 extern char *heapstart, *heaplim;
+#else
+#include <gc/gc_mark.h>
 #endif
 
 errcode _anyize(x, ans)

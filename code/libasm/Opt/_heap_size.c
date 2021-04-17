@@ -25,6 +25,10 @@ static char rcsid[] = "$Header: _heap_size.c,v 1.2 91/06/06 13:47:18 dcurtis Exp
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+#ifdef LINUX
+#include <gc/private/gc_priv.h>
+#endif
+
 extern int composite_in_use;
 
 errcode _heap_size(ans)
