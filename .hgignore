@@ -15,6 +15,7 @@ ID
 
 cludent/cludent
 cludent/cludent.lib
+cmpclu/cmp.lib
 code/cmp/pclu
 exe/pclu
 lib/lowlev.lib
