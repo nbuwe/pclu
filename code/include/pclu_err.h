@@ -108,6 +108,5 @@ typedef long errcode;
 #ifndef errcmp
 extern long errcmp();
 #endif
-#define ecodeOPlookup _pclu_erstr
 
 #endif	/* !PCLU_ERR */
