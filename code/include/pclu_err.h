@@ -110,4 +110,4 @@ extern long errcmp();
 #endif
 #define ecodeOPlookup _pclu_erstr
 
-#endif
+#endif	/* !PCLU_ERR */
