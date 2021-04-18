@@ -1,4 +1,3 @@
-
 #ifndef PCLU_SYS
 #define PCLU_SYS
 
@@ -1049,4 +1048,4 @@ typedef struct {
         sig_desc *asig[10];
         } siglist10;
 
-#endif /* PCLU_SYS */
+#endif	/* !PCLU_SYS */
