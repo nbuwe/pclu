@@ -7,7 +7,6 @@
 /*	Defines error codes and signalling macros */
 
 typedef long errcode;
-/*typedef char * errlist[10]; */
 
 /* Negative numbers for LINUX */
 
@@ -98,8 +97,6 @@ typedef long errcode;
 #define UMAXERR 503
 #define MAX_INTERNAL_ERROR	1000
 
-/* 2/26/01 dwc: nuked off the following old-style defn */
-/* extern int strcmp(); */
 #define errcmp(s1, s2) \
 	(((long) (s1) < 0 && (long)(s1) > -MAX_INTERNAL_ERROR) ? false : \
 	(((long) (s2) < 0 && (long)(s2) > -MAX_INTERNAL_ERROR) ? false : \
