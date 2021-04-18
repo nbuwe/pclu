@@ -1,8 +1,6 @@
 %	BASIC TYPES
 %
 %	CLU Compiler Version 3: specs for basic types and type generators
-%
-% 3/17/93 dwc: removed stream$_reset (doesn't exist), added stream$scripts
 
 null_		= pathname "null"
 bool_		= pathname "bool"
@@ -1243,9 +1241,6 @@ copy = proc (x: stream) returns (stream)
 
 print = proc (x: stream, ps: pstream)
 	end print
-
-%_reset = proc ()
-%	end _reset
 
 _close_all = proc ()
 	end _close_all

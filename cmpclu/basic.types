@@ -1037,7 +1037,7 @@ user_name = proc () returns (string)
 	end user_name
 
 stream = cluster is open, primary_input, primary_output, error_output,
-		    add_script, rem_script, unscript, can_read,
+		    add_script, rem_script, unscript, scripts, can_read,
 		    can_write, getc, peekc, pending, empty, putc, putc_image,
 		    getc_image, get_lineno, set_lineno, reset, flush,
 		    get_line_length, get_page_length, get_date, set_date,
@@ -1049,7 +1049,7 @@ stream = cluster is open, primary_input, primary_output, error_output,
 		    get_input_buffered, set_input_buffered,
 		    get_output_buffered, set_output_buffered,
 		    get_eof_flag, set_eof_flag, equal, similar,
-		    copy, print, _reset, _close_all, _open_streams
+		    copy, print, _close_all, _open_streams
 
 rep = any
 
@@ -1071,6 +1071,9 @@ add_script = proc (st1, st2: stream) signals (script_failed)
 
 rem_script = proc (st1, st2: stream)
 	end rem_script
+
+scripts = iter (st: stream) yields (stream)
+	end scripts
 
 unscript = proc (st: stream)
 	end unscript
@@ -1238,9 +1241,6 @@ copy = proc (x: stream) returns (stream)
 
 print = proc (x: stream, ps: pstream)
 	end print
-
-_reset = proc ()
-	end _reset
 
 _close_all = proc ()
 	end _close_all
