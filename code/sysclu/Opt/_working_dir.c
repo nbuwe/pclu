@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode boolOPnot();
 extern errcode stringOPempty();
 extern errcode charOPequal();
@@ -22,7 +21,7 @@ extern errcode _fixup_file_name();
 extern errcode file_nameOPcreate();
 CLUREF STR_;
 static int _working_dir_own_init = 0;
-static CLUREF _working_dirOPwrkdir;
+CLUREF _working_dirOPwrkdir;
 
 /**** BEGIN PROCEDURE _working_dir ****/
 

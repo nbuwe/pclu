@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 /**** BEGIN CLUSTER file_name ****/
 
 extern errcode intOPgt();
@@ -895,7 +894,7 @@ CLUREF *ret_1;
 /**** END PROCEDURE make_output ****/
 
 static int file_nameOPmake_temp_own_init = 0;
-static CLUREF file_nameOPmake_tempOPextend_number;
+CLUREF file_nameOPmake_tempOPextend_number;
 
 /**** BEGIN PROCEDURE make_temp ****/
 

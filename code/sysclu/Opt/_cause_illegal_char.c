@@ -5,7 +5,6 @@
 #include "pclu_sys.h"
 
 
-
 /**** BEGIN PROCEDURE _cause_illegal_char ****/
 
 errcode _cause_illegal_char()

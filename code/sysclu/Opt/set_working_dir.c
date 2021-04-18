@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode _working_dir();
 
 /**** BEGIN PROCEDURE set_working_dir ****/

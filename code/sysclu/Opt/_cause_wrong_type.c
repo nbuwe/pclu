@@ -5,7 +5,6 @@
 #include "pclu_sys.h"
 
 
-
 /**** BEGIN PROCEDURE _cause_wrong_type ****/
 
 errcode _cause_wrong_type()

@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode stringOPindexs();
 extern errcode intOPequal();
 extern errcode stringOPconcat();

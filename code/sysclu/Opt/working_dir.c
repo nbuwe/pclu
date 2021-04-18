@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode _working_dir();
 CLUREF STR_;
 static int working_dir_own_init = 0;

@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode file_nameOPget_dir();
 extern errcode _dir_ent_size();
 extern errcode boolOPnot();

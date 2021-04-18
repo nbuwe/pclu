@@ -4,7 +4,6 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-
 extern errcode stringOPempty();
 extern errcode _environ();
 extern errcode sequenceOPindexes();
@@ -45,9 +44,9 @@ CLUREF STR__057usr_057local_057lib_057argus;
 CLUREF STR__057usr_057lib_057argus;
 CLUREF STR__057usr_057argus;
 static int _home_dir_own_init = 0;
-static CLUREF _home_dirOPusers;
+CLUREF _home_dirOPusers;
 CLUREF _home_dirOPhomes;
-static CLUREF _home_dirOPhave;
+CLUREF _home_dirOPhave;
 
 /**** BEGIN PROCEDURE _home_dir ****/
 

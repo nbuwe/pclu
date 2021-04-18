@@ -5,7 +5,6 @@
 #include "pclu_sys.h"
 
 
-
 /**** BEGIN PROCEDURE _dir_ent_size ****/
 
 errcode _dir_ent_size(ret_1)
