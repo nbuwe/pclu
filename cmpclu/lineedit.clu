@@ -367,7 +367,7 @@ overload_keytable_file = proc( tbl:keytable, fn:file_name )signals( not_found )
 	line:=replace( TAB, "", line )
 	% remove spaces and tab characters from the line.
 
-	if line = "" cor line[ 1 ] = '%' then
+	if line = "" cor line[ 1 ] = '%' cor line[ 1 ] = '#' then
 	    break	% ignore blank lines or comments
 	    end % if
 	

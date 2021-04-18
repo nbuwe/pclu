@@ -1766,15 +1766,27 @@ CLUREF fn;
         CLUREF T_3_3;
         CLUREF T_3_4;
         CLUREF T_3_5;
-        T_3_2.num = ((line.str->size != STR_.str->size)? false :
+        CLUREF T_3_6;
+        CLUREF T_3_7;
+        CLUREF T_3_8;
+        CLUREF T_3_9;
+        T_3_3.num = ((line.str->size != STR_.str->size)? false :
             !(bcmp(line.str->data, STR_.str->data, line.str->size)));
+        T_3_2.num = T_3_3.num;
+        if (!T_3_3.num) {
+            err = stringOPfetch(line, CLU_1, &T_3_4);
+            if (err != ERR_ok) goto ex_2;
+            T_3_5.ch = '%';
+            T_3_6.num = (T_3_4.ch == T_3_5.ch)? true : false;
+            T_3_2.num = T_3_6.num;
+        }
         T_3_1.num = T_3_2.num;
         if (!T_3_2.num) {
-            err = stringOPfetch(line, CLU_1, &T_3_3);
+            err = stringOPfetch(line, CLU_1, &T_3_7);
             if (err != ERR_ok) goto ex_2;
-            T_3_4.ch = '%';
-            T_3_5.num = (T_3_3.ch == T_3_4.ch)? true : false;
-            T_3_1.num = T_3_5.num;
+            T_3_8.ch = '#';
+            T_3_9.num = (T_3_7.ch == T_3_8.ch)? true : false;
+            T_3_1.num = T_3_9.num;
         }
         if (T_3_1.num == true) {
 
