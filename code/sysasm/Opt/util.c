@@ -713,36 +713,3 @@ char *temp;
 	temp[size-1] = '\0';
 	return(temp);
 	}
-/* OBSOLETE
-errcode build_parm_table(reqs, ops, table)
-struct REQS * reqs;
-struct OPS * ops;
-struct OPS ** table;
-{
-int i,j;
-char *name, *name1;
-struct OPS * temp;
-errcode err;
-
-/ * REQS -> OPS                        \/   	3/29/90 * /
-	clu_alloc(sizeof(struct OPS) + 
-		sizeof(struct OP_ENTRY) * (reqs->count - 1), &temp);
-	temp->count = reqs->count;
-	temp->type_owns = ops->type_owns;
-	temp->op_owns = ops->op_owns;
-	if (ops == 0) {*table = temp; signal(ERR_ok);}
-	for (i = 0; i < reqs->count; i++) {
-		name = reqs->entry[i].name;
-		for (j = 0; j < ops->count; j++) {
-			name1 = ops->entry[j].name;
-			if (name1 == 0 || name1[0] != name[0]) continue;
-			if (!(strcmp(name1, name))) {
-				temp->entry[i].name = name1;
-				temp->entry[i].fcn = ops->entry[j].fcn;
-				break;}
-			}
-		}
-	*table = temp;
-	signal(ERR_ok);
-	}
- */
