@@ -25,6 +25,7 @@ lib/useful.lib
 *.a
 *.core
 *.d
+*.elc
 *.o
 .depend
 .log*
