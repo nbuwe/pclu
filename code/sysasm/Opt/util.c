@@ -205,7 +205,7 @@ struct timezone tz;
 /* set up error string and integer constants */
 
 	clu_err_string_init();
-#ifdef sparc
+#ifdef CLU_CLUREF_SMALL_INTEGERS
 	clu_int_init();
 #endif
 
@@ -562,7 +562,7 @@ CLUREF sz;
 	signal(ERR_ok);
 	}
 
-#ifdef sparc
+#ifdef CLU_CLUREF_SMALL_INTEGERS
 CLUREF CLU_0;
 CLUREF CLU_1;
 CLUREF CLU_2;

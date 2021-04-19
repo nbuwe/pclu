@@ -430,7 +430,8 @@ extern CLUSTRING	array_bounds_exception_STRING;
 /*		externs for common integers		*/
 /*							*/
 
-#ifdef sparc
+#undef CLU_CLUREF_SMALL_INTEGERS
+#ifdef CLU_CLUREF_SMALL_INTEGERS
 extern CLUREF CLU_0;
 extern CLUREF CLU_1;
 extern CLUREF CLU_2;
