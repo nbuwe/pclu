@@ -332,6 +332,9 @@ typedef union {
 
 #define CLUREFSZ (sizeof(CLUREF))
 
+/* Entry point of a CLU program in the C code emitted by the compiler */
+errcode start_up(void);
+
 /* dumb stuff for alpha */
 extern errcode arrayOPnew();
 extern errcode arrayOPaddh();
