@@ -617,10 +617,11 @@ const CLUREF CLU_49 = { .num = 49 };
 const CLUREF CLU_50 = { .num = 50 };
 #endif
 
+
 char * mystrcat(s1, s2)
 char *s1, *s2;
 {
-long size, i, j, len1, len2;
+long size, len1, len2;
 const char *temp;
 
 	len1 = strlen(s1);
@@ -629,32 +630,5 @@ const char *temp;
 	temp = (char *)gc_malloc(size);
 	bcopy(s1, temp, len1);
 	bcopy(s2, &temp[len1], len2+1);
-/*
-	for (i = 0; i < len1; i++) {
-		temp[i] = s1[i];
-		}
-	for (j = 0; j < len2; j++) {
-		temp[i] = s2[j]; i++;
-		}
-	temp[size-1] = '\0';
-*/
-	return(temp);
-	}
-
-char * mystrcat2(s1, len1, s2, len2)
-char *s1, *s2;
-{
-long size, i, j;
-char *temp;
-
-	size = len1 + len2 + 1;
-	temp = (char *)gc_malloc(size);
-	for (i = 0; i < len1; i++) {
-		temp[i] = s1[i];
-		}
-	for (j = 0; j < len2; j++) {
-		temp[i] = s2[j]; i++;
-		}
-	temp[size-1] = '\0';
 	return(temp);
 	}
