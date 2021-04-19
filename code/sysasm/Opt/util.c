@@ -244,12 +244,12 @@ struct timezone tz;
 		exit(-10);
 		}
 	if (print_stat) {
-	fprintf(stderr, "wall clock time %d secs\n", tv2.tv_sec - tv1.tv_sec);
-	fprintf(stderr, "user time %d, system time %d, user+system time %d secs\n",
-			rusage_2.ru_utime.tv_sec - rusage_1.ru_utime.tv_sec,
-			rusage_2.ru_stime.tv_sec - rusage_1.ru_stime.tv_sec,
-			rusage_2.ru_stime.tv_sec - rusage_1.ru_stime.tv_sec +
-			rusage_2.ru_utime.tv_sec - rusage_1.ru_utime.tv_sec);
+	fprintf(stderr, "wall clock time %lld secs\n", (long long)(tv2.tv_sec - tv1.tv_sec));
+	fprintf(stderr, "user time %lld, system time %lld, user+system time %lld secs\n",
+			(long long)(rusage_2.ru_utime.tv_sec - rusage_1.ru_utime.tv_sec),
+			(long long)(rusage_2.ru_stime.tv_sec - rusage_1.ru_stime.tv_sec),
+			(long long)(rusage_2.ru_stime.tv_sec - rusage_1.ru_stime.tv_sec +
+				    rusage_2.ru_utime.tv_sec - rusage_1.ru_utime.tv_sec));
 	fprintf(stderr, "max resident set sizes (start & end), %ld & %ld Kbytes\n",
 			rusage_1.ru_maxrss, rusage_2.ru_maxrss);
 	fprintf(stderr, "minor page faults %ld, major page faults %ld\n",
