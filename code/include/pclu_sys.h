@@ -345,7 +345,7 @@ extern errcode debugOPbegin_line();
 extern errcode force();
 extern struct OPS NO_OPS;
 extern struct obj **NewObjPtr;
-#ifndef util
+#ifndef CLU_sysasm_util_impl
 extern CLU_proc generic_CLU_proc;
 extern CLUREF CLU_string_size;
 extern struct OPS *NULL_OPS;
