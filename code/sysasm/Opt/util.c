@@ -41,21 +41,22 @@ static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/util.c,v 1.8 91/
 /*    includes several other support routines   */
 /*						*/
 
-#include <stdio.h>
-#include "signal.h"
-#include <sys/time.h>
-#include <sys/resource.h>
+#include <signal.h>
 #undef signal
 
 #define CLU_sysasm_util_impl
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-#include <string.h>
+#include <sys/resource.h>
+#include <sys/time.h>
+
 #include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
-extern void exit();
 extern void find_ops_init();
 extern void find_selops_init();
 #ifndef LINUX
