@@ -69,7 +69,7 @@ extern void gc_init();
 extern char *clu_errlist[];
 extern char *clu_uerrlist[];
 extern errcode clu_err_string_init();
-extern errcode clu_int_init();
+
 char **environ;
 errlist elist;
 
