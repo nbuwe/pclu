@@ -75,6 +75,8 @@ errlist elist;
 CLUREF CUR_PROC_VAR;
 CLUREF CLU_string_size;
 struct obj **NewObjPtr;
+
+static int main_2(int _argc, char **_argv, char **_envp);
 int argc;
 char **argv;
 char **envp;
@@ -102,9 +104,9 @@ Slist0 NO_PARMS = {0,0};
 long maxheapsize = 0;
 /* extern long STACKTOP; */
 
-int main(_argc, _argv, _envp)
-int _argc;
-char **_argv, **_envp;
+
+int
+main(int _argc, char **_argv, char **_envp)
 {
 int err;
 /*	STACKTOP = get_sp(); */
@@ -124,10 +126,10 @@ int err;
 	return(err);
 	}
 
+
 /* Routine to get the ball rolling */
-main_2(_argc, _argv, _envp)
-int _argc;
-char **_argv, **_envp;
+static int
+main_2(int _argc, char **_argv, char **_envp)
 {
 errcode err, pgmerr;
 #ifndef LINUX
