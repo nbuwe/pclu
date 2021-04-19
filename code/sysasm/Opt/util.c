@@ -196,18 +196,20 @@ struct timezone tz;
 	find_ops_init(&save_own_ptr, &save_own_req, &save_own_proc);
 	find_selops_init(&save1, &save2, &save3, &save4);
 
+#ifdef CLU_CLUREF_SMALL_INTEGERS
+/* set up integer constants */
+	clu_int_init();
+#endif
+
 /* set up empty string constants */
 
 	err = stringOPcons("", CLU_1, CLU_0, &empty_string);
 	if (err != ERR_ok) fprintf(stderr, "failure: %s\n", elist[0].str->data);
 	clu_empty_string = empty_string;
 
-/* set up error string and integer constants */
+/* set up error string constants */
 
 	clu_err_string_init();
-#ifdef CLU_CLUREF_SMALL_INTEGERS
-	clu_int_init();
-#endif
 
 /* collect statistics on user's program */
 
