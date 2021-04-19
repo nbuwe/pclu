@@ -316,13 +316,13 @@ long longs2 = (long)s2;
 	}
 #endif
 
-extern int sys_nerr;
+
 extern long clu_nerr;
 
 /* Routine to convert a clu signal to a string */
 
-CLUREF _pclu_erstr(sig)
-long sig;
+CLUREF
+_pclu_erstr(long sig)
 {
 char *temp;
 CLUREF temp_str, sz;
@@ -351,8 +351,8 @@ CLUREF temp_str, sz;
 
 /* Routine to produce the unhandled exception string */
 
-void pclu_unhandled(err)
-errcode err;
+void
+pclu_unhandled(errcode err)
 {
 CLUREF tempstr;
 CLUREF headstr;
@@ -376,8 +376,8 @@ CLUREF headstr;
 
 /* Routine to convert a unix error to a string */
 
-CLUREF _unix_erstr(num)
-long num;
+CLUREF
+_unix_erstr(long num)
 {
 const char * temp;
 CLUREF temp_str, sz;

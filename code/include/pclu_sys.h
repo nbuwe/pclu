@@ -358,11 +358,14 @@ extern struct OPS *NULL_OPS;
 
 extern void bcopy();
 extern void perror();
+
 extern void clu_alloc();
 extern void clu_alloc_atomic();
-extern CLUREF _pclu_erstr();
-extern CLUREF _unix_erstr();
-extern void   pclu_unhandled();
+
+CLUREF _pclu_erstr(long sig);
+CLUREF _unix_erstr(long num);
+void pclu_unhandled(errcode err);
+
 typedef CLUREF errlist[MAX_SIG_VALS];
 extern errlist elist;
 
