@@ -250,24 +250,24 @@ struct timezone tz;
 			rusage_2.ru_stime.tv_sec - rusage_1.ru_stime.tv_sec,
 			rusage_2.ru_stime.tv_sec - rusage_1.ru_stime.tv_sec +
 			rusage_2.ru_utime.tv_sec - rusage_1.ru_utime.tv_sec);
-	fprintf(stderr, "max resident set sizes (start & end), %d & %d Kbytes\n",
+	fprintf(stderr, "max resident set sizes (start & end), %ld & %ld Kbytes\n",
 			rusage_1.ru_maxrss, rusage_2.ru_maxrss);
-	fprintf(stderr, "minor page faults %d, major page faults %d\n",
+	fprintf(stderr, "minor page faults %ld, major page faults %ld\n",
 			rusage_2.ru_minflt - rusage_1.ru_minflt,
 			rusage_2.ru_majflt - rusage_1.ru_majflt);
-	fprintf(stderr, "number of times swapped out %d\n",
+	fprintf(stderr, "number of times swapped out %ld\n",
 			rusage_2.ru_nswap - rusage_1.ru_nswap);
-	fprintf(stderr, "input via file system %d, output via file system %d\n",
+	fprintf(stderr, "input via file system %ld, output via file system %ld\n",
 			rusage_2.ru_inblock - rusage_1.ru_inblock,
 			rusage_2.ru_oublock - rusage_1.ru_oublock);
-	fprintf(stderr, "IPC input %d, IPC output %d\n",
+	fprintf(stderr, "IPC input %ld, IPC output %ld\n",
 			rusage_2.ru_msgrcv - rusage_1.ru_msgrcv,
 			rusage_2.ru_msgsnd - rusage_1.ru_msgsnd);
-	fprintf(stderr, "number of signals delivered %d\n",
+	fprintf(stderr, "number of signals delivered %ld\n",
 			rusage_2.ru_nsignals - rusage_1.ru_nsignals);
-	fprintf(stderr, "number of voluntary give ups %d\n",
+	fprintf(stderr, "number of voluntary give ups %ld\n",
 			rusage_2.ru_nvcsw - rusage_1.ru_nvcsw);
-	fprintf(stderr, "number of involuntary give ups %d\n",
+	fprintf(stderr, "number of involuntary give ups %ld\n",
 			rusage_2.ru_nivcsw - rusage_1.ru_nivcsw);
 /*	string_anal(); */
 	}
