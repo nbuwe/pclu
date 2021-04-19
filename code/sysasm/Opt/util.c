@@ -196,11 +196,6 @@ struct timezone tz;
 	find_ops_init(&save_own_ptr, &save_own_req, &save_own_proc);
 	find_selops_init(&save1, &save2, &save3, &save4);
 
-#ifdef CLU_CLUREF_SMALL_INTEGERS
-/* set up integer constants */
-	clu_int_init();
-#endif
-
 /* set up empty string constants */
 
 	err = stringOPcons("", CLU_1, CLU_0, &empty_string);
@@ -565,113 +560,57 @@ CLUREF sz;
 	}
 
 #ifdef CLU_CLUREF_SMALL_INTEGERS
-CLUREF CLU_0;
-CLUREF CLU_1;
-CLUREF CLU_2;
-CLUREF CLU_3;
-CLUREF CLU_4;
-CLUREF CLU_5;
-CLUREF CLU_6;
-CLUREF CLU_7;
-CLUREF CLU_8;
-CLUREF CLU_9;
-CLUREF CLU_10;
-CLUREF CLU_11;
-CLUREF CLU_12;
-CLUREF CLU_13;
-CLUREF CLU_14;
-CLUREF CLU_15;
-CLUREF CLU_16;
-CLUREF CLU_17;
-CLUREF CLU_18;
-CLUREF CLU_19;
-CLUREF CLU_20;
-CLUREF CLU_21;
-CLUREF CLU_22;
-CLUREF CLU_23;
-CLUREF CLU_24;
-CLUREF CLU_25;
-CLUREF CLU_26;
-CLUREF CLU_27;
-CLUREF CLU_28;
-CLUREF CLU_29;
-CLUREF CLU_30;
-CLUREF CLU_31;
-CLUREF CLU_32;
-CLUREF CLU_33;
-CLUREF CLU_34;
-CLUREF CLU_35;
-CLUREF CLU_36;
-CLUREF CLU_37;
-CLUREF CLU_38;
-CLUREF CLU_39;
-CLUREF CLU_40;
-CLUREF CLU_41;
-CLUREF CLU_42;
-CLUREF CLU_43;
-CLUREF CLU_44;
-CLUREF CLU_45;
-CLUREF CLU_46;
-CLUREF CLU_47;
-CLUREF CLU_48;
-CLUREF CLU_49;
-CLUREF CLU_50;
-
-errcode clu_int_init()
-{
-	CLU_0.num = 0;
-	CLU_1.num = 1;
-	CLU_2.num = 2;
-	CLU_3.num = 3;
-	CLU_4.num = 4;
-	CLU_5.num = 5;
-	CLU_6.num = 6;
-	CLU_7.num = 7;
-	CLU_8.num = 8;
-	CLU_9.num = 9;
-	CLU_10.num = 10;
-	CLU_11.num = 11;
-	CLU_12.num = 12;
-	CLU_13.num = 13;
-	CLU_14.num = 14;
-	CLU_15.num = 15;
-	CLU_16.num = 16;
-	CLU_17.num = 17;
-	CLU_18.num = 18;
-	CLU_19.num = 19;
-	CLU_20.num = 20;
-	CLU_21.num = 21;
-	CLU_22.num = 22;
-	CLU_23.num = 23;
-	CLU_24.num = 24;
-	CLU_25.num = 25;
-	CLU_26.num = 26;
-	CLU_27.num = 27;
-	CLU_28.num = 28;
-	CLU_29.num = 29;
-	CLU_30.num = 30;
-	CLU_31.num = 31;
-	CLU_32.num = 32;
-	CLU_33.num = 33;
-	CLU_34.num = 34;
-	CLU_35.num = 35;
-	CLU_36.num = 36;
-	CLU_37.num = 37;
-	CLU_38.num = 38;
-	CLU_39.num = 39;
-	CLU_40.num = 40;
-	CLU_41.num = 41;
-	CLU_42.num = 42;
-	CLU_43.num = 43;
-	CLU_44.num = 44;
-	CLU_45.num = 45;
-	CLU_46.num = 46;
-	CLU_47.num = 47;
-	CLU_48.num = 48;
-	CLU_49.num = 49;
-	CLU_50.num = 50;
-	signal(ERR_ok);
-	}
+const CLUREF CLU_0 = { .num = 0 };
+const CLUREF CLU_1 = { .num = 1 };
+const CLUREF CLU_2 = { .num = 2 };
+const CLUREF CLU_3 = { .num = 3 };
+const CLUREF CLU_4 = { .num = 4 };
+const CLUREF CLU_5 = { .num = 5 };
+const CLUREF CLU_6 = { .num = 6 };
+const CLUREF CLU_7 = { .num = 7 };
+const CLUREF CLU_8 = { .num = 8 };
+const CLUREF CLU_9 = { .num = 9 };
+const CLUREF CLU_10 = { .num = 10 };
+const CLUREF CLU_11 = { .num = 11 };
+const CLUREF CLU_12 = { .num = 12 };
+const CLUREF CLU_13 = { .num = 13 };
+const CLUREF CLU_14 = { .num = 14 };
+const CLUREF CLU_15 = { .num = 15 };
+const CLUREF CLU_16 = { .num = 16 };
+const CLUREF CLU_17 = { .num = 17 };
+const CLUREF CLU_18 = { .num = 18 };
+const CLUREF CLU_19 = { .num = 19 };
+const CLUREF CLU_20 = { .num = 20 };
+const CLUREF CLU_21 = { .num = 21 };
+const CLUREF CLU_22 = { .num = 22 };
+const CLUREF CLU_23 = { .num = 23 };
+const CLUREF CLU_24 = { .num = 24 };
+const CLUREF CLU_25 = { .num = 25 };
+const CLUREF CLU_26 = { .num = 26 };
+const CLUREF CLU_27 = { .num = 27 };
+const CLUREF CLU_28 = { .num = 28 };
+const CLUREF CLU_29 = { .num = 29 };
+const CLUREF CLU_30 = { .num = 30 };
+const CLUREF CLU_31 = { .num = 31 };
+const CLUREF CLU_32 = { .num = 32 };
+const CLUREF CLU_33 = { .num = 33 };
+const CLUREF CLU_34 = { .num = 34 };
+const CLUREF CLU_35 = { .num = 35 };
+const CLUREF CLU_36 = { .num = 36 };
+const CLUREF CLU_37 = { .num = 37 };
+const CLUREF CLU_38 = { .num = 38 };
+const CLUREF CLU_39 = { .num = 39 };
+const CLUREF CLU_40 = { .num = 40 };
+const CLUREF CLU_41 = { .num = 41 };
+const CLUREF CLU_42 = { .num = 42 };
+const CLUREF CLU_43 = { .num = 43 };
+const CLUREF CLU_44 = { .num = 44 };
+const CLUREF CLU_45 = { .num = 45 };
+const CLUREF CLU_46 = { .num = 46 };
+const CLUREF CLU_47 = { .num = 47 };
+const CLUREF CLU_48 = { .num = 48 };
+const CLUREF CLU_49 = { .num = 49 };
+const CLUREF CLU_50 = { .num = 50 };
 #endif
 
 char * mystrcat(s1, s2)
