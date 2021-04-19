@@ -618,17 +618,16 @@ const CLUREF CLU_50 = { .num = 50 };
 #endif
 
 
-char * mystrcat(s1, s2)
-char *s1, *s2;
+char *
+mystrcat(const char *s1, const char *s2)
 {
-long size, len1, len2;
-const char *temp;
+    size_t len1 = strlen(s1);
+    size_t len2 = strlen(s2);
+    size_t size = len1 + len2 + 1;
 
-	len1 = strlen(s1);
-	len2 = strlen(s2);
-	size = len1 + len2 + 1;
-	temp = (char *)gc_malloc(size);
-	bcopy(s1, temp, len1);
-	bcopy(s2, &temp[len1], len2+1);
-	return(temp);
-	}
+    char *temp = (char *)gc_malloc(size);
+    memcpy(&temp[0], s1, len1);
+    memcpy(&temp[len1], s2, len2 + 1);
+
+    return temp;
+}

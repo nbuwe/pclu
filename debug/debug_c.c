@@ -62,7 +62,7 @@ extern CLUREF empty_string;
 extern errcode symOPget_address();
 extern errcode opown2typeown();
 extern errcode stringOPcons();
-extern char *mystrcat();
+extern char *mystrcat(const char *s1, const char *s2);
 errlist saved_elist[1000];
 
 long CLU_TRACE = 1;

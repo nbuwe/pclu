@@ -38,7 +38,7 @@ static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/new_selector.c,v
 extern errcode add_sel_ops();
 extern errcode find_sel_ops();
 
-extern char * mystrcat();
+extern char *mystrcat(const char *s1, const char *s2);
 extern errcode missing_print_fcn();
 
 #define MAX_SELECTORS 500
