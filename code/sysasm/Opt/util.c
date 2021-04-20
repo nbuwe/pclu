@@ -357,7 +357,7 @@ CLUREF headstr;
 /* Routine to convert a unix error to a string */
 
 CLUREF
-_unix_erstr(long num)
+_unix_erstr(int num)
 {
 const char * temp;
 CLUREF temp_str, sz;

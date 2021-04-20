@@ -366,7 +366,7 @@ extern void clu_alloc();
 extern void clu_alloc_atomic();
 
 CLUREF _pclu_erstr(errcode sig);
-CLUREF _unix_erstr(long num);
+CLUREF _unix_erstr(int num);
 void pclu_unhandled(errcode err);
 
 typedef CLUREF errlist[MAX_SIG_VALS];
