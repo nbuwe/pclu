@@ -346,7 +346,6 @@ CLUREF temp_str, sz;
 		return(temp_str);
 	    }
 	else {
-/*					1, formerly */
 		sz.num = strlen((char*) sig) - 4;
 		stringOPcons((char*)sig, CLU_5, sz, &temp_str);
 		return(temp_str);
