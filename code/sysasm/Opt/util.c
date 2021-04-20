@@ -74,8 +74,10 @@ extern void gc_init();
 #include <gc/gc.h>
 #endif
 
-extern char *clu_errlist[];
-extern char *clu_uerrlist[];
+#if !defined(__arraycount)
+#define __arraycount(a) (sizeof(a) / sizeof(a[0]))
+#endif
+
 extern errcode clu_err_string_init();
 
 char **environ;
@@ -327,35 +329,6 @@ long longs2 = (long)s2;
 #endif
 
 
-extern long clu_nerr;
-
-/* Routine to convert a clu signal to a string */
-
-CLUREF
-_pclu_erstr(long sig)
-{
-char *temp;
-CLUREF temp_str, sz;
-
-	if (sig < 0 && sig > -MAX_INTERNAL_ERROR) {
-		sig = -sig;
-		if (sig <= clu_nerr) {
-			temp = clu_errlist[sig];
-			}
-		else {
-			temp = clu_uerrlist[sig - UMINERR];
-			}
-		sz.num = strlen(temp);
-		stringOPcons(temp, CLU_1, sz, &temp_str);
-		return(temp_str);
-	    }
-	else {
-		sz.num = strlen((char*) sig) - 4;
-		stringOPcons((char*)sig, CLU_5, sz, &temp_str);
-		return(temp_str);
-		}
-	}
-
 /* Routine to produce the unhandled exception string */
 
 void
@@ -395,103 +368,146 @@ CLUREF temp_str, sz;
 	return(temp_str);
 	}
 
-#define CLU_UNERR UMAXERR - UMINERR + 1
 
-char *clu_uerrlist[CLU_UNERR] = {
-	"missing",
-	"already_flattened"
+const char * const clu_errlist[] = {
+#define	CLU_errlist_init(_name) [-ERR_ ## _name] = #_name
+	CLU_errlist_init(ok),
+	CLU_errlist_init(overflow),
+	CLU_errlist_init(negative_exponent),
+	CLU_errlist_init(zero_divide),
+	CLU_errlist_init(break),
+	CLU_errlist_init(iterbodyexit),
+	CLU_errlist_init(iterbodysignal),
+	CLU_errlist_init(iterbodyreturn),
+	CLU_errlist_init(bounds),
+	CLU_errlist_init(failure),
+	CLU_errlist_init(illegal_char),
+	CLU_errlist_init(badfmt),
+	CLU_errlist_init(negative_size),
+	CLU_errlist_init(heap_exhausted),
+	CLU_errlist_init(not_possible),
+	CLU_errlist_init(toobig),
+	CLU_errlist_init(not_found),
+	CLU_errlist_init(bad_format),
+	CLU_errlist_init(end_of_file),
+	CLU_errlist_init(permanent),
+	CLU_errlist_init(illegal_stream),
+	CLU_errlist_init(no_limit),
+	CLU_errlist_init(negative_field_width),
+	CLU_errlist_init(wrong_tag),
+	CLU_errlist_init(wrong_type),
+	CLU_errlist_init(found),
+	CLU_errlist_init(illegal_field_width),
+	CLU_errlist_init(undefined),
+	CLU_errlist_init(insufficient_field_width),
+	CLU_errlist_init(script_failed),
+	CLU_errlist_init(iterforbodyexit),
+	CLU_errlist_init(iterforbodysignal),
+	CLU_errlist_init(iterforbodyreturn),
+	CLU_errlist_init(none),
+	CLU_errlist_init(illegal_size),
+	CLU_errlist_init(bad_code),
+	/* 36..49 are unallocated */
+	CLU_errlist_init(a_cons),
+	CLU_errlist_init(abstract),
+	CLU_errlist_init(anyize),
+	CLU_errlist_init(bad),
+	CLU_errlist_init(cont),
+	CLU_errlist_init(eof),
+	CLU_errlist_init(error),
+	CLU_errlist_init(exists),
+	CLU_errlist_init(extra),
+	CLU_errlist_init(finish),
+	CLU_errlist_init(illegal),
+	CLU_errlist_init(include_failed),
+	CLU_errlist_init(local),
+	CLU_errlist_init(no_directive),
+	CLU_errlist_init(no_du),
+	CLU_errlist_init(open_failed),
+	CLU_errlist_init(recons),
+	CLU_errlist_init(specs_exist),
+	CLU_errlist_init(toohard),
+	CLU_errlist_init(underflow),
+	CLU_errlist_init(negative_time),
+	CLU_errlist_init(negative_multiplier),
+	CLU_errlist_init(bad_divisor),
+	CLU_errlist_init(bad_size),
+	CLU_errlist_init(change),
+	CLU_errlist_init(empty),
+	CLU_errlist_init(invalid_format),
+	CLU_errlist_init(illegal_signal),
+	CLU_errlist_init(no_server),
+	CLU_errlist_init(timeout),
+	CLU_errlist_init(bad_address),
+	CLU_errlist_init(complex_result),
+	CLU_errlist_init(unterminated_quote),
+	CLU_errlist_init(specs_missing),
+	CLU_errlist_init(duplicate),
+#undef	CLU_errlist_init
 	};
 
-#define CLU_NERR 85
-
-long clu_nerr = CLU_NERR - 1;
-char *clu_errlist[CLU_NERR] = {
-	"ok",
-	"overflow",
-	"negative_exponent",
-	"zero_divide",
-	"break",
-	"iterbodyexit",
-	"iterbodysignal",
-	"iterbodyreturn",
-	"bounds",
-	"failure",
-	"illegal_char",
-	"badfmt",
-	"negative_size",
-	"heap_exhausted",
-	"not_possible",
-	"toobig",
-	"not_found",
-	"bad_format",
-	"end_of_file",
-	"permanent",
-	"illegal_stream",
-	"no_limit",
-	"negative_field_width",
-	"wrong_tag",
-	"wrong_type",
-	"found",
-	"illegal_field_width",
-	"undefined",
-	"insufficient_field_width",
-	"script_failed",
-	"iterforbodyexit",
-	"iterforbodysignal",
-	"iterforbodyreturn",
-	"none",
-	"illegal_size",
-	"bad_code",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"unallocated",
-	"a_cons",
-	"abstract",
-	"anyize",
-	"bad",
-	"cont",
-	"eof",
-	"error",
-	"exists",
-	"extra",
-	"finish",
-	"illegal",
-	"include_failed",
-	"local",
-	"no_directive",
-	"no_du",
-	"open_failed",
-	"recons",
-	"specs_exist",
-	"toohard",
-	"underflow",
-	"negative_time",
-	"negative_multiplier",
-	"bad_divisor",
-	"bad_size",
-	"change",
-	"empty",
-	"invalid_format",
-	"illegal_signal",
-	"no_server",
-	"timeout",
-	"bad_address",
-	"complex_result",
-	"unterminated_quote",
-	"specs_missing",
-	"duplicate"
+const char * const clu_uerrlist[] = {
+#define	CLU_uerrlist_init(_name) [-ERR_ ## _name - UMINERR] = #_name
+	CLU_uerrlist_init(missing),
+	CLU_uerrlist_init(already_flattened),
+#undef	CLU_uerrlist_init
 	};
+
+
+/* Routine to convert a clu signal to a string */
+
+CLUREF
+_pclu_erstr(errcode sig)
+{
+	const char *temp;
+	CLUREF temp_str, sz;
+
+	/* small negative integer is a predefined error */
+	if (sig <= 0 && sig > -MAX_INTERNAL_ERROR) {
+		size_t e = -sig;
+		char buf[32];
+
+		temp = NULL;
+		if (e < __arraycount(clu_errlist)) {
+			temp = clu_errlist[e];
+		}
+		else if (e >= UMINERR
+			 && (e - UMINERR) < __arraycount(clu_uerrlist))
+		{
+			temp = clu_uerrlist[e - UMINERR];
+		}
+
+		/* outside the ranges or in an unallocated gap */
+		if (temp == NULL) {
+			snprintf(buf, sizeof(buf), "unknown_error_%zu", e);
+			temp = buf;
+		}
+		sz.num = strlen(temp);
+	}
+	/* otherwise it's a C string */
+	else {
+		temp = (const char *)sig;
+		size_t len = strlen(temp);
+
+		/* usually "ERR_some_error" */
+		const char prefix[4] = "ERR_";
+		if (len > sizeof(prefix)
+		    && strncmp(temp, prefix, sizeof(prefix)) == 0)
+		{
+			temp += sizeof(prefix);
+			len -= sizeof(prefix);
+		}
+		else if (len == 0) {
+			temp = "<empty>";
+			len = strlen(temp);
+		}
+		sz.num = len;
+	}
+
+	stringOPcons(temp, CLU_1, sz, &temp_str);
+	return(temp_str);
+}
+
 
 #define CLU_ERR_STRING 17
 

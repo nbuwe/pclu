@@ -365,7 +365,7 @@ extern void perror();
 extern void clu_alloc();
 extern void clu_alloc_atomic();
 
-CLUREF _pclu_erstr(long sig);
+CLUREF _pclu_erstr(errcode sig);
 CLUREF _unix_erstr(long num);
 void pclu_unhandled(errcode err);
 
