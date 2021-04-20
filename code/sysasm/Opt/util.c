@@ -572,7 +572,7 @@ errcode
 clu_err_string_init(void)
 {
 long i;
-char * ith;
+const char *ith;
 CLUREF *ithdest;
 CLUREF sz;
 
