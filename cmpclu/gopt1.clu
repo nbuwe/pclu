@@ -318,7 +318,7 @@ g_inline_iter = proc(e:g_env, fstmt: forstmt) returns (bool)
 	  g_env$indent(e)
 	  g_err(e)
 	  g_env$putl(e, " = ERR_failure;")
-	  g_env$putl(e, "elist[0].str = array_bounds_exception_STRING;")
+	  g_env$putl(e, "elist[0] = array_bounds_exception_STRING;")
 	  g_env$putl(e, "goto "||
 			ex$get_current_ex_label()||";}")
 	  g_env$outdent(e)

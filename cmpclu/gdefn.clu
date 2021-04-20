@@ -159,7 +159,7 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	   g_env$puts(e, ex$get_current_end_label() || ": {signal(ERR_ok);}")
 	   else
 		g_env$putl(e, ex$get_current_end_label() ||
-			      ": elist[0].str = no_return_values_STRING;")
+			      ": elist[0] = no_return_values_STRING;")
 		g_env$indent(e)
 		g_env$putl(e, "{signal(ERR_failure);}")
 		g_env$outdent(e)
