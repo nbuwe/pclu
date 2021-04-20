@@ -129,7 +129,7 @@ CLUREF temp;
         	signal(ERR_ok);
 		}
 	else {
-		elist[0].str = bad_format_STRING;
+		elist[0] = bad_format_STRING;
 		signal(ERR_not_possible);
 		}
 	}

@@ -186,7 +186,7 @@ long i;
 		signal(ERR_ok);
 		}
 	if (length.num > MAX_SEQ) {
-			elist[0].str = huge_allocation_request_STRING;
+			elist[0] = huge_allocation_request_STRING;
 			signal(ERR_failure);
 			}
 	clu_alloc(length.num*CLUREFSZ + sizeof(CLU_sequence) - CLUREFSZ, &temp);
@@ -216,7 +216,7 @@ long i;
 		signal(ERR_ok);
 		}
 	if (length.num > MAX_SEQ) {
-			elist[0].str = huge_allocation_request_STRING;
+			elist[0] = huge_allocation_request_STRING;
 			signal(ERR_failure);
 			}
 	clu_alloc(length.num*CLUREFSZ + sizeof(CLU_sequence) - CLUREFSZ, &temp);
@@ -296,7 +296,7 @@ long size;
 long i;
 	size = s.vec->size;
 	if ((size + 1) * sizeof(CLUREF) > MAX_SEQ) {
-			elist[0].str = huge_allocation_request_STRING;
+			elist[0] = huge_allocation_request_STRING;
 			signal(ERR_failure);	
 			}
 	
@@ -326,7 +326,7 @@ long size;
 long i;
 	size = s.vec->size;
 	if ((size + 1) * sizeof(CLUREF) > MAX_SEQ) {
-			elist[0].str = huge_allocation_request_STRING;
+			elist[0] = huge_allocation_request_STRING;
 			signal(ERR_failure);	
 			}
 	
@@ -420,7 +420,7 @@ long size, i, j;
 		}
 	size = s1.vec->size + s2.vec->size;
 	if (size > MAX_SEQ) {
-		elist[0].str = huge_allocation_request_STRING;
+		elist[0] = huge_allocation_request_STRING;
 		signal(ERR_failure);
 		}
 	clu_alloc(size * sizeof(CLUREF) + sizeof(CLU_sequence) -sizeof(CLUREF), &temp);

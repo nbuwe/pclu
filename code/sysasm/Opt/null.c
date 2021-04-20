@@ -99,7 +99,7 @@ CLUREF temp;
 	if (err == ERR_not_possible) signal(err);
 	if (err != ERR_ok) resignal(err);
 	if (temp.num != 0) {
-		elist[0].str = bad_format_STRING;
+		elist[0] = bad_format_STRING;
 		signal(ERR_not_possible);
 		}
 	ans->num = 0;

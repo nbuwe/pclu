@@ -141,7 +141,7 @@ CLUREF temp_str;
 	if (!strcmp(mode.str->data, "modify"))
 			flags = O_RDWR + O_CREAT;
 	if (flags == -1) {
-		elist[0].str = illegal_access_mode_STRING;
+		elist[0] = illegal_access_mode_STRING;
 		signal(ERR_not_possible);}
 	clu_alloc(sizeof(_chan), &newch);
 	err = stringOPcons("", CLU_1, CLU_0, &temp_str);
@@ -501,13 +501,13 @@ int fd, result;
 _chan *ch = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
 	if (fd < 0) fd = ch->wr.num;
 	if (cmd.num == 0) {
-		elist[0].str = cannot_duplicate__chan_STRING;
+		elist[0] = cannot_duplicate__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	result = fcntl(fd, cmd.num, arg.num);
@@ -527,7 +527,7 @@ int fd, result;
 _chan *ch = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -727,7 +727,7 @@ int result;
 _chan *ch = (_chan *)chref.ref;
 
 	if (ch->wr.num < 0) {
-		elist[0].str = cannot_write_to_this__chan_STRING;
+		elist[0] = cannot_write_to_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	if (image.tf == true && ch->typ.num == tty) 
@@ -744,7 +744,7 @@ _chan *ch = (_chan *)chref.ref;
 			signal(ERR_not_possible);
 			}
 		if (result != 1) {
-			elist[0].str = unknown_error_STRING;
+			elist[0] = unknown_error_STRING;
 			signal(ERR_not_possible);
 			}
 		break;
@@ -766,7 +766,7 @@ int result;
 _chan *ch = (_chan *)chref.ref;
 
 	if (ch->wr.num < 0) {
-		elist[0].str = cannot_write_to_this__chan_STRING;
+		elist[0] = cannot_write_to_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	if (image.tf == true && ch->typ.num == tty) 
@@ -783,7 +783,7 @@ _chan *ch = (_chan *)chref.ref;
 			signal(ERR_not_possible);
 			}
 		if (result != 1) {
-			elist[0].str = unknown_error_STRING;
+			elist[0] = unknown_error_STRING;
 			signal(ERR_not_possible);
 			}
 		break;
@@ -805,7 +805,7 @@ int result;
 _chan *ch = (_chan *)chref.ref;
 
 	if (ch->wr.num < 0) {
-		elist[0].str = cannot_write_to_this__chan_STRING;
+		elist[0] = cannot_write_to_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	if (image.tf == true && ch->typ.num == tty) 
@@ -823,7 +823,7 @@ _chan *ch = (_chan *)chref.ref;
 			signal(ERR_not_possible);
 			}
 		if (result != s.str->size) {
-			elist[0].str = unknown_error_STRING;
+			elist[0] = unknown_error_STRING;
 			signal(ERR_not_possible);
 			}
 		break;
@@ -846,7 +846,7 @@ int size;
 _chan *ch = (_chan *)chref.ref;
 
 	if (ch->wr.num < 0) {
-		elist[0].str = cannot_write_to_this__chan_STRING;
+		elist[0] = cannot_write_to_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	if (low.num < 1 || low.num > bv.str->size) signal(ERR_bounds);
@@ -868,7 +868,7 @@ _chan *ch = (_chan *)chref.ref;
 			signal(ERR_not_possible);
 			}
 		if (result != size) {
-			elist[0].str = unknown_error_STRING;
+			elist[0] = unknown_error_STRING;
 			signal(ERR_not_possible);
 			}
 		break;
@@ -892,7 +892,7 @@ int size;
 _chan *ch = (_chan *)chref.ref;
 
 	if (ch->wr.num < 0) {
-		elist[0].str = cannot_write_to_this__chan_STRING;
+		elist[0] = cannot_write_to_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	if (low.num < 1 || low.num >= wv.vec->size) signal(ERR_bounds);
@@ -914,7 +914,7 @@ _chan *ch = (_chan *)chref.ref;
 			signal(ERR_not_possible);
 			}
 		if (result != size) {
-			elist[0].str = unknown_error_STRING;
+			elist[0] = unknown_error_STRING;
 			signal(ERR_not_possible);
 			}
 		break;
@@ -947,7 +947,7 @@ _chan *ch = (_chan *)chref.ref;
 /* initial conditions and bounds checking */
 
 	if (ch->wr.num < 0) {
-		elist[0].str = cannot_write_to_this__chan_STRING;
+		elist[0] = cannot_write_to_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	if (low.num < 1) signal(ERR_bounds);
@@ -1046,7 +1046,7 @@ int result;
 			signal(ERR_not_possible);
 			}
 		if (result != size) {
-			elist[0].str = unknown_error_STRING;
+			elist[0] = unknown_error_STRING;
 			signal(ERR_not_possible);
 			}
 		break;
@@ -1152,7 +1152,7 @@ int obuf;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	s = ch->rd.num;
@@ -1176,7 +1176,7 @@ int obuf;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	s = ch->rd.num;
@@ -1200,7 +1200,7 @@ int obuf;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->wr.num < 0) {
-		elist[0].str = cannot_write_to_this__chan_STRING;
+		elist[0] = cannot_write_to_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	s = ch->wr.num;
@@ -1224,7 +1224,7 @@ char echo_buf[10];
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	while (1) {
@@ -1299,7 +1299,7 @@ char echo_buf[10];
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	while (1) {
@@ -1371,7 +1371,7 @@ int result;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	if (bv.str->size == 0) signal(ERR_bounds);
@@ -1396,7 +1396,7 @@ int result;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	if (bv.str->size == 0) signal(ERR_bounds);
@@ -1425,7 +1425,7 @@ _chan *ch  = (_chan *)chref.ref;
 	if (n.num < count) count = n.num;
 	if (count < 0) signal(ERR_bounds);
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	if (bv.str->size == 0) signal(ERR_bounds);
@@ -1457,7 +1457,7 @@ _chan *ch  = (_chan *)chref.ref;
 	if (n.num < count) count = n.num;
 	if (count < 0) signal(ERR_bounds);
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	while (1) {
@@ -1490,7 +1490,7 @@ _chan *ch  = (_chan *)chref.ref;
 /* check arguments */
 /*	printf("low = %d, high = %d\n", low.num, high.num); */
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	if (low.num < 1) signal(ERR_bounds);
@@ -1718,7 +1718,7 @@ int result;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	while (1) {
@@ -1742,7 +1742,7 @@ int result, fromlen;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	fromlen = addr.str->size;
@@ -1768,7 +1768,7 @@ int size;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->wr.num < 0) {
-		elist[0].str = cannot_write_to_this__chan_STRING;
+		elist[0] = cannot_write_to_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	size = buf.vec->size;
@@ -1795,7 +1795,7 @@ int size, asize;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->wr.num < 0) {
-		elist[0].str = cannot_write_to_this__chan_STRING;
+		elist[0] = cannot_write_to_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	size = buf.vec->size;
@@ -1829,7 +1829,7 @@ _chan *ch  = (_chan *)chref.ref;
 	FD_ZERO(&readfds);
 	FD_ZERO(&exceptfds);
 	if (ch->rd.num < 0) {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	FD_SET(ch->rd.num, &readfds);
@@ -1863,7 +1863,7 @@ _chan *ch  = (_chan *)chref.ref;
 	FD_ZERO(&writefds);
 	FD_ZERO(&exceptfds);
 	if (ch->wr.num < 0) {
-		elist[0].str = cannot_write_to_this__chan_STRING;
+		elist[0] = cannot_write_to_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	FD_SET(ch->wr.num, &writefds);
@@ -1901,7 +1901,7 @@ int max = 0;
 	for (i = 0 ; i < reads.vec->size; i++) {
 		ith = rds[i]->rd.num;
 		if (ith < 0) {
-			elist[0].str = cannot_read_from_this__chan_STRING;
+			elist[0] = cannot_read_from_this__chan_STRING;
 			signal(ERR_not_possible);
 			}
 		FD_SET(ith, &readfds);
@@ -1912,7 +1912,7 @@ int max = 0;
 	for (i = 0 ; i < writes.vec->size; i++) {
 		ith = wrs[i]->wr.num;
 		if (ith < 0) {
-			elist[0].str = cannot_write_to_this__chan_STRING;
+			elist[0] = cannot_write_to_this__chan_STRING;
 			signal(ERR_not_possible);
 			}
 		FD_SET(ith, &writefds);
@@ -1950,7 +1950,7 @@ int fd, uerr;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -1972,7 +1972,7 @@ CLUREF temp_str, fn;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2013,7 +2013,7 @@ int fd, uerr;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2034,7 +2034,7 @@ int fd, uerr;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2055,7 +2055,7 @@ int fd, uerr;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2074,7 +2074,7 @@ int fd, uerr, size;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2098,7 +2098,7 @@ int fd, uerr, size;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2123,7 +2123,7 @@ int optlen, optval;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2148,7 +2148,7 @@ int optlen;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2186,7 +2186,7 @@ errcode err;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2220,11 +2220,11 @@ struct termios buf;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->typ.num != 0) {
-		elist[0].str = not_a_terminal__chan_STRING;
+		elist[0] = not_a_terminal__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = speeds_unknown_STRING;
+		elist[0] = speeds_unknown_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2257,7 +2257,7 @@ struct stat stat;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2280,7 +2280,7 @@ int result, fd;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2302,7 +2302,7 @@ int result, fd;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2327,7 +2327,7 @@ int uerr, fd;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2351,7 +2351,7 @@ struct stat stat;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2374,7 +2374,7 @@ int uerr, fd;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
-		elist[0].str = _chan_is_closed_STRING;
+		elist[0] = _chan_is_closed_STRING;
 		signal(ERR_not_possible);
 		}
 	fd = ch->rd.num;
@@ -2425,7 +2425,7 @@ _chan *ch  = (_chan *)chref.ref;
 		signal(ERR_ok);
 		}
 	else {
-		elist[0].str = cannot_read_from_this__chan_STRING;
+		elist[0] = cannot_read_from_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	}
@@ -2441,7 +2441,7 @@ _chan *ch  = (_chan *)chref.ref;
 		signal(ERR_ok);
 		}
 	else {
-		elist[0].str = cannot_write_to_this__chan_STRING;
+		elist[0] = cannot_write_to_this__chan_STRING;
 		signal(ERR_not_possible);
 		}
 	}

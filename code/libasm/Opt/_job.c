@@ -72,15 +72,15 @@ errcode err;
 CLUREF temp;
 
 	if (pri->rd.num < 0) {
-		elist[0].str = cannot_read_from_input__chan_STRING;
+		elist[0] = cannot_read_from_input__chan_STRING;
 		signal(ERR_not_possible);
 		}	
 	if (pro->wr.num < 0) {
-		elist[0].str = cannot_write_to_output__chan_STRING;
+		elist[0] = cannot_write_to_output__chan_STRING;
 		signal(ERR_not_possible);
 		}	
 	if (ero->wr.num < 0) {
-		elist[0].str = cannot_write_to_error__chan_STRING;
+		elist[0] = cannot_write_to_error__chan_STRING;
 		signal(ERR_not_possible);
 		}	
 	err = _jobOPcons0(fn, jcl, pri->rd, pro->wr, ero->wr, save, &temp);
@@ -274,15 +274,15 @@ errcode err;
 CLUREF temp;
 
 	if (pri->rd.num < 0) {
-		elist[0].str = cannot_read_from_input__chan_STRING;
+		elist[0] = cannot_read_from_input__chan_STRING;
 		signal(ERR_not_possible);
 		}	
 	if (pro->wr.num < 0) {
-		elist[0].str = cannot_write_to_output__chan_STRING;
+		elist[0] = cannot_write_to_output__chan_STRING;
 		signal(ERR_not_possible);
 		}	
 	if (ero->wr.num < 0) {
-		elist[0].str = cannot_write_to_error__chan_STRING;
+		elist[0] = cannot_write_to_error__chan_STRING;
 		signal(ERR_not_possible);
 		}	
 	err = _jobOPcone0(fn, jcl, envs, pri->rd, pro->wr, ero->wr, save, &temp);

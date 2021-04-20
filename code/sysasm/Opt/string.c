@@ -158,7 +158,7 @@ long size, i, j;
 		}
 	size = s1.str->size + s2.str->size;
 	if (size > MAX_STR) {
-		elist[0].str = huge_allocation_request_STRING;
+		elist[0] = huge_allocation_request_STRING;
 		signal(ERR_failure);
 		}
 	clu_alloc_atomic(((size+sizeof(CLUREF)) & ~(sizeof(CLUREF)-1)) + 
@@ -186,7 +186,7 @@ CLUREF temp;
 long i;
 	size = s.str->size + 1;
 	if (size > MAX_STR) {
-		elist[0].str = huge_allocation_request_STRING;
+		elist[0] = huge_allocation_request_STRING;
 		signal(ERR_failure);
 		}
 	clu_alloc_atomic(((size+CLUREFSZ) & ~(CLUREFSZ-1))

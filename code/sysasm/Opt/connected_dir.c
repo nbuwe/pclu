@@ -58,7 +58,7 @@ CLUREF lenp1;
 	lenp1.num = strlen(name) + 1;
 	err = stringOPcons(name, CLU_1, lenp1, &temp);
 	if (result == NULL) {
-		elist[0].str = cannot_get_connected_directory_STRING;
+		elist[0] = cannot_get_connected_directory_STRING;
 		elist[1] = temp;    /* new behavior: probably unnecessary */
 		signal(ERR_failure);
 		}

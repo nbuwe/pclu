@@ -360,7 +360,7 @@ long i;
 		signal(ERR_failure); }
 */
 	if (low.num + size.num > (long)MAX_ARR_SIZE) {
-		elist[0].str = array_bounds_overflow_STRING;
+		elist[0] = array_bounds_overflow_STRING;
 		signal(ERR_failure); }
 	err = arrayOPOPnewdesc(&temp);
 	if (err != ERR_ok) resignal(err);
@@ -394,7 +394,7 @@ long i;
 		signal(ERR_failure); }
 */
 	if (low.num + size.num > (long)MAX_ARR_SIZE) {
-		elist[0].str = array_bounds_overflow_STRING;
+		elist[0] = array_bounds_overflow_STRING;
 		signal(ERR_failure); }
 	err = arrayOPOPnewdesc(&temp);
 	if (err != ERR_ok) resignal(err);
@@ -473,7 +473,7 @@ long new_size, ext_size, int_low;
         int_low = a.array->int_low;
 
 	if (ext_size >= (long)MAX_ARR_SIZE) {
-		elist[0].str = array_bounds_overflow_STRING;
+		elist[0] = array_bounds_overflow_STRING;
 		signal(ERR_failure); }
 
         if (a.array->ext_size == 0) a.array->int_low = int_low = 0;
@@ -535,7 +535,7 @@ long i;
 #endif
 	new_size = a.array->ext_size + 1;
 	if (new_size > (long)MAX_ARR_SIZE) {
-		elist[0].str = array_bounds_overflow_STRING;
+		elist[0] = array_bounds_overflow_STRING;
 		signal(ERR_failure); }
 	oldstore.store = a.array->store;
 	old_int_low = a.array->int_low;
@@ -620,7 +620,7 @@ struct {
    int_index = a.array->int_low;
    while (true) {
 	if (index < a.array->ext_low || index > a.array->ext_high) {
-                elist[0].str = array_bounds_exception_STRING;
+                elist[0] = array_bounds_exception_STRING;
                 signal(ERR_failure);
                 }
 	iv_1.num = a.array->store->data[int_index];
@@ -960,7 +960,7 @@ CLUREF elt, temp;
         if (err != ERR_ok) resignal(err);
 /*
 	if (low.num < (long)MIN_ARR_INDEX) {
-		elist[0].str = bad_format_STRING;
+		elist[0] = bad_format_STRING;
 		signal(ERR_failure);
 		}
 */
@@ -969,11 +969,11 @@ CLUREF elt, temp;
         if (err == ERR_not_possible) signal(err);
         if (err != ERR_ok) resignal(err);
 	if (size.num > (long)MAX_ARR_SIZE) {
-		elist[0].str = bad_format_STRING;
+		elist[0] = bad_format_STRING;
 		signal(ERR_failure);
 		}
 	if (size.num + low.num > (long)MAX_ARR_INDEX) {
-		elist[0].str = bad_format_STRING;
+		elist[0] = bad_format_STRING;
 		signal(ERR_failure);
 		}
 /*
@@ -982,7 +982,7 @@ CLUREF elt, temp;
         if (err == ERR_not_possible) signal(err);
         if (err != ERR_ok) resignal(err);
 	if (predict.num > (long)MAX_ARR_SIZE) {
-		elist[0].str = bad_format_STRING;
+		elist[0] = bad_format_STRING;
 		signal(ERR_failure);
 		}
 */
