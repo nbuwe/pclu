@@ -506,29 +506,25 @@ long     parm_ops_defs [MAX_INSTS]; /* count of missing fcns per op/proc*/
 long num_entries = 0;
 
 /* routine to initialize structures used by find_ops */
-void find_ops_init(ans1, ans2, ans3)
-OWNPTR *ans1;
-OWNREQ *ans2;
-void **ans3;
-/*errcode (**ans3)(); */
+void
+find_ops_init(OWNPTR *ans1, OWNREQ *ans2, void **ans3)
 {
-long i,j;
-/* removed 1/28/91 to speed up start_up dwc
-	for (i = 0; i < MAX_INSTS; i++) {
+#if 0 /* removed 1/28/91 to speed up start_up dwc */
+	for (size_t i = 0; i < MAX_INSTS; i++) {
 		opsptr_arr[i] = 0;
 		ops_arr[i] = 0;
 		ops_proc[i] = 0;
-		for (j = 0; j < MAX_PARMS; j++) {
+		for (size_t j = 0; j < MAX_PARMS; j++) {
 			parm_vals[i][j]    = (long*) 0;
 			parm_types[i][j]   = (long*) 0;
 			}
 		}
-*/
+#endif
 	*ans1 = (OWNPTR)opsptr_arr;
 	*ans2 = (OWNREQ)ops_arr;
-	*ans3 = (void*)ops_proc;
-	return;
+	*ans3 = (void*)ops_proc;	/* errcode (**ans3)() */
 }
+
 
 /* routine to find ops given type and instance information */
 
