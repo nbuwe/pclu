@@ -571,19 +571,15 @@ CLUREF * const clu_glob_err_string_list[CLU_ERR_STRING] = {
 static errcode
 clu_err_string_init(void)
 {
-long i;
-const char *ith;
-CLUREF *ithdest;
-CLUREF sz;
+    for (size_t i = 0; i < CLU_ERR_STRING; ++i) {
+	CLUREF *dst = clu_glob_err_string_list[i];
+	const char *src = clu_err_string_list[i];
+	size_t len = strlen(src);
 
-	for (i = 0; i < CLU_ERR_STRING; i++) {
-		ith = clu_err_string_list[i];
-		ithdest = clu_glob_err_string_list[i];
-		sz.num = strlen(ith);
-		stringOPcons(ith, CLU_1, sz, ithdest);
-		}
-	signal(ERR_ok);
-	}
+	stringOPcons(src, CLU_1, CLUREF_make_num(len), dst);
+    }
+    signal(ERR_ok);
+}
 
 
 char *
