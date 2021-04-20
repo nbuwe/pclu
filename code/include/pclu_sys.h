@@ -332,6 +332,9 @@ typedef union {
 
 #define CLUREFSZ (sizeof(CLUREF))
 
+#define CLUREF_make_num(n) ((CLUREF){ .num = (n) })
+
+
 /* Entry point of a CLU program in the C code emitted by the compiler */
 errcode start_up(void);
 
@@ -436,112 +439,58 @@ extern CLUSTRING	array_bounds_exception_STRING;
 /*		externs for common integers		*/
 /*							*/
 
-#undef CLU_CLUREF_SMALL_INTEGERS
-#ifdef CLU_CLUREF_SMALL_INTEGERS
-extern const CLUREF CLU_0;
-extern const CLUREF CLU_1;
-extern const CLUREF CLU_2;
-extern const CLUREF CLU_3;
-extern const CLUREF CLU_4;
-extern const CLUREF CLU_5;
-extern const CLUREF CLU_6;
-extern const CLUREF CLU_7;
-extern const CLUREF CLU_8;
-extern const CLUREF CLU_9;
-extern const CLUREF CLU_10;
-extern const CLUREF CLU_11;
-extern const CLUREF CLU_12;
-extern const CLUREF CLU_13;
-extern const CLUREF CLU_14;
-extern const CLUREF CLU_15;
-extern const CLUREF CLU_16;
-extern const CLUREF CLU_17;
-extern const CLUREF CLU_18;
-extern const CLUREF CLU_19;
-extern const CLUREF CLU_20;
-extern const CLUREF CLU_21;
-extern const CLUREF CLU_22;
-extern const CLUREF CLU_23;
-extern const CLUREF CLU_24;
-extern const CLUREF CLU_25;
-extern const CLUREF CLU_26;
-extern const CLUREF CLU_27;
-extern const CLUREF CLU_28;
-extern const CLUREF CLU_29;
-extern const CLUREF CLU_30;
-extern const CLUREF CLU_31;
-extern const CLUREF CLU_32;
-extern const CLUREF CLU_33;
-extern const CLUREF CLU_34;
-extern const CLUREF CLU_35;
-extern const CLUREF CLU_36;
-extern const CLUREF CLU_37;
-extern const CLUREF CLU_38;
-extern const CLUREF CLU_39;
-extern const CLUREF CLU_40;
-extern const CLUREF CLU_41;
-extern const CLUREF CLU_42;
-extern const CLUREF CLU_43;
-extern const CLUREF CLU_44;
-extern const CLUREF CLU_45;
-extern const CLUREF CLU_46;
-extern const CLUREF CLU_47;
-extern const CLUREF CLU_48;
-extern const CLUREF CLU_49;
-extern const CLUREF CLU_50;
-#else
-#define CLU_0 0
-#define CLU_1 1
-#define CLU_2 2
-#define CLU_3 3
-#define CLU_4 4
-#define CLU_5 5
-#define CLU_6 6
-#define CLU_7 7
-#define CLU_8 8
-#define CLU_9 9
-#define CLU_10 10
-#define CLU_11 11
-#define CLU_12 12
-#define CLU_13 13
-#define CLU_14 14
-#define CLU_15 15
-#define CLU_16 16
-#define CLU_17 17
-#define CLU_18 18
-#define CLU_19 19
-#define CLU_20 20
-#define CLU_21 21
-#define CLU_22 22
-#define CLU_23 23
-#define CLU_24 24
-#define CLU_25 25
-#define CLU_26 26
-#define CLU_27 27
-#define CLU_28 28
-#define CLU_29 29
-#define CLU_30 30
-#define CLU_31 31
-#define CLU_32 32
-#define CLU_33 33
-#define CLU_34 34
-#define CLU_35 35
-#define CLU_36 36
-#define CLU_37 37
-#define CLU_38 38
-#define CLU_39 39
-#define CLU_40 40
-#define CLU_41 41
-#define CLU_42 42
-#define CLU_43 43
-#define CLU_44 44
-#define CLU_45 45
-#define CLU_46 46
-#define CLU_47 47
-#define CLU_48 48
-#define CLU_49 49
-#define CLU_50 50
-#endif
+#define CLU_0	CLUREF_make_num(0)
+#define CLU_1	CLUREF_make_num(1)
+#define CLU_2	CLUREF_make_num(2)
+#define CLU_3	CLUREF_make_num(3)
+#define CLU_4	CLUREF_make_num(4)
+#define CLU_5	CLUREF_make_num(5)
+#define CLU_6	CLUREF_make_num(6)
+#define CLU_7	CLUREF_make_num(7)
+#define CLU_8	CLUREF_make_num(8)
+#define CLU_9	CLUREF_make_num(9)
+#define CLU_10	CLUREF_make_num(10)
+#define CLU_11	CLUREF_make_num(11)
+#define CLU_12	CLUREF_make_num(12)
+#define CLU_13	CLUREF_make_num(13)
+#define CLU_14	CLUREF_make_num(14)
+#define CLU_15	CLUREF_make_num(15)
+#define CLU_16	CLUREF_make_num(16)
+#define CLU_17	CLUREF_make_num(17)
+#define CLU_18	CLUREF_make_num(18)
+#define CLU_19	CLUREF_make_num(19)
+#define CLU_20	CLUREF_make_num(20)
+#define CLU_21	CLUREF_make_num(21)
+#define CLU_22	CLUREF_make_num(22)
+#define CLU_23	CLUREF_make_num(23)
+#define CLU_24	CLUREF_make_num(24)
+#define CLU_25	CLUREF_make_num(25)
+#define CLU_26	CLUREF_make_num(26)
+#define CLU_27	CLUREF_make_num(27)
+#define CLU_28	CLUREF_make_num(28)
+#define CLU_29	CLUREF_make_num(29)
+#define CLU_30	CLUREF_make_num(30)
+#define CLU_31	CLUREF_make_num(31)
+#define CLU_32	CLUREF_make_num(32)
+#define CLU_33	CLUREF_make_num(33)
+#define CLU_34	CLUREF_make_num(34)
+#define CLU_35	CLUREF_make_num(35)
+#define CLU_36	CLUREF_make_num(36)
+#define CLU_37	CLUREF_make_num(37)
+#define CLU_38	CLUREF_make_num(38)
+#define CLU_39	CLUREF_make_num(39)
+#define CLU_40	CLUREF_make_num(40)
+#define CLU_41	CLUREF_make_num(41)
+#define CLU_42	CLUREF_make_num(42)
+#define CLU_43	CLUREF_make_num(43)
+#define CLU_44	CLUREF_make_num(44)
+#define CLU_45	CLUREF_make_num(45)
+#define CLU_46	CLUREF_make_num(46)
+#define CLU_47	CLUREF_make_num(47)
+#define CLU_48	CLUREF_make_num(48)
+#define CLU_49	CLUREF_make_num(49)
+#define CLU_50	CLUREF_make_num(50)
+
 
 /*							*/
 /*		GENERIC PARAMETER DEFINITIONS		*/

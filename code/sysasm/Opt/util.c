@@ -566,60 +566,6 @@ CLUREF sz;
 	signal(ERR_ok);
 	}
 
-#ifdef CLU_CLUREF_SMALL_INTEGERS
-const CLUREF CLU_0 = { .num = 0 };
-const CLUREF CLU_1 = { .num = 1 };
-const CLUREF CLU_2 = { .num = 2 };
-const CLUREF CLU_3 = { .num = 3 };
-const CLUREF CLU_4 = { .num = 4 };
-const CLUREF CLU_5 = { .num = 5 };
-const CLUREF CLU_6 = { .num = 6 };
-const CLUREF CLU_7 = { .num = 7 };
-const CLUREF CLU_8 = { .num = 8 };
-const CLUREF CLU_9 = { .num = 9 };
-const CLUREF CLU_10 = { .num = 10 };
-const CLUREF CLU_11 = { .num = 11 };
-const CLUREF CLU_12 = { .num = 12 };
-const CLUREF CLU_13 = { .num = 13 };
-const CLUREF CLU_14 = { .num = 14 };
-const CLUREF CLU_15 = { .num = 15 };
-const CLUREF CLU_16 = { .num = 16 };
-const CLUREF CLU_17 = { .num = 17 };
-const CLUREF CLU_18 = { .num = 18 };
-const CLUREF CLU_19 = { .num = 19 };
-const CLUREF CLU_20 = { .num = 20 };
-const CLUREF CLU_21 = { .num = 21 };
-const CLUREF CLU_22 = { .num = 22 };
-const CLUREF CLU_23 = { .num = 23 };
-const CLUREF CLU_24 = { .num = 24 };
-const CLUREF CLU_25 = { .num = 25 };
-const CLUREF CLU_26 = { .num = 26 };
-const CLUREF CLU_27 = { .num = 27 };
-const CLUREF CLU_28 = { .num = 28 };
-const CLUREF CLU_29 = { .num = 29 };
-const CLUREF CLU_30 = { .num = 30 };
-const CLUREF CLU_31 = { .num = 31 };
-const CLUREF CLU_32 = { .num = 32 };
-const CLUREF CLU_33 = { .num = 33 };
-const CLUREF CLU_34 = { .num = 34 };
-const CLUREF CLU_35 = { .num = 35 };
-const CLUREF CLU_36 = { .num = 36 };
-const CLUREF CLU_37 = { .num = 37 };
-const CLUREF CLU_38 = { .num = 38 };
-const CLUREF CLU_39 = { .num = 39 };
-const CLUREF CLU_40 = { .num = 40 };
-const CLUREF CLU_41 = { .num = 41 };
-const CLUREF CLU_42 = { .num = 42 };
-const CLUREF CLU_43 = { .num = 43 };
-const CLUREF CLU_44 = { .num = 44 };
-const CLUREF CLU_45 = { .num = 45 };
-const CLUREF CLU_46 = { .num = 46 };
-const CLUREF CLU_47 = { .num = 47 };
-const CLUREF CLU_48 = { .num = 48 };
-const CLUREF CLU_49 = { .num = 49 };
-const CLUREF CLU_50 = { .num = 50 };
-#endif
-
 
 char *
 mystrcat(const char *s1, const char *s2)
