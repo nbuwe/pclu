@@ -445,7 +445,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -578,7 +578,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -792,7 +792,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(locals.err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -954,7 +954,7 @@ CLUREF fn;
         for (T_2_2.num = T_2_1.array->ext_low; T_2_2.num <= T_2_3.num; T_2_2.num++) {
             if (T_2_2.num > T_2_4.array->ext_high || T_2_2.num < T_2_4.array->ext_low) {
                 err = ERR_failure;
-                elist[0].str = array_bounds_exception_STRING;
+                elist[0] = array_bounds_exception_STRING;
                 goto ex_1;}
             form.num = T_2_4.array->store->data[T_2_2.num - T_2_4.array->ext_low + T_2_4.array->int_low];
 
@@ -1134,7 +1134,7 @@ CLUREF fn;
         for (T_2_2.num = T_2_1.array->ext_low; T_2_2.num <= T_2_3.num; T_2_2.num++) {
             if (T_2_2.num > T_2_4.array->ext_high || T_2_2.num < T_2_4.array->ext_low) {
                 err = ERR_failure;
-                elist[0].str = array_bounds_exception_STRING;
+                elist[0] = array_bounds_exception_STRING;
                 goto ex_1;}
             form.num = T_2_4.array->store->data[T_2_2.num - T_2_4.array->ext_low + T_2_4.array->int_low];
 

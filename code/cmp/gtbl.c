@@ -248,7 +248,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -2667,7 +2667,7 @@ CLUREF *ret_1;
                 for (T_3_1.num = newpbl.array->ext_low; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                     if (T_3_1.num > T_3_3.array->ext_high || T_3_1.num < T_3_3.array->ext_low) {
                         err = ERR_failure;
-                        elist[0].str = array_bounds_exception_STRING;
+                        elist[0] = array_bounds_exception_STRING;
                         goto ex_1;}
                     each_pb.num = T_3_3.array->store->data[T_3_1.num - T_3_3.array->ext_low + T_3_3.array->int_low];
 
@@ -2925,7 +2925,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -2959,7 +2959,7 @@ CLUREF pass;
         for (T_1_1.num = g_tblOPcum_pbl.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
                 err = ERR_failure;
-                elist[0].str = array_bounds_exception_STRING;
+                elist[0] = array_bounds_exception_STRING;
                 goto ex_0;}
             each_pb.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
@@ -3303,7 +3303,7 @@ CLUREF pass;
         for (T_1_1.num = g_tblOPcum_pbl.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
                 err = ERR_failure;
-                elist[0].str = array_bounds_exception_STRING;
+                elist[0] = array_bounds_exception_STRING;
                 goto ex_0;}
             each_pb.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
@@ -3715,7 +3715,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -3985,7 +3985,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -4095,7 +4095,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -4195,7 +4195,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -4254,7 +4254,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -4411,7 +4411,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -4628,7 +4628,7 @@ errcode g_tblOPprune()
         for (T_1_1.num = g_tblOPcum_pbl.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
                 err = ERR_failure;
-                elist[0].str = array_bounds_exception_STRING;
+                elist[0] = array_bounds_exception_STRING;
                 goto ex_0;}
             each_pb.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
@@ -5059,7 +5059,7 @@ CLUREF *ret_1;
         for (T_2_1.num = make_sel_nameOPtable.array->ext_low; T_2_1.num <= T_2_2.num; T_2_1.num++) {
             if (T_2_1.num > T_2_3.array->ext_high || T_2_1.num < T_2_3.array->ext_low) {
                 err = ERR_failure;
-                elist[0].str = array_bounds_exception_STRING;
+                elist[0] = array_bounds_exception_STRING;
                 goto ex_1;}
             ithfl.num = T_2_3.array->store->data[T_2_1.num - T_2_3.array->ext_low + T_2_3.array->int_low];
 
@@ -5282,7 +5282,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -6034,7 +6034,7 @@ CLUREF *ret_1;
         for (T_1_1.num = own_defnOPold.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
                 err = ERR_failure;
-                elist[0].str = array_bounds_exception_STRING;
+                elist[0] = array_bounds_exception_STRING;
                 goto ex_0;}
             each_s.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
@@ -6080,7 +6080,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -6228,7 +6228,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -6285,7 +6285,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 

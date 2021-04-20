@@ -221,7 +221,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -335,7 +335,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -551,7 +551,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -757,7 +757,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -890,7 +890,7 @@ CLUREF *ret_2;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -928,7 +928,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -966,7 +966,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1008,7 +1008,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1286,7 +1286,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1328,7 +1328,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1404,7 +1404,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1442,7 +1442,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1480,7 +1480,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1518,7 +1518,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1556,7 +1556,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1647,7 +1647,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1695,7 +1695,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1743,7 +1743,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1797,7 +1797,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1950,7 +1950,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -1988,7 +1988,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -2022,7 +2022,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -2126,7 +2126,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -2644,7 +2644,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -2685,7 +2685,7 @@ CLUREF p;
         for (T_1_1.num = a.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
                 err = ERR_failure;
-                elist[0].str = array_bounds_exception_STRING;
+                elist[0] = array_bounds_exception_STRING;
                 goto ex_0;}
             aa.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
@@ -3109,7 +3109,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -3216,7 +3216,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -3321,7 +3321,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -3506,7 +3506,7 @@ CLUREF *ret_5;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -3718,7 +3718,7 @@ CLUREF *ret_2;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -3965,7 +3965,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -4121,7 +4121,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -4164,7 +4164,7 @@ CLUREF x;
         for (T_1_1.num = isor.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
                 err = ERR_failure;
-                elist[0].str = array_bounds_exception_STRING;
+                elist[0] = array_bounds_exception_STRING;
                 goto ex_0;}
             ss.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
@@ -4353,7 +4353,7 @@ CLUREF *ret_1;
         for (T_1_1.num = a.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
                 err = ERR_failure;
-                elist[0].str = array_bounds_exception_STRING;
+                elist[0] = array_bounds_exception_STRING;
                 goto ex_0;}
             adig.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
@@ -4457,7 +4457,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -4686,7 +4686,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 

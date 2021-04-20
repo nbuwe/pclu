@@ -107,7 +107,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -159,7 +159,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -198,7 +198,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -239,7 +239,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -607,7 +607,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
@@ -663,7 +663,7 @@ CLUREF *ret_1;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 

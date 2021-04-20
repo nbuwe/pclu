@@ -277,7 +277,7 @@ CLUREF *ret_3;
             for (T_4_1.num = _job_stuffOPdirs.array->ext_low; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                 if (T_4_1.num > T_4_3.array->ext_high || T_4_1.num < T_4_3.array->ext_low) {
                     err = ERR_failure;
-                    elist[0].str = array_bounds_exception_STRING;
+                    elist[0] = array_bounds_exception_STRING;
                     goto ex_4;}
                 s.num = T_4_3.array->store->data[T_4_1.num - T_4_3.array->ext_low + T_4_3.array->int_low];
 
@@ -612,7 +612,7 @@ CLUREF *ret_3;
             elist[0] = _pclu_erstr(err);
             {signal(ERR_failure);}
         }
-    end_0: elist[0].str = no_return_values_STRING;
+    end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
     }
 
