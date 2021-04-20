@@ -416,24 +416,24 @@ extern long size_map[];
 
 /* 	Names for commonly used strings */
 
-extern CLUREF		clu_empty_string;
-extern CLUSTRING 	illegal_access_mode_STRING;
-extern CLUSTRING	cannot_write_to_this__chan_STRING;
-extern CLUSTRING	unknown_error_STRING;
-extern CLUSTRING	cannot_read_from_this__chan_STRING;
-extern CLUSTRING	_chan_is_closed_STRING;
-extern CLUSTRING	not_a_terminal__chan_STRING;
-extern CLUSTRING	speeds_unknown_STRING;
-extern CLUSTRING	array_bounds_overflow_STRING;
-extern CLUSTRING	cannot_get_connected_directory_STRING;
-extern CLUSTRING	bad_format_STRING;
-extern CLUSTRING	huge_allocation_request_STRING;
-extern CLUSTRING	cannot_read_from_input__chan_STRING;
-extern CLUSTRING	cannot_write_to_output__chan_STRING;
-extern CLUSTRING	cannot_write_to_error__chan_STRING;
-extern CLUSTRING	cannot_duplicate__chan_STRING;
-extern CLUSTRING	no_return_values_STRING;
-extern CLUSTRING	array_bounds_exception_STRING;
+extern CLUREF	clu_empty_string;
+extern CLUREF 	illegal_access_mode_STRING;
+extern CLUREF	cannot_write_to_this__chan_STRING;
+extern CLUREF	unknown_error_STRING;
+extern CLUREF	cannot_read_from_this__chan_STRING;
+extern CLUREF	_chan_is_closed_STRING;
+extern CLUREF	not_a_terminal__chan_STRING;
+extern CLUREF	speeds_unknown_STRING;
+extern CLUREF	array_bounds_overflow_STRING;
+extern CLUREF	cannot_get_connected_directory_STRING;
+extern CLUREF	bad_format_STRING;
+extern CLUREF	huge_allocation_request_STRING;
+extern CLUREF	cannot_read_from_input__chan_STRING;
+extern CLUREF	cannot_write_to_output__chan_STRING;
+extern CLUREF	cannot_write_to_error__chan_STRING;
+extern CLUREF	cannot_duplicate__chan_STRING;
+extern CLUREF	no_return_values_STRING;
+extern CLUREF	array_bounds_exception_STRING;
 
 /*							*/
 /*		externs for common integers		*/

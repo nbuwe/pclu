@@ -78,7 +78,7 @@ extern void gc_init();
 #define __arraycount(a) (sizeof(a) / sizeof(a[0]))
 #endif
 
-extern errcode clu_err_string_init();
+static errcode clu_err_string_init(void);
 
 char **environ;
 errlist elist;
@@ -510,9 +510,7 @@ _pclu_erstr(errcode sig)
 
 
 #define CLU_ERR_STRING 17
-
-long clu_err_str = CLU_ERR_STRING - 1;
-char *clu_err_string_list[CLU_ERR_STRING] = {
+const char * const clu_err_string_list[CLU_ERR_STRING] = {
 	"illegal access mode",
 	"cannot write to this _chan",
 	"unknown error",
@@ -532,25 +530,25 @@ char *clu_err_string_list[CLU_ERR_STRING] = {
 	"array bounds exception"
 	};
 
-CLUSTRING 	illegal_access_mode_STRING;
-CLUSTRING	cannot_write_to_this__chan_STRING;
-CLUSTRING	unknown_error_STRING;
-CLUSTRING	cannot_read_from_this__chan_STRING;
-CLUSTRING	cannot_duplicate__chan_STRING;
-CLUSTRING	_chan_is_closed_STRING;
-CLUSTRING	not_a_terminal__chan_STRING;
-CLUSTRING	speeds_unknown_STRING;
-CLUSTRING	array_bounds_overflow_STRING;
-CLUSTRING	cannot_get_connected_directory_STRING;
-CLUSTRING	bad_format_STRING;
-CLUSTRING	huge_allocation_request_STRING;
-CLUSTRING	cannot_read_from_input__chan_STRING;
-CLUSTRING	cannot_write_to_output__chan_STRING;
-CLUSTRING	cannot_write_to_error__chan_STRING;
-CLUSTRING	no_return_values_STRING;
-CLUSTRING	array_bounds_exception_STRING;
+CLUREF 	illegal_access_mode_STRING;
+CLUREF	cannot_write_to_this__chan_STRING;
+CLUREF	unknown_error_STRING;
+CLUREF	cannot_read_from_this__chan_STRING;
+CLUREF	cannot_duplicate__chan_STRING;
+CLUREF	_chan_is_closed_STRING;
+CLUREF	not_a_terminal__chan_STRING;
+CLUREF	speeds_unknown_STRING;
+CLUREF	array_bounds_overflow_STRING;
+CLUREF	cannot_get_connected_directory_STRING;
+CLUREF	bad_format_STRING;
+CLUREF	huge_allocation_request_STRING;
+CLUREF	cannot_read_from_input__chan_STRING;
+CLUREF	cannot_write_to_output__chan_STRING;
+CLUREF	cannot_write_to_error__chan_STRING;
+CLUREF	no_return_values_STRING;
+CLUREF	array_bounds_exception_STRING;
 
-CLUSTRING *clu_glob_err_string_list[CLU_ERR_STRING] = {
+CLUREF * const clu_glob_err_string_list[CLU_ERR_STRING] = {
 	&illegal_access_mode_STRING,
 	&cannot_write_to_this__chan_STRING,
 	&unknown_error_STRING,
@@ -570,18 +568,19 @@ CLUSTRING *clu_glob_err_string_list[CLU_ERR_STRING] = {
 	&array_bounds_exception_STRING
 	};
 
-errcode clu_err_string_init()
+errcode
+clu_err_string_init(void)
 {
 long i;
 char * ith;
-CLUSTRING *ithdest;
+CLUREF *ithdest;
 CLUREF sz;
 
 	for (i = 0; i < CLU_ERR_STRING; i++) {
 		ith = clu_err_string_list[i];
 		ithdest = clu_glob_err_string_list[i];
 		sz.num = strlen(ith);
-		stringOPcons(ith, CLU_1, sz, (CLUREF *)ithdest);
+		stringOPcons(ith, CLU_1, sz, ithdest);
 		}
 	signal(ERR_ok);
 	}
