@@ -289,13 +289,11 @@ static long variant_num_entries = 0;
 static long oneof_num_entries = 0;
 
 /* routine to initialize structures used by find_owns */
-void find_selops_init(ans1, ans2, ans3, ans4)
-OWNPTR *ans1, *ans2, *ans3, *ans4;
+void
+find_selops_init(OWNPTR *ans1, OWNPTR *ans2, OWNPTR *ans3, OWNPTR *ans4)
 {
-long i,j;
-
-/* removed 1/28/91 to speed up start_up dwc
-	for (i = 0; i < MAX_SELECTORS; i++) {
+#if 0 /* removed 1/28/91 to speed up start_up dwc */
+	for (size_t i = 0; i < MAX_SELECTORS; i++) {
 
 		record_opsptr_arr[i] = 0;
 		struct_opsptr_arr[i] = 0;
@@ -306,20 +304,20 @@ long i,j;
 		struct_field_count[i] = 0;
 		variant_field_count[i] = 0;
 		oneof_field_count[i] = 0;
-		for (j = 0; j < MAX_FIELDS; j++) {
+		for (size_t j = 0; j < MAX_FIELDS; j++) {
 			record_field_vals[i][j]    = (long*) 0;
 			struct_field_vals[i][j]    = (long*) 0;
 			variant_field_vals[i][j]    = (long*) 0;
 			oneof_field_vals[i][j]    = (long*) 0;
 			}
 		}
-*/
+#endif
 	*ans1 = (OWNPTR)record_opsptr_arr;
 	*ans2 = (OWNPTR)struct_opsptr_arr;
 	*ans3 = (OWNPTR)variant_opsptr_arr;
 	*ans4 = (OWNPTR)oneof_opsptr_arr;
-	return;
 }
+
 
 /* routine to find selector ops given selector name, # of fields */
 /*	type info for fields is in sel_inst_info arrays */
