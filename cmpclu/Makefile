@@ -12,13 +12,13 @@ RM    = /bin/rm -f
 FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 
 all:
-	$(PCLU) \#xf cmp.xfile \#opt time \#ccopt 0 \#co *.clu
+	$(PCLU) -xf cmp.xfile -opt time -ccopt 0 -co *.clu
 	(cd ../code/cmp && make)
 
 lib:
 	${RM} ./cmp.lib
-	$(PCLU) \#xf cmp.xfile \#spec *.spc \#spec *.clu \#spec *.clu \
-		\#dump cmp.lib
+	$(PCLU) -xf cmp.xfile -spec *.spc  -spec *.clu -spec *.clu \
+		-dump cmp.lib
 
 clean:
 	${RM} cmp.lib *.c
