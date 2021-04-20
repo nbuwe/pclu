@@ -334,8 +334,7 @@ char *temp;
 CLUREF temp_str, sz;
 
 	if (sig < 0 && sig > -MAX_INTERNAL_ERROR) {
-	    sig = -sig;
-	    if (sig < MAX_INTERNAL_ERROR)  {
+		sig = -sig;
 		if (sig <= clu_nerr) {
 			temp = clu_errlist[sig];
 			}
@@ -345,7 +344,6 @@ CLUREF temp_str, sz;
 		sz.num = strlen(temp);
 		stringOPcons(temp, CLU_1, sz, &temp_str);
 		return(temp_str);
-		}
 	    }
 	else {
 /*					1, formerly */
