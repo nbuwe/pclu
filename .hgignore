@@ -14,6 +14,7 @@ code/include/gc
 ID
 
 cludent/cludent
+cludent/*.c
 cludent/cludent.lib
 cmpclu/cmp.lib
 code/cmp/pclu
