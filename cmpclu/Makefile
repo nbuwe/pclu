@@ -11,8 +11,12 @@ PCLU  = ../exe/pclu
 RM    = /bin/rm -f
 FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 
-all:
+all: regen rebuild
+
+regen:
 	$(PCLU) -xf cmp.xfile -opt time -ccopt 0 -co *.clu
+
+rebuild:
 	(cd ../code/cmp && make)
 
 lib:
