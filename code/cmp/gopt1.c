@@ -1232,7 +1232,7 @@ CLUREF STR__056array_055_076ext_137high_040_174_174_040;
 CLUREF STR__040_074_040;
 CLUREF STR__056array_055_076ext_137low_051_040_173;
 CLUREF STR__040_075_040ERR_137failure_073;
-CLUREF STR_elist_1330_135_056str_040_075_040array_137bounds_137exception_137STRING_073;
+CLUREF STR_elist_1330_135_040_075_040array_137bounds_137exception_137STRING_073;
 CLUREF STR_goto_040;
 CLUREF STR__073_175;
 CLUREF STR__056vec_055_076data_133;
@@ -1314,7 +1314,7 @@ CLUREF *ret_1;
         stringOPcons(" < ", CLU_1, CLU_3, &STR__040_074_040);
         stringOPcons(".array->ext_low) {", CLU_1, CLU_18, &STR__056array_055_076ext_137low_051_040_173);
         stringOPcons(" = ERR_failure;", CLU_1, CLU_15, &STR__040_075_040ERR_137failure_073);
-        stringOPcons("elist[0].str = array_bounds_exception_STRING;", CLU_1, CLU_45, &STR_elist_1330_135_056str_040_075_040array_137bounds_137exception_137STRING_073);
+        stringOPcons("elist[0] = array_bounds_exception_STRING;", CLU_1, CLU_41, &STR_elist_1330_135_040_075_040array_137bounds_137exception_137STRING_073);
         stringOPcons("goto ", CLU_1, CLU_5, &STR_goto_040);
         stringOPcons(";}", CLU_1, CLU_2, &STR__073_175);
         stringOPcons(".vec->data[", CLU_1, CLU_11, &STR__056vec_055_076data_133);
@@ -2292,7 +2292,7 @@ CLUREF *ret_1;
 
   LINE(321);
             {
-            err = g_envOPputl(e, STR_elist_1330_135_056str_040_075_040array_137bounds_137exception_137STRING_073);
+            err = g_envOPputl(e, STR_elist_1330_135_040_075_040array_137bounds_137exception_137STRING_073);
             if (err != ERR_ok) goto ex_0;
             }
 
