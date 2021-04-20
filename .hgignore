@@ -19,6 +19,8 @@ cludent/cludent.lib
 cmpclu/cmp.lib
 code/cmp/pclu
 exe/pclu
+include/pclu_err.h
+include/pclu_sys.h
 lib/lowlev.lib
 lib/misc.lib
 lib/useful.lib
