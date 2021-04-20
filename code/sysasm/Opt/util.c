@@ -568,7 +568,7 @@ CLUREF * const clu_glob_err_string_list[CLU_ERR_STRING] = {
 	&array_bounds_exception_STRING
 	};
 
-errcode
+static errcode
 clu_err_string_init(void)
 {
 long i;
