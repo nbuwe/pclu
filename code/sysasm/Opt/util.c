@@ -61,6 +61,10 @@ extern void find_ops_init();
 extern void find_selops_init();
 
 errcode _chanOP_save_tty(void);
+errcode streamOP_close_all(void);
+errcode stringOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans);
+errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
+
 
 #ifndef LINUX
 extern void expand_hp();
@@ -561,7 +565,7 @@ CLUREF sz;
 		ith = clu_err_string_list[i];
 		ithdest = clu_glob_err_string_list[i];
 		sz.num = strlen(ith);
-		stringOPcons(ith, CLU_1, sz, ithdest);
+		stringOPcons(ith, CLU_1, sz, (CLUREF *)ithdest);
 		}
 	signal(ERR_ok);
 	}
