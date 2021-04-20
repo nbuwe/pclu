@@ -559,8 +559,8 @@ _chan *ch = (_chan *)chref.ref;
 	signal(ERR_ok);
 	}
 
-errcode _chanOP_save_tty(opt)
-bool opt;
+errcode
+_chanOP_save_tty(void)
 {
 int err;
 int zcnt = 0;
@@ -573,7 +573,7 @@ int zcnt = 0;
 	if (_chan_pri != NULL && _chan_pri->typ.num == tty
 			&& wrpipe <= 0) {
 		err = tcgetattr(0, &isbuf);
-		if (opt) sbuf.c_lflag |= (ICANON + ECHO);
+		sbuf.c_lflag |= (ICANON + ECHO);
 		err = tcsetattr(0, TCSANOW, &sbuf);
 		printf("\n");
 		/* err = ioctl(0, TIOCFLUSH, zcnt); */
@@ -684,7 +684,7 @@ int result, mask;
 	sigemptyset(&temp.sa_mask);
 	/* temp.sa_mask = 0; */
 	temp.sa_flags = 0;
-	_chanOP_save_tty(true);
+	_chanOP_save_tty();
 	sigaction(SIGTSTP, &temp, 0);
 	pid = getpid();
 	result = kill(pid, SIGTSTP);
@@ -713,7 +713,7 @@ int result;
 	sigaction(sig, &temp, 0);
 	pid = getpid();
 	result = kill(pid, sig);
-	_chanOP_save_tty(true);
+	_chanOP_save_tty();
 	return(0);
 	}
 

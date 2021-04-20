@@ -59,6 +59,9 @@ static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/util.c,v 1.8 91/
 
 extern void find_ops_init();
 extern void find_selops_init();
+
+errcode _chanOP_save_tty(void);
+
 #ifndef LINUX
 extern void expand_hp();
 extern struct obj * gc_malloc();
@@ -66,6 +69,7 @@ extern void gc_init();
 #else
 #include <gc/gc.h>
 #endif
+
 extern char *clu_errlist[];
 extern char *clu_uerrlist[];
 extern errcode clu_err_string_init();
@@ -278,6 +282,7 @@ struct timezone tz;
 
 	streamOP_close_all();	/* replace by call to _cleanup_ when gprof in */
 	_chanOP_save_tty();
+
 	if (pgmerr == ERR_ok) return(0);
 	else return(-1);
 	}
