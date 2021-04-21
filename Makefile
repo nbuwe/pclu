@@ -30,27 +30,46 @@ G0_DIRS    = code/sysasm code/libasm code/libclu code/sysclu debug
 INSTALL_DIR 	= /usr/local/pclu
 
 INSTALL_FILES	 = #
-INSTALL_FILES	+= ./include
-INSTALL_FILES	+= ./lib/*.lib
-INSTALL_FILES	+= ./lib/*.spc
-INSTALL_FILES	+= ./lib/short.help
-INSTALL_FILES	+= ./code/include
-INSTALL_FILES	+= ./code/libpclu.a
-INSTALL_FILES	+= ./code/libpclu_opt.a
-INSTALL_FILES	+= ./cmp
-INSTALL_FILES	+= ./code/cmp/basic.types
-INSTALL_FILES	+= ./code/cmp/ccdbg.cmd*
-INSTALL_FILES	+= ./code/cmp/ccopt.cmd*
-INSTALL_FILES	+= ./clu.order
-INSTALL_FILES	+= ./doc/pclu.pdf
-INSTALL_FILES	+= ./doc/mini-pclu.pdf
+
+# the programs
 INSTALL_FILES	+= ${EXEDIR}/pclu
 INSTALL_FILES	+= ${EXEDIR}/plink
 INSTALL_FILES	+= ${EXEDIR}/cludent
-INSTALL_FILES	+= ./example
-INSTALL_FILES	+= ./elisp
+
+INSTALL_FILES	+= ./clu.order		# compiler's JCL help
+
+INSTALL_FILES	+= ./lib/*.lib		# dumped type libraries
+INSTALL_FILES	+= ./lib/*.spc		# source specs
+INSTALL_FILES	+= ./lib/short.help
+
+# this is where compiler really looks for the next three files, but in
+# the original distribution cmp is a symlink to code/cmp ...
+INSTALL_FILES	+= ./cmp
+
+# ... hence we need to get the real files too
+INSTALL_FILES	+= ./code/cmp/basic.types	# spec for the built-in types
+INSTALL_FILES	+= ./code/cmp/ccdbg.cmd*	# cc invocation temlate(s)
+INSTALL_FILES	+= ./code/cmp/ccopt.cmd*	# cc invocation temlate(s)
+
+# this is where cc*.cmd templates search for the includes to compile
+# the C output from pclu.  it's a symlink to code/include in the
+# original distribution ...
+INSTALL_FILES	+= ./include
+INSTALL_FILES	+= ./code/include		# ... hence this
+
+# compiled C code for sys/clu (code/sysclu, code/sysasm) and lib/clu
+# (code/libclu, code/libasm)
+INSTALL_FILES	+= ./code/libpclu.a		# symlink to one of ...
+INSTALL_FILES	+= ./code/libpclu_opt.a
 # INSTALL_FILES	+= ./code/libpclu_debug.a
+
+INSTALL_FILES	+= ./doc/pclu.pdf
+INSTALL_FILES	+= ./doc/mini-pclu.pdf
+
 # INSTALL_FILES	+= ./driver
+INSTALL_FILES	+= ./elisp
+INSTALL_FILES	+= ./example
+
 
 INSTALL_TAR_FILE = ../pclu-install.tar.Z
 INSTALL_TARGZ_FILE = ../pclu-install.tar.gz
