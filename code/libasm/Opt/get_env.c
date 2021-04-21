@@ -25,7 +25,6 @@ static char rcsid[] = "$Header: get_env.c,v 1.3 91/06/06 13:53:45 dcurtis Exp $"
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern CLUREF clu_empty_string;
 extern char **environ;
 extern int wrpipe;
 

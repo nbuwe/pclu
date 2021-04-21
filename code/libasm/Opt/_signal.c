@@ -34,7 +34,6 @@ static char rcsid[] = "$Header: _signal.c,v 1.4 91/07/09 15:23:22 root Exp $";
 #include <sys/types.h>
 #include <sys/dir.h>
 
-extern CLUREF clu_empty_string;
 extern char **environ;
 extern int wrpipe;
 #include <errno.h>

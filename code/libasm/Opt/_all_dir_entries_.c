@@ -32,7 +32,6 @@ static char rcsid[] = "$Header: _all_dir_entries_.c,v 1.4 91/06/06 13:42:42 dcur
 #include "pclu_sys.h"
 
 
-extern CLUREF clu_empty_string;
 extern char **environ;
 extern int wrpipe;
 #include <errno.h>

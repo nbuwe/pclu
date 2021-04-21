@@ -35,7 +35,6 @@ static char rcsid[] = "$Header: mint.c,v 1.3 91/07/09 15:18:13 root Exp $";
 #define WORD_BIT 32
 #endif
 
-extern CLUREF clu_empty_string;
 extern char **environ;
 extern int wrpipe;
 #include <errno.h>

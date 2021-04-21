@@ -25,7 +25,6 @@ static char rcsid[] = "$Header: random.c,v 1.3 91/07/18 14:36:18 root Exp $";
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern CLUREF clu_empty_string;
 extern char **environ;
 
 static CLUREF random_hi;

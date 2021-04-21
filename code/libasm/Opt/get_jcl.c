@@ -28,7 +28,6 @@ static char rcsid[] = "$Header: get_jcl.c,v 1.3 91/06/06 13:54:00 dcurtis Exp $"
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern CLUREF clu_empty_string;
 extern int argc;
 extern char **argv;
 
