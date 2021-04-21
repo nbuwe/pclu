@@ -25,6 +25,11 @@ CONFIGDIRS = cludent code/cmp code/cmpasm code/libasm code/libclu \
 
 CLEANDIRS  = cludent cmpclu code debug doc driver example lib sys util
 
+# List of directories where you need to change the settings of how the
+# CLU code compiled for debugging (to C) is compiled (from C).  The
+# name comes from the "-G 0" option to some old C compiler (vs -G 4)
+# and was used in configure_G0 target (deleted in 27913b3296f9) to
+# switch between the two.  (Preserved for future refence).
 G0_DIRS    = code/sysasm code/libasm code/libclu code/sysclu debug
 
 INSTALL_DIR 	= /usr/local/pclu
