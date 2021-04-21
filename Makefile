@@ -28,14 +28,29 @@ CLEANDIRS  = cludent cmpclu code debug doc driver example lib sys util
 G0_DIRS    = code/sysasm code/libasm code/libclu code/sysclu debug
 
 INSTALL_DIR 	= /usr/local/pclu
-INSTALL_FILES	= ./include ./lib/*.lib ./lib/*.spc ./lib/short.help \
-		  ./code/include ./code/libpclu.a ./code/libpclu_opt.a \
-		  ./cmp ./code/cmp/basic.types \
-		  ./code/cmp/ccdbg.cmd* ./code/cmp/ccopt.cmd* \
-		  ./clu.order ./doc/pclu.pdf ./doc/mini-pclu.pdf \
-		  ${EXEDIR}/pclu ${EXEDIR}/plink ${EXEDIR}/cludent \
-		  ./example ./elisp 
-		# ./code/libpclu_debug.a ./driver
+
+INSTALL_FILES	 = #
+INSTALL_FILES	+= ./include
+INSTALL_FILES	+= ./lib/*.lib
+INSTALL_FILES	+= ./lib/*.spc
+INSTALL_FILES	+= ./lib/short.help
+INSTALL_FILES	+= ./code/include
+INSTALL_FILES	+= ./code/libpclu.a
+INSTALL_FILES	+= ./code/libpclu_opt.a
+INSTALL_FILES	+= ./cmp
+INSTALL_FILES	+= ./code/cmp/basic.types
+INSTALL_FILES	+= ./code/cmp/ccdbg.cmd*
+INSTALL_FILES	+= ./code/cmp/ccopt.cmd*
+INSTALL_FILES	+= ./clu.order
+INSTALL_FILES	+= ./doc/pclu.pdf
+INSTALL_FILES	+= ./doc/mini-pclu.pdf
+INSTALL_FILES	+= ${EXEDIR}/pclu
+INSTALL_FILES	+= ${EXEDIR}/plink
+INSTALL_FILES	+= ${EXEDIR}/cludent
+INSTALL_FILES	+= ./example
+INSTALL_FILES	+= ./elisp
+# INSTALL_FILES	+= ./code/libpclu_debug.a
+# INSTALL_FILES	+= ./driver
 
 INSTALL_TAR_FILE = ../pclu-install.tar.Z
 INSTALL_TARGZ_FILE = ../pclu-install.tar.gz
