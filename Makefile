@@ -47,39 +47,9 @@ CP = /bin/cp
 
 FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 
-all: configure gc clu
-
-configure:
-	echo Configuring links to platform-dependent Makefiles, command-line scripts
-	for i in ${CONFIGDIRS};				  		     \
-	   do (cd $$i; ${RM} Makefile; ${LN} Makefile.${PLATFORM} Makefile); \
-	   done
-	cd code/cmp; ${RM} ccopt.cmd ccdbg.cmd; ${LN} ccdbg.cmd.${PLATFORM} ccdbg.cmd; \
-                     ${LN} ccopt.cmd.${PLATFORM} ccopt.cmd
-
-gc:
-	echo Installing and testing the garbage collector
-	cd code/gc; ./configure make; make gctest; ./gctest
+all: clu
 
 clu: libpclu compiler clulibs cludent # PCLU debugger
-
-configure_G0:
-	for i in ${G0_DIRS}; \
-	   do (cd $$i; ${RM} Makefile.${PLATFORM}.G0; \
-		sed -e '/DEBUG/s/-G 4/-G 0/' Makefile.${PLATFORM} > Makefile.${PLATFORM}.G0; \
-		${MV} Makefile.${PLATFORM}.G0 Makefile.${PLATFORM}) \
-	   done; \
-	cd cmp ; sed -e 's/-G 4/-G 0/' ccdbg.cmd.${PLATFORM} > ccdbg.cmd.${PLATFORM}.G0; \
-		${MV} ccdbg.cmd.${PLATFORM}.G0 ccdbg.cmd.${PLATFORM}
-
-configure_G4:
-	for i in ${G0_DIRS}; \
-	   do (cd $$i; ${RM} Makefile.${PLATFORM}.G4; \
-		sed -e '/DEBUG/s/-G 0/-G 4/' Makefile.${PLATFORM} > Makefile.${PLATFORM}.G4; \
-		${MV} Makefile.${PLATFORM}.G4 Makefile.${PLATFORM}) \
-	   done; \
-	cd cmp ; sed -e 's/-G 0/-G 4/' ccdbg.cmd.${PLATFORM} > ccdbg.cmd.${PLATFORM}.G4; \
-		${MV} ccdbg.cmd.${PLATFORM}.G4 ccdbg.cmd.${PLATFORM}
 
 libpclu:
 	echo Creating library of optimized CLU system code for the C linker.
