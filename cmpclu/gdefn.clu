@@ -197,6 +197,7 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 
     end g_applydefn
 
+
 % name of the C function for this proc or iter
 g_function_name = proc (a: applydefn, cname: str) returns(string)
 
@@ -210,43 +211,67 @@ g_function_name = proc (a: applydefn, cname: str) returns(string)
 
   end g_function_name
 
+
 g_proc_signature = proc(e:g_env, a:applydefn, cname:str)
 
-    g_env$puts(e, "errcode ")
+    g_env$putl(e, "errcode")
     g_env$puts(e, g_function_name(a, cname))
     g_env$puts(e, "(")
     g_arglist(e, a.args)
-    g_retlist(e, a.vals, decllist$size(a.args))
-    % if decllist$size(a.args) > 0 cor typelist$size(a.vals) > 0
-    % then g_env$puts(e, ", ")
-    % end
+    g_retlist(e, a.vals, decllist$empty(a.args))
     g_env$putl(e, ")")
-    % generate types for arglist
-
-    g_argdecllist(e, a.args)
-    g_retdecllist(e, a.vals)
 
     end g_proc_signature
 
+
 g_iter_signature = proc(e:g_env, a:applydefn, cname:str)
 
-    g_env$puts(e, "errcode ")
+    g_env$putl(e, "errcode")
     g_env$puts(e, g_function_name(a, cname))
     g_env$puts(e, "(")
     g_arglist(e, a.args)
-    if decllist$size(a.args) > 0
-       then
-	    g_env$puts(e, ", ")
-       end
-    g_env$putl(e, "proc, user_locals, iecode)")
-    % generate types for arglist
-
-    g_argdecllist(e, a.args)
-    g_env$putl(e, "errcode (*proc)();")
-    g_env$putl(e, "char **user_locals;")
-    g_env$putl(e, "errcode *iecode;")
+    if ~decllist$empty(a.args) then
+	g_env$puts(e, ", ") end
+    g_env$puts(e, "errcode (*proc)()")
+    g_env$puts(e, ", char **user_locals")
+    g_env$putl(e, ", errcode *iecode)")
 
     end g_iter_signature
+
+
+g_arglist = proc (e: g_env, args: decllist)
+
+    listsep: string := ""
+
+    for group: decl in decllist$elements(args) do
+	for arg: idn in idnlist$elements(group.idns) do
+	    g_env$puts(e, listsep)
+	    g_env$puts(e, "CLUREF ")
+	    g_env$puts(e, idnlit(arg))
+	    listsep := ", "
+	  end
+      end
+
+  end g_arglist
+
+
+g_retlist = proc (e: g_env, rets: typelist, first: bool)
+
+    listsep: string
+    if first then listsep := ""
+      else listsep := ", " end
+
+    fid$g_fidn_save()
+    for t: typespec in typelist$elements(rets) do
+	g_env$puts(e, listsep)
+	g_env$puts(e, "CLUREF *")
+	g_env$puts(e, fid$g_fid(t))
+	listsep := ", "
+      end
+    fid$g_fidn_restore()
+
+  end g_retlist
+
 
 g_parmlist = proc(e: g_env, parms: decllist)
     for each_d:decl in decllist$elements(parms) do
@@ -1079,61 +1104,6 @@ g_opstruct = proc(e:g_env, id:idn, ops:idnlist)
     g_env$puts(e, id.str)
     g_env$putl(e, "_ops_actual;")
     end g_opstruct
-
-g_arglist = proc (e: g_env, args: decllist)
-
-    %% decls[1], decls[2], ..., decls[n] (names only)
-    g_commalist[decllist, decl](e, args, g_arg)
-    end g_arglist
-
-g_arg = proc (e: g_env, stmt: decl)
-
-    g_idnlitlist(e, stmt.idns)
-    end g_arg
-
-g_retlist = proc (e: g_env, rets: typelist, first: int)
-
-    fid$g_fidn_save()
-    %% decls[1], decls[2], ..., decls[n] (fake names only)
-    g_next_commalist[typelist, typespec](e, rets, g_ret, first)
-    fid$g_fidn_restore()
-    end g_retlist
-
-g_ret = proc (e: g_env, ret: typespec)
-
-    g_env$puts(e, fid$g_fid(ret))
-    end g_ret
-
-g_argdecllist = proc (e: g_env, rets: decllist)
-
-    %% decls[1], decls[2], ..., decls[n] (fake names plus types)
-    for x: decl in decllist$elements(rets) do
-	g_argdecl(e, x)
-	end % for
-    end g_argdecllist
-
-g_argdecl = proc (e: g_env, arg: decl)
-
-    for each_i: idn in idnlist$elements(arg.idns) do
-	g_decl_typespec(e, arg.type_, idnlit(each_i))
-	end
-    end g_argdecl
-
-g_retdecllist = proc (e: g_env, rets: typelist)
-
-    %% decls[1], decls[2], ..., decls[n] (fake names plus types)
-    fid$g_fidn_save()
-    for x: typespec in typelist$elements(rets) do
-	g_retdecl(e, x)
-	end % for
-    fid$g_fidn_restore()
-    end g_retdecllist
-
-g_retdecl = proc (e: g_env, ret: typespec)
-
-    %g_decl_typespec(e, ret, " *"||fid$g_fid(ret))
-    g_env$putl(e, "CLUREF *"||fid$g_fid(ret) ||";")
-    end g_retdecl
 
 g_ctype = proc(typ: typespec) returns(string)
     tagcase typ.abs
