@@ -23,9 +23,8 @@ static int c_tagcase_own_init = 0;
 
 /**** BEGIN PROCEDURE c_tagcase ****/
 
-errcode c_tagcase(e, ts)
-CLUREF e;
-CLUREF ts;
+errcode
+c_tagcase(CLUREF e, CLUREF ts)
     {
     errcode err;
     errcode ecode2;
@@ -209,10 +208,8 @@ static int c_oneof_specs_own_init = 0;
 
 /**** BEGIN PROCEDURE c_oneof_specs ****/
 
-errcode c_oneof_specs(e, t, ret_1)
-CLUREF e;
-CLUREF t;
-CLUREF *ret_1;
+errcode
+c_oneof_specs(CLUREF e, CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -410,11 +407,8 @@ static int c_tagarms_own_init = 0;
 
 /**** BEGIN PROCEDURE c_tagarms ****/
 
-errcode c_tagarms(e, arms, specs, ret_1)
-CLUREF e;
-CLUREF arms;
-CLUREF specs;
-CLUREF *ret_1;
+errcode
+c_tagarms(CLUREF e, CLUREF arms, CLUREF specs, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -562,10 +556,8 @@ extern errcode c_tag_name();
 
 /**** BEGIN PROCEDURE c_tag_sugar ****/
 
-errcode c_tag_sugar(e, at, ts)
-CLUREF e;
-CLUREF at;
-CLUREF ts;
+errcode
+c_tag_sugar(CLUREF e, CLUREF at, CLUREF ts)
     {
     errcode err;
     errcode ecode2;
@@ -710,12 +702,8 @@ static int c_tag_name_own_init = 0;
 
 /**** BEGIN PROCEDURE c_tag_name ****/
 
-errcode c_tag_name(e, n, at, vt, names)
-CLUREF e;
-CLUREF n;
-CLUREF at;
-CLUREF vt;
-CLUREF names;
+errcode
+c_tag_name(CLUREF e, CLUREF n, CLUREF at, CLUREF vt, CLUREF names)
     {
     errcode err;
     errcode ecode2;
@@ -871,11 +859,8 @@ static int c_tag_op_own_init = 0;
 
 /**** BEGIN PROCEDURE c_tag_op ****/
 
-errcode c_tag_op(e, cop, at, vt)
-CLUREF e;
-CLUREF cop;
-CLUREF at;
-CLUREF vt;
+errcode
+c_tag_op(CLUREF e, CLUREF cop, CLUREF at, CLUREF vt)
     {
     errcode err;
     errcode ecode2;
@@ -1149,10 +1134,8 @@ extern errcode c_envOPget_unknown_type();
 
 /**** BEGIN PROCEDURE c_mdecl ****/
 
-errcode c_mdecl(e, md, ret_1)
-CLUREF e;
-CLUREF md;
-CLUREF *ret_1;
+errcode
+c_mdecl(CLUREF e, CLUREF md, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1222,10 +1205,8 @@ static int c_return_own_init = 0;
 
 /**** BEGIN PROCEDURE c_return ****/
 
-errcode c_return(e, exprs, ret_1)
-CLUREF e;
-CLUREF exprs;
-CLUREF *ret_1;
+errcode
+c_return(CLUREF e, CLUREF exprs, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1317,10 +1298,8 @@ static int c_yield_own_init = 0;
 
 /**** BEGIN PROCEDURE c_yield ****/
 
-errcode c_yield(e, exprs, ret_1)
-CLUREF e;
-CLUREF exprs;
-CLUREF *ret_1;
+errcode
+c_yield(CLUREF e, CLUREF exprs, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1410,9 +1389,8 @@ static int c_signal_own_init = 0;
 
 /**** BEGIN PROCEDURE c_signal ****/
 
-errcode c_signal(e, sig)
-CLUREF e;
-CLUREF sig;
+errcode
+c_signal(CLUREF e, CLUREF sig)
     {
     errcode err;
     errcode ecode2;
@@ -1581,12 +1559,8 @@ static int c_values_own_init = 0;
 
 /**** BEGIN PROCEDURE c_values ****/
 
-errcode c_values(e, types, exprs, st, ret_1)
-CLUREF e;
-CLUREF types;
-CLUREF exprs;
-CLUREF st;
-CLUREF *ret_1;
+errcode
+c_values(CLUREF e, CLUREF types, CLUREF exprs, CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1832,9 +1806,8 @@ extern errcode c_exprlist();
 
 /**** BEGIN PROCEDURE c_exit ****/
 
-errcode c_exit(e, cond)
-CLUREF e;
-CLUREF cond;
+errcode
+c_exit(CLUREF e, CLUREF cond)
     {
     errcode err;
     errcode ecode2;
@@ -1893,9 +1866,8 @@ static int c_except_own_init = 0;
 
 /**** BEGIN PROCEDURE c_except ****/
 
-errcode c_except(e, xs)
-CLUREF e;
-CLUREF xs;
+errcode
+c_except(CLUREF e, CLUREF xs)
     {
     errcode err;
     errcode ecode2;
@@ -2037,9 +2009,8 @@ extern errcode c_type();
 
 /**** BEGIN PROCEDURE c_when_decls ****/
 
-errcode c_when_decls(e, xs)
-CLUREF e;
-CLUREF xs;
+errcode
+c_when_decls(CLUREF e, CLUREF xs)
     {
     errcode err;
     errcode ecode2;
@@ -2139,9 +2110,8 @@ static int c_whenarms_own_init = 0;
 
 /**** BEGIN PROCEDURE c_whenarms ****/
 
-errcode c_whenarms(e, arms)
-CLUREF e;
-CLUREF arms;
+errcode
+c_whenarms(CLUREF e, CLUREF arms)
     {
     errcode err;
     errcode ecode2;
@@ -2414,11 +2384,8 @@ static int c_when_assn_own_init = 0;
 
 /**** BEGIN PROCEDURE c_when_assn ****/
 
-errcode c_when_assn(e, vars, cond, is_exit)
-CLUREF e;
-CLUREF vars;
-CLUREF cond;
-CLUREF is_exit;
+errcode
+c_when_assn(CLUREF e, CLUREF vars, CLUREF cond, CLUREF is_exit)
     {
     errcode err;
     errcode ecode2;
@@ -2737,9 +2704,8 @@ static int c_resignal_own_init = 0;
 
 /**** BEGIN PROCEDURE c_resignal ****/
 
-errcode c_resignal(e, rs)
-CLUREF e;
-CLUREF rs;
+errcode
+c_resignal(CLUREF e, CLUREF rs)
     {
     errcode err;
     errcode ecode2;
@@ -2940,10 +2906,8 @@ static int c_resig_catch_own_init = 0;
 
 /**** BEGIN PROCEDURE c_resig_catch ****/
 
-errcode c_resig_catch(e, cond, is_exit)
-CLUREF e;
-CLUREF cond;
-CLUREF is_exit;
+errcode
+c_resig_catch(CLUREF e, CLUREF cond, CLUREF is_exit)
     {
     errcode err;
     errcode ecode2;
@@ -3231,9 +3195,8 @@ static int c_forcestmt_own_init = 0;
 
 /**** BEGIN PROCEDURE c_forcestmt ****/
 
-errcode c_forcestmt(e, fs)
-CLUREF e;
-CLUREF fs;
+errcode
+c_forcestmt(CLUREF e, CLUREF fs)
     {
     errcode err;
     errcode ecode2;

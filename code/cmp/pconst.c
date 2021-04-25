@@ -13,9 +13,8 @@ static int p_type1_own_init = 0;
 
 /**** BEGIN PROCEDURE p_type1 ****/
 
-errcode p_type1(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_type1(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -86,9 +85,8 @@ extern errcode p_idn_type();
 
 /**** BEGIN PROCEDURE p_type ****/
 
-errcode p_type(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_type(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -271,10 +269,8 @@ extern errcode oneofOPmake_7();
 
 /**** BEGIN PROCEDURE p_seltype ****/
 
-errcode p_seltype(e, gen, ret_1)
-CLUREF e;
-CLUREF gen;
-CLUREF *ret_1;
+errcode
+p_seltype(CLUREF e, CLUREF gen, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -341,10 +337,8 @@ static int p_clutype_own_init = 0;
 
 /**** BEGIN PROCEDURE p_clutype ****/
 
-errcode p_clutype(e, gen, ret_1)
-CLUREF e;
-CLUREF gen;
-CLUREF *ret_1;
+errcode
+p_clutype(CLUREF e, CLUREF gen, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -431,10 +425,8 @@ static int p_applytype_own_init = 0;
 
 /**** BEGIN PROCEDURE p_applytype ****/
 
-errcode p_applytype(e, gen, ret_1)
-CLUREF e;
-CLUREF gen;
-CLUREF *ret_1;
+errcode
+p_applytype(CLUREF e, CLUREF gen, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -544,10 +536,8 @@ static int p_idn_type_own_init = 0;
 
 /**** BEGIN PROCEDURE p_idn_type ****/
 
-errcode p_idn_type(e, id, ret_1)
-CLUREF e;
-CLUREF id;
-CLUREF *ret_1;
+errcode
+p_idn_type(CLUREF e, CLUREF id, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -671,9 +661,8 @@ extern errcode intOPadd();
 
 /**** BEGIN PROCEDURE p_is_seltype ****/
 
-errcode p_is_seltype(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_is_seltype(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -796,9 +785,8 @@ static int p_fieldspeclist_own_init = 0;
 
 /**** BEGIN PROCEDURE p_fieldspeclist ****/
 
-errcode p_fieldspeclist(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_fieldspeclist(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -941,11 +929,8 @@ static int p_fieldspec_own_init = 0;
 
 /**** BEGIN ITERATOR p_fieldspec ****/
 
-errcode p_fieldspec(e, proc, user_locals, iecode)
-CLUREF e;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+p_fieldspec(CLUREF e, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     errcode err;
@@ -1097,10 +1082,8 @@ static int p_values_own_init = 0;
 
 /**** BEGIN PROCEDURE p_values ****/
 
-errcode p_values(e, procdef, ret_1)
-CLUREF e;
-CLUREF procdef;
-CLUREF *ret_1;
+errcode
+p_values(CLUREF e, CLUREF procdef, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1213,9 +1196,8 @@ extern errcode p_exceptionlist();
 
 /**** BEGIN PROCEDURE p_signals ****/
 
-errcode p_signals(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_signals(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1298,9 +1280,8 @@ static int p_exceptionlist_own_init = 0;
 
 /**** BEGIN PROCEDURE p_exceptionlist ****/
 
-errcode p_exceptionlist(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_exceptionlist(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1437,11 +1418,8 @@ static int p_exception_own_init = 0;
 
 /**** BEGIN ITERATOR p_exception ****/
 
-errcode p_exception(e, proc, user_locals, iecode)
-CLUREF e;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+p_exception(CLUREF e, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     errcode err;
@@ -1529,9 +1507,8 @@ extern errcode idnOPget_str();
 
 /**** BEGIN PROCEDURE p_name ****/
 
-errcode p_name(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_name(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1630,12 +1607,8 @@ OWN_req p_order_ownreqs = {sizeof(p_order_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE p_order ****/
 
-errcode p_order(e, p_t, get, what, ret_1)
-CLUREF e;
-CLUREF p_t;
-CLUREF get;
-CLUREF what;
-CLUREF *ret_1;
+errcode
+p_order(CLUREF e, CLUREF p_t, CLUREF get, CLUREF what, CLUREF *ret_1)
     {
     struct {
         errcode err;

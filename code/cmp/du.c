@@ -87,9 +87,8 @@ errcode du_own_init_proc()
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode duOPcreate(common, ret_1)
-CLUREF common;
-CLUREF *ret_1;
+errcode
+duOPcreate(CLUREF common, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -167,9 +166,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_unique ****/
 
-errcode duOPget_unique(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+duOPget_unique(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -203,9 +201,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_common ****/
 
-errcode duOPget_common(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+duOPget_common(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -239,10 +236,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE read_specs ****/
 
-errcode duOPread_specs(d, ret_1, ret_2)
-CLUREF d;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+duOPread_specs(CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -316,9 +311,8 @@ CLUREF *ret_2;
 
 /**** BEGIN PROCEDURE add_specs ****/
 
-errcode duOPadd_specs(d, specs)
-CLUREF d;
-CLUREF specs;
+errcode
+duOPadd_specs(CLUREF d, CLUREF specs)
     {
     errcode err;
     errcode ecode2;
@@ -379,9 +373,8 @@ CLUREF specs;
 
 /**** BEGIN PROCEDURE get_mspecs ****/
 
-errcode duOPget_mspecs(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+duOPget_mspecs(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -420,9 +413,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_mspecs ****/
 
-errcode duOPset_mspecs(d, specs)
-CLUREF d;
-CLUREF specs;
+errcode
+duOPset_mspecs(CLUREF d, CLUREF specs)
     {
     errcode err;
     errcode ecode2;
@@ -458,10 +450,8 @@ CLUREF specs;
 
 /**** BEGIN PROCEDURE get_dump_info ****/
 
-errcode duOPget_dump_info(d, ret_1, ret_2)
-CLUREF d;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+duOPget_dump_info(CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -507,9 +497,8 @@ CLUREF *ret_2;
 
 /**** BEGIN PROCEDURE update_specs ****/
 
-errcode duOPupdate_specs(d, specs)
-CLUREF d;
-CLUREF specs;
+errcode
+duOPupdate_specs(CLUREF d, CLUREF specs)
     {
     errcode err;
     errcode ecode2;
@@ -597,8 +586,8 @@ CLUREF specs;
 
 /**** BEGIN PROCEDURE forget_specs ****/
 
-errcode duOPforget_specs(d)
-CLUREF d;
+errcode
+duOPforget_specs(CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -672,7 +661,8 @@ CLUREF d;
 
 /**** BEGIN PROCEDURE keep ****/
 
-errcode duOPkeep()
+errcode
+duOPkeep()
     {
     errcode err;
     errcode ecode2;
@@ -734,7 +724,8 @@ errcode duOPkeep()
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode duOPreset()
+errcode
+duOPreset()
     {
     errcode err;
     errcode ecode2;
@@ -812,10 +803,8 @@ errcode duOPreset()
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode duOPequal(d1, d2, ret_1)
-CLUREF d1;
-CLUREF d2;
-CLUREF *ret_1;
+errcode
+duOPequal(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -849,10 +838,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode duOPsimilar(d1, d2, ret_1)
-CLUREF d1;
-CLUREF d2;
-CLUREF *ret_1;
+errcode
+duOPsimilar(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -891,9 +878,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode duOPcopy(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+duOPcopy(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -927,10 +913,8 @@ static int duOP_gcd_own_init = 0;
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-errcode duOP_gcd(d, tab, ret_1)
-CLUREF d;
-CLUREF tab;
-CLUREF *ret_1;
+errcode
+duOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

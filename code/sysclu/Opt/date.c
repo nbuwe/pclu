@@ -88,14 +88,8 @@ errcode date_own_init_proc()
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode dateOPcreate(day, month, year, hour, minute, second, ret_1)
-CLUREF day;
-CLUREF month;
-CLUREF year;
-CLUREF hour;
-CLUREF minute;
-CLUREF second;
-CLUREF *ret_1;
+errcode
+dateOPcreate(CLUREF day, CLUREF month, CLUREF year, CLUREF hour, CLUREF minute, CLUREF second, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -221,9 +215,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_day ****/
 
-errcode dateOPget_day(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+dateOPget_day(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -257,9 +250,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_month ****/
 
-errcode dateOPget_month(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+dateOPget_month(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -293,9 +285,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_year ****/
 
-errcode dateOPget_year(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+dateOPget_year(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -329,9 +320,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_hour ****/
 
-errcode dateOPget_hour(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+dateOPget_hour(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -365,9 +355,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_minute ****/
 
-errcode dateOPget_minute(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+dateOPget_minute(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -401,9 +390,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_second ****/
 
-errcode dateOPget_second(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+dateOPget_second(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -437,14 +425,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_all ****/
 
-errcode dateOPget_all(d, ret_1, ret_2, ret_3, ret_4, ret_5, ret_6)
-CLUREF d;
-CLUREF *ret_1;
-CLUREF *ret_2;
-CLUREF *ret_3;
-CLUREF *ret_4;
-CLUREF *ret_5;
-CLUREF *ret_6;
+errcode
+dateOPget_all(CLUREF d, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret_4, CLUREF *ret_5, CLUREF *ret_6)
     {
     errcode err;
     errcode ecode2;
@@ -504,9 +486,8 @@ static int dateOPunparse_own_init = 0;
 
 /**** BEGIN PROCEDURE unparse ****/
 
-errcode dateOPunparse(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+dateOPunparse(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -554,9 +535,8 @@ static int dateOPunparse_date_own_init = 0;
 
 /**** BEGIN PROCEDURE unparse_date ****/
 
-errcode dateOPunparse_date(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+dateOPunparse_date(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -635,9 +615,8 @@ static int dateOPunparse_time_own_init = 0;
 
 /**** BEGIN PROCEDURE unparse_time ****/
 
-errcode dateOPunparse_time(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+dateOPunparse_time(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -776,10 +755,8 @@ static int dateOPequal_own_init = 0;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode dateOPequal(date1, date2, ret_1)
-CLUREF date1;
-CLUREF date2;
-CLUREF *ret_1;
+errcode
+dateOPequal(CLUREF date1, CLUREF date2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -827,10 +804,8 @@ static int dateOPsimilar_own_init = 0;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode dateOPsimilar(date1, date2, ret_1)
-CLUREF date1;
-CLUREF date2;
-CLUREF *ret_1;
+errcode
+dateOPsimilar(CLUREF date1, CLUREF date2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -872,9 +847,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode dateOPcopy(d, ret_1)
-CLUREF d;
-CLUREF *ret_1;
+errcode
+dateOPcopy(CLUREF d, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -906,10 +880,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE lt ****/
 
-errcode dateOPlt(d1, d2, ret_1)
-CLUREF d1;
-CLUREF d2;
-CLUREF *ret_1;
+errcode
+dateOPlt(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1082,10 +1054,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE le ****/
 
-errcode dateOPle(d1, d2, ret_1)
-CLUREF d1;
-CLUREF d2;
-CLUREF *ret_1;
+errcode
+dateOPle(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1258,10 +1228,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE gt ****/
 
-errcode dateOPgt(d1, d2, ret_1)
-CLUREF d1;
-CLUREF d2;
-CLUREF *ret_1;
+errcode
+dateOPgt(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1296,10 +1264,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE ge ****/
 
-errcode dateOPge(d1, d2, ret_1)
-CLUREF d1;
-CLUREF d2;
-CLUREF *ret_1;
+errcode
+dateOPge(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1334,9 +1300,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE print ****/
 
-errcode dateOPprint(d, ps)
-CLUREF d;
-CLUREF ps;
+errcode
+dateOPprint(CLUREF d, CLUREF ps)
     {
     errcode err;
     errcode ecode2;
@@ -1370,9 +1335,8 @@ CLUREF ps;
 
 /**** BEGIN PROCEDURE encode ****/
 
-errcode dateOPencode(d, ist)
-CLUREF d;
-CLUREF ist;
+errcode
+dateOPencode(CLUREF d, CLUREF ist)
     {
     errcode err;
     errcode ecode2;
@@ -1455,9 +1419,8 @@ static int dateOPdecode_own_init = 0;
 
 /**** BEGIN PROCEDURE decode ****/
 
-errcode dateOPdecode(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+dateOPdecode(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1535,10 +1498,8 @@ static int dateOP_gcd_own_init = 0;
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-errcode dateOP_gcd(d, tab, ret_1)
-CLUREF d;
-CLUREF tab;
-CLUREF *ret_1;
+errcode
+dateOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

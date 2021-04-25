@@ -18,11 +18,8 @@ extern errcode stringOPrest();
 
 /**** BEGIN PROCEDURE split_line ****/
 
-errcode split_line(line, sep, quote, ret_1)
-CLUREF line;
-CLUREF sep;
-CLUREF quote;
-CLUREF *ret_1;
+errcode
+split_line(CLUREF line, CLUREF sep, CLUREF quote, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

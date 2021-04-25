@@ -10,8 +10,8 @@ static int _system_root_own_init = 0;
 
 /**** BEGIN PROCEDURE _system_root ****/
 
-errcode _system_root(ret_1)
-CLUREF *ret_1;
+errcode
+_system_root(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

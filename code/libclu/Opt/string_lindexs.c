@@ -14,10 +14,8 @@ extern errcode intOPadd();
 
 /**** BEGIN PROCEDURE string_lindexs ****/
 
-errcode string_lindexs(pat, s, ret_1)
-CLUREF pat;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+string_lindexs(CLUREF pat, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

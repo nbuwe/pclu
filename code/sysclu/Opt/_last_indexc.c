@@ -11,10 +11,8 @@ extern errcode stringOPfetch();
 
 /**** BEGIN PROCEDURE _last_indexc ****/
 
-errcode _last_indexc(c, s, ret_1)
-CLUREF c;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+_last_indexc(CLUREF c, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

@@ -11,9 +11,8 @@ static int g_expr_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr ****/
 
-errcode g_expr(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_expr(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -51,9 +50,8 @@ extern errcode g_expr0();
 
 /**** BEGIN PROCEDURE g_expr_arg0 ****/
 
-errcode g_expr_arg0(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_expr_arg0(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -157,9 +155,8 @@ static int g_expr0_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr0 ****/
 
-errcode g_expr0(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_expr0(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -885,9 +882,8 @@ extern errcode intOPequal();
 
 /**** BEGIN PROCEDURE parmd_cluster ****/
 
-errcode parmd_cluster(xa, ret_1)
-CLUREF xa;
-CLUREF *ret_1;
+errcode
+parmd_cluster(CLUREF xa, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1010,10 +1006,8 @@ extern errcode g_expr1();
 
 /**** BEGIN PROCEDURE g_expr_arg1 ****/
 
-errcode g_expr_arg1(e, exp, ret_1)
-CLUREF e;
-CLUREF exp;
-CLUREF *ret_1;
+errcode
+g_expr_arg1(CLUREF e, CLUREF exp, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1111,10 +1105,8 @@ static int g_expr1_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr1 ****/
 
-errcode g_expr1(e, exp, ret_1)
-CLUREF e;
-CLUREF exp;
-CLUREF *ret_1;
+errcode
+g_expr1(CLUREF e, CLUREF exp, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1477,9 +1469,8 @@ static int g_expr2_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr2 ****/
 
-errcode g_expr2(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_expr2(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -1625,9 +1616,8 @@ static int g_expr_arg_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr_arg ****/
 
-errcode g_expr_arg(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_expr_arg(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -1792,9 +1782,8 @@ CLUREF exp;
 
 /**** BEGIN PROCEDURE g_expr3 ****/
 
-errcode g_expr3(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_expr3(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -1848,9 +1837,8 @@ static int g_expr4_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr4 ****/
 
-errcode g_expr4(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_expr4(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -1958,9 +1946,8 @@ static int s_expr4_own_init = 0;
 
 /**** BEGIN PROCEDURE s_expr4 ****/
 
-errcode s_expr4(exp, ret_1)
-CLUREF exp;
-CLUREF *ret_1;
+errcode
+s_expr4(CLUREF exp, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2075,9 +2062,8 @@ static int g_expr5_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr5 ****/
 
-errcode g_expr5(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_expr5(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -2184,9 +2170,8 @@ static int s_expr5_own_init = 0;
 
 /**** BEGIN PROCEDURE s_expr5 ****/
 
-errcode s_expr5(exp, ret_1)
-CLUREF exp;
-CLUREF *ret_1;
+errcode
+s_expr5(CLUREF exp, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2317,9 +2302,8 @@ static int g_namelist_own_init = 0;
 
 /**** BEGIN PROCEDURE g_namelist ****/
 
-errcode g_namelist(e, nlist)
-CLUREF e;
-CLUREF nlist;
+errcode
+g_namelist(CLUREF e, CLUREF nlist)
     {
     errcode err;
     errcode ecode2;
@@ -2374,9 +2358,8 @@ static int g_idnlist_own_init = 0;
 
 /**** BEGIN PROCEDURE g_idnlist ****/
 
-errcode g_idnlist(e, ilist)
-CLUREF e;
-CLUREF ilist;
+errcode
+g_idnlist(CLUREF e, CLUREF ilist)
     {
     errcode err;
     errcode ecode2;
@@ -2432,9 +2415,8 @@ static int g_idnlitlist_own_init = 0;
 
 /**** BEGIN PROCEDURE g_idnlitlist ****/
 
-errcode g_idnlitlist(e, ilist)
-CLUREF e;
-CLUREF ilist;
+errcode
+g_idnlitlist(CLUREF e, CLUREF ilist)
     {
     errcode err;
     errcode ecode2;
@@ -2479,9 +2461,8 @@ CLUREF ilist;
 
 /**** BEGIN PROCEDURE g_inv0 ****/
 
-errcode g_inv0(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_inv0(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -2611,10 +2592,8 @@ static int g_inv1_own_init = 0;
 
 /**** BEGIN PROCEDURE g_inv1 ****/
 
-errcode g_inv1(e, exp, ret_1)
-CLUREF e;
-CLUREF exp;
-CLUREF *ret_1;
+errcode
+g_inv1(CLUREF e, CLUREF exp, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3571,9 +3550,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE specs_exist ****/
 
-errcode specs_exist(ct, ret_1)
-CLUREF ct;
-CLUREF *ret_1;
+errcode
+specs_exist(CLUREF ct, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3649,10 +3627,8 @@ static int g_inv_own_init = 0;
 
 /**** BEGIN PROCEDURE g_inv ****/
 
-errcode g_inv(e, exp, gen_clu_proc_val)
-CLUREF e;
-CLUREF exp;
-CLUREF gen_clu_proc_val;
+errcode
+g_inv(CLUREF e, CLUREF exp, CLUREF gen_clu_proc_val)
     {
     errcode err;
     errcode ecode2;
@@ -4044,8 +4020,8 @@ static int g_locals_own_init = 0;
 
 /**** BEGIN PROCEDURE g_locals ****/
 
-errcode g_locals(e)
-CLUREF e;
+errcode
+g_locals(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -4114,8 +4090,8 @@ static int g_err_own_init = 0;
 
 /**** BEGIN PROCEDURE g_err ****/
 
-errcode g_err(e)
-CLUREF e;
+errcode
+g_err(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -4192,8 +4168,8 @@ static int g_proc_own_init = 0;
 
 /**** BEGIN PROCEDURE g_proc ****/
 
-errcode g_proc(e)
-CLUREF e;
+errcode
+g_proc(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -4270,8 +4246,8 @@ static int g_user_locals_own_init = 0;
 
 /**** BEGIN PROCEDURE g_user_locals ****/
 
-errcode g_user_locals(e)
-CLUREF e;
+errcode
+g_user_locals(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -4364,9 +4340,8 @@ static int g_idn_own_init = 0;
 
 /**** BEGIN PROCEDURE g_idn ****/
 
-errcode g_idn(e, i)
-CLUREF e;
-CLUREF i;
+errcode
+g_idn(CLUREF e, CLUREF i)
     {
     errcode err;
     errcode ecode2;
@@ -4783,9 +4758,8 @@ static int g_idn_no_trailer_own_init = 0;
 
 /**** BEGIN PROCEDURE g_idn_no_trailer ****/
 
-errcode g_idn_no_trailer(e, i)
-CLUREF e;
-CLUREF i;
+errcode
+g_idn_no_trailer(CLUREF e, CLUREF i)
     {
     errcode err;
     errcode ecode2;
@@ -4980,11 +4954,8 @@ extern errcode ownref();
 
 /**** BEGIN PROCEDURE g_ownref ****/
 
-errcode g_ownref(e, i, nm, trailer)
-CLUREF e;
-CLUREF i;
-CLUREF nm;
-CLUREF trailer;
+errcode
+g_ownref(CLUREF e, CLUREF i, CLUREF nm, CLUREF trailer)
     {
     errcode err;
     errcode ecode2;
@@ -5028,11 +4999,8 @@ static int ownref_own_init = 0;
 
 /**** BEGIN PROCEDURE ownref ****/
 
-errcode ownref(i, nm, trailer, ret_1)
-CLUREF i;
-CLUREF nm;
-CLUREF trailer;
-CLUREF *ret_1;
+errcode
+ownref(CLUREF i, CLUREF nm, CLUREF trailer, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5396,8 +5364,8 @@ static int s_locals_own_init = 0;
 
 /**** BEGIN PROCEDURE s_locals ****/
 
-errcode s_locals(ret_1)
-CLUREF *ret_1;
+errcode
+s_locals(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5476,9 +5444,8 @@ static int g_idn_plain_own_init = 0;
 
 /**** BEGIN PROCEDURE g_idn_plain ****/
 
-errcode g_idn_plain(e, i)
-CLUREF e;
-CLUREF i;
+errcode
+g_idn_plain(CLUREF e, CLUREF i)
     {
     errcode err;
     errcode ecode2;
@@ -5714,9 +5681,8 @@ CLUREF purifyOPreserved;
 
 /**** BEGIN PROCEDURE purify ****/
 
-errcode purify(nm, ret_1)
-CLUREF nm;
-CLUREF *ret_1;
+errcode
+purify(CLUREF nm, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5862,9 +5828,8 @@ static int g_idnlit_own_init = 0;
 
 /**** BEGIN PROCEDURE g_idnlit ****/
 
-errcode g_idnlit(e, i)
-CLUREF e;
-CLUREF i;
+errcode
+g_idnlit(CLUREF e, CLUREF i)
     {
     errcode err;
     errcode ecode2;
@@ -5962,9 +5927,8 @@ static int idnlit_own_init = 0;
 
 /**** BEGIN PROCEDURE idnlit ****/
 
-errcode idnlit(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+idnlit(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6088,10 +6052,8 @@ static int g_einvoke_own_init = 0;
 
 /**** BEGIN PROCEDURE g_einvoke ****/
 
-errcode g_einvoke(e, stmt, ret_1)
-CLUREF e;
-CLUREF stmt;
-CLUREF *ret_1;
+errcode
+g_einvoke(CLUREF e, CLUREF stmt, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6726,11 +6688,8 @@ static int g_apply1_own_init = 0;
 
 /**** BEGIN PROCEDURE g_apply1 ****/
 
-errcode g_apply1(e, exp, ct, ret_1)
-CLUREF e;
-CLUREF exp;
-CLUREF ct;
-CLUREF *ret_1;
+errcode
+g_apply1(CLUREF e, CLUREF exp, CLUREF ct, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -7081,11 +7040,8 @@ static int g_op1_own_init = 0;
 
 /**** BEGIN PROCEDURE g_op1 ****/
 
-errcode g_op1(e, exp, cop, ret_1)
-CLUREF e;
-CLUREF exp;
-CLUREF cop;
-CLUREF *ret_1;
+errcode
+g_op1(CLUREF e, CLUREF exp, CLUREF cop, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -7971,10 +7927,8 @@ static int g_ops_index_own_init = 0;
 
 /**** BEGIN PROCEDURE g_ops_index ****/
 
-errcode g_ops_index(sel, oper, ret_1)
-CLUREF sel;
-CLUREF oper;
-CLUREF *ret_1;
+errcode
+g_ops_index(CLUREF sel, CLUREF oper, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -8508,10 +8462,8 @@ static int g_anyize_own_init = 0;
 
 /**** BEGIN PROCEDURE g_anyize ****/
 
-errcode g_anyize(e, exp, ret_1)
-CLUREF e;
-CLUREF exp;
-CLUREF *ret_1;
+errcode
+g_anyize(CLUREF e, CLUREF exp, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -8699,11 +8651,8 @@ static int g_condop_own_init = 0;
 
 /**** BEGIN PROCEDURE g_condop ****/
 
-errcode g_condop(e, cop, opn, ret_1)
-CLUREF e;
-CLUREF cop;
-CLUREF opn;
-CLUREF *ret_1;
+errcode
+g_condop(CLUREF e, CLUREF cop, CLUREF opn, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -8896,10 +8845,8 @@ static int g_real_const_own_init = 0;
 
 /**** BEGIN PROCEDURE g_real_const ****/
 
-errcode g_real_const(e, r, ret_1)
-CLUREF e;
-CLUREF r;
-CLUREF *ret_1;
+errcode
+g_real_const(CLUREF e, CLUREF r, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -8983,10 +8930,8 @@ static int g_char_const_own_init = 0;
 
 /**** BEGIN PROCEDURE g_char_const ****/
 
-errcode g_char_const(e, c, ret_1)
-CLUREF e;
-CLUREF c;
-CLUREF *ret_1;
+errcode
+g_char_const(CLUREF e, CLUREF c, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -9071,10 +9016,8 @@ static int g_int_const1_own_init = 0;
 
 /**** BEGIN PROCEDURE g_int_const1 ****/
 
-errcode g_int_const1(e, i, ret_1)
-CLUREF e;
-CLUREF i;
-CLUREF *ret_1;
+errcode
+g_int_const1(CLUREF e, CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -9156,9 +9099,8 @@ static int g_int_const_own_init = 0;
 
 /**** BEGIN PROCEDURE g_int_const ****/
 
-errcode g_int_const(e, i)
-CLUREF e;
-CLUREF i;
+errcode
+g_int_const(CLUREF e, CLUREF i)
     {
     errcode err;
     errcode ecode2;
@@ -9198,9 +9140,8 @@ static int g_bool_const_own_init = 0;
 
 /**** BEGIN PROCEDURE g_bool_const ****/
 
-errcode g_bool_const(e, b)
-CLUREF e;
-CLUREF b;
+errcode
+g_bool_const(CLUREF e, CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -9258,10 +9199,8 @@ static int g_arraycons_own_init = 0;
 
 /**** BEGIN PROCEDURE g_arraycons ****/
 
-errcode g_arraycons(e, ac, ret_1)
-CLUREF e;
-CLUREF ac;
-CLUREF *ret_1;
+errcode
+g_arraycons(CLUREF e, CLUREF ac, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -9707,11 +9646,8 @@ static int g_sequencecons_own_init = 0;
 
 /**** BEGIN PROCEDURE g_sequencecons ****/
 
-errcode g_sequencecons(e, ac, nm, ret_1)
-CLUREF e;
-CLUREF ac;
-CLUREF nm;
-CLUREF *ret_1;
+errcode
+g_sequencecons(CLUREF e, CLUREF ac, CLUREF nm, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -10032,10 +9968,8 @@ static int g_selectcons_own_init = 0;
 
 /**** BEGIN PROCEDURE g_selectcons ****/
 
-errcode g_selectcons(e, sc, ret_1)
-CLUREF e;
-CLUREF sc;
-CLUREF *ret_1;
+errcode
+g_selectcons(CLUREF e, CLUREF sc, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -10297,9 +10231,8 @@ extern errcode escape_ckeyword();
 
 /**** BEGIN PROCEDURE g_apply ****/
 
-errcode g_apply(e, ct)
-CLUREF e;
-CLUREF ct;
+errcode
+g_apply(CLUREF e, CLUREF ct)
     {
     errcode err;
     errcode ecode2;
@@ -10341,9 +10274,8 @@ static int g_apply3_own_init = 0;
 
 /**** BEGIN PROCEDURE g_apply3 ****/
 
-errcode g_apply3(e, ct)
-CLUREF e;
-CLUREF ct;
+errcode
+g_apply3(CLUREF e, CLUREF ct)
     {
     errcode err;
     errcode ecode2;
@@ -10443,9 +10375,8 @@ static int g_clusterop_own_init = 0;
 
 /**** BEGIN PROCEDURE g_clusterop ****/
 
-errcode g_clusterop(e, cop)
-CLUREF e;
-CLUREF cop;
+errcode
+g_clusterop(CLUREF e, CLUREF cop)
     {
     errcode err;
     errcode ecode2;
@@ -10740,9 +10671,8 @@ static int g_clusterop3_own_init = 0;
 
 /**** BEGIN PROCEDURE g_clusterop3 ****/
 
-errcode g_clusterop3(e, cop)
-CLUREF e;
-CLUREF cop;
+errcode
+g_clusterop3(CLUREF e, CLUREF cop)
     {
     errcode err;
     errcode ecode2;
@@ -10926,11 +10856,8 @@ static int g_force_own_init = 0;
 
 /**** BEGIN PROCEDURE g_force ****/
 
-errcode g_force(e, ex, ty, ret_1)
-CLUREF e;
-CLUREF ex;
-CLUREF ty;
-CLUREF *ret_1;
+errcode
+g_force(CLUREF e, CLUREF ex, CLUREF ty, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11547,11 +11474,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE g_updown ****/
 
-errcode g_updown(e, x, op, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF op;
-CLUREF *ret_1;
+errcode
+g_updown(CLUREF e, CLUREF x, CLUREF op, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11597,9 +11521,8 @@ static int g_const_expr_own_init = 0;
 
 /**** BEGIN PROCEDURE g_const_expr ****/
 
-errcode g_const_expr(e, x)
-CLUREF e;
-CLUREF x;
+errcode
+g_const_expr(CLUREF e, CLUREF x)
     {
     errcode err;
     errcode ecode2;
@@ -11749,9 +11672,8 @@ extern errcode charOPle();
 
 /**** BEGIN PROCEDURE g_printing_char ****/
 
-errcode g_printing_char(c, ret_1)
-CLUREF c;
-CLUREF *ret_1;
+errcode
+g_printing_char(CLUREF c, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11799,9 +11721,8 @@ static int g_string_own_init = 0;
 
 /**** BEGIN PROCEDURE g_string ****/
 
-errcode g_string(e, s)
-CLUREF e;
-CLUREF s;
+errcode
+g_string(CLUREF e, CLUREF s)
     {
     struct {
         errcode err;
@@ -11890,9 +11811,8 @@ static int g_string2_own_init = 0;
 
 /**** BEGIN PROCEDURE g_string2 ****/
 
-errcode g_string2(e, s)
-CLUREF e;
-CLUREF s;
+errcode
+g_string2(CLUREF e, CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -11932,9 +11852,8 @@ static int g_string_name_own_init = 0;
 
 /**** BEGIN PROCEDURE g_string_name ****/
 
-errcode g_string_name(e, s)
-CLUREF e;
-CLUREF s;
+errcode
+g_string_name(CLUREF e, CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -11972,9 +11891,8 @@ static int s_string_name_own_init = 0;
 
 /**** BEGIN PROCEDURE s_string_name ****/
 
-errcode s_string_name(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+s_string_name(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -12026,9 +11944,8 @@ static int g_char_own_init = 0;
 
 /**** BEGIN PROCEDURE g_char ****/
 
-errcode g_char(e, c)
-CLUREF e;
-CLUREF c;
+errcode
+g_char(CLUREF e, CLUREF c)
     {
     errcode err;
     errcode ecode2;
@@ -12278,9 +12195,8 @@ static int g_const_expr_embed_own_init = 0;
 
 /**** BEGIN PROCEDURE g_const_expr_embed ****/
 
-errcode g_const_expr_embed(e, x)
-CLUREF e;
-CLUREF x;
+errcode
+g_const_expr_embed(CLUREF e, CLUREF x)
     {
     errcode err;
     errcode ecode2;
@@ -12426,9 +12342,8 @@ static int s_const_expr_embed_own_init = 0;
 
 /**** BEGIN PROCEDURE s_const_expr_embed ****/
 
-errcode s_const_expr_embed(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+s_const_expr_embed(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -12592,9 +12507,8 @@ static int real_embed_own_init = 0;
 
 /**** BEGIN PROCEDURE real_embed ****/
 
-errcode real_embed(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+real_embed(CLUREF s, CLUREF *ret_1)
     {
     struct {
         errcode err;
@@ -12690,9 +12604,8 @@ static int s_string_embed_own_init = 0;
 
 /**** BEGIN PROCEDURE s_string_embed ****/
 
-errcode s_string_embed(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+s_string_embed(CLUREF s, CLUREF *ret_1)
     {
     struct {
         errcode err;
@@ -12788,9 +12701,8 @@ extern errcode s_char_embed2();
 
 /**** BEGIN PROCEDURE s_char_embed ****/
 
-errcode s_char_embed(c, ret_1)
-CLUREF c;
-CLUREF *ret_1;
+errcode
+s_char_embed(CLUREF c, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -12849,9 +12761,8 @@ static int s_char_embed1_own_init = 0;
 
 /**** BEGIN PROCEDURE s_char_embed1 ****/
 
-errcode s_char_embed1(c, ret_1)
-CLUREF c;
-CLUREF *ret_1;
+errcode
+s_char_embed1(CLUREF c, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -13126,9 +13037,8 @@ static int s_char_embed2_own_init = 0;
 
 /**** BEGIN PROCEDURE s_char_embed2 ****/
 
-errcode s_char_embed2(c, ret_1)
-CLUREF c;
-CLUREF *ret_1;
+errcode
+s_char_embed2(CLUREF c, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -13253,9 +13163,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE embed_char ****/
 
-errcode embed_char(c, ret_1)
-CLUREF c;
-CLUREF *ret_1;
+errcode
+embed_char(CLUREF c, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -13368,10 +13277,8 @@ static int g_c_assn_own_init = 0;
 
 /**** BEGIN PROCEDURE g_c_assn ****/
 
-errcode g_c_assn(e, i, exp)
-CLUREF e;
-CLUREF i;
-CLUREF exp;
+errcode
+g_c_assn(CLUREF e, CLUREF i, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -13630,9 +13537,8 @@ static int g_constr_rhs_own_init = 0;
 
 /**** BEGIN PROCEDURE g_constr_rhs ****/
 
-errcode g_constr_rhs(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_constr_rhs(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -13867,10 +13773,8 @@ static int g_ret_assn_own_init = 0;
 
 /**** BEGIN PROCEDURE g_ret_assn ****/
 
-errcode g_ret_assn(e, i, exp)
-CLUREF e;
-CLUREF i;
-CLUREF exp;
+errcode
+g_ret_assn(CLUREF e, CLUREF i, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -14067,10 +13971,8 @@ static int g_sig_assn_own_init = 0;
 
 /**** BEGIN PROCEDURE g_sig_assn ****/
 
-errcode g_sig_assn(e, i, exp)
-CLUREF e;
-CLUREF i;
-CLUREF exp;
+errcode
+g_sig_assn(CLUREF e, CLUREF i, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -14257,9 +14159,8 @@ extern errcode g_fieldecl();
 
 /**** BEGIN PROCEDURE g_fieldeclist ****/
 
-errcode g_fieldeclist(e, flist)
-CLUREF e;
-CLUREF flist;
+errcode
+g_fieldeclist(CLUREF e, CLUREF flist)
     {
     errcode err;
     errcode ecode2;
@@ -14301,9 +14202,8 @@ extern errcode g_decl_typespec();
 
 /**** BEGIN PROCEDURE g_fieldecl ****/
 
-errcode g_fieldecl(e, fspc)
-CLUREF e;
-CLUREF fspc;
+errcode
+g_fieldecl(CLUREF e, CLUREF fspc)
     {
     errcode err;
     errcode ecode2;
@@ -14342,11 +14242,8 @@ static int field_index_own_init = 0;
 
 /**** BEGIN PROCEDURE field_index ****/
 
-errcode field_index(nm, flist, ret_1, ret_2)
-CLUREF nm;
-CLUREF flist;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+field_index(CLUREF nm, CLUREF flist, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -14536,9 +14433,8 @@ static int all_field_types_null_own_init = 0;
 
 /**** BEGIN PROCEDURE all_field_types_null ****/
 
-errcode all_field_types_null(flist, ret_1)
-CLUREF flist;
-CLUREF *ret_1;
+errcode
+all_field_types_null(CLUREF flist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -14639,9 +14535,8 @@ static int s_owns_prefix_own_init = 0;
 
 /**** BEGIN PROCEDURE s_owns_prefix ****/
 
-errcode s_owns_prefix(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+s_owns_prefix(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -14734,9 +14629,8 @@ static int s_owns_prefix_expr_own_init = 0;
 
 /**** BEGIN PROCEDURE s_owns_prefix_expr ****/
 
-errcode s_owns_prefix_expr(p, ret_1)
-CLUREF p;
-CLUREF *ret_1;
+errcode
+s_owns_prefix_expr(CLUREF p, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -14826,9 +14720,8 @@ static int s_owns_prefix_exprlist_own_init = 0;
 
 /**** BEGIN PROCEDURE s_owns_prefix_exprlist ****/
 
-errcode s_owns_prefix_exprlist(el, ret_1)
-CLUREF el;
-CLUREF *ret_1;
+errcode
+s_owns_prefix_exprlist(CLUREF el, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -14910,9 +14803,8 @@ static int s_owns_prefix_fieldlist_own_init = 0;
 
 /**** BEGIN PROCEDURE s_owns_prefix_fieldlist ****/
 
-errcode s_owns_prefix_fieldlist(fl, ret_1)
-CLUREF fl;
-CLUREF *ret_1;
+errcode
+s_owns_prefix_fieldlist(CLUREF fl, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -14994,9 +14886,8 @@ static int s_owns_prefix_type_own_init = 0;
 
 /**** BEGIN PROCEDURE s_owns_prefix_type ****/
 
-errcode s_owns_prefix_type(ty, ret_1)
-CLUREF ty;
-CLUREF *ret_1;
+errcode
+s_owns_prefix_type(CLUREF ty, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

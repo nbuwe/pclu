@@ -10,8 +10,8 @@ static int working_dir_own_init = 0;
 
 /**** BEGIN PROCEDURE working_dir ****/
 
-errcode working_dir(ret_1)
-CLUREF *ret_1;
+errcode
+working_dir(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

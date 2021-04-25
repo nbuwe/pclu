@@ -105,8 +105,8 @@ enter_own_init_proc();
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode stableOPcreate(ret_1)
-CLUREF *ret_1;
+errcode
+stableOPcreate(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -142,10 +142,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE lookup ****/
 
-errcode stableOPlookup(tbl, name, ret_1)
-CLUREF tbl;
-CLUREF name;
-CLUREF *ret_1;
+errcode
+stableOPlookup(CLUREF tbl, CLUREF name, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -209,11 +207,8 @@ extern errcode stableOPcompletions_IB_1();
 
 /**** BEGIN PROCEDURE completions ****/
 
-errcode stableOPcompletions(tbl, name, ret_1, ret_2)
-CLUREF tbl;
-CLUREF name;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+stableOPcompletions(CLUREF tbl, CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
     {
     struct {
         errcode err;
@@ -343,12 +338,8 @@ stable_OWN_DEFN *type_own_ptr;
 
 /**** BEGIN ITERATOR match ****/
 
-errcode stableOPmatch(tbl, ms, proc, user_locals, iecode)
-CLUREF tbl;
-CLUREF ms;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+stableOPmatch(CLUREF tbl, CLUREF ms, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     errcode err;
@@ -466,10 +457,8 @@ errcode *iecode;
 
 /**** BEGIN PROCEDURE insert ****/
 
-errcode stableOPinsert(tbl, name, val)
-CLUREF tbl;
-CLUREF name;
-CLUREF val;
+errcode
+stableOPinsert(CLUREF tbl, CLUREF name, CLUREF val)
     {
     errcode err;
     errcode ecode2;
@@ -629,10 +618,8 @@ CLUREF val;
 
 /**** BEGIN PROCEDURE change ****/
 
-errcode stableOPchange(tbl, name, new_val)
-CLUREF tbl;
-CLUREF name;
-CLUREF new_val;
+errcode
+stableOPchange(CLUREF tbl, CLUREF name, CLUREF new_val)
     {
     errcode err;
     errcode ecode2;
@@ -683,11 +670,8 @@ CLUREF new_val;
 
 /**** BEGIN PROCEDURE find_index ****/
 
-errcode stableOPfind_index(tbl, look_for, exact, ret_1)
-CLUREF tbl;
-CLUREF look_for;
-CLUREF exact;
-CLUREF *ret_1;
+errcode
+stableOPfind_index(CLUREF tbl, CLUREF look_for, CLUREF exact, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -870,9 +854,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE delete ****/
 
-errcode stableOPdelete(tbl, name)
-CLUREF tbl;
-CLUREF name;
+errcode
+stableOPdelete(CLUREF tbl, CLUREF name)
     {
     errcode err;
     errcode ecode2;
@@ -968,11 +951,8 @@ CLUREF name;
 
 /**** BEGIN ITERATOR entries ****/
 
-errcode stableOPentries(tbl, proc, user_locals, iecode)
-CLUREF tbl;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+stableOPentries(CLUREF tbl, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     errcode err;
@@ -1033,9 +1013,8 @@ errcode *iecode;
 
 /**** BEGIN PROCEDURE empty ****/
 
-errcode stableOPempty(tbl, ret_1)
-CLUREF tbl;
-CLUREF *ret_1;
+errcode
+stableOPempty(CLUREF tbl, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1071,9 +1050,8 @@ extern errcode stableOPunparse_IB_1();
 
 /**** BEGIN PROCEDURE unparse ****/
 
-errcode stableOPunparse(tbl, ret_1)
-CLUREF tbl;
-CLUREF *ret_1;
+errcode
+stableOPunparse(CLUREF tbl, CLUREF *ret_1)
     {
     struct {
         errcode err;

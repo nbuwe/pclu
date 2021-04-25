@@ -8,8 +8,8 @@ extern errcode delete_file();
 
 /**** BEGIN PROCEDURE delete_expunge ****/
 
-errcode delete_expunge(fn)
-CLUREF fn;
+errcode
+delete_expunge(CLUREF fn)
     {
     errcode err;
     errcode ecode2;

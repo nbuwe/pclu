@@ -48,9 +48,8 @@ OWN_req gc_read_ownreqs = {sizeof(gc_read_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE gc_read ****/
 
-errcode gc_read(fn, ret_1)
-CLUREF fn;
-CLUREF *ret_1;
+errcode
+gc_read(CLUREF fn, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -462,8 +461,8 @@ static int gcrOPpass1_own_init = 0;
 
 /**** BEGIN PROCEDURE pass1 ****/
 
-errcode gcrOPpass1(ch)
-CLUREF ch;
+errcode
+gcrOPpass1(CLUREF ch)
     {
     errcode err;
     errcode ecode2;
@@ -627,9 +626,8 @@ CLUREF ch;
 
 /**** BEGIN PROCEDURE make_bvec1 ****/
 
-errcode gcrOPmake_bvec1(ch, ret_1)
-CLUREF ch;
-CLUREF *ret_1;
+errcode
+gcrOPmake_bvec1(CLUREF ch, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -718,9 +716,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE make_vec1 ****/
 
-errcode gcrOPmake_vec1(ch, ret_1)
-CLUREF ch;
-CLUREF *ret_1;
+errcode
+gcrOPmake_vec1(CLUREF ch, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -785,9 +782,8 @@ static int gcrOPmake_cell1_own_init = 0;
 
 /**** BEGIN PROCEDURE make_cell1 ****/
 
-errcode gcrOPmake_cell1(ch, ret_1)
-CLUREF ch;
-CLUREF *ret_1;
+errcode
+gcrOPmake_cell1(CLUREF ch, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -852,9 +848,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE make_adv1 ****/
 
-errcode gcrOPmake_adv1(ch, ret_1)
-CLUREF ch;
-CLUREF *ret_1;
+errcode
+gcrOPmake_adv1(CLUREF ch, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -934,8 +929,8 @@ static int gcrOPpass2_own_init = 0;
 
 /**** BEGIN PROCEDURE pass2 ****/
 
-errcode gcrOPpass2(ch)
-CLUREF ch;
+errcode
+gcrOPpass2(CLUREF ch)
     {
     errcode err;
     errcode ecode2;
@@ -1064,9 +1059,8 @@ CLUREF ch;
 
 /**** BEGIN PROCEDURE make_bvec2 ****/
 
-errcode gcrOPmake_bvec2(ch, o)
-CLUREF ch;
-CLUREF o;
+errcode
+gcrOPmake_bvec2(CLUREF ch, CLUREF o)
     {
     errcode err;
     errcode ecode2;
@@ -1115,9 +1109,8 @@ CLUREF o;
 
 /**** BEGIN PROCEDURE make_vec2 ****/
 
-errcode gcrOPmake_vec2(ch, o)
-CLUREF ch;
-CLUREF o;
+errcode
+gcrOPmake_vec2(CLUREF ch, CLUREF o)
     {
     errcode err;
     errcode ecode2;
@@ -1186,9 +1179,8 @@ static int gcrOPmake_cell2_own_init = 0;
 
 /**** BEGIN PROCEDURE make_cell2 ****/
 
-errcode gcrOPmake_cell2(ch, o)
-CLUREF ch;
-CLUREF o;
+errcode
+gcrOPmake_cell2(CLUREF ch, CLUREF o)
     {
     errcode err;
     errcode ecode2;
@@ -1251,9 +1243,8 @@ static int gcrOPmake_adv2_own_init = 0;
 
 /**** BEGIN PROCEDURE make_adv2 ****/
 
-errcode gcrOPmake_adv2(ch, o)
-CLUREF ch;
-CLUREF o;
+errcode
+gcrOPmake_adv2(CLUREF ch, CLUREF o)
     {
     errcode err;
     errcode ecode2;
@@ -1448,7 +1439,8 @@ errcode gcb_own_init_proc()
 
 /**** BEGIN PROCEDURE init ****/
 
-errcode gcbOPinit()
+errcode
+gcbOPinit()
     {
     errcode err;
     errcode ecode2;
@@ -1487,10 +1479,8 @@ errcode gcbOPinit()
 
 /**** BEGIN PROCEDURE get_next_hdr ****/
 
-errcode gcbOPget_next_hdr(ch, ret_1, ret_2)
-CLUREF ch;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+gcbOPget_next_hdr(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -1554,9 +1544,8 @@ CLUREF *ret_2;
 
 /**** BEGIN PROCEDURE get_size ****/
 
-errcode gcbOPget_size(ch, ret_1)
-CLUREF ch;
-CLUREF *ret_1;
+errcode
+gcbOPget_size(CLUREF ch, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1598,12 +1587,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_array_info ****/
 
-errcode gcbOPget_array_info(ch, ret_1, ret_2, ret_3, ret_4)
-CLUREF ch;
-CLUREF *ret_1;
-CLUREF *ret_2;
-CLUREF *ret_3;
-CLUREF *ret_4;
+errcode
+gcbOPget_array_info(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret_4)
     {
     errcode err;
     errcode ecode2;
@@ -1685,9 +1670,8 @@ static int gcbOPget_next_obj_own_init = 0;
 
 /**** BEGIN PROCEDURE get_next_obj ****/
 
-errcode gcbOPget_next_obj(ch, ret_1)
-CLUREF ch;
-CLUREF *ret_1;
+errcode
+gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1803,9 +1787,8 @@ static int gcbOPskip_obj_own_init = 0;
 
 /**** BEGIN PROCEDURE skip_obj ****/
 
-errcode gcbOPskip_obj(ch, count)
-CLUREF ch;
-CLUREF count;
+errcode
+gcbOPskip_obj(CLUREF ch, CLUREF count)
     {
     errcode err;
     errcode ecode2;
@@ -1923,9 +1906,8 @@ CLUREF count;
 
 /**** BEGIN PROCEDURE geti ****/
 
-errcode gcbOPgeti(ch, ret_1)
-CLUREF ch;
-CLUREF *ret_1;
+errcode
+gcbOPgeti(CLUREF ch, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2029,9 +2011,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE getb ****/
 
-errcode gcbOPgetb(ch, b)
-CLUREF ch;
-CLUREF b;
+errcode
+gcbOPgetb(CLUREF ch, CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -2303,9 +2284,8 @@ CLUREF b;
 
 /**** BEGIN PROCEDURE skip ****/
 
-errcode gcbOPskip(ch, i)
-CLUREF ch;
-CLUREF i;
+errcode
+gcbOPskip(CLUREF ch, CLUREF i)
     {
     errcode err;
     errcode ecode2;
@@ -2490,7 +2470,8 @@ CLUREF gcoOPobj_store;
 
 /**** BEGIN PROCEDURE init ****/
 
-errcode gcoOPinit()
+errcode
+gcoOPinit()
     {
     errcode err;
     errcode ecode2;
@@ -2529,9 +2510,8 @@ errcode gcoOPinit()
 
 /**** BEGIN PROCEDURE get_obj ****/
 
-errcode gcoOPget_obj(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+gcoOPget_obj(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2639,9 +2619,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE save_new_obj ****/
 
-errcode gcoOPsave_new_obj(i, o)
-CLUREF i;
-CLUREF o;
+errcode
+gcoOPsave_new_obj(CLUREF i, CLUREF o)
     {
     errcode err;
     errcode ecode2;
@@ -2708,7 +2687,8 @@ CLUREF o;
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode gcoOPreset()
+errcode
+gcoOPreset()
     {
     errcode err;
     errcode ecode2;
@@ -2770,8 +2750,8 @@ static int log_bytevec_own_init = 0;
 
 /**** BEGIN PROCEDURE log_bytevec ****/
 
-errcode log_bytevec(bv)
-CLUREF bv;
+errcode
+log_bytevec(CLUREF bv)
     {
     errcode err;
     errcode ecode2;

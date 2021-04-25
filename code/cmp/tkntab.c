@@ -475,9 +475,8 @@ static int tokentabOPcreate_own_init = 0;
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode tokentabOPcreate(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+tokentabOPcreate(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1046,9 +1045,8 @@ static int tokentabOPreset_own_init = 0;
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode tokentabOPreset(t, e)
-CLUREF t;
-CLUREF e;
+errcode
+tokentabOPreset(CLUREF t, CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1433,8 +1431,8 @@ static int tokentabOPhack_own_init = 0;
 
 /**** BEGIN PROCEDURE hack ****/
 
-errcode tokentabOPhack(t)
-CLUREF t;
+errcode
+tokentabOPhack(CLUREF t)
     {
     errcode err;
     errcode ecode2;
@@ -1514,8 +1512,8 @@ static int tokentabOPunhack_own_init = 0;
 
 /**** BEGIN PROCEDURE unhack ****/
 
-errcode tokentabOPunhack(t)
-CLUREF t;
+errcode
+tokentabOPunhack(CLUREF t)
     {
     errcode err;
     errcode ecode2;
@@ -1607,10 +1605,8 @@ static int tokentabOPident_own_init = 0;
 
 /**** BEGIN PROCEDURE ident ****/
 
-errcode tokentabOPident(t, s, ret_1)
-CLUREF t;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+tokentabOPident(CLUREF t, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1705,10 +1701,8 @@ static int tokentabOPget_token_own_init = 0;
 
 /**** BEGIN PROCEDURE get_token ****/
 
-errcode tokentabOPget_token(t, s, ret_1)
-CLUREF t;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+tokentabOPget_token(CLUREF t, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1824,10 +1818,8 @@ static int tokentabOPadd_token_own_init = 0;
 
 /**** BEGIN PROCEDURE add_token ****/
 
-errcode tokentabOPadd_token(t, s, k)
-CLUREF t;
-CLUREF s;
-CLUREF k;
+errcode
+tokentabOPadd_token(CLUREF t, CLUREF s, CLUREF k)
     {
     errcode err;
     errcode ecode2;

@@ -93,8 +93,8 @@ errcode xref_own_init_proc()
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode xrefOPcreate(ret_1)
-CLUREF *ret_1;
+errcode
+xrefOPcreate(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -141,10 +141,8 @@ static int xrefOPadd_ref_own_init = 0;
 
 /**** BEGIN PROCEDURE add_ref ****/
 
-errcode xrefOPadd_ref(tab, key, user)
-CLUREF tab;
-CLUREF key;
-CLUREF user;
+errcode
+xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
     {
     errcode err;
     errcode ecode2;
@@ -262,10 +260,8 @@ static int xrefOPadd_refs_own_init = 0;
 
 /**** BEGIN PROCEDURE add_refs ****/
 
-errcode xrefOPadd_refs(tab, key, users)
-CLUREF tab;
-CLUREF key;
-CLUREF users;
+errcode
+xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
     {
     errcode err;
     errcode ecode2;
@@ -415,10 +411,8 @@ static int xrefOPrem_refs_own_init = 0;
 
 /**** BEGIN PROCEDURE rem_refs ****/
 
-errcode xrefOPrem_refs(tab, key, ret_1)
-CLUREF tab;
-CLUREF key;
-CLUREF *ret_1;
+errcode
+xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -621,9 +615,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE entry_maker ****/
 
-errcode xrefOPentry_maker(key, ret_1)
-CLUREF key;
-CLUREF *ret_1;
+errcode
+xrefOPentry_maker(CLUREF key, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -685,12 +678,8 @@ OWN_req xref_op_find_index_ownreqs = {sizeof(xref_op_find_index_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE find_index ****/
 
-errcode xrefOPfind_index(tab, key, get, cons, ret_1)
-CLUREF tab;
-CLUREF key;
-CLUREF get;
-CLUREF cons;
-CLUREF *ret_1;
+errcode
+xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -993,11 +982,8 @@ CLUREF *ret_1;
 
 /**** BEGIN ITERATOR elements ****/
 
-errcode xrefOPelements(tab, proc, user_locals, iecode)
-CLUREF tab;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+xrefOPelements(CLUREF tab, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     errcode err;
@@ -1082,11 +1068,8 @@ errcode *iecode;
 
 /**** BEGIN ITERATOR keys ****/
 
-errcode xrefOPkeys(tab, proc, user_locals, iecode)
-CLUREF tab;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+xrefOPkeys(CLUREF tab, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     errcode err;
@@ -1145,11 +1128,8 @@ static int xrefOPoutput_own_init = 0;
 
 /**** BEGIN PROCEDURE output ****/
 
-errcode xrefOPoutput(tab, lhead, rhead, st)
-CLUREF tab;
-CLUREF lhead;
-CLUREF rhead;
-CLUREF st;
+errcode
+xrefOPoutput(CLUREF tab, CLUREF lhead, CLUREF rhead, CLUREF st)
     {
     errcode err;
     errcode ecode2;
@@ -1326,11 +1306,8 @@ CLUREF st;
 
 /**** BEGIN PROCEDURE putout ****/
 
-errcode xrefOPputout(st, key, users, max)
-CLUREF st;
-CLUREF key;
-CLUREF users;
-CLUREF max;
+errcode
+xrefOPputout(CLUREF st, CLUREF key, CLUREF users, CLUREF max)
     {
     errcode err;
     errcode ecode2;
@@ -1481,9 +1458,8 @@ static int xrefOPmerge_own_init = 0;
 
 /**** BEGIN PROCEDURE merge ****/
 
-errcode xrefOPmerge(tab1, tab2)
-CLUREF tab1;
-CLUREF tab2;
+errcode
+xrefOPmerge(CLUREF tab1, CLUREF tab2)
     {
     struct {
         errcode err;
@@ -1564,8 +1540,8 @@ struct {
 
 /**** BEGIN PROCEDURE flush ****/
 
-errcode xrefOPflush(tab)
-CLUREF tab;
+errcode
+xrefOPflush(CLUREF tab)
     {
     errcode err;
     errcode ecode2;

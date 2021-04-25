@@ -76,12 +76,8 @@ errcode file_name_own_init_proc()
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode file_nameOPcreate(dir, name, suffix, other, ret_1)
-CLUREF dir;
-CLUREF name;
-CLUREF suffix;
-CLUREF other;
-CLUREF *ret_1;
+errcode
+file_nameOPcreate(CLUREF dir, CLUREF name, CLUREF suffix, CLUREF other, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -350,9 +346,8 @@ static int file_nameOPparse_own_init = 0;
 
 /**** BEGIN PROCEDURE parse ****/
 
-errcode file_nameOPparse(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+file_nameOPparse(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -497,9 +492,8 @@ static int file_nameOPunparse_own_init = 0;
 
 /**** BEGIN PROCEDURE unparse ****/
 
-errcode file_nameOPunparse(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_nameOPunparse(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -652,9 +646,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_dir ****/
 
-errcode file_nameOPget_dir(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_nameOPget_dir(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -688,9 +681,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_name ****/
 
-errcode file_nameOPget_name(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_nameOPget_name(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -724,9 +716,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_suffix ****/
 
-errcode file_nameOPget_suffix(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_nameOPget_suffix(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -760,9 +751,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_other ****/
 
-errcode file_nameOPget_other(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_nameOPget_other(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -797,10 +787,8 @@ static int file_nameOPmake_output_own_init = 0;
 
 /**** BEGIN PROCEDURE make_output ****/
 
-errcode file_nameOPmake_output(x, ext, ret_1)
-CLUREF x;
-CLUREF ext;
-CLUREF *ret_1;
+errcode
+file_nameOPmake_output(CLUREF x, CLUREF ext, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -898,11 +886,8 @@ CLUREF file_nameOPmake_tempOPextend_number;
 
 /**** BEGIN PROCEDURE make_temp ****/
 
-errcode file_nameOPmake_temp(tdir, prog, kind, ret_1)
-CLUREF tdir;
-CLUREF prog;
-CLUREF kind;
-CLUREF *ret_1;
+errcode
+file_nameOPmake_temp(CLUREF tdir, CLUREF prog, CLUREF kind, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1009,10 +994,8 @@ static int file_nameOPequal_own_init = 0;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode file_nameOPequal(x, y, ret_1)
-CLUREF x;
-CLUREF y;
-CLUREF *ret_1;
+errcode
+file_nameOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1056,10 +1039,8 @@ static int file_nameOPsimilar_own_init = 0;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode file_nameOPsimilar(x, y, ret_1)
-CLUREF x;
-CLUREF y;
-CLUREF *ret_1;
+errcode
+file_nameOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1101,9 +1082,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode file_nameOPcopy(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_nameOPcopy(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1136,9 +1116,8 @@ static int file_nameOPprint_own_init = 0;
 
 /**** BEGIN PROCEDURE print ****/
 
-errcode file_nameOPprint(x, ps)
-CLUREF x;
-CLUREF ps;
+errcode
+file_nameOPprint(CLUREF x, CLUREF ps)
     {
     errcode err;
     errcode ecode2;
@@ -1291,9 +1270,8 @@ CLUREF ps;
 
 /**** BEGIN PROCEDURE encode ****/
 
-errcode file_nameOPencode(fn, ist)
-CLUREF fn;
-CLUREF ist;
+errcode
+file_nameOPencode(CLUREF fn, CLUREF ist)
     {
     errcode err;
     errcode ecode2;
@@ -1333,9 +1311,8 @@ static int file_nameOPdecode_own_init = 0;
 
 /**** BEGIN PROCEDURE decode ****/
 
-errcode file_nameOPdecode(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+file_nameOPdecode(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1398,10 +1375,8 @@ static int file_nameOP_gcd_own_init = 0;
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-errcode file_nameOP_gcd(x, tab, ret_1)
-CLUREF x;
-CLUREF tab;
-CLUREF *ret_1;
+errcode
+file_nameOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

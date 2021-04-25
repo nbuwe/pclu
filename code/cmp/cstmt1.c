@@ -15,9 +15,8 @@ extern errcode c_envOPend_scope();
 
 /**** BEGIN PROCEDURE c_body ****/
 
-errcode c_body(e, b)
-CLUREF e;
-CLUREF b;
+errcode
+c_body(CLUREF e, CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -109,9 +108,8 @@ static int c_stmt_own_init = 0;
 
 /**** BEGIN PROCEDURE c_stmt ****/
 
-errcode c_stmt(e, s)
-CLUREF e;
-CLUREF s;
+errcode
+c_stmt(CLUREF e, CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -416,9 +414,8 @@ extern errcode c_envOPadd_var();
 
 /**** BEGIN PROCEDURE c_decl ****/
 
-errcode c_decl(e, d)
-CLUREF e;
-CLUREF d;
+errcode
+c_decl(CLUREF e, CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -498,10 +495,8 @@ static int c_declinit_own_init = 0;
 
 /**** BEGIN PROCEDURE c_declinit ****/
 
-errcode c_declinit(e, di, own_vars)
-CLUREF e;
-CLUREF di;
-CLUREF own_vars;
+errcode
+c_declinit(CLUREF e, CLUREF di, CLUREF own_vars)
     {
     errcode err;
     errcode ecode2;
@@ -699,9 +694,8 @@ extern errcode c_envOPadd_ownvar();
 
 /**** BEGIN PROCEDURE c_own_decls ****/
 
-errcode c_own_decls(e, decls)
-CLUREF e;
-CLUREF decls;
+errcode
+c_own_decls(CLUREF e, CLUREF decls)
     {
     errcode err;
     errcode ecode2;
@@ -775,9 +769,8 @@ CLUREF decls;
 
 /**** BEGIN PROCEDURE c_decllist ****/
 
-errcode c_decllist(e, decls)
-CLUREF e;
-CLUREF decls;
+errcode
+c_decllist(CLUREF e, CLUREF decls)
     {
     errcode err;
     errcode ecode2;
@@ -835,11 +828,8 @@ static int c_decl_assn_own_init = 0;
 
 /**** BEGIN PROCEDURE c_decl_assn ****/
 
-errcode c_decl_assn(e, decls, types, ret_1)
-CLUREF e;
-CLUREF decls;
-CLUREF types;
-CLUREF *ret_1;
+errcode
+c_decl_assn(CLUREF e, CLUREF decls, CLUREF types, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1089,9 +1079,8 @@ static int c_assn_own_init = 0;
 
 /**** BEGIN PROCEDURE c_assn ****/
 
-errcode c_assn(e, sgn)
-CLUREF e;
-CLUREF sgn;
+errcode
+c_assn(CLUREF e, CLUREF sgn)
     {
     errcode err;
     errcode ecode2;
@@ -1405,11 +1394,8 @@ static int c_mult_assn_own_init = 0;
 
 /**** BEGIN PROCEDURE c_mult_assn ****/
 
-errcode c_mult_assn(e, idns, types, ret_1)
-CLUREF e;
-CLUREF idns;
-CLUREF types;
-CLUREF *ret_1;
+errcode
+c_mult_assn(CLUREF e, CLUREF idns, CLUREF types, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1628,9 +1614,8 @@ static int c_variables_own_init = 0;
 
 /**** BEGIN PROCEDURE c_variables ****/
 
-errcode c_variables(e, idns)
-CLUREF e;
-CLUREF idns;
+errcode
+c_variables(CLUREF e, CLUREF idns)
     {
     errcode err;
     errcode ecode2;
@@ -1701,9 +1686,8 @@ extern errcode typespecOPget_abs();
 
 /**** BEGIN PROCEDURE c_return_type ****/
 
-errcode c_return_type(types, ret_1)
-CLUREF types;
-CLUREF *ret_1;
+errcode
+c_return_type(CLUREF types, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1810,10 +1794,8 @@ static int c_sugarassn_own_init = 0;
 
 /**** BEGIN PROCEDURE c_sugarassn ****/
 
-errcode c_sugarassn(e, s, sa)
-CLUREF e;
-CLUREF s;
-CLUREF sa;
+errcode
+c_sugarassn(CLUREF e, CLUREF s, CLUREF sa)
     {
     errcode err;
     errcode ecode2;
@@ -2014,11 +1996,8 @@ static int c_idn_store_own_init = 0;
 
 /**** BEGIN PROCEDURE c_idn_store ****/
 
-errcode c_idn_store(e, ref, x3, ret_1)
-CLUREF e;
-CLUREF ref;
-CLUREF x3;
-CLUREF *ret_1;
+errcode
+c_idn_store(CLUREF e, CLUREF ref, CLUREF x3, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2123,9 +2102,8 @@ static int c_while_own_init = 0;
 
 /**** BEGIN PROCEDURE c_while ****/
 
-errcode c_while(e, ws)
-CLUREF e;
-CLUREF ws;
+errcode
+c_while(CLUREF e, CLUREF ws)
     {
     errcode err;
     errcode ecode2;
@@ -2215,9 +2193,8 @@ static int c_for_own_init = 0;
 
 /**** BEGIN PROCEDURE c_for ****/
 
-errcode c_for(e, fs)
-CLUREF e;
-CLUREF fs;
+errcode
+c_for(CLUREF e, CLUREF fs)
     {
     errcode err;
     errcode ecode2;
@@ -2474,9 +2451,8 @@ CLUREF fs;
 
 /**** BEGIN PROCEDURE c_unknown_assn ****/
 
-errcode c_unknown_assn(e, vars)
-CLUREF e;
-CLUREF vars;
+errcode
+c_unknown_assn(CLUREF e, CLUREF vars)
     {
     errcode err;
     errcode ecode2;
@@ -2520,9 +2496,8 @@ static int c_if_own_init = 0;
 
 /**** BEGIN PROCEDURE c_if ****/
 
-errcode c_if(e, ifs)
-CLUREF e;
-CLUREF ifs;
+errcode
+c_if(CLUREF e, CLUREF ifs)
     {
     errcode err;
     errcode ecode2;

@@ -8,8 +8,8 @@ extern errcode _working_dir();
 
 /**** BEGIN PROCEDURE set_working_dir ****/
 
-errcode set_working_dir(s)
-CLUREF s;
+errcode
+set_working_dir(CLUREF s)
     {
     errcode err;
     errcode ecode2;

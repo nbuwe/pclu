@@ -7,8 +7,8 @@
 
 /**** BEGIN PROCEDURE _dir_ent_size ****/
 
-errcode _dir_ent_size(ret_1)
-CLUREF *ret_1;
+errcode
+_dir_ent_size(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

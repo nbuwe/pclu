@@ -12,10 +12,8 @@ static int fill_own_init = 0;
 
 /**** BEGIN PROCEDURE fill ****/
 
-errcode fill(substring, times, ret_1)
-CLUREF substring;
-CLUREF times;
-CLUREF *ret_1;
+errcode
+fill(CLUREF substring, CLUREF times, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -85,13 +83,8 @@ static int insert_text_own_init = 0;
 
 /**** BEGIN PROCEDURE insert_text ****/
 
-errcode insert_text(str, text_to_insert, current_text, current_pos, ret_1, ret_2)
-CLUREF str;
-CLUREF text_to_insert;
-CLUREF current_text;
-CLUREF current_pos;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+insert_text(CLUREF str, CLUREF text_to_insert, CLUREF current_text, CLUREF current_pos, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -230,14 +223,8 @@ static int delete_text_own_init = 0;
 
 /**** BEGIN PROCEDURE delete_text ****/
 
-errcode delete_text(str, current_text, current_pos, del_start, del_end, ret_1, ret_2)
-CLUREF str;
-CLUREF current_text;
-CLUREF current_pos;
-CLUREF del_start;
-CLUREF del_end;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_start, CLUREF del_end, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -501,12 +488,8 @@ extern errcode boolOPnot();
 
 /**** BEGIN PROCEDURE find_word ****/
 
-errcode find_word(current_text, current_pos, delim, ret_1, ret_2)
-CLUREF current_text;
-CLUREF current_pos;
-CLUREF delim;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+find_word(CLUREF current_text, CLUREF current_pos, CLUREF delim, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -683,9 +666,8 @@ extern errcode charOPi2c();
 
 /**** BEGIN PROCEDURE getc_noeof ****/
 
-errcode getc_noeof(str, ret_1)
-CLUREF str;
-CLUREF *ret_1;
+errcode
+getc_noeof(CLUREF str, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -767,10 +749,8 @@ CLUREF get_key_pressOPbindings;
 
 /**** BEGIN PROCEDURE get_key_press ****/
 
-errcode get_key_press(str, ret_1, ret_2)
-CLUREF str;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -1139,8 +1119,8 @@ static int setup_default_keytable_own_init = 0;
 
 /**** BEGIN PROCEDURE setup_default_keytable ****/
 
-errcode setup_default_keytable(ret_1)
-CLUREF *ret_1;
+errcode
+setup_default_keytable(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1420,8 +1400,8 @@ static int setup_keytable_own_init = 0;
 
 /**** BEGIN PROCEDURE setup_keytable ****/
 
-errcode setup_keytable(ret_1)
-CLUREF *ret_1;
+errcode
+setup_keytable(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1627,9 +1607,8 @@ static int overload_keytable_file_own_init = 0;
 
 /**** BEGIN PROCEDURE overload_keytable_file ****/
 
-errcode overload_keytable_file(tbl, fn)
-CLUREF tbl;
-CLUREF fn;
+errcode
+overload_keytable_file(CLUREF tbl, CLUREF fn)
     {
     errcode err;
     errcode ecode2;
@@ -2560,11 +2539,8 @@ CLUREF fn;
 
 /**** BEGIN PROCEDURE replace ****/
 
-errcode replace(look_for, new, from, ret_1)
-CLUREF look_for;
-CLUREF new;
-CLUREF from;
-CLUREF *ret_1;
+errcode
+replace(CLUREF look_for, CLUREF new, CLUREF from, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2677,10 +2653,8 @@ CLUREF lineeditOPhistory;
 
 /**** BEGIN PROCEDURE lineedit ****/
 
-errcode lineedit(str, prompt, ret_1)
-CLUREF str;
-CLUREF prompt;
-CLUREF *ret_1;
+errcode
+lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
     {
     struct {
         errcode err;

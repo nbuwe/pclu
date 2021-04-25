@@ -30,11 +30,8 @@ static int compile_own_init = 0;
 
 /**** BEGIN PROCEDURE compile ****/
 
-errcode compile(mode, args, outst, ret_1)
-CLUREF mode;
-CLUREF args;
-CLUREF outst;
-CLUREF *ret_1;
+errcode
+compile(CLUREF mode, CLUREF args, CLUREF outst, CLUREF *ret_1)
     {
     struct {
         errcode err;
@@ -373,11 +370,8 @@ static int setup_stuff_own_init = 0;
 
 /**** BEGIN PROCEDURE setup_stuff ****/
 
-errcode setup_stuff(mode, outst, ret_1, ret_2)
-CLUREF mode;
-CLUREF outst;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+setup_stuff(CLUREF mode, CLUREF outst, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -574,10 +568,8 @@ static int compile1_own_init = 0;
 
 /**** BEGIN PROCEDURE compile1 ****/
 
-errcode compile1(e, fn, ret_1)
-CLUREF e;
-CLUREF fn;
-CLUREF *ret_1;
+errcode
+compile1(CLUREF e, CLUREF fn, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -940,9 +932,8 @@ static int reset_stuff_own_init = 0;
 
 /**** BEGIN PROCEDURE reset_stuff ****/
 
-errcode reset_stuff(e, fn)
-CLUREF e;
-CLUREF fn;
+errcode
+reset_stuff(CLUREF e, CLUREF fn)
     {
     errcode err;
     errcode ecode2;
@@ -1279,9 +1270,8 @@ extern errcode intOPgt();
 
 /**** BEGIN PROCEDURE do_parse ****/
 
-errcode do_parse(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+do_parse(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1359,9 +1349,8 @@ extern errcode check_one();
 
 /**** BEGIN PROCEDURE do_check ****/
 
-errcode do_check(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+do_check(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1462,9 +1451,8 @@ static int do_compile_own_init = 0;
 
 /**** BEGIN PROCEDURE do_compile ****/
 
-errcode do_compile(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+do_compile(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1799,9 +1787,8 @@ extern errcode boolOPand();
 
 /**** BEGIN PROCEDURE do_specs ****/
 
-errcode do_specs(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+do_specs(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2199,9 +2186,8 @@ extern errcode recordOPget_2();
 
 /**** BEGIN PROCEDURE setup_specs_pass2 ****/
 
-errcode setup_specs_pass2(e, mdefs)
-CLUREF e;
-CLUREF mdefs;
+errcode
+setup_specs_pass2(CLUREF e, CLUREF mdefs)
     {
     errcode err;
     errcode ecode2;
@@ -2333,8 +2319,8 @@ extern errcode duOPadd_specs();
 
 /**** BEGIN PROCEDURE install_specs ****/
 
-errcode install_specs(md)
-CLUREF md;
+errcode
+install_specs(CLUREF md)
     {
     errcode err;
     errcode ecode2;
@@ -2406,11 +2392,8 @@ extern errcode c_envOPis_hacked();
 
 /**** BEGIN PROCEDURE specs_one ****/
 
-errcode specs_one(e, def, ret_1, ret_2)
-CLUREF e;
-CLUREF def;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+specs_one(CLUREF e, CLUREF def, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -2622,9 +2605,8 @@ static int do_ce_own_init = 0;
 
 /**** BEGIN PROCEDURE do_ce ****/
 
-errcode do_ce(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+do_ce(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2775,10 +2757,8 @@ static int add_ce_entries_own_init = 0;
 
 /**** BEGIN PROCEDURE add_ce_entries ****/
 
-errcode add_ce_entries(e, equates, ret_1)
-CLUREF e;
-CLUREF equates;
-CLUREF *ret_1;
+errcode
+add_ce_entries(CLUREF e, CLUREF equates, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2933,10 +2913,8 @@ extern errcode p_envOPreset_err();
 
 /**** BEGIN PROCEDURE parse_one ****/
 
-errcode parse_one(e, ret_1, ret_2)
-CLUREF e;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+parse_one(CLUREF e, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -3016,11 +2994,8 @@ extern errcode cmpvarOPexpunge();
 
 /**** BEGIN PROCEDURE check_one ****/
 
-errcode check_one(e, def, go, ret_1)
-CLUREF e;
-CLUREF def;
-CLUREF go;
-CLUREF *ret_1;
+errcode
+check_one(CLUREF e, CLUREF def, CLUREF go, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3234,11 +3209,8 @@ extern errcode remove_externals();
 
 /**** BEGIN PROCEDURE check_one1 ****/
 
-errcode check_one1(e, def, ret_1, ret_2)
-CLUREF e;
-CLUREF def;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+check_one1(CLUREF e, CLUREF def, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -3481,10 +3453,8 @@ static int get_user_own_init = 0;
 
 /**** BEGIN PROCEDURE get_user ****/
 
-errcode get_user(e, def, ret_1)
-CLUREF e;
-CLUREF def;
-CLUREF *ret_1;
+errcode
+get_user(CLUREF e, CLUREF def, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3581,10 +3551,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE is_internal ****/
 
-errcode is_internal(n, exts, ret_1)
-CLUREF n;
-CLUREF exts;
-CLUREF *ret_1;
+errcode
+is_internal(CLUREF n, CLUREF exts, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3649,9 +3617,8 @@ extern errcode idnOPget_kind();
 
 /**** BEGIN PROCEDURE remove_externals ****/
 
-errcode remove_externals(def, exts)
-CLUREF def;
-CLUREF exts;
+errcode
+remove_externals(CLUREF def, CLUREF exts)
     {
     errcode err;
     errcode ecode2;
@@ -3788,10 +3755,8 @@ extern errcode g_definition();
 
 /**** BEGIN PROCEDURE generate_one ****/
 
-errcode generate_one(e, def, ret_1)
-CLUREF e;
-CLUREF def;
-CLUREF *ret_1;
+errcode
+generate_one(CLUREF e, CLUREF def, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3870,8 +3835,8 @@ static int cc_one_own_init = 0;
 
 /**** BEGIN PROCEDURE cc_one ****/
 
-errcode cc_one(e)
-CLUREF e;
+errcode
+cc_one(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -4117,10 +4082,8 @@ static int new_suffix_own_init = 0;
 
 /**** BEGIN PROCEDURE new_suffix ****/
 
-errcode new_suffix(fn, suf, ret_1)
-CLUREF fn;
-CLUREF suf;
-CLUREF *ret_1;
+errcode
+new_suffix(CLUREF fn, CLUREF suf, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

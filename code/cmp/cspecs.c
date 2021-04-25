@@ -15,10 +15,8 @@ extern errcode oneofOPmake_2();
 
 /**** BEGIN PROCEDURE c_get_duspecs ****/
 
-errcode c_get_duspecs(e, gen, ret_1)
-CLUREF e;
-CLUREF gen;
-CLUREF *ret_1;
+errcode
+c_get_duspecs(CLUREF e, CLUREF gen, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -114,9 +112,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE c_duspecs ****/
 
-errcode c_duspecs(e, specs)
-CLUREF e;
-CLUREF specs;
+errcode
+c_duspecs(CLUREF e, CLUREF specs)
     {
     errcode err;
     errcode ecode2;
@@ -143,10 +140,8 @@ extern errcode sequenceOPfetch();
 
 /**** BEGIN PROCEDURE types_mismatch ****/
 
-errcode types_mismatch(types1, types2, ret_1)
-CLUREF types1;
-CLUREF types2;
-CLUREF *ret_1;
+errcode
+types_mismatch(CLUREF types1, CLUREF types2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -242,10 +237,8 @@ extern errcode f_opspeclist();
 
 /**** BEGIN PROCEDURE f_duspecs ****/
 
-errcode f_duspecs(e, specs, fixdus)
-CLUREF e;
-CLUREF specs;
-CLUREF fixdus;
+errcode
+f_duspecs(CLUREF e, CLUREF specs, CLUREF fixdus)
     {
     errcode err;
     errcode ecode2;
@@ -386,10 +379,8 @@ extern errcode oneofOPmake_10();
 
 /**** BEGIN PROCEDURE f_idnkinds ****/
 
-errcode f_idnkinds(e, parms, fixdus)
-CLUREF e;
-CLUREF parms;
-CLUREF fixdus;
+errcode
+f_idnkinds(CLUREF e, CLUREF parms, CLUREF fixdus)
     {
     errcode err;
     errcode ecode2;
@@ -497,10 +488,8 @@ extern errcode recordOPset_3();
 
 /**** BEGIN PROCEDURE f_opspeclist ****/
 
-errcode f_opspeclist(e, ops, fixdus)
-CLUREF e;
-CLUREF ops;
-CLUREF fixdus;
+errcode
+f_opspeclist(CLUREF e, CLUREF ops, CLUREF fixdus)
     {
     errcode err;
     errcode ecode2;
@@ -561,11 +550,8 @@ extern errcode c_envOPget_type();
 
 /**** BEGIN PROCEDURE f_type ****/
 
-errcode f_type(e, t, fixdus, ret_1)
-CLUREF e;
-CLUREF t;
-CLUREF fixdus;
-CLUREF *ret_1;
+errcode
+f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -818,11 +804,8 @@ extern errcode sequenceOPreplace();
 
 /**** BEGIN PROCEDURE f_typelist ****/
 
-errcode f_typelist(e, types, fixdus, ret_1)
-CLUREF e;
-CLUREF types;
-CLUREF fixdus;
-CLUREF *ret_1;
+errcode
+f_typelist(CLUREF e, CLUREF types, CLUREF fixdus, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -910,10 +893,8 @@ extern errcode oneofOPmake_11();
 
 /**** BEGIN PROCEDURE f_expr ****/
 
-errcode f_expr(e, x, fixdus)
-CLUREF e;
-CLUREF x;
-CLUREF fixdus;
+errcode
+f_expr(CLUREF e, CLUREF x, CLUREF fixdus)
     {
     errcode err;
     errcode ecode2;
@@ -1081,10 +1062,8 @@ CLUREF fixdus;
 
 /**** BEGIN PROCEDURE f_exprlist ****/
 
-errcode f_exprlist(e, exprs, fixdus)
-CLUREF e;
-CLUREF exprs;
-CLUREF fixdus;
+errcode
+f_exprlist(CLUREF e, CLUREF exprs, CLUREF fixdus)
     {
     errcode err;
     errcode ecode2;

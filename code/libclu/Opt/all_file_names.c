@@ -9,11 +9,8 @@ extern errcode all_file_names_IB_1();
 
 /**** BEGIN ITERATOR all_file_names ****/
 
-errcode all_file_names(fs, proc, user_locals, iecode)
-CLUREF fs;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+all_file_names(CLUREF fs, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     struct {

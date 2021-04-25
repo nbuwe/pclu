@@ -84,10 +84,8 @@ static int istreamOPopen_own_init = 0;
 
 /**** BEGIN PROCEDURE open ****/
 
-errcode istreamOPopen(f, access, ret_1)
-CLUREF f;
-CLUREF access;
-CLUREF *ret_1;
+errcode
+istreamOPopen(CLUREF f, CLUREF access, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -229,9 +227,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE can_read ****/
 
-errcode istreamOPcan_read(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+istreamOPcan_read(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -267,9 +264,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE can_write ****/
 
-errcode istreamOPcan_write(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+istreamOPcan_write(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -306,9 +302,8 @@ static int istreamOPempty_own_init = 0;
 
 /**** BEGIN PROCEDURE empty ****/
 
-errcode istreamOPempty(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+istreamOPempty(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -418,8 +413,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode istreamOPreset(ist)
-CLUREF ist;
+errcode
+istreamOPreset(CLUREF ist)
     {
     errcode err;
     errcode ecode2;
@@ -504,8 +499,8 @@ CLUREF ist;
 
 /**** BEGIN PROCEDURE flush ****/
 
-errcode istreamOPflush(ist)
-CLUREF ist;
+errcode
+istreamOPflush(CLUREF ist)
     {
     errcode err;
     errcode ecode2;
@@ -573,9 +568,8 @@ static int istreamOPget_date_own_init = 0;
 
 /**** BEGIN PROCEDURE get_date ****/
 
-errcode istreamOPget_date(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+istreamOPget_date(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -663,9 +657,8 @@ static int istreamOPset_date_own_init = 0;
 
 /**** BEGIN PROCEDURE set_date ****/
 
-errcode istreamOPset_date(ist, new_date)
-CLUREF ist;
-CLUREF new_date;
+errcode
+istreamOPset_date(CLUREF ist, CLUREF new_date)
     {
     errcode err;
     errcode ecode2;
@@ -697,9 +690,8 @@ CLUREF new_date;
 
 /**** BEGIN PROCEDURE get_name ****/
 
-errcode istreamOPget_name(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+istreamOPget_name(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -733,8 +725,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE close ****/
 
-errcode istreamOPclose(ist)
-CLUREF ist;
+errcode
+istreamOPclose(CLUREF ist)
     {
     errcode err;
     errcode ecode2;
@@ -831,8 +823,8 @@ CLUREF ist;
 
 /**** BEGIN PROCEDURE abort ****/
 
-errcode istreamOPabort(ist)
-CLUREF ist;
+errcode
+istreamOPabort(CLUREF ist)
     {
     errcode err;
     errcode ecode2;
@@ -911,9 +903,8 @@ CLUREF ist;
 
 /**** BEGIN PROCEDURE is_closed ****/
 
-errcode istreamOPis_closed(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+istreamOPis_closed(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -949,10 +940,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode istreamOPequal(ist1, ist2, ret_1)
-CLUREF ist1;
-CLUREF ist2;
-CLUREF *ret_1;
+errcode
+istreamOPequal(CLUREF ist1, CLUREF ist2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -986,10 +975,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode istreamOPsimilar(ist1, ist2, ret_1)
-CLUREF ist1;
-CLUREF ist2;
-CLUREF *ret_1;
+errcode
+istreamOPsimilar(CLUREF ist1, CLUREF ist2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1023,9 +1010,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode istreamOPcopy(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+istreamOPcopy(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1058,9 +1044,8 @@ static int istreamOPget_chan_own_init = 0;
 
 /**** BEGIN PROCEDURE get_chan ****/
 
-errcode istreamOPget_chan(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+istreamOPget_chan(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1136,9 +1121,8 @@ static int istreamOPgeti_own_init = 0;
 
 /**** BEGIN PROCEDURE geti ****/
 
-errcode istreamOPgeti(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+istreamOPgeti(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1277,9 +1261,8 @@ static int istreamOPputi_own_init = 0;
 
 /**** BEGIN PROCEDURE puti ****/
 
-errcode istreamOPputi(ist, i)
-CLUREF ist;
-CLUREF i;
+errcode
+istreamOPputi(CLUREF ist, CLUREF i)
     {
     errcode err;
     errcode ecode2;
@@ -1387,9 +1370,8 @@ static int istreamOPgetbv_own_init = 0;
 
 /**** BEGIN PROCEDURE getbv ****/
 
-errcode istreamOPgetbv(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1710,9 +1692,8 @@ static int istreamOPputbv_own_init = 0;
 
 /**** BEGIN PROCEDURE putbv ****/
 
-errcode istreamOPputbv(ist, bvec)
-CLUREF ist;
-CLUREF bvec;
+errcode
+istreamOPputbv(CLUREF ist, CLUREF bvec)
     {
     errcode err;
     errcode ecode2;

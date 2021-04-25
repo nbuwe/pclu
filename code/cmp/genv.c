@@ -170,11 +170,8 @@ static int g_envOPcreate_own_init = 0;
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode g_envOPcreate(comp, errst, binfn, ret_1)
-CLUREF comp;
-CLUREF errst;
-CLUREF binfn;
-CLUREF *ret_1;
+errcode
+g_envOPcreate(CLUREF comp, CLUREF errst, CLUREF binfn, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -243,11 +240,8 @@ static int g_envOPreset_own_init = 0;
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode g_envOPreset(e, comp, errst, binfn)
-CLUREF e;
-CLUREF comp;
-CLUREF errst;
-CLUREF binfn;
+errcode
+g_envOPreset(CLUREF e, CLUREF comp, CLUREF errst, CLUREF binfn)
     {
     errcode err;
     errcode ecode2;
@@ -437,8 +431,8 @@ CLUREF binfn;
 
 /**** BEGIN PROCEDURE end_all ****/
 
-errcode g_envOPend_all(e)
-CLUREF e;
+errcode
+g_envOPend_all(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -496,9 +490,8 @@ CLUREF e;
 
 /**** BEGIN PROCEDURE get_file_name ****/
 
-errcode g_envOPget_file_name(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+g_envOPget_file_name(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -532,9 +525,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_file_name ****/
 
-errcode g_envOPset_file_name(e, fn)
-CLUREF e;
-CLUREF fn;
+errcode
+g_envOPset_file_name(CLUREF e, CLUREF fn)
     {
     errcode err;
     errcode ecode2;
@@ -564,8 +556,8 @@ static int g_envOPforce_signal_own_init = 0;
 
 /**** BEGIN PROCEDURE force_signal ****/
 
-errcode g_envOPforce_signal(e)
-CLUREF e;
+errcode
+g_envOPforce_signal(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -600,8 +592,8 @@ CLUREF e;
 
 /**** BEGIN PROCEDURE reset_err ****/
 
-errcode g_envOPreset_err(e)
-CLUREF e;
+errcode
+g_envOPreset_err(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -625,9 +617,8 @@ CLUREF e;
 
 /**** BEGIN PROCEDURE set_space ****/
 
-errcode g_envOPset_space(e, b)
-CLUREF e;
-CLUREF b;
+errcode
+g_envOPset_space(CLUREF e, CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -656,9 +647,8 @@ CLUREF b;
 
 /**** BEGIN PROCEDURE get_space ****/
 
-errcode g_envOPget_space(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+g_envOPget_space(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -692,9 +682,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_time ****/
 
-errcode g_envOPset_time(e, b)
-CLUREF e;
-CLUREF b;
+errcode
+g_envOPset_time(CLUREF e, CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -723,9 +712,8 @@ CLUREF b;
 
 /**** BEGIN PROCEDURE get_time ****/
 
-errcode g_envOPget_time(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+g_envOPget_time(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -759,9 +747,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_err ****/
 
-errcode g_envOPget_err(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+g_envOPget_err(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -795,9 +782,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_lineno ****/
 
-errcode g_envOPset_lineno(e, num)
-CLUREF e;
-CLUREF num;
+errcode
+g_envOPset_lineno(CLUREF e, CLUREF num)
     {
     errcode err;
     errcode ecode2;
@@ -830,9 +816,8 @@ CLUREF num;
 
 /**** BEGIN PROCEDURE get_lineno ****/
 
-errcode g_envOPget_lineno(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+g_envOPget_lineno(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -864,8 +849,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_errst ****/
 
-errcode g_envOPget_errst(ret_1)
-CLUREF *ret_1;
+errcode
+g_envOPget_errst(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -899,8 +884,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE min_inline ****/
 
-errcode g_envOPmin_inline(ret_1)
-CLUREF *ret_1;
+errcode
+g_envOPmin_inline(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -937,9 +922,8 @@ static int g_envOPputl_own_init = 0;
 
 /**** BEGIN PROCEDURE putl ****/
 
-errcode g_envOPputl(e, s)
-CLUREF e;
-CLUREF s;
+errcode
+g_envOPputl(CLUREF e, CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -1032,9 +1016,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE puts ****/
 
-errcode g_envOPputs(e, s)
-CLUREF e;
-CLUREF s;
+errcode
+g_envOPputs(CLUREF e, CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -1087,8 +1070,8 @@ static int g_envOPnewline_own_init = 0;
 
 /**** BEGIN PROCEDURE newline ****/
 
-errcode g_envOPnewline(e)
-CLUREF e;
+errcode
+g_envOPnewline(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1154,8 +1137,8 @@ static int g_envOPblankline_own_init = 0;
 
 /**** BEGIN PROCEDURE blankline ****/
 
-errcode g_envOPblankline(e)
-CLUREF e;
+errcode
+g_envOPblankline(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1228,8 +1211,8 @@ CLUREF e;
 
 /**** BEGIN PROCEDURE ensure_newline ****/
 
-errcode g_envOPensure_newline(e)
-CLUREF e;
+errcode
+g_envOPensure_newline(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1259,8 +1242,8 @@ static int g_envOPindent_own_init = 0;
 
 /**** BEGIN PROCEDURE indent ****/
 
-errcode g_envOPindent(e)
-CLUREF e;
+errcode
+g_envOPindent(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1321,8 +1304,8 @@ static int g_envOPoutdent_own_init = 0;
 
 /**** BEGIN PROCEDURE outdent ****/
 
-errcode g_envOPoutdent(e)
-CLUREF e;
+errcode
+g_envOPoutdent(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1383,8 +1366,8 @@ static int g_envOPnewdefn_own_init = 0;
 
 /**** BEGIN PROCEDURE newdefn ****/
 
-errcode g_envOPnewdefn(e)
-CLUREF e;
+errcode
+g_envOPnewdefn(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1448,9 +1431,8 @@ CLUREF e;
 
 /**** BEGIN PROCEDURE error ****/
 
-errcode g_envOPerror(e, s)
-CLUREF e;
-CLUREF s;
+errcode
+g_envOPerror(CLUREF e, CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -1518,9 +1500,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE warn ****/
 
-errcode g_envOPwarn(e, s)
-CLUREF e;
-CLUREF s;
+errcode
+g_envOPwarn(CLUREF e, CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -1557,9 +1538,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE set_convert_type ****/
 
-errcode g_envOPset_convert_type(e, t)
-CLUREF e;
-CLUREF t;
+errcode
+g_envOPset_convert_type(CLUREF e, CLUREF t)
     {
     errcode err;
     errcode ecode2;
@@ -1590,9 +1570,8 @@ CLUREF t;
 
 /**** BEGIN PROCEDURE set_convert ****/
 
-errcode g_envOPset_convert(e, flag)
-CLUREF e;
-CLUREF flag;
+errcode
+g_envOPset_convert(CLUREF e, CLUREF flag)
     {
     errcode err;
     errcode ecode2;
@@ -1621,9 +1600,8 @@ CLUREF flag;
 
 /**** BEGIN PROCEDURE get_convert ****/
 
-errcode g_envOPget_convert(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+g_envOPget_convert(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1692,8 +1670,8 @@ static int g_envOPoutput_line_own_init = 0;
 
 /**** BEGIN PROCEDURE output_line ****/
 
-errcode g_envOPoutput_line(e)
-CLUREF e;
+errcode
+g_envOPoutput_line(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1876,9 +1854,8 @@ CLUREF e;
 
 /**** BEGIN PROCEDURE get_comp ****/
 
-errcode g_envOPget_comp(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+g_envOPget_comp(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1912,9 +1889,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE add_typedef ****/
 
-errcode g_envOPadd_typedef(id, ret_1)
-CLUREF id;
-CLUREF *ret_1;
+errcode
+g_envOPadd_typedef(CLUREF id, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1988,9 +1964,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE add_global ****/
 
-errcode g_envOPadd_global(nm, ret_1)
-CLUREF nm;
-CLUREF *ret_1;
+errcode
+g_envOPadd_global(CLUREF nm, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2058,9 +2033,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE add_str ****/
 
-errcode g_envOPadd_str(nm, ret_1)
-CLUREF nm;
-CLUREF *ret_1;
+errcode
+g_envOPadd_str(CLUREF nm, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2128,9 +2102,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE add_extern ****/
 
-errcode g_envOPadd_extern(nm, ret_1)
-CLUREF nm;
-CLUREF *ret_1;
+errcode
+g_envOPadd_extern(CLUREF nm, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2198,9 +2171,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE add_vlist ****/
 
-errcode g_envOPadd_vlist(n, ret_1)
-CLUREF n;
-CLUREF *ret_1;
+errcode
+g_envOPadd_vlist(CLUREF n, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2280,9 +2252,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE add_siglist ****/
 
-errcode g_envOPadd_siglist(n, ret_1)
-CLUREF n;
-CLUREF *ret_1;
+errcode
+g_envOPadd_siglist(CLUREF n, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2362,9 +2333,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE add_find_owns ****/
 
-errcode g_envOPadd_find_owns(nm, ret_1)
-CLUREF nm;
-CLUREF *ret_1;
+errcode
+g_envOPadd_find_owns(CLUREF nm, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

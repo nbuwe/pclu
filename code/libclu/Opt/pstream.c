@@ -100,8 +100,8 @@ CLUREF pstreamOPprimary_outputOPpo;
 
 /**** BEGIN PROCEDURE primary_output ****/
 
-errcode pstreamOPprimary_output(ret_1)
-CLUREF *ret_1;
+errcode
+pstreamOPprimary_output(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -146,11 +146,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode pstreamOPcreate(st, max_depth, max_width, ret_1)
-CLUREF st;
-CLUREF max_depth;
-CLUREF max_width;
-CLUREF *ret_1;
+errcode
+pstreamOPcreate(CLUREF st, CLUREF max_depth, CLUREF max_width, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -245,9 +242,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_depth ****/
 
-errcode pstreamOPget_depth(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+pstreamOPget_depth(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -281,9 +277,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_hpos ****/
 
-errcode pstreamOPget_hpos(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+pstreamOPget_hpos(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -318,10 +313,8 @@ static int pstreamOPstart_own_init = 0;
 
 /**** BEGIN PROCEDURE start ****/
 
-errcode pstreamOPstart(ps, s, ret_1)
-CLUREF ps;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+pstreamOPstart(CLUREF ps, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -455,10 +448,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE stop ****/
 
-errcode pstreamOPstop(ps, s, ret_1)
-CLUREF ps;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+pstreamOPstop(CLUREF ps, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -559,10 +550,8 @@ static int pstreamOPpause_own_init = 0;
 
 /**** BEGIN PROCEDURE pause ****/
 
-errcode pstreamOPpause(ps, s, ret_1)
-CLUREF ps;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+pstreamOPpause(CLUREF ps, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -766,10 +755,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE text ****/
 
-errcode pstreamOPtext(ps, s, ret_1)
-CLUREF ps;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -822,10 +809,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE textc ****/
 
-errcode pstreamOPtextc(ps, c, ret_1)
-CLUREF ps;
-CLUREF c;
-CLUREF *ret_1;
+errcode
+pstreamOPtextc(CLUREF ps, CLUREF c, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -981,11 +966,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE putleft ****/
 
-errcode pstreamOPputleft(ps, s, size, ret_1)
-CLUREF ps;
-CLUREF s;
-CLUREF size;
-CLUREF *ret_1;
+errcode
+pstreamOPputleft(CLUREF ps, CLUREF s, CLUREF size, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1070,11 +1052,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE putright ****/
 
-errcode pstreamOPputright(ps, s, size, ret_1)
-CLUREF ps;
-CLUREF s;
-CLUREF size;
-CLUREF *ret_1;
+errcode
+pstreamOPputright(CLUREF ps, CLUREF s, CLUREF size, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1152,10 +1131,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE putspace ****/
 
-errcode pstreamOPputspace(ps, len, ret_1)
-CLUREF ps;
-CLUREF len;
-CLUREF *ret_1;
+errcode
+pstreamOPputspace(CLUREF ps, CLUREF len, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1221,9 +1198,8 @@ extern errcode pstreamOPputs_IB_1();
 
 /**** BEGIN PROCEDURE puts ****/
 
-errcode pstreamOPputs(ps, s)
-CLUREF ps;
-CLUREF s;
+errcode
+pstreamOPputs(CLUREF ps, CLUREF s)
     {
     struct {
         errcode err;
@@ -1548,9 +1524,8 @@ struct {
 
 /**** BEGIN PROCEDURE putsp ****/
 
-errcode pstreamOPputsp(ps, len)
-CLUREF ps;
-CLUREF len;
+errcode
+pstreamOPputsp(CLUREF ps, CLUREF len)
     {
     errcode err;
     errcode ecode2;
@@ -1708,9 +1683,8 @@ CLUREF len;
 
 /**** BEGIN PROCEDURE get_indent ****/
 
-errcode pstreamOPget_indent(ps, ret_1)
-CLUREF ps;
-CLUREF *ret_1;
+errcode
+pstreamOPget_indent(CLUREF ps, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1762,9 +1736,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_indent ****/
 
-errcode pstreamOPset_indent(ps, indent)
-CLUREF ps;
-CLUREF indent;
+errcode
+pstreamOPset_indent(CLUREF ps, CLUREF indent)
     {
     errcode err;
     errcode ecode2;
@@ -1810,9 +1783,8 @@ CLUREF indent;
 
 /**** BEGIN PROCEDURE get_max_depth ****/
 
-errcode pstreamOPget_max_depth(ps, ret_1)
-CLUREF ps;
-CLUREF *ret_1;
+errcode
+pstreamOPget_max_depth(CLUREF ps, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1846,9 +1818,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_max_depth ****/
 
-errcode pstreamOPset_max_depth(ps, depth)
-CLUREF ps;
-CLUREF depth;
+errcode
+pstreamOPset_max_depth(CLUREF ps, CLUREF depth)
     {
     errcode err;
     errcode ecode2;
@@ -1877,9 +1848,8 @@ CLUREF depth;
 
 /**** BEGIN PROCEDURE get_max_width ****/
 
-errcode pstreamOPget_max_width(ps, ret_1)
-CLUREF ps;
-CLUREF *ret_1;
+errcode
+pstreamOPget_max_width(CLUREF ps, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1913,9 +1883,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_max_width ****/
 
-errcode pstreamOPset_max_width(ps, width)
-CLUREF ps;
-CLUREF width;
+errcode
+pstreamOPset_max_width(CLUREF ps, CLUREF width)
     {
     errcode err;
     errcode ecode2;
@@ -1944,9 +1913,8 @@ CLUREF width;
 
 /**** BEGIN PROCEDURE get_flat ****/
 
-errcode pstreamOPget_flat(ps, ret_1)
-CLUREF ps;
-CLUREF *ret_1;
+errcode
+pstreamOPget_flat(CLUREF ps, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1980,9 +1948,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_flat ****/
 
-errcode pstreamOPset_flat(ps, flat)
-CLUREF ps;
-CLUREF flat;
+errcode
+pstreamOPset_flat(CLUREF ps, CLUREF flat)
     {
     errcode err;
     errcode ecode2;
@@ -2011,9 +1978,8 @@ CLUREF flat;
 
 /**** BEGIN PROCEDURE get_wrap ****/
 
-errcode pstreamOPget_wrap(ps, ret_1)
-CLUREF ps;
-CLUREF *ret_1;
+errcode
+pstreamOPget_wrap(CLUREF ps, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2047,9 +2013,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_wrap ****/
 
-errcode pstreamOPset_wrap(ps, wrap)
-CLUREF ps;
-CLUREF wrap;
+errcode
+pstreamOPset_wrap(CLUREF ps, CLUREF wrap)
     {
     errcode err;
     errcode ecode2;
@@ -2078,9 +2043,8 @@ CLUREF wrap;
 
 /**** BEGIN PROCEDURE get_line_length ****/
 
-errcode pstreamOPget_line_length(ps, ret_1)
-CLUREF ps;
-CLUREF *ret_1;
+errcode
+pstreamOPget_line_length(CLUREF ps, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2123,9 +2087,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_page_length ****/
 
-errcode pstreamOPget_page_length(ps, ret_1)
-CLUREF ps;
-CLUREF *ret_1;
+errcode
+pstreamOPget_page_length(CLUREF ps, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2168,10 +2131,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode pstreamOPequal(x, y, ret_1)
-CLUREF x;
-CLUREF y;
-CLUREF *ret_1;
+errcode
+pstreamOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2205,8 +2166,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode pstreamOPreset(ps)
-CLUREF ps;
+errcode
+pstreamOPreset(CLUREF ps)
     {
     errcode err;
     errcode ecode2;
@@ -2267,9 +2228,8 @@ static int pstreamOPprint_own_init = 0;
 
 /**** BEGIN PROCEDURE print ****/
 
-errcode pstreamOPprint(ps1, ps2)
-CLUREF ps1;
-CLUREF ps2;
+errcode
+pstreamOPprint(CLUREF ps1, CLUREF ps2)
     {
     errcode err;
     errcode ecode2;

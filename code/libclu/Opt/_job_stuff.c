@@ -45,12 +45,8 @@ CLUREF _job_stuffOPdirs;
 
 /**** BEGIN PROCEDURE _job_stuff ****/
 
-errcode _job_stuff(fn, jcl, ret_1, ret_2, ret_3)
-CLUREF fn;
-CLUREF jcl;
-CLUREF *ret_1;
-CLUREF *ret_2;
-CLUREF *ret_3;
+errcode
+_job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     {
     errcode err;
     errcode ecode2;

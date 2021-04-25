@@ -27,10 +27,8 @@ extern errcode file_nameOPget_other();
 
 /**** BEGIN PROCEDURE file_name_fill ****/
 
-errcode file_name_fill(fn, dsuffix, ret_1)
-CLUREF fn;
-CLUREF dsuffix;
-CLUREF *ret_1;
+errcode
+file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

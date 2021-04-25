@@ -52,9 +52,8 @@ static int p_stmt_own_init = 0;
 
 /**** BEGIN PROCEDURE p_stmt ****/
 
-errcode p_stmt(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_stmt(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -578,9 +577,8 @@ static int p_if_own_init = 0;
 
 /**** BEGIN PROCEDURE p_if ****/
 
-errcode p_if(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_if(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -776,9 +774,8 @@ static int p_for_own_init = 0;
 
 /**** BEGIN PROCEDURE p_for ****/
 
-errcode p_for(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_for(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -930,9 +927,8 @@ static int p_do_own_init = 0;
 
 /**** BEGIN PROCEDURE p_do ****/
 
-errcode p_do(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_do(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1040,9 +1036,8 @@ static int p_idns_or_decls_own_init = 0;
 
 /**** BEGIN PROCEDURE p_idns_or_decls ****/
 
-errcode p_idns_or_decls(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_idns_or_decls(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1209,9 +1204,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE p_idn ****/
 
-errcode p_idn(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_idn(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1269,11 +1263,8 @@ CLUREF *ret_1;
 
 /**** BEGIN ITERATOR p_idn1 ****/
 
-errcode p_idn1(e, proc, user_locals, iecode)
-CLUREF e;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+p_idn1(CLUREF e, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     errcode err;
@@ -1326,9 +1317,8 @@ static int p_decl_own_init = 0;
 
 /**** BEGIN PROCEDURE p_decl ****/
 
-errcode p_decl(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_decl(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1480,9 +1470,8 @@ static int p_tagcase_own_init = 0;
 
 /**** BEGIN PROCEDURE p_tagcase ****/
 
-errcode p_tagcase(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_tagcase(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1671,9 +1660,8 @@ static int p_tagarm_own_init = 0;
 
 /**** BEGIN PROCEDURE p_tagarm ****/
 
-errcode p_tagarm(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_tagarm(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

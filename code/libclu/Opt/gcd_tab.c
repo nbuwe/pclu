@@ -198,10 +198,8 @@ OWN_req gcd_tab_op_grind_ownreqs = {sizeof(gcd_tab_op_grind_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE grind ****/
 
-errcode gcd_tabOPgrind(x, fn, ret_1)
-CLUREF x;
-CLUREF fn;
-CLUREF *ret_1;
+errcode
+gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -411,10 +409,8 @@ OWN_req gcd_tab_op_grindc_ownreqs = {sizeof(gcd_tab_op_grindc_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE grindc ****/
 
-errcode gcd_tabOPgrindc(x, ch, pos)
-CLUREF x;
-CLUREF ch;
-CLUREF pos;
+errcode
+gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
     {
     errcode err;
     errcode ecode2;
@@ -582,9 +578,8 @@ OWN_req gcd_tab_op_grindp_ownreqs = {sizeof(gcd_tab_op_grindp_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE grindp ****/
 
-errcode gcd_tabOPgrindp(x, ch)
-CLUREF x;
-CLUREF ch;
+errcode
+gcd_tabOPgrindp(CLUREF x, CLUREF ch)
     {
     errcode err;
     errcode ecode2;
@@ -741,9 +736,8 @@ OWN_req gcd_tab_op_pgrind_ownreqs = {sizeof(gcd_tab_op_pgrind_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE pgrind ****/
 
-errcode gcd_tabOPpgrind(tab, x)
-CLUREF tab;
-CLUREF x;
+errcode
+gcd_tabOPpgrind(CLUREF tab, CLUREF x)
     {
     errcode err;
     errcode ecode2;
@@ -1140,11 +1134,8 @@ OWN_req gcd_tab_op_mgrind_ownreqs = {sizeof(gcd_tab_op_mgrind_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE mgrind ****/
 
-errcode gcd_tabOPmgrind(tab, buf, ch, x)
-CLUREF tab;
-CLUREF buf;
-CLUREF ch;
-CLUREF x;
+errcode
+gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
     {
     errcode err;
     errcode ecode2;
@@ -1947,12 +1938,8 @@ CLUREF x;
 
 /**** BEGIN PROCEDURE insert ****/
 
-errcode gcd_tabOPinsert(tab, z, inf, x, ret_1)
-CLUREF tab;
-CLUREF z;
-CLUREF inf;
-CLUREF x;
-CLUREF *ret_1;
+errcode
+gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2190,9 +2177,8 @@ errcode gcd_store_own_init_proc()
 
 /**** BEGIN PROCEDURE init ****/
 
-errcode gcd_storeOPinit(w, c)
-CLUREF w;
-CLUREF c;
+errcode
+gcd_storeOPinit(CLUREF w, CLUREF c)
     {
     errcode err;
     errcode ecode2;
@@ -2231,7 +2217,8 @@ CLUREF c;
 
 /**** BEGIN PROCEDURE store_id ****/
 
-errcode gcd_storeOPstore_id()
+errcode
+gcd_storeOPstore_id()
     {
     errcode err;
     errcode ecode2;
@@ -2300,8 +2287,8 @@ errcode gcd_storeOPstore_id()
 
 /**** BEGIN PROCEDURE store_lit ****/
 
-errcode gcd_storeOPstore_lit(i1)
-CLUREF i1;
+errcode
+gcd_storeOPstore_lit(CLUREF i1)
     {
     errcode err;
     errcode ecode2;
@@ -2385,8 +2372,8 @@ CLUREF i1;
 
 /**** BEGIN PROCEDURE store_ref ****/
 
-errcode gcd_storeOPstore_ref(i1)
-CLUREF i1;
+errcode
+gcd_storeOPstore_ref(CLUREF i1)
     {
     errcode err;
     errcode ecode2;
@@ -2470,9 +2457,8 @@ CLUREF i1;
 
 /**** BEGIN PROCEDURE store_hdr ****/
 
-errcode gcd_storeOPstore_hdr(hid, size)
-CLUREF hid;
-CLUREF size;
+errcode
+gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
     {
     errcode err;
     errcode ecode2;
@@ -2561,8 +2547,8 @@ static int gcd_storeOPstore_array_desc_own_init = 0;
 
 /**** BEGIN PROCEDURE store_array_desc ****/
 
-errcode gcd_storeOPstore_array_desc(a)
-CLUREF a;
+errcode
+gcd_storeOPstore_array_desc(CLUREF a)
     {
     errcode err;
     errcode ecode2;
@@ -2795,8 +2781,8 @@ CLUREF a;
 
 /**** BEGIN PROCEDURE store_string ****/
 
-errcode gcd_storeOPstore_string(s)
-CLUREF s;
+errcode
+gcd_storeOPstore_string(CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -3021,7 +3007,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE done ****/
 
-errcode gcd_storeOPdone()
+errcode
+gcd_storeOPdone()
     {
     errcode err;
     errcode ecode2;
@@ -3066,9 +3053,8 @@ errcode gcd_storeOPdone()
 
 /**** BEGIN PROCEDURE need ****/
 
-errcode gcd_storeOPneed(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3253,8 +3239,8 @@ static int logit_own_init = 0;
 
 /**** BEGIN PROCEDURE logit ****/
 
-errcode logit(s)
-CLUREF s;
+errcode
+logit(CLUREF s)
     {
     errcode err;
     errcode ecode2;

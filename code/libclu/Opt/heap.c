@@ -74,9 +74,8 @@ enter_own_init_proc();
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode heapOPcreate(p, ret_1)
-CLUREF p;
-CLUREF *ret_1;
+errcode
+heapOPcreate(CLUREF p, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -116,9 +115,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE top ****/
 
-errcode heapOPtop(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+heapOPtop(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -168,9 +166,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE size ****/
 
-errcode heapOPsize(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+heapOPsize(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -207,9 +204,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE empty ****/
 
-errcode heapOPempty(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+heapOPempty(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -248,9 +244,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE insert ****/
 
-errcode heapOPinsert(x, v)
-CLUREF x;
-CLUREF v;
+errcode
+heapOPinsert(CLUREF x, CLUREF v)
     {
     errcode err;
     errcode ecode2;
@@ -380,9 +375,8 @@ CLUREF v;
 
 /**** BEGIN PROCEDURE remove ****/
 
-errcode heapOPremove(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+heapOPremove(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -616,9 +610,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode heapOPcopy(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+heapOPcopy(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

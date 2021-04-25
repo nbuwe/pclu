@@ -11,9 +11,8 @@ extern errcode c_typedefn();
 
 /**** BEGIN PROCEDURE c_definition ****/
 
-errcode c_definition(e, def)
-CLUREF e;
-CLUREF def;
+errcode
+c_definition(CLUREF e, CLUREF def)
     {
     errcode err;
     errcode ecode2;
@@ -123,9 +122,8 @@ extern errcode c_apply_main();
 
 /**** BEGIN PROCEDURE c_applydefn ****/
 
-errcode c_applydefn(e, def)
-CLUREF e;
-CLUREF def;
+errcode
+c_applydefn(CLUREF e, CLUREF def)
     {
     errcode err;
     errcode ecode2;
@@ -311,11 +309,8 @@ extern errcode c_envOPget_type_type();
 
 /**** BEGIN PROCEDURE fixup_new_module ****/
 
-errcode fixup_new_module(e, i, mod, specs)
-CLUREF e;
-CLUREF i;
-CLUREF mod;
-CLUREF specs;
+errcode
+fixup_new_module(CLUREF e, CLUREF i, CLUREF mod, CLUREF specs)
     {
     errcode err;
     errcode ecode2;
@@ -524,10 +519,8 @@ extern errcode c_envOPend_specs();
 
 /**** BEGIN PROCEDURE c_apply_specs ****/
 
-errcode c_apply_specs(e, def, ret_1)
-CLUREF e;
-CLUREF def;
-CLUREF *ret_1;
+errcode
+c_apply_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -762,10 +755,8 @@ extern errcode b_get_idn();
 
 /**** BEGIN PROCEDURE c_parameters ****/
 
-errcode c_parameters(e, decls, ret_1)
-CLUREF e;
-CLUREF decls;
-CLUREF *ret_1;
+errcode
+c_parameters(CLUREF e, CLUREF decls, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -858,10 +849,8 @@ extern errcode c_envOPend_scope();
 
 /**** BEGIN PROCEDURE c_apply_main ****/
 
-errcode c_apply_main(e, def, nparms)
-CLUREF e;
-CLUREF def;
-CLUREF nparms;
+errcode
+c_apply_main(CLUREF e, CLUREF def, CLUREF nparms)
     {
     errcode err;
     errcode ecode2;
@@ -1058,10 +1047,8 @@ extern errcode recordOPset_1();
 
 /**** BEGIN PROCEDURE c_push_parms ****/
 
-errcode c_push_parms(e, decls, nparms)
-CLUREF e;
-CLUREF decls;
-CLUREF nparms;
+errcode
+c_push_parms(CLUREF e, CLUREF decls, CLUREF nparms)
     {
     errcode err;
     errcode ecode2;
@@ -1183,9 +1170,8 @@ static int c_initlist_own_init = 0;
 
 /**** BEGIN PROCEDURE c_initlist ****/
 
-errcode c_initlist(e, inits)
-CLUREF e;
-CLUREF inits;
+errcode
+c_initlist(CLUREF e, CLUREF inits)
     {
     errcode err;
     errcode ecode2;
@@ -1312,9 +1298,8 @@ static int c_restrictlist_own_init = 0;
 
 /**** BEGIN PROCEDURE c_restrictlist ****/
 
-errcode c_restrictlist(e, reqs)
-CLUREF e;
-CLUREF reqs;
+errcode
+c_restrictlist(CLUREF e, CLUREF reqs)
     {
     errcode err;
     errcode ecode2;
@@ -1475,11 +1460,8 @@ static int c_idn_set_own_init = 0;
 
 /**** BEGIN PROCEDURE c_idn_set ****/
 
-errcode c_idn_set(e, i, set, ret_1)
-CLUREF e;
-CLUREF i;
-CLUREF set;
-CLUREF *ret_1;
+errcode
+c_idn_set(CLUREF e, CLUREF i, CLUREF set, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1580,9 +1562,8 @@ extern errcode recordOPset_3();
 
 /**** BEGIN PROCEDURE c_operdecllist ****/
 
-errcode c_operdecllist(e, opers)
-CLUREF e;
-CLUREF opers;
+errcode
+c_operdecllist(CLUREF e, CLUREF opers)
     {
     errcode err;
     errcode ecode2;
@@ -1662,9 +1643,8 @@ extern errcode c_add_opspecs();
 
 /**** BEGIN PROCEDURE c_add_restricts ****/
 
-errcode c_add_restricts(e, reqs)
-CLUREF e;
-CLUREF reqs;
+errcode
+c_add_restricts(CLUREF e, CLUREF reqs)
     {
     errcode err;
     errcode ecode2;
@@ -1727,10 +1707,8 @@ extern errcode oneofOPmake_5();
 
 /**** BEGIN PROCEDURE c_add_opspecs ****/
 
-errcode c_add_opspecs(e, i, ops)
-CLUREF e;
-CLUREF i;
-CLUREF ops;
+errcode
+c_add_opspecs(CLUREF e, CLUREF i, CLUREF ops)
     {
     errcode err;
     errcode ecode2;
@@ -1797,10 +1775,8 @@ CLUREF ops;
 
 /**** BEGIN PROCEDURE c_new_requires ****/
 
-errcode c_new_requires(specs, opers, ret_1)
-CLUREF specs;
-CLUREF opers;
-CLUREF *ret_1;
+errcode
+c_new_requires(CLUREF specs, CLUREF opers, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1877,12 +1853,8 @@ extern errcode oneofOPmake_4();
 
 /**** BEGIN PROCEDURE c_new_module ****/
 
-errcode c_new_module(e, mod, want, ret_1, ret_2)
-CLUREF e;
-CLUREF mod;
-CLUREF want;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+c_new_module(CLUREF e, CLUREF mod, CLUREF want, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -2006,9 +1978,8 @@ extern errcode exprOPget_abs();
 
 /**** BEGIN PROCEDURE c_module_idn ****/
 
-errcode c_module_idn(mod, ret_1)
-CLUREF mod;
-CLUREF *ret_1;
+errcode
+c_module_idn(CLUREF mod, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

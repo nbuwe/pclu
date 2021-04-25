@@ -41,9 +41,8 @@ static int _signal_type_own_init = 0;
 
 /**** BEGIN PROCEDURE _signal_type ****/
 
-errcode _signal_type(sig, ret_1)
-CLUREF sig;
-CLUREF *ret_1;
+errcode
+_signal_type(CLUREF sig, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

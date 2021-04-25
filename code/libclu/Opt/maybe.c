@@ -70,8 +70,8 @@ enter_own_init_proc();
 
 /**** BEGIN PROCEDURE none ****/
 
-errcode maybeOPnone(ret_1)
-CLUREF *ret_1;
+errcode
+maybeOPnone(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -104,9 +104,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE make ****/
 
-errcode maybeOPmake(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+maybeOPmake(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -161,9 +160,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE exists ****/
 
-errcode maybeOPexists(m, ret_1)
-CLUREF m;
-CLUREF *ret_1;
+errcode
+maybeOPexists(CLUREF m, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -202,9 +200,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE value ****/
 
-errcode maybeOPvalue(m, ret_1)
-CLUREF m;
-CLUREF *ret_1;
+errcode
+maybeOPvalue(CLUREF m, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -253,10 +250,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode maybeOPequal(m1, m2, ret_1)
-CLUREF m1;
-CLUREF m2;
-CLUREF *ret_1;
+errcode
+maybeOPequal(CLUREF m1, CLUREF m2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -345,10 +340,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode maybeOPsimilar(m1, m2, ret_1)
-CLUREF m1;
-CLUREF m2;
-CLUREF *ret_1;
+errcode
+maybeOPsimilar(CLUREF m1, CLUREF m2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -437,9 +430,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode maybeOPcopy(m, ret_1)
-CLUREF m;
-CLUREF *ret_1;
+errcode
+maybeOPcopy(CLUREF m, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -497,10 +489,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-errcode maybeOP_gcd(m, tab, ret_1)
-CLUREF m;
-CLUREF tab;
-CLUREF *ret_1;
+errcode
+maybeOP_gcd(CLUREF m, CLUREF tab, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

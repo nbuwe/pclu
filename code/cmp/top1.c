@@ -39,7 +39,8 @@ CLUREF start_upOPinit;
 
 /**** BEGIN PROCEDURE start_up ****/
 
-errcode start_up()
+errcode
+start_up()
     {
     errcode err;
     errcode ecode2;
@@ -380,9 +381,8 @@ extern errcode intOPsub();
 
 /**** BEGIN PROCEDURE addl_chars ****/
 
-errcode addl_chars(line, chars)
-CLUREF line;
-CLUREF chars;
+errcode
+addl_chars(CLUREF line, CLUREF chars)
     {
     errcode err;
     errcode ecode2;
@@ -464,11 +464,8 @@ static int process_commands_own_init = 0;
 
 /**** BEGIN PROCEDURE process_commands ****/
 
-errcode process_commands(line, tyo, from, ret_1)
-CLUREF line;
-CLUREF tyo;
-CLUREF from;
-CLUREF *ret_1;
+errcode
+process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -825,8 +822,8 @@ CLUREF fake_streamOPfake;
 
 /**** BEGIN PROCEDURE fake_stream ****/
 
-errcode fake_stream(ret_1)
-CLUREF *ret_1;
+errcode
+fake_stream(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -870,10 +867,8 @@ static int get_outstream_own_init = 0;
 
 /**** BEGIN PROCEDURE get_outstream ****/
 
-errcode get_outstream(fs, tyo, ret_1)
-CLUREF fs;
-CLUREF tyo;
-CLUREF *ret_1;
+errcode
+get_outstream(CLUREF fs, CLUREF tyo, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1000,9 +995,8 @@ static int get_command_mode_own_init = 0;
 
 /**** BEGIN PROCEDURE get_command_mode ****/
 
-errcode get_command_mode(cmnd, ret_1)
-CLUREF cmnd;
-CLUREF *ret_1;
+errcode
+get_command_mode(CLUREF cmnd, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1134,11 +1128,8 @@ extern errcode intOPge();
 
 /**** BEGIN PROCEDURE prefix ****/
 
-errcode prefix(s, cmnd, cnt, ret_1)
-CLUREF s;
-CLUREF cmnd;
-CLUREF cnt;
-CLUREF *ret_1;
+errcode
+prefix(CLUREF s, CLUREF cmnd, CLUREF cnt, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1191,12 +1182,8 @@ static int make_file_name_own_init = 0;
 
 /**** BEGIN PROCEDURE make_file_name ****/
 
-errcode make_file_name(fs, suffix, tyo, ret_1, ret_2)
-CLUREF fs;
-CLUREF suffix;
-CLUREF tyo;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+make_file_name(CLUREF fs, CLUREF suffix, CLUREF tyo, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -1298,9 +1285,8 @@ static int check_file_name_own_init = 0;
 
 /**** BEGIN PROCEDURE check_file_name ****/
 
-errcode check_file_name(fn, ret_1)
-CLUREF fn;
-CLUREF *ret_1;
+errcode
+check_file_name(CLUREF fn, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1568,11 +1554,8 @@ static int open_stream_own_init = 0;
 
 /**** BEGIN PROCEDURE open_stream ****/
 
-errcode open_stream(fn, mode, tyo, ret_1)
-CLUREF fn;
-CLUREF mode;
-CLUREF tyo;
-CLUREF *ret_1;
+errcode
+open_stream(CLUREF fn, CLUREF mode, CLUREF tyo, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1817,10 +1800,8 @@ static int execute_command_own_init = 0;
 
 /**** BEGIN PROCEDURE execute_command ****/
 
-errcode execute_command(cmnd, args, tyo)
-CLUREF cmnd;
-CLUREF args;
-CLUREF tyo;
+errcode
+execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
     {
     struct {
         errcode err;
@@ -3605,9 +3586,8 @@ static int xfile_execute_own_init = 0;
 
 /**** BEGIN PROCEDURE xfile_execute ****/
 
-errcode xfile_execute(args, tyo)
-CLUREF args;
-CLUREF tyo;
+errcode
+xfile_execute(CLUREF args, CLUREF tyo)
     {
     struct {
         errcode err;
@@ -3757,9 +3737,8 @@ static int set_dir_own_init = 0;
 
 /**** BEGIN PROCEDURE set_dir ****/
 
-errcode set_dir(dir, tyo)
-CLUREF dir;
-CLUREF tyo;
+errcode
+set_dir(CLUREF dir, CLUREF tyo)
     {
     errcode err;
     errcode ecode2;
@@ -3813,9 +3792,8 @@ static int dump_file_own_init = 0;
 
 /**** BEGIN PROCEDURE dump_file ****/
 
-errcode dump_file(fn, tyo)
-CLUREF fn;
-CLUREF tyo;
+errcode
+dump_file(CLUREF fn, CLUREF tyo)
     {
     errcode err;
     errcode ecode2;
@@ -3910,13 +3888,8 @@ extern errcode all_input_names_IB_1();
 
 /**** BEGIN ITERATOR all_input_names ****/
 
-errcode all_input_names(args, suffix, tyo, proc, user_locals, iecode)
-CLUREF args;
-CLUREF suffix;
-CLUREF tyo;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+all_input_names(CLUREF args, CLUREF suffix, CLUREF tyo, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     struct {
@@ -4057,13 +4030,8 @@ static int all_derived_names_own_init = 0;
 
 /**** BEGIN ITERATOR all_derived_names ****/
 
-errcode all_derived_names(fs, suffix, tyo, proc, user_locals, iecode)
-CLUREF fs;
-CLUREF suffix;
-CLUREF tyo;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     struct {
@@ -4913,9 +4881,8 @@ static int as2str_own_init = 0;
 
 /**** BEGIN PROCEDURE as2str ****/
 
-errcode as2str(a, ret_1)
-CLUREF a;
-CLUREF *ret_1;
+errcode
+as2str(CLUREF a, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

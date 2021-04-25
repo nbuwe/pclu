@@ -27,11 +27,8 @@ static int c_cluster_op_own_init = 0;
 
 /**** BEGIN PROCEDURE c_cluster_op ****/
 
-errcode c_cluster_op(e, dut, cop, ret_1)
-CLUREF e;
-CLUREF dut;
-CLUREF cop;
-CLUREF *ret_1;
+errcode
+c_cluster_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -314,11 +311,8 @@ static int c_select_op_own_init = 0;
 
 /**** BEGIN PROCEDURE c_select_op ****/
 
-errcode c_select_op(e, dut, cop, ret_1)
-CLUREF e;
-CLUREF dut;
-CLUREF cop;
-CLUREF *ret_1;
+errcode
+c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1069,11 +1063,8 @@ static int c_sel_type_own_init = 0;
 
 /**** BEGIN PROCEDURE c_sel_type ****/
 
-errcode c_sel_type(e, sel, specs, ret_1)
-CLUREF e;
-CLUREF sel;
-CLUREF specs;
-CLUREF *ret_1;
+errcode
+c_sel_type(CLUREF e, CLUREF sel, CLUREF specs, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1179,11 +1170,8 @@ static int c_idn_op_own_init = 0;
 
 /**** BEGIN PROCEDURE c_idn_op ****/
 
-errcode c_idn_op(e, i, cop, ret_1)
-CLUREF e;
-CLUREF i;
-CLUREF cop;
-CLUREF *ret_1;
+errcode
+c_idn_op(CLUREF e, CLUREF i, CLUREF cop, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1358,11 +1346,8 @@ static int c_apply_op_own_init = 0;
 
 /**** BEGIN PROCEDURE c_apply_op ****/
 
-errcode c_apply_op(e, at, cop, ret_1)
-CLUREF e;
-CLUREF at;
-CLUREF cop;
-CLUREF *ret_1;
+errcode
+c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1816,11 +1801,8 @@ extern errcode c_restrictions();
 
 /**** BEGIN PROCEDURE c_requires ****/
 
-errcode c_requires(e, vals, parms, reqs)
-CLUREF e;
-CLUREF vals;
-CLUREF parms;
-CLUREF reqs;
+errcode
+c_requires(CLUREF e, CLUREF vals, CLUREF parms, CLUREF reqs)
     {
     errcode err;
     errcode ecode2;
@@ -1904,10 +1886,8 @@ CLUREF reqs;
 
 /**** BEGIN PROCEDURE c_select_requires ****/
 
-errcode c_select_requires(e, specs, reqs)
-CLUREF e;
-CLUREF specs;
-CLUREF reqs;
+errcode
+c_select_requires(CLUREF e, CLUREF specs, CLUREF reqs)
     {
     errcode err;
     errcode ecode2;
@@ -2007,12 +1987,8 @@ extern errcode c_envOPend_scope();
 
 /**** BEGIN PROCEDURE subst_parms ****/
 
-errcode subst_parms(e, vals, forms, t, ret_1)
-CLUREF e;
-CLUREF vals;
-CLUREF forms;
-CLUREF t;
-CLUREF *ret_1;
+errcode
+subst_parms(CLUREF e, CLUREF vals, CLUREF forms, CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2081,13 +2057,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE subst_2_parms ****/
 
-errcode subst_2_parms(e, vals1, parms1, vals2, info, ret_1)
-CLUREF e;
-CLUREF vals1;
-CLUREF parms1;
-CLUREF vals2;
-CLUREF info;
-CLUREF *ret_1;
+errcode
+subst_2_parms(CLUREF e, CLUREF vals1, CLUREF parms1, CLUREF vals2, CLUREF info, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2189,13 +2160,8 @@ static int c_restrictions_own_init = 0;
 
 /**** BEGIN PROCEDURE c_restrictions ****/
 
-errcode c_restrictions(e, x, vals, forms, specs, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF vals;
-CLUREF forms;
-CLUREF specs;
-CLUREF *ret_1;
+errcode
+c_restrictions(CLUREF e, CLUREF x, CLUREF vals, CLUREF forms, CLUREF specs, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

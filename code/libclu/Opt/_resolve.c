@@ -113,8 +113,8 @@ static int _resolveOPinit_own_init = 0;
 
 /**** BEGIN PROCEDURE init ****/
 
-errcode _resolveOPinit(ret_1)
-CLUREF *ret_1;
+errcode
+_resolveOPinit(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -667,10 +667,8 @@ static int _resolveOPn2a_own_init = 0;
 
 /**** BEGIN PROCEDURE n2a ****/
 
-errcode _resolveOPn2a(name, ret_1, ret_2)
-CLUREF name;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+_resolveOPn2a(CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -789,11 +787,8 @@ CLUREF *ret_2;
 
 /**** BEGIN PROCEDURE qry ****/
 
-errcode _resolveOPqry(name, domain, ret_1, ret_2)
-CLUREF name;
-CLUREF domain;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+_resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -1318,11 +1313,8 @@ CLUREF *ret_2;
 
 /**** BEGIN PROCEDURE nstore ****/
 
-errcode _resolveOPnstore(dname, idx, max, ret_1)
-CLUREF dname;
-CLUREF idx;
-CLUREF max;
-CLUREF *ret_1;
+errcode
+_resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1591,9 +1583,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE nskip ****/
 
-errcode _resolveOPnskip(idx, ret_1)
-CLUREF idx;
-CLUREF *ret_1;
+errcode
+_resolveOPnskip(CLUREF idx, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1701,9 +1692,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE send ****/
 
-errcode _resolveOPsend(len, ret_1)
-CLUREF len;
-CLUREF *ret_1;
+errcode
+_resolveOPsend(CLUREF len, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

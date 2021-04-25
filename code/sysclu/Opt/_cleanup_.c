@@ -12,7 +12,8 @@ static int _cleanup__own_init = 0;
 
 /**** BEGIN PROCEDURE _cleanup_ ****/
 
-errcode _cleanup_()
+errcode
+_cleanup_()
     {
     errcode err;
     errcode ecode2;

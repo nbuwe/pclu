@@ -64,12 +64,8 @@ errcode file_spec_own_init_proc()
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode file_specOPcreate(dir, name, suffix, other, ret_1)
-CLUREF dir;
-CLUREF name;
-CLUREF suffix;
-CLUREF other;
-CLUREF *ret_1;
+errcode
+file_specOPcreate(CLUREF dir, CLUREF name, CLUREF suffix, CLUREF other, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -290,9 +286,8 @@ static int file_specOPparse_own_init = 0;
 
 /**** BEGIN PROCEDURE parse ****/
 
-errcode file_specOPparse(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+file_specOPparse(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -420,9 +415,8 @@ static int file_specOPunparse_own_init = 0;
 
 /**** BEGIN PROCEDURE unparse ****/
 
-errcode file_specOPunparse(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_specOPunparse(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -575,9 +569,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_dir ****/
 
-errcode file_specOPget_dir(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_specOPget_dir(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -611,9 +604,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_name ****/
 
-errcode file_specOPget_name(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_specOPget_name(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -647,9 +639,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_suffix ****/
 
-errcode file_specOPget_suffix(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_specOPget_suffix(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -683,9 +674,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_other ****/
 
-errcode file_specOPget_other(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_specOPget_other(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -721,10 +711,8 @@ static int file_specOPequal_own_init = 0;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode file_specOPequal(x, y, ret_1)
-CLUREF x;
-CLUREF y;
-CLUREF *ret_1;
+errcode
+file_specOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -768,10 +756,8 @@ static int file_specOPsimilar_own_init = 0;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode file_specOPsimilar(x, y, ret_1)
-CLUREF x;
-CLUREF y;
-CLUREF *ret_1;
+errcode
+file_specOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -813,9 +799,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode file_specOPcopy(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+file_specOPcopy(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -848,9 +833,8 @@ static int file_specOPprint_own_init = 0;
 
 /**** BEGIN PROCEDURE print ****/
 
-errcode file_specOPprint(x, ps)
-CLUREF x;
-CLUREF ps;
+errcode
+file_specOPprint(CLUREF x, CLUREF ps)
     {
     errcode err;
     errcode ecode2;
@@ -1003,9 +987,8 @@ CLUREF ps;
 
 /**** BEGIN PROCEDURE encode ****/
 
-errcode file_specOPencode(fs, ist)
-CLUREF fs;
-CLUREF ist;
+errcode
+file_specOPencode(CLUREF fs, CLUREF ist)
     {
     errcode err;
     errcode ecode2;
@@ -1045,9 +1028,8 @@ static int file_specOPdecode_own_init = 0;
 
 /**** BEGIN PROCEDURE decode ****/
 
-errcode file_specOPdecode(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+file_specOPdecode(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1110,10 +1092,8 @@ static int file_specOP_gcd_own_init = 0;
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-errcode file_specOP_gcd(x, tab, ret_1)
-CLUREF x;
-CLUREF tab;
-CLUREF *ret_1;
+errcode
+file_specOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

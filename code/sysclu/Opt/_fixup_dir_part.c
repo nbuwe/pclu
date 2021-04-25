@@ -20,9 +20,8 @@ static int _fixup_dir_part_own_init = 0;
 
 /**** BEGIN PROCEDURE _fixup_dir_part ****/
 
-errcode _fixup_dir_part(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+_fixup_dir_part(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

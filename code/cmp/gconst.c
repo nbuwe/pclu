@@ -95,8 +95,8 @@ errcode g_const_own_init_proc()
 
 /**** BEGIN PROCEDURE exist ****/
 
-errcode g_constOPexist(ret_1)
-CLUREF *ret_1;
+errcode
+g_constOPexist(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -146,9 +146,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE find_consts ****/
 
-errcode g_constOPfind_consts(e, bod)
-CLUREF e;
-CLUREF bod;
+errcode
+g_constOPfind_consts(CLUREF e, CLUREF bod)
     {
     errcode err;
     errcode ecode2;
@@ -211,9 +210,8 @@ CLUREF bod;
 
 /**** BEGIN PROCEDURE find_consts2 ****/
 
-errcode g_constOPfind_consts2(bod, const_UNIQ)
-CLUREF bod;
-CLUREF const_UNIQ;
+errcode
+g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
     {
     errcode err;
     errcode ecode2;
@@ -699,9 +697,8 @@ CLUREF const_UNIQ;
 
 /**** BEGIN PROCEDURE find_const_exprlist ****/
 
-errcode g_constOPfind_const_exprlist(el, const_UNIQ)
-CLUREF el;
-CLUREF const_UNIQ;
+errcode
+g_constOPfind_const_exprlist(CLUREF el, CLUREF const_UNIQ)
     {
     errcode err;
     errcode ecode2;
@@ -745,9 +742,8 @@ CLUREF const_UNIQ;
 
 /**** BEGIN PROCEDURE find_const_fieldspeclist ****/
 
-errcode g_constOPfind_const_fieldspeclist(fl, const_UNIQ)
-CLUREF fl;
-CLUREF const_UNIQ;
+errcode
+g_constOPfind_const_fieldspeclist(CLUREF fl, CLUREF const_UNIQ)
     {
     errcode err;
     errcode ecode2;
@@ -791,9 +787,8 @@ CLUREF const_UNIQ;
 
 /**** BEGIN PROCEDURE find_const_exprs ****/
 
-errcode g_constOPfind_const_exprs(exp, const_UNIQ)
-CLUREF exp;
-CLUREF const_UNIQ;
+errcode
+g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
     {
     errcode err;
     errcode ecode2;
@@ -1180,9 +1175,8 @@ CLUREF const_UNIQ;
 
 /**** BEGIN PROCEDURE find_const_field ****/
 
-errcode g_constOPfind_const_field(f, const_UNIQ)
-CLUREF f;
-CLUREF const_UNIQ;
+errcode
+g_constOPfind_const_field(CLUREF f, CLUREF const_UNIQ)
     {
     errcode err;
     errcode ecode2;
@@ -1281,9 +1275,8 @@ CLUREF const_UNIQ;
 
 /**** BEGIN PROCEDURE const_uniq ****/
 
-errcode g_constOPconst_uniq(const_UNIQ, ret_1)
-CLUREF const_UNIQ;
-CLUREF *ret_1;
+errcode
+g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1488,9 +1481,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE g_consts ****/
 
-errcode g_constOPg_consts(e, pass)
-CLUREF e;
-CLUREF pass;
+errcode
+g_constOPg_consts(CLUREF e, CLUREF pass)
     {
     errcode err;
     errcode ecode2;
@@ -1583,9 +1575,8 @@ static int g_constOPg_str_decl_own_init = 0;
 
 /**** BEGIN PROCEDURE g_str_decl ****/
 
-errcode g_constOPg_str_decl(e, s)
-CLUREF e;
-CLUREF s;
+errcode
+g_constOPg_str_decl(CLUREF e, CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -1637,9 +1628,8 @@ static int g_constOPg_str_cons_own_init = 0;
 
 /**** BEGIN PROCEDURE g_str_cons ****/
 
-errcode g_constOPg_str_cons(e, s)
-CLUREF e;
-CLUREF s;
+errcode
+g_constOPg_str_cons(CLUREF e, CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -1824,7 +1814,8 @@ errcode const_defn_own_init_proc()
 
 /**** BEGIN PROCEDURE start ****/
 
-errcode const_defnOPstart()
+errcode
+const_defnOPstart()
     {
     errcode err;
     errcode ecode2;
@@ -1865,9 +1856,8 @@ errcode const_defnOPstart()
 
 /**** BEGIN PROCEDURE test ****/
 
-errcode const_defnOPtest(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+const_defnOPtest(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1956,7 +1946,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE stop ****/
 
-errcode const_defnOPstop()
+errcode
+const_defnOPstop()
     {
     errcode err;
     errcode ecode2;

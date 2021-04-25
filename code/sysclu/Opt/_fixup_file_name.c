@@ -39,10 +39,8 @@ static int _fixup_file_name_own_init = 0;
 
 /**** BEGIN PROCEDURE _fixup_file_name ****/
 
-errcode _fixup_file_name(fn, dirok, ret_1)
-CLUREF fn;
-CLUREF dirok;
-CLUREF *ret_1;
+errcode
+_fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

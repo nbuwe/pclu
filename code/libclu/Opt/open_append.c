@@ -11,9 +11,8 @@ static int open_append_own_init = 0;
 
 /**** BEGIN PROCEDURE open_append ****/
 
-errcode open_append(name, ret_1)
-CLUREF name;
-CLUREF *ret_1;
+errcode
+open_append(CLUREF name, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

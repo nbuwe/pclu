@@ -88,9 +88,8 @@ errcode bigint_own_init_proc()
 
 /**** BEGIN PROCEDURE i2bi ****/
 
-errcode bigintOPi2bi(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+bigintOPi2bi(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -230,9 +229,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE bi2i ****/
 
-errcode bigintOPbi2i(a, ret_1)
-CLUREF a;
-CLUREF *ret_1;
+errcode
+bigintOPbi2i(CLUREF a, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -344,9 +342,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE parse ****/
 
-errcode bigintOPparse(a, ret_1)
-CLUREF a;
-CLUREF *ret_1;
+errcode
+bigintOPparse(CLUREF a, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -560,9 +557,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE unparse ****/
 
-errcode bigintOPunparse(r, ret_1)
-CLUREF r;
-CLUREF *ret_1;
+errcode
+bigintOPunparse(CLUREF r, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -766,11 +762,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE one_digit_divide ****/
 
-errcode bigintOPone_digit_divide(rnb, d, ret_1, ret_2)
-CLUREF rnb;
-CLUREF d;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+bigintOPone_digit_divide(CLUREF rnb, CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -899,10 +892,8 @@ CLUREF *ret_2;
 
 /**** BEGIN PROCEDURE add ****/
 
-errcode bigintOPadd(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPadd(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -937,10 +928,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE sub ****/
 
-errcode bigintOPsub(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPsub(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -975,9 +964,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE minus ****/
 
-errcode bigintOPminus(a, ret_1)
-CLUREF a;
-CLUREF *ret_1;
+errcode
+bigintOPminus(CLUREF a, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1017,11 +1005,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE addsub ****/
 
-errcode bigintOPaddsub(a, b, neg, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF neg;
-CLUREF *ret_1;
+errcode
+bigintOPaddsub(CLUREF a, CLUREF b, CLUREF neg, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1295,10 +1280,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE max_size ****/
 
-errcode bigintOPmax_size(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPmax_size(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1337,10 +1320,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE fetch_digit ****/
 
-errcode bigintOPfetch_digit(n, i, ret_1)
-CLUREF n;
-CLUREF i;
-CLUREF *ret_1;
+errcode
+bigintOPfetch_digit(CLUREF n, CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1413,10 +1394,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE gt ****/
 
-errcode bigintOPgt(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPgt(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1451,10 +1430,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE ge ****/
 
-errcode bigintOPge(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPge(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1489,10 +1466,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE lt ****/
 
-errcode bigintOPlt(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPlt(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1527,10 +1502,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE le ****/
 
-errcode bigintOPle(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPle(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1565,10 +1538,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode bigintOPequal(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPequal(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1656,10 +1627,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE max ****/
 
-errcode bigintOPmax(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPmax(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1704,10 +1673,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE min ****/
 
-errcode bigintOPmin(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPmin(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1752,9 +1719,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE abs ****/
 
-errcode bigintOPabs(a, ret_1)
-CLUREF a;
-CLUREF *ret_1;
+errcode
+bigintOPabs(CLUREF a, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1806,11 +1772,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE gtge ****/
 
-errcode bigintOPgtge(a, b, eq, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF eq;
-CLUREF *ret_1;
+errcode
+bigintOPgtge(CLUREF a, CLUREF b, CLUREF eq, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1959,10 +1922,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode bigintOPsimilar(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPsimilar(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1997,9 +1958,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode bigintOPcopy(a, ret_1)
-CLUREF a;
-CLUREF *ret_1;
+errcode
+bigintOPcopy(CLUREF a, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2036,9 +1996,8 @@ static int bigintOPencode_own_init = 0;
 
 /**** BEGIN PROCEDURE encode ****/
 
-errcode bigintOPencode(v, i)
-CLUREF v;
-CLUREF i;
+errcode
+bigintOPencode(CLUREF v, CLUREF i)
     {
     errcode err;
     errcode ecode2;
@@ -2085,9 +2044,8 @@ static int bigintOPdecode_own_init = 0;
 
 /**** BEGIN PROCEDURE decode ****/
 
-errcode bigintOPdecode(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+bigintOPdecode(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2135,10 +2093,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE mul ****/
 
-errcode bigintOPmul(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2653,10 +2609,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE mul_sub_in ****/
 
-errcode bigintOPmul_sub_in(c, a, p)
-CLUREF c;
-CLUREF a;
-CLUREF p;
+errcode
+bigintOPmul_sub_in(CLUREF c, CLUREF a, CLUREF p)
     {
     errcode err;
     errcode ecode2;
@@ -2792,8 +2746,8 @@ CLUREF p;
 
 /**** BEGIN PROCEDURE clear_leads ****/
 
-errcode bigintOPclear_leads(r)
-CLUREF r;
+errcode
+bigintOPclear_leads(CLUREF r)
     {
     errcode err;
     errcode ecode2;
@@ -2960,10 +2914,8 @@ CLUREF r;
 
 /**** BEGIN PROCEDURE power ****/
 
-errcode bigintOPpower(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPpower(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3118,10 +3070,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE div ****/
 
-errcode bigintOPdiv(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPdiv(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3225,10 +3175,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE mod ****/
 
-errcode bigintOPmod(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bigintOPmod(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3330,14 +3278,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE divmodhack ****/
 
-errcode bigintOPdivmodhack(a, b, ret_1, ret_2, ret_3, ret_4, ret_5)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
-CLUREF *ret_2;
-CLUREF *ret_3;
-CLUREF *ret_4;
-CLUREF *ret_5;
+errcode
+bigintOPdivmodhack(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret_4, CLUREF *ret_5)
     {
     errcode err;
     errcode ecode2;
@@ -3515,11 +3457,8 @@ CLUREF *ret_5;
 
 /**** BEGIN PROCEDURE divmod ****/
 
-errcode bigintOPdivmod(a, b, ret_1, ret_2)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+bigintOPdivmod(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -3727,11 +3666,8 @@ CLUREF *ret_2;
 
 /**** BEGIN PROCEDURE div_one ****/
 
-errcode bigintOPdiv_one(iden, isor, e, ret_1)
-CLUREF iden;
-CLUREF isor;
-CLUREF e;
-CLUREF *ret_1;
+errcode
+bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3974,11 +3910,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE div_lt ****/
 
-errcode bigintOPdiv_lt(iden, isor, e, ret_1)
-CLUREF iden;
-CLUREF isor;
-CLUREF e;
-CLUREF *ret_1;
+errcode
+bigintOPdiv_lt(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4130,11 +4063,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE div_sub ****/
 
-errcode bigintOPdiv_sub(iden, isor, e, x)
-CLUREF iden;
-CLUREF isor;
-CLUREF e;
-CLUREF x;
+errcode
+bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
     {
     errcode err;
     errcode ecode2;
@@ -4314,9 +4244,8 @@ CLUREF x;
 
 /**** BEGIN PROCEDURE new_base ****/
 
-errcode bigintOPnew_base(a, ret_1)
-CLUREF a;
-CLUREF *ret_1;
+errcode
+bigintOPnew_base(CLUREF a, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4466,9 +4395,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE old_base ****/
 
-errcode bigintOPold_base(a, ret_1)
-CLUREF a;
-CLUREF *ret_1;
+errcode
+bigintOPold_base(CLUREF a, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

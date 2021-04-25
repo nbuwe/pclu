@@ -237,7 +237,8 @@ static int xlibOPinit_own_init = 0;
 
 /**** BEGIN PROCEDURE init ****/
 
-errcode xlibOPinit()
+errcode
+xlibOPinit()
     {
     errcode err;
     errcode ecode2;
@@ -405,9 +406,8 @@ static int xlibOPlookup_own_init = 0;
 
 /**** BEGIN PROCEDURE lookup ****/
 
-errcode xlibOPlookup(path, ret_1)
-CLUREF path;
-CLUREF *ret_1;
+errcode
+xlibOPlookup(CLUREF path, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -460,9 +460,8 @@ static int xlibOPbind_own_init = 0;
 
 /**** BEGIN PROCEDURE bind ****/
 
-errcode xlibOPbind(path, d)
-CLUREF path;
-CLUREF d;
+errcode
+xlibOPbind(CLUREF path, CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -510,9 +509,8 @@ static int xlibOPget_du_own_init = 0;
 
 /**** BEGIN PROCEDURE get_du ****/
 
-errcode xlibOPget_du(n, ret_1)
-CLUREF n;
-CLUREF *ret_1;
+errcode
+xlibOPget_du(CLUREF n, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -629,9 +627,8 @@ static int xlibOPdump_own_init = 0;
 
 /**** BEGIN PROCEDURE dump ****/
 
-errcode xlibOPdump(fn, ret_1)
-CLUREF fn;
-CLUREF *ret_1;
+errcode
+xlibOPdump(CLUREF fn, CLUREF *ret_1)
     {
     struct {
         errcode err;
@@ -921,8 +918,8 @@ static int xlibOPmerge_own_init = 0;
 
 /**** BEGIN PROCEDURE merge ****/
 
-errcode xlibOPmerge(fn)
-CLUREF fn;
+errcode
+xlibOPmerge(CLUREF fn)
     {
     errcode err;
     errcode ecode2;
@@ -1102,8 +1099,8 @@ static int xlibOPunmerge_own_init = 0;
 
 /**** BEGIN PROCEDURE unmerge ****/
 
-errcode xlibOPunmerge(fn)
-CLUREF fn;
+errcode
+xlibOPunmerge(CLUREF fn)
     {
     errcode err;
     errcode ecode2;

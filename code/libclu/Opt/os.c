@@ -9,8 +9,8 @@ static int _operating_system_own_init = 0;
 
 /**** BEGIN PROCEDURE _operating_system ****/
 
-errcode _operating_system(ret_1)
-CLUREF *ret_1;
+errcode
+_operating_system(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -44,8 +44,8 @@ extern errcode _host_name();
 
 /**** BEGIN PROCEDURE _host_system ****/
 
-errcode _host_system(ret_1)
-CLUREF *ret_1;
+errcode
+_host_system(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

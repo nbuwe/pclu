@@ -48,11 +48,8 @@ CLUREF _all_file_names_OPtemp;
 
 /**** BEGIN ITERATOR _all_file_names_ ****/
 
-errcode _all_file_names_(fs, proc, user_locals, iecode)
-CLUREF fs;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+_all_file_names_(CLUREF fs, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     struct {
@@ -760,9 +757,8 @@ extern errcode stringOPappend();
 
 /**** BEGIN PROCEDURE _restar ****/
 
-errcode _restar(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+_restar(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -852,11 +848,8 @@ extern errcode intOPle();
 
 /**** BEGIN PROCEDURE _match_name_spec ****/
 
-errcode _match_name_spec(off, buf, nm, ret_1)
-CLUREF off;
-CLUREF buf;
-CLUREF nm;
-CLUREF *ret_1;
+errcode
+_match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

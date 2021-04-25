@@ -16,11 +16,8 @@ extern errcode e_form();
 
 /**** BEGIN PROCEDURE g_form ****/
 
-errcode g_form(x, i, f, ret_1)
-CLUREF x;
-CLUREF i;
-CLUREF f;
-CLUREF *ret_1;
+errcode
+g_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

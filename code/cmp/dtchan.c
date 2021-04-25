@@ -91,10 +91,8 @@ static int data_chanOPopen_own_init = 0;
 
 /**** BEGIN PROCEDURE open ****/
 
-errcode data_chanOPopen(fn, ret_1, ret_2)
-CLUREF fn;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+data_chanOPopen(CLUREF fn, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -225,10 +223,8 @@ CLUREF *ret_2;
 
 /**** BEGIN PROCEDURE store_str ****/
 
-errcode data_chanOPstore_str(dc, s, ret_1)
-CLUREF dc;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -657,10 +653,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE store_vec ****/
 
-errcode data_chanOPstore_vec(dc, vec, ret_1)
-CLUREF dc;
-CLUREF vec;
-CLUREF *ret_1;
+errcode
+data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -962,10 +956,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE store_avec ****/
 
-errcode data_chanOPstore_avec(dc, vec, ret_1)
-CLUREF dc;
-CLUREF vec;
-CLUREF *ret_1;
+errcode
+data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1270,11 +1262,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE store_cell ****/
 
-errcode data_chanOPstore_cell(dc, code, val, ret_1)
-CLUREF dc;
-CLUREF code;
-CLUREF val;
-CLUREF *ret_1;
+errcode
+data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1469,9 +1458,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE oneof2 ****/
 
-errcode data_chanOPoneof2(dc, ret_1)
-CLUREF dc;
-CLUREF *ret_1;
+errcode
+data_chanOPoneof2(CLUREF dc, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1509,10 +1497,8 @@ static int data_chanOPadd_close_own_init = 0;
 
 /**** BEGIN PROCEDURE add_close ****/
 
-errcode data_chanOPadd_close(dc, val, cc)
-CLUREF dc;
-CLUREF val;
-CLUREF cc;
+errcode
+data_chanOPadd_close(CLUREF dc, CLUREF val, CLUREF cc)
     {
     errcode err;
     errcode ecode2;
@@ -1884,8 +1870,8 @@ static int data_chanOPclose_own_init = 0;
 
 /**** BEGIN PROCEDURE close ****/
 
-errcode data_chanOPclose(dc)
-CLUREF dc;
+errcode
+data_chanOPclose(CLUREF dc)
     {
     errcode err;
     errcode ecode2;

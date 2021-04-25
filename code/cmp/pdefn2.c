@@ -60,9 +60,8 @@ static int p_where_own_init = 0;
 
 /**** BEGIN PROCEDURE p_where ****/
 
-errcode p_where(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_where(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -180,9 +179,8 @@ static int p_restrict_own_init = 0;
 
 /**** BEGIN PROCEDURE p_restrict ****/
 
-errcode p_restrict(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_restrict(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -392,9 +390,8 @@ static int p_typeset_own_init = 0;
 
 /**** BEGIN PROCEDURE p_typeset ****/
 
-errcode p_typeset(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_typeset(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -699,9 +696,8 @@ static int p_operdecllist_own_init = 0;
 
 /**** BEGIN PROCEDURE p_operdecllist ****/
 
-errcode p_operdecllist(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_operdecllist(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -922,9 +918,8 @@ static int p_opname_own_init = 0;
 
 /**** BEGIN PROCEDURE p_opname ****/
 
-errcode p_opname(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_opname(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1007,9 +1002,8 @@ static int p_pathname_own_init = 0;
 
 /**** BEGIN PROCEDURE p_pathname ****/
 
-errcode p_pathname(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_pathname(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1096,9 +1090,8 @@ static int p_defn_end_own_init = 0;
 
 /**** BEGIN PROCEDURE p_defn_end ****/
 
-errcode p_defn_end(e, id)
-CLUREF e;
-CLUREF id;
+errcode
+p_defn_end(CLUREF e, CLUREF id)
     {
     errcode err;
     errcode ecode2;
@@ -1299,8 +1292,8 @@ static int p_semi_own_init = 0;
 
 /**** BEGIN PROCEDURE p_semi ****/
 
-errcode p_semi(e)
-CLUREF e;
+errcode
+p_semi(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1394,10 +1387,8 @@ static int p_find_a_defn_own_init = 0;
 
 /**** BEGIN PROCEDURE p_find_a_defn ****/
 
-errcode p_find_a_defn(e, want_oper, ret_1)
-CLUREF e;
-CLUREF want_oper;
-CLUREF *ret_1;
+errcode
+p_find_a_defn(CLUREF e, CLUREF want_oper, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

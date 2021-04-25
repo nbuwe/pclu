@@ -8,9 +8,8 @@ extern errcode _case();
 
 /**** BEGIN PROCEDURE lower_case ****/
 
-errcode lower_case(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+lower_case(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -42,9 +41,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE upper_case ****/
 
-errcode upper_case(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+upper_case(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -76,9 +74,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE capitalize ****/
 
-errcode capitalize(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+capitalize(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -127,11 +124,8 @@ CLUREF _caseOPbuf;
 
 /**** BEGIN PROCEDURE _case ****/
 
-errcode _case(s, first, rest, ret_1)
-CLUREF s;
-CLUREF first;
-CLUREF rest;
-CLUREF *ret_1;
+errcode
+_case(CLUREF s, CLUREF first, CLUREF rest, CLUREF *ret_1)
     {
     struct {
         errcode err;

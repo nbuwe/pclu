@@ -48,9 +48,8 @@ static int date_parse_own_init = 0;
 
 /**** BEGIN PROCEDURE date_parse ****/
 
-errcode date_parse(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+date_parse(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -970,12 +969,8 @@ extern errcode intOPmod();
 
 /**** BEGIN PROCEDURE date_sub ****/
 
-errcode date_sub(d, days, months, years, ret_1)
-CLUREF d;
-CLUREF days;
-CLUREF months;
-CLUREF years;
-CLUREF *ret_1;
+errcode
+date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1394,11 +1389,8 @@ extern errcode date_sub();
 
 /**** BEGIN PROCEDURE ago ****/
 
-errcode ago(days, months, years, ret_1)
-CLUREF days;
-CLUREF months;
-CLUREF years;
-CLUREF *ret_1;
+errcode
+ago(CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

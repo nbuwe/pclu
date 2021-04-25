@@ -16,10 +16,8 @@ extern errcode oneofOPmake_2();
 
 /**** BEGIN PROCEDURE b_duspecs ****/
 
-errcode b_duspecs(e, specs, ret_1)
-CLUREF e;
-CLUREF specs;
-CLUREF *ret_1;
+errcode
+b_duspecs(CLUREF e, CLUREF specs, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -169,10 +167,8 @@ extern errcode c_envOPend_scope();
 
 /**** BEGIN PROCEDURE b_typeinfo ****/
 
-errcode b_typeinfo(e, info, ret_1)
-CLUREF e;
-CLUREF info;
-CLUREF *ret_1;
+errcode
+b_typeinfo(CLUREF e, CLUREF info, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -359,10 +355,8 @@ extern errcode b_opspeclist();
 
 /**** BEGIN PROCEDURE b_typesetlist ****/
 
-errcode b_typesetlist(e, reqs, ret_1)
-CLUREF e;
-CLUREF reqs;
-CLUREF *ret_1;
+errcode
+b_typesetlist(CLUREF e, CLUREF reqs, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -440,10 +434,8 @@ extern errcode typespecOPget_abs();
 
 /**** BEGIN PROCEDURE b_get_idn ****/
 
-errcode b_get_idn(e, i, ret_1)
-CLUREF e;
-CLUREF i;
-CLUREF *ret_1;
+errcode
+b_get_idn(CLUREF e, CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -547,10 +539,8 @@ extern errcode b_type();
 
 /**** BEGIN PROCEDURE b_applyinfo ****/
 
-errcode b_applyinfo(e, info, ret_1)
-CLUREF e;
-CLUREF info;
-CLUREF *ret_1;
+errcode
+b_applyinfo(CLUREF e, CLUREF info, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -639,11 +629,8 @@ extern errcode c_envOPpush_parm();
 
 /**** BEGIN PROCEDURE b_operdecllist ****/
 
-errcode b_operdecllist(e, i, set, ret_1)
-CLUREF e;
-CLUREF i;
-CLUREF set;
-CLUREF *ret_1;
+errcode
+b_operdecllist(CLUREF e, CLUREF i, CLUREF set, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -713,10 +700,8 @@ extern errcode idnOPget_str();
 
 /**** BEGIN PROCEDURE b_parameters ****/
 
-errcode b_parameters(e, parms, ret_1)
-CLUREF e;
-CLUREF parms;
-CLUREF *ret_1;
+errcode
+b_parameters(CLUREF e, CLUREF parms, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -789,9 +774,8 @@ extern errcode oneofOPmake_10();
 
 /**** BEGIN PROCEDURE b_idnkinds ****/
 
-errcode b_idnkinds(e, parms)
-CLUREF e;
-CLUREF parms;
+errcode
+b_idnkinds(CLUREF e, CLUREF parms)
     {
     errcode err;
     errcode ecode2;
@@ -890,10 +874,8 @@ extern errcode b_exprlist();
 
 /**** BEGIN PROCEDURE b_opspeclist ****/
 
-errcode b_opspeclist(e, ops, ret_1)
-CLUREF e;
-CLUREF ops;
-CLUREF *ret_1;
+errcode
+b_opspeclist(CLUREF e, CLUREF ops, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -976,10 +958,8 @@ extern errcode c_envOPget_type();
 
 /**** BEGIN PROCEDURE b_type ****/
 
-errcode b_type(e, t, ret_1)
-CLUREF e;
-CLUREF t;
-CLUREF *ret_1;
+errcode
+b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1359,10 +1339,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE b_typelist ****/
 
-errcode b_typelist(e, types, ret_1)
-CLUREF e;
-CLUREF types;
-CLUREF *ret_1;
+errcode
+b_typelist(CLUREF e, CLUREF types, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1435,10 +1413,8 @@ extern errcode exprOPcreate();
 
 /**** BEGIN PROCEDURE b_expr ****/
 
-errcode b_expr(e, x, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF *ret_1;
+errcode
+b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1665,10 +1641,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE b_exprlist ****/
 
-errcode b_exprlist(e, exprs, ret_1)
-CLUREF e;
-CLUREF exprs;
-CLUREF *ret_1;
+errcode
+b_exprlist(CLUREF e, CLUREF exprs, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

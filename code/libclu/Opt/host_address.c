@@ -8,10 +8,8 @@ extern errcode _host_address();
 
 /**** BEGIN PROCEDURE host_address ****/
 
-errcode host_address(host, ret_1, ret_2)
-CLUREF host;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+host_address(CLUREF host, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;

@@ -38,10 +38,8 @@ static int _termcap_entry_own_init = 0;
 
 /**** BEGIN PROCEDURE _termcap_entry ****/
 
-errcode _termcap_entry(fs, term, ret_1)
-CLUREF fs;
-CLUREF term;
-CLUREF *ret_1;
+errcode
+_termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

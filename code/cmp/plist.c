@@ -45,11 +45,8 @@ OWN_req p_clist_ownreqs = {sizeof(p_clist_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE p_clist ****/
 
-errcode p_clist(e, p_t, what, ret_1)
-CLUREF e;
-CLUREF p_t;
-CLUREF what;
-CLUREF *ret_1;
+errcode
+p_clist(CLUREF e, CLUREF p_t, CLUREF what, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -327,10 +324,8 @@ OWN_req p_slist_ownreqs = {sizeof(p_slist_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE p_slist ****/
 
-errcode p_slist(e, p_t, ret_1)
-CLUREF e;
-CLUREF p_t;
-CLUREF *ret_1;
+errcode
+p_slist(CLUREF e, CLUREF p_t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -438,12 +433,8 @@ OWN_req p_list_ownreqs = {sizeof(p_list_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE p_list ****/
 
-errcode p_list(e, p_t, emptyok, what, ret_1)
-CLUREF e;
-CLUREF p_t;
-CLUREF emptyok;
-CLUREF what;
-CLUREF *ret_1;
+errcode
+p_list(CLUREF e, CLUREF p_t, CLUREF emptyok, CLUREF what, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -581,12 +572,8 @@ OWN_req p_blist_ownreqs = {sizeof(p_blist_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE p_blist ****/
 
-errcode p_blist(e, p_t, noneok, what, ret_1)
-CLUREF e;
-CLUREF p_t;
-CLUREF noneok;
-CLUREF what;
-CLUREF *ret_1;
+errcode
+p_blist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF what, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -756,13 +743,8 @@ OWN_req p_plist_ownreqs = {sizeof(p_plist_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE p_plist ****/
 
-errcode p_plist(e, p_t, noneok, emptyok, what, ret_1)
-CLUREF e;
-CLUREF p_t;
-CLUREF noneok;
-CLUREF emptyok;
-CLUREF what;
-CLUREF *ret_1;
+errcode
+p_plist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF emptyok, CLUREF what, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

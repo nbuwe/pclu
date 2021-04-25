@@ -22,11 +22,8 @@ extern errcode _cvt();
 
 /**** BEGIN PROCEDURE f_form ****/
 
-errcode f_form(x, i, f, ret_1)
-CLUREF x;
-CLUREF i;
-CLUREF f;
-CLUREF *ret_1;
+errcode
+f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

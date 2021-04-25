@@ -88,14 +88,8 @@ errcode time_own_init_proc()
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode timeOPcreate(days, hours, mins, secs, millis, micros, ret_1)
-CLUREF days;
-CLUREF hours;
-CLUREF mins;
-CLUREF secs;
-CLUREF millis;
-CLUREF micros;
-CLUREF *ret_1;
+errcode
+timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis, CLUREF micros, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -318,9 +312,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_days ****/
 
-errcode timeOPget_days(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+timeOPget_days(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -354,9 +347,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_hours ****/
 
-errcode timeOPget_hours(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+timeOPget_hours(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -390,9 +382,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_minutes ****/
 
-errcode timeOPget_minutes(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+timeOPget_minutes(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -426,9 +417,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_seconds ****/
 
-errcode timeOPget_seconds(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+timeOPget_seconds(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -462,9 +452,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_millis ****/
 
-errcode timeOPget_millis(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+timeOPget_millis(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -498,9 +487,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_micros ****/
 
-errcode timeOPget_micros(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+timeOPget_micros(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -534,14 +522,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_all ****/
 
-errcode timeOPget_all(t, ret_1, ret_2, ret_3, ret_4, ret_5, ret_6)
-CLUREF t;
-CLUREF *ret_1;
-CLUREF *ret_2;
-CLUREF *ret_3;
-CLUREF *ret_4;
-CLUREF *ret_5;
-CLUREF *ret_6;
+errcode
+timeOPget_all(CLUREF t, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret_4, CLUREF *ret_5, CLUREF *ret_6)
     {
     errcode err;
     errcode ecode2;
@@ -600,10 +582,8 @@ CLUREF *ret_6;
 
 /**** BEGIN PROCEDURE add ****/
 
-errcode timeOPadd(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -922,10 +902,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE sub ****/
 
-errcode timeOPsub(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1239,10 +1217,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE mul ****/
 
-errcode timeOPmul(t, n, ret_1)
-CLUREF t;
-CLUREF n;
-CLUREF *ret_1;
+errcode
+timeOPmul(CLUREF t, CLUREF n, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1395,10 +1371,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE div ****/
 
-errcode timeOPdiv(t, n, ret_1)
-CLUREF t;
-CLUREF n;
-CLUREF *ret_1;
+errcode
+timeOPdiv(CLUREF t, CLUREF n, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1439,10 +1413,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE average ****/
 
-errcode timeOPaverage(t, n, ret_1)
-CLUREF t;
-CLUREF n;
-CLUREF *ret_1;
+errcode
+timeOPaverage(CLUREF t, CLUREF n, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1598,13 +1570,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE do_div ****/
 
-errcode timeOPdo_div(a, b, c, d, ret_1, ret_2)
-CLUREF a;
-CLUREF b;
-CLUREF c;
-CLUREF d;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -1804,10 +1771,8 @@ CLUREF *ret_2;
 
 /**** BEGIN PROCEDURE lt ****/
 
-errcode timeOPlt(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+timeOPlt(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1969,10 +1934,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE le ****/
 
-errcode timeOPle(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+timeOPle(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2015,10 +1978,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE ge ****/
 
-errcode timeOPge(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+timeOPge(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2053,10 +2014,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE gt ****/
 
-errcode timeOPgt(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+timeOPgt(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2092,9 +2051,8 @@ static int timeOPparse_own_init = 0;
 
 /**** BEGIN PROCEDURE parse ****/
 
-errcode timeOPparse(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+timeOPparse(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2471,9 +2429,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE unparse ****/
 
-errcode timeOPunparse(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+timeOPunparse(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2508,9 +2465,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE t2r ****/
 
-errcode timeOPt2r(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+timeOPt2r(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2618,10 +2574,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE format ****/
 
-errcode timeOPformat(t, frac_width, ret_1)
-CLUREF t;
-CLUREF frac_width;
-CLUREF *ret_1;
+errcode
+timeOPformat(CLUREF t, CLUREF frac_width, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2926,9 +2880,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE print ****/
 
-errcode timeOPprint(t, pst)
-CLUREF t;
-CLUREF pst;
+errcode
+timeOPprint(CLUREF t, CLUREF pst)
     {
     errcode err;
     errcode ecode2;
@@ -2964,10 +2917,8 @@ static int timeOPequal_own_init = 0;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode timeOPequal(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+timeOPequal(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3013,10 +2964,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode timeOPsimilar(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+timeOPsimilar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3051,9 +3000,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode timeOPcopy(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+timeOPcopy(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3085,9 +3033,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE encode ****/
 
-errcode timeOPencode(t, ist)
-CLUREF t;
-CLUREF ist;
+errcode
+timeOPencode(CLUREF t, CLUREF ist)
     {
     errcode err;
     errcode ecode2;
@@ -3127,9 +3074,8 @@ static int timeOPdecode_own_init = 0;
 
 /**** BEGIN PROCEDURE decode ****/
 
-errcode timeOPdecode(ist, ret_1)
-CLUREF ist;
-CLUREF *ret_1;
+errcode
+timeOPdecode(CLUREF ist, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3192,10 +3138,8 @@ static int timeOP_gcd_own_init = 0;
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-errcode timeOP_gcd(t, tab, ret_1)
-CLUREF t;
-CLUREF tab;
-CLUREF *ret_1;
+errcode
+timeOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

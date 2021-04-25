@@ -10,8 +10,8 @@ static int op_sys_name_own_init = 0;
 
 /**** BEGIN PROCEDURE op_sys_name ****/
 
-errcode op_sys_name(ret_1)
-CLUREF *ret_1;
+errcode
+op_sys_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -52,8 +52,8 @@ static int basic_name_own_init = 0;
 
 /**** BEGIN PROCEDURE basic_name ****/
 
-errcode basic_name(ret_1)
-CLUREF *ret_1;
+errcode
+basic_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -100,8 +100,8 @@ static int nul_dev_own_init = 0;
 
 /**** BEGIN PROCEDURE nul_dev ****/
 
-errcode nul_dev(ret_1)
-CLUREF *ret_1;
+errcode
+nul_dev(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -135,8 +135,8 @@ static int dsuffix_own_init = 0;
 
 /**** BEGIN PROCEDURE dsuffix ****/
 
-errcode dsuffix(ret_1)
-CLUREF *ret_1;
+errcode
+dsuffix(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -171,8 +171,8 @@ static int binary_suffix_own_init = 0;
 
 /**** BEGIN PROCEDURE binary_suffix ****/
 
-errcode binary_suffix(ret_1)
-CLUREF *ret_1;
+errcode
+binary_suffix(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -207,8 +207,8 @@ static int equate_suffix_own_init = 0;
 
 /**** BEGIN PROCEDURE equate_suffix ****/
 
-errcode equate_suffix(ret_1)
-CLUREF *ret_1;
+errcode
+equate_suffix(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -243,8 +243,8 @@ static int code_temp_own_init = 0;
 
 /**** BEGIN PROCEDURE code_temp ****/
 
-errcode code_temp(ret_1)
-CLUREF *ret_1;
+errcode
+code_temp(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -279,8 +279,8 @@ static int bin_temp_own_init = 0;
 
 /**** BEGIN PROCEDURE bin_temp ****/
 
-errcode bin_temp(ret_1)
-CLUREF *ret_1;
+errcode
+bin_temp(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -317,8 +317,8 @@ static int err_name_own_init = 0;
 
 /**** BEGIN PROCEDURE err_name ****/
 
-errcode err_name(ret_1)
-CLUREF *ret_1;
+errcode
+err_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -366,8 +366,8 @@ static int safety_name_own_init = 0;
 
 /**** BEGIN PROCEDURE safety_name ****/
 
-errcode safety_name(ret_1)
-CLUREF *ret_1;
+errcode
+safety_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -411,8 +411,8 @@ static int help_name_own_init = 0;
 
 /**** BEGIN PROCEDURE help_name ****/
 
-errcode help_name(ret_1)
-CLUREF *ret_1;
+errcode
+help_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -455,8 +455,8 @@ static int junk_name_own_init = 0;
 
 /**** BEGIN PROCEDURE junk_name ****/
 
-errcode junk_name(ret_1)
-CLUREF *ret_1;
+errcode
+junk_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -496,8 +496,8 @@ extern errcode _get_version();
 
 /**** BEGIN PROCEDURE get_compiler_version ****/
 
-errcode get_compiler_version(ret_1)
-CLUREF *ret_1;
+errcode
+get_compiler_version(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -535,7 +535,8 @@ static int restore_compiler_own_init = 0;
 
 /**** BEGIN PROCEDURE restore_compiler ****/
 
-errcode restore_compiler()
+errcode
+restore_compiler()
     {
     errcode err;
     errcode ecode2;
@@ -588,8 +589,8 @@ static int dump_compiler_own_init = 0;
 
 /**** BEGIN PROCEDURE dump_compiler ****/
 
-errcode dump_compiler(vers)
-CLUREF vers;
+errcode
+dump_compiler(CLUREF vers)
     {
     errcode err;
     errcode ecode2;

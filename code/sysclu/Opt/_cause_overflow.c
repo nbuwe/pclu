@@ -7,7 +7,8 @@
 
 /**** BEGIN PROCEDURE _cause_overflow ****/
 
-errcode _cause_overflow()
+errcode
+_cause_overflow()
     {
     errcode err;
     errcode ecode2;

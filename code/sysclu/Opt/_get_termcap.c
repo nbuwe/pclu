@@ -17,8 +17,8 @@ static int _get_termcap_own_init = 0;
 
 /**** BEGIN PROCEDURE _get_termcap ****/
 
-errcode _get_termcap(ret_1)
-CLUREF *ret_1;
+errcode
+_get_termcap(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

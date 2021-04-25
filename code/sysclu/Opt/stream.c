@@ -290,10 +290,8 @@ static int streamOPopen_own_init = 0;
 
 /**** BEGIN PROCEDURE open ****/
 
-errcode streamOPopen(fn, mode, ret_1)
-CLUREF fn;
-CLUREF mode;
-CLUREF *ret_1;
+errcode
+streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -770,8 +768,8 @@ CLUREF streamOPopen_streamsOPlist;
 
 /**** BEGIN PROCEDURE open_streams ****/
 
-errcode streamOPopen_streams(ret_1)
-CLUREF *ret_1;
+errcode
+streamOPopen_streams(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -816,8 +814,8 @@ CLUREF streamOPprimary_inputOPpro;
 
 /**** BEGIN PROCEDURE primary_input ****/
 
-errcode streamOPprimary_input(ret_1)
-CLUREF *ret_1;
+errcode
+streamOPprimary_input(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -864,8 +862,8 @@ CLUREF streamOPprimary_outputOPpro;
 
 /**** BEGIN PROCEDURE primary_output ****/
 
-errcode streamOPprimary_output(ret_1)
-CLUREF *ret_1;
+errcode
+streamOPprimary_output(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -912,8 +910,8 @@ CLUREF streamOPerror_outputOPero;
 
 /**** BEGIN PROCEDURE error_output ****/
 
-errcode streamOPerror_output(ret_1)
-CLUREF *ret_1;
+errcode
+streamOPerror_output(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1031,9 +1029,8 @@ CLUREF streamOPget_primsOPpro;
 
 /**** BEGIN PROCEDURE get_prims ****/
 
-errcode streamOPget_prims(ret_1, ret_2)
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -1326,9 +1323,8 @@ static int streamOPtermcap_own_init = 0;
 
 /**** BEGIN PROCEDURE termcap ****/
 
-errcode streamOPtermcap(b, term)
-CLUREF b;
-CLUREF term;
+errcode
+streamOPtermcap(CLUREF b, CLUREF term)
     {
     errcode err;
     errcode ecode2;
@@ -1661,9 +1657,8 @@ extern errcode streamOPadd_script_IB_2();
 
 /**** BEGIN PROCEDURE add_script ****/
 
-errcode streamOPadd_script(st1, st2)
-CLUREF st1;
-CLUREF st2;
+errcode
+streamOPadd_script(CLUREF st1, CLUREF st2)
     {
     struct {
         errcode err;
@@ -1826,11 +1821,8 @@ extern errcode streamOPall_scripts_IB_1();
 
 /**** BEGIN ITERATOR all_scripts ****/
 
-errcode streamOPall_scripts(st, proc, user_locals, iecode)
-CLUREF st;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+streamOPall_scripts(CLUREF st, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     struct {
@@ -1962,11 +1954,8 @@ struct {
 
 /**** BEGIN ITERATOR scripts ****/
 
-errcode streamOPscripts(st, proc, user_locals, iecode)
-CLUREF st;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+streamOPscripts(CLUREF st, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     errcode err;
@@ -2020,9 +2009,8 @@ errcode *iecode;
 
 /**** BEGIN PROCEDURE rem_script ****/
 
-errcode streamOPrem_script(st1, st2)
-CLUREF st1;
-CLUREF st2;
+errcode
+streamOPrem_script(CLUREF st1, CLUREF st2)
     {
     errcode err;
     errcode ecode2;
@@ -2125,8 +2113,8 @@ CLUREF st2;
 
 /**** BEGIN PROCEDURE unscript ****/
 
-errcode streamOPunscript(st)
-CLUREF st;
+errcode
+streamOPunscript(CLUREF st)
     {
     errcode err;
     errcode ecode2;
@@ -2163,9 +2151,8 @@ CLUREF st;
 
 /**** BEGIN PROCEDURE can_read ****/
 
-errcode streamOPcan_read(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPcan_read(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2220,9 +2207,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE can_write ****/
 
-errcode streamOPcan_write(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPcan_write(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2278,9 +2264,8 @@ static int streamOPgetc_own_init = 0;
 
 /**** BEGIN PROCEDURE getc ****/
 
-errcode streamOPgetc(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPgetc(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2575,9 +2560,8 @@ static int streamOPgetc_image_own_init = 0;
 
 /**** BEGIN PROCEDURE getc_image ****/
 
-errcode streamOPgetc_image(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPgetc_image(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2866,9 +2850,8 @@ static int streamOPpeekc_own_init = 0;
 
 /**** BEGIN PROCEDURE peekc ****/
 
-errcode streamOPpeekc(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPpeekc(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3157,9 +3140,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE pending ****/
 
-errcode streamOPpending(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPpending(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3259,9 +3241,8 @@ static int streamOPempty_own_init = 0;
 
 /**** BEGIN PROCEDURE empty ****/
 
-errcode streamOPempty(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPempty(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3456,9 +3437,8 @@ static int streamOPputc_own_init = 0;
 
 /**** BEGIN PROCEDURE putc ****/
 
-errcode streamOPputc(st, c)
-CLUREF st;
-CLUREF c;
+errcode
+streamOPputc(CLUREF st, CLUREF c)
     {
     errcode err;
     errcode ecode2;
@@ -3618,9 +3598,8 @@ static int streamOPputc_image_own_init = 0;
 
 /**** BEGIN PROCEDURE putc_image ****/
 
-errcode streamOPputc_image(st, c)
-CLUREF st;
-CLUREF c;
+errcode
+streamOPputc_image(CLUREF st, CLUREF c)
     {
     errcode err;
     errcode ecode2;
@@ -3780,9 +3759,8 @@ static int streamOPget_lineno_own_init = 0;
 
 /**** BEGIN PROCEDURE get_lineno ****/
 
-errcode streamOPget_lineno(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_lineno(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3873,9 +3851,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_lineno ****/
 
-errcode streamOPset_lineno(st, ln)
-CLUREF st;
-CLUREF ln;
+errcode
+streamOPset_lineno(CLUREF st, CLUREF ln)
     {
     errcode err;
     errcode ecode2;
@@ -3899,8 +3876,8 @@ CLUREF ln;
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode streamOPreset(st)
-CLUREF st;
+errcode
+streamOPreset(CLUREF st)
     {
     errcode err;
     errcode ecode2;
@@ -4161,8 +4138,8 @@ CLUREF st;
 
 /**** BEGIN PROCEDURE flush ****/
 
-errcode streamOPflush(st)
-CLUREF st;
+errcode
+streamOPflush(CLUREF st)
     {
     errcode err;
     errcode ecode2;
@@ -4316,9 +4293,8 @@ CLUREF st;
 
 /**** BEGIN PROCEDURE get_line_length ****/
 
-errcode streamOPget_line_length(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_line_length(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4383,9 +4359,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_page_length ****/
 
-errcode streamOPget_page_length(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_page_length(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4451,9 +4426,8 @@ static int streamOPget_date_own_init = 0;
 
 /**** BEGIN PROCEDURE get_date ****/
 
-errcode streamOPget_date(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_date(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4541,9 +4515,8 @@ static int streamOPset_date_own_init = 0;
 
 /**** BEGIN PROCEDURE set_date ****/
 
-errcode streamOPset_date(st, ndate)
-CLUREF st;
-CLUREF ndate;
+errcode
+streamOPset_date(CLUREF st, CLUREF ndate)
     {
     errcode err;
     errcode ecode2;
@@ -4576,9 +4549,8 @@ static int streamOPget_name_own_init = 0;
 
 /**** BEGIN PROCEDURE get_name ****/
 
-errcode streamOPget_name(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_name(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4635,8 +4607,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE close ****/
 
-errcode streamOPclose(st)
-CLUREF st;
+errcode
+streamOPclose(CLUREF st)
     {
     errcode err;
     errcode ecode2;
@@ -4873,8 +4845,8 @@ CLUREF st;
 
 /**** BEGIN PROCEDURE abort ****/
 
-errcode streamOPabort(st)
-CLUREF st;
+errcode
+streamOPabort(CLUREF st)
     {
     errcode err;
     errcode ecode2;
@@ -5094,9 +5066,8 @@ CLUREF st;
 
 /**** BEGIN PROCEDURE is_closed ****/
 
-errcode streamOPis_closed(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPis_closed(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5132,9 +5103,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE is_terminal ****/
 
-errcode streamOPis_terminal(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPis_terminal(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5171,9 +5141,8 @@ static int streamOPgetl_own_init = 0;
 
 /**** BEGIN PROCEDURE getl ****/
 
-errcode streamOPgetl(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPgetl(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5444,9 +5413,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE putl ****/
 
-errcode streamOPputl(st, line)
-CLUREF st;
-CLUREF line;
+errcode
+streamOPputl(CLUREF st, CLUREF line)
     {
     errcode err;
     errcode ecode2;
@@ -5495,10 +5463,8 @@ static int streamOPgets_own_init = 0;
 
 /**** BEGIN PROCEDURE gets ****/
 
-errcode streamOPgets(st, term, ret_1)
-CLUREF st;
-CLUREF term;
-CLUREF *ret_1;
+errcode
+streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5756,10 +5722,8 @@ static int streamOPgets_image_own_init = 0;
 
 /**** BEGIN PROCEDURE gets_image ****/
 
-errcode streamOPgets_image(st, term, ret_1)
-CLUREF st;
-CLUREF term;
-CLUREF *ret_1;
+errcode
+streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5967,10 +5931,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE tty_get1 ****/
 
-errcode streamOPtty_get1(tb, image, ret_1)
-CLUREF tb;
-CLUREF image;
-CLUREF *ret_1;
+errcode
+streamOPtty_get1(CLUREF tb, CLUREF image, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6164,11 +6126,8 @@ CLUREF streamOPtty_getOPinuse;
 
 /**** BEGIN PROCEDURE tty_get ****/
 
-errcode streamOPtty_get(tb, term, image, ret_1)
-CLUREF tb;
-CLUREF term;
-CLUREF image;
-CLUREF *ret_1;
+errcode
+streamOPtty_get(CLUREF tb, CLUREF term, CLUREF image, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6371,10 +6330,8 @@ static int streamOPstr_get_own_init = 0;
 
 /**** BEGIN PROCEDURE str_get ****/
 
-errcode streamOPstr_get(sb, term, ret_1)
-CLUREF sb;
-CLUREF term;
-CLUREF *ret_1;
+errcode
+streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6648,9 +6605,8 @@ static int streamOPputs_own_init = 0;
 
 /**** BEGIN PROCEDURE puts ****/
 
-errcode streamOPputs(st, s)
-CLUREF st;
-CLUREF s;
+errcode
+streamOPputs(CLUREF st, CLUREF s)
     {
     struct {
         errcode err;
@@ -6859,9 +6815,8 @@ static int streamOPputs_image_own_init = 0;
 
 /**** BEGIN PROCEDURE puts_image ****/
 
-errcode streamOPputs_image(st, s)
-CLUREF st;
-CLUREF s;
+errcode
+streamOPputs_image(CLUREF st, CLUREF s)
     {
     struct {
         errcode err;
@@ -7060,9 +7015,8 @@ struct {
 
 /**** BEGIN PROCEDURE tty_put1 ****/
 
-errcode streamOPtty_put1(tb, c)
-CLUREF tb;
-CLUREF c;
+errcode
+streamOPtty_put1(CLUREF tb, CLUREF c)
     {
     errcode err;
     errcode ecode2;
@@ -7164,10 +7118,8 @@ CLUREF c;
 
 /**** BEGIN PROCEDURE tty_put ****/
 
-errcode streamOPtty_put(tb, s, image)
-CLUREF tb;
-CLUREF s;
-CLUREF image;
+errcode
+streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
     {
     errcode err;
     errcode ecode2;
@@ -7306,10 +7258,8 @@ extern errcode streamOPputzero_IB_1();
 
 /**** BEGIN PROCEDURE putzero ****/
 
-errcode streamOPputzero(st, s, size)
-CLUREF st;
-CLUREF s;
-CLUREF size;
+errcode
+streamOPputzero(CLUREF st, CLUREF s, CLUREF size)
     {
     struct {
         errcode err;
@@ -7535,10 +7485,8 @@ struct {
 
 /**** BEGIN PROCEDURE putleft ****/
 
-errcode streamOPputleft(st, s, size)
-CLUREF st;
-CLUREF s;
-CLUREF size;
+errcode
+streamOPputleft(CLUREF st, CLUREF s, CLUREF size)
     {
     errcode err;
     errcode ecode2;
@@ -7620,10 +7568,8 @@ CLUREF size;
 
 /**** BEGIN PROCEDURE putright ****/
 
-errcode streamOPputright(st, s, size)
-CLUREF st;
-CLUREF s;
-CLUREF size;
+errcode
+streamOPputright(CLUREF st, CLUREF s, CLUREF size)
     {
     errcode err;
     errcode ecode2;
@@ -7705,9 +7651,8 @@ CLUREF size;
 
 /**** BEGIN PROCEDURE putspace ****/
 
-errcode streamOPputspace(st, len)
-CLUREF st;
-CLUREF len;
+errcode
+streamOPputspace(CLUREF st, CLUREF len)
     {
     errcode err;
     errcode ecode2;
@@ -7777,9 +7722,8 @@ static int streamOPcreate_input_own_init = 0;
 
 /**** BEGIN PROCEDURE create_input ****/
 
-errcode streamOPcreate_input(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+streamOPcreate_input(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -7877,8 +7821,8 @@ static int streamOPcreate_output_own_init = 0;
 
 /**** BEGIN PROCEDURE create_output ****/
 
-errcode streamOPcreate_output(ret_1)
-CLUREF *ret_1;
+errcode
+streamOPcreate_output(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -7931,9 +7875,8 @@ static int streamOPget_contents_own_init = 0;
 
 /**** BEGIN PROCEDURE get_contents ****/
 
-errcode streamOPget_contents(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_contents(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -7994,10 +7937,8 @@ static int streamOPgetbuf_own_init = 0;
 
 /**** BEGIN PROCEDURE getbuf ****/
 
-errcode streamOPgetbuf(st, term, ret_1)
-CLUREF st;
-CLUREF term;
-CLUREF *ret_1;
+errcode
+streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -8237,10 +8178,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE lines ****/
 
-errcode streamOPlines(s, i, ret_1)
-CLUREF s;
-CLUREF i;
-CLUREF *ret_1;
+errcode
+streamOPlines(CLUREF s, CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -8316,10 +8255,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE script ****/
 
-errcode streamOPscript(st, s, image)
-CLUREF st;
-CLUREF s;
-CLUREF image;
+errcode
+streamOPscript(CLUREF st, CLUREF s, CLUREF image)
     {
     errcode err;
     errcode ecode2;
@@ -8387,10 +8324,8 @@ static int streamOPedit_own_init = 0;
 
 /**** BEGIN PROCEDURE edit ****/
 
-errcode streamOPedit(tb, term, ret_1)
-CLUREF tb;
-CLUREF term;
-CLUREF *ret_1;
+errcode
+streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -9241,9 +9176,8 @@ static int streamOPecho_own_init = 0;
 
 /**** BEGIN PROCEDURE echo ****/
 
-errcode streamOPecho(ch, c)
-CLUREF ch;
-CLUREF c;
+errcode
+streamOPecho(CLUREF ch, CLUREF c)
     {
     errcode err;
     errcode ecode2;
@@ -9434,9 +9368,8 @@ CLUREF c;
 
 /**** BEGIN PROCEDURE rubout ****/
 
-errcode streamOPrubout(tb, ret_1)
-CLUREF tb;
-CLUREF *ret_1;
+errcode
+streamOPrubout(CLUREF tb, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -9701,10 +9634,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE erase ****/
 
-errcode streamOPerase(tb, all, ret_1)
-CLUREF tb;
-CLUREF all;
-CLUREF *ret_1;
+errcode
+streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -10149,9 +10080,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE calc_pos ****/
 
-errcode streamOPcalc_pos(tb, ret_1)
-CLUREF tb;
-CLUREF *ret_1;
+errcode
+streamOPcalc_pos(CLUREF tb, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -10311,10 +10241,8 @@ static int streamOPdisplay_own_init = 0;
 
 /**** BEGIN PROCEDURE display ****/
 
-errcode streamOPdisplay(st, s, ret_1)
-CLUREF st;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+streamOPdisplay(CLUREF st, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -10404,9 +10332,8 @@ static int streamOPmodify_display_own_init = 0;
 
 /**** BEGIN PROCEDURE modify_display ****/
 
-errcode streamOPmodify_display(st, term)
-CLUREF st;
-CLUREF term;
+errcode
+streamOPmodify_display(CLUREF st, CLUREF term)
     {
     errcode err;
     errcode ecode2;
@@ -10481,10 +10408,8 @@ CLUREF term;
 
 /**** BEGIN PROCEDURE ttydsp ****/
 
-errcode streamOPttydsp(tb, s, ret_1)
-CLUREF tb;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -10714,9 +10639,8 @@ static int streamOPget_prompt_own_init = 0;
 
 /**** BEGIN PROCEDURE get_prompt ****/
 
-errcode streamOPget_prompt(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_prompt(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -10777,9 +10701,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_prompt ****/
 
-errcode streamOPset_prompt(st, prompt)
-CLUREF st;
-CLUREF prompt;
+errcode
+streamOPset_prompt(CLUREF st, CLUREF prompt)
     {
     errcode err;
     errcode ecode2;
@@ -10826,9 +10749,8 @@ static int streamOPget_rescan_own_init = 0;
 
 /**** BEGIN PROCEDURE get_rescan ****/
 
-errcode streamOPget_rescan(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_rescan(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -10916,9 +10838,8 @@ static int streamOPset_rescan_own_init = 0;
 
 /**** BEGIN PROCEDURE set_rescan ****/
 
-errcode streamOPset_rescan(st, s)
-CLUREF st;
-CLUREF s;
+errcode
+streamOPset_rescan(CLUREF st, CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -11001,9 +10922,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE get_input_buffered ****/
 
-errcode streamOPget_input_buffered(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_input_buffered(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11079,9 +10999,8 @@ static int streamOPset_input_buffered_own_init = 0;
 
 /**** BEGIN PROCEDURE set_input_buffered ****/
 
-errcode streamOPset_input_buffered(st, flag)
-CLUREF st;
-CLUREF flag;
+errcode
+streamOPset_input_buffered(CLUREF st, CLUREF flag)
     {
     errcode err;
     errcode ecode2;
@@ -11158,9 +11077,8 @@ CLUREF flag;
 
 /**** BEGIN PROCEDURE get_output_buffered ****/
 
-errcode streamOPget_output_buffered(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_output_buffered(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11251,9 +11169,8 @@ static int streamOPset_output_buffered_own_init = 0;
 
 /**** BEGIN PROCEDURE set_output_buffered ****/
 
-errcode streamOPset_output_buffered(st, flag)
-CLUREF st;
-CLUREF flag;
+errcode
+streamOPset_output_buffered(CLUREF st, CLUREF flag)
     {
     errcode err;
     errcode ecode2;
@@ -11381,9 +11298,8 @@ CLUREF flag;
 
 /**** BEGIN PROCEDURE get_eof_flag ****/
 
-errcode streamOPget_eof_flag(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_eof_flag(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11455,9 +11371,8 @@ static int streamOPset_eof_flag_own_init = 0;
 
 /**** BEGIN PROCEDURE set_eof_flag ****/
 
-errcode streamOPset_eof_flag(st, eofok)
-CLUREF st;
-CLUREF eofok;
+errcode
+streamOPset_eof_flag(CLUREF st, CLUREF eofok)
     {
     errcode err;
     errcode ecode2;
@@ -11536,10 +11451,8 @@ CLUREF eofok;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode streamOPequal(x, y, ret_1)
-CLUREF x;
-CLUREF y;
-CLUREF *ret_1;
+errcode
+streamOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11573,10 +11486,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode streamOPsimilar(x, y, ret_1)
-CLUREF x;
-CLUREF y;
-CLUREF *ret_1;
+errcode
+streamOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11610,9 +11521,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode streamOPcopy(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+streamOPcopy(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11645,9 +11555,8 @@ static int streamOPprint_own_init = 0;
 
 /**** BEGIN PROCEDURE print ****/
 
-errcode streamOPprint(x, ps)
-CLUREF x;
-CLUREF ps;
+errcode
+streamOPprint(CLUREF x, CLUREF ps)
     {
     errcode err;
     errcode ecode2;
@@ -11778,9 +11687,8 @@ static int streamOPget_chan_own_init = 0;
 
 /**** BEGIN PROCEDURE get_chan ****/
 
-errcode streamOPget_chan(st, ret_1)
-CLUREF st;
-CLUREF *ret_1;
+errcode
+streamOPget_chan(CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11871,10 +11779,8 @@ CLUREF *ret_1;
 
 /**** BEGIN ITERATOR _open_streams ****/
 
-errcode streamOP_open_streams(proc, user_locals, iecode)
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+streamOP_open_streams(errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     errcode err;
@@ -11941,7 +11847,8 @@ errcode *iecode;
 
 /**** BEGIN PROCEDURE _close_all ****/
 
-errcode streamOP_close_all()
+errcode
+streamOP_close_all()
     {
     errcode err;
     errcode ecode2;

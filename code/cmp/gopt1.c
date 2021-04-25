@@ -35,9 +35,8 @@ static int g_qinv_test_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qinv_test ****/
 
-errcode g_qinv_test(exp, ret_1)
-CLUREF exp;
-CLUREF *ret_1;
+errcode
+g_qinv_test(CLUREF exp, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -460,11 +459,8 @@ static int g_qinv_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qinv ****/
 
-errcode g_qinv(e, exp, args, results)
-CLUREF e;
-CLUREF exp;
-CLUREF args;
-CLUREF results;
+errcode
+g_qinv(CLUREF e, CLUREF exp, CLUREF args, CLUREF results)
     {
     errcode err;
     errcode ecode2;
@@ -702,11 +698,8 @@ static int g_qiinv_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qiinv ****/
 
-errcode g_qiinv(e, exp, args, ibname)
-CLUREF e;
-CLUREF exp;
-CLUREF args;
-CLUREF ibname;
+errcode
+g_qiinv(CLUREF e, CLUREF exp, CLUREF args, CLUREF ibname)
     {
     errcode err;
     errcode ecode2;
@@ -841,9 +834,8 @@ extern errcode g_inline_iter_test_and_info();
 
 /**** BEGIN PROCEDURE g_inline_iter_test ****/
 
-errcode g_inline_iter_test(exp, ret_1)
-CLUREF exp;
-CLUREF *ret_1;
+errcode
+g_inline_iter_test(CLUREF exp, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -896,11 +888,8 @@ static int g_inline_iter_test_and_info_own_init = 0;
 
 /**** BEGIN PROCEDURE g_inline_iter_test_and_info ****/
 
-errcode g_inline_iter_test_and_info(exp, ret_1, ret_2, ret_3)
-CLUREF exp;
-CLUREF *ret_1;
-CLUREF *ret_2;
-CLUREF *ret_3;
+errcode
+g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     {
     errcode err;
     errcode ecode2;
@@ -1252,10 +1241,8 @@ static int g_inline_iter_own_init = 0;
 
 /**** BEGIN PROCEDURE g_inline_iter ****/
 
-errcode g_inline_iter(e, fstmt, ret_1)
-CLUREF e;
-CLUREF fstmt;
-CLUREF *ret_1;
+errcode
+g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2698,9 +2685,8 @@ static int g_qselop_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qselop ****/
 
-errcode g_qselop(nm, ret_1)
-CLUREF nm;
-CLUREF *ret_1;
+errcode
+g_qselop(CLUREF nm, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2829,12 +2815,8 @@ static int g_qapply_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qapply ****/
 
-errcode g_qapply(e, exp, args, results, ret_1)
-CLUREF e;
-CLUREF exp;
-CLUREF args;
-CLUREF results;
-CLUREF *ret_1;
+errcode
+g_qapply(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3057,12 +3039,8 @@ static int g_qop_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qop ****/
 
-errcode g_qop(e, exp, args, results, ret_1)
-CLUREF e;
-CLUREF exp;
-CLUREF args;
-CLUREF results;
-CLUREF *ret_1;
+errcode
+g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6660,12 +6638,8 @@ static int g_qsel_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qsel ****/
 
-errcode g_qsel(e, exp, args, results, ret_1)
-CLUREF e;
-CLUREF exp;
-CLUREF args;
-CLUREF results;
-CLUREF *ret_1;
+errcode
+g_qsel(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -7294,9 +7268,8 @@ extern errcode stringOPfetch();
 
 /**** BEGIN PROCEDURE is_temp ****/
 
-errcode is_temp(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+is_temp(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -7392,10 +7365,8 @@ static int g_qtagcase_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qtagcase ****/
 
-errcode g_qtagcase(e, stmt, ret_1)
-CLUREF e;
-CLUREF stmt;
-CLUREF *ret_1;
+errcode
+g_qtagcase(CLUREF e, CLUREF stmt, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -7927,9 +7898,8 @@ static int g_expr_plain_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr_plain ****/
 
-errcode g_expr_plain(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_expr_plain(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;
@@ -8021,9 +7991,8 @@ static int g_expr2a_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr2a ****/
 
-errcode g_expr2a(e, exp)
-CLUREF e;
-CLUREF exp;
+errcode
+g_expr2a(CLUREF e, CLUREF exp)
     {
     errcode err;
     errcode ecode2;

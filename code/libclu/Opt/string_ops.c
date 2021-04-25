@@ -8,10 +8,8 @@ extern errcode padlc();
 
 /**** BEGIN PROCEDURE padl ****/
 
-errcode padl(s, w, ret_1)
-CLUREF s;
-CLUREF w;
-CLUREF *ret_1;
+errcode
+padl(CLUREF s, CLUREF w, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -46,10 +44,8 @@ extern errcode padrc();
 
 /**** BEGIN PROCEDURE padr ****/
 
-errcode padr(s, w, ret_1)
-CLUREF s;
-CLUREF w;
-CLUREF *ret_1;
+errcode
+padr(CLUREF s, CLUREF w, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -87,11 +83,8 @@ extern errcode stringOPconcat();
 
 /**** BEGIN PROCEDURE padlc ****/
 
-errcode padlc(s, w, c, ret_1)
-CLUREF s;
-CLUREF w;
-CLUREF c;
-CLUREF *ret_1;
+errcode
+padlc(CLUREF s, CLUREF w, CLUREF c, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -150,11 +143,8 @@ extern errcode stringOPappend();
 
 /**** BEGIN PROCEDURE padrc ****/
 
-errcode padrc(s, w, c, ret_1)
-CLUREF s;
-CLUREF w;
-CLUREF c;
-CLUREF *ret_1;
+errcode
+padrc(CLUREF s, CLUREF w, CLUREF c, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -207,9 +197,8 @@ extern errcode charOPc2i();
 
 /**** BEGIN PROCEDURE upper ****/
 
-errcode upper(c, ret_1)
-CLUREF c;
-CLUREF *ret_1;
+errcode
+upper(CLUREF c, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -277,9 +266,8 @@ extern errcode intOPadd();
 
 /**** BEGIN PROCEDURE lower ****/
 
-errcode lower(c, ret_1)
-CLUREF c;
-CLUREF *ret_1;
+errcode
+lower(CLUREF c, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -352,9 +340,8 @@ extern errcode stringOPac2s();
 
 /**** BEGIN PROCEDURE supper ****/
 
-errcode supper(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+supper(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -427,9 +414,8 @@ extern errcode lower();
 
 /**** BEGIN PROCEDURE slower ****/
 
-errcode slower(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+slower(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -505,10 +491,8 @@ extern errcode verify_IB_1();
 
 /**** BEGIN PROCEDURE verify ****/
 
-errcode verify(s, chars, ret_1)
-CLUREF s;
-CLUREF chars;
-CLUREF *ret_1;
+errcode
+verify(CLUREF s, CLUREF chars, CLUREF *ret_1)
     {
     struct {
         errcode err;
@@ -604,9 +588,8 @@ extern errcode stringOPrest();
 
 /**** BEGIN PROCEDURE remblank ****/
 
-errcode remblank(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+remblank(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

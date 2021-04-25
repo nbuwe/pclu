@@ -57,13 +57,8 @@ OWN_req array_replace_ownreqs = {sizeof(array_replace_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE array_replace ****/
 
-errcode array_replace(a1, b1, w1, a2, b2, w2)
-CLUREF a1;
-CLUREF b1;
-CLUREF w1;
-CLUREF a2;
-CLUREF b2;
-CLUREF w2;
+errcode
+array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
     {
     errcode err;
     errcode ecode2;

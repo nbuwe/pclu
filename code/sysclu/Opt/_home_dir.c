@@ -50,9 +50,8 @@ CLUREF _home_dirOPhave;
 
 /**** BEGIN PROCEDURE _home_dir ****/
 
-errcode _home_dir(user, ret_1)
-CLUREF user;
-CLUREF *ret_1;
+errcode
+_home_dir(CLUREF user, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

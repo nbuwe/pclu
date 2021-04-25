@@ -7,7 +7,8 @@
 
 /**** BEGIN PROCEDURE _cause_wrong_type ****/
 
-errcode _cause_wrong_type()
+errcode
+_cause_wrong_type()
     {
     errcode err;
     errcode ecode2;

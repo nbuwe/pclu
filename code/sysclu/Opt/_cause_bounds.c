@@ -7,7 +7,8 @@
 
 /**** BEGIN PROCEDURE _cause_bounds ****/
 
-errcode _cause_bounds()
+errcode
+_cause_bounds()
     {
     errcode err;
     errcode ecode2;

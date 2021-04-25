@@ -12,10 +12,8 @@ extern errcode intOPadd();
 
 /**** BEGIN PROCEDURE _qindexc ****/
 
-errcode _qindexc(c, s, ret_1)
-CLUREF c;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+_qindexc(CLUREF c, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

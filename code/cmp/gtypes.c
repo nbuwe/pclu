@@ -58,7 +58,8 @@ errcode typ_own_init_proc()
 
 /**** BEGIN PROCEDURE begin_local_idn_types ****/
 
-errcode typOPbegin_local_idn_types()
+errcode
+typOPbegin_local_idn_types()
     {
     errcode err;
     errcode ecode2;
@@ -95,8 +96,8 @@ errcode typOPbegin_local_idn_types()
 
 /**** BEGIN PROCEDURE fix_typelist ****/
 
-errcode typOPfix_typelist(d)
-CLUREF d;
+errcode
+typOPfix_typelist(CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -140,8 +141,8 @@ CLUREF d;
 
 /**** BEGIN PROCEDURE fix_type ****/
 
-errcode typOPfix_type(d)
-CLUREF d;
+errcode
+typOPfix_type(CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -199,8 +200,8 @@ CLUREF d;
 
 /**** BEGIN PROCEDURE fix_own_typelist ****/
 
-errcode typOPfix_own_typelist(d)
-CLUREF d;
+errcode
+typOPfix_own_typelist(CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -244,8 +245,8 @@ CLUREF d;
 
 /**** BEGIN PROCEDURE fix_own_type ****/
 
-errcode typOPfix_own_type(d)
-CLUREF d;
+errcode
+typOPfix_own_type(CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -303,8 +304,8 @@ CLUREF d;
 
 /**** BEGIN PROCEDURE fix_parm_typelist ****/
 
-errcode typOPfix_parm_typelist(d)
-CLUREF d;
+errcode
+typOPfix_parm_typelist(CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -349,8 +350,8 @@ static int typOPfix_parm_type_own_init = 0;
 
 /**** BEGIN PROCEDURE fix_parm_type ****/
 
-errcode typOPfix_parm_type(d)
-CLUREF d;
+errcode
+typOPfix_parm_type(CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -459,7 +460,8 @@ CLUREF d;
 
 /**** BEGIN PROCEDURE undo_local_idn_types ****/
 
-errcode typOPundo_local_idn_types()
+errcode
+typOPundo_local_idn_types()
     {
     errcode err;
     errcode ecode2;
@@ -513,7 +515,8 @@ errcode typOPundo_local_idn_types()
 
 /**** BEGIN PROCEDURE undo_global_idn_types ****/
 
-errcode typOPundo_global_idn_types()
+errcode
+typOPundo_global_idn_types()
     {
     errcode err;
     errcode ecode2;
@@ -668,9 +671,8 @@ static int sigOPname_own_init = 0;
 
 /**** BEGIN PROCEDURE name ****/
 
-errcode sigOPname(n, ret_1)
-CLUREF n;
-CLUREF *ret_1;
+errcode
+sigOPname(CLUREF n, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -749,9 +751,8 @@ static int sigOPlookup_own_init = 0;
 
 /**** BEGIN PROCEDURE lookup ****/
 
-errcode sigOPlookup(n, ret_1)
-CLUREF n;
-CLUREF *ret_1;
+errcode
+sigOPlookup(CLUREF n, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -843,9 +844,8 @@ static int sigOPindex_own_init = 0;
 
 /**** BEGIN PROCEDURE index ****/
 
-errcode sigOPindex(n, ret_1)
-CLUREF n;
-CLUREF *ret_1;
+errcode
+sigOPindex(CLUREF n, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -939,7 +939,8 @@ static int sigOPinit_known_own_init = 0;
 
 /**** BEGIN PROCEDURE init_known ****/
 
-errcode sigOPinit_known()
+errcode
+sigOPinit_known()
     {
     errcode err;
     errcode ecode2;
@@ -1202,9 +1203,8 @@ errcode int_const_own_init_proc()
 
 /**** BEGIN PROCEDURE exists ****/
 
-errcode int_constOPexists(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+int_constOPexists(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1344,7 +1344,8 @@ static int g_xrefOPsetup_own_init = 0;
 
 /**** BEGIN PROCEDURE setup ****/
 
-errcode g_xrefOPsetup()
+errcode
+g_xrefOPsetup()
     {
     errcode err;
     errcode ecode2;
@@ -1553,9 +1554,8 @@ static int g_xrefOPlookup_own_init = 0;
 
 /**** BEGIN PROCEDURE lookup ****/
 
-errcode g_xrefOPlookup(tyo, nm)
-CLUREF tyo;
-CLUREF nm;
+errcode
+g_xrefOPlookup(CLUREF tyo, CLUREF nm)
     {
     errcode err;
     errcode ecode2;
@@ -1882,8 +1882,8 @@ static int g_xrefOPadd_ent_own_init = 0;
 
 /**** BEGIN PROCEDURE add_ent ****/
 
-errcode g_xrefOPadd_ent(refs)
-CLUREF refs;
+errcode
+g_xrefOPadd_ent(CLUREF refs)
     {
     errcode err;
     errcode ecode2;
@@ -2171,7 +2171,8 @@ static int g_xrefOPflush_own_init = 0;
 
 /**** BEGIN PROCEDURE flush ****/
 
-errcode g_xrefOPflush()
+errcode
+g_xrefOPflush()
     {
     errcode err;
     errcode ecode2;
@@ -2368,9 +2369,8 @@ CLUREF externalizeOPsep_size;
 
 /**** BEGIN PROCEDURE externalize ****/
 
-errcode externalize(nm, ret_1)
-CLUREF nm;
-CLUREF *ret_1;
+errcode
+externalize(CLUREF nm, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2475,9 +2475,8 @@ extern errcode handlersOPdone();
 
 /**** BEGIN PROCEDURE g_check_handlers ****/
 
-errcode g_check_handlers(e, stmts)
-CLUREF e;
-CLUREF stmts;
+errcode
+g_check_handlers(CLUREF e, CLUREF stmts)
     {
     errcode err;
     errcode ecode2;
@@ -2534,8 +2533,8 @@ static int g_check_handlers_main_own_init = 0;
 
 /**** BEGIN PROCEDURE g_check_handlers_main ****/
 
-errcode g_check_handlers_main(stmts)
-CLUREF stmts;
+errcode
+g_check_handlers_main(CLUREF stmts)
     {
     errcode err;
     errcode ecode2;
@@ -3097,8 +3096,8 @@ CLUREF stmts;
 
 /**** BEGIN PROCEDURE g_check_handlers_exprlist ****/
 
-errcode g_check_handlers_exprlist(el)
-CLUREF el;
+errcode
+g_check_handlers_exprlist(CLUREF el)
     {
     errcode err;
     errcode ecode2;
@@ -3142,8 +3141,8 @@ extern errcode oneofOPvalue_2();
 
 /**** BEGIN PROCEDURE g_check_handlers_exprs ****/
 
-errcode g_check_handlers_exprs(ex)
-CLUREF ex;
+errcode
+g_check_handlers_exprs(CLUREF ex)
     {
     errcode err;
     errcode ecode2;
@@ -3440,8 +3439,8 @@ errcode handlers_own_init_proc()
 
 /**** BEGIN PROCEDURE init ****/
 
-errcode handlersOPinit(ge)
-CLUREF ge;
+errcode
+handlersOPinit(CLUREF ge)
     {
     errcode err;
     errcode ecode2;
@@ -3491,8 +3490,8 @@ CLUREF ge;
 
 /**** BEGIN PROCEDURE set_lineno ****/
 
-errcode handlersOPset_lineno(l)
-CLUREF l;
+errcode
+handlersOPset_lineno(CLUREF l)
     {
     errcode err;
     errcode ecode2;
@@ -3522,7 +3521,8 @@ static int handlersOPdone_own_init = 0;
 
 /**** BEGIN PROCEDURE done ****/
 
-errcode handlersOPdone()
+errcode
+handlersOPdone()
     {
     errcode err;
     errcode ecode2;
@@ -3622,7 +3622,8 @@ errcode handlersOPdone()
 
 /**** BEGIN PROCEDURE enter ****/
 
-errcode handlersOPenter()
+errcode
+handlersOPenter()
     {
     errcode err;
     errcode ecode2;
@@ -3667,9 +3668,8 @@ static int handlersOPleave_resig_own_init = 0;
 
 /**** BEGIN PROCEDURE leave_resig ****/
 
-errcode handlersOPleave_resig(r, line)
-CLUREF r;
-CLUREF line;
+errcode
+handlersOPleave_resig(CLUREF r, CLUREF line)
     {
     errcode err;
     errcode ecode2;
@@ -3863,8 +3863,8 @@ static int handlersOPleave_except_own_init = 0;
 
 /**** BEGIN PROCEDURE leave_except ****/
 
-errcode handlersOPleave_except(exc)
-CLUREF exc;
+errcode
+handlersOPleave_except(CLUREF exc)
     {
     errcode err;
     errcode ecode2;
@@ -4086,8 +4086,8 @@ static int handlersOPnew_signals_own_init = 0;
 
 /**** BEGIN PROCEDURE new_signals ****/
 
-errcode handlersOPnew_signals(ex)
-CLUREF ex;
+errcode
+handlersOPnew_signals(CLUREF ex)
     {
     errcode err;
     errcode ecode2;
@@ -4824,9 +4824,8 @@ CLUREF ex;
 
 /**** BEGIN PROCEDURE add_signal ****/
 
-errcode handlersOPadd_signal(sig, procname)
-CLUREF sig;
-CLUREF procname;
+errcode
+handlersOPadd_signal(CLUREF sig, CLUREF procname)
     {
     errcode err;
     errcode ecode2;
@@ -4900,9 +4899,8 @@ extern errcode recordOPget_9();
 
 /**** BEGIN PROCEDURE alt_tinfo_op_sigs ****/
 
-errcode alt_tinfo_op_sigs(op, ret_1)
-CLUREF op;
-CLUREF *ret_1;
+errcode
+alt_tinfo_op_sigs(CLUREF op, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4989,10 +4987,8 @@ static int tinfo_op_sigs_own_init = 0;
 
 /**** BEGIN PROCEDURE tinfo_op_sigs ****/
 
-errcode tinfo_op_sigs(t, op, ret_1)
-CLUREF t;
-CLUREF op;
-CLUREF *ret_1;
+errcode
+tinfo_op_sigs(CLUREF t, CLUREF op, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

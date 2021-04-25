@@ -45,10 +45,8 @@ static int c_expr_own_init = 0;
 
 /**** BEGIN PROCEDURE c_expr ****/
 
-errcode c_expr(e, x, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF *ret_1;
+errcode
+c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -512,11 +510,8 @@ static int c_idn_own_init = 0;
 
 /**** BEGIN PROCEDURE c_idn ****/
 
-errcode c_idn(e, x, i, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF i;
-CLUREF *ret_1;
+errcode
+c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -814,11 +809,8 @@ static int c_infix_own_init = 0;
 
 /**** BEGIN PROCEDURE c_infix ****/
 
-errcode c_infix(e, x, fix, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF fix;
-CLUREF *ret_1;
+errcode
+c_infix(CLUREF e, CLUREF x, CLUREF fix, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -910,12 +902,8 @@ extern errcode oneofOPmake_16();
 
 /**** BEGIN PROCEDURE c_sugar ****/
 
-errcode c_sugar(e, x, n, args, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF n;
-CLUREF args;
-CLUREF *ret_1;
+errcode
+c_sugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1004,12 +992,8 @@ extern errcode e_expr();
 
 /**** BEGIN PROCEDURE c_xsugar ****/
 
-errcode c_xsugar(e, x, n, args, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF n;
-CLUREF args;
-CLUREF *ret_1;
+errcode
+c_xsugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1174,11 +1158,8 @@ static int c_xinvoke_own_init = 0;
 
 /**** BEGIN PROCEDURE c_xinvoke ****/
 
-errcode c_xinvoke(e, inv, done_first, ret_1)
-CLUREF e;
-CLUREF inv;
-CLUREF done_first;
-CLUREF *ret_1;
+errcode
+c_xinvoke(CLUREF e, CLUREF inv, CLUREF done_first, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1273,11 +1254,8 @@ static int c_condop_own_init = 0;
 
 /**** BEGIN PROCEDURE c_condop ****/
 
-errcode c_condop(e, cx, op, ret_1)
-CLUREF e;
-CLUREF cx;
-CLUREF op;
-CLUREF *ret_1;
+errcode
+c_condop(CLUREF e, CLUREF cx, CLUREF op, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1405,11 +1383,8 @@ static int c_arraycons_own_init = 0;
 
 /**** BEGIN PROCEDURE c_arraycons ****/
 
-errcode c_arraycons(e, x, cons, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF cons;
-CLUREF *ret_1;
+errcode
+c_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1660,11 +1635,8 @@ static int c_acons_sugar_own_init = 0;
 
 /**** BEGIN PROCEDURE c_acons_sugar ****/
 
-errcode c_acons_sugar(e, x, cons, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF cons;
-CLUREF *ret_1;
+errcode
+c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1954,11 +1926,8 @@ static int c_element_type_own_init = 0;
 
 /**** BEGIN PROCEDURE c_element_type ****/
 
-errcode c_element_type(e, t, ret_1, ret_2)
-CLUREF e;
-CLUREF t;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+c_element_type(CLUREF e, CLUREF t, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -2142,11 +2111,8 @@ static int c_selectcons_own_init = 0;
 
 /**** BEGIN PROCEDURE c_selectcons ****/
 
-errcode c_selectcons(e, x, cons, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF cons;
-CLUREF *ret_1;
+errcode
+c_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2438,11 +2404,8 @@ static int c_scons_sugar_own_init = 0;
 
 /**** BEGIN PROCEDURE c_scons_sugar ****/
 
-errcode c_scons_sugar(e, x, cons, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF cons;
-CLUREF *ret_1;
+errcode
+c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2751,10 +2714,8 @@ static int c_select_specs_own_init = 0;
 
 /**** BEGIN PROCEDURE c_select_specs ****/
 
-errcode c_select_specs(e, t, ret_1)
-CLUREF e;
-CLUREF t;
-CLUREF *ret_1;
+errcode
+c_select_specs(CLUREF e, CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2920,12 +2881,8 @@ static int c_sel_own_init = 0;
 
 /**** BEGIN PROCEDURE c_sel ****/
 
-errcode c_sel(e, specs, used, n, ret_1)
-CLUREF e;
-CLUREF specs;
-CLUREF used;
-CLUREF n;
-CLUREF *ret_1;
+errcode
+c_sel(CLUREF e, CLUREF specs, CLUREF used, CLUREF n, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3063,10 +3020,8 @@ extern errcode c_constlist();
 
 /**** BEGIN PROCEDURE c_clusterop ****/
 
-errcode c_clusterop(e, op, ret_1)
-CLUREF e;
-CLUREF op;
-CLUREF *ret_1;
+errcode
+c_clusterop(CLUREF e, CLUREF op, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3128,10 +3083,8 @@ static int c_clusterop1_own_init = 0;
 
 /**** BEGIN PROCEDURE c_clusterop1 ****/
 
-errcode c_clusterop1(e, op, ret_1)
-CLUREF e;
-CLUREF op;
-CLUREF *ret_1;
+errcode
+c_clusterop1(CLUREF e, CLUREF op, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

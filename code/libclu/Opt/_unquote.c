@@ -16,9 +16,8 @@ extern errcode stringOPrest();
 
 /**** BEGIN PROCEDURE _unquote ****/
 
-errcode _unquote(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+_unquote(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

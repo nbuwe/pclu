@@ -108,11 +108,8 @@ enter_own_init_proc();
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode tableOPcreate(size, hasher, comper, ret_1)
-CLUREF size;
-CLUREF hasher;
-CLUREF comper;
-CLUREF *ret_1;
+errcode
+tableOPcreate(CLUREF size, CLUREF hasher, CLUREF comper, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -196,8 +193,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE flush ****/
 
-errcode tableOPflush(t)
-CLUREF t;
+errcode
+tableOPflush(CLUREF t)
     {
     errcode err;
     errcode ecode2;
@@ -265,9 +262,8 @@ CLUREF t;
 
 /**** BEGIN PROCEDURE cond_flush ****/
 
-errcode tableOPcond_flush(t, pred)
-CLUREF t;
-CLUREF pred;
+errcode
+tableOPcond_flush(CLUREF t, CLUREF pred)
     {
     errcode err;
     errcode ecode2;
@@ -439,10 +435,8 @@ OWN_req table_op_pcond_flush_ownreqs = {sizeof(table_op_pcond_flush_OWN_DEFN), 1
 
 /**** BEGIN PROCEDURE pcond_flush ****/
 
-errcode tableOPpcond_flush(t, pred, thing)
-CLUREF t;
-CLUREF pred;
-CLUREF thing;
+errcode
+tableOPpcond_flush(CLUREF t, CLUREF pred, CLUREF thing)
     {
     errcode err;
     errcode ecode2;
@@ -593,10 +587,8 @@ CLUREF thing;
 
 /**** BEGIN PROCEDURE bind ****/
 
-errcode tableOPbind(t, k, v)
-CLUREF t;
-CLUREF k;
-CLUREF v;
+errcode
+tableOPbind(CLUREF t, CLUREF k, CLUREF v)
     {
     errcode err;
     errcode ecode2;
@@ -799,11 +791,8 @@ CLUREF v;
 
 /**** BEGIN PROCEDURE mbind ****/
 
-errcode tableOPmbind(t, k, v, ret_1)
-CLUREF t;
-CLUREF k;
-CLUREF v;
-CLUREF *ret_1;
+errcode
+tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1026,10 +1015,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE alter ****/
 
-errcode tableOPalter(t, k, v)
-CLUREF t;
-CLUREF k;
-CLUREF v;
+errcode
+tableOPalter(CLUREF t, CLUREF k, CLUREF v)
     {
     errcode err;
     errcode ecode2;
@@ -1215,10 +1202,8 @@ CLUREF v;
 
 /**** BEGIN PROCEDURE lookup ****/
 
-errcode tableOPlookup(t, k, ret_1)
-CLUREF t;
-CLUREF k;
-CLUREF *ret_1;
+errcode
+tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1415,11 +1400,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE mlookup ****/
 
-errcode tableOPmlookup(t, k, defv, ret_1)
-CLUREF t;
-CLUREF k;
-CLUREF defv;
-CLUREF *ret_1;
+errcode
+tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1622,11 +1604,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_pair ****/
 
-errcode tableOPget_pair(t, k, ret_1, ret_2)
-CLUREF t;
-CLUREF k;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -1831,10 +1810,8 @@ CLUREF *ret_2;
 
 /**** BEGIN PROCEDURE exists ****/
 
-errcode tableOPexists(t, k, ret_1)
-CLUREF t;
-CLUREF k;
-CLUREF *ret_1;
+errcode
+tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2020,10 +1997,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE remove ****/
 
-errcode tableOPremove(t, k, ret_1)
-CLUREF t;
-CLUREF k;
-CLUREF *ret_1;
+errcode
+tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2196,9 +2171,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE delete ****/
 
-errcode tableOPdelete(t, k)
-CLUREF t;
-CLUREF k;
+errcode
+tableOPdelete(CLUREF t, CLUREF k)
     {
     errcode err;
     errcode ecode2;
@@ -2361,9 +2335,8 @@ CLUREF k;
 
 /**** BEGIN PROCEDURE rehash ****/
 
-errcode tableOPrehash(t, hasher)
-CLUREF t;
-CLUREF hasher;
+errcode
+tableOPrehash(CLUREF t, CLUREF hasher)
     {
     errcode err;
     errcode ecode2;
@@ -2587,11 +2560,8 @@ CLUREF hasher;
 
 /**** BEGIN ITERATOR elements ****/
 
-errcode tableOPelements(t, proc, user_locals, iecode)
-CLUREF t;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+tableOPelements(CLUREF t, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     errcode err;
@@ -2704,9 +2674,8 @@ errcode *iecode;
 
 /**** BEGIN PROCEDURE count ****/
 
-errcode tableOPcount(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+tableOPcount(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2820,9 +2789,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE empty ****/
 
-errcode tableOPempty(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+tableOPempty(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2909,9 +2877,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE sizes ****/
 
-errcode tableOPsizes(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+tableOPsizes(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

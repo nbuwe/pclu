@@ -61,9 +61,8 @@ static int pt_token_own_init = 0;
 
 /**** BEGIN PROCEDURE pt_token ****/
 
-errcode pt_token(t, st)
-CLUREF t;
-CLUREF st;
+errcode
+pt_token(CLUREF t, CLUREF st)
     {
     errcode err;
     errcode ecode2;
@@ -701,9 +700,8 @@ static int typekey_string_own_init = 0;
 
 /**** BEGIN PROCEDURE typekey_string ****/
 
-errcode typekey_string(k, ret_1)
-CLUREF k;
-CLUREF *ret_1;
+errcode
+typekey_string(CLUREF k, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -774,9 +772,8 @@ static int exprkey_string_own_init = 0;
 
 /**** BEGIN PROCEDURE exprkey_string ****/
 
-errcode exprkey_string(k, ret_1)
-CLUREF k;
-CLUREF *ret_1;
+errcode
+exprkey_string(CLUREF k, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -868,9 +865,8 @@ static int stmtkey_string_own_init = 0;
 
 /**** BEGIN PROCEDURE stmtkey_string ****/
 
-errcode stmtkey_string(k, ret_1)
-CLUREF k;
-CLUREF *ret_1;
+errcode
+stmtkey_string(CLUREF k, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1035,9 +1031,8 @@ static int defnkey_string_own_init = 0;
 
 /**** BEGIN PROCEDURE defnkey_string ****/
 
-errcode defnkey_string(k, ret_1)
-CLUREF k;
-CLUREF *ret_1;
+errcode
+defnkey_string(CLUREF k, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1128,9 +1123,8 @@ extern errcode pt_charseq();
 
 /**** BEGIN PROCEDURE pt_str ****/
 
-errcode pt_str(s, st)
-CLUREF s;
-CLUREF st;
+errcode
+pt_str(CLUREF s, CLUREF st)
     {
     errcode err;
     errcode ecode2;
@@ -1188,9 +1182,8 @@ static int pt_char_own_init = 0;
 
 /**** BEGIN PROCEDURE pt_char ****/
 
-errcode pt_char(c, st)
-CLUREF c;
-CLUREF st;
+errcode
+pt_char(CLUREF c, CLUREF st)
     {
     errcode err;
     errcode ecode2;
@@ -1267,10 +1260,8 @@ static int pt_charseq_own_init = 0;
 
 /**** BEGIN PROCEDURE pt_charseq ****/
 
-errcode pt_charseq(s, is_str, st)
-CLUREF s;
-CLUREF is_str;
-CLUREF st;
+errcode
+pt_charseq(CLUREF s, CLUREF is_str, CLUREF st)
     {
     struct {
         errcode err;
@@ -1605,9 +1596,8 @@ static int pt_infixop_own_init = 0;
 
 /**** BEGIN PROCEDURE pt_infixop ****/
 
-errcode pt_infixop(op, st)
-CLUREF op;
-CLUREF st;
+errcode
+pt_infixop(CLUREF op, CLUREF st)
     {
     errcode err;
     errcode ecode2;

@@ -145,10 +145,8 @@ errcode typespec_own_init_proc()
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode typespecOPcreate(ta, id, ret_1)
-CLUREF ta;
-CLUREF id;
-CLUREF *ret_1;
+errcode
+typespecOPcreate(CLUREF ta, CLUREF id, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -184,9 +182,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE is_unknown ****/
 
-errcode typespecOPis_unknown(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+typespecOPis_unknown(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -222,9 +219,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_abs ****/
 
-errcode typespecOPget_abs(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+typespecOPget_abs(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -258,9 +254,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_abs ****/
 
-errcode typespecOPset_abs(t, abs)
-CLUREF t;
-CLUREF abs;
+errcode
+typespecOPset_abs(CLUREF t, CLUREF abs)
     {
     errcode err;
     errcode ecode2;
@@ -289,9 +284,8 @@ CLUREF abs;
 
 /**** BEGIN PROCEDURE get_id ****/
 
-errcode typespecOPget_id(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+typespecOPget_id(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -325,9 +319,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_id ****/
 
-errcode typespecOPset_id(t, id)
-CLUREF t;
-CLUREF id;
+errcode
+typespecOPset_id(CLUREF t, CLUREF id)
     {
     errcode err;
     errcode ecode2;
@@ -356,9 +349,8 @@ CLUREF id;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode typespecOPcopy(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+typespecOPcopy(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -390,10 +382,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode typespecOPequal(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+typespecOPequal(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -431,10 +421,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode typespecOPsimilar(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+typespecOPsimilar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -478,10 +466,8 @@ static int typespecOPmismatch_own_init = 0;
 
 /**** BEGIN PROCEDURE mismatch ****/
 
-errcode typespecOPmismatch(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+typespecOPmismatch(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -899,10 +885,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE mismatch2 ****/
 
-errcode typespecOPmismatch2(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+typespecOPmismatch2(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -988,10 +972,8 @@ static int typespecOP_gcd_own_init = 0;
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-errcode typespecOP_gcd(t, tab, ret_1)
-CLUREF t;
-CLUREF tab;
-CLUREF *ret_1;
+errcode
+typespecOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1148,11 +1130,8 @@ errcode equate_own_init_proc()
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode equateOPcreate(id, val, line, ret_1)
-CLUREF id;
-CLUREF val;
-CLUREF line;
-CLUREF *ret_1;
+errcode
+equateOPcreate(CLUREF id, CLUREF val, CLUREF line, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1190,9 +1169,8 @@ static int equateOPis_rep_own_init = 0;
 
 /**** BEGIN PROCEDURE is_rep ****/
 
-errcode equateOPis_rep(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+equateOPis_rep(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1235,9 +1213,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_idn ****/
 
-errcode equateOPget_idn(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+equateOPget_idn(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1271,9 +1248,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_val ****/
 
-errcode equateOPget_val(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+equateOPget_val(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1307,9 +1283,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_line ****/
 
-errcode equateOPget_line(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+equateOPget_line(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1343,9 +1318,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode equateOPcopy(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+equateOPcopy(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1377,10 +1351,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode equateOPequal(e1, e2, ret_1)
-CLUREF e1;
-CLUREF e2;
-CLUREF *ret_1;
+errcode
+equateOPequal(CLUREF e1, CLUREF e2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1435,10 +1407,8 @@ static int equateOPsimilar_own_init = 0;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode equateOPsimilar(e1, e2, ret_1)
-CLUREF e1;
-CLUREF e2;
-CLUREF *ret_1;
+errcode
+equateOPsimilar(CLUREF e1, CLUREF e2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1527,10 +1497,8 @@ static int equateOP_gcd_own_init = 0;
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-errcode equateOP_gcd(e, tab, ret_1)
-CLUREF e;
-CLUREF tab;
-CLUREF *ret_1;
+errcode
+equateOP_gcd(CLUREF e, CLUREF tab, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1885,10 +1853,8 @@ errcode stmt_own_init_proc()
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode stmtOPcreate(s, l, ret_1)
-CLUREF s;
-CLUREF l;
-CLUREF *ret_1;
+errcode
+stmtOPcreate(CLUREF s, CLUREF l, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1924,9 +1890,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_abs ****/
 
-errcode stmtOPget_abs(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+stmtOPget_abs(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1960,9 +1925,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_abs ****/
 
-errcode stmtOPset_abs(s, a)
-CLUREF s;
-CLUREF a;
+errcode
+stmtOPset_abs(CLUREF s, CLUREF a)
     {
     errcode err;
     errcode ecode2;
@@ -1991,9 +1955,8 @@ CLUREF a;
 
 /**** BEGIN PROCEDURE get_line ****/
 
-errcode stmtOPget_line(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+stmtOPget_line(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2027,9 +1990,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode stmtOPcopy(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+stmtOPcopy(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2061,10 +2023,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode stmtOPequal(s1, s2, ret_1)
-CLUREF s1;
-CLUREF s2;
-CLUREF *ret_1;
+errcode
+stmtOPequal(CLUREF s1, CLUREF s2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2176,10 +2136,8 @@ static int stmtOPsimilar_own_init = 0;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode stmtOPsimilar(s1, s2, ret_1)
-CLUREF s1;
-CLUREF s2;
-CLUREF *ret_1;
+errcode
+stmtOPsimilar(CLUREF s1, CLUREF s2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2304,10 +2262,8 @@ static int stmtOP_gcd_own_init = 0;
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-errcode stmtOP_gcd(s, tab, ret_1)
-CLUREF s;
-CLUREF tab;
-CLUREF *ret_1;
+errcode
+stmtOP_gcd(CLUREF s, CLUREF tab, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2510,10 +2466,8 @@ errcode expr_own_init_proc()
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode exprOPcreate(x, t, ret_1)
-CLUREF x;
-CLUREF t;
-CLUREF *ret_1;
+errcode
+exprOPcreate(CLUREF x, CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2549,9 +2503,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_abs ****/
 
-errcode exprOPget_abs(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+exprOPget_abs(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2585,9 +2538,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_abs ****/
 
-errcode exprOPset_abs(x, a)
-CLUREF x;
-CLUREF a;
+errcode
+exprOPset_abs(CLUREF x, CLUREF a)
     {
     errcode err;
     errcode ecode2;
@@ -2616,9 +2568,8 @@ CLUREF a;
 
 /**** BEGIN PROCEDURE get_typespec ****/
 
-errcode exprOPget_typespec(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+exprOPget_typespec(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2652,9 +2603,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_typespec ****/
 
-errcode exprOPset_typespec(x, t)
-CLUREF x;
-CLUREF t;
+errcode
+exprOPset_typespec(CLUREF x, CLUREF t)
     {
     errcode err;
     errcode ecode2;
@@ -2710,9 +2660,8 @@ static int exprOPcopy_own_init = 0;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode exprOPcopy(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+exprOPcopy(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2754,10 +2703,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode exprOPequal(x1, x2, ret_1)
-CLUREF x1;
-CLUREF x2;
-CLUREF *ret_1;
+errcode
+exprOPequal(CLUREF x1, CLUREF x2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2817,10 +2764,8 @@ static int exprOPsimilar_own_init = 0;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode exprOPsimilar(x1, x2, ret_1)
-CLUREF x1;
-CLUREF x2;
-CLUREF *ret_1;
+errcode
+exprOPsimilar(CLUREF x1, CLUREF x2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2893,10 +2838,8 @@ static int exprOP_gcd_own_init = 0;
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-errcode exprOP_gcd(x, tab, ret_1)
-CLUREF x;
-CLUREF tab;
-CLUREF *ret_1;
+errcode
+exprOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

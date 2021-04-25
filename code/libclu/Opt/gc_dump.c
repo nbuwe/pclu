@@ -39,10 +39,8 @@ OWN_req gc_dump_ownreqs = {sizeof(gc_dump_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE gc_dump ****/
 
-errcode gc_dump(x, fn, ret_1)
-CLUREF x;
-CLUREF fn;
-CLUREF *ret_1;
+errcode
+gc_dump(CLUREF x, CLUREF fn, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

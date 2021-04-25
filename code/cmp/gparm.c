@@ -26,9 +26,8 @@ static int parmd_dus_own_init = 0;
 
 /**** BEGIN PROCEDURE parmd_dus ****/
 
-errcode parmd_dus(gen, ret_1)
-CLUREF gen;
-CLUREF *ret_1;
+errcode
+parmd_dus(CLUREF gen, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -240,9 +239,8 @@ extern errcode recordOPget_3();
 
 /**** BEGIN PROCEDURE tinfo_parms ****/
 
-errcode tinfo_parms(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+tinfo_parms(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -348,10 +346,8 @@ static int parmd_op_own_init = 0;
 
 /**** BEGIN PROCEDURE parmd_op ****/
 
-errcode parmd_op(gen, op, ret_1)
-CLUREF gen;
-CLUREF op;
-CLUREF *ret_1;
+errcode
+parmd_op(CLUREF gen, CLUREF op, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -522,9 +518,8 @@ static int parmd_type_own_init = 0;
 
 /**** BEGIN PROCEDURE parmd_type ****/
 
-errcode parmd_type(gen, ret_1)
-CLUREF gen;
-CLUREF *ret_1;
+errcode
+parmd_type(CLUREF gen, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -716,12 +711,8 @@ static int parmd_op_op_parm_own_init = 0;
 
 /**** BEGIN PROCEDURE parmd_op_op_parm ****/
 
-errcode parmd_op_op_parm(gen, op, ind, ret_1, ret_2)
-CLUREF gen;
-CLUREF op;
-CLUREF ind;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+parmd_op_op_parm(CLUREF gen, CLUREF op, CLUREF ind, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -974,9 +965,8 @@ static int cluster_parm_count_own_init = 0;
 
 /**** BEGIN PROCEDURE cluster_parm_count ****/
 
-errcode cluster_parm_count(gen, ret_1)
-CLUREF gen;
-CLUREF *ret_1;
+errcode
+cluster_parm_count(CLUREF gen, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1124,8 +1114,8 @@ extern errcode recordOPget_10();
 
 /**** BEGIN PROCEDURE current_type_restricted ****/
 
-errcode current_type_restricted(ret_1)
-CLUREF *ret_1;
+errcode
+current_type_restricted(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1196,9 +1186,8 @@ extern errcode recordOPget_13();
 
 /**** BEGIN PROCEDURE current_type_op_restricted ****/
 
-errcode current_type_op_restricted(op, ret_1)
-CLUREF op;
-CLUREF *ret_1;
+errcode
+current_type_op_restricted(CLUREF op, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1309,9 +1298,8 @@ static int any_const_parm_own_init = 0;
 
 /**** BEGIN PROCEDURE any_const_parm ****/
 
-errcode any_const_parm(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+any_const_parm(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1414,9 +1402,8 @@ extern errcode exprOPget_abs();
 
 /**** BEGIN PROCEDURE const_parm ****/
 
-errcode const_parm(p, ret_1)
-CLUREF p;
-CLUREF *ret_1;
+errcode
+const_parm(CLUREF p, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1473,9 +1460,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE const_parm_idn ****/
 
-errcode const_parm_idn(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+const_parm_idn(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1529,9 +1515,8 @@ static int type_parm_own_init = 0;
 
 /**** BEGIN PROCEDURE type_parm ****/
 
-errcode type_parm(p, ret_1)
-CLUREF p;
-CLUREF *ret_1;
+errcode
+type_parm(CLUREF p, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1653,9 +1638,8 @@ extern errcode intOPadd();
 
 /**** BEGIN PROCEDURE type_parm_count ****/
 
-errcode type_parm_count(el, ret_1)
-CLUREF el;
-CLUREF *ret_1;
+errcode
+type_parm_count(CLUREF el, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1731,10 +1715,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE tinfo_op ****/
 
-errcode tinfo_op(t, op, ret_1)
-CLUREF t;
-CLUREF op;
-CLUREF *ret_1;
+errcode
+tinfo_op(CLUREF t, CLUREF op, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1847,9 +1829,8 @@ static int pb_formals_own_init = 0;
 
 /**** BEGIN PROCEDURE pb_formals ****/
 
-errcode pb_formals(p, ret_1)
-CLUREF p;
-CLUREF *ret_1;
+errcode
+pb_formals(CLUREF p, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2395,10 +2376,8 @@ static int find_typeinfo_formals_own_init = 0;
 
 /**** BEGIN PROCEDURE find_typeinfo_formals ****/
 
-errcode find_typeinfo_formals(cop, t, ret_1)
-CLUREF cop;
-CLUREF t;
-CLUREF *ret_1;
+errcode
+find_typeinfo_formals(CLUREF cop, CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2604,9 +2583,8 @@ static int pb_actuals_own_init = 0;
 
 /**** BEGIN PROCEDURE pb_actuals ****/
 
-errcode pb_actuals(p, ret_1)
-CLUREF p;
-CLUREF *ret_1;
+errcode
+pb_actuals(CLUREF p, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2789,9 +2767,8 @@ static int pb_gen_own_init = 0;
 
 /**** BEGIN PROCEDURE pb_gen ****/
 
-errcode pb_gen(p, ret_1)
-CLUREF p;
-CLUREF *ret_1;
+errcode
+pb_gen(CLUREF p, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2936,9 +2913,8 @@ static int pb_inst_parms_count_own_init = 0;
 
 /**** BEGIN PROCEDURE pb_inst_parms_count ****/
 
-errcode pb_inst_parms_count(p, ret_1)
-CLUREF p;
-CLUREF *ret_1;
+errcode
+pb_inst_parms_count(CLUREF p, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3127,9 +3103,8 @@ static int g_parm_table_own_init = 0;
 
 /**** BEGIN PROCEDURE g_parm_table ****/
 
-errcode g_parm_table(e, each_pb)
-CLUREF e;
-CLUREF each_pb;
+errcode
+g_parm_table(CLUREF e, CLUREF each_pb)
     {
     errcode err;
     errcode ecode2;
@@ -4239,9 +4214,8 @@ CLUREF each_pb;
 
 /**** BEGIN PROCEDURE g_parm_table_inst_info ****/
 
-errcode g_parm_table_inst_info(e, each_pb)
-CLUREF e;
-CLUREF each_pb;
+errcode
+g_parm_table_inst_info(CLUREF e, CLUREF each_pb)
     {
     errcode err;
     errcode ecode2;
@@ -4291,9 +4265,8 @@ static int g_parm_extern_own_init = 0;
 
 /**** BEGIN PROCEDURE g_parm_extern ****/
 
-errcode g_parm_extern(e, each_pb)
-CLUREF e;
-CLUREF each_pb;
+errcode
+g_parm_extern(CLUREF e, CLUREF each_pb)
     {
     errcode err;
     errcode ecode2;
@@ -5677,10 +5650,8 @@ extern errcode idnOPsimilar();
 
 /**** BEGIN PROCEDURE is_op_parm ****/
 
-errcode is_op_parm(id, gen, ret_1)
-CLUREF id;
-CLUREF gen;
-CLUREF *ret_1;
+errcode
+is_op_parm(CLUREF id, CLUREF gen, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5829,9 +5800,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE is_op_parmd ****/
 
-errcode is_op_parmd(apb, ret_1)
-CLUREF apb;
-CLUREF *ret_1;
+errcode
+is_op_parmd(CLUREF apb, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6043,9 +6013,8 @@ static int is_internal_op_parmd_own_init = 0;
 
 /**** BEGIN PROCEDURE is_internal_op_parmd ****/
 
-errcode is_internal_op_parmd(nm, ret_1)
-CLUREF nm;
-CLUREF *ret_1;
+errcode
+is_internal_op_parmd(CLUREF nm, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6175,9 +6144,8 @@ static int g_parm_build_one_own_init = 0;
 
 /**** BEGIN PROCEDURE g_parm_build_one ****/
 
-errcode g_parm_build_one(e, each_pb)
-CLUREF e;
-CLUREF each_pb;
+errcode
+g_parm_build_one(CLUREF e, CLUREF each_pb)
     {
     errcode err;
     errcode ecode2;
@@ -7228,11 +7196,8 @@ static int parm_elements_own_init = 0;
 
 /**** BEGIN ITERATOR parm_elements ****/
 
-errcode parm_elements(gen, proc, user_locals, iecode)
-CLUREF gen;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+parm_elements(CLUREF gen, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     errcode err;
@@ -7610,8 +7575,8 @@ errcode parm_own_init_proc()
 
 /**** BEGIN PROCEDURE enter ****/
 
-errcode parmOPenter(d)
-CLUREF d;
+errcode
+parmOPenter(CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -7677,7 +7642,8 @@ CLUREF d;
 
 /**** BEGIN PROCEDURE leave ****/
 
-errcode parmOPleave()
+errcode
+parmOPleave()
     {
     errcode err;
     errcode ecode2;
@@ -7709,8 +7675,8 @@ errcode parmOPleave()
 
 /**** BEGIN PROCEDURE enter_base ****/
 
-errcode parmOPenter_base(d)
-CLUREF d;
+errcode
+parmOPenter_base(CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -7781,7 +7747,8 @@ CLUREF d;
 
 /**** BEGIN PROCEDURE leave_base ****/
 
-errcode parmOPleave_base()
+errcode
+parmOPleave_base()
     {
     errcode err;
     errcode ecode2;
@@ -7821,8 +7788,8 @@ errcode parmOPleave_base()
 
 /**** BEGIN PROCEDURE get_base ****/
 
-errcode parmOPget_base(ret_1)
-CLUREF *ret_1;
+errcode
+parmOPget_base(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -7854,9 +7821,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE member ****/
 
-errcode parmOPmember(t, ret_1)
-CLUREF t;
-CLUREF *ret_1;
+errcode
+parmOPmember(CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -7973,9 +7939,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE member_base ****/
 
-errcode parmOPmember_base(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+parmOPmember_base(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -8044,9 +8009,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE member_op ****/
 
-errcode parmOPmember_op(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+parmOPmember_op(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -8281,8 +8245,8 @@ errcode reqs_own_init_proc()
 
 /**** BEGIN PROCEDURE start ****/
 
-errcode reqsOPstart(id)
-CLUREF id;
+errcode
+reqsOPstart(CLUREF id)
     {
     errcode err;
     errcode ecode2;
@@ -8319,8 +8283,8 @@ CLUREF id;
 
 /**** BEGIN PROCEDURE preprocessing ****/
 
-errcode reqsOPpreprocessing(val)
-CLUREF val;
+errcode
+reqsOPpreprocessing(CLUREF val)
     {
     errcode err;
     errcode ecode2;
@@ -8350,9 +8314,8 @@ static int reqsOPparms_own_init = 0;
 
 /**** BEGIN PROCEDURE parms ****/
 
-errcode reqsOPparms(op, p)
-CLUREF op;
-CLUREF p;
+errcode
+reqsOPparms(CLUREF op, CLUREF p)
     {
     errcode err;
     errcode ecode2;
@@ -8428,10 +8391,8 @@ static int reqsOPmore_own_init = 0;
 
 /**** BEGIN PROCEDURE more ****/
 
-errcode reqsOPmore(e, id, rl)
-CLUREF e;
-CLUREF id;
-CLUREF rl;
+errcode
+reqsOPmore(CLUREF e, CLUREF id, CLUREF rl)
     {
     errcode err;
     errcode ecode2;
@@ -8530,9 +8491,8 @@ static int reqsOPextend_own_init = 0;
 
 /**** BEGIN PROCEDURE extend ****/
 
-errcode reqsOPextend(rl, nm)
-CLUREF rl;
-CLUREF nm;
+errcode
+reqsOPextend(CLUREF rl, CLUREF nm)
     {
     errcode err;
     errcode ecode2;
@@ -8837,9 +8797,8 @@ CLUREF nm;
 
 /**** BEGIN PROCEDURE op_parm ****/
 
-errcode reqsOPop_parm(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+reqsOPop_parm(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -8915,8 +8874,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_tid ****/
 
-errcode reqsOPget_tid(ret_1)
-CLUREF *ret_1;
+errcode
+reqsOPget_tid(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -8949,8 +8908,8 @@ static int reqsOPget_id_own_init = 0;
 
 /**** BEGIN PROCEDURE get_id ****/
 
-errcode reqsOPget_id(ret_1)
-CLUREF *ret_1;
+errcode
+reqsOPget_id(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -9023,8 +8982,8 @@ static int reqsOPoutput_own_init = 0;
 
 /**** BEGIN PROCEDURE output ****/
 
-errcode reqsOPoutput(e)
-CLUREF e;
+errcode
+reqsOPoutput(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -9379,7 +9338,8 @@ static int reqsOPreset_own_init = 0;
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode reqsOPreset()
+errcode
+reqsOPreset()
     {
     errcode err;
     errcode ecode2;
@@ -9430,8 +9390,8 @@ static int reqsOPinitial_output_own_init = 0;
 
 /**** BEGIN PROCEDURE initial_output ****/
 
-errcode reqsOPinitial_output(e)
-CLUREF e;
+errcode
+reqsOPinitial_output(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -9751,10 +9711,8 @@ CLUREF e;
 
 /**** BEGIN PROCEDURE find_parms ****/
 
-errcode reqsOPfind_parms(t, op, ret_1)
-CLUREF t;
-CLUREF op;
-CLUREF *ret_1;
+errcode
+reqsOPfind_parms(CLUREF t, CLUREF op, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -9834,9 +9792,8 @@ static int reqsOPops_uniq_own_init = 0;
 
 /**** BEGIN PROCEDURE ops_uniq ****/
 
-errcode reqsOPops_uniq(ops, ret_1)
-CLUREF ops;
-CLUREF *ret_1;
+errcode
+reqsOPops_uniq(CLUREF ops, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -9980,10 +9937,8 @@ static int reqsOPoutput_reqs_own_init = 0;
 
 /**** BEGIN PROCEDURE output_reqs ****/
 
-errcode reqsOPoutput_reqs(e, this_name, names)
-CLUREF e;
-CLUREF this_name;
-CLUREF names;
+errcode
+reqsOPoutput_reqs(CLUREF e, CLUREF this_name, CLUREF names)
     {
     errcode err;
     errcode ecode2;
@@ -10215,11 +10170,8 @@ static int reqsOPoutput_ops_def_own_init = 0;
 
 /**** BEGIN PROCEDURE output_ops_def ****/
 
-errcode reqsOPoutput_ops_def(e, this_name, ops, parm_list)
-CLUREF e;
-CLUREF this_name;
-CLUREF ops;
-CLUREF parm_list;
+errcode
+reqsOPoutput_ops_def(CLUREF e, CLUREF this_name, CLUREF ops, CLUREF parm_list)
     {
     errcode err;
     errcode ecode2;
@@ -10351,8 +10303,8 @@ static int reqsOPoutput_no_ops_own_init = 0;
 
 /**** BEGIN PROCEDURE output_no_ops ****/
 
-errcode reqsOPoutput_no_ops(e)
-CLUREF e;
+errcode
+reqsOPoutput_no_ops(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -10730,9 +10682,8 @@ extern errcode el_cont_type_parm();
 
 /**** BEGIN PROCEDURE el_cont_type_parm ****/
 
-errcode el_cont_type_parm(el, ret_1)
-CLUREF el;
-CLUREF *ret_1;
+errcode
+el_cont_type_parm(CLUREF el, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -10998,9 +10949,8 @@ extern errcode fl_cont_type_parm();
 
 /**** BEGIN PROCEDURE type_cont_type_parm ****/
 
-errcode type_cont_type_parm(ty, ret_1)
-CLUREF ty;
-CLUREF *ret_1;
+errcode
+type_cont_type_parm(CLUREF ty, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11114,9 +11064,8 @@ extern errcode fl_cont_op_parm();
 
 /**** BEGIN PROCEDURE type_cont_op_parm ****/
 
-errcode type_cont_op_parm(ty, ret_1)
-CLUREF ty;
-CLUREF *ret_1;
+errcode
+type_cont_op_parm(CLUREF ty, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11227,9 +11176,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE fl_cont_type_parm ****/
 
-errcode fl_cont_type_parm(fl, ret_1)
-CLUREF fl;
-CLUREF *ret_1;
+errcode
+fl_cont_type_parm(CLUREF fl, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11357,9 +11305,8 @@ extern errcode type_cont_op_parm();
 
 /**** BEGIN PROCEDURE el_cont_op_parm ****/
 
-errcode el_cont_op_parm(el, ret_1)
-CLUREF el;
-CLUREF *ret_1;
+errcode
+el_cont_op_parm(CLUREF el, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -11640,9 +11587,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE fl_cont_op_parm ****/
 
-errcode fl_cont_op_parm(fl, ret_1)
-CLUREF fl;
-CLUREF *ret_1;
+errcode
+fl_cont_op_parm(CLUREF fl, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

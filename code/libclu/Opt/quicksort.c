@@ -45,11 +45,8 @@ OWN_req quicksort_ownreqs = {sizeof(quicksort_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE quicksort ****/
 
-errcode quicksort(items, low, high, less)
-CLUREF items;
-CLUREF low;
-CLUREF high;
-CLUREF less;
+errcode
+quicksort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
     {
     errcode err;
     errcode ecode2;
@@ -183,12 +180,8 @@ OWN_req lqsort_ownreqs = {sizeof(lqsort_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE lqsort ****/
 
-errcode lqsort(items, low, high, size, less)
-CLUREF items;
-CLUREF low;
-CLUREF high;
-CLUREF size;
-CLUREF less;
+errcode
+lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
     {
     errcode err;
     errcode ecode2;
@@ -827,11 +820,8 @@ OWN_req sisort_ownreqs = {sizeof(sisort_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE sisort ****/
 
-errcode sisort(items, low, high, less)
-CLUREF items;
-CLUREF low;
-CLUREF high;
-CLUREF less;
+errcode
+sisort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
     {
     errcode err;
     errcode ecode2;

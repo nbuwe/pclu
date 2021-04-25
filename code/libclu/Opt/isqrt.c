@@ -15,9 +15,8 @@ extern errcode intOPmul();
 
 /**** BEGIN PROCEDURE isqrt ****/
 
-errcode isqrt(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+isqrt(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

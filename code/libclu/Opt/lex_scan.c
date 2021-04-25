@@ -21,14 +21,8 @@ static int lex_scan_own_init = 0;
 
 /**** BEGIN PROCEDURE lex_scan ****/
 
-errcode lex_scan(s, sep_chars, fill_chars, beginq, endq, comment_char, ret_1)
-CLUREF s;
-CLUREF sep_chars;
-CLUREF fill_chars;
-CLUREF beginq;
-CLUREF endq;
-CLUREF comment_char;
-CLUREF *ret_1;
+errcode
+lex_scan(CLUREF s, CLUREF sep_chars, CLUREF fill_chars, CLUREF beginq, CLUREF endq, CLUREF comment_char, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

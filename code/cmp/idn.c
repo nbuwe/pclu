@@ -110,10 +110,8 @@ errcode idn_own_init_proc()
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode idnOPcreate(s, k, ret_1)
-CLUREF s;
-CLUREF k;
-CLUREF *ret_1;
+errcode
+idnOPcreate(CLUREF s, CLUREF k, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -152,9 +150,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_str ****/
 
-errcode idnOPget_str(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+idnOPget_str(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -188,9 +185,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_kind ****/
 
-errcode idnOPset_kind(i, k)
-CLUREF i;
-CLUREF k;
+errcode
+idnOPset_kind(CLUREF i, CLUREF k)
     {
     errcode err;
     errcode ecode2;
@@ -219,9 +215,8 @@ CLUREF k;
 
 /**** BEGIN PROCEDURE get_kind ****/
 
-errcode idnOPget_kind(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+idnOPget_kind(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -255,9 +250,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_val ****/
 
-errcode idnOPget_val(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+idnOPget_val(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -291,9 +285,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_val ****/
 
-errcode idnOPset_val(i, val)
-CLUREF i;
-CLUREF val;
+errcode
+idnOPset_val(CLUREF i, CLUREF val)
     {
     errcode err;
     errcode ecode2;
@@ -322,9 +315,8 @@ CLUREF val;
 
 /**** BEGIN PROCEDURE copy ****/
 
-errcode idnOPcopy(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+idnOPcopy(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -356,10 +348,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE equal ****/
 
-errcode idnOPequal(i1, i2, ret_1)
-CLUREF i1;
-CLUREF i2;
-CLUREF *ret_1;
+errcode
+idnOPequal(CLUREF i1, CLUREF i2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -393,10 +383,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE similar ****/
 
-errcode idnOPsimilar(i1, i2, ret_1)
-CLUREF i1;
-CLUREF i2;
-CLUREF *ret_1;
+errcode
+idnOPsimilar(CLUREF i1, CLUREF i2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -446,10 +434,8 @@ static int idnOP_gcd_own_init = 0;
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-errcode idnOP_gcd(i, tab, ret_1)
-CLUREF i;
-CLUREF tab;
-CLUREF *ret_1;
+errcode
+idnOP_gcd(CLUREF i, CLUREF tab, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

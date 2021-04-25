@@ -18,10 +18,8 @@ extern errcode intOPmul();
 
 /**** BEGIN PROCEDURE inet_address ****/
 
-errcode inet_address(spec, ret_1, ret_2)
-CLUREF spec;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;

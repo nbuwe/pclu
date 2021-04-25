@@ -11,9 +11,8 @@ static int open_read_own_init = 0;
 
 /**** BEGIN PROCEDURE open_read ****/
 
-errcode open_read(name, ret_1)
-CLUREF name;
-CLUREF *ret_1;
+errcode
+open_read(CLUREF name, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

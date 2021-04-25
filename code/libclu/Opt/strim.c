@@ -17,9 +17,8 @@ static int trim_head_own_init = 0;
 
 /**** BEGIN PROCEDURE trim_head ****/
 
-errcode trim_head(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+trim_head(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -159,9 +158,8 @@ static int trim_tail_own_init = 0;
 
 /**** BEGIN PROCEDURE trim_tail ****/
 
-errcode trim_tail(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+trim_tail(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -299,9 +297,8 @@ static int trim_both_own_init = 0;
 
 /**** BEGIN PROCEDURE trim_both ****/
 
-errcode trim_both(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+trim_both(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

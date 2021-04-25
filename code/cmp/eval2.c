@@ -68,11 +68,8 @@ static int e_strop_own_init = 0;
 
 /**** BEGIN PROCEDURE e_strop ****/
 
-errcode e_strop(e, op, args, ret_1)
-CLUREF e;
-CLUREF op;
-CLUREF args;
-CLUREF *ret_1;
+errcode
+e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
     {
     struct {
         errcode err;
@@ -757,12 +754,8 @@ static int e_oneofop_own_init = 0;
 
 /**** BEGIN PROCEDURE e_oneofop ****/
 
-errcode e_oneofop(e, x, cop, args, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF cop;
-CLUREF args;
-CLUREF *ret_1;
+errcode
+e_oneofop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -987,12 +980,8 @@ static int e_structop_own_init = 0;
 
 /**** BEGIN PROCEDURE e_structop ****/
 
-errcode e_structop(e, x, cop, args, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF cop;
-CLUREF args;
-CLUREF *ret_1;
+errcode
+e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1455,12 +1444,8 @@ static int e_seqop_own_init = 0;
 
 /**** BEGIN PROCEDURE e_seqop ****/
 
-errcode e_seqop(e, x, cop, args, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF cop;
-CLUREF args;
-CLUREF *ret_1;
+errcode
+e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2018,9 +2003,8 @@ extern errcode exprOPget_abs();
 
 /**** BEGIN PROCEDURE e_e2n ****/
 
-errcode e_e2n(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+e_e2n(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2068,9 +2052,8 @@ extern errcode oneofOPvalue_5();
 
 /**** BEGIN PROCEDURE e_e2b ****/
 
-errcode e_e2b(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+e_e2b(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2118,9 +2101,8 @@ extern errcode oneofOPvalue_15();
 
 /**** BEGIN PROCEDURE e_e2i ****/
 
-errcode e_e2i(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+e_e2i(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2168,9 +2150,8 @@ extern errcode oneofOPvalue_21();
 
 /**** BEGIN PROCEDURE e_e2r ****/
 
-errcode e_e2r(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+e_e2r(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2218,9 +2199,8 @@ extern errcode oneofOPvalue_7();
 
 /**** BEGIN PROCEDURE e_e2h ****/
 
-errcode e_e2h(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+e_e2h(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2268,9 +2248,8 @@ extern errcode oneofOPvalue_24();
 
 /**** BEGIN PROCEDURE e_e2s ****/
 
-errcode e_e2s(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+e_e2s(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2320,10 +2299,8 @@ static int e_e2o_own_init = 0;
 
 /**** BEGIN PROCEDURE e_e2o ****/
 
-errcode e_e2o(x, ret_1, ret_2)
-CLUREF x;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+e_e2o(CLUREF x, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -2425,9 +2402,8 @@ extern errcode oneofOPvalue_23();
 
 /**** BEGIN PROCEDURE e_e2sc ****/
 
-errcode e_e2sc(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+e_e2sc(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2475,9 +2451,8 @@ extern errcode oneofOPvalue_1();
 
 /**** BEGIN PROCEDURE e_e2qc ****/
 
-errcode e_e2qc(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+e_e2qc(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

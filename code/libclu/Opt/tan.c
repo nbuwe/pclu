@@ -10,9 +10,8 @@ extern errcode cos();
 
 /**** BEGIN PROCEDURE tan ****/
 
-errcode tan(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+tan(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

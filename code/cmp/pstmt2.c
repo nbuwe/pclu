@@ -26,9 +26,8 @@ static int p_decl_or_assn_own_init = 0;
 
 /**** BEGIN PROCEDURE p_decl_or_assn ****/
 
-errcode p_decl_or_assn(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_decl_or_assn(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -229,10 +228,8 @@ static int p_assn_rhs_own_init = 0;
 
 /**** BEGIN PROCEDURE p_assn_rhs ****/
 
-errcode p_assn_rhs(e, vars, ret_1)
-CLUREF e;
-CLUREF vars;
-CLUREF *ret_1;
+errcode
+p_assn_rhs(CLUREF e, CLUREF vars, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -380,9 +377,8 @@ static int p_condition_own_init = 0;
 
 /**** BEGIN PROCEDURE p_condition ****/
 
-errcode p_condition(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_condition(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -473,9 +469,8 @@ extern errcode oneofOPmake_19();
 
 /**** BEGIN PROCEDURE p_while ****/
 
-errcode p_while(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_while(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -535,9 +530,8 @@ static int p_expr_stmt_own_init = 0;
 
 /**** BEGIN PROCEDURE p_expr_stmt ****/
 
-errcode p_expr_stmt(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_expr_stmt(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -631,11 +625,8 @@ extern errcode exprOPget_abs();
 
 /**** BEGIN PROCEDURE p_make_invoke ****/
 
-errcode p_make_invoke(e, x, why, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF why;
-CLUREF *ret_1;
+errcode
+p_make_invoke(CLUREF e, CLUREF x, CLUREF why, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -775,10 +766,8 @@ static int p_except_own_init = 0;
 
 /**** BEGIN PROCEDURE p_except ****/
 
-errcode p_except(e, st, ret_1)
-CLUREF e;
-CLUREF st;
-CLUREF *ret_1;
+errcode
+p_except(CLUREF e, CLUREF st, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1072,9 +1061,8 @@ static int p_whenarm_own_init = 0;
 
 /**** BEGIN PROCEDURE p_whenarm ****/
 
-errcode p_whenarm(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_whenarm(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1199,9 +1187,8 @@ static int p_mdecl_own_init = 0;
 
 /**** BEGIN PROCEDURE p_mdecl ****/
 
-errcode p_mdecl(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_mdecl(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1338,11 +1325,8 @@ extern errcode p_body();
 
 /**** BEGIN PROCEDURE p_cbody ****/
 
-errcode p_cbody(e, kind, assume, ret_1)
-CLUREF e;
-CLUREF kind;
-CLUREF assume;
-CLUREF *ret_1;
+errcode
+p_cbody(CLUREF e, CLUREF kind, CLUREF assume, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1418,10 +1402,8 @@ static int p_body_own_init = 0;
 
 /**** BEGIN PROCEDURE p_body ****/
 
-errcode p_body(e, kind, ret_1)
-CLUREF e;
-CLUREF kind;
-CLUREF *ret_1;
+errcode
+p_body(CLUREF e, CLUREF kind, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1531,9 +1513,8 @@ static int p_whendecl_own_init = 0;
 
 /**** BEGIN PROCEDURE p_whendecl ****/
 
-errcode p_whendecl(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_whendecl(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1736,9 +1717,8 @@ static int p_forcestmt_own_init = 0;
 
 /**** BEGIN PROCEDURE p_forcestmt ****/
 
-errcode p_forcestmt(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_forcestmt(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1923,9 +1903,8 @@ static int p_ownstmt_own_init = 0;
 
 /**** BEGIN PROCEDURE p_ownstmt ****/
 
-errcode p_ownstmt(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_ownstmt(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1979,9 +1958,8 @@ static int p_owninit_own_init = 0;
 
 /**** BEGIN PROCEDURE p_owninit ****/
 
-errcode p_owninit(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_owninit(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2149,9 +2127,8 @@ extern errcode p_envOPget_clustr();
 
 /**** BEGIN PROCEDURE p_end ****/
 
-errcode p_end(e, assume)
-CLUREF e;
-CLUREF assume;
+errcode
+p_end(CLUREF e, CLUREF assume)
     {
     errcode err;
     errcode ecode2;
@@ -2286,9 +2263,8 @@ static int p_find_a_stmt_own_init = 0;
 
 /**** BEGIN PROCEDURE p_find_a_stmt ****/
 
-errcode p_find_a_stmt(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_find_a_stmt(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

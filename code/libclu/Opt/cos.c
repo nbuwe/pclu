@@ -9,9 +9,8 @@ extern errcode realOPadd();
 
 /**** BEGIN PROCEDURE cos ****/
 
-errcode cos(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+cos(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

@@ -11,8 +11,8 @@ static int user_name_own_init = 0;
 
 /**** BEGIN PROCEDURE user_name ****/
 
-errcode user_name(ret_1)
-CLUREF *ret_1;
+errcode
+user_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

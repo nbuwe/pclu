@@ -34,9 +34,8 @@ static int p_definition_own_init = 0;
 
 /**** BEGIN PROCEDURE p_definition ****/
 
-errcode p_definition(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_definition(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -283,9 +282,8 @@ static int p_directive_own_init = 0;
 
 /**** BEGIN PROCEDURE p_directive ****/
 
-errcode p_directive(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_directive(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -515,9 +513,8 @@ static int p_include_own_init = 0;
 
 /**** BEGIN PROCEDURE p_include ****/
 
-errcode p_include(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_include(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -861,9 +858,8 @@ static int p_applydefn_own_init = 0;
 
 /**** BEGIN PROCEDURE p_applydefn ****/
 
-errcode p_applydefn(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_applydefn(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1337,9 +1333,8 @@ static int p_typedefn_own_init = 0;
 
 /**** BEGIN PROCEDURE p_typedefn ****/
 
-errcode p_typedefn(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_typedefn(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2127,9 +2122,8 @@ static int p_equate_own_init = 0;
 
 /**** BEGIN PROCEDURE p_equate ****/
 
-errcode p_equate(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_equate(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2416,9 +2410,8 @@ extern errcode p_owninit();
 
 /**** BEGIN PROCEDURE p_init ****/
 
-errcode p_init(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_init(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2522,9 +2515,8 @@ static int p_operdefn_own_init = 0;
 
 /**** BEGIN PROCEDURE p_operdefn ****/
 
-errcode p_operdefn(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_operdefn(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

@@ -99,10 +99,8 @@ static int code_chanOPopen_own_init = 0;
 
 /**** BEGIN PROCEDURE open ****/
 
-errcode code_chanOPopen(fn, ret_1, ret_2)
-CLUREF fn;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+code_chanOPopen(CLUREF fn, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -227,12 +225,8 @@ CLUREF *ret_2;
 
 /**** BEGIN PROCEDURE write ****/
 
-errcode code_chanOPwrite(cc, base, code, eblock, ret_1)
-CLUREF cc;
-CLUREF base;
-CLUREF code;
-CLUREF eblock;
-CLUREF *ret_1;
+errcode
+code_chanOPwrite(CLUREF cc, CLUREF base, CLUREF code, CLUREF eblock, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -415,9 +409,8 @@ static int code_chanOPboutput_own_init = 0;
 
 /**** BEGIN PROCEDURE boutput ****/
 
-errcode code_chanOPboutput(cc, block)
-CLUREF cc;
-CLUREF block;
+errcode
+code_chanOPboutput(CLUREF cc, CLUREF block)
     {
     errcode err;
     errcode ecode2;
@@ -683,9 +676,8 @@ CLUREF block;
 
 /**** BEGIN PROCEDURE output ****/
 
-errcode code_chanOPoutput(cc, block)
-CLUREF cc;
-CLUREF block;
+errcode
+code_chanOPoutput(CLUREF cc, CLUREF block)
     {
     errcode err;
     errcode ecode2;
@@ -955,9 +947,8 @@ CLUREF block;
 
 /**** BEGIN PROCEDURE get_chan ****/
 
-errcode code_chanOPget_chan(cc, ret_1)
-CLUREF cc;
-CLUREF *ret_1;
+errcode
+code_chanOPget_chan(CLUREF cc, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1052,9 +1043,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE size ****/
 
-errcode code_chanOPsize(cc, ret_1)
-CLUREF cc;
-CLUREF *ret_1;
+errcode
+code_chanOPsize(CLUREF cc, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1089,8 +1079,8 @@ static int code_chanOPclose_own_init = 0;
 
 /**** BEGIN PROCEDURE close ****/
 
-errcode code_chanOPclose(cc)
-CLUREF cc;
+errcode
+code_chanOPclose(CLUREF cc)
     {
     errcode err;
     errcode ecode2;

@@ -16,9 +16,8 @@ extern errcode intOPminus();
 
 /**** BEGIN PROCEDURE i_oparse ****/
 
-errcode i_oparse(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+i_oparse(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -258,9 +257,8 @@ static int i_ounparse_own_init = 0;
 
 /**** BEGIN PROCEDURE i_ounparse ****/
 
-errcode i_ounparse(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+i_ounparse(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

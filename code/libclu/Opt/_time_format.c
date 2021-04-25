@@ -16,11 +16,8 @@ static int _time_format_own_init = 0;
 
 /**** BEGIN PROCEDURE _time_format ****/
 
-errcode _time_format(sec, msec, usec, ret_1)
-CLUREF sec;
-CLUREF msec;
-CLUREF usec;
-CLUREF *ret_1;
+errcode
+_time_format(CLUREF sec, CLUREF msec, CLUREF usec, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

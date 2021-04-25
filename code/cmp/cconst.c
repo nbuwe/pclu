@@ -33,12 +33,8 @@ static int c_parm_type_own_init = 0;
 
 /**** BEGIN PROCEDURE c_parm_type ****/
 
-errcode c_parm_type(e, i, t, ret_1, ret_2)
-CLUREF e;
-CLUREF i;
-CLUREF t;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+c_parm_type(CLUREF e, CLUREF i, CLUREF t, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -247,10 +243,8 @@ extern errcode c_pathname();
 
 /**** BEGIN PROCEDURE c_equateval ****/
 
-errcode c_equateval(e, val, ret_1)
-CLUREF e;
-CLUREF val;
-CLUREF *ret_1;
+errcode
+c_equateval(CLUREF e, CLUREF val, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -338,10 +332,8 @@ extern errcode exprOPget_typespec();
 
 /**** BEGIN PROCEDURE c_equate_expr ****/
 
-errcode c_equate_expr(e, x, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF *ret_1;
+errcode
+c_equate_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -471,10 +463,8 @@ extern errcode sequenceOPaddh();
 
 /**** BEGIN PROCEDURE c_xtypeset ****/
 
-errcode c_xtypeset(e, set, ret_1)
-CLUREF e;
-CLUREF set;
-CLUREF *ret_1;
+errcode
+c_xtypeset(CLUREF e, CLUREF set, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -743,10 +733,8 @@ extern errcode c_get_idnkind();
 
 /**** BEGIN PROCEDURE c_pathname ****/
 
-errcode c_pathname(e, path, ret_1)
-CLUREF e;
-CLUREF path;
-CLUREF *ret_1;
+errcode
+c_pathname(CLUREF e, CLUREF path, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -825,11 +813,8 @@ extern errcode intOPequal();
 
 /**** BEGIN PROCEDURE c_get_idnkind ****/
 
-errcode c_get_idnkind(e, gen, want, ret_1)
-CLUREF e;
-CLUREF gen;
-CLUREF want;
-CLUREF *ret_1;
+errcode
+c_get_idnkind(CLUREF e, CLUREF gen, CLUREF want, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1086,10 +1071,8 @@ extern errcode c_envOPend_type_scope();
 
 /**** BEGIN PROCEDURE c_constlist ****/
 
-errcode c_constlist(e, exprs, ret_1)
-CLUREF e;
-CLUREF exprs;
-CLUREF *ret_1;
+errcode
+c_constlist(CLUREF e, CLUREF exprs, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1185,10 +1168,8 @@ extern errcode typespecOPget_abs();
 
 /**** BEGIN PROCEDURE c_const ****/
 
-errcode c_const(e, x, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF *ret_1;
+errcode
+c_const(CLUREF e, CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1307,10 +1288,8 @@ static int c_type_own_init = 0;
 
 /**** BEGIN PROCEDURE c_type ****/
 
-errcode c_type(e, t, ret_1)
-CLUREF e;
-CLUREF t;
-CLUREF *ret_1;
+errcode
+c_type(CLUREF e, CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1681,9 +1660,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE c_type1 ****/
 
-errcode c_type1(e, t)
-CLUREF e;
-CLUREF t;
+errcode
+c_type1(CLUREF e, CLUREF t)
     {
     errcode err;
     errcode ecode2;
@@ -1898,10 +1876,8 @@ CLUREF t;
 
 /**** BEGIN PROCEDURE c_typelist ****/
 
-errcode c_typelist(e, types, ret_1)
-CLUREF e;
-CLUREF types;
-CLUREF *ret_1;
+errcode
+c_typelist(CLUREF e, CLUREF types, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1969,9 +1945,8 @@ static int c_exceptionlist_own_init = 0;
 
 /**** BEGIN PROCEDURE c_exceptionlist ****/
 
-errcode c_exceptionlist(e, sigs)
-CLUREF e;
-CLUREF sigs;
+errcode
+c_exceptionlist(CLUREF e, CLUREF sigs)
     {
     errcode err;
     errcode ecode2;
@@ -2043,10 +2018,8 @@ static int c_idn_gen_own_init = 0;
 
 /**** BEGIN PROCEDURE c_idn_gen ****/
 
-errcode c_idn_gen(e, xt, ret_1)
-CLUREF e;
-CLUREF xt;
-CLUREF *ret_1;
+errcode
+c_idn_gen(CLUREF e, CLUREF xt, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2214,10 +2187,8 @@ static int c_idn_type_own_init = 0;
 
 /**** BEGIN PROCEDURE c_idn_type ****/
 
-errcode c_idn_type(e, i, ret_1)
-CLUREF e;
-CLUREF i;
-CLUREF *ret_1;
+errcode
+c_idn_type(CLUREF e, CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2448,10 +2419,8 @@ static int c_xsel_type_own_init = 0;
 
 /**** BEGIN PROCEDURE c_xsel_type ****/
 
-errcode c_xsel_type(e, xsel, ret_1)
-CLUREF e;
-CLUREF xsel;
-CLUREF *ret_1;
+errcode
+c_xsel_type(CLUREF e, CLUREF xsel, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

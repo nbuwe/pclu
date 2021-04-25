@@ -29,8 +29,8 @@ static int pb_print_own_init = 0;
 
 /**** BEGIN PROCEDURE pb_print ****/
 
-errcode pb_print(p)
-CLUREF p;
+errcode
+pb_print(CLUREF p)
     {
     errcode err;
     errcode ecode2;
@@ -263,8 +263,8 @@ static int typespec_print_own_init = 0;
 
 /**** BEGIN PROCEDURE typespec_print ****/
 
-errcode typespec_print(a)
-CLUREF a;
+errcode
+typespec_print(CLUREF a)
     {
     errcode err;
     errcode ecode2;
@@ -753,8 +753,8 @@ static int restrictkind_print_own_init = 0;
 
 /**** BEGIN PROCEDURE restrictkind_print ****/
 
-errcode restrictkind_print(r)
-CLUREF r;
+errcode
+restrictkind_print(CLUREF r)
     {
     errcode err;
     errcode ecode2;
@@ -901,10 +901,8 @@ static int restrictkind_similar_own_init = 0;
 
 /**** BEGIN PROCEDURE restrictkind_similar ****/
 
-errcode restrictkind_similar(r1, r2, ret_1)
-CLUREF r1;
-CLUREF r2;
-CLUREF *ret_1;
+errcode
+restrictkind_similar(CLUREF r1, CLUREF r2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1108,10 +1106,8 @@ static int operdecllist_similar_own_init = 0;
 
 /**** BEGIN PROCEDURE operdecllist_similar ****/
 
-errcode operdecllist_similar(o1, o2, ret_1)
-CLUREF o1;
-CLUREF o2;
-CLUREF *ret_1;
+errcode
+operdecllist_similar(CLUREF o1, CLUREF o2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1399,10 +1395,8 @@ static int typespec_similar_own_init = 0;
 
 /**** BEGIN PROCEDURE typespec_similar ****/
 
-errcode typespec_similar(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2079,10 +2073,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE typelist_similar ****/
 
-errcode typelist_similar(t1, t2, ret_1)
-CLUREF t1;
-CLUREF t2;
-CLUREF *ret_1;
+errcode
+typelist_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2172,10 +2164,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE exceptionlist_similar ****/
 
-errcode exceptionlist_similar(e1, e2, ret_1)
-CLUREF e1;
-CLUREF e2;
-CLUREF *ret_1;
+errcode
+exceptionlist_similar(CLUREF e1, CLUREF e2, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2309,8 +2299,8 @@ static int idnkind_print_own_init = 0;
 
 /**** BEGIN PROCEDURE idnkind_print ****/
 
-errcode idnkind_print(i)
-CLUREF i;
+errcode
+idnkind_print(CLUREF i)
     {
     errcode err;
     errcode ecode2;
@@ -2475,9 +2465,8 @@ static int duspec_print_own_init = 0;
 
 /**** BEGIN PROCEDURE duspec_print ****/
 
-errcode duspec_print(d, short_UNIQ)
-CLUREF d;
-CLUREF short_UNIQ;
+errcode
+duspec_print(CLUREF d, CLUREF short_UNIQ)
     {
     errcode err;
     errcode ecode2;
@@ -2639,8 +2628,8 @@ static int ti_print_own_init = 0;
 
 /**** BEGIN PROCEDURE ti_print ****/
 
-errcode ti_print(t)
-CLUREF t;
+errcode
+ti_print(CLUREF t)
     {
     errcode err;
     errcode ecode2;
@@ -2776,8 +2765,8 @@ static int ti_print_1_own_init = 0;
 
 /**** BEGIN PROCEDURE ti_print_1 ****/
 
-errcode ti_print_1(t)
-CLUREF t;
+errcode
+ti_print_1(CLUREF t)
     {
     errcode err;
     errcode ecode2;
@@ -2921,8 +2910,8 @@ static int stmt_print_own_init = 0;
 
 /**** BEGIN PROCEDURE stmt_print ****/
 
-errcode stmt_print(s)
-CLUREF s;
+errcode
+stmt_print(CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -3219,9 +3208,8 @@ static int expr_print_own_init = 0;
 
 /**** BEGIN PROCEDURE expr_print ****/
 
-errcode expr_print(exp, stage)
-CLUREF exp;
-CLUREF stage;
+errcode
+expr_print(CLUREF exp, CLUREF stage)
     {
     errcode err;
     errcode ecode2;
@@ -3740,8 +3728,8 @@ static int other_print_own_init = 0;
 
 /**** BEGIN PROCEDURE other_print ****/
 
-errcode other_print(o)
-CLUREF o;
+errcode
+other_print(CLUREF o)
     {
     errcode err;
     errcode ecode2;
@@ -3824,9 +3812,8 @@ static int compiler_logit_own_init = 0;
 
 /**** BEGIN PROCEDURE compiler_logit ****/
 
-errcode compiler_logit(code, s)
-CLUREF code;
-CLUREF s;
+errcode
+compiler_logit(CLUREF code, CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -3891,8 +3878,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE get_stream ****/
 
-errcode get_stream(ret_1)
-CLUREF *ret_1;
+errcode
+get_stream(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3948,9 +3935,8 @@ OWN_req array_extend_ownreqs = {sizeof(array_extend_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE array_extend ****/
 
-errcode array_extend(a, b)
-CLUREF a;
-CLUREF b;
+errcode
+array_extend(CLUREF a, CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -4026,9 +4012,8 @@ OWN_req array_concat_ownreqs = {sizeof(array_concat_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE array_concat ****/
 
-errcode array_concat(a, b)
-CLUREF a;
-CLUREF b;
+errcode
+array_concat(CLUREF a, CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -4113,10 +4098,8 @@ OWN_req seq_extend_ownreqs = {sizeof(seq_extend_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE seq_extend ****/
 
-errcode seq_extend(a, b, ret_1)
-CLUREF a;
-CLUREF b;
-CLUREF *ret_1;
+errcode
+seq_extend(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4193,9 +4176,8 @@ extern errcode oneofOPmake_7();
 
 /**** BEGIN PROCEDURE initlist_to_stmtlist ****/
 
-errcode initlist_to_stmtlist(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4369,10 +4351,8 @@ OWN_req g_commalist_ownreqs = {sizeof(g_commalist_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE g_commalist ****/
 
-errcode g_commalist(e, l, eltproc)
-CLUREF e;
-CLUREF l;
-CLUREF eltproc;
+errcode
+g_commalist(CLUREF e, CLUREF l, CLUREF eltproc)
     {
     struct {
         errcode err;
@@ -4529,11 +4509,8 @@ OWN_req g_next_commalist_ownreqs = {sizeof(g_next_commalist_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE g_next_commalist ****/
 
-errcode g_next_commalist(e, l, eltproc, cont)
-CLUREF e;
-CLUREF l;
-CLUREF eltproc;
-CLUREF cont;
+errcode
+g_next_commalist(CLUREF e, CLUREF l, CLUREF eltproc, CLUREF cont)
     {
     struct {
         errcode err;
@@ -4648,9 +4625,8 @@ static int bool_unparse_own_init = 0;
 
 /**** BEGIN PROCEDURE bool_unparse ****/
 
-errcode bool_unparse(b, ret_1)
-CLUREF b;
-CLUREF *ret_1;
+errcode
+bool_unparse(CLUREF b, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

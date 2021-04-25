@@ -46,12 +46,8 @@ OWN_req quick_sort_ownreqs = {sizeof(quick_sort_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE quick_sort ****/
 
-errcode quick_sort(a, low, high, less, equal)
-CLUREF a;
-CLUREF low;
-CLUREF high;
-CLUREF less;
-CLUREF equal;
+errcode
+quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
     {
     errcode err;
     errcode ecode2;

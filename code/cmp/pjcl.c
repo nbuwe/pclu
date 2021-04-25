@@ -22,11 +22,8 @@ static int parse_command_line_own_init = 0;
 
 /**** BEGIN PROCEDURE parse_command_line ****/
 
-errcode parse_command_line(line, ret_1, ret_2, ret_3)
-CLUREF line;
-CLUREF *ret_1;
-CLUREF *ret_2;
-CLUREF *ret_3;
+errcode
+parse_command_line(CLUREF line, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     {
     errcode err;
     errcode ecode2;
@@ -230,9 +227,8 @@ static int get_output_part_own_init = 0;
 
 /**** BEGIN PROCEDURE get_output_part ****/
 
-errcode get_output_part(line, ret_1)
-CLUREF line;
-CLUREF *ret_1;
+errcode
+get_output_part(CLUREF line, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -456,9 +452,8 @@ extern errcode get_option_part();
 
 /**** BEGIN PROCEDURE get_option_parts ****/
 
-errcode get_option_parts(line, ret_1)
-CLUREF line;
-CLUREF *ret_1;
+errcode
+get_option_parts(CLUREF line, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -528,9 +523,8 @@ static int get_option_part_own_init = 0;
 
 /**** BEGIN PROCEDURE get_option_part ****/
 
-errcode get_option_part(line, ret_1)
-CLUREF line;
-CLUREF *ret_1;
+errcode
+get_option_part(CLUREF line, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -608,9 +602,8 @@ static int get_command_part_own_init = 0;
 
 /**** BEGIN PROCEDURE get_command_part ****/
 
-errcode get_command_part(line, ret_1)
-CLUREF line;
-CLUREF *ret_1;
+errcode
+get_command_part(CLUREF line, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -668,9 +661,8 @@ static int get_input_parts_own_init = 0;
 
 /**** BEGIN PROCEDURE get_input_parts ****/
 
-errcode get_input_parts(line, ret_1)
-CLUREF line;
-CLUREF *ret_1;
+errcode
+get_input_parts(CLUREF line, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -771,9 +763,8 @@ static int get_input_part_own_init = 0;
 
 /**** BEGIN PROCEDURE get_input_part ****/
 
-errcode get_input_part(line, ret_1)
-CLUREF line;
-CLUREF *ret_1;
+errcode
+get_input_part(CLUREF line, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -834,8 +825,8 @@ static int move_to_next_own_init = 0;
 
 /**** BEGIN PROCEDURE move_to_next ****/
 
-errcode move_to_next(line)
-CLUREF line;
+errcode
+move_to_next(CLUREF line)
     {
     errcode err;
     errcode ecode2;
@@ -914,9 +905,8 @@ static int flush_blanks_own_init = 0;
 
 /**** BEGIN PROCEDURE flush_blanks ****/
 
-errcode flush_blanks(line, ret_1)
-CLUREF line;
-CLUREF *ret_1;
+errcode
+flush_blanks(CLUREF line, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -998,10 +988,8 @@ static int gets_to_own_init = 0;
 
 /**** BEGIN PROCEDURE gets_to ****/
 
-errcode gets_to(line, terms, ret_1)
-CLUREF line;
-CLUREF terms;
-CLUREF *ret_1;
+errcode
+gets_to(CLUREF line, CLUREF terms, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1176,8 +1164,8 @@ static int unify_own_init = 0;
 
 /**** BEGIN PROCEDURE unify ****/
 
-errcode unify(line)
-CLUREF line;
+errcode
+unify(CLUREF line)
     {
     errcode err;
     errcode ecode2;

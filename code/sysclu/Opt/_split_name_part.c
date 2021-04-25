@@ -18,11 +18,8 @@ static int _split_name_part_own_init = 0;
 
 /**** BEGIN PROCEDURE _split_name_part ****/
 
-errcode _split_name_part(s, ret_1, ret_2, ret_3)
-CLUREF s;
-CLUREF *ret_1;
-CLUREF *ret_2;
-CLUREF *ret_3;
+errcode
+_split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     {
     errcode err;
     errcode ecode2;

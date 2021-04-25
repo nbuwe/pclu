@@ -19,12 +19,8 @@ extern errcode _bytevecOPsize();
 
 /**** BEGIN PROCEDURE _skip_fill ****/
 
-errcode _skip_fill(b, max, c, term, ret_1)
-CLUREF b;
-CLUREF max;
-CLUREF c;
-CLUREF term;
-CLUREF *ret_1;
+errcode
+_skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

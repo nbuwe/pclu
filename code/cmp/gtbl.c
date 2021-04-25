@@ -206,8 +206,8 @@ errcode g_tbl_own_init_proc()
 
 /**** BEGIN PROCEDURE exist ****/
 
-errcode g_tblOPexist(ret_1)
-CLUREF *ret_1;
+errcode
+g_tblOPexist(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -257,10 +257,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE find_tables ****/
 
-errcode g_tblOPfind_tables(e, bod, d)
-CLUREF e;
-CLUREF bod;
-CLUREF d;
+errcode
+g_tblOPfind_tables(CLUREF e, CLUREF bod, CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -375,9 +373,8 @@ CLUREF d;
 
 /**** BEGIN PROCEDURE find_tbls_in_signature ****/
 
-errcode g_tblOPfind_tbls_in_signature(ap, pbl)
-CLUREF ap;
-CLUREF pbl;
+errcode
+g_tblOPfind_tbls_in_signature(CLUREF ap, CLUREF pbl)
     {
     errcode err;
     errcode ecode2;
@@ -450,9 +447,8 @@ CLUREF pbl;
 
 /**** BEGIN PROCEDURE find_tbls ****/
 
-errcode g_tblOPfind_tbls(bod, pbl)
-CLUREF bod;
-CLUREF pbl;
+errcode
+g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
     {
     errcode err;
     errcode ecode2;
@@ -1002,9 +998,8 @@ CLUREF pbl;
 
 /**** BEGIN PROCEDURE find_tbl_decllist ****/
 
-errcode g_tblOPfind_tbl_decllist(dl, pbl)
-CLUREF dl;
-CLUREF pbl;
+errcode
+g_tblOPfind_tbl_decllist(CLUREF dl, CLUREF pbl)
     {
     errcode err;
     errcode ecode2;
@@ -1048,9 +1043,8 @@ CLUREF pbl;
 
 /**** BEGIN PROCEDURE find_tbl_decl ****/
 
-errcode g_tblOPfind_tbl_decl(d, pbl)
-CLUREF d;
-CLUREF pbl;
+errcode
+g_tblOPfind_tbl_decl(CLUREF d, CLUREF pbl)
     {
     errcode err;
     errcode ecode2;
@@ -1082,9 +1076,8 @@ CLUREF pbl;
 
 /**** BEGIN PROCEDURE find_tbl_typelist ****/
 
-errcode g_tblOPfind_tbl_typelist(tys, pbl)
-CLUREF tys;
-CLUREF pbl;
+errcode
+g_tblOPfind_tbl_typelist(CLUREF tys, CLUREF pbl)
     {
     errcode err;
     errcode ecode2;
@@ -1129,9 +1122,8 @@ static int g_tblOPfind_tbl_type__own_init = 0;
 
 /**** BEGIN PROCEDURE find_tbl_type_ ****/
 
-errcode g_tblOPfind_tbl_type_(type_, pbl)
-CLUREF type_;
-CLUREF pbl;
+errcode
+g_tblOPfind_tbl_type_(CLUREF type_, CLUREF pbl)
     {
     errcode err;
     errcode ecode2;
@@ -1340,9 +1332,8 @@ CLUREF pbl;
 
 /**** BEGIN PROCEDURE find_tbl_exprlist ****/
 
-errcode g_tblOPfind_tbl_exprlist(el, pbl)
-CLUREF el;
-CLUREF pbl;
+errcode
+g_tblOPfind_tbl_exprlist(CLUREF el, CLUREF pbl)
     {
     errcode err;
     errcode ecode2;
@@ -1386,9 +1377,8 @@ CLUREF pbl;
 
 /**** BEGIN PROCEDURE find_tbl_fieldspeclist ****/
 
-errcode g_tblOPfind_tbl_fieldspeclist(fl, pbl)
-CLUREF fl;
-CLUREF pbl;
+errcode
+g_tblOPfind_tbl_fieldspeclist(CLUREF fl, CLUREF pbl)
     {
     errcode err;
     errcode ecode2;
@@ -1433,9 +1423,8 @@ static int g_tblOPfind_tbl_exprs_own_init = 0;
 
 /**** BEGIN PROCEDURE find_tbl_exprs ****/
 
-errcode g_tblOPfind_tbl_exprs(exp, pbl)
-CLUREF exp;
-CLUREF pbl;
+errcode
+g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
     {
     errcode err;
     errcode ecode2;
@@ -2286,9 +2275,8 @@ CLUREF pbl;
 
 /**** BEGIN PROCEDURE find_tbl_field ****/
 
-errcode g_tblOPfind_tbl_field(f, pbl)
-CLUREF f;
-CLUREF pbl;
+errcode
+g_tblOPfind_tbl_field(CLUREF f, CLUREF pbl)
     {
     errcode err;
     errcode ecode2;
@@ -2470,9 +2458,8 @@ static int g_tblOPtbl_uniq_own_init = 0;
 
 /**** BEGIN PROCEDURE tbl_uniq ****/
 
-errcode g_tblOPtbl_uniq(pbl, ret_1)
-CLUREF pbl;
-CLUREF *ret_1;
+errcode
+g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2934,9 +2921,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE g_field_tables ****/
 
-errcode g_tblOPg_field_tables(e, pass)
-CLUREF e;
-CLUREF pass;
+errcode
+g_tblOPg_field_tables(CLUREF e, CLUREF pass)
     {
     errcode err;
     errcode ecode2;
@@ -3086,10 +3072,8 @@ static int g_tblOPg_sel_table_own_init = 0;
 
 /**** BEGIN PROCEDURE g_sel_table ****/
 
-errcode g_tblOPg_sel_table(e, fn, fl)
-CLUREF e;
-CLUREF fn;
-CLUREF fl;
+errcode
+g_tblOPg_sel_table(CLUREF e, CLUREF fn, CLUREF fl)
     {
     errcode err;
     errcode ecode2;
@@ -3170,9 +3154,8 @@ static int g_tblOPg_sel_extern_own_init = 0;
 
 /**** BEGIN PROCEDURE g_sel_extern ****/
 
-errcode g_tblOPg_sel_extern(e, each_fl)
-CLUREF e;
-CLUREF each_fl;
+errcode
+g_tblOPg_sel_extern(CLUREF e, CLUREF each_fl)
     {
     errcode err;
     errcode ecode2;
@@ -3278,9 +3261,8 @@ CLUREF each_fl;
 
 /**** BEGIN PROCEDURE build_tables ****/
 
-errcode g_tblOPbuild_tables(e, pass)
-CLUREF e;
-CLUREF pass;
+errcode
+g_tblOPbuild_tables(CLUREF e, CLUREF pass)
     {
     errcode err;
     errcode ecode2;
@@ -3427,9 +3409,8 @@ static int g_tblOPtest_pb_own_init = 0;
 
 /**** BEGIN PROCEDURE test_pb ****/
 
-errcode g_tblOPtest_pb(p, ret_1)
-CLUREF p;
-CLUREF *ret_1;
+errcode
+g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3725,9 +3706,8 @@ static int g_tblOPtest_pb_exprs_asst_own_init = 0;
 
 /**** BEGIN PROCEDURE test_pb_exprs_asst ****/
 
-errcode g_tblOPtest_pb_exprs_asst(el, ret_1)
-CLUREF el;
-CLUREF *ret_1;
+errcode
+g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3994,9 +3974,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE test_pb_exprs_type_asst ****/
 
-errcode g_tblOPtest_pb_exprs_type_asst(ty, ret_1)
-CLUREF ty;
-CLUREF *ret_1;
+errcode
+g_tblOPtest_pb_exprs_type_asst(CLUREF ty, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4105,10 +4084,8 @@ static int g_tblOPbase_cluster_test_own_init = 0;
 
 /**** BEGIN PROCEDURE base_cluster_test ****/
 
-errcode g_tblOPbase_cluster_test(cop, ct, ret_1)
-CLUREF cop;
-CLUREF ct;
-CLUREF *ret_1;
+errcode
+g_tblOPbase_cluster_test(CLUREF cop, CLUREF ct, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4205,9 +4182,8 @@ static int g_tblOPbase_apply_test_own_init = 0;
 
 /**** BEGIN PROCEDURE base_apply_test ****/
 
-errcode g_tblOPbase_apply_test(ct, ret_1)
-CLUREF ct;
-CLUREF *ret_1;
+errcode
+g_tblOPbase_apply_test(CLUREF ct, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4264,9 +4240,8 @@ static int g_tblOPtest_pb_fields_asst_own_init = 0;
 
 /**** BEGIN PROCEDURE test_pb_fields_asst ****/
 
-errcode g_tblOPtest_pb_fields_asst(fl, ret_1)
-CLUREF fl;
-CLUREF *ret_1;
+errcode
+g_tblOPtest_pb_fields_asst(CLUREF fl, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4421,10 +4396,8 @@ static int g_tblOPbuild_one_selector_table_own_init = 0;
 
 /**** BEGIN PROCEDURE build_one_selector_table ****/
 
-errcode g_tblOPbuild_one_selector_table(e, each_fn, each_fl)
-CLUREF e;
-CLUREF each_fn;
-CLUREF each_fl;
+errcode
+g_tblOPbuild_one_selector_table(CLUREF e, CLUREF each_fn, CLUREF each_fl)
     {
     errcode err;
     errcode ecode2;
@@ -4587,7 +4560,8 @@ CLUREF each_fl;
 
 /**** BEGIN PROCEDURE prune ****/
 
-errcode g_tblOPprune()
+errcode
+g_tblOPprune()
     {
     errcode err;
     errcode ecode2;
@@ -5003,9 +4977,8 @@ CLUREF make_sel_nameOPtable;
 
 /**** BEGIN PROCEDURE make_sel_name ****/
 
-errcode make_sel_name(fl, ret_1)
-CLUREF fl;
-CLUREF *ret_1;
+errcode
+make_sel_name(CLUREF fl, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5325,9 +5298,8 @@ static int g_own_build_one_own_init = 0;
 
 /**** BEGIN PROCEDURE g_own_build_one ****/
 
-errcode g_own_build_one(e, each_pb)
-CLUREF e;
-CLUREF each_pb;
+errcode
+g_own_build_one(CLUREF e, CLUREF each_pb)
     {
     errcode err;
     errcode ecode2;
@@ -5957,7 +5929,8 @@ errcode own_defn_own_init_proc()
 
 /**** BEGIN PROCEDURE start ****/
 
-errcode own_defnOPstart()
+errcode
+own_defnOPstart()
     {
     errcode err;
     errcode ecode2;
@@ -5998,9 +5971,8 @@ errcode own_defnOPstart()
 
 /**** BEGIN PROCEDURE test ****/
 
-errcode own_defnOPtest(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+own_defnOPtest(CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6089,7 +6061,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE stop ****/
 
-errcode own_defnOPstop()
+errcode
+own_defnOPstop()
     {
     errcode err;
     errcode ecode2;
@@ -6139,10 +6112,8 @@ static int base_cluster_test_own_init = 0;
 
 /**** BEGIN PROCEDURE base_cluster_test ****/
 
-errcode base_cluster_test(cop, ct, ret_1)
-CLUREF cop;
-CLUREF ct;
-CLUREF *ret_1;
+errcode
+base_cluster_test(CLUREF cop, CLUREF ct, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6239,9 +6210,8 @@ static int base_apply_test_own_init = 0;
 
 /**** BEGIN PROCEDURE base_apply_test ****/
 
-errcode base_apply_test(ct, ret_1)
-CLUREF ct;
-CLUREF *ret_1;
+errcode
+base_apply_test(CLUREF ct, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

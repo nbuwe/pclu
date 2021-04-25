@@ -37,9 +37,8 @@ static int g_expr_proc_names_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr_proc_names ****/
 
-errcode g_expr_proc_names(a, bod)
-CLUREF a;
-CLUREF bod;
+errcode
+g_expr_proc_names(CLUREF a, CLUREF bod)
     {
     errcode err;
     errcode ecode2;
@@ -628,9 +627,8 @@ CLUREF bod;
 
 /**** BEGIN PROCEDURE g_proc_exprlist ****/
 
-errcode g_proc_exprlist(a, el)
-CLUREF a;
-CLUREF el;
+errcode
+g_proc_exprlist(CLUREF a, CLUREF el)
     {
     errcode err;
     errcode ecode2;
@@ -693,9 +691,8 @@ static int g_proc_exprs_own_init = 0;
 
 /**** BEGIN PROCEDURE g_proc_exprs ****/
 
-errcode g_proc_exprs(a, ex)
-CLUREF a;
-CLUREF ex;
+errcode
+g_proc_exprs(CLUREF a, CLUREF ex)
     {
     errcode err;
     errcode ecode2;
@@ -1262,9 +1259,8 @@ OWN_req addh_if_new_ownreqs = {sizeof(addh_if_new_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE addh_if_new ****/
 
-errcode addh_if_new(a, elt)
-CLUREF a;
-CLUREF elt;
+errcode
+addh_if_new(CLUREF a, CLUREF elt)
     {
     errcode err;
     errcode ecode2;
@@ -1362,9 +1358,8 @@ static int g_lvs_stmts_own_init = 0;
 
 /**** BEGIN PROCEDURE g_lvs_stmts ****/
 
-errcode g_lvs_stmts(dl, bod)
-CLUREF dl;
-CLUREF bod;
+errcode
+g_lvs_stmts(CLUREF dl, CLUREF bod)
     {
     errcode err;
     errcode ecode2;
@@ -1823,9 +1818,8 @@ extern errcode sequenceOPaddh();
 
 /**** BEGIN PROCEDURE g_lvs_uniq ****/
 
-errcode g_lvs_uniq(old, ret_1)
-CLUREF old;
-CLUREF *ret_1;
+errcode
+g_lvs_uniq(CLUREF old, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2155,7 +2149,8 @@ errcode fid_own_init_proc()
 
 /**** BEGIN PROCEDURE g_fidn_save ****/
 
-errcode fidOPg_fidn_save()
+errcode
+fidOPg_fidn_save()
     {
     errcode err;
     errcode ecode2;
@@ -2184,7 +2179,8 @@ errcode fidOPg_fidn_save()
 
 /**** BEGIN PROCEDURE g_fidn_restore ****/
 
-errcode fidOPg_fidn_restore()
+errcode
+fidOPg_fidn_restore()
     {
     errcode err;
     errcode ecode2;
@@ -2214,9 +2210,8 @@ static int fidOPg_fid_own_init = 0;
 
 /**** BEGIN PROCEDURE g_fid ****/
 
-errcode fidOPg_fid(ret, ret_1)
-CLUREF ret;
-CLUREF *ret_1;
+errcode
+fidOPg_fid(CLUREF ret, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2326,7 +2321,8 @@ errcode ex_own_init_proc()
 
 /**** BEGIN PROCEDURE init ****/
 
-errcode exOPinit()
+errcode
+exOPinit()
     {
     errcode err;
     errcode ecode2;
@@ -2368,7 +2364,8 @@ errcode exOPinit()
 
 /**** BEGIN PROCEDURE enter ****/
 
-errcode exOPenter()
+errcode
+exOPenter()
     {
     errcode err;
     errcode ecode2;
@@ -2420,7 +2417,8 @@ errcode exOPenter()
 
 /**** BEGIN PROCEDURE leave ****/
 
-errcode exOPleave()
+errcode
+exOPleave()
     {
     errcode err;
     errcode ecode2;
@@ -2453,8 +2451,8 @@ static int exOPget_current_ex_label_own_init = 0;
 
 /**** BEGIN PROCEDURE get_current_ex_label ****/
 
-errcode exOPget_current_ex_label(ret_1)
-CLUREF *ret_1;
+errcode
+exOPget_current_ex_label(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2496,8 +2494,8 @@ static int exOPget_current_end_label_own_init = 0;
 
 /**** BEGIN PROCEDURE get_current_end_label ****/
 
-errcode exOPget_current_end_label(ret_1)
-CLUREF *ret_1;
+errcode
+exOPget_current_end_label(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2635,7 +2633,8 @@ errcode tv_own_init_proc()
 
 /**** BEGIN PROCEDURE enter ****/
 
-errcode tvOPenter()
+errcode
+tvOPenter()
     {
     errcode err;
     errcode ecode2;
@@ -2716,7 +2715,8 @@ errcode tvOPenter()
 
 /**** BEGIN PROCEDURE leave ****/
 
-errcode tvOPleave()
+errcode
+tvOPleave()
     {
     errcode err;
     errcode ecode2;
@@ -2764,7 +2764,8 @@ errcode tvOPleave()
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode tvOPreset()
+errcode
+tvOPreset()
     {
     errcode err;
     errcode ecode2;
@@ -2833,9 +2834,8 @@ static int tvOPdecl_next_own_init = 0;
 
 /**** BEGIN PROCEDURE decl_next ****/
 
-errcode tvOPdecl_next(e, t)
-CLUREF e;
-CLUREF t;
+errcode
+tvOPdecl_next(CLUREF e, CLUREF t)
     {
     errcode err;
     errcode ecode2;
@@ -2914,8 +2914,8 @@ static int tvOPblind_decl_next_own_init = 0;
 
 /**** BEGIN PROCEDURE blind_decl_next ****/
 
-errcode tvOPblind_decl_next(e)
-CLUREF e;
+errcode
+tvOPblind_decl_next(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -2978,9 +2978,8 @@ static int tvOPidn_next_own_init = 0;
 
 /**** BEGIN PROCEDURE idn_next ****/
 
-errcode tvOPidn_next(ty, ret_1)
-CLUREF ty;
-CLUREF *ret_1;
+errcode
+tvOPidn_next(CLUREF ty, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3058,7 +3057,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE save ****/
 
-errcode tvOPsave()
+errcode
+tvOPsave()
     {
     errcode err;
     errcode ecode2;
@@ -3087,7 +3087,8 @@ errcode tvOPsave()
 
 /**** BEGIN PROCEDURE restore ****/
 
-errcode tvOPrestore()
+errcode
+tvOPrestore()
     {
     errcode err;
     errcode ecode2;

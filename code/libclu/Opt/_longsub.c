@@ -10,16 +10,8 @@ extern errcode intOPadd();
 
 /**** BEGIN PROCEDURE _longsub ****/
 
-errcode _longsub(x1, x2, x3, y1, y2, y3, ret_1, ret_2, ret_3)
-CLUREF x1;
-CLUREF x2;
-CLUREF x3;
-CLUREF y1;
-CLUREF y2;
-CLUREF y3;
-CLUREF *ret_1;
-CLUREF *ret_2;
-CLUREF *ret_3;
+errcode
+_longsub(CLUREF x1, CLUREF x2, CLUREF x3, CLUREF y1, CLUREF y2, CLUREF y3, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     {
     errcode err;
     errcode ecode2;

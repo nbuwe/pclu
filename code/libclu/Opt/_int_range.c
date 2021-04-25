@@ -7,9 +7,8 @@
 
 /**** BEGIN PROCEDURE _int_range ****/
 
-errcode _int_range(ret_1, ret_2)
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+_int_range(CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;

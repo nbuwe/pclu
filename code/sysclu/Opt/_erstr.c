@@ -76,9 +76,8 @@ static int _erstr_own_init = 0;
 
 /**** BEGIN PROCEDURE _erstr ****/
 
-errcode _erstr(num, ret_1)
-CLUREF num;
-CLUREF *ret_1;
+errcode
+_erstr(CLUREF num, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -272,9 +271,8 @@ static int _ernum_own_init = 0;
 
 /**** BEGIN PROCEDURE _ernum ****/
 
-errcode _ernum(msg, ret_1)
-CLUREF msg;
-CLUREF *ret_1;
+errcode
+_ernum(CLUREF msg, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

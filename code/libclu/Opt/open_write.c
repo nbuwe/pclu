@@ -11,9 +11,8 @@ static int open_write_own_init = 0;
 
 /**** BEGIN PROCEDURE open_write ****/
 
-errcode open_write(name, ret_1)
-CLUREF name;
-CLUREF *ret_1;
+errcode
+open_write(CLUREF name, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

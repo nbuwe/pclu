@@ -456,11 +456,8 @@ static int dbg_infoOPstart_own_init = 0;
 
 /**** BEGIN PROCEDURE start ****/
 
-errcode dbg_infoOPstart(e, a, cname, iterp)
-CLUREF e;
-CLUREF a;
-CLUREF cname;
-CLUREF iterp;
+errcode
+dbg_infoOPstart(CLUREF e, CLUREF a, CLUREF cname, CLUREF iterp)
     {
     errcode err;
     errcode ecode2;
@@ -756,7 +753,8 @@ CLUREF iterp;
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode dbg_infoOPreset()
+errcode
+dbg_infoOPreset()
     {
     errcode err;
     errcode ecode2;
@@ -829,8 +827,8 @@ errcode dbg_infoOPreset()
 
 /**** BEGIN PROCEDURE active ****/
 
-errcode dbg_infoOPactive(ret_1)
-CLUREF *ret_1;
+errcode
+dbg_infoOPactive(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -863,10 +861,8 @@ static int dbg_infoOPset_own_context_own_init = 0;
 
 /**** BEGIN PROCEDURE set_own_context ****/
 
-errcode dbg_infoOPset_own_context(e, context, parmd)
-CLUREF e;
-CLUREF context;
-CLUREF parmd;
+errcode
+dbg_infoOPset_own_context(CLUREF e, CLUREF context, CLUREF parmd)
     {
     errcode err;
     errcode ecode2;
@@ -967,8 +963,8 @@ CLUREF parmd;
 
 /**** BEGIN PROCEDURE add_own ****/
 
-errcode dbg_infoOPadd_own(entry)
-CLUREF entry;
+errcode
+dbg_infoOPadd_own(CLUREF entry)
     {
     errcode err;
     errcode ecode2;
@@ -1071,8 +1067,8 @@ CLUREF entry;
 
 /**** BEGIN PROCEDURE add_ilist ****/
 
-errcode dbg_infoOPadd_ilist(entry)
-CLUREF entry;
+errcode
+dbg_infoOPadd_ilist(CLUREF entry)
     {
     errcode err;
     errcode ecode2;
@@ -1153,8 +1149,8 @@ static int dbg_infoOPemit_extern_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_extern ****/
 
-errcode dbg_infoOPemit_extern(e)
-CLUREF e;
+errcode
+dbg_infoOPemit_extern(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1234,8 +1230,8 @@ static int dbg_infoOPemit_local_entry_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_local_entry ****/
 
-errcode dbg_infoOPemit_local_entry(e)
-CLUREF e;
+errcode
+dbg_infoOPemit_local_entry(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1285,8 +1281,8 @@ static int dbg_infoOPinit_local_entry_own_init = 0;
 
 /**** BEGIN PROCEDURE init_local_entry ****/
 
-errcode dbg_infoOPinit_local_entry(e)
-CLUREF e;
+errcode
+dbg_infoOPinit_local_entry(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1335,8 +1331,8 @@ CLUREF e;
 
 /**** BEGIN PROCEDURE add_locals ****/
 
-errcode dbg_infoOPadd_locals(lcls)
-CLUREF lcls;
+errcode
+dbg_infoOPadd_locals(CLUREF lcls)
     {
     errcode err;
     errcode ecode2;
@@ -1375,8 +1371,8 @@ CLUREF lcls;
 
 /**** BEGIN PROCEDURE extend_locals ****/
 
-errcode dbg_infoOPextend_locals(d)
-CLUREF d;
+errcode
+dbg_infoOPextend_locals(CLUREF d)
     {
     errcode err;
     errcode ecode2;
@@ -1422,8 +1418,8 @@ CLUREF d;
 
 /**** BEGIN PROCEDURE add_local ****/
 
-errcode dbg_infoOPadd_local(anelt)
-CLUREF anelt;
+errcode
+dbg_infoOPadd_local(CLUREF anelt)
     {
     errcode err;
     errcode ecode2;
@@ -1469,8 +1465,8 @@ CLUREF anelt;
 
 /**** BEGIN PROCEDURE emit_decls ****/
 
-errcode dbg_infoOPemit_decls(e)
-CLUREF e;
+errcode
+dbg_infoOPemit_decls(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1535,8 +1531,8 @@ static int dbg_infoOPemit_externs_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_externs ****/
 
-errcode dbg_infoOPemit_externs(e)
-CLUREF e;
+errcode
+dbg_infoOPemit_externs(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1966,8 +1962,8 @@ static int dbg_infoOPemit_own_externs_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_own_externs ****/
 
-errcode dbg_infoOPemit_own_externs(e)
-CLUREF e;
+errcode
+dbg_infoOPemit_own_externs(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -2131,9 +2127,8 @@ static int dbg_infoOPemit_extern_typespec_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_extern_typespec ****/
 
-errcode dbg_infoOPemit_extern_typespec(e, each_val)
-CLUREF e;
-CLUREF each_val;
+errcode
+dbg_infoOPemit_extern_typespec(CLUREF e, CLUREF each_val)
     {
     errcode err;
     errcode ecode2;
@@ -2458,8 +2453,8 @@ CLUREF each_val;
 
 /**** BEGIN PROCEDURE emit_sub_typedefs ****/
 
-errcode dbg_infoOPemit_sub_typedefs(e)
-CLUREF e;
+errcode
+dbg_infoOPemit_sub_typedefs(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -2767,9 +2762,8 @@ static int dbg_infoOPemit_vlist_typedef_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_vlist_typedef ****/
 
-errcode dbg_infoOPemit_vlist_typedef(e, n)
-CLUREF e;
-CLUREF n;
+errcode
+dbg_infoOPemit_vlist_typedef(CLUREF e, CLUREF n)
     {
     errcode err;
     errcode ecode2;
@@ -2870,9 +2864,8 @@ static int dbg_infoOPemit_siglist_typedef_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_siglist_typedef ****/
 
-errcode dbg_infoOPemit_siglist_typedef(e, n)
-CLUREF e;
-CLUREF n;
+errcode
+dbg_infoOPemit_siglist_typedef(CLUREF e, CLUREF n)
     {
     errcode err;
     errcode ecode2;
@@ -2973,8 +2966,8 @@ static int dbg_infoOPemit_typedef_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_typedef ****/
 
-errcode dbg_infoOPemit_typedef(e)
-CLUREF e;
+errcode
+dbg_infoOPemit_typedef(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -3210,8 +3203,8 @@ static int dbg_infoOPemit_sub_decls_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_sub_decls ****/
 
-errcode dbg_infoOPemit_sub_decls(e)
-CLUREF e;
+errcode
+dbg_infoOPemit_sub_decls(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -4160,8 +4153,8 @@ static int dbg_infoOPemit_ptown_decl_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_ptown_decl ****/
 
-errcode dbg_infoOPemit_ptown_decl(e)
-CLUREF e;
+errcode
+dbg_infoOPemit_ptown_decl(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -4271,8 +4264,8 @@ static int dbg_infoOPemit_own_decl_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_own_decl ****/
 
-errcode dbg_infoOPemit_own_decl(e)
-CLUREF e;
+errcode
+dbg_infoOPemit_own_decl(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -4435,9 +4428,8 @@ static int dbg_infoOPprocess_mixedlist_own_init = 0;
 
 /**** BEGIN PROCEDURE process_mixedlist ****/
 
-errcode dbg_infoOPprocess_mixedlist(e, list)
-CLUREF e;
-CLUREF list;
+errcode
+dbg_infoOPprocess_mixedlist(CLUREF e, CLUREF list)
     {
     errcode err;
     errcode ecode2;
@@ -4588,13 +4580,8 @@ static int dbg_infoOPprocess_initlists_own_init = 0;
 
 /**** BEGIN PROCEDURE process_initlists ****/
 
-errcode dbg_infoOPprocess_initlists(e, tyexists, tylist, oplist, first, ret_1)
-CLUREF e;
-CLUREF tyexists;
-CLUREF tylist;
-CLUREF oplist;
-CLUREF first;
-CLUREF *ret_1;
+errcode
+dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF oplist, CLUREF first, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4927,9 +4914,8 @@ static int dbg_infoOPprocess_ownlists_own_init = 0;
 
 /**** BEGIN PROCEDURE process_ownlists ****/
 
-errcode dbg_infoOPprocess_ownlists(e, own_list)
-CLUREF e;
-CLUREF own_list;
+errcode
+dbg_infoOPprocess_ownlists(CLUREF e, CLUREF own_list)
     {
     errcode err;
     errcode ecode2;
@@ -4987,12 +4973,8 @@ static int dbg_infoOPemit_sub_decl_typespec_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_sub_decl_typespec ****/
 
-errcode dbg_infoOPemit_sub_decl_typespec(e, id, each_val, first, ret_1)
-CLUREF e;
-CLUREF id;
-CLUREF each_val;
-CLUREF first;
-CLUREF *ret_1;
+errcode
+dbg_infoOPemit_sub_decl_typespec(CLUREF e, CLUREF id, CLUREF each_val, CLUREF first, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5412,8 +5394,8 @@ static int dbg_infoOPemit_decl_own_init = 0;
 
 /**** BEGIN PROCEDURE emit_decl ****/
 
-errcode dbg_infoOPemit_decl(e)
-CLUREF e;
+errcode
+dbg_infoOPemit_decl(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -5871,9 +5853,8 @@ CLUREF e;
 
 /**** BEGIN PROCEDURE idns_in_decls ****/
 
-errcode dbg_infoOPidns_in_decls(a, ret_1)
-CLUREF a;
-CLUREF *ret_1;
+errcode
+dbg_infoOPidns_in_decls(CLUREF a, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -5945,9 +5926,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE owns_in_mixedlist ****/
 
-errcode dbg_infoOPowns_in_mixedlist(it, ret_1)
-CLUREF it;
-CLUREF *ret_1;
+errcode
+dbg_infoOPowns_in_mixedlist(CLUREF it, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6073,9 +6053,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE vars_in_mixedlist ****/
 
-errcode dbg_infoOPvars_in_mixedlist(it, ret_1)
-CLUREF it;
-CLUREF *ret_1;
+errcode
+dbg_infoOPvars_in_mixedlist(CLUREF it, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6189,9 +6168,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE vars_in_initlist ****/
 
-errcode dbg_infoOPvars_in_initlist(it, ret_1)
-CLUREF it;
-CLUREF *ret_1;
+errcode
+dbg_infoOPvars_in_initlist(CLUREF it, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6340,9 +6318,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE vars_in_decllist ****/
 
-errcode dbg_infoOPvars_in_decllist(dl, ret_1)
-CLUREF dl;
-CLUREF *ret_1;
+errcode
+dbg_infoOPvars_in_decllist(CLUREF dl, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -6481,9 +6458,8 @@ CLUREF escape_ckeywordOPreserved;
 
 /**** BEGIN PROCEDURE escape_ckeyword ****/
 
-errcode escape_ckeyword(nm, ret_1)
-CLUREF nm;
-CLUREF *ret_1;
+errcode
+escape_ckeyword(CLUREF nm, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

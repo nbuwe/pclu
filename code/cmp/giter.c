@@ -175,7 +175,8 @@ errcode ib_own_init_proc()
 
 /**** BEGIN PROCEDURE init ****/
 
-errcode ibOPinit()
+errcode
+ibOPinit()
     {
     errcode err;
     errcode ecode2;
@@ -212,7 +213,8 @@ errcode ibOPinit()
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode ibOPreset()
+errcode
+ibOPreset()
     {
     errcode err;
     errcode ecode2;
@@ -241,8 +243,8 @@ errcode ibOPreset()
 
 /**** BEGIN PROCEDURE bodies ****/
 
-errcode ibOPbodies(ret_1)
-CLUREF *ret_1;
+errcode
+ibOPbodies(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -274,8 +276,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE exist ****/
 
-errcode ibOPexist(ret_1)
-CLUREF *ret_1;
+errcode
+ibOPexist(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -325,8 +327,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE add_body ****/
 
-errcode ibOPadd_body(bod)
-CLUREF bod;
+errcode
+ibOPadd_body(CLUREF bod)
     {
     errcode err;
     errcode ecode2;
@@ -359,8 +361,8 @@ static int ibOPnext_name_own_init = 0;
 
 /**** BEGIN PROCEDURE next_name ****/
 
-errcode ibOPnext_name(ret_1)
-CLUREF *ret_1;
+errcode
+ibOPnext_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -418,7 +420,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE save_name ****/
 
-errcode ibOPsave_name()
+errcode
+ibOPsave_name()
     {
     errcode err;
     errcode ecode2;
@@ -447,7 +450,8 @@ errcode ibOPsave_name()
 
 /**** BEGIN PROCEDURE restore_name ****/
 
-errcode ibOPrestore_name()
+errcode
+ibOPrestore_name()
     {
     errcode err;
     errcode ecode2;
@@ -477,9 +481,8 @@ static int ibOPgen_bodies_own_init = 0;
 
 /**** BEGIN PROCEDURE gen_bodies ****/
 
-errcode ibOPgen_bodies(e, id)
-CLUREF e;
-CLUREF id;
+errcode
+ibOPgen_bodies(CLUREF e, CLUREF id)
     {
     errcode err;
     errcode ecode2;
@@ -626,10 +629,8 @@ static int ibOPgen_body_own_init = 0;
 
 /**** BEGIN PROCEDURE gen_body ****/
 
-errcode ibOPgen_body(e, f, index)
-CLUREF e;
-CLUREF f;
-CLUREF index;
+errcode
+ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
     {
     errcode err;
     errcode ecode2;
@@ -1217,8 +1218,8 @@ static int ibOPgen_locals_own_init = 0;
 
 /**** BEGIN PROCEDURE gen_locals ****/
 
-errcode ibOPgen_locals(e)
-CLUREF e;
+errcode
+ibOPgen_locals(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -1589,9 +1590,8 @@ extern errcode arrayOPempty();
 
 /**** BEGIN PROCEDURE g_iterbody_names ****/
 
-errcode g_iterbody_names(arr, bod)
-CLUREF arr;
-CLUREF bod;
+errcode
+g_iterbody_names(CLUREF arr, CLUREF bod)
     {
     errcode err;
     errcode ecode2;
@@ -1693,11 +1693,8 @@ extern errcode sequenceOPfill();
 
 /**** BEGIN PROCEDURE g_iterbody_names_asst ****/
 
-errcode g_iterbody_names_asst(out, arr, bod, ret_1)
-CLUREF out;
-CLUREF arr;
-CLUREF bod;
-CLUREF *ret_1;
+errcode
+g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2137,7 +2134,8 @@ errcode loop_context_own_init_proc()
 
 /**** BEGIN PROCEDURE init ****/
 
-errcode loop_contextOPinit()
+errcode
+loop_contextOPinit()
     {
     errcode err;
     errcode ecode2;
@@ -2202,7 +2200,8 @@ errcode loop_contextOPinit()
 
 /**** BEGIN PROCEDURE enter_while ****/
 
-errcode loop_contextOPenter_while()
+errcode
+loop_contextOPenter_while()
     {
     errcode err;
     errcode ecode2;
@@ -2268,7 +2267,8 @@ errcode loop_contextOPenter_while()
 
 /**** BEGIN PROCEDURE enter_inline_for ****/
 
-errcode loop_contextOPenter_inline_for()
+errcode
+loop_contextOPenter_inline_for()
     {
     errcode err;
     errcode ecode2;
@@ -2334,7 +2334,8 @@ errcode loop_contextOPenter_inline_for()
 
 /**** BEGIN PROCEDURE enter_for ****/
 
-errcode loop_contextOPenter_for()
+errcode
+loop_contextOPenter_for()
     {
     errcode err;
     errcode ecode2;
@@ -2377,7 +2378,8 @@ errcode loop_contextOPenter_for()
 
 /**** BEGIN PROCEDURE leave ****/
 
-errcode loop_contextOPleave()
+errcode
+loop_contextOPleave()
     {
     errcode err;
     errcode ecode2;
@@ -2439,8 +2441,8 @@ errcode loop_contextOPleave()
 
 /**** BEGIN PROCEDURE is_for ****/
 
-errcode loop_contextOPis_for(ret_1)
-CLUREF *ret_1;
+errcode
+loop_contextOPis_for(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2491,8 +2493,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE is_while ****/
 
-errcode loop_contextOPis_while(ret_1)
-CLUREF *ret_1;
+errcode
+loop_contextOPis_while(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2543,8 +2545,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE is_inline_for ****/
 
-errcode loop_contextOPis_inline_for(ret_1)
-CLUREF *ret_1;
+errcode
+loop_contextOPis_inline_for(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2595,8 +2597,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_current_while_count ****/
 
-errcode loop_contextOPget_current_while_count(ret_1)
-CLUREF *ret_1;
+errcode
+loop_contextOPget_current_while_count(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2631,8 +2633,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_current_inline_for_count ****/
 
-errcode loop_contextOPget_current_inline_for_count(ret_1)
-CLUREF *ret_1;
+errcode
+loop_contextOPget_current_inline_for_count(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2724,8 +2726,8 @@ errcode current_locals_own_init_proc()
 
 /**** BEGIN PROCEDURE set ****/
 
-errcode current_localsOPset(lvs)
-CLUREF lvs;
+errcode
+current_localsOPset(CLUREF lvs)
     {
     errcode err;
     errcode ecode2;
@@ -2754,8 +2756,8 @@ CLUREF lvs;
 
 /**** BEGIN PROCEDURE get ****/
 
-errcode current_localsOPget(ret_1)
-CLUREF *ret_1;
+errcode
+current_localsOPget(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2851,8 +2853,8 @@ static int current_applyOPset_own_init = 0;
 
 /**** BEGIN PROCEDURE set ****/
 
-errcode current_applyOPset(app)
-CLUREF app;
+errcode
+current_applyOPset(CLUREF app)
     {
     errcode err;
     errcode ecode2;
@@ -2938,8 +2940,8 @@ CLUREF app;
 
 /**** BEGIN PROCEDURE get ****/
 
-errcode current_applyOPget(ret_1)
-CLUREF *ret_1;
+errcode
+current_applyOPget(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2971,8 +2973,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_val_count ****/
 
-errcode current_applyOPget_val_count(ret_1)
-CLUREF *ret_1;
+errcode
+current_applyOPget_val_count(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3008,8 +3010,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_apply_name ****/
 
-errcode current_applyOPget_apply_name(ret_1)
-CLUREF *ret_1;
+errcode
+current_applyOPget_apply_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3042,8 +3044,8 @@ static int current_applyOPget_name_own_init = 0;
 
 /**** BEGIN PROCEDURE get_name ****/
 
-errcode current_applyOPget_name(ret_1)
-CLUREF *ret_1;
+errcode
+current_applyOPget_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3129,8 +3131,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_short_name ****/
 
-errcode current_applyOPget_short_name(ret_1)
-CLUREF *ret_1;
+errcode
+current_applyOPget_short_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3162,8 +3164,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE is_iter ****/
 
-errcode current_applyOPis_iter(ret_1)
-CLUREF *ret_1;
+errcode
+current_applyOPis_iter(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3196,8 +3198,8 @@ static int current_applyOPparmd_own_init = 0;
 
 /**** BEGIN PROCEDURE parmd ****/
 
-errcode current_applyOPparmd(ret_1)
-CLUREF *ret_1;
+errcode
+current_applyOPparmd(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3267,8 +3269,8 @@ static int current_applyOPget_formals_string_own_init = 0;
 
 /**** BEGIN PROCEDURE get_formals_string ****/
 
-errcode current_applyOPget_formals_string(ret_1)
-CLUREF *ret_1;
+errcode
+current_applyOPget_formals_string(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3356,8 +3358,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_formals ****/
 
-errcode current_applyOPget_formals(ret_1)
-CLUREF *ret_1;
+errcode
+current_applyOPget_formals(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3447,7 +3449,8 @@ static int current_applyOPreset_own_init = 0;
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode current_applyOPreset()
+errcode
+current_applyOPreset()
     {
     errcode err;
     errcode ecode2;
@@ -3548,8 +3551,8 @@ errcode current_type_own_init_proc()
 
 /**** BEGIN PROCEDURE set ****/
 
-errcode current_typeOPset(typ)
-CLUREF typ;
+errcode
+current_typeOPset(CLUREF typ)
     {
     errcode err;
     errcode ecode2;
@@ -3588,8 +3591,8 @@ CLUREF typ;
 
 /**** BEGIN PROCEDURE get ****/
 
-errcode current_typeOPget(ret_1)
-CLUREF *ret_1;
+errcode
+current_typeOPget(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3622,8 +3625,8 @@ static int current_typeOPexists_own_init = 0;
 
 /**** BEGIN PROCEDURE exists ****/
 
-errcode current_typeOPexists(ret_1)
-CLUREF *ret_1;
+errcode
+current_typeOPexists(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3673,8 +3676,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE parmd ****/
 
-errcode current_typeOPparmd(ret_1)
-CLUREF *ret_1;
+errcode
+current_typeOPparmd(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3727,8 +3730,8 @@ static int current_typeOPget_formals_string_own_init = 0;
 
 /**** BEGIN PROCEDURE get_formals_string ****/
 
-errcode current_typeOPget_formals_string(ret_1)
-CLUREF *ret_1;
+errcode
+current_typeOPget_formals_string(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3816,8 +3819,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_formals ****/
 
-errcode current_typeOPget_formals(ret_1)
-CLUREF *ret_1;
+errcode
+current_typeOPget_formals(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3906,8 +3909,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_name ****/
 
-errcode current_typeOPget_name(ret_1)
-CLUREF *ret_1;
+errcode
+current_typeOPget_name(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3939,8 +3942,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_own_init_proc ****/
 
-errcode current_typeOPset_own_init_proc(generated)
-CLUREF generated;
+errcode
+current_typeOPset_own_init_proc(CLUREF generated)
     {
     errcode err;
     errcode ecode2;
@@ -3970,8 +3973,8 @@ static int current_typeOPown_init_proc_exists_own_init = 0;
 
 /**** BEGIN PROCEDURE own_init_proc_exists ****/
 
-errcode current_typeOPown_init_proc_exists(ret_1)
-CLUREF *ret_1;
+errcode
+current_typeOPown_init_proc_exists(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4021,7 +4024,8 @@ static int current_typeOPreset_own_init = 0;
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode current_typeOPreset()
+errcode
+current_typeOPreset()
     {
     errcode err;
     errcode ecode2;
@@ -4116,8 +4120,8 @@ errcode owns_own_init_proc()
 
 /**** BEGIN PROCEDURE save ****/
 
-errcode ownsOPsave(ilist)
-CLUREF ilist;
+errcode
+ownsOPsave(CLUREF ilist)
     {
     errcode err;
     errcode ecode2;
@@ -4163,7 +4167,8 @@ CLUREF ilist;
 
 /**** BEGIN PROCEDURE forget ****/
 
-errcode ownsOPforget()
+errcode
+ownsOPforget()
     {
     errcode err;
     errcode ecode2;
@@ -4195,9 +4200,8 @@ errcode ownsOPforget()
 
 /**** BEGIN PROCEDURE member ****/
 
-errcode ownsOPmember(i, ret_1)
-CLUREF i;
-CLUREF *ret_1;
+errcode
+ownsOPmember(CLUREF i, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

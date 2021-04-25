@@ -9,8 +9,8 @@ extern errcode timeOPcreate();
 
 /**** BEGIN PROCEDURE run_time ****/
 
-errcode run_time(ret_1)
-CLUREF *ret_1;
+errcode
+run_time(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

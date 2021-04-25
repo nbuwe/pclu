@@ -18,9 +18,8 @@ CLUREF unify_spacingOPbuf;
 
 /**** BEGIN PROCEDURE unify_spacing ****/
 
-errcode unify_spacing(s, ret_1)
-CLUREF s;
-CLUREF *ret_1;
+errcode
+unify_spacing(CLUREF s, CLUREF *ret_1)
     {
     struct {
         errcode err;

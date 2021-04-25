@@ -48,9 +48,8 @@ OWN_req gc_copy_ownreqs = {sizeof(gc_copy_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE gc_copy ****/
 
-errcode gc_copy(x, ret_1)
-CLUREF x;
-CLUREF *ret_1;
+errcode
+gc_copy(CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -168,10 +167,8 @@ OWN_req gc_copy_to_ownreqs = {sizeof(gc_copy_to_OWN_DEFN), 1};
 
 /**** BEGIN PROCEDURE gc_copy_to ****/
 
-errcode gc_copy_to(x, leaves, ret_1)
-CLUREF x;
-CLUREF leaves;
-CLUREF *ret_1;
+errcode
+gc_copy_to(CLUREF x, CLUREF leaves, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -332,10 +329,8 @@ static int _gc_copy_own_init = 0;
 
 /**** BEGIN PROCEDURE _gc_copy ****/
 
-errcode _gc_copy(t, x, ret_1)
-CLUREF t;
-CLUREF x;
-CLUREF *ret_1;
+errcode
+_gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

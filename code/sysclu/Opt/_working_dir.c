@@ -25,10 +25,8 @@ CLUREF _working_dirOPwrkdir;
 
 /**** BEGIN PROCEDURE _working_dir ****/
 
-errcode _working_dir(s, update, ret_1)
-CLUREF s;
-CLUREF update;
-CLUREF *ret_1;
+errcode
+_working_dir(CLUREF s, CLUREF update, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

@@ -29,12 +29,8 @@ static int _termcap_own_init = 0;
 
 /**** BEGIN PROCEDURE _termcap ****/
 
-errcode _termcap(term, cap, repeat, baud, ret_1)
-CLUREF term;
-CLUREF cap;
-CLUREF repeat;
-CLUREF baud;
-CLUREF *ret_1;
+errcode
+_termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -457,11 +453,8 @@ static int _termcap_decode_own_init = 0;
 
 /**** BEGIN PROCEDURE _termcap_decode ****/
 
-errcode _termcap_decode(term, i, ret_1, ret_2)
-CLUREF term;
-CLUREF i;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+_termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;

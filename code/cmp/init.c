@@ -34,8 +34,8 @@ static int initialize_compiler_own_init = 0;
 
 /**** BEGIN PROCEDURE initialize_compiler ****/
 
-errcode initialize_compiler(ret_1)
-CLUREF *ret_1;
+errcode
+initialize_compiler(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -269,7 +269,8 @@ static int initialize_specs_own_init = 0;
 
 /**** BEGIN PROCEDURE initialize_specs ****/
 
-errcode initialize_specs()
+errcode
+initialize_specs()
     {
     errcode err;
     errcode ecode2;
@@ -394,7 +395,8 @@ extern errcode dump_compiler();
 
 /**** BEGIN PROCEDURE save_compiler ****/
 
-errcode save_compiler()
+errcode
+save_compiler()
     {
     errcode err;
     errcode ecode2;
@@ -495,7 +497,8 @@ static int reset_compiler_own_init = 0;
 
 /**** BEGIN PROCEDURE reset_compiler ****/
 
-errcode reset_compiler()
+errcode
+reset_compiler()
     {
     errcode err;
     errcode ecode2;

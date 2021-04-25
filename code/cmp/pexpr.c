@@ -13,9 +13,8 @@ static int p_expr1_own_init = 0;
 
 /**** BEGIN PROCEDURE p_expr1 ****/
 
-errcode p_expr1(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_expr1(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -77,9 +76,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE p_expr ****/
 
-errcode p_expr(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_expr(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -136,10 +134,8 @@ static int p_expr0_own_init = 0;
 
 /**** BEGIN PROCEDURE p_expr0 ****/
 
-errcode p_expr0(e, level, ret_1)
-CLUREF e;
-CLUREF level;
-CLUREF *ret_1;
+errcode
+p_expr0(CLUREF e, CLUREF level, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -391,9 +387,8 @@ static int p_prim_own_init = 0;
 
 /**** BEGIN PROCEDURE p_prim ****/
 
-errcode p_prim(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_prim(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -750,10 +745,8 @@ static int p_idn_primary_own_init = 0;
 
 /**** BEGIN PROCEDURE p_idn_primary ****/
 
-errcode p_idn_primary(e, id, ret_1)
-CLUREF e;
-CLUREF id;
-CLUREF *ret_1;
+errcode
+p_idn_primary(CLUREF e, CLUREF id, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -975,10 +968,8 @@ static int p_type_primary_own_init = 0;
 
 /**** BEGIN PROCEDURE p_type_primary ****/
 
-errcode p_type_primary(e, t, ret_1)
-CLUREF e;
-CLUREF t;
-CLUREF *ret_1;
+errcode
+p_type_primary(CLUREF e, CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1168,10 +1159,8 @@ static int p_more_primary_own_init = 0;
 
 /**** BEGIN PROCEDURE p_more_primary ****/
 
-errcode p_more_primary(e, x, ret_1)
-CLUREF e;
-CLUREF x;
-CLUREF *ret_1;
+errcode
+p_more_primary(CLUREF e, CLUREF x, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1410,10 +1399,8 @@ static int p_s_cons_own_init = 0;
 
 /**** BEGIN PROCEDURE p_s_cons ****/
 
-errcode p_s_cons(e, t, ret_1)
-CLUREF e;
-CLUREF t;
-CLUREF *ret_1;
+errcode
+p_s_cons(CLUREF e, CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1524,9 +1511,8 @@ static int p_field_own_init = 0;
 
 /**** BEGIN PROCEDURE p_field ****/
 
-errcode p_field(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_field(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1671,10 +1657,8 @@ static int p_a_cons_own_init = 0;
 
 /**** BEGIN PROCEDURE p_a_cons ****/
 
-errcode p_a_cons(e, t, ret_1)
-CLUREF e;
-CLUREF t;
-CLUREF *ret_1;
+errcode
+p_a_cons(CLUREF e, CLUREF t, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1930,9 +1914,8 @@ static int p_force_own_init = 0;
 
 /**** BEGIN PROCEDURE p_force ****/
 
-errcode p_force(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_force(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2045,9 +2028,8 @@ static int p_pexpr_own_init = 0;
 
 /**** BEGIN PROCEDURE p_pexpr ****/
 
-errcode p_pexpr(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+p_pexpr(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

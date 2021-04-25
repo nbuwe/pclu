@@ -369,8 +369,8 @@ static int ceOPcreate_own_init = 0;
 
 /**** BEGIN PROCEDURE create ****/
 
-errcode ceOPcreate(ret_1)
-CLUREF *ret_1;
+errcode
+ceOPcreate(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -877,9 +877,8 @@ static int ceOPreset_entries_own_init = 0;
 
 /**** BEGIN PROCEDURE reset_entries ****/
 
-errcode ceOPreset_entries(e, lasting)
-CLUREF e;
-CLUREF lasting;
+errcode
+ceOPreset_entries(CLUREF e, CLUREF lasting)
     {
     errcode err;
     errcode ecode2;
@@ -940,8 +939,8 @@ static int ceOPflush_entries_own_init = 0;
 
 /**** BEGIN PROCEDURE flush_entries ****/
 
-errcode ceOPflush_entries(e)
-CLUREF e;
+errcode
+ceOPflush_entries(CLUREF e)
     {
     errcode err;
     errcode ecode2;
@@ -979,10 +978,8 @@ CLUREF e;
 
 /**** BEGIN PROCEDURE pflush_id ****/
 
-errcode ceOPpflush_id(ent, lasting, ret_1)
-CLUREF ent;
-CLUREF lasting;
-CLUREF *ret_1;
+errcode
+ceOPpflush_id(CLUREF ent, CLUREF lasting, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1105,9 +1102,8 @@ static int ceOPreset_types_own_init = 0;
 
 /**** BEGIN PROCEDURE reset_types ****/
 
-errcode ceOPreset_types(e, types)
-CLUREF e;
-CLUREF types;
+errcode
+ceOPreset_types(CLUREF e, CLUREF types)
     {
     errcode err;
     errcode ecode2;
@@ -1241,8 +1237,8 @@ static int ceOPreset_own_init = 0;
 
 /**** BEGIN PROCEDURE reset ****/
 
-errcode ceOPreset(e)
-CLUREF e;
+errcode
+ceOPreset(CLUREF e)
     {
     struct {
         errcode err;
@@ -1452,8 +1448,8 @@ static int ceOPreset1_own_init = 0;
 
 /**** BEGIN PROCEDURE reset1 ****/
 
-errcode ceOPreset1(e)
-CLUREF e;
+errcode
+ceOPreset1(CLUREF e)
     {
     struct {
         errcode err;
@@ -1592,9 +1588,8 @@ struct {
 
 /**** BEGIN PROCEDURE flush_id ****/
 
-errcode ceOPflush_id(ent, ret_1)
-CLUREF ent;
-CLUREF *ret_1;
+errcode
+ceOPflush_id(CLUREF ent, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1651,10 +1646,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE pflush_type ****/
 
-errcode ceOPpflush_type(t, max, ret_1)
-CLUREF t;
-CLUREF max;
-CLUREF *ret_1;
+errcode
+ceOPpflush_type(CLUREF t, CLUREF max, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -1718,8 +1711,8 @@ static int ceOPkeep_own_init = 0;
 
 /**** BEGIN PROCEDURE keep ****/
 
-errcode ceOPkeep(e)
-CLUREF e;
+errcode
+ceOPkeep(CLUREF e)
     {
     struct {
         errcode err;
@@ -1850,11 +1843,8 @@ static int ceOPlookup_own_init = 0;
 
 /**** BEGIN PROCEDURE lookup ****/
 
-errcode ceOPlookup(e, s, line, ret_1)
-CLUREF e;
-CLUREF s;
-CLUREF line;
-CLUREF *ret_1;
+errcode
+ceOPlookup(CLUREF e, CLUREF s, CLUREF line, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2010,10 +2000,8 @@ static int ceOPlocal_own_init = 0;
 
 /**** BEGIN PROCEDURE local ****/
 
-errcode ceOPlocal(e, s, ret_1)
-CLUREF e;
-CLUREF s;
-CLUREF *ret_1;
+errcode
+ceOPlocal(CLUREF e, CLUREF s, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2121,9 +2109,8 @@ static int ceOPadd_entry_own_init = 0;
 
 /**** BEGIN PROCEDURE add_entry ****/
 
-errcode ceOPadd_entry(e, i)
-CLUREF e;
-CLUREF i;
+errcode
+ceOPadd_entry(CLUREF e, CLUREF i)
     {
     errcode err;
     errcode ecode2;
@@ -2177,9 +2164,8 @@ CLUREF i;
 
 /**** BEGIN PROCEDURE get_unknown_type ****/
 
-errcode ceOPget_unknown_type(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_unknown_type(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2213,9 +2199,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_null_type ****/
 
-errcode ceOPget_null_type(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_null_type(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2249,9 +2234,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_bool_type ****/
 
-errcode ceOPget_bool_type(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_bool_type(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2285,9 +2269,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_int_type ****/
 
-errcode ceOPget_int_type(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_int_type(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2321,9 +2304,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_real_type ****/
 
-errcode ceOPget_real_type(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_real_type(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2357,9 +2339,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_char_type ****/
 
-errcode ceOPget_char_type(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_char_type(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2393,9 +2374,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_str_type ****/
 
-errcode ceOPget_str_type(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_str_type(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2429,9 +2409,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_type_type ****/
 
-errcode ceOPget_type_type(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_type_type(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2465,9 +2444,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_cvt_type ****/
 
-errcode ceOPget_cvt_type(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_cvt_type(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2501,9 +2479,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_any_type ****/
 
-errcode ceOPget_any_type(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_any_type(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2537,9 +2514,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_array_ ****/
 
-errcode ceOPget_array_(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_array_(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2573,9 +2549,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_record_ ****/
 
-errcode ceOPget_record_(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_record_(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2609,9 +2584,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_oneof_ ****/
 
-errcode ceOPget_oneof_(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_oneof_(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2645,9 +2619,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_seq_ ****/
 
-errcode ceOPget_seq_(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_seq_(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2681,9 +2654,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_struct_ ****/
 
-errcode ceOPget_struct_(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_struct_(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2717,9 +2689,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_variant_ ****/
 
-errcode ceOPget_variant_(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_variant_(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2753,9 +2724,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_proc_ ****/
 
-errcode ceOPget_proc_(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_proc_(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2789,9 +2759,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE get_iter_ ****/
 
-errcode ceOPget_iter_(e, ret_1)
-CLUREF e;
-CLUREF *ret_1;
+errcode
+ceOPget_iter_(CLUREF e, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -2857,11 +2826,8 @@ static int ceOPget_type_own_init = 0;
 
 /**** BEGIN PROCEDURE get_type ****/
 
-errcode ceOPget_type(e, ta, ret_1, ret_2)
-CLUREF e;
-CLUREF ta;
-CLUREF *ret_1;
-CLUREF *ret_2;
+errcode
+ceOPget_type(CLUREF e, CLUREF ta, CLUREF *ret_1, CLUREF *ret_2)
     {
     errcode err;
     errcode ecode2;
@@ -2986,9 +2952,8 @@ static int ceOPfixup_own_init = 0;
 
 /**** BEGIN PROCEDURE fixup ****/
 
-errcode ceOPfixup(e, t)
-CLUREF e;
-CLUREF t;
+errcode
+ceOPfixup(CLUREF e, CLUREF t)
     {
     errcode err;
     errcode ecode2;
@@ -3150,10 +3115,8 @@ static int ceOPadd_du_own_init = 0;
 
 /**** BEGIN PROCEDURE add_du ****/
 
-errcode ceOPadd_du(e, mod, ret_1)
-CLUREF e;
-CLUREF mod;
-CLUREF *ret_1;
+errcode
+ceOPadd_du(CLUREF e, CLUREF mod, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3255,11 +3218,8 @@ static int ceOPall_dus_own_init = 0;
 
 /**** BEGIN ITERATOR all_dus ****/
 
-errcode ceOPall_dus(e, proc, user_locals, iecode)
-CLUREF e;
-errcode (*proc)();
-char **user_locals;
-errcode *iecode;
+errcode
+ceOPall_dus(CLUREF e, errcode (*proc)(), char **user_locals, errcode *iecode)
     {
     errcode ecode;
     struct {
@@ -3453,10 +3413,8 @@ extern errcode intOPmod();
 
 /**** BEGIN PROCEDURE hash_exprs ****/
 
-errcode hash_exprs(exprs, z, ret_1)
-CLUREF exprs;
-CLUREF z;
-CLUREF *ret_1;
+errcode
+hash_exprs(CLUREF exprs, CLUREF z, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -3582,10 +3540,8 @@ static int hash_typeabs_own_init = 0;
 
 /**** BEGIN PROCEDURE hash_typeabs ****/
 
-errcode hash_typeabs(ta, z, ret_1)
-CLUREF ta;
-CLUREF z;
-CLUREF *ret_1;
+errcode
+hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -4030,10 +3986,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE hash_du ****/
 
-errcode hash_du(d, size, ret_1)
-CLUREF d;
-CLUREF size;
-CLUREF *ret_1;
+errcode
+hash_du(CLUREF d, CLUREF size, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;

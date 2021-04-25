@@ -7,7 +7,8 @@
 
 /**** BEGIN PROCEDURE _cause_wrong_tag ****/
 
-errcode _cause_wrong_tag()
+errcode
+_cause_wrong_tag()
     {
     errcode err;
     errcode ecode2;

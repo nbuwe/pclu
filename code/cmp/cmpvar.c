@@ -142,8 +142,8 @@ errcode cmpvar_own_init_proc()
 
 /**** BEGIN PROCEDURE locals ****/
 
-errcode cmpvarOPlocals(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPlocals(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -175,8 +175,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_locals ****/
 
-errcode cmpvarOPset_locals(b)
-CLUREF b;
+errcode
+cmpvarOPset_locals(CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -205,8 +205,8 @@ CLUREF b;
 
 /**** BEGIN PROCEDURE force_ ****/
 
-errcode cmpvarOPforce_(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPforce_(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -238,8 +238,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_force_ ****/
 
-errcode cmpvarOPset_force_(b)
-CLUREF b;
+errcode
+cmpvarOPset_force_(CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -268,8 +268,8 @@ CLUREF b;
 
 /**** BEGIN PROCEDURE externals ****/
 
-errcode cmpvarOPexternals(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPexternals(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -301,8 +301,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_externals ****/
 
-errcode cmpvarOPset_externals(b)
-CLUREF b;
+errcode
+cmpvarOPset_externals(CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -331,8 +331,8 @@ CLUREF b;
 
 /**** BEGIN PROCEDURE dir ****/
 
-errcode cmpvarOPdir(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPdir(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -364,8 +364,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_dir ****/
 
-errcode cmpvarOPset_dir(s)
-CLUREF s;
+errcode
+cmpvarOPset_dir(CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -394,8 +394,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE suffix ****/
 
-errcode cmpvarOPsuffix(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPsuffix(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -427,8 +427,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_suffix ****/
 
-errcode cmpvarOPset_suffix(s)
-CLUREF s;
+errcode
+cmpvarOPset_suffix(CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -474,8 +474,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE allow ****/
 
-errcode cmpvarOPallow(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPallow(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -507,8 +507,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_allow ****/
 
-errcode cmpvarOPset_allow(b)
-CLUREF b;
+errcode
+cmpvarOPset_allow(CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -537,8 +537,8 @@ CLUREF b;
 
 /**** BEGIN PROCEDURE expunge ****/
 
-errcode cmpvarOPexpunge(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPexpunge(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -570,8 +570,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_expunge ****/
 
-errcode cmpvarOPset_expunge(b)
-CLUREF b;
+errcode
+cmpvarOPset_expunge(CLUREF b)
     {
     errcode err;
     errcode ecode2;
@@ -600,8 +600,8 @@ CLUREF b;
 
 /**** BEGIN PROCEDURE modules ****/
 
-errcode cmpvarOPmodules(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPmodules(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -633,8 +633,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_modules ****/
 
-errcode cmpvarOPset_modules(s)
-CLUREF s;
+errcode
+cmpvarOPset_modules(CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -663,8 +663,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE version ****/
 
-errcode cmpvarOPversion(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPversion(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -696,8 +696,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_version ****/
 
-errcode cmpvarOPset_version(s)
-CLUREF s;
+errcode
+cmpvarOPset_version(CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -726,8 +726,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE date ****/
 
-errcode cmpvarOPdate(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPdate(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -759,8 +759,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_date ****/
 
-errcode cmpvarOPset_date(s)
-CLUREF s;
+errcode
+cmpvarOPset_date(CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -789,8 +789,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE stuffs ****/
 
-errcode cmpvarOPstuffs(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPstuffs(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -822,8 +822,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_stuffs ****/
 
-errcode cmpvarOPset_stuffs(s)
-CLUREF s;
+errcode
+cmpvarOPset_stuffs(CLUREF s)
     {
     errcode err;
     errcode ecode2;
@@ -852,8 +852,8 @@ CLUREF s;
 
 /**** BEGIN PROCEDURE save_c ****/
 
-errcode cmpvarOPsave_c(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPsave_c(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -885,8 +885,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_save_c ****/
 
-errcode cmpvarOPset_save_c(save)
-CLUREF save;
+errcode
+cmpvarOPset_save_c(CLUREF save)
     {
     errcode err;
     errcode ecode2;
@@ -915,8 +915,8 @@ CLUREF save;
 
 /**** BEGIN PROCEDURE cc_opt_cmd ****/
 
-errcode cmpvarOPcc_opt_cmd(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPcc_opt_cmd(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -948,8 +948,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE cc_dbg_cmd ****/
 
-errcode cmpvarOPcc_dbg_cmd(ret_1)
-CLUREF *ret_1;
+errcode
+cmpvarOPcc_dbg_cmd(CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
@@ -981,8 +981,8 @@ CLUREF *ret_1;
 
 /**** BEGIN PROCEDURE set_cc_opt_cmd ****/
 
-errcode cmpvarOPset_cc_opt_cmd(cmd)
-CLUREF cmd;
+errcode
+cmpvarOPset_cc_opt_cmd(CLUREF cmd)
     {
     errcode err;
     errcode ecode2;
@@ -1024,8 +1024,8 @@ CLUREF cmd;
 
 /**** BEGIN PROCEDURE set_cc_dbg_cmd ****/
 
-errcode cmpvarOPset_cc_dbg_cmd(cmd)
-CLUREF cmd;
+errcode
+cmpvarOPset_cc_dbg_cmd(CLUREF cmd)
     {
     errcode err;
     errcode ecode2;
@@ -1068,9 +1068,8 @@ static int cmpvarOPinit_base_cmd_own_init = 0;
 
 /**** BEGIN PROCEDURE init_base_cmd ****/
 
-errcode cmpvarOPinit_base_cmd(ty, ret_1)
-CLUREF ty;
-CLUREF *ret_1;
+errcode
+cmpvarOPinit_base_cmd(CLUREF ty, CLUREF *ret_1)
     {
     errcode err;
     errcode ecode2;
