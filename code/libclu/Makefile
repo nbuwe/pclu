@@ -2,7 +2,7 @@
 
 # Compilation flags for subdirectories of this directory
 
-CFLAGS         = -I../../include -I../../gc/include/private -c -w
+CFLAGS         = -I../../include -c -w
 OPT_FLAGS      = -O2 
 DEBUG_FLAGS    = -g 
 DEBUGGER_FLAGS = -O2 -g
