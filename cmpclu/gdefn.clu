@@ -797,7 +797,7 @@ g_parm_decls = proc(e: g_env, tparms: decllist, aparms: decllist)
 		  ct.gen.common = "real" cor
 		  ct.gen.common = "bool" cor
 		  ct.gen.common = "char" cor
-		  ct.gen.common =  "string"
+		  ct.gen.common = "string"
 		  then
 		       for each_idn: idn in idnlist$elements(each_d.idns) do
 			   g_env$putl(e, "CLUREF " || each_idn.str || ";")
@@ -827,7 +827,7 @@ g_parm_decls = proc(e: g_env, tparms: decllist, aparms: decllist)
 		  ct.gen.common = "real" cor
 		  ct.gen.common = "bool" cor
 		  ct.gen.common = "char" cor
-		  ct.gen.common =  "string"
+		  ct.gen.common = "string"
 		  then
 		       for each_idn: idn in idnlist$elements(each_d.idns) do
 			   g_env$putl(e, "CLUREF " || each_idn.str || ";")
