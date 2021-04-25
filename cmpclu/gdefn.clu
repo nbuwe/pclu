@@ -197,14 +197,23 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 
     end g_applydefn
 
+% name of the C function for this proc or iter
+g_function_name = proc (a: applydefn, cname: str) returns(string)
+
+    nm: string := a.idn.str
+    if nm[1] = '%' then nm := string$rest(nm, 2) end
+    if string$empty(cname) then
+	return (escape_ckeyword(nm))
+      else
+	return (cname || sep || nm)
+      end
+
+  end g_function_name
+
 g_proc_signature = proc(e:g_env, a:applydefn, cname:str)
 
     g_env$puts(e, "errcode ")
-    if cname ~= "" then g_env$puts(e, cname|| sep) end
-    nm: string := a.idn.str
-    if nm[1] = '%' then nm := string$rest(nm, 2) end
-    if cname = "" then g_env$puts(e, escape_ckeyword(nm))
-    	else g_env$puts(e, nm) end
+    g_env$puts(e, g_function_name(a, cname))
     g_env$puts(e, "(")
     g_arglist(e, a.args)
     g_retlist(e, a.vals, decllist$size(a.args))
@@ -222,10 +231,7 @@ g_proc_signature = proc(e:g_env, a:applydefn, cname:str)
 g_iter_signature = proc(e:g_env, a:applydefn, cname:str)
 
     g_env$puts(e, "errcode ")
-    if cname ~= "" then g_env$puts(e, cname|| sep) end
-    nm: string := a.idn.str
-    if nm[1] = '%' then nm := string$rest(nm, 2) end
-    g_env$puts(e, nm)
+    g_env$puts(e, g_function_name(a, cname))
     g_env$puts(e, "(")
     g_arglist(e, a.args)
     if decllist$size(a.args) > 0
