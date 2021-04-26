@@ -1,26 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: connected_dir.c,v 1.5 91/07/08 10:38:01 root Exp $";
-#endif 
-/* $Log:	connected_dir.c,v $
- * Revision 1.5  91/07/08  10:38:01  root
- * avoided using len+1 throughout (fixed last fix)
- * 
- * Revision 1.4  91/07/08  10:00:15  root
- * recovered +1 lost during insertion of sun fixes
- * 
- * Revision 1.3  91/06/06  13:27:06  root
- * added copyright notice
- * 
- * Revision 1.2  91/06/03  11:51:30  root
- * sparcstation compatibility: int->CLUREF
- * 
- * Revision 1.1  91/02/04  15:49:41  mtv
- * Initial revision
- * 
- */
 
 /*							*/
 /*		GET CURRENT (-or- CONNECTED) DIRECTORY	*/
@@ -28,42 +6,53 @@ static char rcsid[] = "$Header: connected_dir.c,v 1.5 91/07/08 10:38:01 root Exp
 
 /* TODO: signals could more nearly emulate original	*/
 
-
 #include <sys/param.h>
+#undef signal
 
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-#ifdef LINUX
+#include <errno.h>
+#include <string.h>
 #include <unistd.h>
-#else
-extern char *getwd();
-#endif
-extern char *strcat();
 
-errcode connected_dir(ans)
-CLUREF *ans;
+errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
+
+
+/*
+ * connected_dir = proc () returns (string)
+ */
+errcode
+connected_dir(CLUREF *ans)
 {
-static char name[MAXPATHLEN];
-char *result;
-CLUREF temp;
-errcode err;
-CLUREF lenp1;
+    CLUREF temp;
+    errcode err;
 
-#ifdef LINUX
-	result = getcwd(name, MAXPATHLEN);
-#else
-	result = getwd(name);
+    static char name[MAXPATHLEN]; /* static: CLU does not support threading */
+    const char *result = getcwd(name, sizeof(name));
+    if (result == NULL) {
+	elist[0] = cannot_get_connected_directory_STRING;
+#if 0
+	/* new behavior: probably unnecessary */
+	elist[1] = _unix_erstr(errno);
 #endif
-	lenp1.num = strlen(name) + 1;
-	err = stringOPcons(name, CLU_1, lenp1, &temp);
-	if (result == NULL) {
-		elist[0] = cannot_get_connected_directory_STRING;
-		elist[1] = temp;    /* new behavior: probably unnecessary */
-		signal(ERR_failure);
-		}
-	if (err != ERR_ok) resignal(err);
-	temp.str->data[lenp1.num - 1] = '/';
-	ans->str = temp.str;
-	signal(ERR_ok);
-	}
+	signal(ERR_failure);
+    }
+
+    size_t len = strlen(name);
+    if (len == 0 || name[0] != '/') {
+	elist[0] = cannot_get_connected_directory_STRING;
+	signal(ERR_failure);
+    }
+
+    if (len > 1)	/* not root (single "/") */
+	++len;		/* dst: space for slash; src: '\0' terminator */
+    err = stringOPcons(name, CLU_1, CLUREF_make_num(len), &temp);
+    if (err != ERR_ok)
+	resignal(err);
+
+    if (len > 1)
+	temp.str->data[len - 1] = '/';
+    ans->str = temp.str;
+    signal(ERR_ok);
+}
