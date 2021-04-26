@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 
-errcode stringOPcons(const char *s, CLUREF start, CLUREF len, CLUREF *ans);
+errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
 
 
 /*
@@ -21,16 +21,16 @@ errcode stringOPcons(const char *s, CLUREF start, CLUREF len, CLUREF *ans);
 errcode
 _unparse_real(CLUREF r, CLUREF *ans1, CLUREF *ans2, CLUREF *ans3)
 {
+    CLUREF minus, digits, exp;	/* return values */
     errcode err;
-    int uerr;
-    char temp[100];
-    CLUREF minus, exp, temp2, size;
-    float mant;
 
     if (r.real == 0.0) {
-	err = stringOPcons("0", CLU_1, CLU_1, &temp2);
+	err = stringOPcons("0", CLU_1, CLU_1, &digits);
+	if (err != ERR_ok)
+	    resignal(err);
+
 	ans1->tf = false;
-	ans2->str = temp2.str;
+	ans2->str = digits.str;
 	ans3->num = 0;
 	signal(ERR_ok);
     }
@@ -43,28 +43,31 @@ _unparse_real(CLUREF r, CLUREF *ans1, CLUREF *ans2, CLUREF *ans3)
 	minus.tf = false;
     }
 
+    float mant = r.real;
     exp.num = 0;
-    mant = r.real;
     while (mant >= 1.0) {
 	mant = mant / 10.0;
-	exp.num += 1;
+	++exp.num;
     }
     while (mant < 0.1) {
 	mant = mant * 10.0;
-	exp.num -= 1;
+	--exp.num;
     }
 
-    uerr = sprintf(temp, "%11.9f", (double)mant);
-    if (uerr == -1)
+    /* print the mantissa as 9 digits after the decimal dot */
+    char buf[32];
+    int nchars = snprintf(buf, sizeof(buf), "%11.9f", (double)mant);
+    if (nchars < 0)
 	signal(ERR_bad_format);
 
-    size.num = strlen(temp) - 2;
-    err = stringOPcons(temp, CLU_3, size, &temp2);
+    /* skip the leading "0." and get the mantissa digits */
+    size_t len = strlen(buf) - 2;
+    err = stringOPcons(buf, CLU_3, CLUREF_make_num(len), &digits);
     if (err != ERR_ok)
 	resignal(err);
 
     ans1->tf = minus.tf;
-    ans2->str = temp2.str;
+    ans2->str = digits.str;
     ans3->num = exp.num;
     signal(ERR_ok);
 }
