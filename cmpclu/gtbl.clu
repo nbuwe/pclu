@@ -738,7 +738,7 @@ g_tbl = cluster is Find_Tables, Build_Tables, G_Field_Tables, Exist, Prune
 
 	    % TYPE OPERATIONS TABLE
 	    g_ref_name_typespec(e, each_field.type_)                            %%% refer to ops in owns if appropriate
-	    g_env$putl(e, "_ops); ")
+	    g_env$putl(e, "_ops);")
 
 	    ind := ind + 1
 	    end % for

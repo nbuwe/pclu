@@ -465,7 +465,7 @@ g_const = cluster is find_consts, g_consts, exist
     %
     %	    % TYPE OPERATIONS TABLE
     %	    g_ref_name_typespec(e, each_field.type_)                            %%% refer to ops in owns if appropriate
-    %	    g_env$putl(e, "_ops); ")
+    %	    g_env$putl(e, "_ops);")
     %
     %	    ind := ind + 1
     %	    end % for

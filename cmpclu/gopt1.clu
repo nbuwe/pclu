@@ -274,9 +274,9 @@ g_inline_iter = proc(e:g_env, fstmt: forstmt) returns (bool)
        g_idn_plain(e, elidn)
        if typ = "sequence" 
 	  then
-	       g_env$putl(e, ".vec->size; ")
+	       g_env$putl(e, ".vec->size;")
 	  else
-	       g_env$putl(e, ".array->ext_high; ")
+	       g_env$putl(e, ".array->ext_high;")
 	  end
        obj_idn: idn
        if op = "elements" then
@@ -727,7 +727,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[1])
 	    g_env$puts(e, " < 0 && ")
 	    g_expr2(e, args[2])
-	    g_env$putl(e, " < 0) || ")
+	    g_env$putl(e, " < 0) ||")
 	    g_env$puts(e, "     (")
 	    g_idn_plain(e, residn)
 	    g_env$puts(e, ".num < 0 && ")
@@ -757,7 +757,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[1])
 	    g_env$puts(e, " < 0 && (-")
 	    g_expr2(e, args[2])
-	    g_env$putl(e, ") < 0) || ")
+	    g_env$putl(e, ") < 0) ||")
 	    g_env$puts(e, "     (")
 	    g_idn_plain(e, residn)
 	    g_env$puts(e, ".num <= 0 && ")
@@ -1086,7 +1086,7 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 	for t: tagarm in tagarmlist$elements(stmt.arms) do
 	    for nm: name in namelist$elements(t.tags) do
 		junk: string, ind: int := field_index("is_" || nm, flist)
-	        g_env$putl(e, "case " || int$unparse(ind) || ": ")
+	        g_env$putl(e, "case " || int$unparse(ind) || ":")
 		end % for
 	    g_env$indent(e)
 	    g_env$puts(e, " {")
