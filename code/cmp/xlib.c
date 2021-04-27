@@ -146,40 +146,40 @@ errcode xlib_own_init_proc()
         find_type_instance(table_ops, 2, &table_ownreqs, &(table_of_string_du_ops));
         add_parm_info_type(0, idn_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_idn_ops));
-        add_selector_info("parms", 0, sequence_of_idn_ops); 
-        add_selector_info("type_", 1, typespec_ops); 
+        add_selector_info("parms", 0, sequence_of_idn_ops);
+        add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_parms_type__ops));
         add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
-        add_selector_info("name", 0, string_ops); 
-        add_selector_info("parms", 1, sequence_of_expr_ops); 
-        add_selector_info("type_", 2, typespec_ops); 
+        add_selector_info("name", 0, string_ops);
+        add_selector_info("parms", 1, sequence_of_expr_ops);
+        add_selector_info("type_", 2, typespec_ops);
         find_selector_ops("record", 3, &(record_name_parms_type__ops));
         add_parm_info_type(0, record_name_parms_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_name_parms_type__ops));
-        add_selector_info("opers", 0, sequence_of_record_name_parms_type__ops); 
-        add_selector_info("parm", 1, idn_ops); 
+        add_selector_info("opers", 0, sequence_of_record_name_parms_type__ops);
+        add_selector_info("parm", 1, idn_ops);
         find_selector_ops("record", 2, &(record_opers_parm_ops));
         add_parm_info_type(0, record_opers_parm_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_opers_parm_ops));
-        add_selector_info("info", 0, record_parms_type__ops); 
-        add_selector_info("name", 1, string_ops); 
-        add_selector_info("where_", 2, sequence_of_record_opers_parm_ops); 
+        add_selector_info("info", 0, record_parms_type__ops);
+        add_selector_info("name", 1, string_ops);
+        add_selector_info("where_", 2, sequence_of_record_opers_parm_ops);
         find_selector_ops("record", 3, &(record_info_name_where__ops));
         add_parm_info_type(0, record_info_name_where__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_info_name_where__ops));
-        add_selector_info("opers", 0, sequence_of_record_info_name_where__ops); 
-        add_selector_info("parms", 1, sequence_of_idn_ops); 
+        add_selector_info("opers", 0, sequence_of_record_info_name_where__ops);
+        add_selector_info("parms", 1, sequence_of_idn_ops);
         find_selector_ops("record", 2, &(record_opers_parms_ops));
-        add_selector_info("apply", 0, record_parms_type__ops); 
-        add_selector_info("atype", 1, record_opers_parms_ops); 
-        add_selector_info("cluster_", 2, record_opers_parms_ops); 
-        add_selector_info("none", 3, null_ops); 
-        add_selector_info("select", 4, record_opers_parms_ops); 
+        add_selector_info("apply", 0, record_parms_type__ops);
+        add_selector_info("atype", 1, record_opers_parms_ops);
+        add_selector_info("cluster_", 2, record_opers_parms_ops);
+        add_selector_info("none", 3, null_ops);
+        add_selector_info("select", 4, record_opers_parms_ops);
         find_selector_ops("oneof", 5, &(oneof_apply_atype_cluster__none_select_ops));
-        add_selector_info("name", 0, string_ops); 
-        add_selector_info("path", 1, string_ops); 
-        add_selector_info("specs", 2, oneof_apply_atype_cluster__none_select_ops); 
+        add_selector_info("name", 0, string_ops);
+        add_selector_info("path", 1, string_ops);
+        add_selector_info("specs", 2, oneof_apply_atype_cluster__none_select_ops);
         find_selector_ops("record", 3, &(record_name_path_specs_ops));
         add_parm_info_type(0, record_name_path_specs_ops, array_of_t_reqs);
         find_type_instance(array_ops, 1, &array_ownreqs, &(array_of_record_name_path_specs_ops));
@@ -946,7 +946,7 @@ xlibOPmerge(CLUREF fn)
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = gc_read(fn, &T_2_1);
         if (err != ERR_ok) goto ex_1;
-        T_2_3.num = T_2_1.array->ext_high; 
+        T_2_3.num = T_2_1.array->ext_high;
         T_2_4 = T_2_1;
         for (T_2_2.num = T_2_1.array->ext_low; T_2_2.num <= T_2_3.num; T_2_2.num++) {
             if (T_2_2.num > T_2_4.array->ext_high || T_2_2.num < T_2_4.array->ext_low) {
@@ -1126,7 +1126,7 @@ xlibOPunmerge(CLUREF fn)
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = gc_read(fn, &T_2_1);
         if (err != ERR_ok) goto ex_1;
-        T_2_3.num = T_2_1.array->ext_high; 
+        T_2_3.num = T_2_1.array->ext_high;
         T_2_4 = T_2_1;
         for (T_2_2.num = T_2_1.array->ext_low; T_2_2.num <= T_2_3.num; T_2_2.num++) {
             if (T_2_2.num > T_2_4.array->ext_high || T_2_2.num < T_2_4.array->ext_low) {

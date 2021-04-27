@@ -68,7 +68,7 @@ quicksort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
     {
         {CLUREF T_1_1;
         T_1_1.num = high.num - low.num;
-         if ((T_1_1.num >= 0 && high.num < 0 && (-low.num) < 0) || 
+         if ((T_1_1.num >= 0 && high.num < 0 && (-low.num) < 0) ||
              (T_1_1.num <= 0 && high.num > 0 && (-low.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -218,7 +218,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
                 {CLUREF T_4_1;
                 CLUREF T_4_2;
                 T_4_1.num = low.num + high.num;
-                 if ((T_4_1.num > 0 && low.num < 0 && high.num < 0) || 
+                 if ((T_4_1.num > 0 && low.num < 0 && high.num < 0) ||
                      (T_4_1.num < 0 && low.num > 0 && high.num > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -544,7 +544,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = left.num + 1;
-                 if ((T_5_1.num > 0 && left.num < 0 && 1 < 0) || 
+                 if ((T_5_1.num > 0 && left.num < 0 && 1 < 0) ||
                      (T_5_1.num < 0 && left.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -566,7 +566,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
                     {
                     CLUREF T_6_1;
                     T_6_1.num = left.num + 1;
-                     if ((T_6_1.num > 0 && left.num < 0 && 1 < 0) || 
+                     if ((T_6_1.num > 0 && left.num < 0 && 1 < 0) ||
                          (T_6_1.num < 0 && left.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -579,7 +579,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = right.num - 1;
-                 if ((T_5_1.num >= 0 && right.num < 0 && (-1) < 0) || 
+                 if ((T_5_1.num >= 0 && right.num < 0 && (-1) < 0) ||
                      (T_5_1.num <= 0 && right.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -601,7 +601,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
                     {
                     CLUREF T_6_1;
                     T_6_1.num = right.num - 1;
-                     if ((T_6_1.num >= 0 && right.num < 0 && (-1) < 0) || 
+                     if ((T_6_1.num >= 0 && right.num < 0 && (-1) < 0) ||
                          (T_6_1.num <= 0 && right.num > 0 && (-1) > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -659,7 +659,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
             {
             CLUREF T_4_1;
             T_4_1.num = right.num + 1;
-             if ((T_4_1.num > 0 && right.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && right.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && right.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -670,7 +670,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
             {
             CLUREF T_4_1;
             T_4_1.num = high.num - left.num;
-             if ((T_4_1.num >= 0 && high.num < 0 && (-left.num) < 0) || 
+             if ((T_4_1.num >= 0 && high.num < 0 && (-left.num) < 0) ||
                  (T_4_1.num <= 0 && high.num > 0 && (-left.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -681,7 +681,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
             {
                 {CLUREF T_4_1;
                 T_4_1.num = right.num - low.num;
-                 if ((T_4_1.num >= 0 && right.num < 0 && (-low.num) < 0) || 
+                 if ((T_4_1.num >= 0 && right.num < 0 && (-low.num) < 0) ||
                      (T_4_1.num <= 0 && right.num > 0 && (-low.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -842,7 +842,7 @@ sisort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
     CLUREF T_2_2;
     CLUREF T_2_3;
         T_2_1.num = low.num + 1;
-         if ((T_2_1.num > 0 && low.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && low.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && low.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -871,7 +871,7 @@ sisort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
             {
                 {CLUREF T_3_1;
                 T_3_1.num = top.num - 1;
-                 if ((T_3_1.num >= 0 && top.num < 0 && (-1) < 0) || 
+                 if ((T_3_1.num >= 0 && top.num < 0 && (-1) < 0) ||
                      (T_3_1.num <= 0 && top.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -923,7 +923,7 @@ sisort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = trial.num - 1;
-                 if ((T_4_1.num >= 0 && trial.num < 0 && (-1) < 0) || 
+                 if ((T_4_1.num >= 0 && trial.num < 0 && (-1) < 0) ||
                      (T_4_1.num <= 0 && trial.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}

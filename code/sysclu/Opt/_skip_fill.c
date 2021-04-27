@@ -51,7 +51,7 @@ _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = i.num + 1;
-         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -124,7 +124,7 @@ _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
         CLUREF T_2_8;
         CLUREF T_2_9;
         T_2_5.num = i.num - 1;
-         if ((T_2_5.num >= 0 && i.num < 0 && (-1) < 0) || 
+         if ((T_2_5.num >= 0 && i.num < 0 && (-1) < 0) ||
              (T_2_5.num <= 0 && i.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -148,7 +148,7 @@ _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = max.num - i.num;
-     if ((T_1_1.num >= 0 && max.num < 0 && (-i.num) < 0) || 
+     if ((T_1_1.num >= 0 && max.num < 0 && (-i.num) < 0) ||
          (T_1_1.num <= 0 && max.num > 0 && (-i.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -159,7 +159,7 @@ _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = i.num + 1;
-     if ((T_1_1.num > 0 && i.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && i.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && i.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -174,7 +174,7 @@ _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
     CLUREF T_2_3;
     CLUREF T_2_4;
     T_2_1.num = max.num + 1;
-     if ((T_2_1.num > 0 && max.num < 0 && 1 < 0) || 
+     if ((T_2_1.num > 0 && max.num < 0 && 1 < 0) ||
          (T_2_1.num < 0 && max.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_2;}
@@ -183,7 +183,7 @@ _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
     err = _chanOPgetbv(c, b, T_2_1, T_2_2, &T_2_3);
     if (err != ERR_ok) goto ex_2;
     T_2_4.num = max.num + T_2_3.num;
-     if ((T_2_4.num > 0 && max.num < 0 && T_2_3.num < 0) || 
+     if ((T_2_4.num > 0 && max.num < 0 && T_2_3.num < 0) ||
          (T_2_4.num < 0 && max.num > 0 && T_2_3.num > 0)) {
         err = ERR_overflow;
         goto ex_2;}

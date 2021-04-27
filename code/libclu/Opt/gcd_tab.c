@@ -509,7 +509,7 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
         {
         CLUREF T_3_1;
         T_3_1.num = pos.num + 4;
-         if ((T_3_1.num > 0 && pos.num < 0 && 4 < 0) || 
+         if ((T_3_1.num > 0 && pos.num < 0 && 4 < 0) ||
              (T_3_1.num < 0 && pos.num > 0 && 4 > 0)) {
             err = ERR_overflow;
             goto ex_2;}
@@ -804,7 +804,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
         {
         CLUREF T_3_1;
         T_3_1.num = idx.num + 1;
-         if ((T_3_1.num > 0 && idx.num < 0 && 1 < 0) || 
+         if ((T_3_1.num > 0 && idx.num < 0 && 1 < 0) ||
              (T_3_1.num < 0 && idx.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -819,11 +819,11 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
             goto ex_1;}
         T_3_1.num = iq.array->store->data[idx.num - iq.array->ext_low + iq.array->int_low];
         switch (T_3_1.cell->tag) {
-        case 1: 
+        case 1:
              {
                 break;
                 }
-        case 2: 
+        case 2:
              {CLUREF T_3_2;
             T_3_2.num = T_3_1.cell->value;
             p.num = T_3_2.num;
@@ -846,7 +846,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                 CLUREF T_4_1;
                 CLUREF T_4_2;
                 CLUREF T_4_3;
-                    T_4_2.num = v.vec->size; 
+                    T_4_2.num = v.vec->size;
                     T_4_3 = v;
                     for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                         e.num = T_4_3.vec->data[T_4_1.num - 1];
@@ -863,7 +863,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                 end_inline_for_1:;
                 break;
                 }
-        case 3: 
+        case 3:
              {CLUREF T_3_3;
             T_3_3.num = T_3_1.cell->value;
             l.num = T_3_3.num;
@@ -885,7 +885,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                 {
                 CLUREF T_4_1;
                 CLUREF T_4_2;
-                    T_4_2.num = v.vec->size; 
+                    T_4_2.num = v.vec->size;
                     for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                         i.num = T_4_1.num;
 
@@ -911,7 +911,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                 end_inline_for_2:;
                 break;
                 }
-        case 4: 
+        case 4:
              {CLUREF T_3_4;
             T_3_4.num = T_3_1.cell->value;
             l.num = T_3_4.num;
@@ -951,7 +951,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                 }
                 break;
                 }
-        case 5: 
+        case 5:
              {CLUREF T_3_5;
             T_3_5.num = T_3_1.cell->value;
             p.num = T_3_5.num;
@@ -986,7 +986,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                 }
                 break;
                 }
-        case 6: 
+        case 6:
              {CLUREF T_3_6;
             T_3_6.num = T_3_1.cell->value;
             inf.num = T_3_6.num;
@@ -1027,7 +1027,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                 err = _vecOPsize(v, &T_4_1);
                 if (err != ERR_ok) goto ex_1;
                 T_4_2.num = T_4_1.num + 1;
-                 if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) || 
+                 if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) ||
                      (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -1040,7 +1040,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                 }
                 break;
                 }
-        case 7: 
+        case 7:
              {CLUREF T_3_7;
             T_3_7.num = T_3_1.cell->value;
             p.num = T_3_7.num;
@@ -1063,7 +1063,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                 CLUREF T_4_1;
                 CLUREF T_4_2;
                 CLUREF T_4_3;
-                    T_4_2.num = v.vec->size; 
+                    T_4_2.num = v.vec->size;
                     T_4_3 = v;
                     for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                         e.num = T_4_3.vec->data[T_4_1.num - 1];
@@ -1262,7 +1262,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
         err = arrayOPreml(iq, &T_4_1);
         if (err != ERR_ok) goto ex_6;
         switch (T_4_1.cell->tag) {
-        case 1: 
+        case 1:
              {
 
   LINE(194);
@@ -1312,7 +1312,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 end_8:;
                 break;
                 }
-        case 2: 
+        case 2:
              {CLUREF T_4_2;
             T_4_2.num = T_4_1.cell->value;
             p.num = T_4_2.num;
@@ -1349,7 +1349,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 CLUREF T_5_1;
                 CLUREF T_5_2;
                 CLUREF T_5_3;
-                    T_5_2.num = v.vec->size; 
+                    T_5_2.num = v.vec->size;
                     T_5_3 = v;
                     for (T_5_1.num = 1; T_5_1.num <= T_5_2.num; T_5_1.num++) {
                         e.num = T_5_3.vec->data[T_5_1.num - 1];
@@ -1402,7 +1402,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 end_inline_for_1:;
                 break;
                 }
-        case 3: 
+        case 3:
              {CLUREF T_4_3;
             T_4_3.num = T_4_1.cell->value;
             l.num = T_4_3.num;
@@ -1512,7 +1512,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 end_inline_for_2:;
                 break;
                 }
-        case 4: 
+        case 4:
              {CLUREF T_4_4;
             T_4_4.num = T_4_1.cell->value;
             l.num = T_4_4.num;
@@ -1600,7 +1600,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }}/* end if */
                 break;
                 }
-        case 5: 
+        case 5:
              {CLUREF T_4_5;
             T_4_5.num = T_4_1.cell->value;
             p.num = T_4_5.num;
@@ -1683,7 +1683,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }}/* end if */
                 break;
                 }
-        case 6: 
+        case 6:
              {CLUREF T_4_6;
             T_4_6.num = T_4_1.cell->value;
             inf.num = T_4_6.num;
@@ -1730,7 +1730,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 err = intOPmul(CLU_8, z, &T_5_1);
                 if (err != ERR_ok) goto ex_6;
                 T_5_2.num = T_5_1.num + 8;
-                 if ((T_5_2.num > 0 && T_5_1.num < 0 && 8 < 0) || 
+                 if ((T_5_2.num > 0 && T_5_1.num < 0 && 8 < 0) ||
                      (T_5_2.num < 0 && T_5_1.num > 0 && 8 > 0)) {
                     err = ERR_overflow;
                     goto ex_6;}
@@ -1780,7 +1780,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }}/* end if */
                 break;
                 }
-        case 7: 
+        case 7:
              {CLUREF T_4_7;
             T_4_7.num = T_4_1.cell->value;
             p.num = T_4_7.num;
@@ -1817,7 +1817,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 CLUREF T_5_1;
                 CLUREF T_5_2;
                 CLUREF T_5_3;
-                    T_5_2.num = v.vec->size; 
+                    T_5_2.num = v.vec->size;
                     T_5_3 = v;
                     for (T_5_1.num = 1; T_5_1.num <= T_5_2.num; T_5_1.num++) {
                         e.num = T_5_3.vec->data[T_5_1.num - 1];
@@ -1962,7 +1962,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         err = hash_obj(x, T_1_1, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         T_1_3.num = T_1_2.num + 1;
-         if ((T_1_3.num > 0 && T_1_2.num < 0 && 1 < 0) || 
+         if ((T_1_3.num > 0 && T_1_2.num < 0 && 1 < 0) ||
              (T_1_3.num < 0 && T_1_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2088,7 +2088,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = addr.num + z.num;
-     if ((T_1_1.num > 0 && addr.num < 0 && z.num < 0) || 
+     if ((T_1_1.num > 0 && addr.num < 0 && z.num < 0) ||
          (T_1_1.num < 0 && addr.num > 0 && z.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2321,7 +2321,7 @@ gcd_storeOPstore_lit(CLUREF i1)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2351,7 +2351,7 @@ gcd_storeOPstore_lit(CLUREF i1)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2406,7 +2406,7 @@ gcd_storeOPstore_ref(CLUREF i1)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2436,7 +2436,7 @@ gcd_storeOPstore_ref(CLUREF i1)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2491,7 +2491,7 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2521,7 +2521,7 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2586,7 +2586,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2616,7 +2616,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2652,7 +2652,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2688,7 +2688,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2724,7 +2724,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2760,7 +2760,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2820,7 +2820,7 @@ gcd_storeOPstore_string(CLUREF s)
     {
         {CLUREF T_1_1;
         T_1_1.num = bsize.num + 1;
-         if ((T_1_1.num > 0 && bsize.num < 0 && 1 < 0) || 
+         if ((T_1_1.num > 0 && bsize.num < 0 && 1 < 0) ||
              (T_1_1.num < 0 && bsize.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2834,12 +2834,12 @@ gcd_storeOPstore_string(CLUREF s)
         CLUREF T_1_2;
         CLUREF T_1_3;
         T_1_1.num = total_bytes.num + 4;
-         if ((T_1_1.num > 0 && total_bytes.num < 0 && 4 < 0) || 
+         if ((T_1_1.num > 0 && total_bytes.num < 0 && 4 < 0) ||
              (T_1_1.num < 0 && total_bytes.num > 0 && 4 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_1_2.num = T_1_1.num - 1;
-         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
              (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2905,7 +2905,7 @@ gcd_storeOPstore_string(CLUREF s)
         err = intOPmul(gcd_storeOPpos, CLU_4, &T_3_1);
         if (err != ERR_ok) goto ex_1;
         T_3_2.num = T_3_1.num - 3;
-         if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-3) < 0) || 
+         if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-3) < 0) ||
              (T_3_2.num <= 0 && T_3_1.num > 0 && (-3) > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -2920,7 +2920,7 @@ gcd_storeOPstore_string(CLUREF s)
         err = intOPmul(avail, CLU_4, &T_3_1);
         if (err != ERR_ok) goto ex_1;
         T_3_2.num = i.num + T_3_1.num;
-         if ((T_3_2.num > 0 && i.num < 0 && T_3_1.num < 0) || 
+         if ((T_3_2.num > 0 && i.num < 0 && T_3_1.num < 0) ||
              (T_3_2.num < 0 && i.num > 0 && T_3_1.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -2931,7 +2931,7 @@ gcd_storeOPstore_string(CLUREF s)
         {
         CLUREF T_3_1;
         T_3_1.num = bytes_to_go.num - copy_count.num;
-         if ((T_3_1.num >= 0 && bytes_to_go.num < 0 && (-copy_count.num) < 0) || 
+         if ((T_3_1.num >= 0 && bytes_to_go.num < 0 && (-copy_count.num) < 0) ||
              (T_3_1.num <= 0 && bytes_to_go.num > 0 && (-copy_count.num) > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -2942,7 +2942,7 @@ gcd_storeOPstore_string(CLUREF s)
         {
         CLUREF T_3_1;
         T_3_1.num = gcd_storeOPpos.num + avail.num;
-         if ((T_3_1.num > 0 && gcd_storeOPpos.num < 0 && avail.num < 0) || 
+         if ((T_3_1.num > 0 && gcd_storeOPpos.num < 0 && avail.num < 0) ||
              (T_3_1.num < 0 && gcd_storeOPpos.num > 0 && avail.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -2953,7 +2953,7 @@ gcd_storeOPstore_string(CLUREF s)
         {
         CLUREF T_3_1;
         T_3_1.num = total_output.num + avail.num;
-         if ((T_3_1.num > 0 && total_output.num < 0 && avail.num < 0) || 
+         if ((T_3_1.num > 0 && total_output.num < 0 && avail.num < 0) ||
              (T_3_1.num < 0 && total_output.num > 0 && avail.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -2976,7 +2976,7 @@ gcd_storeOPstore_string(CLUREF s)
         {
         CLUREF T_3_1;
         T_3_1.num = rounded_longs.num - avail.num;
-         if ((T_3_1.num >= 0 && rounded_longs.num < 0 && (-avail.num) < 0) || 
+         if ((T_3_1.num >= 0 && rounded_longs.num < 0 && (-avail.num) < 0) ||
              (T_3_1.num <= 0 && rounded_longs.num > 0 && (-avail.num) > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -3023,7 +3023,7 @@ gcd_storeOPdone()
     CLUREF T_2_1;
     CLUREF T_2_2;
     T_2_1.num = gcd_storeOPpos.num - 1;
-     if ((T_2_1.num >= 0 && gcd_storeOPpos.num < 0 && (-1) < 0) || 
+     if ((T_2_1.num >= 0 && gcd_storeOPpos.num < 0 && (-1) < 0) ||
          (T_2_1.num <= 0 && gcd_storeOPpos.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_1;}
@@ -3072,12 +3072,12 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
     CLUREF T_1_4;
     CLUREF T_1_5;
     T_1_1.num = gcd_storeOPpos.num + i.num;
-     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && i.num < 0) || 
+     if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && i.num < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && i.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     T_1_2.num = T_1_1.num - 1;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -3142,12 +3142,12 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
             CLUREF T_3_3;
             T_3_1.num = 1024;
             T_3_2.num = T_3_1.num - gcd_storeOPpos.num;
-             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-gcd_storeOPpos.num) < 0) || 
+             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-gcd_storeOPpos.num) < 0) ||
                  (T_3_2.num <= 0 && T_3_1.num > 0 && (-gcd_storeOPpos.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
             T_3_3.num = T_3_2.num + 1;
-             if ((T_3_3.num > 0 && T_3_2.num < 0 && 1 < 0) || 
+             if ((T_3_3.num > 0 && T_3_2.num < 0 && 1 < 0) ||
                  (T_3_3.num < 0 && T_3_2.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}

@@ -379,7 +379,7 @@ ibOPnext_name(CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ibOPcount.num + 1;
-     if ((T_1_1.num > 0 && ibOPcount.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && ibOPcount.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && ibOPcount.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -552,7 +552,7 @@ ibOPgen_bodies(CLUREF e, CLUREF id)
         CLUREF T_2_1;
         CLUREF T_2_2;
         CLUREF T_2_3;
-            T_2_2.num = ibOPiblist.vec->size; 
+            T_2_2.num = ibOPiblist.vec->size;
             T_2_3 = ibOPiblist;
             for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                 each_bod.num = T_2_3.vec->data[T_2_1.num - 1];
@@ -567,7 +567,7 @@ ibOPgen_bodies(CLUREF e, CLUREF id)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = index.num + 1;
-                 if ((T_3_1.num > 0 && index.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && index.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && index.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -724,7 +724,7 @@ ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
     CLUREF T_1_1;
     T_1_1.num = f.vec->data[3];
     switch (T_1_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         o.num = T_1_2.num;
@@ -737,7 +737,7 @@ ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
             }
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         n.num = T_1_3.num;
@@ -747,7 +747,7 @@ ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
             CLUREF T_2_1;
             CLUREF T_2_2;
             CLUREF T_2_3;
-                T_2_2.num = n.vec->size; 
+                T_2_2.num = n.vec->size;
                 T_2_3 = n;
                 for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                     this_d.num = T_2_3.vec->data[T_2_1.num - 1];
@@ -760,7 +760,7 @@ ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
                     T_3_1.num = this_d.vec->data[0];
                     T_3_2.num = T_3_1.vec->size;
                     T_3_3.num = iv_count.num + T_3_2.num;
-                     if ((T_3_3.num > 0 && iv_count.num < 0 && T_3_2.num < 0) || 
+                     if ((T_3_3.num > 0 && iv_count.num < 0 && T_3_2.num < 0) ||
                          (T_3_3.num < 0 && iv_count.num > 0 && T_3_2.num > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -861,7 +861,7 @@ ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
     CLUREF T_1_1;
     T_1_1.num = f.vec->data[3];
     switch (T_1_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         idns.num = T_1_2.num;
@@ -904,7 +904,7 @@ ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
             end_inline_for_4:;
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         d.num = T_1_3.num;
@@ -920,7 +920,7 @@ ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
             CLUREF T_2_1;
             CLUREF T_2_2;
             CLUREF T_2_3;
-                T_2_2.num = d.vec->size; 
+                T_2_2.num = d.vec->size;
                 T_2_3 = d;
                 for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                     each_d.num = T_2_3.vec->data[T_2_1.num - 1];
@@ -932,7 +932,7 @@ ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = each_d.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             each_idn.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -962,7 +962,7 @@ ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
                             {
                             CLUREF T_4_1;
                             T_4_1.num = i.num + 1;
-                             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+                             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                                  (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                                 err = ERR_overflow;
                                 goto ex_0;}
@@ -1029,7 +1029,7 @@ ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
     CLUREF T_1_5;
         T_1_1.num = f.vec->data[1];
         T_1_2.num = T_1_1.vec->data[1];
-        T_1_4.num = T_1_2.vec->size; 
+        T_1_4.num = T_1_2.vec->size;
         T_1_5 = T_1_2;
         for (T_1_3.num = 1; T_1_3.num <= T_1_4.num; T_1_3.num++) {
             s.num = T_1_5.vec->data[T_1_3.num - 1];
@@ -1423,7 +1423,7 @@ ibOPgen_locals(CLUREF e)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = locals_UNIQ.array->ext_high; 
+        T_1_2.num = locals_UNIQ.array->ext_high;
         T_1_3 = locals_UNIQ;
         for (T_1_1.num = locals_UNIQ.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -1447,7 +1447,7 @@ ibOPgen_locals(CLUREF e)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = lv.vec->data[0];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     id.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -1487,7 +1487,7 @@ ibOPgen_locals(CLUREF e)
         CLUREF T_2_1;
         CLUREF T_2_2;
         CLUREF T_2_3;
-            T_2_2.num = args.vec->size; 
+            T_2_2.num = args.vec->size;
             T_2_3 = args;
             for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                 a.num = T_2_3.vec->data[T_2_1.num - 1];
@@ -1507,7 +1507,7 @@ ibOPgen_locals(CLUREF e)
                 CLUREF T_3_3;
                 CLUREF T_3_4;
                     T_3_1.num = a.vec->data[0];
-                    T_3_3.num = T_3_1.vec->size; 
+                    T_3_3.num = T_3_1.vec->size;
                     T_3_4 = T_3_1;
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         id.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -1637,7 +1637,7 @@ g_iterbody_names(CLUREF arr, CLUREF bod)
         CLUREF T_2_1;
         CLUREF T_2_2;
         CLUREF T_2_3;
-            T_2_2.num = current_bodies.array->ext_high; 
+            T_2_2.num = current_bodies.array->ext_high;
             T_2_3 = current_bodies;
             for (T_2_1.num = current_bodies.array->ext_low; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                 if (T_2_1.num > T_2_3.array->ext_high || T_2_1.num < T_2_3.array->ext_low) {
@@ -1717,7 +1717,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = bod.vec->size; 
+        T_1_2.num = bod.vec->size;
         T_1_3 = bod;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             s.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1728,19 +1728,19 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
             err = stmtOPget_abs(s, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 6: 
+            case 6:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 d.num = T_2_2.num;
                     break;
                     }
-            case 7: 
+            case 7:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 di.num = T_2_3.num;
                     break;
                     }
-            case 10: 
+            case 10:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_1.cell->value;
                 f.num = T_2_4.num;
@@ -1804,7 +1804,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                         }}/* end if */
                     break;
                     }
-            case 3: 
+            case 3:
                  {CLUREF T_2_5;
                 T_2_5.num = T_2_1.cell->value;
                 b.num = T_2_5.num;
@@ -1819,7 +1819,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 19: 
+            case 19:
                  {CLUREF T_2_6;
                 T_2_6.num = T_2_1.cell->value;
                 w.num = T_2_6.num;
@@ -1836,7 +1836,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 12: 
+            case 12:
                  {CLUREF T_2_7;
                 T_2_7.num = T_2_1.cell->value;
                 i.num = T_2_7.num;
@@ -1848,7 +1848,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = i.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             arm.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -1872,7 +1872,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                     CLUREF T_3_1;
                     T_3_1.num = i.vec->data[1];
                     switch (T_3_1.cell->tag) {
-                    case 1: 
+                    case 1:
                          {CLUREF T_3_2;
                         T_3_2.num = T_3_1.cell->value;
                         b.num = T_3_2.num;
@@ -1893,7 +1893,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 18: 
+            case 18:
                  {CLUREF T_2_8;
                 T_2_8.num = T_2_1.cell->value;
                 t.num = T_2_8.num;
@@ -1905,7 +1905,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = t.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             arm.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -1929,7 +1929,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                     CLUREF T_3_1;
                     T_3_1.num = t.vec->data[2];
                     switch (T_3_1.cell->tag) {
-                    case 1: 
+                    case 1:
                          {CLUREF T_3_2;
                         T_3_2.num = T_3_1.cell->value;
                         b.num = T_3_2.num;
@@ -1950,7 +1950,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 8: 
+            case 8:
                  {CLUREF T_2_9;
                 T_2_9.num = T_2_1.cell->value;
                 e.num = T_2_9.num;
@@ -1974,7 +1974,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = e.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             a.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -1998,7 +1998,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                     CLUREF T_3_1;
                     T_3_1.num = e.vec->data[1];
                     switch (T_3_1.cell->tag) {
-                    case 1: 
+                    case 1:
                          {CLUREF T_3_2;
                         T_3_2.num = T_3_1.cell->value;
                         a.num = T_3_2.num;
@@ -2021,7 +2021,7 @@ g_iterbody_names_asst(CLUREF out, CLUREF arr, CLUREF bod, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 14: 
+            case 14:
                  {CLUREF T_2_10;
                 T_2_10.num = T_2_1.cell->value;
                 rs.num = T_2_10.num;
@@ -2234,7 +2234,7 @@ loop_contextOPenter_while()
     {
     CLUREF T_1_1;
     T_1_1.num = loop_contextOPwhile_count.num + 1;
-     if ((T_1_1.num > 0 && loop_contextOPwhile_count.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && loop_contextOPwhile_count.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && loop_contextOPwhile_count.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2301,7 +2301,7 @@ loop_contextOPenter_inline_for()
     {
     CLUREF T_1_1;
     T_1_1.num = loop_contextOPinline_for_count.num + 1;
-     if ((T_1_1.num > 0 && loop_contextOPinline_for_count.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && loop_contextOPinline_for_count.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && loop_contextOPinline_for_count.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2455,7 +2455,7 @@ loop_contextOPis_for(CLUREF *ret_1)
   LINE(415);
     {
     switch (loop_contextOPstate.cell->tag) {
-    case 1: 
+    case 1:
          {
 
   LINE(417);
@@ -2507,7 +2507,7 @@ loop_contextOPis_while(CLUREF *ret_1)
   LINE(424);
     {
     switch (loop_contextOPstate.cell->tag) {
-    case 4: 
+    case 4:
          {
 
   LINE(426);
@@ -2559,7 +2559,7 @@ loop_contextOPis_inline_for(CLUREF *ret_1)
   LINE(433);
     {
     switch (loop_contextOPstate.cell->tag) {
-    case 2: 
+    case 2:
          {
 
   LINE(435);
@@ -3299,7 +3299,7 @@ current_applyOPget_formals_string(CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = current_applyOPcurr_app.vec->data[7];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_d.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -3311,7 +3311,7 @@ current_applyOPget_formals_string(CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = each_d.vec->data[0];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_i.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -3388,7 +3388,7 @@ current_applyOPget_formals(CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = current_applyOPcurr_app.vec->data[7];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_d.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -3400,7 +3400,7 @@ current_applyOPget_formals(CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = each_d.vec->data[0];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_i.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -3760,7 +3760,7 @@ current_typeOPget_formals_string(CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = current_typeOPcurr_typ.vec->data[7];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_d.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -3772,7 +3772,7 @@ current_typeOPget_formals_string(CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = each_d.vec->data[0];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_i.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -3849,7 +3849,7 @@ current_typeOPget_formals(CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = current_typeOPcurr_typ.vec->data[7];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_d.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -3861,7 +3861,7 @@ current_typeOPget_formals(CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = each_d.vec->data[0];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_i.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -4137,7 +4137,7 @@ ownsOPsave(CLUREF ilist)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = ilist.vec->size; 
+        T_1_2.num = ilist.vec->size;
         T_1_3 = ilist;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_i.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -4221,7 +4221,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = ownsOPcurrent_owns.vec->size; 
+        T_1_2.num = ownsOPcurrent_owns.vec->size;
         T_1_3 = ownsOPcurrent_owns;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             this_init.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -4231,7 +4231,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
             CLUREF T_2_1;
             T_2_1.num = this_init.vec->data[1];
             switch (T_2_1.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 d.num = T_2_2.num;
@@ -4243,7 +4243,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = d.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             this_idn.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -4266,7 +4266,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
                     end_inline_for_2:;
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 di.num = T_2_3.num;
@@ -4278,7 +4278,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = di.vec->data[1];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             this_decl.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -4290,7 +4290,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
                             CLUREF T_4_3;
                             CLUREF T_4_4;
                                 T_4_1.num = this_decl.vec->data[0];
-                                T_4_3.num = T_4_1.vec->size; 
+                                T_4_3.num = T_4_1.vec->size;
                                 T_4_4 = T_4_1;
                                 for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                     this_idn.num = T_4_4.vec->data[T_4_2.num - 1];

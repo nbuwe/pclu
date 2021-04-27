@@ -444,7 +444,7 @@ save_compiler()
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = z.num - 1;
-         if ((T_2_1.num >= 0 && z.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && z.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && z.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}

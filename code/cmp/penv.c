@@ -934,7 +934,7 @@ p_envOPcreate(CLUREF comp, CLUREF inst, CLUREF errst, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = e.vec->data[14];
     switch (T_1_1.cell->tag) {
-    case 10: 
+    case 10:
          {
             break;
             }
@@ -1371,7 +1371,7 @@ p_envOPreset(CLUREF e, CLUREF comp, CLUREF inst, CLUREF errst)
     CLUREF T_1_1;
     T_1_1.num = e.vec->data[14];
     switch (T_1_1.cell->tag) {
-    case 10: 
+    case 10:
          {
 
   LINE(252);
@@ -1647,7 +1647,7 @@ p_envOPpeek(CLUREF e, CLUREF num, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = num.num - 2;
-     if ((T_1_1.num >= 0 && num.num < 0 && (-2) < 0) || 
+     if ((T_1_1.num >= 0 && num.num < 0 && (-2) < 0) ||
          (T_1_1.num <= 0 && num.num > 0 && (-2) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1686,7 +1686,7 @@ p_envOPpeek(CLUREF e, CLUREF num, CLUREF *ret_1)
     CLUREF T_1_3;
     T_1_1.num = sp.array->ext_low;
     T_1_2.num = T_1_1.num + num.num;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && num.num < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && num.num < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && num.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2004,7 +2004,7 @@ p_envOPin_body(CLUREF e, CLUREF kind, CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = e.vec->data[1];
-        T_1_3.num = T_1_1.array->ext_high; 
+        T_1_3.num = T_1_1.array->ext_high;
         T_1_4 = T_1_1;
         for (T_1_2.num = T_1_1.array->ext_low; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             if (T_1_2.num > T_1_4.array->ext_high || T_1_2.num < T_1_4.array->ext_low) {
@@ -2471,7 +2471,7 @@ p_envOPline(CLUREF e, CLUREF deg)
         CLUREF T_3_3;
         CLUREF T_3_4;
             T_3_1.num = e.vec->data[13];
-            T_3_3.num = T_3_1.array->ext_high; 
+            T_3_3.num = T_3_1.array->ext_high;
             T_3_4 = T_3_1;
             for (T_3_2.num = T_3_1.array->ext_low; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                 if (T_3_2.num > T_3_4.array->ext_high || T_3_2.num < T_3_4.array->ext_low) {
@@ -2558,7 +2558,7 @@ p_envOPline(CLUREF e, CLUREF deg)
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
-            T_3_2.num = lines.array->ext_high; 
+            T_3_2.num = lines.array->ext_high;
             for (T_3_1.num = lines.array->ext_low; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                 i.num = T_3_1.num;
 
@@ -2964,7 +2964,7 @@ p_envOPscanline(CLUREF e)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[8];
     T_1_2.num = T_1_1.num + 1;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -3023,7 +3023,7 @@ p_envOPscanline(CLUREF e)
             goto ex_2;}
         T_3_2.num = p_envOPchrvec.vec->data[T_3_1.num - 1];
         switch (T_3_2.cell->tag) {
-        case 8: 
+        case 8:
              {CLUREF T_3_3;
             T_3_3.num = T_3_2.cell->value;
             c.num = T_3_3.num;
@@ -3035,11 +3035,11 @@ p_envOPscanline(CLUREF e)
                 }
                 break;
                 }
-        case 1: 
+        case 1:
              {
                 break;
                 }
-        case 12: 
+        case 12:
              {CLUREF T_3_4;
             T_3_4.num = T_3_2.cell->value;
             t.num = T_3_4.num;
@@ -3057,7 +3057,7 @@ p_envOPscanline(CLUREF e)
                 }
                 break;
                 }
-        case 9: 
+        case 9:
              {CLUREF T_3_5;
             T_3_5.num = T_3_2.cell->value;
             t.num = T_3_5.num;
@@ -3065,9 +3065,9 @@ p_envOPscanline(CLUREF e)
   LINE(462);
                 {
                 switch (t.cell->tag) {
-                case 2: 
-                case 23: 
-                case 22: 
+                case 2:
+                case 23:
+                case 22:
                      {
 
   LINE(464);
@@ -3077,7 +3077,7 @@ p_envOPscanline(CLUREF e)
                         }
                         break;
                         }
-                case 25: 
+                case 25:
                      {
 
   LINE(466);
@@ -3189,7 +3189,7 @@ p_envOPscanline(CLUREF e)
                 }
                 break;
                 }
-        case 3: 
+        case 3:
              {
 
   LINE(481);
@@ -3199,7 +3199,7 @@ p_envOPscanline(CLUREF e)
                 }
                 break;
                 }
-        case 11: 
+        case 11:
              {
 
   LINE(483);
@@ -3209,7 +3209,7 @@ p_envOPscanline(CLUREF e)
                 }
                 break;
                 }
-        case 10: 
+        case 10:
              {
 
   LINE(485);
@@ -3219,7 +3219,7 @@ p_envOPscanline(CLUREF e)
                 }
                 break;
                 }
-        case 4: 
+        case 4:
              {
 
   LINE(487);
@@ -3250,7 +3250,7 @@ p_envOPscanline(CLUREF e)
                     CLUREF T_5_2;
                     CLUREF T_5_3;
                         T_5_1.num = z.num + 1;
-                         if ((T_5_1.num > 0 && z.num < 0 && 1 < 0) || 
+                         if ((T_5_1.num > 0 && z.num < 0 && 1 < 0) ||
                              (T_5_1.num < 0 && z.num > 0 && 1 > 0)) {
                             err = ERR_overflow;
                             goto ex_2;}
@@ -3283,7 +3283,7 @@ p_envOPscanline(CLUREF e)
                     {
                     CLUREF T_5_1;
                     T_5_1.num = iline.num + 1;
-                     if ((T_5_1.num > 0 && iline.num < 0 && 1 < 0) || 
+                     if ((T_5_1.num > 0 && iline.num < 0 && 1 < 0) ||
                          (T_5_1.num < 0 && iline.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_2;}
@@ -3292,7 +3292,7 @@ p_envOPscanline(CLUREF e)
                     }}/* end if */
                 break;
                 }
-        case 2: 
+        case 2:
              {
 
   LINE(497);
@@ -3414,8 +3414,8 @@ p_envOPidn_or_key(CLUREF e, CLUREF cc)
             goto ex_1;}
         T_3_3.num = p_envOPchrvec.vec->data[T_3_2.num - 1];
         switch (T_3_3.cell->tag) {
-        case 8: 
-        case 3: 
+        case 8:
+        case 3:
              {CLUREF T_3_4;
             T_3_4.num = T_3_3.cell->value;
             c.num = T_3_4.num;
@@ -3566,7 +3566,7 @@ p_envOPnumber(CLUREF e, CLUREF cc)
             goto ex_1;}
         T_3_3.num = p_envOPchrvec.vec->data[T_3_2.num - 1];
         switch (T_3_3.cell->tag) {
-        case 3: 
+        case 3:
              {CLUREF T_3_4;
             T_3_4.num = T_3_3.cell->value;
             c.num = T_3_4.num;
@@ -3590,7 +3590,7 @@ p_envOPnumber(CLUREF e, CLUREF cc)
                 continue;
                 break;
                 }
-        case 8: 
+        case 8:
              {CLUREF T_3_5;
             T_3_5.num = T_3_3.cell->value;
             c.num = T_3_5.num;
@@ -3620,7 +3620,7 @@ p_envOPnumber(CLUREF e, CLUREF cc)
                     }}/* end if */
                 break;
                 }
-        case 9: 
+        case 9:
              {CLUREF T_3_6;
             T_3_6.num = T_3_3.cell->value;
             t.num = T_3_6.num;
@@ -3628,7 +3628,7 @@ p_envOPnumber(CLUREF e, CLUREF cc)
   LINE(550);
                 {
                 switch (t.cell->tag) {
-                case 25: 
+                case 25:
                      {
 
   LINE(552);
@@ -3846,7 +3846,7 @@ p_envOPreallit(CLUREF e, CLUREF a)
             goto ex_1;}
         T_3_3.num = p_envOPchrvec.vec->data[T_3_2.num - 1];
         switch (T_3_3.cell->tag) {
-        case 3: 
+        case 3:
              {CLUREF T_3_4;
             T_3_4.num = T_3_3.cell->value;
             c.num = T_3_4.num;
@@ -3867,7 +3867,7 @@ p_envOPreallit(CLUREF e, CLUREF a)
                 }
                 break;
                 }
-        case 8: 
+        case 8:
              {CLUREF T_3_5;
             T_3_5.num = T_3_3.cell->value;
             c.num = T_3_5.num;
@@ -4131,7 +4131,7 @@ p_envOPstrlit(CLUREF e)
             goto ex_1;}
         T_3_3.num = p_envOPchrvec.vec->data[T_3_2.num - 1];
         switch (T_3_3.cell->tag) {
-        case 11: 
+        case 11:
              {
 
   LINE(619);
@@ -4145,7 +4145,7 @@ p_envOPstrlit(CLUREF e)
                 goto end_while_1;
                 break;
                 }
-        case 5: 
+        case 5:
              {
 
   LINE(622);
@@ -4171,7 +4171,7 @@ p_envOPstrlit(CLUREF e)
                 }
                 break;
                 }
-        case 4: 
+        case 4:
              {
 
   LINE(625);
@@ -4187,8 +4187,8 @@ p_envOPstrlit(CLUREF e)
                 goto end_while_1;
                 break;
                 }
-        case 7: 
-        case 1: 
+        case 7:
+        case 1:
              {
 
   LINE(628);
@@ -4381,7 +4381,7 @@ p_envOPcharlit(CLUREF e)
         goto ex_1;}
     T_2_3.num = p_envOPchrvec.vec->data[T_2_2.num - 1];
     switch (T_2_3.cell->tag) {
-    case 5: 
+    case 5:
          {
 
   LINE(657);
@@ -4400,7 +4400,7 @@ p_envOPcharlit(CLUREF e)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(660);
@@ -4414,7 +4414,7 @@ p_envOPcharlit(CLUREF e)
             {signal (ERR_ok);}}
             break;
             }
-    case 10: 
+    case 10:
          {
 
   LINE(663);
@@ -4431,8 +4431,8 @@ p_envOPcharlit(CLUREF e)
             }
             break;
             }
-    case 7: 
-    case 1: 
+    case 7:
+    case 1:
          {
 
   LINE(666);
@@ -4663,7 +4663,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
   LINE(698);
     {
     switch (k.cell->tag) {
-    case 4: 
+    case 4:
          {
 
   LINE(700);
@@ -4701,7 +4701,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
   LINE(705);
     {
     switch (k.cell->tag) {
-    case 5: 
+    case 5:
          {
 
   LINE(707);
@@ -4714,7 +4714,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 10: 
+    case 10:
          {
 
   LINE(709);
@@ -4727,7 +4727,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 11: 
+    case 11:
          {
 
   LINE(711);
@@ -4740,7 +4740,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_2_1;
         T_2_1.num = k.cell->value;
         c.num = T_2_1.num;
@@ -4843,7 +4843,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
                 }}}}}}/* end if */
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(720);
@@ -4869,7 +4869,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
                         goto ex_2;}
                     T_4_3.num = p_envOPchrvec.vec->data[T_4_2.num - 1];
                     switch (T_4_3.cell->tag) {
-                    case 3: 
+                    case 3:
                          {
 
   LINE(723);
@@ -4918,7 +4918,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 6: 
+    case 6:
          {
 
   LINE(731);
@@ -4957,7 +4957,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
                     goto ex_2;}
                 T_4_3.num = p_envOPchrvec.vec->data[T_4_2.num - 1];
                 switch (T_4_3.cell->tag) {
-                case 8: 
+                case 8:
                      {CLUREF T_4_4;
                     T_4_4.num = T_4_3.cell->value;
                     c.num = T_4_4.num;
@@ -4996,7 +4996,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
                         T_5_1.num = (long)(c.ch & 0xff);
                         T_5_2.num = 96;
                         T_5_3.num = T_5_1.num - T_5_2.num;
-                         if ((T_5_3.num >= 0 && T_5_1.num < 0 && (-T_5_2.num) < 0) || 
+                         if ((T_5_3.num >= 0 && T_5_1.num < 0 && (-T_5_2.num) < 0) ||
                              (T_5_3.num <= 0 && T_5_1.num > 0 && (-T_5_2.num) > 0)) {
                             err = ERR_overflow;
                             goto ex_2;}
@@ -5007,7 +5007,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
                         {signal (ERR_ok);}}
                         break;
                         }
-                case 4: 
+                case 4:
                      {
                         break;
                         }
@@ -5057,7 +5057,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
                         T_6_1.num = (long)(c.ch & 0xff);
                         T_6_2.num = 64;
                         T_6_3.num = T_6_1.num - T_6_2.num;
-                         if ((T_6_3.num >= 0 && T_6_1.num < 0 && (-T_6_2.num) < 0) || 
+                         if ((T_6_3.num >= 0 && T_6_1.num < 0 && (-T_6_2.num) < 0) ||
                              (T_6_3.num <= 0 && T_6_1.num > 0 && (-T_6_2.num) > 0)) {
                             err = ERR_overflow;
                             goto ex_2;}
@@ -5187,7 +5187,7 @@ p_envOPmcharop(CLUREF e, CLUREF t, CLUREF c)
   LINE(762);
     {
     switch (t.cell->tag) {
-    case 2: 
+    case 2:
          {
 
   LINE(764);
@@ -5215,7 +5215,7 @@ p_envOPmcharop(CLUREF e, CLUREF t, CLUREF c)
                 }/* end if */
             break;
             }
-    case 23: 
+    case 23:
          {
 
   LINE(769);
@@ -5402,7 +5402,7 @@ p_envOPmcharop(CLUREF e, CLUREF t, CLUREF c)
                 }}}}}/* end if */
             break;
             }
-    case 22: 
+    case 22:
          {
 
   LINE(806);
@@ -5634,8 +5634,8 @@ p_envOPcomment(CLUREF e)
             goto ex_1;}
         T_3_3.num = p_envOPchrvec.vec->data[T_3_2.num - 1];
         switch (T_3_3.cell->tag) {
-        case 7: 
-        case 1: 
+        case 7:
+        case 1:
              {
 
   LINE(846);
@@ -5713,7 +5713,7 @@ p_envOPcomment(CLUREF e)
                     end_2:;
                 break;
                 }
-        case 4: 
+        case 4:
              {
 
   LINE(854);
@@ -6017,7 +6017,7 @@ cprint_form(CLUREF c, CLUREF *ret_1)
         T_2_1.num = (long)(c.ch & 0xff);
         T_2_2.num = 64;
         T_2_3.num = T_2_1.num + T_2_2.num;
-         if ((T_2_3.num > 0 && T_2_1.num < 0 && T_2_2.num < 0) || 
+         if ((T_2_3.num > 0 && T_2_1.num < 0 && T_2_2.num < 0) ||
              (T_2_3.num < 0 && T_2_1.num > 0 && T_2_2.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -6099,7 +6099,7 @@ cprint_form(CLUREF c, CLUREF *ret_1)
         CLUREF T_2_6;
         T_2_1.num = 64;
         T_2_2.num = i.num - T_2_1.num;
-         if ((T_2_2.num >= 0 && i.num < 0 && (-T_2_1.num) < 0) || 
+         if ((T_2_2.num >= 0 && i.num < 0 && (-T_2_1.num) < 0) ||
              (T_2_2.num <= 0 && i.num > 0 && (-T_2_1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -6125,7 +6125,7 @@ cprint_form(CLUREF c, CLUREF *ret_1)
         CLUREF T_2_4;
         T_2_1.num = 128;
         T_2_2.num = i.num - T_2_1.num;
-         if ((T_2_2.num >= 0 && i.num < 0 && (-T_2_1.num) < 0) || 
+         if ((T_2_2.num >= 0 && i.num < 0 && (-T_2_1.num) < 0) ||
              (T_2_2.num <= 0 && i.num > 0 && (-T_2_1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}

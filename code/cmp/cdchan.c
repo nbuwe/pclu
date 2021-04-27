@@ -259,7 +259,7 @@ code_chanOPwrite(CLUREF cc, CLUREF base, CLUREF code, CLUREF eblock, CLUREF *ret
     CLUREF T_1_9;
     T_1_1.num = code.array->ext_size;
     T_1_2.num = T_1_1.num + 7;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 7 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 7 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 7 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -267,21 +267,21 @@ code_chanOPwrite(CLUREF cc, CLUREF base, CLUREF code, CLUREF eblock, CLUREF *ret
     if (err != ERR_ok) goto ex_0;
     T_1_4.num = eblock.array->ext_size;
     T_1_5.num = T_1_4.num + 1;
-     if ((T_1_5.num > 0 && T_1_4.num < 0 && 1 < 0) || 
+     if ((T_1_5.num > 0 && T_1_4.num < 0 && 1 < 0) ||
          (T_1_5.num < 0 && T_1_4.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     err = intOPdiv(T_1_5, CLU_2, &T_1_6);
     if (err != ERR_ok) goto ex_0;
     T_1_7.num = T_1_3.num + T_1_6.num;
-     if ((T_1_7.num > 0 && T_1_3.num < 0 && T_1_6.num < 0) || 
+     if ((T_1_7.num > 0 && T_1_3.num < 0 && T_1_6.num < 0) ||
          (T_1_7.num < 0 && T_1_3.num > 0 && T_1_6.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     err = intOPmul(T_1_7, CLU_4, &T_1_8);
     if (err != ERR_ok) goto ex_0;
     T_1_9.num = count.num + T_1_8.num;
-     if ((T_1_9.num > 0 && count.num < 0 && T_1_8.num < 0) || 
+     if ((T_1_9.num > 0 && count.num < 0 && T_1_8.num < 0) ||
          (T_1_9.num < 0 && count.num > 0 && T_1_8.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -353,7 +353,7 @@ code_chanOPwrite(CLUREF cc, CLUREF base, CLUREF code, CLUREF eblock, CLUREF *ret
     CLUREF T_1_2;
     T_1_1.num = cc.vec->data[4];
     T_1_2.num = T_1_1.num + 1;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -559,7 +559,7 @@ code_chanOPboutput(CLUREF cc, CLUREF block)
             CLUREF T_2_3;
             T_2_1.num = 8192;
             T_2_2.num = T_2_1.num - index.num;
-             if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-index.num) < 0) || 
+             if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-index.num) < 0) ||
                  (T_2_2.num <= 0 && T_2_1.num > 0 && (-index.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -575,7 +575,7 @@ code_chanOPboutput(CLUREF cc, CLUREF block)
         CLUREF T_2_2;
         T_2_1.num = p.num;
         T_2_2.num = index.num + 1;
-         if ((T_2_2.num > 0 && index.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && index.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && index.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -587,7 +587,7 @@ code_chanOPboutput(CLUREF cc, CLUREF block)
         {
         CLUREF T_2_1;
         T_2_1.num = z.num - len.num;
-         if ((T_2_1.num >= 0 && z.num < 0 && (-len.num) < 0) || 
+         if ((T_2_1.num >= 0 && z.num < 0 && (-len.num) < 0) ||
              (T_2_1.num <= 0 && z.num > 0 && (-len.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -598,7 +598,7 @@ code_chanOPboutput(CLUREF cc, CLUREF block)
         {
         CLUREF T_2_1;
         T_2_1.num = index.num + len.num;
-         if ((T_2_1.num > 0 && index.num < 0 && len.num < 0) || 
+         if ((T_2_1.num > 0 && index.num < 0 && len.num < 0) ||
              (T_2_1.num < 0 && index.num > 0 && len.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -609,7 +609,7 @@ code_chanOPboutput(CLUREF cc, CLUREF block)
         {
         CLUREF T_2_1;
         T_2_1.num = i.num + len.num;
-         if ((T_2_1.num > 0 && i.num < 0 && len.num < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && len.num < 0) ||
              (T_2_1.num < 0 && i.num > 0 && len.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -639,7 +639,7 @@ code_chanOPboutput(CLUREF cc, CLUREF block)
         {
         CLUREF T_2_1;
         T_2_1.num = index.num + 1;
-         if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && index.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -734,7 +734,7 @@ code_chanOPoutput(CLUREF cc, CLUREF block)
         CLUREF T_1_2;
         T_1_1.num = block.array->ext_high;
         T_1_2.num = T_1_1.num - 1;
-         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
              (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -811,7 +811,7 @@ code_chanOPoutput(CLUREF cc, CLUREF block)
             {
             CLUREF T_2_1;
             T_2_1.num = index.num + 1;
-             if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && index.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -824,7 +824,7 @@ code_chanOPoutput(CLUREF cc, CLUREF block)
             CLUREF T_2_2;
             CLUREF T_2_3;
             T_2_1.num = low.num + 1;
-             if ((T_2_1.num > 0 && low.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && low.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && low.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -910,7 +910,7 @@ code_chanOPoutput(CLUREF cc, CLUREF block)
         {
         CLUREF T_2_1;
         T_2_1.num = index.num + 1;
-         if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && index.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}

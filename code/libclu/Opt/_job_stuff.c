@@ -152,7 +152,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
                 {
                     {CLUREF T_6_1;
                     T_6_1.num = j.num + 1;
-                     if ((T_6_1.num > 0 && j.num < 0 && 1 < 0) || 
+                     if ((T_6_1.num > 0 && j.num < 0 && 1 < 0) ||
                          (T_6_1.num < 0 && j.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_3;}
@@ -185,7 +185,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
                     err = stringOPsize(s, &T_7_1);
                     if (err != ERR_ok) goto ex_3;
                     T_7_2.num = T_7_1.num + 1;
-                     if ((T_7_2.num > 0 && T_7_1.num < 0 && 1 < 0) || 
+                     if ((T_7_2.num > 0 && T_7_1.num < 0 && 1 < 0) ||
                          (T_7_2.num < 0 && T_7_1.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_3;}
@@ -199,7 +199,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
                     {CLUREF T_6_1;
                     CLUREF T_6_2;
                     T_6_1.num = j.num - i.num;
-                     if ((T_6_1.num >= 0 && j.num < 0 && (-i.num) < 0) || 
+                     if ((T_6_1.num >= 0 && j.num < 0 && (-i.num) < 0) ||
                          (T_6_1.num <= 0 && j.num > 0 && (-i.num) > 0)) {
                         err = ERR_overflow;
                         goto ex_3;}
@@ -268,7 +268,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         CLUREF T_4_1;
         CLUREF T_4_2;
         CLUREF T_4_3;
-            T_4_2.num = _job_stuffOPdirs.array->ext_high; 
+            T_4_2.num = _job_stuffOPdirs.array->ext_high;
             T_4_3 = _job_stuffOPdirs;
             for (T_4_1.num = _job_stuffOPdirs.array->ext_low; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                 if (T_4_1.num > T_4_3.array->ext_high || T_4_1.num < T_4_3.array->ext_low) {
@@ -412,7 +412,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         {
         CLUREF T_3_1;
         T_3_1.num = cnt.num + 1;
-         if ((T_3_1.num > 0 && cnt.num < 0 && 1 < 0) || 
+         if ((T_3_1.num > 0 && cnt.num < 0 && 1 < 0) ||
              (T_3_1.num < 0 && cnt.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_5;}
@@ -437,7 +437,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
             {
             CLUREF T_4_1;
             T_4_1.num = i.num + 1;
-             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_5;}
@@ -472,7 +472,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
             {
             CLUREF T_4_1;
             T_4_1.num = i.num + 1;
-             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_5;}
@@ -496,7 +496,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         T_1_1.num = cnt.num + 2;
-         if ((T_1_1.num > 0 && cnt.num < 0 && 2 < 0) || 
+         if ((T_1_1.num > 0 && cnt.num < 0 && 2 < 0) ||
              (T_1_1.num < 0 && cnt.num > 0 && 2 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -530,7 +530,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         {
         CLUREF T_3_1;
         T_3_1.num = cnt.num + 1;
-         if ((T_3_1.num > 0 && cnt.num < 0 && 1 < 0) || 
+         if ((T_3_1.num > 0 && cnt.num < 0 && 1 < 0) ||
              (T_3_1.num < 0 && cnt.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_6;}
@@ -570,7 +570,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
             {
             CLUREF T_4_1;
             T_4_1.num = i.num + 1;
-             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_6;}

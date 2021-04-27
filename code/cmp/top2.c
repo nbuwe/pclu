@@ -141,7 +141,7 @@ compile(CLUREF mode, CLUREF args, CLUREF outst, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = locals.new_exts.array->ext_high; 
+        T_1_2.num = locals.new_exts.array->ext_high;
         T_1_3 = locals.new_exts;
         for (T_1_1.num = locals.new_exts.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -306,7 +306,7 @@ struct {
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = locals->names.array->ext_high; 
+        T_1_2.num = locals->names.array->ext_high;
         T_1_3 = locals->names;
         for (T_1_1.num = locals->names.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -824,7 +824,7 @@ compile1(CLUREF e, CLUREF fn, CLUREF *ret_1)
         err = file_nameOPget_name(fn, &T_3_1);
         if (err != ERR_ok) goto ex_4;
         T_3_2.num = dez.num - 4;
-         if ((T_3_2.num >= 0 && dez.num < 0 && (-4) < 0) || 
+         if ((T_3_2.num >= 0 && dez.num < 0 && (-4) < 0) ||
              (T_3_2.num <= 0 && dez.num > 0 && (-4) > 0)) {
             err = ERR_overflow;
             goto ex_4;}
@@ -1171,7 +1171,7 @@ reset_stuff(CLUREF e, CLUREF fn)
         err = _dir_ent_size(&T_2_2);
         if (err != ERR_ok) goto ex_0;
         T_2_3.num = T_2_2.num - 4;
-         if ((T_2_3.num >= 0 && T_2_2.num < 0 && (-4) < 0) || 
+         if ((T_2_3.num >= 0 && T_2_2.num < 0 && (-4) < 0) ||
              (T_2_3.num <= 0 && T_2_2.num > 0 && (-4) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1225,7 +1225,7 @@ reset_stuff(CLUREF e, CLUREF fn)
     CLUREF T_1_1;
     T_1_1.num = e.vec->data[6];
     switch (T_1_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         ge.num = T_1_2.num;
@@ -1533,7 +1533,7 @@ do_compile(CLUREF e, CLUREF *ret_1)
   LINE(209);
         {
         switch (def.cell->tag) {
-        case 1: 
+        case 1:
              {CLUREF T_3_1;
             T_3_1.num = def.cell->value;
             apd.num = T_3_1.num;
@@ -1549,7 +1549,7 @@ do_compile(CLUREF e, CLUREF *ret_1)
                 }
                 break;
                 }
-        case 3: 
+        case 3:
              {CLUREF T_3_2;
             T_3_2.num = def.cell->value;
             td.num = T_3_2.num;
@@ -1864,7 +1864,7 @@ do_specs(CLUREF e, CLUREF *ret_1)
   LINE(251);
         {
         switch (def.cell->tag) {
-        case 1: 
+        case 1:
              {CLUREF T_3_1;
             T_3_1.num = def.cell->value;
             d.num = T_3_1.num;
@@ -1886,9 +1886,9 @@ do_specs(CLUREF e, CLUREF *ret_1)
                 }
                 break;
                 }
-        case 3: 
-        case 5: 
-        case 2: 
+        case 3:
+        case 5:
+        case 2:
              {CLUREF T_3_2;
             T_3_2.num = def.cell->value;
             d.num = T_3_2.num;
@@ -1908,7 +1908,7 @@ do_specs(CLUREF e, CLUREF *ret_1)
                 CLUREF T_4_3;
                 CLUREF T_4_4;
                     T_4_1.num = d.vec->data[0];
-                    T_4_3.num = T_4_1.vec->size; 
+                    T_4_3.num = T_4_1.vec->size;
                     T_4_4 = T_4_1;
                     for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                         dd.num = T_4_4.vec->data[T_4_2.num - 1];
@@ -2079,7 +2079,7 @@ do_specs(CLUREF e, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = mdefs.array->ext_high; 
+        T_1_2.num = mdefs.array->ext_high;
         T_1_3 = mdefs;
         for (T_1_1.num = mdefs.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -2219,7 +2219,7 @@ setup_specs_pass2(CLUREF e, CLUREF mdefs)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = mdefs.array->ext_high; 
+        T_1_2.num = mdefs.array->ext_high;
         T_1_3 = mdefs;
         for (T_1_1.num = mdefs.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -2233,7 +2233,7 @@ setup_specs_pass2(CLUREF e, CLUREF mdefs)
             CLUREF T_2_1;
             T_2_1.num = md.vec->data[0];
             switch (T_2_1.cell->tag) {
-            case 4: 
+            case 4:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 eqs.num = T_2_2.num;
@@ -2243,7 +2243,7 @@ setup_specs_pass2(CLUREF e, CLUREF mdefs)
                     CLUREF T_3_1;
                     CLUREF T_3_2;
                     CLUREF T_3_3;
-                        T_3_2.num = eqs.vec->size; 
+                        T_3_2.num = eqs.vec->size;
                         T_3_3 = eqs;
                         for (T_3_1.num = 1; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                             eq.num = T_3_3.vec->data[T_3_1.num - 1];
@@ -2268,7 +2268,7 @@ setup_specs_pass2(CLUREF e, CLUREF mdefs)
                 CLUREF T_3_1;
                 T_3_1.num = md.vec->data[3];
                 switch (T_3_1.cell->tag) {
-                case 2: 
+                case 2:
                      {CLUREF T_3_2;
                     T_3_2.num = T_3_1.cell->value;
                     ms.num = T_3_2.num;
@@ -2354,7 +2354,7 @@ install_specs(CLUREF md)
   LINE(322);
     {
     switch (specs.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_1_1;
         T_1_1.num = specs.cell->value;
         ds.num = T_1_1.num;
@@ -2427,7 +2427,7 @@ specs_one(CLUREF e, CLUREF def, CLUREF *ret_1, CLUREF *ret_2)
   LINE(333);
     {
     switch (def.cell->tag) {
-    case 4: 
+    case 4:
          {
 
   LINE(335);
@@ -2446,7 +2446,7 @@ specs_one(CLUREF e, CLUREF def, CLUREF *ret_1, CLUREF *ret_2)
             }
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_1;
         T_1_1.num = def.cell->value;
         d.num = T_1_1.num;
@@ -2472,9 +2472,9 @@ specs_one(CLUREF e, CLUREF def, CLUREF *ret_1, CLUREF *ret_2)
             }
             break;
             }
-    case 3: 
-    case 5: 
-    case 2: 
+    case 3:
+    case 5:
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = def.cell->value;
         d.num = T_1_2.num;
@@ -2644,7 +2644,7 @@ do_ce(CLUREF e, CLUREF *ret_1)
   LINE(364);
         {
         switch (def.cell->tag) {
-        case 4: 
+        case 4:
              {CLUREF T_3_1;
             T_3_1.num = def.cell->value;
             eqs.num = T_3_1.num;
@@ -2812,7 +2812,7 @@ add_ce_entries(CLUREF e, CLUREF equates, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = equates.vec->size; 
+        T_1_2.num = equates.vec->size;
         T_1_3 = equates;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             eq.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -3032,7 +3032,7 @@ check_one(CLUREF e, CLUREF def, CLUREF go, CLUREF *ret_1)
   LINE(417);
     {
     switch (def.cell->tag) {
-    case 4: 
+    case 4:
          {
 
   LINE(419);
@@ -3048,7 +3048,7 @@ check_one(CLUREF e, CLUREF def, CLUREF go, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_1;
         T_1_1.num = def.cell->value;
         d.num = T_1_1.num;
@@ -3061,9 +3061,9 @@ check_one(CLUREF e, CLUREF def, CLUREF go, CLUREF *ret_1)
             }
             break;
             }
-    case 3: 
-    case 5: 
-    case 2: 
+    case 3:
+    case 5:
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = def.cell->value;
         d.num = T_1_2.num;
@@ -3146,7 +3146,7 @@ check_one(CLUREF e, CLUREF def, CLUREF go, CLUREF *ret_1)
   LINE(433);
     {
     switch (specs.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_1_1;
         T_1_1.num = specs.cell->value;
         ds.num = T_1_1.num;
@@ -3342,7 +3342,7 @@ check_one1(CLUREF e, CLUREF def, CLUREF *ret_1, CLUREF *ret_2)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = exts.array->ext_high; 
+        T_1_2.num = exts.array->ext_high;
         T_1_3 = exts;
         for (T_1_1.num = exts.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -3375,7 +3375,7 @@ check_one1(CLUREF e, CLUREF def, CLUREF *ret_1, CLUREF *ret_2)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = undefs.array->ext_high; 
+        T_1_2.num = undefs.array->ext_high;
         T_1_3 = undefs;
         for (T_1_1.num = undefs.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -3469,7 +3469,7 @@ get_user(CLUREF e, CLUREF def, CLUREF *ret_1)
   LINE(472);
     {
     switch (def.cell->tag) {
-    case 4: 
+    case 4:
          {
 
   LINE(474);
@@ -3494,7 +3494,7 @@ get_user(CLUREF e, CLUREF def, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_1;
         T_1_1.num = def.cell->value;
         d.num = T_1_1.num;
@@ -3512,9 +3512,9 @@ get_user(CLUREF e, CLUREF def, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 3: 
-    case 5: 
-    case 2: 
+    case 3:
+    case 5:
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = def.cell->value;
         d.num = T_1_2.num;
@@ -3564,7 +3564,7 @@ is_internal(CLUREF n, CLUREF exts, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = exts.array->ext_high; 
+        T_1_2.num = exts.array->ext_high;
         T_1_3 = exts;
         for (T_1_1.num = exts.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -3639,7 +3639,7 @@ remove_externals(CLUREF def, CLUREF exts)
   LINE(492);
     {
     switch (def.cell->tag) {
-    case 1: 
+    case 1:
          {CLUREF T_1_1;
         T_1_1.num = def.cell->value;
         d.num = T_1_1.num;
@@ -3655,9 +3655,9 @@ remove_externals(CLUREF def, CLUREF exts)
             }
             break;
             }
-    case 3: 
-    case 5: 
-    case 2: 
+    case 3:
+    case 5:
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = def.cell->value;
         d.num = T_1_2.num;
@@ -3683,7 +3683,7 @@ remove_externals(CLUREF def, CLUREF exts)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = exts.array->ext_high; 
+        T_1_2.num = exts.array->ext_high;
         T_1_3 = exts;
         for (T_1_1.num = exts.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -3704,7 +3704,7 @@ remove_externals(CLUREF def, CLUREF exts)
   LINE(502);
     {
     switch (def.cell->tag) {
-    case 1: 
+    case 1:
          {CLUREF T_1_1;
         T_1_1.num = def.cell->value;
         d.num = T_1_1.num;
@@ -3718,9 +3718,9 @@ remove_externals(CLUREF def, CLUREF exts)
             }
             break;
             }
-    case 3: 
-    case 5: 
-    case 2: 
+    case 3:
+    case 5:
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = def.cell->value;
         d.num = T_1_2.num;
@@ -3914,7 +3914,7 @@ cc_one(CLUREF e)
         err = _dir_ent_size(&T_1_2);
         if (err != ERR_ok) goto ex_0;
         T_1_3.num = T_1_2.num - 4;
-         if ((T_1_3.num >= 0 && T_1_2.num < 0 && (-4) < 0) || 
+         if ((T_1_3.num >= 0 && T_1_2.num < 0 && (-4) < 0) ||
              (T_1_3.num <= 0 && T_1_2.num > 0 && (-4) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -4158,14 +4158,14 @@ new_suffix(CLUREF fn, CLUREF suf, CLUREF *ret_1)
             err = file_nameOPget_name(fn, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             T_3_2.num = dez.num - 1;
-             if ((T_3_2.num >= 0 && dez.num < 0 && (-1) < 0) || 
+             if ((T_3_2.num >= 0 && dez.num < 0 && (-1) < 0) ||
                  (T_3_2.num <= 0 && dez.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
             err = stringOPsize(suf, &T_3_3);
             if (err != ERR_ok) goto ex_1;
             T_3_4.num = T_3_2.num - T_3_3.num;
-             if ((T_3_4.num >= 0 && T_3_2.num < 0 && (-T_3_3.num) < 0) || 
+             if ((T_3_4.num >= 0 && T_3_2.num < 0 && (-T_3_3.num) < 0) ||
                  (T_3_4.num <= 0 && T_3_2.num > 0 && (-T_3_3.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}

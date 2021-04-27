@@ -43,7 +43,7 @@ _unquote(CLUREF s, CLUREF *ret_1)
         T_2_1.ch = '\\';
         T_2_2.num = s.num;
         T_2_3.num = i.num + 1;
-         if ((T_2_3.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_3.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_3.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -85,14 +85,14 @@ _unquote(CLUREF s, CLUREF *ret_1)
         CLUREF T_2_4;
         CLUREF T_2_5;
         T_2_1.num = i.num - 1;
-         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && i.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         err = stringOPsubstr(s, CLU_1, T_2_1, &T_2_2);
         if (err != ERR_ok) goto ex_0;
         T_2_3.num = i.num + 1;
-         if ((T_2_3.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_3.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_3.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}

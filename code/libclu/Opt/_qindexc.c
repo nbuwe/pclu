@@ -76,7 +76,7 @@ _qindexc(CLUREF c, CLUREF s, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = i.num + 2;
-             if ((T_3_1.num > 0 && i.num < 0 && 2 < 0) || 
+             if ((T_3_1.num > 0 && i.num < 0 && 2 < 0) ||
                  (T_3_1.num < 0 && i.num > 0 && 2 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -89,7 +89,7 @@ _qindexc(CLUREF c, CLUREF s, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = i.num + 1;
-             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}

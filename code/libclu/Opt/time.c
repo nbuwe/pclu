@@ -70,12 +70,12 @@ errcode time_own_init_proc()
     errcode err;
     enter_own_init_proc();
         if (time_own_init == 0) {
-        add_selector_info("days", 0, int_ops); 
-        add_selector_info("hours", 1, int_ops); 
-        add_selector_info("micros", 2, int_ops); 
-        add_selector_info("millis", 3, int_ops); 
-        add_selector_info("mins", 4, int_ops); 
-        add_selector_info("secs", 5, int_ops); 
+        add_selector_info("days", 0, int_ops);
+        add_selector_info("hours", 1, int_ops);
+        add_selector_info("micros", 2, int_ops);
+        add_selector_info("millis", 3, int_ops);
+        add_selector_info("mins", 4, int_ops);
+        add_selector_info("secs", 5, int_ops);
         find_selector_ops("struct", 6, &(struct_days_hours_micros_millis_mins_secs_ops));
         stringOPcons("", CLU_1, CLU_0, &STR_);
         stringOPcons("bad format", CLU_1, CLU_10, &STR_bad_040format);
@@ -158,7 +158,7 @@ timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis,
         err = intOPdiv(micros, T_3_1, &T_3_2);
         if (err != ERR_ok) goto ex_1;
         T_3_3.num = millis.num + T_3_2.num;
-         if ((T_3_3.num > 0 && millis.num < 0 && T_3_2.num < 0) || 
+         if ((T_3_3.num > 0 && millis.num < 0 && T_3_2.num < 0) ||
              (T_3_3.num < 0 && millis.num > 0 && T_3_2.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -184,7 +184,7 @@ timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis,
         err = intOPdiv(millis, T_3_1, &T_3_2);
         if (err != ERR_ok) goto ex_1;
         T_3_3.num = secs.num + T_3_2.num;
-         if ((T_3_3.num > 0 && secs.num < 0 && T_3_2.num < 0) || 
+         if ((T_3_3.num > 0 && secs.num < 0 && T_3_2.num < 0) ||
              (T_3_3.num < 0 && secs.num > 0 && T_3_2.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -210,7 +210,7 @@ timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis,
         err = intOPdiv(secs, T_3_1, &T_3_2);
         if (err != ERR_ok) goto ex_1;
         T_3_3.num = mins.num + T_3_2.num;
-         if ((T_3_3.num > 0 && mins.num < 0 && T_3_2.num < 0) || 
+         if ((T_3_3.num > 0 && mins.num < 0 && T_3_2.num < 0) ||
              (T_3_3.num < 0 && mins.num > 0 && T_3_2.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -236,7 +236,7 @@ timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis,
         err = intOPdiv(mins, T_3_1, &T_3_2);
         if (err != ERR_ok) goto ex_1;
         T_3_3.num = hours.num + T_3_2.num;
-         if ((T_3_3.num > 0 && hours.num < 0 && T_3_2.num < 0) || 
+         if ((T_3_3.num > 0 && hours.num < 0 && T_3_2.num < 0) ||
              (T_3_3.num < 0 && hours.num > 0 && T_3_2.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -260,7 +260,7 @@ timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis,
         err = intOPdiv(hours, CLU_24, &T_3_1);
         if (err != ERR_ok) goto ex_1;
         T_3_2.num = days.num + T_3_1.num;
-         if ((T_3_2.num > 0 && days.num < 0 && T_3_1.num < 0) || 
+         if ((T_3_2.num > 0 && days.num < 0 && T_3_1.num < 0) ||
              (T_3_2.num < 0 && days.num > 0 && T_3_1.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -627,7 +627,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         CLUREF T_3_2;
         T_3_1.num = t2.vec->data[2];
         T_3_2.num = micros.num + T_3_1.num;
-         if ((T_3_2.num > 0 && micros.num < 0 && T_3_1.num < 0) || 
+         if ((T_3_2.num > 0 && micros.num < 0 && T_3_1.num < 0) ||
              (T_3_2.num < 0 && micros.num > 0 && T_3_1.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -646,7 +646,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = millis.num + 1;
-             if ((T_4_1.num > 0 && millis.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && millis.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && millis.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -659,7 +659,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
             CLUREF T_4_2;
             T_4_1.num = 1000;
             T_4_2.num = micros.num - T_4_1.num;
-             if ((T_4_2.num >= 0 && micros.num < 0 && (-T_4_1.num) < 0) || 
+             if ((T_4_2.num >= 0 && micros.num < 0 && (-T_4_1.num) < 0) ||
                  (T_4_2.num <= 0 && micros.num > 0 && (-T_4_1.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -674,7 +674,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         CLUREF T_3_2;
         T_3_1.num = t2.vec->data[3];
         T_3_2.num = millis.num + T_3_1.num;
-         if ((T_3_2.num > 0 && millis.num < 0 && T_3_1.num < 0) || 
+         if ((T_3_2.num > 0 && millis.num < 0 && T_3_1.num < 0) ||
              (T_3_2.num < 0 && millis.num > 0 && T_3_1.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -693,7 +693,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = secs.num + 1;
-             if ((T_4_1.num > 0 && secs.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && secs.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && secs.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -706,7 +706,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
             CLUREF T_4_2;
             T_4_1.num = 1000;
             T_4_2.num = millis.num - T_4_1.num;
-             if ((T_4_2.num >= 0 && millis.num < 0 && (-T_4_1.num) < 0) || 
+             if ((T_4_2.num >= 0 && millis.num < 0 && (-T_4_1.num) < 0) ||
                  (T_4_2.num <= 0 && millis.num > 0 && (-T_4_1.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -721,7 +721,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         CLUREF T_3_2;
         T_3_1.num = t2.vec->data[5];
         T_3_2.num = secs.num + T_3_1.num;
-         if ((T_3_2.num > 0 && secs.num < 0 && T_3_1.num < 0) || 
+         if ((T_3_2.num > 0 && secs.num < 0 && T_3_1.num < 0) ||
              (T_3_2.num < 0 && secs.num > 0 && T_3_1.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -740,7 +740,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = mins.num + 1;
-             if ((T_4_1.num > 0 && mins.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && mins.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && mins.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -753,7 +753,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
             CLUREF T_4_2;
             T_4_1.num = 60;
             T_4_2.num = secs.num - T_4_1.num;
-             if ((T_4_2.num >= 0 && secs.num < 0 && (-T_4_1.num) < 0) || 
+             if ((T_4_2.num >= 0 && secs.num < 0 && (-T_4_1.num) < 0) ||
                  (T_4_2.num <= 0 && secs.num > 0 && (-T_4_1.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -768,7 +768,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         CLUREF T_3_2;
         T_3_1.num = t2.vec->data[4];
         T_3_2.num = mins.num + T_3_1.num;
-         if ((T_3_2.num > 0 && mins.num < 0 && T_3_1.num < 0) || 
+         if ((T_3_2.num > 0 && mins.num < 0 && T_3_1.num < 0) ||
              (T_3_2.num < 0 && mins.num > 0 && T_3_1.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -787,7 +787,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = hours.num + 1;
-             if ((T_4_1.num > 0 && hours.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && hours.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && hours.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -800,7 +800,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
             CLUREF T_4_2;
             T_4_1.num = 60;
             T_4_2.num = mins.num - T_4_1.num;
-             if ((T_4_2.num >= 0 && mins.num < 0 && (-T_4_1.num) < 0) || 
+             if ((T_4_2.num >= 0 && mins.num < 0 && (-T_4_1.num) < 0) ||
                  (T_4_2.num <= 0 && mins.num > 0 && (-T_4_1.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -815,7 +815,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         CLUREF T_3_2;
         T_3_1.num = t2.vec->data[1];
         T_3_2.num = hours.num + T_3_1.num;
-         if ((T_3_2.num > 0 && hours.num < 0 && T_3_1.num < 0) || 
+         if ((T_3_2.num > 0 && hours.num < 0 && T_3_1.num < 0) ||
              (T_3_2.num < 0 && hours.num > 0 && T_3_1.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -832,7 +832,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = days.num + 1;
-             if ((T_4_1.num > 0 && days.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && days.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && days.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -843,7 +843,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = hours.num - 24;
-             if ((T_4_1.num >= 0 && hours.num < 0 && (-24) < 0) || 
+             if ((T_4_1.num >= 0 && hours.num < 0 && (-24) < 0) ||
                  (T_4_1.num <= 0 && hours.num > 0 && (-24) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -858,7 +858,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         CLUREF T_3_2;
         T_3_1.num = t2.vec->data[0];
         T_3_2.num = days.num + T_3_1.num;
-         if ((T_3_2.num > 0 && days.num < 0 && T_3_1.num < 0) || 
+         if ((T_3_2.num > 0 && days.num < 0 && T_3_1.num < 0) ||
              (T_3_2.num < 0 && days.num > 0 && T_3_1.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -957,7 +957,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     CLUREF T_1_2;
     T_1_1.num = t2.vec->data[2];
     T_1_2.num = micros.num - T_1_1.num;
-     if ((T_1_2.num >= 0 && micros.num < 0 && (-T_1_1.num) < 0) || 
+     if ((T_1_2.num >= 0 && micros.num < 0 && (-T_1_1.num) < 0) ||
          (T_1_2.num <= 0 && micros.num > 0 && (-T_1_1.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -974,7 +974,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = millis.num - 1;
-         if ((T_2_1.num >= 0 && millis.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && millis.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && millis.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -987,7 +987,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = 1000;
         T_2_2.num = micros.num + T_2_1.num;
-         if ((T_2_2.num > 0 && micros.num < 0 && T_2_1.num < 0) || 
+         if ((T_2_2.num > 0 && micros.num < 0 && T_2_1.num < 0) ||
              (T_2_2.num < 0 && micros.num > 0 && T_2_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1002,7 +1002,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     CLUREF T_1_2;
     T_1_1.num = t2.vec->data[3];
     T_1_2.num = millis.num - T_1_1.num;
-     if ((T_1_2.num >= 0 && millis.num < 0 && (-T_1_1.num) < 0) || 
+     if ((T_1_2.num >= 0 && millis.num < 0 && (-T_1_1.num) < 0) ||
          (T_1_2.num <= 0 && millis.num > 0 && (-T_1_1.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1019,7 +1019,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = secs.num - 1;
-         if ((T_2_1.num >= 0 && secs.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && secs.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && secs.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1032,7 +1032,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = 1000;
         T_2_2.num = millis.num + T_2_1.num;
-         if ((T_2_2.num > 0 && millis.num < 0 && T_2_1.num < 0) || 
+         if ((T_2_2.num > 0 && millis.num < 0 && T_2_1.num < 0) ||
              (T_2_2.num < 0 && millis.num > 0 && T_2_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1047,7 +1047,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     CLUREF T_1_2;
     T_1_1.num = t2.vec->data[5];
     T_1_2.num = secs.num - T_1_1.num;
-     if ((T_1_2.num >= 0 && secs.num < 0 && (-T_1_1.num) < 0) || 
+     if ((T_1_2.num >= 0 && secs.num < 0 && (-T_1_1.num) < 0) ||
          (T_1_2.num <= 0 && secs.num > 0 && (-T_1_1.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1064,7 +1064,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = mins.num - 1;
-         if ((T_2_1.num >= 0 && mins.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && mins.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && mins.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1077,7 +1077,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = 60;
         T_2_2.num = secs.num + T_2_1.num;
-         if ((T_2_2.num > 0 && secs.num < 0 && T_2_1.num < 0) || 
+         if ((T_2_2.num > 0 && secs.num < 0 && T_2_1.num < 0) ||
              (T_2_2.num < 0 && secs.num > 0 && T_2_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1092,7 +1092,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     CLUREF T_1_2;
     T_1_1.num = t2.vec->data[4];
     T_1_2.num = mins.num - T_1_1.num;
-     if ((T_1_2.num >= 0 && mins.num < 0 && (-T_1_1.num) < 0) || 
+     if ((T_1_2.num >= 0 && mins.num < 0 && (-T_1_1.num) < 0) ||
          (T_1_2.num <= 0 && mins.num > 0 && (-T_1_1.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1109,7 +1109,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = hours.num - 1;
-         if ((T_2_1.num >= 0 && hours.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && hours.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && hours.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1122,7 +1122,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = 60;
         T_2_2.num = mins.num + T_2_1.num;
-         if ((T_2_2.num > 0 && mins.num < 0 && T_2_1.num < 0) || 
+         if ((T_2_2.num > 0 && mins.num < 0 && T_2_1.num < 0) ||
              (T_2_2.num < 0 && mins.num > 0 && T_2_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1137,7 +1137,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     CLUREF T_1_2;
     T_1_1.num = t2.vec->data[1];
     T_1_2.num = hours.num - T_1_1.num;
-     if ((T_1_2.num >= 0 && hours.num < 0 && (-T_1_1.num) < 0) || 
+     if ((T_1_2.num >= 0 && hours.num < 0 && (-T_1_1.num) < 0) ||
          (T_1_2.num <= 0 && hours.num > 0 && (-T_1_1.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1154,7 +1154,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = days.num - 1;
-         if ((T_2_1.num >= 0 && days.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && days.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && days.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1165,7 +1165,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = hours.num + 24;
-         if ((T_2_1.num > 0 && hours.num < 0 && 24 < 0) || 
+         if ((T_2_1.num > 0 && hours.num < 0 && 24 < 0) ||
              (T_2_1.num < 0 && hours.num > 0 && 24 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1180,7 +1180,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     CLUREF T_1_2;
     T_1_1.num = t2.vec->data[0];
     T_1_2.num = days.num - T_1_1.num;
-     if ((T_1_2.num >= 0 && days.num < 0 && (-T_1_1.num) < 0) || 
+     if ((T_1_2.num >= 0 && days.num < 0 && (-T_1_1.num) < 0) ||
          (T_1_2.num <= 0 && days.num > 0 && (-T_1_1.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1327,7 +1327,7 @@ timeOPmul(CLUREF t, CLUREF n, CLUREF *ret_1)
         err = intOPmul(T_3_1, n, &T_3_2);
         if (err != ERR_ok) goto ex_1;
         T_3_3.num = T_3_2.num + carry.num;
-         if ((T_3_3.num > 0 && T_3_2.num < 0 && carry.num < 0) || 
+         if ((T_3_3.num > 0 && T_3_2.num < 0 && carry.num < 0) ||
              (T_3_3.num < 0 && T_3_2.num > 0 && carry.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -1529,7 +1529,7 @@ timeOPaverage(CLUREF t, CLUREF n, CLUREF *ret_1)
     err = intOPdiv(n, CLU_2, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_3.num = T_1_1.num + T_1_2.num;
-     if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) || 
+     if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) ||
          (T_1_3.num < 0 && T_1_1.num > 0 && T_1_2.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1597,7 +1597,7 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
             err = intOPmul(b, c, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             T_3_2.num = a.num + T_3_1.num;
-             if ((T_3_2.num > 0 && a.num < 0 && T_3_1.num < 0) || 
+             if ((T_3_2.num > 0 && a.num < 0 && T_3_1.num < 0) ||
                  (T_3_2.num < 0 && a.num > 0 && T_3_1.num > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -1643,7 +1643,7 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
         err = intOPmul(b, T_2_2, &T_2_3);
         if (err != ERR_ok) goto ex_2;
         T_2_4.num = T_2_1.num + T_2_3.num;
-         if ((T_2_4.num > 0 && T_2_1.num < 0 && T_2_3.num < 0) || 
+         if ((T_2_4.num > 0 && T_2_1.num < 0 && T_2_3.num < 0) ||
              (T_2_4.num < 0 && T_2_1.num > 0 && T_2_3.num > 0)) {
             err = ERR_overflow;
             goto ex_2;}
@@ -1687,7 +1687,7 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
             {
                 {CLUREF T_3_1;
                 T_3_1.num = d.num - r.num;
-                 if ((T_3_1.num >= 0 && d.num < 0 && (-r.num) < 0) || 
+                 if ((T_3_1.num >= 0 && d.num < 0 && (-r.num) < 0) ||
                      (T_3_1.num <= 0 && d.num > 0 && (-r.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_3;}
@@ -1705,7 +1705,7 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
                 {
                 CLUREF T_4_1;
                 T_4_1.num = rr.num - x.num;
-                 if ((T_4_1.num >= 0 && rr.num < 0 && (-x.num) < 0) || 
+                 if ((T_4_1.num >= 0 && rr.num < 0 && (-x.num) < 0) ||
                      (T_4_1.num <= 0 && rr.num > 0 && (-x.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_3;}
@@ -1716,7 +1716,7 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
                 {
                 CLUREF T_4_1;
                 T_4_1.num = q.num + 1;
-                 if ((T_4_1.num > 0 && q.num < 0 && 1 < 0) || 
+                 if ((T_4_1.num > 0 && q.num < 0 && 1 < 0) ||
                      (T_4_1.num < 0 && q.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_3;}
@@ -1729,7 +1729,7 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
                 {
                 CLUREF T_4_1;
                 T_4_1.num = r.num + rr.num;
-                 if ((T_4_1.num > 0 && r.num < 0 && rr.num < 0) || 
+                 if ((T_4_1.num > 0 && r.num < 0 && rr.num < 0) ||
                      (T_4_1.num < 0 && r.num > 0 && rr.num > 0)) {
                     err = ERR_overflow;
                     goto ex_3;}
@@ -2111,7 +2111,7 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
             CLUREF T_4_2;
             CLUREF T_4_3;
             T_4_1.num = i.num - 1;
-             if ((T_4_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+             if ((T_4_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                  (T_4_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -2134,7 +2134,7 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
             CLUREF T_4_1;
             CLUREF T_4_2;
             T_4_1.num = i.num + 1;
-             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -2168,7 +2168,7 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
             CLUREF T_4_2;
             CLUREF T_4_3;
             T_4_1.num = i.num - 1;
-             if ((T_4_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+             if ((T_4_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                  (T_4_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -2191,7 +2191,7 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
             CLUREF T_4_1;
             CLUREF T_4_2;
             T_4_1.num = i.num + 1;
-             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -2641,7 +2641,7 @@ timeOPformat(CLUREF t, CLUREF frac_width, CLUREF *ret_1)
         T_2_1.num = t.vec->data[1];
         T_2_2.num = 100;
         T_2_3.num = T_2_1.num + T_2_2.num;
-         if ((T_2_3.num > 0 && T_2_1.num < 0 && T_2_2.num < 0) || 
+         if ((T_2_3.num > 0 && T_2_1.num < 0 && T_2_2.num < 0) ||
              (T_2_3.num < 0 && T_2_1.num > 0 && T_2_2.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2703,7 +2703,7 @@ timeOPformat(CLUREF t, CLUREF frac_width, CLUREF *ret_1)
         T_2_1.num = t.vec->data[4];
         T_2_2.num = 100;
         T_2_3.num = T_2_1.num + T_2_2.num;
-         if ((T_2_3.num > 0 && T_2_1.num < 0 && T_2_2.num < 0) || 
+         if ((T_2_3.num > 0 && T_2_1.num < 0 && T_2_2.num < 0) ||
              (T_2_3.num < 0 && T_2_1.num > 0 && T_2_2.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2763,7 +2763,7 @@ timeOPformat(CLUREF t, CLUREF frac_width, CLUREF *ret_1)
         T_2_1.num = t.vec->data[5];
         T_2_2.num = 100;
         T_2_3.num = T_2_1.num + T_2_2.num;
-         if ((T_2_3.num > 0 && T_2_1.num < 0 && T_2_2.num < 0) || 
+         if ((T_2_3.num > 0 && T_2_1.num < 0 && T_2_2.num < 0) ||
              (T_2_3.num < 0 && T_2_1.num > 0 && T_2_2.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2813,7 +2813,7 @@ timeOPformat(CLUREF t, CLUREF frac_width, CLUREF *ret_1)
         T_1_1.num = t.vec->data[3];
         T_1_2.num = 1000;
         T_1_3.num = T_1_1.num + T_1_2.num;
-         if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) || 
+         if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) ||
              (T_1_3.num < 0 && T_1_1.num > 0 && T_1_2.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2834,7 +2834,7 @@ timeOPformat(CLUREF t, CLUREF frac_width, CLUREF *ret_1)
     T_1_1.num = t.vec->data[2];
     T_1_2.num = 1000;
     T_1_3.num = T_1_1.num + T_1_2.num;
-     if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) || 
+     if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) ||
          (T_1_3.num < 0 && T_1_1.num > 0 && T_1_2.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}

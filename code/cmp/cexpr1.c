@@ -69,7 +69,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
     err = exprOPget_abs(x, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 19: 
+    case 19:
          {
 
   LINE(10);
@@ -81,7 +81,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 5: 
+    case 5:
          {
 
   LINE(12);
@@ -93,7 +93,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 15: 
+    case 15:
          {
 
   LINE(14);
@@ -105,7 +105,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 21: 
+    case 21:
          {
 
   LINE(16);
@@ -117,7 +117,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 7: 
+    case 7:
          {
 
   LINE(18);
@@ -129,7 +129,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 24: 
+    case 24:
          {
 
   LINE(20);
@@ -141,7 +141,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 13: 
+    case 13:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         xa.num = T_1_2.num;
@@ -155,7 +155,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 14: 
+    case 14:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         xa.num = T_1_3.num;
@@ -169,7 +169,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 18: 
+    case 18:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         xa.num = T_1_4.num;
@@ -186,7 +186,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 17: 
+    case 17:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         xa.num = T_1_5.num;
@@ -203,7 +203,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 12: 
+    case 12:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         xa.num = T_1_6.num;
@@ -227,7 +227,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 10: 
+    case 10:
          {CLUREF T_1_7;
         T_1_7.num = T_1_1.cell->value;
         xa.num = T_1_7.num;
@@ -249,7 +249,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 16: 
+    case 16:
          {CLUREF T_1_8;
         T_1_8.num = T_1_1.cell->value;
         xa.num = T_1_8.num;
@@ -263,7 +263,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_9;
         T_1_9.num = T_1_1.cell->value;
         xa.num = T_1_9.num;
@@ -277,7 +277,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_1_10;
         T_1_10.num = T_1_1.cell->value;
         xa.num = T_1_10.num;
@@ -291,7 +291,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_11;
         T_1_11.num = T_1_1.cell->value;
         xa.num = T_1_11.num;
@@ -305,7 +305,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 23: 
+    case 23:
          {CLUREF T_1_12;
         T_1_12.num = T_1_1.cell->value;
         xa.num = T_1_12.num;
@@ -319,7 +319,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_13;
         T_1_13.num = T_1_1.cell->value;
         xa.num = T_1_13.num;
@@ -333,7 +333,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 20: 
+    case 20:
          {CLUREF T_1_14;
         T_1_14.num = T_1_1.cell->value;
         xa.num = T_1_14.num;
@@ -347,7 +347,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 11: 
+    case 11:
          {CLUREF T_1_15;
         T_1_15.num = T_1_1.cell->value;
         xa.num = T_1_15.num;
@@ -361,7 +361,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 27: 
+    case 27:
          {CLUREF T_1_16;
         T_1_16.num = T_1_1.cell->value;
         xa.num = T_1_16.num;
@@ -375,7 +375,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 9: 
+    case 9:
          {CLUREF T_1_17;
         T_1_17.num = T_1_1.cell->value;
         xa.num = T_1_17.num;
@@ -389,7 +389,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 22: 
+    case 22:
          {CLUREF T_1_18;
         T_1_18.num = T_1_1.cell->value;
         xa.num = T_1_18.num;
@@ -403,7 +403,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 25: 
+    case 25:
          {CLUREF T_1_19;
         T_1_19.num = T_1_1.cell->value;
         xa.num = T_1_19.num;
@@ -417,7 +417,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_20;
         T_1_20.num = T_1_1.cell->value;
         xa.num = T_1_20.num;
@@ -431,7 +431,7 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 26: 
+    case 26:
          {CLUREF T_1_21;
         T_1_21.num = T_1_1.cell->value;
         xa.num = T_1_21.num;
@@ -535,8 +535,8 @@ c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
     err = idnOPget_kind(i, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 9: 
-    case 4: 
+    case 9:
+    case 4:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         k.num = T_1_2.num;
@@ -549,8 +549,8 @@ c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 6: 
-    case 5: 
+    case 6:
+    case 5:
          {
 
   LINE(73);
@@ -600,7 +600,7 @@ c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 10: 
+    case 10:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         k.num = T_1_3.num;
@@ -613,7 +613,7 @@ c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         k.num = T_1_4.num;
@@ -678,7 +678,7 @@ c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         k.num = T_1_5.num;
@@ -719,7 +719,7 @@ c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 7: 
+    case 7:
          {
 
   LINE(94);
@@ -737,7 +737,7 @@ c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {
 
   LINE(96);
@@ -755,7 +755,7 @@ c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
             }
             break;
             }
-    case 8: 
+    case 8:
          {
 
   LINE(98);
@@ -1068,7 +1068,7 @@ c_xsugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = args.vec->size; 
+        T_1_2.num = args.vec->size;
         T_1_3 = args;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             xx.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1079,12 +1079,12 @@ c_xsugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
             err = exprOPget_abs(xx, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 19: 
-            case 5: 
-            case 15: 
-            case 21: 
-            case 7: 
-            case 24: 
+            case 19:
+            case 5:
+            case 15:
+            case 21:
+            case 7:
+            case 24:
                  {
                     break;
                     }
@@ -1454,7 +1454,7 @@ c_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = cons.vec->data[1];
     switch (T_1_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         low.num = T_1_2.num;
@@ -1501,7 +1501,7 @@ c_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                 }}/* end if */
             break;
             }
-    case 1: 
+    case 1:
          {
             break;
             }
@@ -1520,7 +1520,7 @@ c_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = elts.vec->size; 
+        T_1_2.num = elts.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -1687,7 +1687,7 @@ c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
         CLUREF T_2_1;
         T_2_1.num = cons.vec->data[1];
         switch (T_2_1.cell->tag) {
-        case 2: 
+        case 2:
              {CLUREF T_2_2;
             T_2_2.num = T_2_1.cell->value;
             low.num = T_2_2.num;
@@ -1706,7 +1706,7 @@ c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                 }
                 break;
                 }
-        case 1: 
+        case 1:
              {
 
   LINE(210);
@@ -1799,7 +1799,7 @@ c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
         CLUREF T_2_1;
         T_2_1.num = cons.vec->data[1];
         switch (T_2_1.cell->tag) {
-        case 2: 
+        case 2:
              {CLUREF T_2_2;
             T_2_2.num = T_2_1.cell->value;
             low.num = T_2_2.num;
@@ -1826,7 +1826,7 @@ c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                 }
                 break;
                 }
-        case 1: 
+        case 1:
              {
 
   LINE(225);
@@ -1947,7 +1947,7 @@ c_element_type(CLUREF e, CLUREF t, CLUREF *ret_1, CLUREF *ret_2)
     err = typespecOPget_abs(t, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         ta.num = T_1_2.num;
@@ -2000,7 +2000,7 @@ c_element_type(CLUREF e, CLUREF t, CLUREF *ret_1, CLUREF *ret_2)
                 err = exprOPget_abs(x, &T_3_1);
                 if (err != ERR_ok) goto ex_0;
                 switch (T_3_1.cell->tag) {
-                case 25: 
+                case 25:
                      {CLUREF T_3_2;
                     T_3_2.num = T_3_1.cell->value;
                     xa.num = T_3_2.num;
@@ -2024,7 +2024,7 @@ c_element_type(CLUREF e, CLUREF t, CLUREF *ret_1, CLUREF *ret_2)
                 }/* end if */
             break;
             }
-    case 9: 
+    case 9:
          {
 
   LINE(253);
@@ -2196,7 +2196,7 @@ c_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = cons.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             fld.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -2227,7 +2227,7 @@ c_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = fld.vec->data[1];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     sel.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -2305,7 +2305,7 @@ c_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = used.array->ext_high; 
+        T_1_2.num = used.array->ext_high;
         for (T_1_1.num = used.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -2443,7 +2443,7 @@ c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = cons.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             fld.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -2474,7 +2474,7 @@ c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = fld.vec->data[1];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     sel.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -2505,7 +2505,7 @@ c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                     {
                     CLUREF T_3_1;
                     CLUREF T_3_2;
-                        T_3_2.num = fspecs.array->ext_high; 
+                        T_3_2.num = fspecs.array->ext_high;
                         for (T_3_1.num = fspecs.array->ext_low; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                             i.num = T_3_1.num;
 
@@ -2542,7 +2542,7 @@ c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                                     CLUREF T_6_1;
                                     CLUREF T_6_2;
                                     T_6_1.num = z.num - 1;
-                                     if ((T_6_1.num >= 0 && z.num < 0 && (-1) < 0) || 
+                                     if ((T_6_1.num >= 0 && z.num < 0 && (-1) < 0) ||
                                          (T_6_1.num <= 0 && z.num > 0 && (-1) > 0)) {
                                         err = ERR_overflow;
                                         goto ex_0;}
@@ -2562,7 +2562,7 @@ c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                                     {
                                     CLUREF T_6_1;
                                     T_6_1.num = z.num - 1;
-                                     if ((T_6_1.num >= 0 && z.num < 0 && (-1) < 0) || 
+                                     if ((T_6_1.num >= 0 && z.num < 0 && (-1) < 0) ||
                                          (T_6_1.num <= 0 && z.num > 0 && (-1) > 0)) {
                                         err = ERR_overflow;
                                         goto ex_0;}
@@ -2732,7 +2732,7 @@ c_select_specs(CLUREF e, CLUREF t, CLUREF *ret_1)
     err = typespecOPget_abs(t, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 7: 
+    case 7:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         ta.num = T_1_2.num;
@@ -2806,7 +2806,7 @@ c_select_specs(CLUREF e, CLUREF t, CLUREF *ret_1)
                 }}/* end if */
             break;
             }
-    case 9: 
+    case 9:
          {
 
   LINE(342);
@@ -2900,7 +2900,7 @@ c_sel(CLUREF e, CLUREF specs, CLUREF used, CLUREF n, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = specs.vec->size; 
+        T_1_2.num = specs.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -3105,7 +3105,7 @@ c_clusterop1(CLUREF e, CLUREF op, CLUREF *ret_1)
     err = typespecOPget_abs(T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_2.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_3;
         T_1_3.num = T_1_2.cell->value;
         ta.num = T_1_3.num;
@@ -3121,7 +3121,7 @@ c_clusterop1(CLUREF e, CLUREF op, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_4;
         T_1_4.num = T_1_2.cell->value;
         ta.num = T_1_4.num;
@@ -3137,7 +3137,7 @@ c_clusterop1(CLUREF e, CLUREF op, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 5: 
+    case 5:
          {CLUREF T_1_5;
         T_1_5.num = T_1_2.cell->value;
         ta.num = T_1_5.num;
@@ -3153,7 +3153,7 @@ c_clusterop1(CLUREF e, CLUREF op, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_6;
         T_1_6.num = T_1_2.cell->value;
         ta.num = T_1_6.num;
@@ -3169,7 +3169,7 @@ c_clusterop1(CLUREF e, CLUREF op, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_7;
         T_1_7.num = T_1_2.cell->value;
         ta.num = T_1_7.num;
@@ -3212,7 +3212,7 @@ c_clusterop1(CLUREF e, CLUREF op, CLUREF *ret_1)
                 }}/* end if */
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(393);
@@ -3222,7 +3222,7 @@ c_clusterop1(CLUREF e, CLUREF op, CLUREF *ret_1)
             }
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_1_8;
         T_1_8.num = T_1_2.cell->value;
         ta.num = T_1_8.num;

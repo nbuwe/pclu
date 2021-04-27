@@ -149,12 +149,12 @@ i_oparse(CLUREF s, CLUREF *ret_1)
         if (err != ERR_ok) goto ex_4;
         T_4_2.num = (long)(c.ch & 0xff);
         T_4_3.num = T_4_2.num - 48;
-         if ((T_4_3.num >= 0 && T_4_2.num < 0 && (-48) < 0) || 
+         if ((T_4_3.num >= 0 && T_4_2.num < 0 && (-48) < 0) ||
              (T_4_3.num <= 0 && T_4_2.num > 0 && (-48) > 0)) {
             err = ERR_overflow;
             goto ex_4;}
         T_4_4.num = T_4_1.num - T_4_3.num;
-         if ((T_4_4.num >= 0 && T_4_1.num < 0 && (-T_4_3.num) < 0) || 
+         if ((T_4_4.num >= 0 && T_4_1.num < 0 && (-T_4_3.num) < 0) ||
              (T_4_4.num <= 0 && T_4_1.num > 0 && (-T_4_3.num) > 0)) {
             err = ERR_overflow;
             goto ex_4;}
@@ -165,7 +165,7 @@ i_oparse(CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_4_1;
         T_4_1.num = i.num + 1;
-         if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_4;}
@@ -353,7 +353,7 @@ i_ounparse(CLUREF i, CLUREF *ret_1)
             CLUREF T_3_5;
             T_3_1.num = 56;
             T_3_2.num = T_3_1.num - j.num;
-             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-j.num) < 0) || 
+             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-j.num) < 0) ||
                  (T_3_2.num <= 0 && T_3_1.num > 0 && (-j.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -370,7 +370,7 @@ i_ounparse(CLUREF i, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = i.num + 1;
-             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}

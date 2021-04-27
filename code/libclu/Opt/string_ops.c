@@ -229,7 +229,7 @@ upper(CLUREF c, CLUREF *ret_1)
         CLUREF T_2_3;
         T_2_1.num = (long)(c.ch & 0xff);
         T_2_2.num = T_2_1.num - 32;
-         if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-32) < 0) || 
+         if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-32) < 0) ||
              (T_2_2.num <= 0 && T_2_1.num > 0 && (-32) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -298,7 +298,7 @@ lower(CLUREF c, CLUREF *ret_1)
         CLUREF T_2_3;
         T_2_1.num = (long)(c.ch & 0xff);
         T_2_2.num = T_2_1.num + 32;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 32 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 32 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 32 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -362,7 +362,7 @@ supper(CLUREF s, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = a.array->ext_high; 
+        T_1_2.num = a.array->ext_high;
         for (T_1_1.num = a.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -436,7 +436,7 @@ slower(CLUREF s, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = a.array->ext_high; 
+        T_1_2.num = a.array->ext_high;
         for (T_1_1.num = a.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -632,7 +632,7 @@ remblank(CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = i.num + 1;
-         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}

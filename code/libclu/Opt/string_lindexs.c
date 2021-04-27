@@ -60,7 +60,7 @@ string_lindexs(CLUREF pat, CLUREF s, CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = z.num - 1;
-                 if ((T_2_1.num >= 0 && z.num < 0 && (-1) < 0) || 
+                 if ((T_2_1.num >= 0 && z.num < 0 && (-1) < 0) ||
                      (T_2_1.num <= 0 && z.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -78,14 +78,14 @@ string_lindexs(CLUREF pat, CLUREF s, CLUREF *ret_1)
                     CLUREF T_3_5;
                     CLUREF T_3_6;
                     T_3_1.num = z.num - j.num;
-                     if ((T_3_1.num >= 0 && z.num < 0 && (-j.num) < 0) || 
+                     if ((T_3_1.num >= 0 && z.num < 0 && (-j.num) < 0) ||
                          (T_3_1.num <= 0 && z.num > 0 && (-j.num) > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
                     err = stringOPfetch(pat, T_3_1, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
                     T_3_3.num = i.num - j.num;
-                     if ((T_3_3.num >= 0 && i.num < 0 && (-j.num) < 0) || 
+                     if ((T_3_3.num >= 0 && i.num < 0 && (-j.num) < 0) ||
                          (T_3_3.num <= 0 && i.num > 0 && (-j.num) > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -118,12 +118,12 @@ string_lindexs(CLUREF pat, CLUREF s, CLUREF *ret_1)
                 CLUREF T_3_1;
                 CLUREF T_3_2;
                 T_3_1.num = i.num - z.num;
-                 if ((T_3_1.num >= 0 && i.num < 0 && (-z.num) < 0) || 
+                 if ((T_3_1.num >= 0 && i.num < 0 && (-z.num) < 0) ||
                      (T_3_1.num <= 0 && i.num > 0 && (-z.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
                 T_3_2.num = T_3_1.num + 1;
-                 if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+                 if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                      (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -144,7 +144,7 @@ string_lindexs(CLUREF pat, CLUREF s, CLUREF *ret_1)
     err = stringOPsize(s, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     T_1_2.num = T_1_1.num + 1;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}

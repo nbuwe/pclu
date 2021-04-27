@@ -139,7 +139,7 @@ insert_text(CLUREF str, CLUREF text_to_insert, CLUREF current_text, CLUREF curre
             CLUREF T_2_3;
             CLUREF T_2_4;
             T_2_1.num = current_pos.num - 1;
-             if ((T_2_1.num >= 0 && current_pos.num < 0 && (-1) < 0) || 
+             if ((T_2_1.num >= 0 && current_pos.num < 0 && (-1) < 0) ||
                  (T_2_1.num <= 0 && current_pos.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -164,7 +164,7 @@ insert_text(CLUREF str, CLUREF text_to_insert, CLUREF current_text, CLUREF curre
         err = stringOPsize(text_to_insert, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = current_pos.num + T_2_1.num;
-         if ((T_2_2.num > 0 && current_pos.num < 0 && T_2_1.num < 0) || 
+         if ((T_2_2.num > 0 && current_pos.num < 0 && T_2_1.num < 0) ||
              (T_2_2.num < 0 && current_pos.num > 0 && T_2_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -194,7 +194,7 @@ insert_text(CLUREF str, CLUREF text_to_insert, CLUREF current_text, CLUREF curre
         err = stringOPsize(text_to_insert, &T_2_2);
         if (err != ERR_ok) goto ex_0;
         T_2_3.num = current_pos.num + T_2_2.num;
-         if ((T_2_3.num > 0 && current_pos.num < 0 && T_2_2.num < 0) || 
+         if ((T_2_3.num > 0 && current_pos.num < 0 && T_2_2.num < 0) ||
              (T_2_3.num < 0 && current_pos.num > 0 && T_2_2.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -252,7 +252,7 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
             CLUREF T_3_2;
             CLUREF T_3_3;
             T_3_1.num = del_end.num + 1;
-             if ((T_3_1.num > 0 && del_end.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && del_end.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && del_end.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -294,7 +294,7 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = current_pos.num - del_start.num;
-             if ((T_3_1.num >= 0 && current_pos.num < 0 && (-del_start.num) < 0) || 
+             if ((T_3_1.num >= 0 && current_pos.num < 0 && (-del_start.num) < 0) ||
                  (T_3_1.num <= 0 && current_pos.num > 0 && (-del_start.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -310,7 +310,7 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = del_start.num - current_pos.num;
-             if ((T_3_1.num >= 0 && del_start.num < 0 && (-current_pos.num) < 0) || 
+             if ((T_3_1.num >= 0 && del_start.num < 0 && (-current_pos.num) < 0) ||
                  (T_3_1.num <= 0 && del_start.num > 0 && (-current_pos.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -342,17 +342,17 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
             CLUREF T_3_2;
             CLUREF T_3_3;
             T_3_1.num = current_pos.num - del_end.num;
-             if ((T_3_1.num >= 0 && current_pos.num < 0 && (-del_end.num) < 0) || 
+             if ((T_3_1.num >= 0 && current_pos.num < 0 && (-del_end.num) < 0) ||
                  (T_3_1.num <= 0 && current_pos.num > 0 && (-del_end.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
             T_3_2.num = T_3_1.num + del_start.num;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && del_start.num < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && del_start.num < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && del_start.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
             T_3_3.num = T_3_2.num - 1;
-             if ((T_3_3.num >= 0 && T_3_2.num < 0 && (-1) < 0) || 
+             if ((T_3_3.num >= 0 && T_3_2.num < 0 && (-1) < 0) ||
                  (T_3_3.num <= 0 && T_3_2.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -391,12 +391,12 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
             err = stringOPconcat(get_to_start, rest_of_line, &T_3_1);
             if (err != ERR_ok) goto ex_0;
             T_3_2.num = del_end.num - del_start.num;
-             if ((T_3_2.num >= 0 && del_end.num < 0 && (-del_start.num) < 0) || 
+             if ((T_3_2.num >= 0 && del_end.num < 0 && (-del_start.num) < 0) ||
                  (T_3_2.num <= 0 && del_end.num > 0 && (-del_start.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
             T_3_3.num = T_3_2.num + 1;
-             if ((T_3_3.num > 0 && T_3_2.num < 0 && 1 < 0) || 
+             if ((T_3_3.num > 0 && T_3_2.num < 0 && 1 < 0) ||
                  (T_3_3.num < 0 && T_3_2.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -407,12 +407,12 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
             err = stringOPsize(current_text, &T_3_6);
             if (err != ERR_ok) goto ex_0;
             T_3_7.num = T_3_6.num - new_pos.num;
-             if ((T_3_7.num >= 0 && T_3_6.num < 0 && (-new_pos.num) < 0) || 
+             if ((T_3_7.num >= 0 && T_3_6.num < 0 && (-new_pos.num) < 0) ||
                  (T_3_7.num <= 0 && T_3_6.num > 0 && (-new_pos.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
             T_3_8.num = T_3_7.num + 1;
-             if ((T_3_8.num > 0 && T_3_7.num < 0 && 1 < 0) || 
+             if ((T_3_8.num > 0 && T_3_7.num < 0 && 1 < 0) ||
                  (T_3_8.num < 0 && T_3_7.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -432,7 +432,7 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
             CLUREF T_2_2;
             CLUREF T_2_3;
             T_2_1.num = del_start.num - 1;
-             if ((T_2_1.num >= 0 && del_start.num < 0 && (-1) < 0) || 
+             if ((T_2_1.num >= 0 && del_start.num < 0 && (-1) < 0) ||
                  (T_2_1.num <= 0 && del_start.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1828,7 +1828,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
             {CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = pos.num - 1;
-             if ((T_3_1.num >= 0 && pos.num < 0 && (-1) < 0) || 
+             if ((T_3_1.num >= 0 && pos.num < 0 && (-1) < 0) ||
                  (T_3_1.num <= 0 && pos.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -1844,7 +1844,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
             CLUREF T_3_2;
             CLUREF T_3_3;
             T_3_1.num = pos.num + 1;
-             if ((T_3_1.num > 0 && pos.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && pos.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && pos.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -2084,7 +2084,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
                 err = upper_case(key, &T_5_1);
                 if (err != ERR_ok) goto ex_3;
                 T_5_2.num = first_ctrl.num + 2;
-                 if ((T_5_2.num > 0 && first_ctrl.num < 0 && 2 < 0) || 
+                 if ((T_5_2.num > 0 && first_ctrl.num < 0 && 2 < 0) ||
                      (T_5_2.num < 0 && first_ctrl.num > 0 && 2 > 0)) {
                     err = ERR_overflow;
                     goto ex_3;}
@@ -2127,7 +2127,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
                 CLUREF T_6_10;
                 CLUREF T_6_11;
                 T_6_1.num = first_ctrl.num - 1;
-                 if ((T_6_1.num >= 0 && first_ctrl.num < 0 && (-1) < 0) || 
+                 if ((T_6_1.num >= 0 && first_ctrl.num < 0 && (-1) < 0) ||
                      (T_6_1.num <= 0 && first_ctrl.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_3;}
@@ -2136,7 +2136,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
                 T_6_3.num = (long)(ctrl_what.ch & 0xff);
                 T_6_4.num = 64;
                 T_6_5.num = T_6_3.num - T_6_4.num;
-                 if ((T_6_5.num >= 0 && T_6_3.num < 0 && (-T_6_4.num) < 0) || 
+                 if ((T_6_5.num >= 0 && T_6_3.num < 0 && (-T_6_4.num) < 0) ||
                      (T_6_5.num <= 0 && T_6_3.num > 0 && (-T_6_4.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_3;}
@@ -2147,7 +2147,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
                 err = stringOPconcat(T_6_2, T_6_7, &T_6_8);
                 if (err != ERR_ok) goto ex_3;
                 T_6_9.num = first_ctrl.num + 3;
-                 if ((T_6_9.num > 0 && first_ctrl.num < 0 && 3 < 0) || 
+                 if ((T_6_9.num > 0 && first_ctrl.num < 0 && 3 < 0) ||
                      (T_6_9.num < 0 && first_ctrl.num > 0 && 3 > 0)) {
                     err = ERR_overflow;
                     goto ex_3;}
@@ -2589,7 +2589,7 @@ replace(CLUREF look_for, CLUREF new, CLUREF from, CLUREF *ret_1)
         CLUREF T_2_7;
         CLUREF T_2_8;
         T_2_1.num = match_beg.num - 1;
-         if ((T_2_1.num >= 0 && match_beg.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && match_beg.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && match_beg.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2600,7 +2600,7 @@ replace(CLUREF look_for, CLUREF new, CLUREF from, CLUREF *ret_1)
         err = stringOPsize(look_for, &T_2_4);
         if (err != ERR_ok) goto ex_0;
         T_2_5.num = match_beg.num + T_2_4.num;
-         if ((T_2_5.num > 0 && match_beg.num < 0 && T_2_4.num < 0) || 
+         if ((T_2_5.num > 0 && match_beg.num < 0 && T_2_4.num < 0) ||
              (T_2_5.num < 0 && match_beg.num > 0 && T_2_4.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2725,7 +2725,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
         CLUREF T_1_2;
         T_1_1.num = lineeditOPhistory.array->ext_high;
         T_1_2.num = T_1_1.num + 1;
-         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
              (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
             locals.err = ERR_overflow;
             goto ex_0;}
@@ -2895,7 +2895,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             CLUREF T_3_3;
-                T_3_2.num = locals.scripted_streams.array->ext_high; 
+                T_3_2.num = locals.scripted_streams.array->ext_high;
                 T_3_3 = locals.scripted_streams;
                 for (T_3_1.num = locals.scripted_streams.array->ext_low; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                     if (T_3_1.num > T_3_3.array->ext_high || T_3_1.num < T_3_3.array->ext_low) {
@@ -2936,7 +2936,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = locals.current_pos.num - 1;
-             if ((T_3_1.num >= 0 && locals.current_pos.num < 0 && (-1) < 0) || 
+             if ((T_3_1.num >= 0 && locals.current_pos.num < 0 && (-1) < 0) ||
                  (T_3_1.num <= 0 && locals.current_pos.num > 0 && (-1) > 0)) {
                 locals.err = ERR_overflow;
                 goto ex_0;}
@@ -2966,7 +2966,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = locals.current_pos.num - 1;
-                 if ((T_4_1.num >= 0 && locals.current_pos.num < 0 && (-1) < 0) || 
+                 if ((T_4_1.num >= 0 && locals.current_pos.num < 0 && (-1) < 0) ||
                      (T_4_1.num <= 0 && locals.current_pos.num > 0 && (-1) > 0)) {
                     locals.err = ERR_overflow;
                     goto ex_0;}
@@ -3014,7 +3014,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = locals.line_length.num + 1;
-             if ((T_3_1.num > 0 && locals.line_length.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && locals.line_length.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && locals.line_length.num > 0 && 1 > 0)) {
                 locals.err = ERR_overflow;
                 goto ex_0;}
@@ -3045,7 +3045,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = locals.current_pos.num + 1;
-                 if ((T_4_1.num > 0 && locals.current_pos.num < 0 && 1 < 0) || 
+                 if ((T_4_1.num > 0 && locals.current_pos.num < 0 && 1 < 0) ||
                      (T_4_1.num < 0 && locals.current_pos.num > 0 && 1 > 0)) {
                     locals.err = ERR_overflow;
                     goto ex_0;}
@@ -3065,12 +3065,12 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
             CLUREF T_3_2;
             CLUREF T_3_3;
             T_3_1.num = locals.line_length.num - locals.current_pos.num;
-             if ((T_3_1.num >= 0 && locals.line_length.num < 0 && (-locals.current_pos.num) < 0) || 
+             if ((T_3_1.num >= 0 && locals.line_length.num < 0 && (-locals.current_pos.num) < 0) ||
                  (T_3_1.num <= 0 && locals.line_length.num > 0 && (-locals.current_pos.num) > 0)) {
                 locals.err = ERR_overflow;
                 goto ex_0;}
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 locals.err = ERR_overflow;
                 goto ex_0;}
@@ -3122,12 +3122,12 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
                 CLUREF T_4_3;
                 CLUREF T_4_4;
                 T_4_1.num = locals.current_pos.num - 1;
-                 if ((T_4_1.num >= 0 && locals.current_pos.num < 0 && (-1) < 0) || 
+                 if ((T_4_1.num >= 0 && locals.current_pos.num < 0 && (-1) < 0) ||
                      (T_4_1.num <= 0 && locals.current_pos.num > 0 && (-1) > 0)) {
                     locals.err = ERR_overflow;
                     goto ex_0;}
                 T_4_2.num = locals.current_pos.num - 1;
-                 if ((T_4_2.num >= 0 && locals.current_pos.num < 0 && (-1) < 0) || 
+                 if ((T_4_2.num >= 0 && locals.current_pos.num < 0 && (-1) < 0) ||
                      (T_4_2.num <= 0 && locals.current_pos.num > 0 && (-1) > 0)) {
                     locals.err = ERR_overflow;
                     goto ex_0;}
@@ -3166,7 +3166,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = locals.curr_hist.num + 1;
-                 if ((T_4_1.num > 0 && locals.curr_hist.num < 0 && 1 < 0) || 
+                 if ((T_4_1.num > 0 && locals.curr_hist.num < 0 && 1 < 0) ||
                      (T_4_1.num < 0 && locals.curr_hist.num > 0 && 1 > 0)) {
                     locals.err = ERR_overflow;
                     goto ex_0;}
@@ -3184,7 +3184,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = locals.curr_hist.num + 1;
-                 if ((T_4_1.num > 0 && locals.curr_hist.num < 0 && 1 < 0) || 
+                 if ((T_4_1.num > 0 && locals.curr_hist.num < 0 && 1 < 0) ||
                      (T_4_1.num < 0 && locals.curr_hist.num > 0 && 1 > 0)) {
                     locals.err = ERR_overflow;
                     goto ex_0;}
@@ -3225,7 +3225,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = locals.curr_hist.num - 1;
-                 if ((T_4_1.num >= 0 && locals.curr_hist.num < 0 && (-1) < 0) || 
+                 if ((T_4_1.num >= 0 && locals.curr_hist.num < 0 && (-1) < 0) ||
                      (T_4_1.num <= 0 && locals.curr_hist.num > 0 && (-1) > 0)) {
                     locals.err = ERR_overflow;
                     goto ex_0;}
@@ -3281,12 +3281,12 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
             CLUREF T_3_2;
             CLUREF T_3_3;
             T_3_1.num = locals.right.num - locals.current_pos.num;
-             if ((T_3_1.num >= 0 && locals.right.num < 0 && (-locals.current_pos.num) < 0) || 
+             if ((T_3_1.num >= 0 && locals.right.num < 0 && (-locals.current_pos.num) < 0) ||
                  (T_3_1.num <= 0 && locals.right.num > 0 && (-locals.current_pos.num) > 0)) {
                 locals.err = ERR_overflow;
                 goto ex_0;}
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 locals.err = ERR_overflow;
                 goto ex_0;}
@@ -3300,7 +3300,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = locals.right.num + 1;
-             if ((T_3_1.num > 0 && locals.right.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && locals.right.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && locals.right.num > 0 && 1 > 0)) {
                 locals.err = ERR_overflow;
                 goto ex_0;}
@@ -3333,7 +3333,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = locals.left.num - 1;
-                 if ((T_4_1.num >= 0 && locals.left.num < 0 && (-1) < 0) || 
+                 if ((T_4_1.num >= 0 && locals.left.num < 0 && (-1) < 0) ||
                      (T_4_1.num <= 0 && locals.left.num > 0 && (-1) > 0)) {
                     locals.err = ERR_overflow;
                     goto ex_0;}
@@ -3353,7 +3353,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = locals.current_pos.num - locals.new_pos.num;
-             if ((T_3_1.num >= 0 && locals.current_pos.num < 0 && (-locals.new_pos.num) < 0) || 
+             if ((T_3_1.num >= 0 && locals.current_pos.num < 0 && (-locals.new_pos.num) < 0) ||
                  (T_3_1.num <= 0 && locals.current_pos.num > 0 && (-locals.new_pos.num) > 0)) {
                 locals.err = ERR_overflow;
                 goto ex_0;}
@@ -3390,12 +3390,12 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
             CLUREF T_3_2;
             CLUREF T_3_3;
             T_3_1.num = locals.right.num - locals.left.num;
-             if ((T_3_1.num >= 0 && locals.right.num < 0 && (-locals.left.num) < 0) || 
+             if ((T_3_1.num >= 0 && locals.right.num < 0 && (-locals.left.num) < 0) ||
                  (T_3_1.num <= 0 && locals.right.num > 0 && (-locals.left.num) > 0)) {
                 locals.err = ERR_overflow;
                 goto ex_0;}
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 locals.err = ERR_overflow;
                 goto ex_0;}

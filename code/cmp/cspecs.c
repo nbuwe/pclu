@@ -31,7 +31,7 @@ c_get_duspecs(CLUREF e, CLUREF gen, CLUREF *ret_1)
     err = duOPget_mspecs(gen, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         ms.num = T_1_2.num;
@@ -173,7 +173,7 @@ types_mismatch(CLUREF types1, CLUREF types2, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = types1.vec->size; 
+        T_1_2.num = types1.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -251,7 +251,7 @@ f_duspecs(CLUREF e, CLUREF specs, CLUREF fixdus)
   LINE(35);
     {
     switch (specs.cell->tag) {
-    case 1: 
+    case 1:
          {CLUREF T_1_1;
         T_1_1.num = specs.cell->value;
         info.num = T_1_1.num;
@@ -275,9 +275,9 @@ f_duspecs(CLUREF e, CLUREF specs, CLUREF fixdus)
             }
             break;
             }
-    case 3: 
-    case 5: 
-    case 2: 
+    case 3:
+    case 5:
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = specs.cell->value;
         info.num = T_1_2.num;
@@ -297,7 +297,7 @@ f_duspecs(CLUREF e, CLUREF specs, CLUREF fixdus)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = info.vec->data[0];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     inf.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -309,7 +309,7 @@ f_duspecs(CLUREF e, CLUREF specs, CLUREF fixdus)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = inf.vec->data[2];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             req.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -393,7 +393,7 @@ f_idnkinds(CLUREF e, CLUREF parms, CLUREF fixdus)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = parms.vec->size; 
+        T_1_2.num = parms.vec->size;
         T_1_3 = parms;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -404,7 +404,7 @@ f_idnkinds(CLUREF e, CLUREF parms, CLUREF fixdus)
             err = idnOPget_kind(i, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 6: 
+            case 6:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 k.num = T_2_2.num;
@@ -416,7 +416,7 @@ f_idnkinds(CLUREF e, CLUREF parms, CLUREF fixdus)
                     }
                     break;
                     }
-            case 10: 
+            case 10:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 k.num = T_2_3.num;
@@ -451,7 +451,7 @@ f_idnkinds(CLUREF e, CLUREF parms, CLUREF fixdus)
                         }/* end if */
                     break;
                     }
-            case 5: 
+            case 5:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_1.cell->value;
                 k.num = T_2_4.num;
@@ -501,7 +501,7 @@ f_opspeclist(CLUREF e, CLUREF ops, CLUREF fixdus)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = ops.vec->size; 
+        T_1_2.num = ops.vec->size;
         T_1_3 = ops;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             op.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -603,7 +603,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
   LINE(81);
     {
     switch (abs.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_1;
         T_1_1.num = abs.cell->value;
         clut.num = T_1_1.num;
@@ -617,7 +617,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
             }
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_2;
         T_1_2.num = abs.cell->value;
         selt.num = T_1_2.num;
@@ -629,7 +629,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = selt.vec->data[1];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     fspec.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -648,7 +648,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
             end_inline_for_1:;
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_3;
         T_1_3.num = abs.cell->value;
         at.num = T_1_3.num;
@@ -680,7 +680,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = at.vec->data[2];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     sig.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -699,7 +699,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
             end_inline_for_2:;
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_4;
         T_1_4.num = abs.cell->value;
         ot.num = T_1_4.num;
@@ -707,7 +707,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
   LINE(95);
             {
             switch (ot.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = ot.cell->value;
                 clut.num = T_2_1.num;
@@ -721,7 +721,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_2;
                 T_2_2.num = ot.cell->value;
                 cop.num = T_2_2.num;
@@ -745,7 +745,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 3: 
+            case 3:
                  {CLUREF T_2_3;
                 T_2_3.num = ot.cell->value;
                 tt.num = T_2_3.num;
@@ -817,7 +817,7 @@ f_typelist(CLUREF e, CLUREF types, CLUREF fixdus, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = types.vec->size; 
+        T_1_2.num = types.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -922,7 +922,7 @@ f_expr(CLUREF e, CLUREF x, CLUREF fixdus)
     err = exprOPget_abs(x, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 25: 
+    case 25:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         t.num = T_1_2.num;
@@ -955,7 +955,7 @@ f_expr(CLUREF e, CLUREF x, CLUREF fixdus)
                 }/* end if */
             break;
             }
-    case 16: 
+    case 16:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         inv.num = T_1_3.num;
@@ -977,7 +977,7 @@ f_expr(CLUREF e, CLUREF x, CLUREF fixdus)
             }
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         clut.num = T_1_4.num;
@@ -1001,7 +1001,7 @@ f_expr(CLUREF e, CLUREF x, CLUREF fixdus)
             }
             break;
             }
-    case 20: 
+    case 20:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         cop.num = T_1_5.num;
@@ -1025,7 +1025,7 @@ f_expr(CLUREF e, CLUREF x, CLUREF fixdus)
             }
             break;
             }
-    case 11: 
+    case 11:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         t.num = T_1_6.num;
@@ -1075,7 +1075,7 @@ f_exprlist(CLUREF e, CLUREF exprs, CLUREF fixdus)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = exprs.vec->size; 
+        T_1_2.num = exprs.vec->size;
         T_1_3 = exprs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             x.num = T_1_3.vec->data[T_1_1.num - 1];

@@ -118,7 +118,7 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
             err = stringOPsize(term, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -386,7 +386,7 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = idx.num + 1;
-                 if ((T_5_1.num > 0 && idx.num < 0 && 1 < 0) || 
+                 if ((T_5_1.num > 0 && idx.num < 0 && 1 < 0) ||
                      (T_5_1.num < 0 && idx.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -426,7 +426,7 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = z.num + 1;
-                 if ((T_5_1.num > 0 && z.num < 0 && 1 < 0) || 
+                 if ((T_5_1.num > 0 && z.num < 0 && 1 < 0) ||
                      (T_5_1.num < 0 && z.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -459,7 +459,7 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = i.num + 1;
-                 if ((T_5_1.num > 0 && i.num < 0 && 1 < 0) || 
+                 if ((T_5_1.num > 0 && i.num < 0 && 1 < 0) ||
                      (T_5_1.num < 0 && i.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -474,7 +474,7 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
             CLUREF T_4_2;
             CLUREF T_4_3;
             T_4_1.num = z.num - i.num;
-             if ((T_4_1.num >= 0 && z.num < 0 && (-i.num) < 0) || 
+             if ((T_4_1.num >= 0 && z.num < 0 && (-i.num) < 0) ||
                  (T_4_1.num <= 0 && z.num > 0 && (-i.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -525,19 +525,19 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
         CLUREF T_3_4;
         CLUREF T_3_5;
         T_3_1.num = i.num + 4;
-         if ((T_3_1.num > 0 && i.num < 0 && 4 < 0) || 
+         if ((T_3_1.num > 0 && i.num < 0 && 4 < 0) ||
              (T_3_1.num < 0 && i.num > 0 && 4 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
         err = stringOPsize(ent, &T_3_2);
         if (err != ERR_ok) goto ex_1;
         T_3_3.num = T_3_2.num - i.num;
-         if ((T_3_3.num >= 0 && T_3_2.num < 0 && (-i.num) < 0) || 
+         if ((T_3_3.num >= 0 && T_3_2.num < 0 && (-i.num) < 0) ||
              (T_3_3.num <= 0 && T_3_2.num > 0 && (-i.num) > 0)) {
             err = ERR_overflow;
             goto ex_1;}
         T_3_4.num = T_3_3.num - 4;
-         if ((T_3_4.num >= 0 && T_3_3.num < 0 && (-4) < 0) || 
+         if ((T_3_4.num >= 0 && T_3_3.num < 0 && (-4) < 0) ||
              (T_3_4.num <= 0 && T_3_3.num > 0 && (-4) > 0)) {
             err = ERR_overflow;
             goto ex_1;}

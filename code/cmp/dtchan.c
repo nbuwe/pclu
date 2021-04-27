@@ -271,7 +271,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
     CLUREF T_1_5;
     T_1_1.num = dc.vec->data[0];
     T_1_2.num = z.num + 7;
-     if ((T_1_2.num > 0 && z.num < 0 && 7 < 0) || 
+     if ((T_1_2.num > 0 && z.num < 0 && 7 < 0) ||
          (T_1_2.num < 0 && z.num > 0 && 7 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -280,7 +280,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
     err = intOPmul(T_1_3, CLU_4, &T_1_4);
     if (err != ERR_ok) goto ex_0;
     T_1_5.num = T_1_1.num + T_1_4.num;
-     if ((T_1_5.num > 0 && T_1_1.num < 0 && T_1_4.num < 0) || 
+     if ((T_1_5.num > 0 && T_1_1.num < 0 && T_1_4.num < 0) ||
          (T_1_5.num < 0 && T_1_1.num > 0 && T_1_4.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -362,7 +362,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = index.num + 1;
-     if ((T_1_1.num > 0 && index.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && index.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && index.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -458,7 +458,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
             CLUREF T_2_2;
             T_2_1.num = 2048;
             T_2_2.num = T_2_1.num - index.num;
-             if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-index.num) < 0) || 
+             if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-index.num) < 0) ||
                  (T_2_2.num <= 0 && T_2_1.num > 0 && (-index.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -486,7 +486,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = z.num + 3;
-             if ((T_3_1.num > 0 && z.num < 0 && 3 < 0) || 
+             if ((T_3_1.num > 0 && z.num < 0 && 3 < 0) ||
                  (T_3_1.num < 0 && z.num > 0 && 3 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -509,7 +509,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
         err = intOPmul(index, CLU_4, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -521,7 +521,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = z.num - moved.num;
-         if ((T_2_1.num >= 0 && z.num < 0 && (-moved.num) < 0) || 
+         if ((T_2_1.num >= 0 && z.num < 0 && (-moved.num) < 0) ||
              (T_2_1.num <= 0 && z.num > 0 && (-moved.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -532,7 +532,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = i.num + moved.num;
-         if ((T_2_1.num > 0 && i.num < 0 && moved.num < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && moved.num < 0) ||
              (T_2_1.num < 0 && i.num > 0 && moved.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -543,7 +543,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = index.num + cnt.num;
-         if ((T_2_1.num > 0 && index.num < 0 && cnt.num < 0) || 
+         if ((T_2_1.num > 0 && index.num < 0 && cnt.num < 0) ||
              (T_2_1.num < 0 && index.num > 0 && cnt.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -590,7 +590,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = i.num - 1;
-                 if ((T_4_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+                 if ((T_4_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                      (T_4_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -611,7 +611,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
                     {
                     CLUREF T_5_1;
                     T_5_1.num = i.num - 2;
-                     if ((T_5_1.num >= 0 && i.num < 0 && (-2) < 0) || 
+                     if ((T_5_1.num >= 0 && i.num < 0 && (-2) < 0) ||
                          (T_5_1.num <= 0 && i.num > 0 && (-2) > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -716,14 +716,14 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     CLUREF T_1_4;
     T_1_1.num = dc.vec->data[0];
     T_1_2.num = z.num + 1;
-     if ((T_1_2.num > 0 && z.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && z.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && z.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     err = intOPmul(CLU_4, T_1_2, &T_1_3);
     if (err != ERR_ok) goto ex_0;
     T_1_4.num = T_1_1.num + T_1_3.num;
-     if ((T_1_4.num > 0 && T_1_1.num < 0 && T_1_3.num < 0) || 
+     if ((T_1_4.num > 0 && T_1_1.num < 0 && T_1_3.num < 0) ||
          (T_1_4.num < 0 && T_1_1.num > 0 && T_1_3.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -805,7 +805,7 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = index.num + 1;
-     if ((T_1_1.num > 0 && index.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && index.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && index.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -823,7 +823,7 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = vec.vec->size; 
+        T_1_2.num = vec.vec->size;
         T_1_3 = vec;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             val.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -887,7 +887,7 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
             {
             CLUREF T_2_1;
             T_2_1.num = index.num + 1;
-             if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && index.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -897,7 +897,7 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
   LINE(142);
             {
             switch (val.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = val.cell->value;
                 loc.num = T_2_1.num;
@@ -911,7 +911,7 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_2;
                 T_2_2.num = val.cell->value;
                 i.num = T_2_2.num;
@@ -1018,14 +1018,14 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     CLUREF T_1_4;
     T_1_1.num = dc.vec->data[0];
     T_1_2.num = z.num + 1;
-     if ((T_1_2.num > 0 && z.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && z.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && z.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     err = intOPmul(CLU_4, T_1_2, &T_1_3);
     if (err != ERR_ok) goto ex_0;
     T_1_4.num = T_1_1.num + T_1_3.num;
-     if ((T_1_4.num > 0 && T_1_1.num < 0 && T_1_3.num < 0) || 
+     if ((T_1_4.num > 0 && T_1_1.num < 0 && T_1_3.num < 0) ||
          (T_1_4.num < 0 && T_1_1.num > 0 && T_1_3.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1107,7 +1107,7 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = index.num + 1;
-     if ((T_1_1.num > 0 && index.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && index.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && index.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1125,7 +1125,7 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = vec.array->ext_high; 
+        T_1_2.num = vec.array->ext_high;
         T_1_3 = vec;
         for (T_1_1.num = vec.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -1193,7 +1193,7 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
             {
             CLUREF T_2_1;
             T_2_1.num = index.num + 1;
-             if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && index.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1203,7 +1203,7 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
   LINE(185);
             {
             switch (val.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = val.cell->value;
                 loc.num = T_2_1.num;
@@ -1217,7 +1217,7 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_2;
                 T_2_2.num = val.cell->value;
                 i.num = T_2_2.num;
@@ -1295,7 +1295,7 @@ data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
     CLUREF T_1_2;
     T_1_1.num = dc.vec->data[0];
     T_1_2.num = T_1_1.num + 8;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 8 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 8 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 8 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1379,7 +1379,7 @@ data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = index.num + 1;
-     if ((T_1_1.num > 0 && index.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && index.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && index.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1392,7 +1392,7 @@ data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = index.num + 2;
-     if ((T_1_1.num > 0 && index.num < 0 && 2 < 0) || 
+     if ((T_1_1.num > 0 && index.num < 0 && 2 < 0) ||
          (T_1_1.num < 0 && index.num > 0 && 2 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1402,7 +1402,7 @@ data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
   LINE(213);
     {
     switch (val.cell->tag) {
-    case 1: 
+    case 1:
          {CLUREF T_1_1;
         T_1_1.num = val.cell->value;
         loc.num = T_1_1.num;
@@ -1416,7 +1416,7 @@ data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = val.cell->value;
         i.num = T_1_2.num;
@@ -1657,7 +1657,7 @@ data_chanOPadd_close(CLUREF dc, CLUREF val, CLUREF cc)
   LINE(247);
         {
         switch (val.cell->tag) {
-        case 1: 
+        case 1:
              {CLUREF T_3_1;
             T_3_1.num = val.cell->value;
             loc.num = T_3_1.num;
@@ -1671,7 +1671,7 @@ data_chanOPadd_close(CLUREF dc, CLUREF val, CLUREF cc)
                 }
                 break;
                 }
-        case 2: 
+        case 2:
              {CLUREF T_3_2;
             T_3_2.num = val.cell->value;
             i.num = T_3_2.num;

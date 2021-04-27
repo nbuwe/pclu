@@ -1680,9 +1680,9 @@ streamOPadd_script(CLUREF st1, CLUREF st2)
     CLUREF T_1_1;
     T_1_1.num = locals.st2.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 5: 
-    case 2: 
-    case 1: 
+    case 5:
+    case 2:
+    case 1:
          {
 
   LINE(305);
@@ -1865,7 +1865,7 @@ streamOPall_scripts(CLUREF st, errcode (*proc)(), char **user_locals, errcode *i
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = locals.st.vec->data[3];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             locals.scr1.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -1975,7 +1975,7 @@ streamOPscripts(CLUREF st, errcode (*proc)(), char **user_locals, errcode *iecod
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = st.vec->data[3];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             scr.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -2034,7 +2034,7 @@ streamOPrem_script(CLUREF st1, CLUREF st2)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = scrs.vec->size; 
+        T_1_2.num = scrs.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -2059,14 +2059,14 @@ streamOPrem_script(CLUREF st1, CLUREF st2)
                 CLUREF T_3_5;
                 CLUREF T_3_6;
                 T_3_1.num = i.num - 1;
-                 if ((T_3_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+                 if ((T_3_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                      (T_3_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
                 err = sequenceOPsubseq(scrs, CLU_1, T_3_1, &T_3_2);
                 if (err != ERR_ok) goto ex_0;
                 T_3_3.num = i.num + 1;
-                 if ((T_3_3.num > 0 && i.num < 0 && 1 < 0) || 
+                 if ((T_3_3.num > 0 && i.num < 0 && 1 < 0) ||
                      (T_3_3.num < 0 && i.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -2167,9 +2167,9 @@ streamOPcan_read(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 7: 
-    case 4: 
-    case 1: 
+    case 7:
+    case 4:
+    case 1:
          {
 
   LINE(355);
@@ -2223,9 +2223,9 @@ streamOPcan_write(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 5: 
-    case 2: 
-    case 1: 
+    case 5:
+    case 2:
+    case 1:
          {
 
   LINE(364);
@@ -2288,7 +2288,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -2354,7 +2354,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
                 CLUREF T_4_2;
                 T_4_1.num = rb.vec->data[3];
                 T_4_2.num = T_4_1.num + 1;
-                 if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) || 
+                 if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) ||
                      (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -2367,7 +2367,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = index.num + 1;
-             if ((T_3_1.num > 0 && index.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && index.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && index.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -2375,7 +2375,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         tb.num = T_2_3.num;
@@ -2401,7 +2401,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         sb.num = T_2_4.num;
@@ -2460,7 +2460,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
             CLUREF T_3_2;
             T_3_1.num = sb.vec->data[1];
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -2481,7 +2481,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
                 CLUREF T_4_2;
                 T_4_1.num = sb.vec->data[2];
                 T_4_2.num = T_4_1.num + 1;
-                 if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) || 
+                 if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) ||
                      (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -2491,7 +2491,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(400);
@@ -2499,9 +2499,9 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
             {signal (ERR_end_of_file);}}
             break;
             }
-    case 7: 
-    case 4: 
-    case 1: 
+    case 7:
+    case 4:
+    case 1:
          {
 
   LINE(402);
@@ -2584,7 +2584,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -2650,7 +2650,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
                 CLUREF T_4_2;
                 T_4_1.num = rb.vec->data[3];
                 T_4_2.num = T_4_1.num + 1;
-                 if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) || 
+                 if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) ||
                      (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -2663,7 +2663,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = index.num + 1;
-             if ((T_3_1.num > 0 && index.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && index.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && index.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -2671,7 +2671,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         tb.num = T_2_3.num;
@@ -2691,7 +2691,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         sb.num = T_2_4.num;
@@ -2750,7 +2750,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
             CLUREF T_3_2;
             T_3_1.num = sb.vec->data[1];
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -2771,7 +2771,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
                 CLUREF T_4_2;
                 T_4_1.num = sb.vec->data[2];
                 T_4_2.num = T_4_1.num + 1;
-                 if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) || 
+                 if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) ||
                      (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -2781,7 +2781,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(438);
@@ -2789,9 +2789,9 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
             {signal (ERR_end_of_file);}}
             break;
             }
-    case 7: 
-    case 4: 
-    case 1: 
+    case 7:
+    case 4:
+    case 1:
          {
 
   LINE(440);
@@ -2874,7 +2874,7 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -2934,7 +2934,7 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         tb.num = T_2_3.num;
@@ -3043,7 +3043,7 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         sb.num = T_2_4.num;
@@ -3096,7 +3096,7 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
                 end_2:;
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(480);
@@ -3104,9 +3104,9 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
             {signal (ERR_end_of_file);}}
             break;
             }
-    case 7: 
-    case 4: 
-    case 1: 
+    case 7:
+    case 4:
+    case 1:
          {
 
   LINE(482);
@@ -3157,7 +3157,7 @@ streamOPpending(CLUREF st, CLUREF *ret_1)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         tb.num = T_2_2.num;
@@ -3263,7 +3263,7 @@ streamOPempty(CLUREF st, CLUREF *ret_1)
     CLUREF T_3_1;
     T_3_1.num = st.vec->data[0];
     switch (T_3_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_3_2;
         T_3_2.num = T_3_1.cell->value;
         rb.num = T_3_2.num;
@@ -3305,7 +3305,7 @@ streamOPempty(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_3_3;
         T_3_3.num = T_3_1.cell->value;
         tb.num = T_3_3.num;
@@ -3342,7 +3342,7 @@ streamOPempty(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_3_4;
         T_3_4.num = T_3_1.cell->value;
         sb.num = T_3_4.num;
@@ -3375,7 +3375,7 @@ streamOPempty(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(513);
@@ -3386,9 +3386,9 @@ streamOPempty(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 7: 
-    case 4: 
-    case 1: 
+    case 7:
+    case 4:
+    case 1:
          {
 
   LINE(515);
@@ -3461,7 +3461,7 @@ streamOPputc(CLUREF st, CLUREF c)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 7: 
+    case 7:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         wb.num = T_2_2.num;
@@ -3509,7 +3509,7 @@ streamOPputc(CLUREF st, CLUREF c)
                 }}/* end if */
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         tb.num = T_2_3.num;
@@ -3524,7 +3524,7 @@ streamOPputc(CLUREF st, CLUREF c)
             }
             break;
             }
-    case 4: 
+    case 4:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         chars.num = T_2_4.num;
@@ -3542,13 +3542,13 @@ streamOPputc(CLUREF st, CLUREF c)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
             break;
             }
-    case 5: 
-    case 2: 
-    case 1: 
+    case 5:
+    case 2:
+    case 1:
          {
 
   LINE(536);
@@ -3622,7 +3622,7 @@ streamOPputc_image(CLUREF st, CLUREF c)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 7: 
+    case 7:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         wb.num = T_2_2.num;
@@ -3670,7 +3670,7 @@ streamOPputc_image(CLUREF st, CLUREF c)
                 }}/* end if */
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         tb.num = T_2_3.num;
@@ -3685,7 +3685,7 @@ streamOPputc_image(CLUREF st, CLUREF c)
             }
             break;
             }
-    case 4: 
+    case 4:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         chars.num = T_2_4.num;
@@ -3703,13 +3703,13 @@ streamOPputc_image(CLUREF st, CLUREF c)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
             break;
             }
-    case 5: 
-    case 2: 
-    case 1: 
+    case 5:
+    case 2:
+    case 1:
          {
 
   LINE(558);
@@ -3781,7 +3781,7 @@ streamOPget_lineno(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         rb.num = T_1_2.num;
@@ -3796,7 +3796,7 @@ streamOPget_lineno(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         tb.num = T_1_3.num;
@@ -3811,7 +3811,7 @@ streamOPget_lineno(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         sb.num = T_1_4.num;
@@ -3897,7 +3897,7 @@ streamOPreset(CLUREF st)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -3921,7 +3921,7 @@ streamOPreset(CLUREF st)
             CLUREF T_3_2;
             T_3_1.num = rb.vec->data[4];
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -3929,7 +3929,7 @@ streamOPreset(CLUREF st)
             }
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         wb.num = T_2_3.num;
@@ -3948,7 +3948,7 @@ streamOPreset(CLUREF st)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         tb.num = T_2_4.num;
@@ -4038,7 +4038,7 @@ streamOPreset(CLUREF st)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_2_5;
         T_2_5.num = T_2_1.cell->value;
         sb.num = T_2_5.num;
@@ -4098,7 +4098,7 @@ streamOPreset(CLUREF st)
                 end_3:;
             break;
             }
-    case 4: 
+    case 4:
          {CLUREF T_2_6;
         T_2_6.num = T_2_1.cell->value;
         chars.num = T_2_6.num;
@@ -4110,8 +4110,8 @@ streamOPreset(CLUREF st)
             }
             break;
             }
-    case 3: 
-    case 1: 
+    case 3:
+    case 1:
          {
             break;
             }
@@ -4157,7 +4157,7 @@ streamOPflush(CLUREF st)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 7: 
+    case 7:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         wb.num = T_2_2.num;
@@ -4180,7 +4180,7 @@ streamOPflush(CLUREF st)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         tb.num = T_2_3.num;
@@ -4207,7 +4207,7 @@ streamOPflush(CLUREF st)
             CLUREF T_3_2;
             T_3_1.num = tb.vec->data[11];
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -4220,14 +4220,14 @@ streamOPflush(CLUREF st)
             }
             break;
             }
-    case 5: 
-    case 2: 
-    case 4: 
-    case 3: 
+    case 5:
+    case 2:
+    case 4:
+    case 3:
          {
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(626);
@@ -4257,7 +4257,7 @@ streamOPflush(CLUREF st)
         CLUREF T_3_3;
         CLUREF T_3_4;
             T_3_1.num = st.vec->data[3];
-            T_3_3.num = T_3_1.vec->size; 
+            T_3_3.num = T_3_1.vec->size;
             T_3_4 = T_3_1;
             for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                 scr.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -4310,7 +4310,7 @@ streamOPget_line_length(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         tb.num = T_1_2.num;
@@ -4376,7 +4376,7 @@ streamOPget_page_length(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         tb.num = T_1_2.num;
@@ -4447,7 +4447,7 @@ streamOPget_date(CLUREF st, CLUREF *ret_1)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -4465,7 +4465,7 @@ streamOPget_date(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         wb.num = T_2_3.num;
@@ -4568,8 +4568,8 @@ streamOPget_name(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 2: 
-    case 4: 
+    case 2:
+    case 4:
          {
 
   LINE(673);
@@ -4640,7 +4640,7 @@ streamOPclose(CLUREF st)
     CLUREF T_3_1;
     T_3_1.num = st.vec->data[0];
     switch (T_3_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_3_2;
         T_3_2.num = T_3_1.cell->value;
         rb.num = T_3_2.num;
@@ -4666,7 +4666,7 @@ streamOPclose(CLUREF st)
             }
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_3_3;
         T_3_3.num = T_3_1.cell->value;
         wb.num = T_3_3.num;
@@ -4692,7 +4692,7 @@ streamOPclose(CLUREF st)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_3_4;
         T_3_4.num = T_3_1.cell->value;
         tb.num = T_3_4.num;
@@ -4718,13 +4718,13 @@ streamOPclose(CLUREF st)
             }
             break;
             }
-    case 3: 
-    case 2: 
-    case 4: 
+    case 3:
+    case 2:
+    case 4:
          {
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(697);
@@ -4786,7 +4786,7 @@ streamOPclose(CLUREF st)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = opens.array->ext_high; 
+        T_1_2.num = opens.array->ext_high;
         for (T_1_1.num = opens.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -4866,7 +4866,7 @@ streamOPabort(CLUREF st)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -4892,7 +4892,7 @@ streamOPabort(CLUREF st)
             }
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         wb.num = T_2_3.num;
@@ -4918,7 +4918,7 @@ streamOPabort(CLUREF st)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         tb.num = T_2_4.num;
@@ -4944,13 +4944,13 @@ streamOPabort(CLUREF st)
             }
             break;
             }
-    case 3: 
-    case 2: 
-    case 4: 
+    case 3:
+    case 2:
+    case 4:
          {
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(729);
@@ -5007,7 +5007,7 @@ streamOPabort(CLUREF st)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = opens.array->ext_high; 
+        T_1_2.num = opens.array->ext_high;
         for (T_1_1.num = opens.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -5181,7 +5181,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         rb.num = T_1_2.num;
@@ -5217,7 +5217,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
             CLUREF T_2_2;
             T_2_1.num = rb.vec->data[3];
             T_2_2.num = T_2_1.num + 1;
-             if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+             if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
                  (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -5228,7 +5228,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
             {
             CLUREF T_2_1;
             T_2_1.num = index.num + 1;
-             if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && index.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -5236,7 +5236,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         tb.num = T_1_3.num;
@@ -5307,7 +5307,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         sb.num = T_1_4.num;
@@ -5351,7 +5351,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
             {
             CLUREF T_2_1;
             T_2_1.num = index.num + 1;
-             if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && index.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -5364,7 +5364,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
             CLUREF T_2_2;
             T_2_1.num = sb.vec->data[2];
             T_2_2.num = T_2_1.num + 1;
-             if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+             if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
                  (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -5489,7 +5489,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -5561,7 +5561,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
                     err = streamOPlines(s, i, &T_5_2);
                     if (err != ERR_ok) goto ex_1;
                     T_5_3.num = T_5_1.num + T_5_2.num;
-                     if ((T_5_3.num > 0 && T_5_1.num < 0 && T_5_2.num < 0) || 
+                     if ((T_5_3.num > 0 && T_5_1.num < 0 && T_5_2.num < 0) ||
                          (T_5_3.num < 0 && T_5_1.num > 0 && T_5_2.num > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -5573,7 +5573,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         tb.num = T_2_3.num;
@@ -5642,7 +5642,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
                 }}/* end if */
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         sb.num = T_2_4.num;
@@ -5656,7 +5656,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(820);
@@ -5664,9 +5664,9 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
             {signal (ERR_end_of_file);}}
             break;
             }
-    case 7: 
-    case 4: 
-    case 1: 
+    case 7:
+    case 4:
+    case 1:
          {
 
   LINE(822);
@@ -5748,7 +5748,7 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -5820,7 +5820,7 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
                     err = streamOPlines(s, i, &T_5_2);
                     if (err != ERR_ok) goto ex_1;
                     T_5_3.num = T_5_1.num + T_5_2.num;
-                     if ((T_5_3.num > 0 && T_5_1.num < 0 && T_5_2.num < 0) || 
+                     if ((T_5_3.num > 0 && T_5_1.num < 0 && T_5_2.num < 0) ||
                          (T_5_3.num < 0 && T_5_1.num > 0 && T_5_2.num > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -5832,7 +5832,7 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         tb.num = T_2_3.num;
@@ -5852,7 +5852,7 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         sb.num = T_2_4.num;
@@ -5866,7 +5866,7 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(850);
@@ -5874,9 +5874,9 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
             {signal (ERR_end_of_file);}}
             break;
             }
-    case 7: 
-    case 4: 
-    case 1: 
+    case 7:
+    case 4:
+    case 1:
          {
 
   LINE(852);
@@ -6060,7 +6060,7 @@ streamOPtty_get1(CLUREF tb, CLUREF image, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = tb.vec->data[13];
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -6397,7 +6397,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
             CLUREF T_4_1;
             CLUREF T_4_2;
             T_4_1.num = last.num - first.num;
-             if ((T_4_1.num >= 0 && last.num < 0 && (-first.num) < 0) || 
+             if ((T_4_1.num >= 0 && last.num < 0 && (-first.num) < 0) ||
                  (T_4_1.num <= 0 && last.num > 0 && (-first.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -6423,7 +6423,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
             CLUREF T_4_2;
             T_4_1.num = sb.vec->data[2];
             T_4_2.num = T_4_1.num + 1;
-             if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) || 
+             if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) ||
                  (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -6436,7 +6436,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = last.num + 1;
-         if ((T_3_1.num > 0 && last.num < 0 && 1 < 0) || 
+         if ((T_3_1.num > 0 && last.num < 0 && 1 < 0) ||
              (T_3_1.num < 0 && last.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -6508,7 +6508,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = sb.vec->data[2];
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -6562,7 +6562,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = sb.vec->data[2];
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -6636,7 +6636,7 @@ streamOPputs(CLUREF st, CLUREF s)
     CLUREF T_2_1;
     T_2_1.num = locals.st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 7: 
+    case 7:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         locals.wb.num = T_2_2.num;
@@ -6689,7 +6689,7 @@ streamOPputs(CLUREF st, CLUREF s)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         locals.tb.num = T_2_3.num;
@@ -6701,7 +6701,7 @@ streamOPputs(CLUREF st, CLUREF s)
             }
             break;
             }
-    case 4: 
+    case 4:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         locals.chars.num = T_2_4.num;
@@ -6718,13 +6718,13 @@ streamOPputs(CLUREF st, CLUREF s)
                 }
             break;
             }
-    case 3: 
+    case 3:
          {
             break;
             }
-    case 5: 
-    case 2: 
-    case 1: 
+    case 5:
+    case 2:
+    case 1:
          {
 
   LINE(968);
@@ -6846,7 +6846,7 @@ streamOPputs_image(CLUREF st, CLUREF s)
     CLUREF T_2_1;
     T_2_1.num = locals.st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 7: 
+    case 7:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         locals.wb.num = T_2_2.num;
@@ -6891,7 +6891,7 @@ streamOPputs_image(CLUREF st, CLUREF s)
                 }}/* end if */
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         locals.tb.num = T_2_3.num;
@@ -6903,7 +6903,7 @@ streamOPputs_image(CLUREF st, CLUREF s)
             }
             break;
             }
-    case 4: 
+    case 4:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         locals.chars.num = T_2_4.num;
@@ -6920,13 +6920,13 @@ streamOPputs_image(CLUREF st, CLUREF s)
                 }
             break;
             }
-    case 3: 
+    case 3:
          {
             break;
             }
-    case 5: 
-    case 2: 
-    case 1: 
+    case 5:
+    case 2:
+    case 1:
          {
 
   LINE(991);
@@ -7052,7 +7052,7 @@ streamOPtty_put1(CLUREF tb, CLUREF c)
         CLUREF T_3_2;
         T_3_1.num = tb.vec->data[11];
         T_3_2.num = T_3_1.num + 1;
-         if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+         if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
              (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -7075,7 +7075,7 @@ streamOPtty_put1(CLUREF tb, CLUREF c)
         CLUREF T_3_2;
         T_3_1.num = tb.vec->data[11];
         T_3_2.num = T_3_1.num + 1;
-         if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+         if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
              (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -7092,7 +7092,7 @@ streamOPtty_put1(CLUREF tb, CLUREF c)
                 CLUREF T_2_2;
                 T_2_1.num = tb.vec->data[11];
                 T_2_2.num = T_2_1.num - 1;
-                 if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-1) < 0) || 
+                 if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-1) < 0) ||
                      (T_2_2.num <= 0 && T_2_1.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -7163,7 +7163,7 @@ streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
         CLUREF T_2_2;
         T_2_1.num = tb.vec->data[11];
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -7229,7 +7229,7 @@ streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
         {
         CLUREF T_2_1;
         T_2_1.num = index.num + 1;
-         if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && index.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && index.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -7305,7 +7305,7 @@ streamOPputzero(CLUREF st, CLUREF s, CLUREF size)
         locals.err = stringOPsize(locals.s, &T_1_1);
         if (locals.err != ERR_ok) goto ex_0;
         T_1_2.num = locals.size.num - T_1_1.num;
-         if ((T_1_2.num >= 0 && locals.size.num < 0 && (-T_1_1.num) < 0) || 
+         if ((T_1_2.num >= 0 && locals.size.num < 0 && (-T_1_1.num) < 0) ||
              (T_1_2.num <= 0 && locals.size.num > 0 && (-T_1_1.num) > 0)) {
             locals.err = ERR_overflow;
             goto ex_0;}
@@ -7352,7 +7352,7 @@ streamOPputzero(CLUREF st, CLUREF s, CLUREF size)
             {
             CLUREF T_4_1;
             T_4_1.num = locals.diff.num - 1;
-             if ((T_4_1.num >= 0 && locals.diff.num < 0 && (-1) < 0) || 
+             if ((T_4_1.num >= 0 && locals.diff.num < 0 && (-1) < 0) ||
                  (T_4_1.num <= 0 && locals.diff.num > 0 && (-1) > 0)) {
                 locals.err = ERR_overflow;
                 goto ex_2;}
@@ -7456,7 +7456,7 @@ struct {
             {
             CLUREF T_3_1;
             T_3_1.num = locals->diff.num - 1;
-             if ((T_3_1.num >= 0 && locals->diff.num < 0 && (-1) < 0) || 
+             if ((T_3_1.num >= 0 && locals->diff.num < 0 && (-1) < 0) ||
                  (T_3_1.num <= 0 && locals->diff.num > 0 && (-1) > 0)) {
                 locals->err = ERR_overflow;
                 goto ex_0;}
@@ -7516,7 +7516,7 @@ streamOPputleft(CLUREF st, CLUREF s, CLUREF size)
         err = stringOPsize(s, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         T_1_2.num = size.num - T_1_1.num;
-         if ((T_1_2.num >= 0 && size.num < 0 && (-T_1_1.num) < 0) || 
+         if ((T_1_2.num >= 0 && size.num < 0 && (-T_1_1.num) < 0) ||
              (T_1_2.num <= 0 && size.num > 0 && (-T_1_1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -7599,7 +7599,7 @@ streamOPputright(CLUREF st, CLUREF s, CLUREF size)
         err = stringOPsize(s, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         T_1_2.num = size.num - T_1_1.num;
-         if ((T_1_2.num >= 0 && size.num < 0 && (-T_1_1.num) < 0) || 
+         if ((T_1_2.num >= 0 && size.num < 0 && (-T_1_1.num) < 0) ||
              (T_1_2.num <= 0 && size.num > 0 && (-T_1_1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -7692,7 +7692,7 @@ streamOPputspace(CLUREF st, CLUREF len)
         {
         CLUREF T_3_1;
         T_3_1.num = len.num - 1;
-         if ((T_3_1.num >= 0 && len.num < 0 && (-1) < 0) || 
+         if ((T_3_1.num >= 0 && len.num < 0 && (-1) < 0) ||
              (T_3_1.num <= 0 && len.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -7895,7 +7895,7 @@ streamOPget_contents(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 4: 
+    case 4:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         chars.num = T_1_2.num;
@@ -7963,7 +7963,7 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -8035,7 +8035,7 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
                     err = streamOPlines(s, i, &T_5_2);
                     if (err != ERR_ok) goto ex_1;
                     T_5_3.num = T_5_1.num + T_5_2.num;
-                     if ((T_5_3.num > 0 && T_5_1.num < 0 && T_5_2.num < 0) || 
+                     if ((T_5_3.num > 0 && T_5_1.num < 0 && T_5_2.num < 0) ||
                          (T_5_3.num < 0 && T_5_1.num > 0 && T_5_2.num > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -8047,7 +8047,7 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         tb.num = T_2_3.num;
@@ -8099,7 +8099,7 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_2_4;
         T_2_4.num = T_2_1.cell->value;
         sb.num = T_2_4.num;
@@ -8113,7 +8113,7 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(1140);
@@ -8121,9 +8121,9 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
             {signal (ERR_end_of_file);}}
             break;
             }
-    case 7: 
-    case 4: 
-    case 1: 
+    case 7:
+    case 4:
+    case 1:
          {
 
   LINE(1142);
@@ -8206,7 +8206,7 @@ streamOPlines(CLUREF s, CLUREF i, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = cnt.num + 1;
-         if ((T_2_1.num > 0 && cnt.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && cnt.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && cnt.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -8222,7 +8222,7 @@ streamOPlines(CLUREF s, CLUREF i, CLUREF *ret_1)
         T_2_1.ch = '\n';
         T_2_2.num = s.num;
         T_2_3.num = i.num + 1;
-         if ((T_2_3.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_3.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_3.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -8274,7 +8274,7 @@ streamOPscript(CLUREF st, CLUREF s, CLUREF image)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = st.vec->data[3];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             scr.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -8521,7 +8521,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                     {
                     CLUREF T_8_1;
                     T_8_1.num = redisp.num - 1;
-                     if ((T_8_1.num >= 0 && redisp.num < 0 && (-1) < 0) || 
+                     if ((T_8_1.num >= 0 && redisp.num < 0 && (-1) < 0) ||
                          (T_8_1.num <= 0 && redisp.num > 0 && (-1) > 0)) {
                         err = ERR_overflow;
                         goto ex_3;}
@@ -8558,7 +8558,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                 {
                 CLUREF T_6_1;
                 T_6_1.num = redisp.num + 1;
-                 if ((T_6_1.num > 0 && redisp.num < 0 && 1 < 0) || 
+                 if ((T_6_1.num > 0 && redisp.num < 0 && 1 < 0) ||
                      (T_6_1.num < 0 && redisp.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_2;}
@@ -8670,7 +8670,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
             CLUREF T_5_2;
             T_5_1.num = tb.vec->data[13];
             T_5_2.num = T_5_1.num + 1;
-             if ((T_5_2.num > 0 && T_5_1.num < 0 && 1 < 0) || 
+             if ((T_5_2.num > 0 && T_5_1.num < 0 && 1 < 0) ||
                  (T_5_2.num < 0 && T_5_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -8888,7 +8888,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
             CLUREF T_5_2;
             T_5_1.num = tb.vec->data[4];
             T_5_2.num = T_5_1.num + 1;
-             if ((T_5_2.num > 0 && T_5_1.num < 0 && 1 < 0) || 
+             if ((T_5_2.num > 0 && T_5_1.num < 0 && 1 < 0) ||
                  (T_5_2.num < 0 && T_5_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -8936,7 +8936,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                     CLUREF T_3_2;
                     T_3_1.num = tb.vec->data[11];
                     T_3_2.num = T_3_1.num + 1;
-                     if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+                     if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                          (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -8972,7 +8972,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
         CLUREF T_1_2;
         T_1_1.num = tb.vec->data[11];
         T_1_2.num = T_1_1.num + 1;
-         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
              (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -8986,7 +8986,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
         CLUREF T_1_2;
         T_1_1.num = tb.vec->data[4];
         T_1_2.num = T_1_1.num + 1;
-         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
              (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -9036,7 +9036,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                 CLUREF T_3_4;
                 T_3_1.num = bvec.num;
                 T_3_2.num = i.num - lag.num;
-                 if ((T_3_2.num >= 0 && i.num < 0 && (-lag.num) < 0) || 
+                 if ((T_3_2.num >= 0 && i.num < 0 && (-lag.num) < 0) ||
                      (T_3_2.num <= 0 && i.num > 0 && (-lag.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -9051,7 +9051,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = i.num + 1;
-                 if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -9082,7 +9082,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = i.num + 1;
-                 if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -9104,7 +9104,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = max.num - nl.num;
-         if ((T_2_1.num >= 0 && max.num < 0 && (-nl.num) < 0) || 
+         if ((T_2_1.num >= 0 && max.num < 0 && (-nl.num) < 0) ||
              (T_2_1.num <= 0 && max.num > 0 && (-nl.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -9125,7 +9125,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = tb.vec->data[11];
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -9251,7 +9251,7 @@ streamOPecho(CLUREF ch, CLUREF c)
             T_4_1.num = (long)(c.ch & 0xff);
             T_4_2.num = 64;
             T_4_3.num = T_4_1.num - T_4_2.num;
-             if ((T_4_3.num >= 0 && T_4_1.num < 0 && (-T_4_2.num) < 0) || 
+             if ((T_4_3.num >= 0 && T_4_1.num < 0 && (-T_4_2.num) < 0) ||
                  (T_4_3.num <= 0 && T_4_1.num > 0 && (-T_4_2.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -9280,7 +9280,7 @@ streamOPecho(CLUREF ch, CLUREF c)
             T_4_1.num = (long)(c.ch & 0xff);
             T_4_2.num = 128;
             T_4_3.num = T_4_1.num - T_4_2.num;
-             if ((T_4_3.num >= 0 && T_4_1.num < 0 && (-T_4_2.num) < 0) || 
+             if ((T_4_3.num >= 0 && T_4_1.num < 0 && (-T_4_2.num) < 0) ||
                  (T_4_3.num <= 0 && T_4_1.num > 0 && (-T_4_2.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -9339,7 +9339,7 @@ streamOPecho(CLUREF ch, CLUREF c)
         T_3_1.num = (long)(c.ch & 0xff);
         T_3_2.num = 64;
         T_3_3.num = T_3_1.num + T_3_2.num;
-         if ((T_3_3.num > 0 && T_3_1.num < 0 && T_3_2.num < 0) || 
+         if ((T_3_3.num > 0 && T_3_1.num < 0 && T_3_2.num < 0) ||
              (T_3_3.num < 0 && T_3_1.num > 0 && T_3_2.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -9422,7 +9422,7 @@ streamOPrubout(CLUREF tb, CLUREF *ret_1)
     CLUREF T_1_2;
     T_1_1.num = tb.vec->data[4];
     T_1_2.num = T_1_1.num - 1;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -9541,7 +9541,7 @@ streamOPrubout(CLUREF tb, CLUREF *ret_1)
         err = intOPmod(T_2_1, CLU_8, &T_2_2);
         if (err != ERR_ok) goto ex_0;
         T_2_3.num = 8 - T_2_2.num;
-         if ((T_2_3.num >= 0 && 8 < 0 && (-T_2_2.num) < 0) || 
+         if ((T_2_3.num >= 0 && 8 < 0 && (-T_2_2.num) < 0) ||
              (T_2_3.num <= 0 && 8 > 0 && (-T_2_2.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -9700,7 +9700,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
         T_2_2.num = tb.vec->data[1];
         T_2_3.num = tb.vec->data[11];
         T_2_4.num = T_2_3.num + 1;
-         if ((T_2_4.num > 0 && T_2_3.num < 0 && 1 < 0) || 
+         if ((T_2_4.num > 0 && T_2_3.num < 0 && 1 < 0) ||
              (T_2_4.num < 0 && T_2_3.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -9726,7 +9726,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
             T_3_2.num = tb.vec->data[1];
             T_3_3.num = tb.vec->data[11];
             T_3_4.num = T_3_3.num + 1;
-             if ((T_3_4.num > 0 && T_3_3.num < 0 && 1 < 0) || 
+             if ((T_3_4.num > 0 && T_3_3.num < 0 && 1 < 0) ||
                  (T_3_4.num < 0 && T_3_3.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -9839,7 +9839,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
                 CLUREF T_4_2;
                 T_4_1.num = tb.vec->data[4];
                 T_4_2.num = T_4_1.num - 1;
-                 if ((T_4_2.num >= 0 && T_4_1.num < 0 && (-1) < 0) || 
+                 if ((T_4_2.num >= 0 && T_4_1.num < 0 && (-1) < 0) ||
                      (T_4_2.num <= 0 && T_4_1.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -9960,7 +9960,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
             CLUREF T_3_2;
             T_3_1.num = tb.vec->data[4];
             T_3_2.num = T_3_1.num - 1;
-             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-1) < 0) || 
+             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-1) < 0) ||
                  (T_3_2.num <= 0 && T_3_1.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -10026,7 +10026,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = pre.num - post.num;
-         if ((T_1_1.num >= 0 && pre.num < 0 && (-post.num) < 0) || 
+         if ((T_1_1.num >= 0 && pre.num < 0 && (-post.num) < 0) ||
              (T_1_1.num <= 0 && pre.num > 0 && (-post.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -10146,7 +10146,7 @@ streamOPcalc_pos(CLUREF tb, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = pos.num + 1;
-                 if ((T_3_1.num > 0 && pos.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && pos.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && pos.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -10166,14 +10166,14 @@ streamOPcalc_pos(CLUREF tb, CLUREF *ret_1)
                 CLUREF T_3_2;
                 CLUREF T_3_3;
                 T_3_1.num = pos.num + 8;
-                 if ((T_3_1.num > 0 && pos.num < 0 && 8 < 0) || 
+                 if ((T_3_1.num > 0 && pos.num < 0 && 8 < 0) ||
                      (T_3_1.num < 0 && pos.num > 0 && 8 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
                 err = intOPmod(pos, CLU_8, &T_3_2);
                 if (err != ERR_ok) goto ex_0;
                 T_3_3.num = T_3_1.num - T_3_2.num;
-                 if ((T_3_3.num >= 0 && T_3_1.num < 0 && (-T_3_2.num) < 0) || 
+                 if ((T_3_3.num >= 0 && T_3_1.num < 0 && (-T_3_2.num) < 0) ||
                      (T_3_3.num <= 0 && T_3_1.num > 0 && (-T_3_2.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -10207,7 +10207,7 @@ streamOPcalc_pos(CLUREF tb, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = pos.num + 2;
-                 if ((T_3_1.num > 0 && pos.num < 0 && 2 < 0) || 
+                 if ((T_3_1.num > 0 && pos.num < 0 && 2 < 0) ||
                      (T_3_1.num < 0 && pos.num > 0 && 2 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -10261,7 +10261,7 @@ streamOPdisplay(CLUREF st, CLUREF s, CLUREF *ret_1)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         tb.num = T_2_2.num;
@@ -10283,9 +10283,9 @@ streamOPdisplay(CLUREF st, CLUREF s, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 7: 
-    case 3: 
-    case 4: 
+    case 7:
+    case 3:
+    case 4:
          {
 
   LINE(1410);
@@ -10296,9 +10296,9 @@ streamOPdisplay(CLUREF st, CLUREF s, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 5: 
-    case 2: 
-    case 1: 
+    case 5:
+    case 2:
+    case 1:
          {
 
   LINE(1412);
@@ -10352,7 +10352,7 @@ streamOPmodify_display(CLUREF st, CLUREF term)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         tb.num = T_1_2.num;
@@ -10482,7 +10482,7 @@ streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = i.num + 1;
-         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -10529,7 +10529,7 @@ streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = i.num + 1;
-         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -10659,7 +10659,7 @@ streamOPget_prompt(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         tb.num = T_1_2.num;
@@ -10718,7 +10718,7 @@ streamOPset_prompt(CLUREF st, CLUREF prompt)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         tb.num = T_1_2.num;
@@ -10770,7 +10770,7 @@ streamOPget_rescan(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         tb.num = T_1_2.num;
@@ -10859,7 +10859,7 @@ streamOPset_rescan(CLUREF st, CLUREF s)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         tb.num = T_1_2.num;
@@ -10939,9 +10939,9 @@ streamOPget_input_buffered(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 5: 
-    case 2: 
-    case 3: 
+    case 5:
+    case 2:
+    case 3:
          {
 
   LINE(1501);
@@ -10952,7 +10952,7 @@ streamOPget_input_buffered(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         tb.num = T_1_2.num;
@@ -10967,9 +10967,9 @@ streamOPget_input_buffered(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 7: 
-    case 4: 
-    case 1: 
+    case 7:
+    case 4:
+    case 1:
          {
 
   LINE(1505);
@@ -11019,9 +11019,9 @@ streamOPset_input_buffered(CLUREF st, CLUREF flag)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 5: 
-    case 2: 
-    case 3: 
+    case 5:
+    case 2:
+    case 3:
          {
 
   LINE(1512);
@@ -11038,7 +11038,7 @@ streamOPset_input_buffered(CLUREF st, CLUREF flag)
                 }/* end if */
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         tb.num = T_1_2.num;
@@ -11049,9 +11049,9 @@ streamOPset_input_buffered(CLUREF st, CLUREF flag)
             }
             break;
             }
-    case 7: 
-    case 4: 
-    case 1: 
+    case 7:
+    case 4:
+    case 1:
          {
 
   LINE(1517);
@@ -11095,7 +11095,7 @@ streamOPget_output_buffered(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 7: 
+    case 7:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         wb.num = T_1_2.num;
@@ -11110,7 +11110,7 @@ streamOPget_output_buffered(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         tb.num = T_1_3.num;
@@ -11125,8 +11125,8 @@ streamOPget_output_buffered(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 4: 
-    case 3: 
+    case 4:
+    case 3:
          {
 
   LINE(1528);
@@ -11137,9 +11137,9 @@ streamOPget_output_buffered(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 5: 
-    case 2: 
-    case 1: 
+    case 5:
+    case 2:
+    case 1:
          {
 
   LINE(1530);
@@ -11190,7 +11190,7 @@ streamOPset_output_buffered(CLUREF st, CLUREF flag)
     CLUREF T_2_1;
     T_2_1.num = st.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 7: 
+    case 7:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         wb.num = T_2_2.num;
@@ -11222,7 +11222,7 @@ streamOPset_output_buffered(CLUREF st, CLUREF flag)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         tb.num = T_2_3.num;
@@ -11254,8 +11254,8 @@ streamOPset_output_buffered(CLUREF st, CLUREF flag)
             }
             break;
             }
-    case 4: 
-    case 3: 
+    case 4:
+    case 3:
          {
 
   LINE(1545);
@@ -11264,9 +11264,9 @@ streamOPset_output_buffered(CLUREF st, CLUREF flag)
             {signal (ERR_not_possible);}}
             break;
             }
-    case 5: 
-    case 2: 
-    case 1: 
+    case 5:
+    case 2:
+    case 1:
          {
 
   LINE(1547);
@@ -11315,7 +11315,7 @@ streamOPget_eof_flag(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         tb.num = T_1_2.num;
@@ -11330,9 +11330,9 @@ streamOPget_eof_flag(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 5: 
-    case 2: 
-    case 1: 
+    case 5:
+    case 2:
+    case 1:
          {
 
   LINE(1556);
@@ -11391,7 +11391,7 @@ streamOPset_eof_flag(CLUREF st, CLUREF eofok)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         tb.num = T_1_2.num;
@@ -11402,9 +11402,9 @@ streamOPset_eof_flag(CLUREF st, CLUREF eofok)
             }
             break;
             }
-    case 5: 
-    case 2: 
-    case 1: 
+    case 5:
+    case 2:
+    case 1:
          {
 
   LINE(1567);
@@ -11709,7 +11709,7 @@ streamOPget_chan(CLUREF st, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = st.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         rb.num = T_1_2.num;
@@ -11724,7 +11724,7 @@ streamOPget_chan(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         wb.num = T_1_3.num;
@@ -11739,7 +11739,7 @@ streamOPget_chan(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         tb.num = T_1_4.num;
@@ -11801,7 +11801,7 @@ streamOP_open_streams(errcode (*proc)(), char **user_locals, errcode *iecode)
     CLUREF T_2_4;
         err = streamOPopen_streams(&T_2_1);
         if (err != ERR_ok) goto ex_1;
-        T_2_3.num = T_2_1.array->ext_high; 
+        T_2_3.num = T_2_1.array->ext_high;
         T_2_4 = T_2_1;
         for (T_2_2.num = T_2_1.array->ext_low; T_2_2.num <= T_2_3.num; T_2_2.num++) {
             if (T_2_2.num > T_2_4.array->ext_high || T_2_2.num < T_2_4.array->ext_low) {
@@ -11875,7 +11875,7 @@ streamOP_close_all()
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = opens.array->ext_high; 
+        T_1_2.num = opens.array->ext_high;
         T_1_3 = opens;
         for (T_1_1.num = opens.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -11906,7 +11906,7 @@ streamOP_close_all()
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = opens.array->ext_high; 
+        T_1_2.num = opens.array->ext_high;
         T_1_3 = opens;
         for (T_1_1.num = opens.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -11988,7 +11988,7 @@ streamOP_close_all()
             {
             CLUREF T_4_1;
             T_4_1.num = i.num + 1;
-             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}

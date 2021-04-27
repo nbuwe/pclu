@@ -44,8 +44,8 @@ errcode du_own_init_proc()
     errcode err;
     enter_own_init_proc();
         if (du_own_init == 0) {
-        add_selector_info("index", 0, int_ops); 
-        add_selector_info("name", 1, string_ops); 
+        add_selector_info("index", 0, int_ops);
+        add_selector_info("name", 1, string_ops);
         find_selector_ops("record", 2, &(record_index_name_ops));
         du_own_init = 1;
         {
@@ -701,7 +701,7 @@ duOPkeep()
         {
         CLUREF T_2_1;
         T_2_1.num = duOPkeepmax.num - 1;
-         if ((T_2_1.num >= 0 && duOPkeepmax.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && duOPkeepmax.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && duOPkeepmax.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -743,7 +743,7 @@ duOPreset()
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = duOPkeepmax.num + 1;
-         if ((T_1_1.num > 0 && duOPkeepmax.num < 0 && 1 < 0) || 
+         if ((T_1_1.num > 0 && duOPkeepmax.num < 0 && 1 < 0) ||
              (T_1_1.num < 0 && duOPkeepmax.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}

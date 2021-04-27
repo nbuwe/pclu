@@ -417,7 +417,7 @@ addl_chars(CLUREF line, CLUREF chars)
         {
         CLUREF T_2_1;
         T_2_1.num = i.num - 1;
-         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && i.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -600,7 +600,7 @@ process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = comms.array->ext_high; 
+        T_1_2.num = comms.array->ext_high;
         for (T_1_1.num = comms.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -1346,7 +1346,7 @@ check_file_name(CLUREF fn, CLUREF *ret_1)
             err = _dir_ent_size(&T_3_1);
             if (err != ERR_ok) goto ex_1;
             T_3_2.num = T_3_1.num - 1;
-             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-1) < 0) || 
+             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-1) < 0) ||
                  (T_3_2.num <= 0 && T_3_1.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -1375,7 +1375,7 @@ check_file_name(CLUREF fn, CLUREF *ret_1)
         err = stringOPsize(T_3_4, &T_3_5);
         if (err != ERR_ok) goto ex_1;
         T_3_6.num = dez1.num - T_3_5.num;
-         if ((T_3_6.num >= 0 && dez1.num < 0 && (-T_3_5.num) < 0) || 
+         if ((T_3_6.num >= 0 && dez1.num < 0 && (-T_3_5.num) < 0) ||
              (T_3_6.num <= 0 && dez1.num > 0 && (-T_3_5.num) > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -1410,7 +1410,7 @@ check_file_name(CLUREF fn, CLUREF *ret_1)
             err = stringOPsize(T_4_3, &T_4_4);
             if (err != ERR_ok) goto ex_1;
             T_4_5.num = dez1.num - T_4_4.num;
-             if ((T_4_5.num >= 0 && dez1.num < 0 && (-T_4_4.num) < 0) || 
+             if ((T_4_5.num >= 0 && dez1.num < 0 && (-T_4_4.num) < 0) ||
                  (T_4_5.num <= 0 && dez1.num > 0 && (-T_4_4.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -2965,7 +2965,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
                         CLUREF T_8_4;
                         CLUREF T_8_5;
                         T_8_1.num = locals.z.num - 2;
-                         if ((T_8_1.num >= 0 && locals.z.num < 0 && (-2) < 0) || 
+                         if ((T_8_1.num >= 0 && locals.z.num < 0 && (-2) < 0) ||
                              (T_8_1.num <= 0 && locals.z.num > 0 && (-2) > 0)) {
                             locals.err = ERR_overflow;
                             goto ex_3;}
@@ -3305,7 +3305,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
         CLUREF T_3_1;
         CLUREF T_3_2;
         CLUREF T_3_3;
-            T_3_2.num = locals.args.array->ext_high; 
+            T_3_2.num = locals.args.array->ext_high;
             T_3_3 = locals.args;
             for (T_3_1.num = locals.args.array->ext_low; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                 if (T_3_1.num > T_3_3.array->ext_high || T_3_1.num < T_3_3.array->ext_low) {
@@ -3918,7 +3918,7 @@ all_input_names(CLUREF args, CLUREF suffix, CLUREF tyo, errcode (*proc)(), char 
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = locals.args.array->ext_high; 
+        T_1_2.num = locals.args.array->ext_high;
         T_1_3 = locals.args;
         for (T_1_1.num = locals.args.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -4906,7 +4906,7 @@ as2str(CLUREF a, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = a.array->ext_high; 
+        T_1_2.num = a.array->ext_high;
         T_1_3 = a;
         for (T_1_1.num = a.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {

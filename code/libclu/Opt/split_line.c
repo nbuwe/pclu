@@ -110,7 +110,7 @@ split_line(CLUREF line, CLUREF sep, CLUREF quote, CLUREF *ret_1)
                     CLUREF T_4_1;
                     CLUREF T_4_2;
                     T_4_1.num = idx.num - start.num;
-                     if ((T_4_1.num >= 0 && idx.num < 0 && (-start.num) < 0) || 
+                     if ((T_4_1.num >= 0 && idx.num < 0 && (-start.num) < 0) ||
                          (T_4_1.num <= 0 && idx.num > 0 && (-start.num) > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -130,7 +130,7 @@ split_line(CLUREF line, CLUREF sep, CLUREF quote, CLUREF *ret_1)
                     {
                     CLUREF T_4_1;
                     T_4_1.num = idx.num + 1;
-                     if ((T_4_1.num > 0 && idx.num < 0 && 1 < 0) || 
+                     if ((T_4_1.num > 0 && idx.num < 0 && 1 < 0) ||
                          (T_4_1.num < 0 && idx.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}

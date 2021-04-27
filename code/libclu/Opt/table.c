@@ -634,7 +634,7 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
         err = T_2_3.proc->proc(k, T_2_1, &T_2_2);
         if (err != ERR_ok) goto ex_0;
         T_2_4.num = T_2_2.num + 1;
-         if ((T_2_4.num > 0 && T_2_2.num < 0 && 1 < 0) || 
+         if ((T_2_4.num > 0 && T_2_2.num < 0 && 1 < 0) ||
              (T_2_4.num < 0 && T_2_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -838,7 +838,7 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
         err = T_2_3.proc->proc(k, T_2_1, &T_2_2);
         if (err != ERR_ok) goto ex_0;
         T_2_4.num = T_2_2.num + 1;
-         if ((T_2_4.num > 0 && T_2_2.num < 0 && 1 < 0) || 
+         if ((T_2_4.num > 0 && T_2_2.num < 0 && 1 < 0) ||
              (T_2_4.num < 0 && T_2_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1062,7 +1062,7 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
         err = T_2_3.proc->proc(k, T_2_1, &T_2_2);
         if (err != ERR_ok) goto ex_0;
         T_2_4.num = T_2_2.num + 1;
-         if ((T_2_4.num > 0 && T_2_2.num < 0 && 1 < 0) || 
+         if ((T_2_4.num > 0 && T_2_2.num < 0 && 1 < 0) ||
              (T_2_4.num < 0 && T_2_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1273,7 +1273,7 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
     err = T_1_3.proc->proc(k, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_4.num = T_1_2.num + 1;
-     if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) || 
+     if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) ||
          (T_1_4.num < 0 && T_1_2.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1474,7 +1474,7 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
     err = T_1_3.proc->proc(k, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_4.num = T_1_2.num + 1;
-     if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) || 
+     if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) ||
          (T_1_4.num < 0 && T_1_2.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1678,7 +1678,7 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
     err = T_1_3.proc->proc(k, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_4.num = T_1_2.num + 1;
-     if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) || 
+     if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) ||
          (T_1_4.num < 0 && T_1_2.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1869,7 +1869,7 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
     err = T_1_3.proc->proc(k, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_4.num = T_1_2.num + 1;
-     if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) || 
+     if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) ||
          (T_1_4.num < 0 && T_1_2.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2042,7 +2042,7 @@ tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
         err = T_1_3.proc->proc(k, T_1_1, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         T_1_4.num = T_1_2.num + 1;
-         if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) || 
+         if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) ||
              (T_1_4.num < 0 && T_1_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2216,7 +2216,7 @@ tableOPdelete(CLUREF t, CLUREF k)
         err = T_1_3.proc->proc(k, T_1_1, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         T_1_4.num = T_1_2.num + 1;
-         if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) || 
+         if ((T_1_4.num > 0 && T_1_2.num < 0 && 1 < 0) ||
              (T_1_4.num < 0 && T_1_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2515,7 +2515,7 @@ tableOPrehash(CLUREF t, CLUREF hasher)
             err = hasher.proc->proc(T_2_1, size, &T_2_2);
             if (err != ERR_ok) goto ex_0;
             T_2_3.num = T_2_2.num + 1;
-             if ((T_2_3.num > 0 && T_2_2.num < 0 && 1 < 0) || 
+             if ((T_2_3.num > 0 && T_2_2.num < 0 && 1 < 0) ||
                  (T_2_3.num < 0 && T_2_2.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -2746,7 +2746,7 @@ tableOPcount(CLUREF t, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = cnt.num + 1;
-                 if ((T_3_1.num > 0 && cnt.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && cnt.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && cnt.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -2959,7 +2959,7 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = cnt.num + 1;
-                 if ((T_3_1.num > 0 && cnt.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && cnt.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && cnt.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -2986,7 +2986,7 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
                 goto ex_1;}
             T_3_1.num = z.array->store->data[cnt.num - z.array->ext_low + z.array->int_low];
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}

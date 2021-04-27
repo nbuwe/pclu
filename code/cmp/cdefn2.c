@@ -303,7 +303,7 @@ c_setup_opers(CLUREF e, CLUREF def)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = extops.vec->size; 
+        T_1_2.num = extops.vec->size;
         T_1_3 = extops;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -324,7 +324,7 @@ c_setup_opers(CLUREF e, CLUREF def)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = def.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             op.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -438,7 +438,7 @@ c_setup_opers(CLUREF e, CLUREF def)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = extops.vec->size; 
+        T_1_2.num = extops.vec->size;
         T_1_3 = extops;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -511,7 +511,7 @@ c_member(CLUREF i, CLUREF idns, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = idns.vec->size; 
+        T_1_2.num = idns.vec->size;
         T_1_3 = idns;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             id.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -722,7 +722,7 @@ c_type_specs(CLUREF e, CLUREF def, CLUREF mod, CLUREF *ret_1, CLUREF *ret_2)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = opers.vec->size; 
+        T_1_2.num = opers.vec->size;
         T_1_3 = opers;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             op.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -916,7 +916,7 @@ c_type_main(CLUREF e, CLUREF def, CLUREF info)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = def.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             op.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -992,7 +992,7 @@ c_up_type(CLUREF e, CLUREF gen, CLUREF parms, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = parms.vec->size; 
+        T_1_2.num = parms.vec->size;
         T_1_3 = parms;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1003,7 +1003,7 @@ c_up_type(CLUREF e, CLUREF gen, CLUREF parms, CLUREF *ret_1)
             err = idnOPget_kind(i, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 6: 
+            case 6:
                  {
 
   LINE(124);
@@ -1037,7 +1037,7 @@ c_up_type(CLUREF e, CLUREF gen, CLUREF parms, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 10: 
+            case 10:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 k.num = T_2_2.num;
@@ -1132,7 +1132,7 @@ c_down_type(CLUREF e, CLUREF eqs, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = eqs.vec->size; 
+        T_1_2.num = eqs.vec->size;
         T_1_3 = eqs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             eq.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1162,7 +1162,7 @@ c_down_type(CLUREF e, CLUREF eqs, CLUREF *ret_1)
                 err = idnOPget_kind(T_3_1, &T_3_2);
                 if (err != ERR_ok) goto ex_0;
                 switch (T_3_2.cell->tag) {
-                case 1: 
+                case 1:
                      {CLUREF T_3_3;
                     T_3_3.num = T_3_2.cell->value;
                     k.num = T_3_3.num;
@@ -1173,7 +1173,7 @@ c_down_type(CLUREF e, CLUREF eqs, CLUREF *ret_1)
                         err = exprOPget_abs(k, &T_4_1);
                         if (err != ERR_ok) goto ex_0;
                         switch (T_4_1.cell->tag) {
-                        case 25: 
+                        case 25:
                              {CLUREF T_4_2;
                             T_4_2.num = T_4_1.cell->value;
                             xa.num = T_4_2.num;
@@ -1186,7 +1186,7 @@ c_down_type(CLUREF e, CLUREF eqs, CLUREF *ret_1)
                                 {signal (ERR_ok);}}
                                 break;
                                 }
-                        case 3: 
+                        case 3:
                              {CLUREF T_4_3;
                             T_4_3.num = T_4_1.cell->value;
                             xa.num = T_4_3.num;
@@ -1565,7 +1565,7 @@ c_oper_main(CLUREF e, CLUREF def, CLUREF infos)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = infos.vec->size; 
+        T_1_2.num = infos.vec->size;
         T_1_3 = infos;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             info.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1812,7 +1812,7 @@ c_apply_main1(CLUREF e, CLUREF def, CLUREF nparms)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = def.vec->data[1];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             s.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -1862,7 +1862,7 @@ c_add_requires(CLUREF e, CLUREF reqs)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = reqs.vec->size; 
+        T_1_2.num = reqs.vec->size;
         T_1_3 = reqs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             req.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1875,7 +1875,7 @@ c_add_requires(CLUREF e, CLUREF reqs)
             err = idnOPget_kind(T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_2.cell->tag) {
-            case 6: 
+            case 6:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_2.cell->value;
                 k.num = T_2_3.num;
@@ -1934,7 +1934,7 @@ c_rem_requires(CLUREF e, CLUREF reqs)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = reqs.vec->size; 
+        T_1_2.num = reqs.vec->size;
         T_1_3 = reqs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             req.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1947,7 +1947,7 @@ c_rem_requires(CLUREF e, CLUREF reqs)
             err = idnOPget_kind(T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_2.cell->tag) {
-            case 6: 
+            case 6:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_2.cell->value;
                 k.num = T_2_3.num;
@@ -1963,7 +1963,7 @@ c_rem_requires(CLUREF e, CLUREF reqs)
                     T_3_2.num = req.vec->data[0];
                     T_3_3.num = T_3_2.vec->size;
                     T_3_4.num = T_3_1.num - T_3_3.num;
-                     if ((T_3_4.num >= 0 && T_3_1.num < 0 && (-T_3_3.num) < 0) || 
+                     if ((T_3_4.num >= 0 && T_3_1.num < 0 && (-T_3_3.num) < 0) ||
                          (T_3_4.num <= 0 && T_3_1.num > 0 && (-T_3_3.num) > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -2082,7 +2082,7 @@ c_decllist1(CLUREF e, CLUREF decls, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = decls.vec->size; 
+        T_1_2.num = decls.vec->size;
         T_1_3 = decls;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             d.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -2140,7 +2140,7 @@ c_decllist1(CLUREF e, CLUREF decls, CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = d.vec->data[0];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     i.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -2258,7 +2258,7 @@ c_typelist1(CLUREF e, CLUREF types, CLUREF *ret_1, CLUREF *ret_2)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = types.vec->size; 
+        T_1_2.num = types.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -2371,7 +2371,7 @@ c_exceptionlist1(CLUREF e, CLUREF sigs, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = sigs.vec->size; 
+        T_1_2.num = sigs.vec->size;
         T_1_3 = sigs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             sig.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -2462,7 +2462,7 @@ c_oper_requires(CLUREF e, CLUREF reqs, CLUREF parms, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = reqs.vec->size; 
+        T_1_2.num = reqs.vec->size;
         T_1_3 = reqs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             req.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -2480,7 +2480,7 @@ c_oper_requires(CLUREF e, CLUREF reqs, CLUREF parms, CLUREF *ret_1)
             CLUREF T_2_1;
             T_2_1.num = req.vec->data[1];
             switch (T_2_1.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 rk.num = T_2_2.num;

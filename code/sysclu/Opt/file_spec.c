@@ -47,10 +47,10 @@ errcode file_spec_own_init_proc()
     errcode err;
     enter_own_init_proc();
         if (file_spec_own_init == 0) {
-        add_selector_info("dir", 0, string_ops); 
-        add_selector_info("name", 1, string_ops); 
-        add_selector_info("other", 2, string_ops); 
-        add_selector_info("suffix", 3, string_ops); 
+        add_selector_info("dir", 0, string_ops);
+        add_selector_info("name", 1, string_ops);
+        add_selector_info("other", 2, string_ops);
+        add_selector_info("suffix", 3, string_ops);
         find_selector_ops("record", 4, &(record_dir_name_other_suffix_ops));
         stringOPcons("", CLU_1, CLU_0, &STR_);
         stringOPcons("/", CLU_1, CLU_1, &STR__057);
@@ -142,7 +142,7 @@ file_specOPcreate(CLUREF dir, CLUREF name, CLUREF suffix, CLUREF other, CLUREF *
             {
             CLUREF T_4_1;
             T_4_1.num = i.num + 1;
-             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -216,7 +216,7 @@ file_specOPcreate(CLUREF dir, CLUREF name, CLUREF suffix, CLUREF other, CLUREF *
             {
             CLUREF T_4_1;
             T_4_1.num = i.num + 1;
-             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -347,7 +347,7 @@ file_specOPparse(CLUREF s, CLUREF *ret_1)
             CLUREF T_3_2;
             CLUREF T_3_3;
             T_3_1.num = i.num - 1;
-             if ((T_3_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+             if ((T_3_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                  (T_3_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -364,7 +364,7 @@ file_specOPparse(CLUREF s, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = i.num + 1;
-         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}

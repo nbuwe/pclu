@@ -109,7 +109,7 @@ g_stmt(CLUREF e, CLUREF s)
     err = stmtOPget_abs(s, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         sa.num = T_1_2.num;
@@ -130,7 +130,7 @@ g_stmt(CLUREF e, CLUREF s)
                 }/* end if */
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         sa.num = T_1_3.num;
@@ -142,7 +142,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         sa.num = T_1_4.num;
@@ -154,7 +154,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 13: 
+    case 13:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         sa.num = T_1_5.num;
@@ -166,7 +166,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 19: 
+    case 19:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         sa.num = T_1_6.num;
@@ -178,7 +178,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 10: 
+    case 10:
          {CLUREF T_1_7;
         T_1_7.num = T_1_1.cell->value;
         sa.num = T_1_7.num;
@@ -190,7 +190,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 12: 
+    case 12:
          {CLUREF T_1_8;
         T_1_8.num = T_1_1.cell->value;
         sa.num = T_1_8.num;
@@ -202,7 +202,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 18: 
+    case 18:
          {CLUREF T_1_9;
         T_1_9.num = T_1_1.cell->value;
         sa.num = T_1_9.num;
@@ -214,7 +214,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 15: 
+    case 15:
          {CLUREF T_1_10;
         T_1_10.num = T_1_1.cell->value;
         sa.num = T_1_10.num;
@@ -226,7 +226,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 20: 
+    case 20:
          {CLUREF T_1_11;
         T_1_11.num = T_1_1.cell->value;
         sa.num = T_1_11.num;
@@ -238,7 +238,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 16: 
+    case 16:
          {CLUREF T_1_12;
         T_1_12.num = T_1_1.cell->value;
         sa.num = T_1_12.num;
@@ -250,7 +250,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 9: 
+    case 9:
          {CLUREF T_1_13;
         T_1_13.num = T_1_1.cell->value;
         sa.num = T_1_13.num;
@@ -262,7 +262,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(42);
@@ -272,7 +272,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 5: 
+    case 5:
          {
 
   LINE(44);
@@ -282,7 +282,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_14;
         T_1_14.num = T_1_1.cell->value;
         sa.num = T_1_14.num;
@@ -294,7 +294,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_1_15;
         T_1_15.num = T_1_1.cell->value;
         sa.num = T_1_15.num;
@@ -306,7 +306,7 @@ g_stmt(CLUREF e, CLUREF s)
             }
             break;
             }
-    case 14: 
+    case 14:
          {CLUREF T_1_16;
         T_1_16.num = T_1_1.cell->value;
         sa.num = T_1_16.num;
@@ -365,7 +365,7 @@ g_decllist(CLUREF e, CLUREF decls)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = decls.vec->size; 
+        T_1_2.num = decls.vec->size;
         T_1_3 = decls;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_d.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -419,7 +419,7 @@ g_decl(CLUREF e, CLUREF stmnt)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = stmnt.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_i.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -476,7 +476,7 @@ g_decl_debug(CLUREF e, CLUREF stmnt)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = stmnt.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_i.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -596,7 +596,7 @@ g_declinit(CLUREF e, CLUREF stmnt)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = stmnt.vec->data[1];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             d.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -608,7 +608,7 @@ g_declinit(CLUREF e, CLUREF stmnt)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = d.vec->data[0];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_idn.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -628,7 +628,7 @@ g_declinit(CLUREF e, CLUREF stmnt)
                     {
                     CLUREF T_3_1;
                     T_3_1.num = i.num + 1;
-                     if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+                     if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
                          (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -748,7 +748,7 @@ g_assn(CLUREF e, CLUREF stmnt)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = stmnt.vec->data[2];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_e.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -787,7 +787,7 @@ g_assn(CLUREF e, CLUREF stmnt)
     CLUREF T_1_2;
     CLUREF T_1_3;
         T_1_1.num = stmnt.vec->data[1];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             ind.num = T_1_2.num;
 
@@ -812,7 +812,7 @@ g_assn(CLUREF e, CLUREF stmnt)
                     err = exprOPget_abs(T_3_2, &T_3_3);
                     if (err != ERR_ok) goto ex_0;
                     switch (T_3_3.cell->tag) {
-                    case 13: 
+                    case 13:
                          {CLUREF T_3_4;
                         T_3_4.num = T_3_3.cell->value;
                         i.num = T_3_4.num;
@@ -911,7 +911,7 @@ g_assn(CLUREF e, CLUREF stmnt)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = altlist.vec->size; 
+        T_1_2.num = altlist.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             ind.num = T_1_1.num;
 
@@ -965,7 +965,7 @@ g_assn(CLUREF e, CLUREF stmnt)
                 err = exprOPget_abs(ex, &T_3_1);
                 if (err != ERR_ok) goto ex_0;
                 switch (T_3_1.cell->tag) {
-                case 13: 
+                case 13:
                      {CLUREF T_3_2;
                     T_3_2.num = T_3_1.cell->value;
                     i.num = T_3_2.num;
@@ -1009,7 +1009,7 @@ g_assn(CLUREF e, CLUREF stmnt)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = stmnt.vec->data[2];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_e.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -1045,7 +1045,7 @@ g_assn(CLUREF e, CLUREF stmnt)
     CLUREF T_2_3;
     CLUREF T_2_4;
         T_2_1.num = stmnt.vec->data[1];
-        T_2_3.num = T_2_1.vec->size; 
+        T_2_3.num = T_2_1.vec->size;
         T_2_4 = T_2_1;
         for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
             each_idn.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -1058,7 +1058,7 @@ g_assn(CLUREF e, CLUREF stmnt)
                 goto ex_2;}
             T_4_1.num = altlist.vec->data[i.num - 1];
             switch (T_4_1.cell->tag) {
-            case 1: 
+            case 1:
                  {
 
   LINE(173);
@@ -1073,7 +1073,7 @@ g_assn(CLUREF e, CLUREF stmnt)
                     }
                     break;
                     }
-            case 2: 
+            case 2:
                  {
 
   LINE(176);
@@ -1117,7 +1117,7 @@ g_assn(CLUREF e, CLUREF stmnt)
             {
             CLUREF T_3_1;
             T_3_1.num = i.num + 1;
-             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -1599,7 +1599,7 @@ g_for(CLUREF e, CLUREF stmnt)
     CLUREF T_1_5;
         T_1_1.num = stmnt.vec->data[2];
         T_1_2.num = T_1_1.vec->data[1];
-        T_1_4.num = T_1_2.vec->size; 
+        T_1_4.num = T_1_2.vec->size;
         T_1_5 = T_1_2;
         for (T_1_3.num = 1; T_1_3.num <= T_1_4.num; T_1_3.num++) {
             each_arg.num = T_1_5.vec->data[T_1_3.num - 1];
@@ -1656,7 +1656,7 @@ g_for(CLUREF e, CLUREF stmnt)
     CLUREF T_1_5;
         T_1_1.num = stmnt.vec->data[2];
         T_1_2.num = T_1_1.vec->data[1];
-        T_1_4.num = T_1_2.vec->size; 
+        T_1_4.num = T_1_2.vec->size;
         T_1_5 = T_1_2;
         for (T_1_3.num = 1; T_1_3.num <= T_1_4.num; T_1_3.num++) {
             each_arg.num = T_1_5.vec->data[T_1_3.num - 1];
@@ -1779,7 +1779,7 @@ g_for(CLUREF e, CLUREF stmnt)
         CLUREF T_2_1;
         CLUREF T_2_2;
         CLUREF T_2_3;
-            T_2_2.num = el.vec->size; 
+            T_2_2.num = el.vec->size;
             T_2_3 = el;
             for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                 each_arg.num = T_2_3.vec->data[T_2_1.num - 1];
@@ -2680,7 +2680,7 @@ g_for(CLUREF e, CLUREF stmnt)
                     CLUREF T_4_3;
                     CLUREF T_4_4;
                     T_4_1.num = i.num - 1;
-                     if ((T_4_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+                     if ((T_4_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                          (T_4_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -3308,7 +3308,7 @@ g_tagcase(CLUREF e, CLUREF stmnt)
         err = typespecOPget_abs(ty, &T_3_1);
         if (err != ERR_ok) goto ex_1;
         switch (T_3_1.cell->tag) {
-        case 7: 
+        case 7:
              {CLUREF T_3_2;
             T_3_2.num = T_3_1.cell->value;
             ta.num = T_3_2.num;
@@ -3321,7 +3321,7 @@ g_tagcase(CLUREF e, CLUREF stmnt)
                 }
                 break;
                 }
-        case 3: 
+        case 3:
              {CLUREF T_3_3;
             T_3_3.num = T_3_1.cell->value;
             ct.num = T_3_3.num;
@@ -3372,7 +3372,7 @@ g_tagcase(CLUREF e, CLUREF stmnt)
         CLUREF T_3_3;
         CLUREF T_3_4;
             T_3_1.num = stmnt.vec->data[0];
-            T_3_3.num = T_3_1.vec->size; 
+            T_3_3.num = T_3_1.vec->size;
             T_3_4 = T_3_1;
             for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                 t.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -3384,7 +3384,7 @@ g_tagcase(CLUREF e, CLUREF stmnt)
                 CLUREF T_4_3;
                 CLUREF T_4_4;
                     T_4_1.num = t.vec->data[2];
-                    T_4_3.num = T_4_1.vec->size; 
+                    T_4_3.num = T_4_1.vec->size;
                     T_4_4 = T_4_1;
                     for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                         nm.num = T_4_4.vec->data[T_4_2.num - 1];
@@ -3434,7 +3434,7 @@ g_tagcase(CLUREF e, CLUREF stmnt)
         CLUREF T_3_3;
         CLUREF T_3_4;
             T_3_1.num = stmnt.vec->data[0];
-            T_3_3.num = T_3_1.vec->size; 
+            T_3_3.num = T_3_1.vec->size;
             T_3_4 = T_3_1;
             for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                 t.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -3446,7 +3446,7 @@ g_tagcase(CLUREF e, CLUREF stmnt)
                 CLUREF T_4_3;
                 CLUREF T_4_4;
                     T_4_1.num = t.vec->data[2];
-                    T_4_3.num = T_4_1.vec->size; 
+                    T_4_3.num = T_4_1.vec->size;
                     T_4_4 = T_4_1;
                     for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                         nm.num = T_4_4.vec->data[T_4_2.num - 1];
@@ -3660,7 +3660,7 @@ g_tagcase(CLUREF e, CLUREF stmnt)
         CLUREF T_3_3;
         CLUREF T_3_4;
             T_3_1.num = stmnt.vec->data[0];
-            T_3_3.num = T_3_1.vec->size; 
+            T_3_3.num = T_3_1.vec->size;
             T_3_4 = T_3_1;
             for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                 t.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -3711,7 +3711,7 @@ g_tagcase(CLUREF e, CLUREF stmnt)
                 CLUREF T_4_3;
                 CLUREF T_4_4;
                     T_4_1.num = t.vec->data[2];
-                    T_4_3.num = T_4_1.vec->size; 
+                    T_4_3.num = T_4_1.vec->size;
                     T_4_4 = T_4_1;
                     for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                         nm.num = T_4_4.vec->data[T_4_2.num - 1];
@@ -3766,7 +3766,7 @@ g_tagcase(CLUREF e, CLUREF stmnt)
                         {
                         CLUREF T_5_1;
                         T_5_1.num = tindex.num + 1;
-                         if ((T_5_1.num > 0 && tindex.num < 0 && 1 < 0) || 
+                         if ((T_5_1.num > 0 && tindex.num < 0 && 1 < 0) ||
                              (T_5_1.num < 0 && tindex.num > 0 && 1 > 0)) {
                             err = ERR_overflow;
                             goto ex_1;}
@@ -3954,7 +3954,7 @@ g_tagcase(CLUREF e, CLUREF stmnt)
                         CLUREF T_6_2;
                         CLUREF T_6_3;
                             T_6_1.num = t.vec->data[2];
-                            T_6_3.num = T_6_1.vec->size; 
+                            T_6_3.num = T_6_1.vec->size;
                             for (T_6_2.num = 1; T_6_2.num <= T_6_3.num; T_6_2.num++) {
                                 index.num = T_6_2.num;
 
@@ -4370,7 +4370,7 @@ g_return(CLUREF e, CLUREF exp)
             CLUREF T_4_1;
             CLUREF T_4_2;
             CLUREF T_4_3;
-                T_4_2.num = exp.vec->size; 
+                T_4_2.num = exp.vec->size;
                 T_4_3 = exp;
                 for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                     each_e.num = T_4_3.vec->data[T_4_1.num - 1];
@@ -4415,7 +4415,7 @@ g_return(CLUREF e, CLUREF exp)
                     {
                     CLUREF T_5_1;
                     T_5_1.num = i.num + 1;
-                     if ((T_5_1.num > 0 && i.num < 0 && 1 < 0) || 
+                     if ((T_5_1.num > 0 && i.num < 0 && 1 < 0) ||
                          (T_5_1.num < 0 && i.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -4479,7 +4479,7 @@ g_return(CLUREF e, CLUREF exp)
         CLUREF T_3_1;
         CLUREF T_3_2;
         CLUREF T_3_3;
-            T_3_2.num = exp.vec->size; 
+            T_3_2.num = exp.vec->size;
             T_3_3 = exp;
             for (T_3_1.num = 1; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                 each_e.num = T_3_3.vec->data[T_3_1.num - 1];
@@ -4524,7 +4524,7 @@ g_return(CLUREF e, CLUREF exp)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = i.num + 1;
-                 if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+                 if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                      (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -4635,7 +4635,7 @@ g_yield(CLUREF e, CLUREF exp)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = exp.vec->size; 
+        T_1_2.num = exp.vec->size;
         T_1_3 = exp;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_exp.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -4663,7 +4663,7 @@ g_yield(CLUREF e, CLUREF exp)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = exp.vec->size; 
+        T_1_2.num = exp.vec->size;
         T_1_3 = exp;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_exp.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -4721,7 +4721,7 @@ g_yield(CLUREF e, CLUREF exp)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = el.vec->size; 
+        T_1_2.num = el.vec->size;
         T_1_3 = el;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_exp.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -5052,7 +5052,7 @@ g_signal(CLUREF e, CLUREF cond)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = cond.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_e.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -5079,7 +5079,7 @@ g_signal(CLUREF e, CLUREF cond)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = cond.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_e.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -5106,7 +5106,7 @@ g_signal(CLUREF e, CLUREF cond)
             {
             CLUREF T_2_1;
             T_2_1.num = i.num + 1;
-             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -5282,7 +5282,7 @@ g_exit(CLUREF e, CLUREF cond)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = cond.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_e.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -5318,7 +5318,7 @@ g_exit(CLUREF e, CLUREF cond)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = cond.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_e.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -5358,7 +5358,7 @@ g_exit(CLUREF e, CLUREF cond)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = el.vec->size; 
+        T_1_2.num = el.vec->size;
         T_1_3 = el;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_e.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -5394,7 +5394,7 @@ g_exit(CLUREF e, CLUREF cond)
             {
             CLUREF T_2_1;
             T_2_1.num = i.num + 1;
-             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -5770,7 +5770,7 @@ g_body(CLUREF e, CLUREF bod)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = bod.vec->data[1];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             s.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -5932,7 +5932,7 @@ g_except(CLUREF e, CLUREF stmnt)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = stmnt.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             h.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -5972,7 +5972,7 @@ g_except(CLUREF e, CLUREF stmnt)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = h.vec->data[2];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_name.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -6079,7 +6079,7 @@ g_except(CLUREF e, CLUREF stmnt)
             CLUREF T_2_1;
             T_2_1.num = h.vec->data[3];
             switch (T_2_1.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 dlist.num = T_2_2.num;
@@ -6101,7 +6101,7 @@ g_except(CLUREF e, CLUREF stmnt)
                     CLUREF T_3_1;
                     CLUREF T_3_2;
                     CLUREF T_3_3;
-                        T_3_2.num = dlist.vec->size; 
+                        T_3_2.num = dlist.vec->size;
                         T_3_3 = dlist;
                         for (T_3_1.num = 1; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                             each_d.num = T_3_3.vec->data[T_3_1.num - 1];
@@ -6113,7 +6113,7 @@ g_except(CLUREF e, CLUREF stmnt)
                             CLUREF T_4_3;
                             CLUREF T_4_4;
                                 T_4_1.num = each_d.vec->data[0];
-                                T_4_3.num = T_4_1.vec->size; 
+                                T_4_3.num = T_4_1.vec->size;
                                 T_4_4 = T_4_1;
                                 for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                     each_idn.num = T_4_4.vec->data[T_4_2.num - 1];
@@ -6149,7 +6149,7 @@ g_except(CLUREF e, CLUREF stmnt)
                                     {
                                     CLUREF T_5_1;
                                     T_5_1.num = i.num + 1;
-                                     if ((T_5_1.num > 0 && i.num < 0 && 1 < 0) || 
+                                     if ((T_5_1.num > 0 && i.num < 0 && 1 < 0) ||
                                          (T_5_1.num < 0 && i.num > 0 && 1 > 0)) {
                                         err = ERR_overflow;
                                         goto ex_0;}
@@ -6163,7 +6163,7 @@ g_except(CLUREF e, CLUREF stmnt)
                     end_inline_for_3:;
                     break;
                     }
-            case 3: 
+            case 3:
                  {
                     break;
                     }
@@ -6553,7 +6553,7 @@ g_resignal(CLUREF e, CLUREF stmnt)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = stmnt.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_sig.num = T_1_4.vec->data[T_1_2.num - 1];

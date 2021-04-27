@@ -1262,7 +1262,7 @@ g_envOPindent(CLUREF e)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[8];
     T_1_2.num = T_1_1.num + 4;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 4 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 4 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 4 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1324,7 +1324,7 @@ g_envOPoutdent(CLUREF e)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[8];
     T_1_2.num = T_1_1.num - 4;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-4) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-4) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-4) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1623,7 +1623,7 @@ g_envOPget_convert(CLUREF e, CLUREF *ret_1)
         CLUREF T_2_1;
         T_2_1.num = e.vec->data[1];
         switch (T_2_1.cell->tag) {
-        case 1: 
+        case 1:
              {
 
   LINE(249);
@@ -1631,7 +1631,7 @@ g_envOPget_convert(CLUREF e, CLUREF *ret_1)
                 {signal (ERR_none);}}
                 break;
                 }
-        case 2: 
+        case 2:
              {CLUREF T_2_2;
             T_2_2.num = T_2_1.cell->value;
             t.num = T_2_2.num;
@@ -1789,7 +1789,7 @@ g_envOPoutput_line(CLUREF e)
         CLUREF T_3_3;
         CLUREF T_3_4;
             T_3_1.num = e.vec->data[3];
-            T_3_3.num = T_3_1.array->ext_high; 
+            T_3_3.num = T_3_1.array->ext_high;
             T_3_4 = T_3_1;
             for (T_3_2.num = T_3_1.array->ext_low; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                 if (T_3_2.num > T_3_4.array->ext_high || T_3_2.num < T_3_4.array->ext_low) {
@@ -1906,7 +1906,7 @@ g_envOPadd_typedef(CLUREF id, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_envOPtypedef_list.vec->size; 
+        T_1_2.num = g_envOPtypedef_list.vec->size;
         T_1_3 = g_envOPtypedef_list;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_id.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1981,7 +1981,7 @@ g_envOPadd_global(CLUREF nm, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_envOPglobal_list.vec->size; 
+        T_1_2.num = g_envOPglobal_list.vec->size;
         T_1_3 = g_envOPglobal_list;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_nm.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -2050,7 +2050,7 @@ g_envOPadd_str(CLUREF nm, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_envOPstr_list.vec->size; 
+        T_1_2.num = g_envOPstr_list.vec->size;
         T_1_3 = g_envOPstr_list;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_nm.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -2119,7 +2119,7 @@ g_envOPadd_extern(CLUREF nm, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_envOPextern_list.vec->size; 
+        T_1_2.num = g_envOPextern_list.vec->size;
         T_1_3 = g_envOPextern_list;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_nm.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -2201,7 +2201,7 @@ g_envOPadd_vlist(CLUREF n, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_envOPvlist.vec->size; 
+        T_1_2.num = g_envOPvlist.vec->size;
         T_1_3 = g_envOPvlist;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_n.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -2282,7 +2282,7 @@ g_envOPadd_siglist(CLUREF n, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_envOPvlist.vec->size; 
+        T_1_2.num = g_envOPvlist.vec->size;
         T_1_3 = g_envOPvlist;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_n.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -2350,7 +2350,7 @@ g_envOPadd_find_owns(CLUREF nm, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_envOPfind_owns_list.vec->size; 
+        T_1_2.num = g_envOPfind_owns_list.vec->size;
         T_1_3 = g_envOPfind_owns_list;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_nm.num = T_1_3.vec->data[T_1_1.num - 1];

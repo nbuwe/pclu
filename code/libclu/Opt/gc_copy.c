@@ -221,7 +221,7 @@ gc_copy_to(CLUREF x, CLUREF leaves, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = leaves.array->ext_high; 
+        T_1_2.num = leaves.array->ext_high;
         T_1_3 = leaves;
         for (T_1_1.num = leaves.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -564,7 +564,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
-            T_2_2.num = xx.array->ext_high; 
+            T_2_2.num = xx.array->ext_high;
             for (T_2_1.num = xx.array->ext_low; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                 i.num = T_2_1.num;
 

@@ -155,7 +155,7 @@ _resolveOPinit(CLUREF *ret_1)
         T_1_1.vec->data[3] = STR__057usr_057local_057ns_057resolv_056conf.num;
         T_1_1.vec->data[4] = STR__057etc_057resolv_056conf.num;
         T_1_1.vec->data[5] = STR__057etc_057athena_057nameserver_057resolv_056conf.num;
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             cf.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -335,7 +335,7 @@ _resolveOPinit(CLUREF *ret_1)
         CLUREF T_2_3;
         T_2_1.num = _resolveOPbuf.num;
         T_2_2.num = i.num - beg.num;
-         if ((T_2_2.num >= 0 && i.num < 0 && (-beg.num) < 0) || 
+         if ((T_2_2.num >= 0 && i.num < 0 && (-beg.num) < 0) ||
              (T_2_2.num <= 0 && i.num > 0 && (-beg.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -359,7 +359,7 @@ _resolveOPinit(CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = i.num + 1;
-             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -425,7 +425,7 @@ _resolveOPinit(CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = k.num + 1;
-         if ((T_2_1.num > 0 && k.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && k.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && k.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -444,12 +444,12 @@ _resolveOPinit(CLUREF *ret_1)
     err = stringOPsize(line, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     T_1_2.num = T_1_1.num - k.num;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-k.num) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-k.num) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-k.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     T_1_3.num = T_1_2.num + 1;
-     if ((T_1_3.num > 0 && T_1_2.num < 0 && 1 < 0) || 
+     if ((T_1_3.num > 0 && T_1_2.num < 0 && 1 < 0) ||
          (T_1_3.num < 0 && T_1_2.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -464,7 +464,7 @@ _resolveOPinit(CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = i.num + 1;
-     if ((T_1_1.num > 0 && i.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && i.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && i.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -504,7 +504,7 @@ _resolveOPinit(CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = j.num + 1;
-             if ((T_3_1.num > 0 && j.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && j.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && j.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -533,7 +533,7 @@ _resolveOPinit(CLUREF *ret_1)
         CLUREF T_3_3;
         T_3_1.num = _resolveOPbuf.num;
         T_3_2.num = j.num - i.num;
-         if ((T_3_2.num >= 0 && j.num < 0 && (-i.num) < 0) || 
+         if ((T_3_2.num >= 0 && j.num < 0 && (-i.num) < 0) ||
              (T_3_2.num <= 0 && j.num > 0 && (-i.num) > 0)) {
             err = ERR_overflow;
             goto ex_2;}
@@ -587,7 +587,7 @@ _resolveOPinit(CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = k.num + 1;
-             if ((T_4_1.num > 0 && k.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && k.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && k.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -607,12 +607,12 @@ _resolveOPinit(CLUREF *ret_1)
             err = stringOPsize(line, &T_3_1);
             if (err != ERR_ok) goto ex_2;
             T_3_2.num = T_3_1.num - k.num;
-             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-k.num) < 0) || 
+             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-k.num) < 0) ||
                  (T_3_2.num <= 0 && T_3_1.num > 0 && (-k.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
             T_3_3.num = T_3_2.num + 1;
-             if ((T_3_3.num > 0 && T_3_2.num < 0 && 1 < 0) || 
+             if ((T_3_3.num > 0 && T_3_2.num < 0 && 1 < 0) ||
                  (T_3_3.num < 0 && T_3_2.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -807,7 +807,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
     {
     CLUREF T_1_1;
     T_1_1.num = _resolveOPpkid.num + 1;
-     if ((T_1_1.num > 0 && _resolveOPpkid.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && _resolveOPpkid.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && _resolveOPpkid.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -947,7 +947,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
     {
     CLUREF T_1_1;
     T_1_1.num = idx.num + 1;
-     if ((T_1_1.num > 0 && idx.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && idx.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && idx.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -959,7 +959,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
     {
     CLUREF T_1_1;
     T_1_1.num = idx.num + 2;
-     if ((T_1_1.num > 0 && idx.num < 0 && 2 < 0) || 
+     if ((T_1_1.num > 0 && idx.num < 0 && 2 < 0) ||
          (T_1_1.num < 0 && idx.num > 0 && 2 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -972,7 +972,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = idx.num + 3;
-     if ((T_1_1.num > 0 && idx.num < 0 && 3 < 0) || 
+     if ((T_1_1.num > 0 && idx.num < 0 && 3 < 0) ||
          (T_1_1.num < 0 && idx.num > 0 && 3 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -986,7 +986,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
     CLUREF T_2_1;
     CLUREF T_2_2;
     T_2_1.num = idx.num + 3;
-     if ((T_2_1.num > 0 && idx.num < 0 && 3 < 0) || 
+     if ((T_2_1.num > 0 && idx.num < 0 && 3 < 0) ||
          (T_2_1.num < 0 && idx.num > 0 && 3 > 0)) {
         err = ERR_overflow;
         goto ex_2;}
@@ -1023,7 +1023,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
         err = _resolveOPnskip(idx, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = T_2_1.num + 4;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 4 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 4 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 4 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1050,7 +1050,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
         err = _wordvecOPbfetch(_resolveOPans, CLU_8, &T_1_4);
         if (err != ERR_ok) goto ex_0;
         T_1_5.num = T_1_3.num + T_1_4.num;
-         if ((T_1_5.num > 0 && T_1_3.num < 0 && T_1_4.num < 0) || 
+         if ((T_1_5.num > 0 && T_1_3.num < 0 && T_1_4.num < 0) ||
              (T_1_5.num < 0 && T_1_3.num > 0 && T_1_4.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1081,14 +1081,14 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
                 err = intOPmul(T_2_1, T_2_2, &T_2_3);
                 if (err != ERR_ok) goto ex_0;
                 T_2_4.num = idx.num + 1;
-                 if ((T_2_4.num > 0 && idx.num < 0 && 1 < 0) || 
+                 if ((T_2_4.num > 0 && idx.num < 0 && 1 < 0) ||
                      (T_2_4.num < 0 && idx.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
                 err = _wordvecOPbfetch(_resolveOPans, T_2_4, &T_2_5);
                 if (err != ERR_ok) goto ex_0;
                 T_2_6.num = T_2_3.num + T_2_5.num;
-                 if ((T_2_6.num > 0 && T_2_3.num < 0 && T_2_5.num < 0) || 
+                 if ((T_2_6.num > 0 && T_2_3.num < 0 && T_2_5.num < 0) ||
                      (T_2_6.num < 0 && T_2_3.num > 0 && T_2_5.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -1100,7 +1100,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
             {
             CLUREF T_2_1;
             T_2_1.num = idx.num + 2;
-             if ((T_2_1.num > 0 && idx.num < 0 && 2 < 0) || 
+             if ((T_2_1.num > 0 && idx.num < 0 && 2 < 0) ||
                  (T_2_1.num < 0 && idx.num > 0 && 2 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1121,14 +1121,14 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
                 err = intOPmul(T_2_1, T_2_2, &T_2_3);
                 if (err != ERR_ok) goto ex_0;
                 T_2_4.num = idx.num + 1;
-                 if ((T_2_4.num > 0 && idx.num < 0 && 1 < 0) || 
+                 if ((T_2_4.num > 0 && idx.num < 0 && 1 < 0) ||
                      (T_2_4.num < 0 && idx.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
                 err = _wordvecOPbfetch(_resolveOPans, T_2_4, &T_2_5);
                 if (err != ERR_ok) goto ex_0;
                 T_2_6.num = T_2_3.num + T_2_5.num;
-                 if ((T_2_6.num > 0 && T_2_3.num < 0 && T_2_5.num < 0) || 
+                 if ((T_2_6.num > 0 && T_2_3.num < 0 && T_2_5.num < 0) ||
                      (T_2_6.num < 0 && T_2_3.num > 0 && T_2_5.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -1140,7 +1140,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
             {
             CLUREF T_2_1;
             T_2_1.num = idx.num + 6;
-             if ((T_2_1.num > 0 && idx.num < 0 && 6 < 0) || 
+             if ((T_2_1.num > 0 && idx.num < 0 && 6 < 0) ||
                  (T_2_1.num < 0 && idx.num > 0 && 6 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1161,14 +1161,14 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
                 err = intOPmul(T_2_1, T_2_2, &T_2_3);
                 if (err != ERR_ok) goto ex_0;
                 T_2_4.num = idx.num + 1;
-                 if ((T_2_4.num > 0 && idx.num < 0 && 1 < 0) || 
+                 if ((T_2_4.num > 0 && idx.num < 0 && 1 < 0) ||
                      (T_2_4.num < 0 && idx.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
                 err = _wordvecOPbfetch(_resolveOPans, T_2_4, &T_2_5);
                 if (err != ERR_ok) goto ex_0;
                 T_2_6.num = T_2_3.num + T_2_5.num;
-                 if ((T_2_6.num > 0 && T_2_3.num < 0 && T_2_5.num < 0) || 
+                 if ((T_2_6.num > 0 && T_2_3.num < 0 && T_2_5.num < 0) ||
                      (T_2_6.num < 0 && T_2_3.num > 0 && T_2_5.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -1180,7 +1180,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
             {
             CLUREF T_2_1;
             T_2_1.num = idx.num + 2;
-             if ((T_2_1.num > 0 && idx.num < 0 && 2 < 0) || 
+             if ((T_2_1.num > 0 && idx.num < 0 && 2 < 0) ||
                  (T_2_1.num < 0 && idx.num > 0 && 2 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1217,7 +1217,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = idx.num + n.num;
-                 if ((T_3_1.num > 0 && idx.num < 0 && n.num < 0) || 
+                 if ((T_3_1.num > 0 && idx.num < 0 && n.num < 0) ||
                      (T_3_1.num < 0 && idx.num > 0 && n.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -1240,7 +1240,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
             CLUREF T_2_6;
             CLUREF T_2_7;
             T_2_1.num = idx.num + 3;
-             if ((T_2_1.num > 0 && idx.num < 0 && 3 < 0) || 
+             if ((T_2_1.num > 0 && idx.num < 0 && 3 < 0) ||
                  (T_2_1.num < 0 && idx.num > 0 && 3 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1250,14 +1250,14 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
             err = intOPmul(T_2_2, T_2_3, &T_2_4);
             if (err != ERR_ok) goto ex_0;
             T_2_5.num = idx.num + 2;
-             if ((T_2_5.num > 0 && idx.num < 0 && 2 < 0) || 
+             if ((T_2_5.num > 0 && idx.num < 0 && 2 < 0) ||
                  (T_2_5.num < 0 && idx.num > 0 && 2 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
             err = _wordvecOPbfetch(_resolveOPans, T_2_5, &T_2_6);
             if (err != ERR_ok) goto ex_0;
             T_2_7.num = T_2_4.num + T_2_6.num;
-             if ((T_2_7.num > 0 && T_2_4.num < 0 && T_2_6.num < 0) || 
+             if ((T_2_7.num > 0 && T_2_4.num < 0 && T_2_6.num < 0) ||
                  (T_2_7.num < 0 && T_2_4.num > 0 && T_2_6.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1271,7 +1271,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
             CLUREF T_2_12;
             CLUREF T_2_13;
             T_2_8.num = idx.num + 1;
-             if ((T_2_8.num > 0 && idx.num < 0 && 1 < 0) || 
+             if ((T_2_8.num > 0 && idx.num < 0 && 1 < 0) ||
                  (T_2_8.num < 0 && idx.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1283,7 +1283,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
             err = _wordvecOPbfetch(_resolveOPans, idx, &T_2_12);
             if (err != ERR_ok) goto ex_0;
             T_2_13.num = T_2_11.num + T_2_12.num;
-             if ((T_2_13.num > 0 && T_2_11.num < 0 && T_2_12.num < 0) || 
+             if ((T_2_13.num > 0 && T_2_11.num < 0 && T_2_12.num < 0) ||
                  (T_2_13.num < 0 && T_2_11.num > 0 && T_2_12.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1348,7 +1348,7 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = idx.num + max.num;
-     if ((T_1_1.num > 0 && idx.num < 0 && max.num < 0) || 
+     if ((T_1_1.num > 0 && idx.num < 0 && max.num < 0) ||
          (T_1_1.num < 0 && idx.num > 0 && max.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1384,7 +1384,7 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = i.num + 1;
-             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1413,7 +1413,7 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = i.num + 1;
-                 if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+                 if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                      (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -1445,7 +1445,7 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = idx.num + 1;
-             if ((T_3_1.num > 0 && idx.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && idx.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && idx.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1496,7 +1496,7 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
         {
             {CLUREF T_2_1;
             T_2_1.num = idx.num - zidx.num;
-             if ((T_2_1.num >= 0 && idx.num < 0 && (-zidx.num) < 0) || 
+             if ((T_2_1.num >= 0 && idx.num < 0 && (-zidx.num) < 0) ||
                  (T_2_1.num <= 0 && idx.num > 0 && (-zidx.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1528,7 +1528,7 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = idx.num + 1;
-         if ((T_2_1.num > 0 && idx.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && idx.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && idx.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1560,7 +1560,7 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = idx.num + 1;
-     if ((T_1_1.num > 0 && idx.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && idx.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && idx.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1612,7 +1612,7 @@ _resolveOPnskip(CLUREF idx, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = idx.num + 1;
-         if ((T_2_1.num > 0 && idx.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && idx.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && idx.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1642,7 +1642,7 @@ _resolveOPnskip(CLUREF idx, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = idx.num + n.num;
-             if ((T_3_1.num > 0 && idx.num < 0 && n.num < 0) || 
+             if ((T_3_1.num > 0 && idx.num < 0 && n.num < 0) ||
                  (T_3_1.num < 0 && idx.num > 0 && n.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1658,7 +1658,7 @@ _resolveOPnskip(CLUREF idx, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = idx.num + 1;
-         if ((T_2_1.num > 0 && idx.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && idx.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && idx.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}

@@ -85,12 +85,12 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         T_1_1.num = high.num - low.num;
-         if ((T_1_1.num >= 0 && high.num < 0 && (-low.num) < 0) || 
+         if ((T_1_1.num >= 0 && high.num < 0 && (-low.num) < 0) ||
              (T_1_1.num <= 0 && high.num > 0 && (-low.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_1_2.num = T_1_1.num + 1;
-         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
              (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -190,7 +190,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
         err = intOPdiv(size, CLU_2, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         T_1_2.num = low.num + T_1_1.num;
-         if ((T_1_2.num > 0 && low.num < 0 && T_1_1.num < 0) || 
+         if ((T_1_2.num > 0 && low.num < 0 && T_1_1.num < 0) ||
              (T_1_2.num < 0 && low.num > 0 && T_1_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -292,7 +292,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
             {
             CLUREF T_3_1;
             T_3_1.num = low.num + 1;
-             if ((T_3_1.num > 0 && low.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && low.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && low.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -303,7 +303,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
             {
             CLUREF T_3_1;
             T_3_1.num = mid.num + 1;
-             if ((T_3_1.num > 0 && mid.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && mid.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && mid.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -321,7 +321,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
             {
             CLUREF T_3_1;
             T_3_1.num = mid.num + 1;
-             if ((T_3_1.num > 0 && mid.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && mid.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && mid.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -389,7 +389,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
             {
             CLUREF T_3_1;
             T_3_1.num = high.num - 1;
-             if ((T_3_1.num >= 0 && high.num < 0 && (-1) < 0) || 
+             if ((T_3_1.num >= 0 && high.num < 0 && (-1) < 0) ||
                  (T_3_1.num <= 0 && high.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -403,7 +403,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
     {
     CLUREF T_1_1;
     T_1_1.num = low.num - 1;
-     if ((T_1_1.num >= 0 && low.num < 0 && (-1) < 0) || 
+     if ((T_1_1.num >= 0 && low.num < 0 && (-1) < 0) ||
          (T_1_1.num <= 0 && low.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -419,7 +419,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
     {
     CLUREF T_1_1;
     T_1_1.num = high.num + 1;
-     if ((T_1_1.num > 0 && high.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && high.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && high.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}

@@ -58,7 +58,7 @@ parse_line(CLUREF s, CLUREF *ret_1)
         err = stringOPsize(s, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         T_1_2.num = T_1_1.num + 1;
-         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
              (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}

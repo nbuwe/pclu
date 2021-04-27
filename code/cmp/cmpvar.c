@@ -1152,7 +1152,7 @@ cmpvarOPinit_base_cmd(CLUREF ty, CLUREF *ret_1)
             CLUREF T_4_6;
             CLUREF T_4_7;
             T_4_1.num = pos.num - 1;
-             if ((T_4_1.num >= 0 && pos.num < 0 && (-1) < 0) || 
+             if ((T_4_1.num >= 0 && pos.num < 0 && (-1) < 0) ||
                  (T_4_1.num <= 0 && pos.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -1163,7 +1163,7 @@ cmpvarOPinit_base_cmd(CLUREF ty, CLUREF *ret_1)
             err = stringOPconcat(T_4_2, T_4_3, &T_4_4);
             if (err != ERR_ok) goto ex_1;
             T_4_5.num = pos.num + 4;
-             if ((T_4_5.num > 0 && pos.num < 0 && 4 < 0) || 
+             if ((T_4_5.num > 0 && pos.num < 0 && 4 < 0) ||
                  (T_4_5.num < 0 && pos.num > 0 && 4 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}

@@ -674,7 +674,7 @@ c_envOPbegin_specs(CLUREF e)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[3];
     T_1_2.num = T_1_1.num + 1;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -718,7 +718,7 @@ c_envOPend_specs(CLUREF e)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[3];
     T_1_2.num = T_1_1.num - 1;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -779,7 +779,7 @@ c_envOPbegin_recheck(CLUREF e, CLUREF types)
         CLUREF T_2_2;
         T_2_1.num = e.vec->data[18];
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -799,7 +799,7 @@ c_envOPbegin_recheck(CLUREF e, CLUREF types)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[3];
     T_1_2.num = T_1_1.num + 1;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -841,7 +841,7 @@ c_envOPend_recheck(CLUREF e, CLUREF types)
         CLUREF T_2_2;
         T_2_1.num = e.vec->data[18];
         T_2_2.num = T_2_1.num - 1;
-         if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-1) < 0) || 
+         if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-1) < 0) ||
              (T_2_2.num <= 0 && T_2_1.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -856,7 +856,7 @@ c_envOPend_recheck(CLUREF e, CLUREF types)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[3];
     T_1_2.num = T_1_1.num - 1;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -976,7 +976,7 @@ c_envOPend_scope(CLUREF e)
     CLUREF T_1_5;
         T_1_1.num = stack.array->ext_high;
         T_1_2.num = i.num + 1;
-         if ((T_1_2.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_1_2.num > 0 && i.num < 0 && 1 < 0) ||
              (T_1_2.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1164,7 +1164,7 @@ c_envOPbegin_type_scope(CLUREF e)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[19];
     T_1_2.num = T_1_1.num + 1;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1202,7 +1202,7 @@ c_envOPend_type_scope(CLUREF e)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[19];
     T_1_2.num = T_1_1.num - 1;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1332,7 +1332,7 @@ c_envOPeval_parms(CLUREF e, CLUREF parms, CLUREF list)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = parms.vec->size; 
+        T_1_2.num = parms.vec->size;
         T_1_3 = parms;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             d.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1354,7 +1354,7 @@ c_envOPeval_parms(CLUREF e, CLUREF parms, CLUREF list)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = d.vec->data[0];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     i.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -1489,7 +1489,7 @@ c_envOPpush_equates(CLUREF e, CLUREF list)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = list.vec->size; 
+        T_1_2.num = list.vec->size;
         T_1_3 = list;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             eq.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1590,7 +1590,7 @@ c_envOPprocess(CLUREF e, CLUREF size)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[19];
     T_1_2.num = T_1_1.num + 1;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1613,7 +1613,7 @@ c_envOPprocess(CLUREF e, CLUREF size)
     CLUREF T_1_4;
     CLUREF T_1_5;
         T_1_1.num = size.num + 1;
-         if ((T_1_1.num > 0 && size.num < 0 && 1 < 0) || 
+         if ((T_1_1.num > 0 && size.num < 0 && 1 < 0) ||
              (T_1_1.num < 0 && size.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1679,7 +1679,7 @@ c_envOPprocess(CLUREF e, CLUREF size)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[19];
     T_1_2.num = T_1_1.num - 1;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -3096,7 +3096,7 @@ c_envOPbreak_illegal(CLUREF e, CLUREF *ret_1)
         CLUREF T_2_5;
             T_2_1.num = loops.array->ext_size;
             T_2_2.num = T_2_1.num - 1;
-             if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-1) < 0) || 
+             if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-1) < 0) ||
                  (T_2_2.num <= 0 && T_2_1.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -3717,7 +3717,7 @@ c_envOPoutput(CLUREF e, CLUREF msg)
         CLUREF T_3_1;
         CLUREF T_3_2;
         CLUREF T_3_3;
-            T_3_2.num = msg.vec->size; 
+            T_3_2.num = msg.vec->size;
             T_3_3 = msg;
             for (T_3_1.num = 1; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                 s.num = T_3_3.vec->data[T_3_1.num - 1];
@@ -4068,7 +4068,7 @@ c_envOPpush_vals(CLUREF e, CLUREF idns, CLUREF vals)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = idns.vec->size; 
+        T_1_2.num = idns.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             n.num = T_1_1.num;
 
@@ -4148,7 +4148,7 @@ c_envOPpush_parms(CLUREF e, CLUREF parms, CLUREF nparms)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = parms.vec->size; 
+        T_1_2.num = parms.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -4245,7 +4245,7 @@ c_envOPpush_parm(CLUREF e, CLUREF parm, CLUREF nparm)
     err = idnOPget_kind(nparm, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {
 
   LINE(631);
@@ -4270,7 +4270,7 @@ c_envOPpush_parm(CLUREF e, CLUREF parm, CLUREF nparm)
             }
             break;
             }
-    case 10: 
+    case 10:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         k.num = T_1_2.num;
@@ -4484,7 +4484,7 @@ c_envOPadd_var(CLUREF e, CLUREF i, CLUREF t)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = vars.array->ext_high; 
+        T_1_2.num = vars.array->ext_high;
         T_1_3 = vars;
         for (T_1_1.num = vars.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -4654,7 +4654,7 @@ c_envOPlookup(CLUREF e, CLUREF i, CLUREF want)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = e.vec->data[5];
-        T_1_3.num = T_1_1.array->ext_high; 
+        T_1_3.num = T_1_1.array->ext_high;
         T_1_4 = T_1_1;
         for (T_1_2.num = T_1_1.array->ext_low; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             if (T_1_2.num > T_1_4.array->ext_high || T_1_2.num < T_1_4.array->ext_low) {
@@ -4807,7 +4807,7 @@ c_envOPdo_entry(CLUREF e, CLUREF ent)
     CLUREF T_1_1;
     T_1_1.num = ent.vec->data[1];
     switch (T_1_1.cell->tag) {
-    case 1: 
+    case 1:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         eq.num = T_1_2.num;
@@ -4821,7 +4821,7 @@ c_envOPdo_entry(CLUREF e, CLUREF ent)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         eq.num = T_1_3.num;
@@ -5053,7 +5053,7 @@ c_envOPlookup2(CLUREF e, CLUREF i, CLUREF want)
         err = duOPget_mspecs(gen, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         switch (T_2_1.cell->tag) {
-        case 2: 
+        case 2:
              {CLUREF T_2_2;
             T_2_2.num = T_2_1.cell->value;
             specs.num = T_2_2.num;
@@ -5061,7 +5061,7 @@ c_envOPlookup2(CLUREF e, CLUREF i, CLUREF want)
   LINE(734);
                 {
                 switch (specs.cell->tag) {
-                case 4: 
+                case 4:
                      {
                         break;
                         }
@@ -5314,7 +5314,7 @@ c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = e.vec->data[2];
-        T_1_3.num = T_1_1.array->ext_high; 
+        T_1_3.num = T_1_1.array->ext_high;
         T_1_4 = T_1_1;
         for (T_1_2.num = T_1_1.array->ext_low; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             if (T_1_2.num > T_1_4.array->ext_high || T_1_2.num < T_1_4.array->ext_low) {
@@ -5326,7 +5326,7 @@ c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
   LINE(768);
             {
             switch (ent.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = ent.cell->value;
                 xs.num = T_2_1.num;
@@ -5338,7 +5338,7 @@ c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = xs.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             arm.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -5350,7 +5350,7 @@ c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
                             CLUREF T_4_3;
                             CLUREF T_4_4;
                                 T_4_1.num = arm.vec->data[2];
-                                T_4_3.num = T_4_1.vec->size; 
+                                T_4_3.num = T_4_1.vec->size;
                                 T_4_4 = T_4_1;
                                 for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                     n.num = T_4_4.vec->data[T_4_2.num - 1];
@@ -5414,7 +5414,7 @@ c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
                         }/* end if */
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_2;
                 T_2_2.num = ent.cell->value;
                 resigs.num = T_2_2.num;
@@ -5424,7 +5424,7 @@ c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
                     CLUREF T_3_1;
                     CLUREF T_3_2;
                     CLUREF T_3_3;
-                        T_3_2.num = resigs.vec->size; 
+                        T_3_2.num = resigs.vec->size;
                         T_3_3 = resigs;
                         for (T_3_1.num = 1; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                             resig.num = T_3_3.vec->data[T_3_1.num - 1];

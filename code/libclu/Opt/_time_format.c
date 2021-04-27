@@ -37,7 +37,7 @@ _time_format(CLUREF sec, CLUREF msec, CLUREF usec, CLUREF *ret_1)
     CLUREF T_1_5;
     T_1_1.num = 499;
     T_1_2.num = usec.num + T_1_1.num;
-     if ((T_1_2.num > 0 && usec.num < 0 && T_1_1.num < 0) || 
+     if ((T_1_2.num > 0 && usec.num < 0 && T_1_1.num < 0) ||
          (T_1_2.num < 0 && usec.num > 0 && T_1_1.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -45,7 +45,7 @@ _time_format(CLUREF sec, CLUREF msec, CLUREF usec, CLUREF *ret_1)
     err = intOPdiv(T_1_2, T_1_3, &T_1_4);
     if (err != ERR_ok) goto ex_0;
     T_1_5.num = msec.num + T_1_4.num;
-     if ((T_1_5.num > 0 && msec.num < 0 && T_1_4.num < 0) || 
+     if ((T_1_5.num > 0 && msec.num < 0 && T_1_4.num < 0) ||
          (T_1_5.num < 0 && msec.num > 0 && T_1_4.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -72,7 +72,7 @@ _time_format(CLUREF sec, CLUREF msec, CLUREF usec, CLUREF *ret_1)
     err = intOPdiv(msec, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_3.num = sec.num + T_1_2.num;
-     if ((T_1_3.num > 0 && sec.num < 0 && T_1_2.num < 0) || 
+     if ((T_1_3.num > 0 && sec.num < 0 && T_1_2.num < 0) ||
          (T_1_3.num < 0 && sec.num > 0 && T_1_2.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -85,7 +85,7 @@ _time_format(CLUREF sec, CLUREF msec, CLUREF usec, CLUREF *ret_1)
     if (err != ERR_ok) goto ex_0;
     T_1_8.num = 1000;
     T_1_9.num = T_1_7.num + T_1_8.num;
-     if ((T_1_9.num > 0 && T_1_7.num < 0 && T_1_8.num < 0) || 
+     if ((T_1_9.num > 0 && T_1_7.num < 0 && T_1_8.num < 0) ||
          (T_1_9.num < 0 && T_1_7.num > 0 && T_1_8.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}

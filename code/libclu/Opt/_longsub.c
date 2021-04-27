@@ -21,7 +21,7 @@ _longsub(CLUREF x1, CLUREF x2, CLUREF x3, CLUREF y1, CLUREF y2, CLUREF y3, CLURE
     {
     CLUREF T_1_1;
     T_1_1.num = x3.num - y3.num;
-     if ((T_1_1.num >= 0 && x3.num < 0 && (-y3.num) < 0) || 
+     if ((T_1_1.num >= 0 && x3.num < 0 && (-y3.num) < 0) ||
          (T_1_1.num <= 0 && x3.num > 0 && (-y3.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -38,7 +38,7 @@ _longsub(CLUREF x1, CLUREF x2, CLUREF x3, CLUREF y1, CLUREF y2, CLUREF y3, CLURE
         {
         CLUREF T_2_1;
         T_2_1.num = x2.num - 1;
-         if ((T_2_1.num >= 0 && x2.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && x2.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && x2.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -51,7 +51,7 @@ _longsub(CLUREF x1, CLUREF x2, CLUREF x3, CLUREF y1, CLUREF y2, CLUREF y3, CLURE
         CLUREF T_2_2;
         T_2_1.num = 1000;
         T_2_2.num = x3.num + T_2_1.num;
-         if ((T_2_2.num > 0 && x3.num < 0 && T_2_1.num < 0) || 
+         if ((T_2_2.num > 0 && x3.num < 0 && T_2_1.num < 0) ||
              (T_2_2.num < 0 && x3.num > 0 && T_2_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -64,7 +64,7 @@ _longsub(CLUREF x1, CLUREF x2, CLUREF x3, CLUREF y1, CLUREF y2, CLUREF y3, CLURE
     {
     CLUREF T_1_1;
     T_1_1.num = x2.num - y2.num;
-     if ((T_1_1.num >= 0 && x2.num < 0 && (-y2.num) < 0) || 
+     if ((T_1_1.num >= 0 && x2.num < 0 && (-y2.num) < 0) ||
          (T_1_1.num <= 0 && x2.num > 0 && (-y2.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -81,7 +81,7 @@ _longsub(CLUREF x1, CLUREF x2, CLUREF x3, CLUREF y1, CLUREF y2, CLUREF y3, CLURE
         {
         CLUREF T_2_1;
         T_2_1.num = x1.num - 1;
-         if ((T_2_1.num >= 0 && x1.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && x1.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && x1.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -94,7 +94,7 @@ _longsub(CLUREF x1, CLUREF x2, CLUREF x3, CLUREF y1, CLUREF y2, CLUREF y3, CLURE
         CLUREF T_2_2;
         T_2_1.num = 1000;
         T_2_2.num = x2.num + T_2_1.num;
-         if ((T_2_2.num > 0 && x2.num < 0 && T_2_1.num < 0) || 
+         if ((T_2_2.num > 0 && x2.num < 0 && T_2_1.num < 0) ||
              (T_2_2.num < 0 && x2.num > 0 && T_2_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -108,7 +108,7 @@ _longsub(CLUREF x1, CLUREF x2, CLUREF x3, CLUREF y1, CLUREF y2, CLUREF y3, CLURE
     {
     CLUREF T_1_1;
     T_1_1.num = x1.num - y1.num;
-     if ((T_1_1.num >= 0 && x1.num < 0 && (-y1.num) < 0) || 
+     if ((T_1_1.num >= 0 && x1.num < 0 && (-y1.num) < 0) ||
          (T_1_1.num <= 0 && x1.num > 0 && (-y1.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}

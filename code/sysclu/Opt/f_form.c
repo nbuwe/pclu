@@ -106,7 +106,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
         CLUREF T_2_2;
         CLUREF T_2_3;
         T_2_1.num = expon.num + f.num;
-         if ((T_2_1.num > 0 && expon.num < 0 && f.num < 0) || 
+         if ((T_2_1.num > 0 && expon.num < 0 && f.num < 0) ||
              (T_2_1.num < 0 && expon.num > 0 && f.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -120,7 +120,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = expon.num + n.num;
-         if ((T_2_1.num > 0 && expon.num < 0 && n.num < 0) || 
+         if ((T_2_1.num > 0 && expon.num < 0 && n.num < 0) ||
              (T_2_1.num < 0 && expon.num > 0 && n.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -145,7 +145,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = f.num + 1;
-     if ((T_1_1.num > 0 && f.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && f.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && f.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -168,7 +168,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = n.num + expon.num;
-             if ((T_3_1.num > 0 && n.num < 0 && expon.num < 0) || 
+             if ((T_3_1.num > 0 && n.num < 0 && expon.num < 0) ||
                  (T_3_1.num < 0 && n.num > 0 && expon.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -194,7 +194,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = n.num + 1;
-             if ((T_3_1.num > 0 && n.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && n.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && n.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -225,7 +225,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = n.num + 1;
-         if ((T_2_1.num > 0 && n.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && n.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && n.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -295,7 +295,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = n.num + 1;
-             if ((T_3_1.num > 0 && n.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && n.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && n.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -350,7 +350,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = j.num + 1;
-             if ((T_3_1.num > 0 && j.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && j.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && j.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -369,7 +369,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = n.num + 1;
-         if ((T_2_1.num > 0 && n.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && n.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && n.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -380,7 +380,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = i.num - 1;
-         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && i.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -402,7 +402,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = f.num - 1;
-         if ((T_2_1.num >= 0 && f.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && f.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && f.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}

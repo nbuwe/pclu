@@ -115,7 +115,7 @@ lex_scan(CLUREF s, CLUREF sep_chars, CLUREF fill_chars, CLUREF beginq, CLUREF en
                     CLUREF T_4_1;
                     CLUREF T_4_2;
                     T_4_1.num = i.num - mark.num;
-                     if ((T_4_1.num >= 0 && i.num < 0 && (-mark.num) < 0) || 
+                     if ((T_4_1.num >= 0 && i.num < 0 && (-mark.num) < 0) ||
                          (T_4_1.num <= 0 && i.num > 0 && (-mark.num) > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -293,7 +293,7 @@ lex_scan(CLUREF s, CLUREF sep_chars, CLUREF fill_chars, CLUREF beginq, CLUREF en
                     {
                     CLUREF T_4_1;
                     T_4_1.num = i.num + 1;
-                     if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+                     if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                          (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -387,7 +387,7 @@ lex_scan(CLUREF s, CLUREF sep_chars, CLUREF fill_chars, CLUREF beginq, CLUREF en
                     {
                     CLUREF T_4_1;
                     T_4_1.num = i.num + 1;
-                     if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+                     if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                          (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -413,7 +413,7 @@ lex_scan(CLUREF s, CLUREF sep_chars, CLUREF fill_chars, CLUREF beginq, CLUREF en
                 CLUREF T_3_1;
                 CLUREF T_3_2;
                 T_3_1.num = i.num - mark.num;
-                 if ((T_3_1.num >= 0 && i.num < 0 && (-mark.num) < 0) || 
+                 if ((T_3_1.num >= 0 && i.num < 0 && (-mark.num) < 0) ||
                      (T_3_1.num <= 0 && i.num > 0 && (-mark.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -486,7 +486,7 @@ lex_scan(CLUREF s, CLUREF sep_chars, CLUREF fill_chars, CLUREF beginq, CLUREF en
                     {
                     CLUREF T_4_1;
                     T_4_1.num = i.num + 1;
-                     if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+                     if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                          (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -519,12 +519,12 @@ lex_scan(CLUREF s, CLUREF sep_chars, CLUREF fill_chars, CLUREF beginq, CLUREF en
         CLUREF T_2_2;
         CLUREF T_2_3;
         T_2_1.num = i.num + 1;
-         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_2_2.num = T_2_1.num - mark.num;
-         if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-mark.num) < 0) || 
+         if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-mark.num) < 0) ||
              (T_2_2.num <= 0 && T_2_1.num > 0 && (-mark.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}

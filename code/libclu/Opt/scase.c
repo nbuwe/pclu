@@ -325,7 +325,7 @@ struct {
     {
     CLUREF T_1_1;
     T_1_1.num = locals->pos.num + 1;
-     if ((T_1_1.num > 0 && locals->pos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && locals->pos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && locals->pos.num > 0 && 1 > 0)) {
         locals->err = ERR_overflow;
         goto ex_0;}
@@ -398,7 +398,7 @@ struct {
             CLUREF T_3_3;
             T_3_1.num = (long)(locals->c.ch & 0xff);
             T_3_2.num = T_3_1.num - 32;
-             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-32) < 0) || 
+             if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-32) < 0) ||
                  (T_3_2.num <= 0 && T_3_1.num > 0 && (-32) > 0)) {
                 locals->err = ERR_overflow;
                 goto ex_0;}
@@ -439,7 +439,7 @@ struct {
             CLUREF T_3_3;
             T_3_1.num = (long)(locals->c.ch & 0xff);
             T_3_2.num = T_3_1.num + 32;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 32 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 32 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 32 > 0)) {
                 locals->err = ERR_overflow;
                 goto ex_0;}
@@ -468,7 +468,7 @@ struct {
     {
     CLUREF T_1_1;
     T_1_1.num = locals->npos.num + 1;
-     if ((T_1_1.num > 0 && locals->npos.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && locals->npos.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && locals->npos.num > 0 && 1 > 0)) {
         locals->err = ERR_overflow;
         goto ex_0;}

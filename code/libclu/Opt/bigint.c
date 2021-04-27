@@ -274,7 +274,7 @@ bigintOPbi2i(CLUREF a, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = 268435456;
         T_2_2.num = at.num - T_2_1.num;
-         if ((T_2_2.num >= 0 && at.num < 0 && (-T_2_1.num) < 0) || 
+         if ((T_2_2.num >= 0 && at.num < 0 && (-T_2_1.num) < 0) ||
              (T_2_2.num <= 0 && at.num > 0 && (-T_2_1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -305,7 +305,7 @@ bigintOPbi2i(CLUREF a, CLUREF *ret_1)
             goto ex_1;}
         T_3_3.num = a.array->store->data[1 - a.array->ext_low + a.array->int_low];
         T_3_4.num = T_3_2.num + T_3_3.num;
-         if ((T_3_4.num > 0 && T_3_2.num < 0 && T_3_3.num < 0) || 
+         if ((T_3_4.num > 0 && T_3_2.num < 0 && T_3_3.num < 0) ||
              (T_3_4.num < 0 && T_3_2.num > 0 && T_3_3.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -497,7 +497,7 @@ bigintOPparse(CLUREF a, CLUREF *ret_1)
             CLUREF T_2_2;
             T_2_1.num = (long)(nc.ch & 0xff);
             T_2_2.num = T_2_1.num - 48;
-             if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-48) < 0) || 
+             if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-48) < 0) ||
                  (T_2_2.num <= 0 && T_2_1.num > 0 && (-48) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -669,7 +669,7 @@ bigintOPunparse(CLUREF r, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = 48 + rem.num;
-         if ((T_2_1.num > 0 && 48 < 0 && rem.num < 0) || 
+         if ((T_2_1.num > 0 && 48 < 0 && rem.num < 0) ||
              (T_2_1.num < 0 && 48 > 0 && rem.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -687,7 +687,7 @@ bigintOPunparse(CLUREF r, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = cbptr.num - 1;
-         if ((T_2_1.num >= 0 && cbptr.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && cbptr.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && cbptr.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -716,7 +716,7 @@ bigintOPunparse(CLUREF r, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = cbptr.num - 1;
-         if ((T_2_1.num >= 0 && cbptr.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && cbptr.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && cbptr.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -729,7 +729,7 @@ bigintOPunparse(CLUREF r, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = cbptr.num + 1;
-     if ((T_1_1.num > 0 && cbptr.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && cbptr.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && cbptr.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -816,7 +816,7 @@ bigintOPone_digit_divide(CLUREF rnb, CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
                     goto ex_0;}
                 T_2_3.num = rnb.array->store->data[i.num - rnb.array->ext_low + rnb.array->int_low];
                 T_2_4.num = T_2_2.num + T_2_3.num;
-                 if ((T_2_4.num > 0 && T_2_2.num < 0 && T_2_3.num < 0) || 
+                 if ((T_2_4.num > 0 && T_2_2.num < 0 && T_2_3.num < 0) ||
                      (T_2_4.num < 0 && T_2_2.num > 0 && T_2_3.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -1086,7 +1086,7 @@ bigintOPaddsub(CLUREF a, CLUREF b, CLUREF neg, CLUREF *ret_1)
                 CLUREF T_3_2;
                 T_3_1.num = 268435455;
                 T_3_2.num = T_3_1.num - fb.num;
-                 if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-fb.num) < 0) || 
+                 if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-fb.num) < 0) ||
                      (T_3_2.num <= 0 && T_3_1.num > 0 && (-fb.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -1100,12 +1100,12 @@ bigintOPaddsub(CLUREF a, CLUREF b, CLUREF neg, CLUREF *ret_1)
             CLUREF T_2_1;
             CLUREF T_2_2;
             T_2_1.num = fa.num + fb.num;
-             if ((T_2_1.num > 0 && fa.num < 0 && fb.num < 0) || 
+             if ((T_2_1.num > 0 && fa.num < 0 && fb.num < 0) ||
                  (T_2_1.num < 0 && fa.num > 0 && fb.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
             T_2_2.num = T_2_1.num + carry.num;
-             if ((T_2_2.num > 0 && T_2_1.num < 0 && carry.num < 0) || 
+             if ((T_2_2.num > 0 && T_2_1.num < 0 && carry.num < 0) ||
                  (T_2_2.num < 0 && T_2_1.num > 0 && carry.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -1126,7 +1126,7 @@ bigintOPaddsub(CLUREF a, CLUREF b, CLUREF neg, CLUREF *ret_1)
                 CLUREF T_3_2;
                 T_3_1.num = 268435456;
                 T_3_2.num = psum.num - T_3_1.num;
-                 if ((T_3_2.num >= 0 && psum.num < 0 && (-T_3_1.num) < 0) || 
+                 if ((T_3_2.num >= 0 && psum.num < 0 && (-T_3_1.num) < 0) ||
                      (T_3_2.num <= 0 && psum.num > 0 && (-T_3_1.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -1573,7 +1573,7 @@ bigintOPequal(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = a.array->ext_high; 
+        T_1_2.num = a.array->ext_high;
         for (T_1_1.num = a.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -2126,7 +2126,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
         T_1_1.num = a.array->ext_size;
         T_1_2.num = b.array->ext_size;
         T_1_3.num = T_1_1.num + T_1_2.num;
-         if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) || 
+         if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) ||
              (T_1_3.num < 0 && T_1_1.num > 0 && T_1_2.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2140,7 +2140,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = a.array->ext_high; 
+        T_1_2.num = a.array->ext_high;
         for (T_1_1.num = a.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             ia.num = T_1_1.num;
 
@@ -2180,7 +2180,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
-                T_2_2.num = b.array->ext_high; 
+                T_2_2.num = b.array->ext_high;
                 for (T_2_1.num = b.array->ext_low; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                     ib.num = T_2_1.num;
 
@@ -2226,7 +2226,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                         err = intOPmul(digahi, digblo, &T_3_2);
                         if (err != ERR_ok) goto ex_0;
                         T_3_3.num = T_3_1.num + T_3_2.num;
-                         if ((T_3_3.num > 0 && T_3_1.num < 0 && T_3_2.num < 0) || 
+                         if ((T_3_3.num > 0 && T_3_1.num < 0 && T_3_2.num < 0) ||
                              (T_3_3.num < 0 && T_3_1.num > 0 && T_3_2.num > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -2251,7 +2251,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                         err = intOPmul(T_3_3, T_3_4, &T_3_5);
                         if (err != ERR_ok) goto ex_0;
                         T_3_6.num = T_3_1.num + T_3_5.num;
-                         if ((T_3_6.num > 0 && T_3_1.num < 0 && T_3_5.num < 0) || 
+                         if ((T_3_6.num > 0 && T_3_1.num < 0 && T_3_5.num < 0) ||
                              (T_3_6.num < 0 && T_3_1.num > 0 && T_3_5.num > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -2271,7 +2271,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                         err = intOPdiv(splitd, T_3_2, &T_3_3);
                         if (err != ERR_ok) goto ex_0;
                         T_3_4.num = T_3_1.num + T_3_3.num;
-                         if ((T_3_4.num > 0 && T_3_1.num < 0 && T_3_3.num < 0) || 
+                         if ((T_3_4.num > 0 && T_3_1.num < 0 && T_3_3.num < 0) ||
                              (T_3_4.num < 0 && T_3_1.num > 0 && T_3_3.num > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -2293,7 +2293,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                         CLUREF T_4_2;
                         T_4_1.num = 268435456;
                         T_4_2.num = addlo.num - T_4_1.num;
-                         if ((T_4_2.num >= 0 && addlo.num < 0 && (-T_4_1.num) < 0) || 
+                         if ((T_4_2.num >= 0 && addlo.num < 0 && (-T_4_1.num) < 0) ||
                              (T_4_2.num <= 0 && addlo.num > 0 && (-T_4_1.num) > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -2304,7 +2304,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                         {
                         CLUREF T_4_1;
                         T_4_1.num = addhi.num + 1;
-                         if ((T_4_1.num > 0 && addhi.num < 0 && 1 < 0) || 
+                         if ((T_4_1.num > 0 && addhi.num < 0 && 1 < 0) ||
                              (T_4_1.num < 0 && addhi.num > 0 && 1 > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -2318,12 +2318,12 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                         {CLUREF T_3_1;
                         CLUREF T_3_2;
                         T_3_1.num = ia.num + ib.num;
-                         if ((T_3_1.num > 0 && ia.num < 0 && ib.num < 0) || 
+                         if ((T_3_1.num > 0 && ia.num < 0 && ib.num < 0) ||
                              (T_3_1.num < 0 && ia.num > 0 && ib.num > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
                         T_3_2.num = T_3_1.num - 1;
-                         if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-1) < 0) || 
+                         if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-1) < 0) ||
                              (T_3_2.num <= 0 && T_3_1.num > 0 && (-1) > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -2340,7 +2340,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                             goto ex_0;}
                         T_3_1.num = c.array->store->data[store_at.num - c.array->ext_low + c.array->int_low];
                         T_3_2.num = T_3_1.num + addlo.num;
-                         if ((T_3_2.num > 0 && T_3_1.num < 0 && addlo.num < 0) || 
+                         if ((T_3_2.num > 0 && T_3_1.num < 0 && addlo.num < 0) ||
                              (T_3_2.num < 0 && T_3_1.num > 0 && addlo.num > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -2362,7 +2362,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                         CLUREF T_4_2;
                         T_4_1.num = 268435456;
                         T_4_2.num = newd.num - T_4_1.num;
-                         if ((T_4_2.num >= 0 && newd.num < 0 && (-T_4_1.num) < 0) || 
+                         if ((T_4_2.num >= 0 && newd.num < 0 && (-T_4_1.num) < 0) ||
                              (T_4_2.num <= 0 && newd.num > 0 && (-T_4_1.num) > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -2373,7 +2373,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                         {
                         CLUREF T_4_1;
                         T_4_1.num = addhi.num + 1;
-                         if ((T_4_1.num > 0 && addhi.num < 0 && 1 < 0) || 
+                         if ((T_4_1.num > 0 && addhi.num < 0 && 1 < 0) ||
                              (T_4_1.num < 0 && addhi.num > 0 && 1 > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -2396,7 +2396,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                     {
                     CLUREF T_3_1;
                     T_3_1.num = store_at.num + 1;
-                     if ((T_3_1.num > 0 && store_at.num < 0 && 1 < 0) || 
+                     if ((T_3_1.num > 0 && store_at.num < 0 && 1 < 0) ||
                          (T_3_1.num < 0 && store_at.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -2412,7 +2412,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                         goto ex_0;}
                     T_3_1.num = c.array->store->data[store_at.num - c.array->ext_low + c.array->int_low];
                     T_3_2.num = T_3_1.num + addhi.num;
-                     if ((T_3_2.num > 0 && T_3_1.num < 0 && addhi.num < 0) || 
+                     if ((T_3_2.num > 0 && T_3_1.num < 0 && addhi.num < 0) ||
                          (T_3_2.num < 0 && T_3_1.num > 0 && addhi.num > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -2433,7 +2433,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                         CLUREF T_4_2;
                         T_4_1.num = 268435456;
                         T_4_2.num = newd.num - T_4_1.num;
-                         if ((T_4_2.num >= 0 && newd.num < 0 && (-T_4_1.num) < 0) || 
+                         if ((T_4_2.num >= 0 && newd.num < 0 && (-T_4_1.num) < 0) ||
                              (T_4_2.num <= 0 && newd.num > 0 && (-T_4_1.num) > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -2444,7 +2444,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                         {
                             {CLUREF T_4_1;
                             T_4_1.num = store_at.num + 1;
-                             if ((T_4_1.num > 0 && store_at.num < 0 && 1 < 0) || 
+                             if ((T_4_1.num > 0 && store_at.num < 0 && 1 < 0) ||
                                  (T_4_1.num < 0 && store_at.num > 0 && 1 > 0)) {
                                 err = ERR_overflow;
                                 goto ex_0;}
@@ -2479,7 +2479,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                             {
                             CLUREF T_5_1;
                             T_5_1.num = add_in.num + 1;
-                             if ((T_5_1.num > 0 && add_in.num < 0 && 1 < 0) || 
+                             if ((T_5_1.num > 0 && add_in.num < 0 && 1 < 0) ||
                                  (T_5_1.num < 0 && add_in.num > 0 && 1 > 0)) {
                                 err = ERR_overflow;
                                 goto ex_0;}
@@ -2497,7 +2497,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                             goto ex_0;}
                         T_4_1.num = c.array->store->data[add_in.num - c.array->ext_low + c.array->int_low];
                         T_4_2.num = T_4_1.num + 1;
-                         if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) || 
+                         if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) ||
                              (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -2544,7 +2544,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = a.array->ext_size;
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2571,7 +2571,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = b.array->ext_size;
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2634,7 +2634,7 @@ bigintOPmul_sub_in(CLUREF c, CLUREF a, CLUREF p)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = a.array->ext_high; 
+        T_1_2.num = a.array->ext_high;
         T_1_3 = a;
         for (T_1_1.num = a.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -2656,17 +2656,17 @@ bigintOPmul_sub_in(CLUREF c, CLUREF a, CLUREF p)
                 T_2_1.num = c.array->store->data[p.num - c.array->ext_low + c.array->int_low];
                 T_2_2.num = 268435455;
                 T_2_3.num = T_2_2.num - aa.num;
-                 if ((T_2_3.num >= 0 && T_2_2.num < 0 && (-aa.num) < 0) || 
+                 if ((T_2_3.num >= 0 && T_2_2.num < 0 && (-aa.num) < 0) ||
                      (T_2_3.num <= 0 && T_2_2.num > 0 && (-aa.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
                 T_2_4.num = T_2_1.num + T_2_3.num;
-                 if ((T_2_4.num > 0 && T_2_1.num < 0 && T_2_3.num < 0) || 
+                 if ((T_2_4.num > 0 && T_2_1.num < 0 && T_2_3.num < 0) ||
                      (T_2_4.num < 0 && T_2_1.num > 0 && T_2_3.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
                 T_2_5.num = T_2_4.num + carry.num;
-                 if ((T_2_5.num > 0 && T_2_4.num < 0 && carry.num < 0) || 
+                 if ((T_2_5.num > 0 && T_2_4.num < 0 && carry.num < 0) ||
                      (T_2_5.num < 0 && T_2_4.num > 0 && carry.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -2688,7 +2688,7 @@ bigintOPmul_sub_in(CLUREF c, CLUREF a, CLUREF p)
                 CLUREF T_3_2;
                 T_3_1.num = 268435456;
                 T_3_2.num = newc.num - T_3_1.num;
-                 if ((T_3_2.num >= 0 && newc.num < 0 && (-T_3_1.num) < 0) || 
+                 if ((T_3_2.num >= 0 && newc.num < 0 && (-T_3_1.num) < 0) ||
                      (T_3_2.num <= 0 && newc.num > 0 && (-T_3_1.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -2722,7 +2722,7 @@ bigintOPmul_sub_in(CLUREF c, CLUREF a, CLUREF p)
             {
             CLUREF T_2_1;
             T_2_1.num = p.num + 1;
-             if ((T_2_1.num > 0 && p.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && p.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && p.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -2789,7 +2789,7 @@ bigintOPclear_leads(CLUREF r)
             CLUREF T_2_2;
             T_2_1.num = r.array->ext_size;
             T_2_2.num = T_2_1.num - 1;
-             if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-1) < 0) || 
+             if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-1) < 0) ||
                  (T_2_2.num <= 0 && T_2_1.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -2813,7 +2813,7 @@ bigintOPclear_leads(CLUREF r)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = rsz.num - 1;
-                 if ((T_5_1.num >= 0 && rsz.num < 0 && (-1) < 0) || 
+                 if ((T_5_1.num >= 0 && rsz.num < 0 && (-1) < 0) ||
                      (T_5_1.num <= 0 && rsz.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -2869,7 +2869,7 @@ bigintOPclear_leads(CLUREF r)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = rsz.num + 1;
-                 if ((T_5_1.num > 0 && rsz.num < 0 && 1 < 0) || 
+                 if ((T_5_1.num > 0 && rsz.num < 0 && 1 < 0) ||
                      (T_5_1.num < 0 && rsz.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -2966,7 +2966,7 @@ bigintOPpower(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = b.array->ext_high; 
+        T_1_2.num = b.array->ext_high;
         for (T_1_1.num = b.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             w.num = T_1_1.num;
 
@@ -3558,12 +3558,12 @@ bigintOPdivmod(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2)
         T_1_1.num = newba.array->ext_size;
         T_1_2.num = newbb.array->ext_size;
         T_1_3.num = T_1_1.num - T_1_2.num;
-         if ((T_1_3.num >= 0 && T_1_1.num < 0 && (-T_1_2.num) < 0) || 
+         if ((T_1_3.num >= 0 && T_1_1.num < 0 && (-T_1_2.num) < 0) ||
              (T_1_3.num <= 0 && T_1_1.num > 0 && (-T_1_2.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_1_4.num = T_1_3.num + 1;
-         if ((T_1_4.num > 0 && T_1_3.num < 0 && 1 < 0) || 
+         if ((T_1_4.num > 0 && T_1_3.num < 0 && 1 < 0) ||
              (T_1_4.num < 0 && T_1_3.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -3696,12 +3696,12 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
         CLUREF T_1_3;
         T_1_1.num = isor.array->ext_size;
         T_1_2.num = e.num + T_1_1.num;
-         if ((T_1_2.num > 0 && e.num < 0 && T_1_1.num < 0) || 
+         if ((T_1_2.num > 0 && e.num < 0 && T_1_1.num < 0) ||
              (T_1_2.num < 0 && e.num > 0 && T_1_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_1_3.num = T_1_2.num - 1;
-         if ((T_1_3.num >= 0 && T_1_2.num < 0 && (-1) < 0) || 
+         if ((T_1_3.num >= 0 && T_1_2.num < 0 && (-1) < 0) ||
              (T_1_3.num <= 0 && T_1_2.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -3730,7 +3730,7 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
         CLUREF T_2_2;
         CLUREF T_2_3;
         T_2_1.num = d.num + 1;
-         if ((T_2_1.num > 0 && d.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && d.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && d.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -3765,7 +3765,7 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
             err = intOPmul(T_3_1, T_3_2, &T_3_3);
             if (err != ERR_ok) goto ex_0;
             T_3_4.num = d.num - 1;
-             if ((T_3_4.num >= 0 && d.num < 0 && (-1) < 0) || 
+             if ((T_3_4.num >= 0 && d.num < 0 && (-1) < 0) ||
                  (T_3_4.num <= 0 && d.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -3774,7 +3774,7 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
                 goto ex_0;}
             T_3_5.num = iden.array->store->data[T_3_4.num - iden.array->ext_low + iden.array->int_low];
             T_3_6.num = T_3_3.num + T_3_5.num;
-             if ((T_3_6.num > 0 && T_3_3.num < 0 && T_3_5.num < 0) || 
+             if ((T_3_6.num > 0 && T_3_3.num < 0 && T_3_5.num < 0) ||
                  (T_3_6.num < 0 && T_3_3.num > 0 && T_3_5.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -3786,7 +3786,7 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
             err = intOPmul(T_3_7, T_3_8, &T_3_9);
             if (err != ERR_ok) goto ex_0;
             T_3_10.num = ssz.num - 1;
-             if ((T_3_10.num >= 0 && ssz.num < 0 && (-1) < 0) || 
+             if ((T_3_10.num >= 0 && ssz.num < 0 && (-1) < 0) ||
                  (T_3_10.num <= 0 && ssz.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -3795,12 +3795,12 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
                 goto ex_0;}
             T_3_11.num = isor.array->store->data[T_3_10.num - isor.array->ext_low + isor.array->int_low];
             T_3_12.num = T_3_9.num + T_3_11.num;
-             if ((T_3_12.num > 0 && T_3_9.num < 0 && T_3_11.num < 0) || 
+             if ((T_3_12.num > 0 && T_3_9.num < 0 && T_3_11.num < 0) ||
                  (T_3_12.num < 0 && T_3_9.num > 0 && T_3_11.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
             T_3_13.num = T_3_12.num + 1;
-             if ((T_3_13.num > 0 && T_3_12.num < 0 && 1 < 0) || 
+             if ((T_3_13.num > 0 && T_3_12.num < 0 && 1 < 0) ||
                  (T_3_13.num < 0 && T_3_12.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -3823,7 +3823,7 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
             CLUREF T_3_8;
             CLUREF T_3_9;
             T_3_1.num = d.num + 1;
-             if ((T_3_1.num > 0 && d.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && d.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && d.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -3839,7 +3839,7 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
                 goto ex_0;}
             T_3_5.num = iden.array->store->data[d.num - iden.array->ext_low + iden.array->int_low];
             T_3_6.num = T_3_4.num + T_3_5.num;
-             if ((T_3_6.num > 0 && T_3_4.num < 0 && T_3_5.num < 0) || 
+             if ((T_3_6.num > 0 && T_3_4.num < 0 && T_3_5.num < 0) ||
                  (T_3_6.num < 0 && T_3_4.num > 0 && T_3_5.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -3848,7 +3848,7 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
                 goto ex_0;}
             T_3_7.num = isor.array->store->data[ssz.num - isor.array->ext_low + isor.array->int_low];
             T_3_8.num = T_3_7.num + 1;
-             if ((T_3_8.num > 0 && T_3_7.num < 0 && 1 < 0) || 
+             if ((T_3_8.num > 0 && T_3_7.num < 0 && 1 < 0) ||
                  (T_3_8.num < 0 && T_3_7.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -3879,7 +3879,7 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = divsofar.num + quess.num;
-         if ((T_2_1.num > 0 && divsofar.num < 0 && quess.num < 0) || 
+         if ((T_2_1.num > 0 && divsofar.num < 0 && quess.num < 0) ||
              (T_2_1.num < 0 && divsofar.num > 0 && quess.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -3932,12 +3932,12 @@ bigintOPdiv_lt(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
         CLUREF T_1_3;
         T_1_1.num = isor.array->ext_size;
         T_1_2.num = e.num + T_1_1.num;
-         if ((T_1_2.num > 0 && e.num < 0 && T_1_1.num < 0) || 
+         if ((T_1_2.num > 0 && e.num < 0 && T_1_1.num < 0) ||
              (T_1_2.num < 0 && e.num > 0 && T_1_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_1_3.num = T_1_2.num - 1;
-         if ((T_1_3.num >= 0 && T_1_2.num < 0 && (-1) < 0) || 
+         if ((T_1_3.num >= 0 && T_1_2.num < 0 && (-1) < 0) ||
              (T_1_3.num <= 0 && T_1_2.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -3951,7 +3951,7 @@ bigintOPdiv_lt(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_1.num = d.num + 1;
-     if ((T_1_1.num > 0 && d.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && d.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && d.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -4031,7 +4031,7 @@ bigintOPdiv_lt(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
             {
             CLUREF T_2_1;
             T_2_1.num = d.num - 1;
-             if ((T_2_1.num >= 0 && d.num < 0 && (-1) < 0) || 
+             if ((T_2_1.num >= 0 && d.num < 0 && (-1) < 0) ||
                  (T_2_1.num <= 0 && d.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -4089,7 +4089,7 @@ bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = isor.array->ext_high; 
+        T_1_2.num = isor.array->ext_high;
         T_1_3 = isor;
         for (T_1_1.num = isor.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -4105,7 +4105,7 @@ bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
                 err = intOPmul(ss, x, &T_2_1);
                 if (err != ERR_ok) goto ex_0;
                 T_2_2.num = borry.num + T_2_1.num;
-                 if ((T_2_2.num > 0 && borry.num < 0 && T_2_1.num < 0) || 
+                 if ((T_2_2.num > 0 && borry.num < 0 && T_2_1.num < 0) ||
                      (T_2_2.num < 0 && borry.num > 0 && T_2_1.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -4127,7 +4127,7 @@ bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
                 err = intOPmod(psum, T_2_2, &T_2_3);
                 if (err != ERR_ok) goto ex_0;
                 T_2_4.num = T_2_1.num - T_2_3.num;
-                 if ((T_2_4.num >= 0 && T_2_1.num < 0 && (-T_2_3.num) < 0) || 
+                 if ((T_2_4.num >= 0 && T_2_1.num < 0 && (-T_2_3.num) < 0) ||
                      (T_2_4.num <= 0 && T_2_1.num > 0 && (-T_2_3.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -4157,7 +4157,7 @@ bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
                 CLUREF T_3_2;
                 T_3_1.num = 16384;
                 T_3_2.num = newee.num + T_3_1.num;
-                 if ((T_3_2.num > 0 && newee.num < 0 && T_3_1.num < 0) || 
+                 if ((T_3_2.num > 0 && newee.num < 0 && T_3_1.num < 0) ||
                      (T_3_2.num < 0 && newee.num > 0 && T_3_1.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -4168,7 +4168,7 @@ bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = borry.num + 1;
-                 if ((T_3_1.num > 0 && borry.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && borry.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && borry.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -4191,7 +4191,7 @@ bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
             {
             CLUREF T_2_1;
             T_2_1.num = e.num + 1;
-             if ((T_2_1.num > 0 && e.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && e.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && e.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -4216,7 +4216,7 @@ bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
             goto ex_0;}
         T_2_1.num = iden.array->store->data[e.num - iden.array->ext_low + iden.array->int_low];
         T_2_2.num = T_2_1.num - borry.num;
-         if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-borry.num) < 0) || 
+         if ((T_2_2.num >= 0 && T_2_1.num < 0 && (-borry.num) < 0) ||
              (T_2_2.num <= 0 && T_2_1.num > 0 && (-borry.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -4277,7 +4277,7 @@ bigintOPnew_base(CLUREF a, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = a.array->ext_high; 
+        T_1_2.num = a.array->ext_high;
         T_1_3 = a;
         for (T_1_1.num = a.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -4467,7 +4467,7 @@ bigintOPold_base(CLUREF a, CLUREF *ret_1)
                 {CLUREF T_3_1;
                 CLUREF T_3_2;
                 T_3_1.num = i.num + 1;
-                 if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -4523,12 +4523,12 @@ bigintOPold_base(CLUREF a, CLUREF *ret_1)
                 err = intOPmul(T_2_2, T_2_3, &T_2_4);
                 if (err != ERR_ok) goto ex_0;
                 T_2_5.num = T_2_4.num + ai.num;
-                 if ((T_2_5.num > 0 && T_2_4.num < 0 && ai.num < 0) || 
+                 if ((T_2_5.num > 0 && T_2_4.num < 0 && ai.num < 0) ||
                      (T_2_5.num < 0 && T_2_4.num > 0 && ai.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
                 T_2_6.num = T_2_5.num + carry.num;
-                 if ((T_2_6.num > 0 && T_2_5.num < 0 && carry.num < 0) || 
+                 if ((T_2_6.num > 0 && T_2_5.num < 0 && carry.num < 0) ||
                      (T_2_6.num < 0 && T_2_5.num > 0 && carry.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -4560,7 +4560,7 @@ bigintOPold_base(CLUREF a, CLUREF *ret_1)
                 CLUREF T_3_2;
                 T_3_1.num = 268435456;
                 T_3_2.num = nsum.num - T_3_1.num;
-                 if ((T_3_2.num >= 0 && nsum.num < 0 && (-T_3_1.num) < 0) || 
+                 if ((T_3_2.num >= 0 && nsum.num < 0 && (-T_3_1.num) < 0) ||
                      (T_3_2.num <= 0 && nsum.num > 0 && (-T_3_1.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -4571,7 +4571,7 @@ bigintOPold_base(CLUREF a, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = carry.num + 1;
-                 if ((T_3_1.num > 0 && carry.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && carry.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && carry.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}

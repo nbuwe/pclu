@@ -72,7 +72,7 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = i.num + 4;
-     if ((T_1_1.num > 0 && i.num < 0 && 4 < 0) || 
+     if ((T_1_1.num > 0 && i.num < 0 && 4 < 0) ||
          (T_1_1.num < 0 && i.num > 0 && 4 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -146,7 +146,7 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = i.num + 1;
-             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -204,12 +204,12 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
             if (err != ERR_ok) goto ex_1;
             T_4_2.num = (long)(c.ch & 0xff);
             T_4_3.num = T_4_1.num + T_4_2.num;
-             if ((T_4_3.num > 0 && T_4_1.num < 0 && T_4_2.num < 0) || 
+             if ((T_4_3.num > 0 && T_4_1.num < 0 && T_4_2.num < 0) ||
                  (T_4_3.num < 0 && T_4_1.num > 0 && T_4_2.num > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
             T_4_4.num = T_4_3.num - 48;
-             if ((T_4_4.num >= 0 && T_4_3.num < 0 && (-48) < 0) || 
+             if ((T_4_4.num >= 0 && T_4_3.num < 0 && (-48) < 0) ||
                  (T_4_4.num <= 0 && T_4_3.num > 0 && (-48) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -264,7 +264,7 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = i.num - 1;
-             if ((T_4_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+             if ((T_4_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                  (T_4_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -302,7 +302,7 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
             err = intOPdiv(scale, CLU_2, &T_4_2);
             if (err != ERR_ok) goto ex_1;
             T_4_3.num = T_4_1.num + T_4_2.num;
-             if ((T_4_3.num > 0 && T_4_1.num < 0 && T_4_2.num < 0) || 
+             if ((T_4_3.num > 0 && T_4_1.num < 0 && T_4_2.num < 0) ||
                  (T_4_3.num < 0 && T_4_1.num > 0 && T_4_2.num > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -344,7 +344,7 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
                     CLUREF T_6_2;
                     CLUREF T_6_3;
                     T_6_1.num = cnt.num + 4;
-                     if ((T_6_1.num > 0 && cnt.num < 0 && 4 < 0) || 
+                     if ((T_6_1.num > 0 && cnt.num < 0 && 4 < 0) ||
                          (T_6_1.num < 0 && cnt.num > 0 && 4 > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -500,7 +500,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
     {
     CLUREF T_1_1;
     T_1_1.num = i.num + 1;
-     if ((T_1_1.num > 0 && i.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && i.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && i.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -527,7 +527,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
         {
         CLUREF T_3_1;
         T_3_1.num = i.num + 1;
-         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_2;}
@@ -573,7 +573,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
             CLUREF T_5_16;
             T_5_1.num = (long)(c.ch & 0xff);
             T_5_2.num = T_5_1.num - 48;
-             if ((T_5_2.num >= 0 && T_5_1.num < 0 && (-48) < 0) || 
+             if ((T_5_2.num >= 0 && T_5_1.num < 0 && (-48) < 0) ||
                  (T_5_2.num <= 0 && T_5_1.num > 0 && (-48) > 0)) {
                 err = ERR_overflow;
                 goto ex_3;}
@@ -586,19 +586,19 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
             if (err != ERR_ok) goto ex_3;
             T_5_7.num = (long)(T_5_6.ch & 0xff);
             T_5_8.num = T_5_7.num - 48;
-             if ((T_5_8.num >= 0 && T_5_7.num < 0 && (-48) < 0) || 
+             if ((T_5_8.num >= 0 && T_5_7.num < 0 && (-48) < 0) ||
                  (T_5_8.num <= 0 && T_5_7.num > 0 && (-48) > 0)) {
                 err = ERR_overflow;
                 goto ex_3;}
             err = intOPmul(T_5_8, CLU_8, &T_5_9);
             if (err != ERR_ok) goto ex_3;
             T_5_10.num = T_5_5.num + T_5_9.num;
-             if ((T_5_10.num > 0 && T_5_5.num < 0 && T_5_9.num < 0) || 
+             if ((T_5_10.num > 0 && T_5_5.num < 0 && T_5_9.num < 0) ||
                  (T_5_10.num < 0 && T_5_5.num > 0 && T_5_9.num > 0)) {
                 err = ERR_overflow;
                 goto ex_3;}
             T_5_11.num = i.num + 1;
-             if ((T_5_11.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_5_11.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_5_11.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_3;}
@@ -606,12 +606,12 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
             if (err != ERR_ok) goto ex_3;
             T_5_13.num = (long)(T_5_12.ch & 0xff);
             T_5_14.num = T_5_10.num + T_5_13.num;
-             if ((T_5_14.num > 0 && T_5_10.num < 0 && T_5_13.num < 0) || 
+             if ((T_5_14.num > 0 && T_5_10.num < 0 && T_5_13.num < 0) ||
                  (T_5_14.num < 0 && T_5_10.num > 0 && T_5_13.num > 0)) {
                 err = ERR_overflow;
                 goto ex_3;}
             T_5_15.num = T_5_14.num - 48;
-             if ((T_5_15.num >= 0 && T_5_14.num < 0 && (-48) < 0) || 
+             if ((T_5_15.num >= 0 && T_5_14.num < 0 && (-48) < 0) ||
                  (T_5_15.num <= 0 && T_5_14.num > 0 && (-48) > 0)) {
                 err = ERR_overflow;
                 goto ex_3;}
@@ -632,7 +632,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
             {
             CLUREF T_4_1;
             T_4_1.num = i.num + 2;
-             if ((T_4_1.num > 0 && i.num < 0 && 2 < 0) || 
+             if ((T_4_1.num > 0 && i.num < 0 && 2 < 0) ||
                  (T_4_1.num < 0 && i.num > 0 && 2 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -686,7 +686,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
         {
         CLUREF T_3_1;
         T_3_1.num = i.num + 1;
-         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_2;}
@@ -721,7 +721,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
             T_4_1.num = (long)(c.ch & 0xff);
             T_4_2.num = 64;
             T_4_3.num = T_4_1.num - T_4_2.num;
-             if ((T_4_3.num >= 0 && T_4_1.num < 0 && (-T_4_2.num) < 0) || 
+             if ((T_4_3.num >= 0 && T_4_1.num < 0 && (-T_4_2.num) < 0) ||
                  (T_4_3.num <= 0 && T_4_1.num > 0 && (-T_4_2.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -757,7 +757,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
             T_4_1.num = (long)(c.ch & 0xff);
             T_4_2.num = 96;
             T_4_3.num = T_4_1.num - T_4_2.num;
-             if ((T_4_3.num >= 0 && T_4_1.num < 0 && (-T_4_2.num) < 0) || 
+             if ((T_4_3.num >= 0 && T_4_1.num < 0 && (-T_4_2.num) < 0) ||
                  (T_4_3.num <= 0 && T_4_1.num > 0 && (-T_4_2.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}

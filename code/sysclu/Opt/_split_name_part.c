@@ -54,7 +54,7 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         {
             {CLUREF T_2_1;
             T_2_1.num = i.num + 1;
-             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -77,7 +77,7 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
             {
             CLUREF T_4_1;
             T_4_1.num = j.num + 1;
-             if ((T_4_1.num > 0 && j.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && j.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && j.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -127,7 +127,7 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         T_1_1.num = i.num - 1;
-         if ((T_1_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+         if ((T_1_1.num >= 0 && i.num < 0 && (-1) < 0) ||
              (T_1_1.num <= 0 && i.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -142,7 +142,7 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         T_1_1.num = i.num + 1;
-         if ((T_1_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_1_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_1_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -172,7 +172,7 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         {
             {CLUREF T_2_1;
             T_2_1.num = i.num + 1;
-             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -195,7 +195,7 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
             {
             CLUREF T_4_1;
             T_4_1.num = j.num + 1;
-             if ((T_4_1.num > 0 && j.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && j.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && j.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -237,7 +237,7 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = i.num + 1;
-         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -251,7 +251,7 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = i.num - 1;
-         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && i.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}

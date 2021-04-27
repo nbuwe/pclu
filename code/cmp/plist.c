@@ -109,7 +109,7 @@ p_clist(CLUREF e, CLUREF p_t, CLUREF what, CLUREF *ret_1)
             err = p_envOPget_peek1(e, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             switch (T_3_1.cell->tag) {
-            case 3: 
+            case 3:
                  {
 
   LINE(17);
@@ -226,7 +226,7 @@ p_clist(CLUREF e, CLUREF p_t, CLUREF what, CLUREF *ret_1)
         err = p_envOPget_peek1(e, &T_3_1);
         if (err != ERR_ok) goto ex_3;
         switch (T_3_1.cell->tag) {
-        case 3: 
+        case 3:
              {
 
   LINE(34);
@@ -598,7 +598,7 @@ p_blist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF what, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 19: 
+    case 19:
          {
 
   LINE(83);
@@ -663,7 +663,7 @@ p_blist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF what, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 26: 
+    case 26:
          {
 
   LINE(90);
@@ -769,7 +769,7 @@ p_plist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF emptyok, CLUREF what, CLUREF
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 21: 
+    case 21:
          {
 
   LINE(105);
@@ -825,7 +825,7 @@ p_plist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF emptyok, CLUREF what, CLUREF
         err = p_envOPget_peek1(e, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         switch (T_2_1.cell->tag) {
-        case 28: 
+        case 28:
              {
 
   LINE(112);
@@ -872,7 +872,7 @@ p_plist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF emptyok, CLUREF what, CLUREF
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 28: 
+    case 28:
          {
 
   LINE(119);

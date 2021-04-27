@@ -310,7 +310,7 @@ get_output_part(CLUREF line, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = i.num + 1;
-             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -323,7 +323,7 @@ get_output_part(CLUREF line, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = i.num + 1;
-         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -349,7 +349,7 @@ get_output_part(CLUREF line, CLUREF *ret_1)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         T_1_1.num = h.num - last.num;
-         if ((T_1_1.num >= 0 && h.num < 0 && (-last.num) < 0) || 
+         if ((T_1_1.num >= 0 && h.num < 0 && (-last.num) < 0) ||
              (T_1_1.num <= 0 && h.num > 0 && (-last.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -363,7 +363,7 @@ get_output_part(CLUREF line, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = last.num + 1;
-     if ((T_1_1.num > 0 && last.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && last.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && last.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -397,7 +397,7 @@ get_output_part(CLUREF line, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = i.num + 1;
-         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -410,7 +410,7 @@ get_output_part(CLUREF line, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = last.num - 1;
-     if ((T_1_1.num >= 0 && last.num < 0 && (-1) < 0) || 
+     if ((T_1_1.num >= 0 && last.num < 0 && (-1) < 0) ||
          (T_1_1.num <= 0 && last.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1077,7 +1077,7 @@ gets_to(CLUREF line, CLUREF terms, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = beyond.num + 1;
-         if ((T_3_1.num > 0 && beyond.num < 0 && 1 < 0) || 
+         if ((T_3_1.num > 0 && beyond.num < 0 && 1 < 0) ||
              (T_3_1.num < 0 && beyond.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -1124,7 +1124,7 @@ gets_to(CLUREF line, CLUREF terms, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = beyond.num - 1;
-         if ((T_2_1.num >= 0 && beyond.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && beyond.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && beyond.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1189,7 +1189,7 @@ unify(CLUREF line)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = line.array->ext_high; 
+        T_1_2.num = line.array->ext_high;
         for (T_1_1.num = line.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -1234,7 +1234,7 @@ unify(CLUREF line)
                 CLUREF T_3_3;
                 CLUREF T_3_4;
                 T_3_1.num = i.num - 1;
-                 if ((T_3_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+                 if ((T_3_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                      (T_3_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}

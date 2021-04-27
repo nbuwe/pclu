@@ -209,76 +209,76 @@ errcode ce_own_init_proc()
         if (ce_own_init == 0) {
         add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
-        add_selector_info("name", 0, string_ops); 
-        add_selector_info("parms", 1, sequence_of_expr_ops); 
-        add_selector_info("type_", 2, typespec_ops); 
+        add_selector_info("name", 0, string_ops);
+        add_selector_info("parms", 1, sequence_of_expr_ops);
+        add_selector_info("type_", 2, typespec_ops);
         find_selector_ops("record", 3, &(record_name_parms_type__ops));
         add_parm_info_type(0, record_name_parms_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_name_parms_type__ops));
-        add_selector_info("opers", 0, sequence_of_record_name_parms_type__ops); 
-        add_selector_info("parm", 1, idn_ops); 
+        add_selector_info("opers", 0, sequence_of_record_name_parms_type__ops);
+        add_selector_info("parm", 1, idn_ops);
         find_selector_ops("record", 2, &(record_opers_parm_ops));
-        add_selector_info("expr", 0, expr_ops); 
-        add_selector_info("gen", 1, du_ops); 
-        add_selector_info("opgen", 2, string_ops); 
-        add_selector_info("ownvar", 3, typespec_ops); 
-        add_selector_info("tconst", 4, sequence_of_record_name_parms_type__ops); 
-        add_selector_info("tparm", 5, sequence_of_record_name_parms_type__ops); 
-        add_selector_info("typeset", 6, record_opers_parm_ops); 
-        add_selector_info("unknown", 7, null_ops); 
-        add_selector_info("var", 8, typespec_ops); 
-        add_selector_info("vparm", 9, typespec_ops); 
+        add_selector_info("expr", 0, expr_ops);
+        add_selector_info("gen", 1, du_ops);
+        add_selector_info("opgen", 2, string_ops);
+        add_selector_info("ownvar", 3, typespec_ops);
+        add_selector_info("tconst", 4, sequence_of_record_name_parms_type__ops);
+        add_selector_info("tparm", 5, sequence_of_record_name_parms_type__ops);
+        add_selector_info("typeset", 6, record_opers_parm_ops);
+        add_selector_info("unknown", 7, null_ops);
+        add_selector_info("var", 8, typespec_ops);
+        add_selector_info("vparm", 9, typespec_ops);
         find_selector_ops("oneof", 10, &(oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops));
-        add_selector_info("code", 0, int_ops); 
-        add_selector_info("kind", 1, oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops); 
+        add_selector_info("code", 0, int_ops);
+        add_selector_info("kind", 1, oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops);
         find_selector_ops("record", 2, &(record_code_kind_ops));
         add_parm_info_type(0, string_ops, table_of_key_reqs);
         add_parm_info_type(1, record_code_kind_ops, table_of_val_reqs);
         find_type_instance(table_ops, 2, &table_ownreqs, &(table_of_string_record_code_kind_ops));
         add_parm_info_type(0, typespec_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_typespec_ops));
-        add_selector_info("name", 0, string_ops); 
-        add_selector_info("types", 1, sequence_of_typespec_ops); 
+        add_selector_info("name", 0, string_ops);
+        add_selector_info("types", 1, sequence_of_typespec_ops);
         find_selector_ops("record", 2, &(record_name_types_ops));
         add_parm_info_type(0, record_name_types_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_name_types_ops));
-        add_selector_info("args", 0, sequence_of_typespec_ops); 
-        add_selector_info("gen", 1, du_ops); 
-        add_selector_info("sigs", 2, sequence_of_record_name_types_ops); 
-        add_selector_info("vals", 3, sequence_of_typespec_ops); 
+        add_selector_info("args", 0, sequence_of_typespec_ops);
+        add_selector_info("gen", 1, du_ops);
+        add_selector_info("sigs", 2, sequence_of_record_name_types_ops);
+        add_selector_info("vals", 3, sequence_of_typespec_ops);
         find_selector_ops("record", 4, &(record_args_gen_sigs_vals_ops));
-        add_selector_info("gen", 0, du_ops); 
-        add_selector_info("parms", 1, sequence_of_expr_ops); 
+        add_selector_info("gen", 0, du_ops);
+        add_selector_info("parms", 1, sequence_of_expr_ops);
         find_selector_ops("record", 2, &(record_gen_parms_ops));
-        add_selector_info("du", 0, record_gen_parms_ops); 
-        add_selector_info("op", 1, record_name_parms_type__ops); 
-        add_selector_info("return_", 2, typespec_ops); 
+        add_selector_info("du", 0, record_gen_parms_ops);
+        add_selector_info("op", 1, record_name_parms_type__ops);
+        add_selector_info("return_", 2, typespec_ops);
         find_selector_ops("oneof", 3, &(oneof_du_op_return__ops));
-        add_selector_info("sel", 0, string_ops); 
-        add_selector_info("type_", 1, typespec_ops); 
+        add_selector_info("sel", 0, string_ops);
+        add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_sel_type__ops));
         add_parm_info_type(0, record_sel_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_sel_type__ops));
-        add_selector_info("gen", 0, du_ops); 
-        add_selector_info("parms", 1, sequence_of_record_sel_type__ops); 
+        add_selector_info("gen", 0, du_ops);
+        add_selector_info("parms", 1, sequence_of_record_sel_type__ops);
         find_selector_ops("record", 2, &(record_gen_parms_1_ops));
-        add_selector_info("idn", 0, idn_ops); 
-        add_selector_info("parms", 1, sequence_of_expr_ops); 
+        add_selector_info("idn", 0, idn_ops);
+        add_selector_info("parms", 1, sequence_of_expr_ops);
         find_selector_ops("record", 2, &(record_idn_parms_ops));
-        add_selector_info("idn", 0, idn_ops); 
-        add_selector_info("parms", 1, sequence_of_record_sel_type__ops); 
+        add_selector_info("idn", 0, idn_ops);
+        add_selector_info("parms", 1, sequence_of_record_sel_type__ops);
         find_selector_ops("record", 2, &(record_idn_parms_1_ops));
-        add_selector_info("any_", 0, null_ops); 
-        add_selector_info("apply", 1, record_args_gen_sigs_vals_ops); 
-        add_selector_info("cluster_", 2, record_gen_parms_ops); 
-        add_selector_info("cvt_", 3, null_ops); 
-        add_selector_info("idn", 4, idn_ops); 
-        add_selector_info("other", 5, oneof_du_op_return__ops); 
-        add_selector_info("select", 6, record_gen_parms_1_ops); 
-        add_selector_info("type_", 7, record_gen_parms_ops); 
-        add_selector_info("unknown", 8, null_ops); 
-        add_selector_info("xclu", 9, record_idn_parms_ops); 
-        add_selector_info("xsel", 10, record_idn_parms_1_ops); 
+        add_selector_info("any_", 0, null_ops);
+        add_selector_info("apply", 1, record_args_gen_sigs_vals_ops);
+        add_selector_info("cluster_", 2, record_gen_parms_ops);
+        add_selector_info("cvt_", 3, null_ops);
+        add_selector_info("idn", 4, idn_ops);
+        add_selector_info("other", 5, oneof_du_op_return__ops);
+        add_selector_info("select", 6, record_gen_parms_1_ops);
+        add_selector_info("type_", 7, record_gen_parms_ops);
+        add_selector_info("unknown", 8, null_ops);
+        add_selector_info("xclu", 9, record_idn_parms_ops);
+        add_selector_info("xsel", 10, record_idn_parms_1_ops);
         find_selector_ops("oneof", 11, &(oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops));
         add_parm_info_type(0, oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops, table_of_key_reqs);
         add_parm_info_type(1, typespec_ops, table_of_val_reqs);
@@ -1122,7 +1122,7 @@ ceOPreset_types(CLUREF e, CLUREF types)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = types.array->ext_high; 
+        T_1_2.num = types.array->ext_high;
         T_1_3 = types;
         for (T_1_1.num = types.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -1336,7 +1336,7 @@ ceOPreset(CLUREF e)
     CLUREF T_1_2;
     T_1_1.num = locals.e.vec->data[19];
     T_1_2.num = T_1_1.num + 1;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         locals.err = ERR_overflow;
         goto ex_0;}
@@ -1532,7 +1532,7 @@ ceOPreset1(CLUREF e)
     CLUREF T_1_2;
     T_1_1.num = locals.e.vec->data[19];
     T_1_2.num = T_1_1.num + 1;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         locals.err = ERR_overflow;
         goto ex_0;}
@@ -1760,7 +1760,7 @@ ceOPkeep(CLUREF e)
     CLUREF T_1_2;
     T_1_1.num = locals.e.vec->data[20];
     T_1_2.num = T_1_1.num - 1;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         locals.err = ERR_overflow;
         goto ex_0;}
@@ -2998,7 +2998,7 @@ ceOPfixup(CLUREF e, CLUREF t)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[20];
     T_1_2.num = T_1_1.num + 1;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -3011,8 +3011,8 @@ ceOPfixup(CLUREF e, CLUREF t)
     err = typespecOPget_abs(t, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 3: 
-    case 8: 
+    case 3:
+    case 8:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         clut.num = T_1_2.num;
@@ -3028,7 +3028,7 @@ ceOPfixup(CLUREF e, CLUREF t)
             }
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         selt.num = T_1_3.num;
@@ -3044,7 +3044,7 @@ ceOPfixup(CLUREF e, CLUREF t)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         apt.num = T_1_4.num;
@@ -3060,7 +3060,7 @@ ceOPfixup(CLUREF e, CLUREF t)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         ot.num = T_1_5.num;
@@ -3068,7 +3068,7 @@ ceOPfixup(CLUREF e, CLUREF t)
   LINE(355);
             {
             switch (ot.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = ot.cell->value;
                 clut.num = T_2_1.num;
@@ -3435,7 +3435,7 @@ hash_exprs(CLUREF exprs, CLUREF z, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = exprs.vec->size; 
+        T_1_2.num = exprs.vec->size;
         T_1_3 = exprs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             x.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -3446,7 +3446,7 @@ hash_exprs(CLUREF exprs, CLUREF z, CLUREF *ret_1)
             err = exprOPget_abs(x, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 25: 
+            case 25:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 xa.num = T_2_2.num;
@@ -3460,7 +3460,7 @@ hash_exprs(CLUREF exprs, CLUREF z, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 15: 
+            case 15:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 xa.num = T_2_3.num;
@@ -3471,7 +3471,7 @@ hash_exprs(CLUREF exprs, CLUREF z, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 24: 
+            case 24:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_1.cell->value;
                 xa.num = T_2_4.num;
@@ -3498,7 +3498,7 @@ hash_exprs(CLUREF exprs, CLUREF z, CLUREF *ret_1)
             CLUREF T_2_1;
             CLUREF T_2_2;
             T_2_1.num = index.num + add.num;
-             if ((T_2_1.num > 0 && index.num < 0 && add.num < 0) || 
+             if ((T_2_1.num > 0 && index.num < 0 && add.num < 0) ||
                  (T_2_1.num < 0 && index.num > 0 && add.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -3561,7 +3561,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
   LINE(404);
     {
     switch (ta.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_1;
         T_1_1.num = ta.cell->value;
         x.num = T_1_1.num;
@@ -3585,7 +3585,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             err = hash(T_2_4, z, &T_2_5);
             if (err != ERR_ok) goto ex_0;
             T_2_6.num = T_2_2.num + T_2_5.num;
-             if ((T_2_6.num > 0 && T_2_2.num < 0 && T_2_5.num < 0) || 
+             if ((T_2_6.num > 0 && T_2_2.num < 0 && T_2_5.num < 0) ||
                  (T_2_6.num < 0 && T_2_2.num > 0 && T_2_5.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -3596,7 +3596,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_2;
         T_1_2.num = ta.cell->value;
         x.num = T_1_2.num;
@@ -3622,7 +3622,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = x.vec->data[1];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     fs.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -3645,7 +3645,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     err = intOPmul(T_3_2, T_3_4, &T_3_5);
                     if (err != ERR_ok) goto ex_0;
                     T_3_6.num = index.num + T_3_5.num;
-                     if ((T_3_6.num > 0 && index.num < 0 && T_3_5.num < 0) || 
+                     if ((T_3_6.num > 0 && index.num < 0 && T_3_5.num < 0) ||
                          (T_3_6.num < 0 && index.num > 0 && T_3_5.num > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -3665,7 +3665,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_3;
         T_1_3.num = ta.cell->value;
         x.num = T_1_3.num;
@@ -3704,7 +3704,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
-                T_2_2.num = args.vec->size; 
+                T_2_2.num = args.vec->size;
                 for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                     i.num = T_2_1.num;
 
@@ -3717,7 +3717,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     CLUREF T_3_5;
                     CLUREF T_3_6;
                     T_3_1.num = i.num + 1;
-                     if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+                     if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
                          (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -3730,7 +3730,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     err = intOPmul(T_3_1, T_3_3, &T_3_4);
                     if (err != ERR_ok) goto ex_0;
                     T_3_5.num = index.num + T_3_4.num;
-                     if ((T_3_5.num > 0 && index.num < 0 && T_3_4.num < 0) || 
+                     if ((T_3_5.num > 0 && index.num < 0 && T_3_4.num < 0) ||
                          (T_3_5.num < 0 && index.num > 0 && T_3_4.num > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -3746,7 +3746,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
-                T_2_2.num = vals.vec->size; 
+                T_2_2.num = vals.vec->size;
                 for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                     i.num = T_2_1.num;
 
@@ -3759,7 +3759,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     CLUREF T_3_5;
                     CLUREF T_3_6;
                     T_3_1.num = i.num + 4;
-                     if ((T_3_1.num > 0 && i.num < 0 && 4 < 0) || 
+                     if ((T_3_1.num > 0 && i.num < 0 && 4 < 0) ||
                          (T_3_1.num < 0 && i.num > 0 && 4 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -3772,7 +3772,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     err = intOPmul(T_3_1, T_3_3, &T_3_4);
                     if (err != ERR_ok) goto ex_0;
                     T_3_5.num = index.num + T_3_4.num;
-                     if ((T_3_5.num > 0 && index.num < 0 && T_3_4.num < 0) || 
+                     if ((T_3_5.num > 0 && index.num < 0 && T_3_4.num < 0) ||
                          (T_3_5.num < 0 && index.num > 0 && T_3_4.num > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -3792,7 +3792,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 5: 
+    case 5:
          {CLUREF T_1_4;
         T_1_4.num = ta.cell->value;
         x.num = T_1_4.num;
@@ -3811,7 +3811,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_5;
         T_1_5.num = ta.cell->value;
         x.num = T_1_5.num;
@@ -3819,7 +3819,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
   LINE(428);
             {
             switch (x.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = x.cell->value;
                 xx.num = T_2_1.num;
@@ -3839,7 +3839,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     err = hash(T_3_2, z, &T_3_3);
                     if (err != ERR_ok) goto ex_0;
                     T_3_4.num = 1 + T_3_3.num;
-                     if ((T_3_4.num > 0 && 1 < 0 && T_3_3.num < 0) || 
+                     if ((T_3_4.num > 0 && 1 < 0 && T_3_3.num < 0) ||
                          (T_3_4.num < 0 && 1 > 0 && T_3_3.num > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -3847,7 +3847,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     err = hash_exprs(T_3_5, z, &T_3_6);
                     if (err != ERR_ok) goto ex_0;
                     T_3_7.num = T_3_4.num + T_3_6.num;
-                     if ((T_3_7.num > 0 && T_3_4.num < 0 && T_3_6.num < 0) || 
+                     if ((T_3_7.num > 0 && T_3_4.num < 0 && T_3_6.num < 0) ||
                          (T_3_7.num < 0 && T_3_4.num > 0 && T_3_6.num > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -3855,7 +3855,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_2;
                 T_2_2.num = x.cell->value;
                 xx.num = T_2_2.num;
@@ -3874,7 +3874,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     err = hash(T_3_3, z, &T_3_4);
                     if (err != ERR_ok) goto ex_0;
                     T_3_5.num = T_3_2.num + T_3_4.num;
-                     if ((T_3_5.num > 0 && T_3_2.num < 0 && T_3_4.num < 0) || 
+                     if ((T_3_5.num > 0 && T_3_2.num < 0 && T_3_4.num < 0) ||
                          (T_3_5.num < 0 && T_3_2.num > 0 && T_3_4.num > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -3882,7 +3882,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 3: 
+            case 3:
                  {CLUREF T_2_3;
                 T_2_3.num = x.cell->value;
                 xx.num = T_2_3.num;
@@ -3894,7 +3894,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     err = typespecOPget_id(xx, &T_3_1);
                     if (err != ERR_ok) goto ex_0;
                     T_3_2.num = 1 + T_3_1.num;
-                     if ((T_3_2.num > 0 && 1 < 0 && T_3_1.num < 0) || 
+                     if ((T_3_2.num > 0 && 1 < 0 && T_3_1.num < 0) ||
                          (T_3_2.num < 0 && 1 > 0 && T_3_1.num > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -3916,7 +3916,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 9: 
+    case 9:
          {
 
   LINE(438);
@@ -3927,7 +3927,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 8: 
+    case 8:
          {
 
   LINE(440);
@@ -3938,7 +3938,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(442);
@@ -3949,7 +3949,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(444);

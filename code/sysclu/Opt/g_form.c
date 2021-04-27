@@ -124,12 +124,12 @@ g_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = i.num + f.num;
-     if ((T_1_1.num > 0 && i.num < 0 && f.num < 0) || 
+     if ((T_1_1.num > 0 && i.num < 0 && f.num < 0) ||
          (T_1_1.num < 0 && i.num > 0 && f.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     T_1_2.num = T_1_1.num - 5;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-5) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-5) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-5) > 0)) {
         err = ERR_overflow;
         goto ex_0;}

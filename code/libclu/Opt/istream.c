@@ -322,7 +322,7 @@ istreamOPempty(CLUREF ist, CLUREF *ret_1)
     CLUREF T_3_1;
     T_3_1.num = ist.vec->data[0];
     switch (T_3_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_3_2;
         T_3_2.num = T_3_1.cell->value;
         rb.num = T_3_2.num;
@@ -431,7 +431,7 @@ istreamOPreset(CLUREF ist)
     CLUREF T_2_1;
     T_2_1.num = ist.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -455,7 +455,7 @@ istreamOPreset(CLUREF ist)
             }
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         wb.num = T_2_3.num;
@@ -516,7 +516,7 @@ istreamOPflush(CLUREF ist)
     CLUREF T_2_1;
     T_2_1.num = ist.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         wb.num = T_2_2.num;
@@ -589,7 +589,7 @@ istreamOPget_date(CLUREF ist, CLUREF *ret_1)
     CLUREF T_2_1;
     T_2_1.num = ist.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -607,7 +607,7 @@ istreamOPget_date(CLUREF ist, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         wb.num = T_2_3.num;
@@ -743,7 +743,7 @@ istreamOPclose(CLUREF ist)
     CLUREF T_2_1;
     T_2_1.num = ist.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -757,7 +757,7 @@ istreamOPclose(CLUREF ist)
             }
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         wb.num = T_2_3.num;
@@ -841,7 +841,7 @@ istreamOPabort(CLUREF ist)
     CLUREF T_2_1;
     T_2_1.num = ist.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         rb.num = T_2_2.num;
@@ -855,7 +855,7 @@ istreamOPabort(CLUREF ist)
             }
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         wb.num = T_2_3.num;
@@ -1065,7 +1065,7 @@ istreamOPget_chan(CLUREF ist, CLUREF *ret_1)
     CLUREF T_1_1;
     T_1_1.num = ist.vec->data[0];
     switch (T_1_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         rb.num = T_1_2.num;
@@ -1080,7 +1080,7 @@ istreamOPget_chan(CLUREF ist, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         wb.num = T_1_3.num;
@@ -1142,7 +1142,7 @@ istreamOPgeti(CLUREF ist, CLUREF *ret_1)
     CLUREF T_3_1;
     T_3_1.num = ist.vec->data[0];
     switch (T_3_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_3_2;
         T_3_2.num = T_3_1.cell->value;
         rb.num = T_3_2.num;
@@ -1200,7 +1200,7 @@ istreamOPgeti(CLUREF ist, CLUREF *ret_1)
             CLUREF T_4_2;
             T_4_1.num = rb.vec->data[1];
             T_4_2.num = T_4_1.num + 1;
-             if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) || 
+             if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) ||
                  (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -1281,7 +1281,7 @@ istreamOPputi(CLUREF ist, CLUREF i)
     CLUREF T_2_1;
     T_2_1.num = ist.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         wb.num = T_2_2.num;
@@ -1321,7 +1321,7 @@ istreamOPputi(CLUREF ist, CLUREF i)
             CLUREF T_3_2;
             T_3_1.num = wb.vec->data[1];
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -1395,7 +1395,7 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
     CLUREF T_3_1;
     T_3_1.num = ist.vec->data[0];
     switch (T_3_1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_3_2;
         T_3_2.num = T_3_1.cell->value;
         rb.num = T_3_2.num;
@@ -1453,7 +1453,7 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
             CLUREF T_4_2;
             T_4_1.num = rb.vec->data[1];
             T_4_2.num = T_4_1.num + 1;
-             if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) || 
+             if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) ||
                  (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -1537,7 +1537,7 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
                     CLUREF T_5_3;
                     T_5_1.num = rb.vec->data[1];
                     T_5_2.num = T_5_1.num - 1;
-                     if ((T_5_2.num >= 0 && T_5_1.num < 0 && (-1) < 0) || 
+                     if ((T_5_2.num >= 0 && T_5_1.num < 0 && (-1) < 0) ||
                          (T_5_2.num <= 0 && T_5_1.num > 0 && (-1) > 0)) {
                         err = ERR_overflow;
                         goto ex_2;}
@@ -1556,7 +1556,7 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
                     err = intOPmul(T_5_1, CLU_8, &T_5_2);
                     if (err != ERR_ok) goto ex_2;
                     T_5_3.num = T_5_2.num - bidx.num;
-                     if ((T_5_3.num >= 0 && T_5_2.num < 0 && (-bidx.num) < 0) || 
+                     if ((T_5_3.num >= 0 && T_5_2.num < 0 && (-bidx.num) < 0) ||
                          (T_5_3.num <= 0 && T_5_2.num > 0 && (-bidx.num) > 0)) {
                         err = ERR_overflow;
                         goto ex_2;}
@@ -1583,7 +1583,7 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
                 CLUREF T_5_2;
                 T_5_1.num = rb.vec->data[3];
                 T_5_2.num = bidx.num + 1;
-                 if ((T_5_2.num > 0 && bidx.num < 0 && 1 < 0) || 
+                 if ((T_5_2.num > 0 && bidx.num < 0 && 1 < 0) ||
                      (T_5_2.num < 0 && bidx.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_2;}
@@ -1595,7 +1595,7 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = z.num - cnt.num;
-                 if ((T_5_1.num >= 0 && z.num < 0 && (-cnt.num) < 0) || 
+                 if ((T_5_1.num >= 0 && z.num < 0 && (-cnt.num) < 0) ||
                      (T_5_1.num <= 0 && z.num > 0 && (-cnt.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_2;}
@@ -1606,7 +1606,7 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = i.num + cnt.num;
-                 if ((T_5_1.num > 0 && i.num < 0 && cnt.num < 0) || 
+                 if ((T_5_1.num > 0 && i.num < 0 && cnt.num < 0) ||
                      (T_5_1.num < 0 && i.num > 0 && cnt.num > 0)) {
                     err = ERR_overflow;
                     goto ex_2;}
@@ -1621,14 +1621,14 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
                 CLUREF T_5_4;
                 T_5_1.num = rb.vec->data[1];
                 T_5_2.num = cnt.num + 7;
-                 if ((T_5_2.num > 0 && cnt.num < 0 && 7 < 0) || 
+                 if ((T_5_2.num > 0 && cnt.num < 0 && 7 < 0) ||
                      (T_5_2.num < 0 && cnt.num > 0 && 7 > 0)) {
                     err = ERR_overflow;
                     goto ex_2;}
                 err = intOPdiv(T_5_2, CLU_8, &T_5_3);
                 if (err != ERR_ok) goto ex_2;
                 T_5_4.num = T_5_1.num + T_5_3.num;
-                 if ((T_5_4.num > 0 && T_5_1.num < 0 && T_5_3.num < 0) || 
+                 if ((T_5_4.num > 0 && T_5_1.num < 0 && T_5_3.num < 0) ||
                      (T_5_4.num < 0 && T_5_1.num > 0 && T_5_3.num > 0)) {
                     err = ERR_overflow;
                     goto ex_2;}
@@ -1716,7 +1716,7 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
     CLUREF T_2_1;
     T_2_1.num = ist.vec->data[0];
     switch (T_2_1.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         wb.num = T_2_2.num;
@@ -1765,7 +1765,7 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
             CLUREF T_3_2;
             T_3_1.num = wb.vec->data[1];
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -1840,7 +1840,7 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
                     CLUREF T_4_2;
                     T_4_1.num = 2048;
                     T_4_2.num = T_4_1.num - bidx.num;
-                     if ((T_4_2.num >= 0 && T_4_1.num < 0 && (-bidx.num) < 0) || 
+                     if ((T_4_2.num >= 0 && T_4_1.num < 0 && (-bidx.num) < 0) ||
                          (T_4_2.num <= 0 && T_4_1.num > 0 && (-bidx.num) > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -1867,7 +1867,7 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
                 CLUREF T_4_2;
                 T_4_1.num = wb.vec->data[2];
                 T_4_2.num = bidx.num + 1;
-                 if ((T_4_2.num > 0 && bidx.num < 0 && 1 < 0) || 
+                 if ((T_4_2.num > 0 && bidx.num < 0 && 1 < 0) ||
                      (T_4_2.num < 0 && bidx.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -1879,7 +1879,7 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = z.num - cnt.num;
-                 if ((T_4_1.num >= 0 && z.num < 0 && (-cnt.num) < 0) || 
+                 if ((T_4_1.num >= 0 && z.num < 0 && (-cnt.num) < 0) ||
                      (T_4_1.num <= 0 && z.num > 0 && (-cnt.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -1890,7 +1890,7 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = i.num + cnt.num;
-                 if ((T_4_1.num > 0 && i.num < 0 && cnt.num < 0) || 
+                 if ((T_4_1.num > 0 && i.num < 0 && cnt.num < 0) ||
                      (T_4_1.num < 0 && i.num > 0 && cnt.num > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -1905,14 +1905,14 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
                 CLUREF T_4_4;
                 T_4_1.num = wb.vec->data[1];
                 T_4_2.num = cnt.num + 7;
-                 if ((T_4_2.num > 0 && cnt.num < 0 && 7 < 0) || 
+                 if ((T_4_2.num > 0 && cnt.num < 0 && 7 < 0) ||
                      (T_4_2.num < 0 && cnt.num > 0 && 7 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
                 err = intOPdiv(T_4_2, CLU_8, &T_4_3);
                 if (err != ERR_ok) goto ex_1;
                 T_4_4.num = T_4_1.num + T_4_3.num;
-                 if ((T_4_4.num > 0 && T_4_1.num < 0 && T_4_3.num < 0) || 
+                 if ((T_4_4.num > 0 && T_4_1.num < 0 && T_4_3.num < 0) ||
                      (T_4_4.num < 0 && T_4_1.num > 0 && T_4_3.num > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}

@@ -516,7 +516,7 @@ heapOPremove(CLUREF x, CLUREF *ret_1)
                 {CLUREF T_3_1;
                 CLUREF T_3_2;
                 T_3_1.num = son.num + 1;
-                 if ((T_3_1.num > 0 && son.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && son.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && son.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -538,7 +538,7 @@ heapOPremove(CLUREF x, CLUREF *ret_1)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = son.num + 1;
-                 if ((T_4_1.num > 0 && son.num < 0 && 1 < 0) || 
+                 if ((T_4_1.num > 0 && son.num < 0 && 1 < 0) ||
                      (T_4_1.num < 0 && son.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}

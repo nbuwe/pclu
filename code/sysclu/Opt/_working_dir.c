@@ -126,7 +126,7 @@ _working_dir(CLUREF s, CLUREF update, CLUREF *ret_1)
             CLUREF T_4_4;
             CLUREF T_4_5;
             T_4_1.num = z.num - 2;
-             if ((T_4_1.num >= 0 && z.num < 0 && (-2) < 0) || 
+             if ((T_4_1.num >= 0 && z.num < 0 && (-2) < 0) ||
                  (T_4_1.num <= 0 && z.num > 0 && (-2) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}

@@ -75,8 +75,8 @@ errcode xref_own_init_proc()
         if (xref_own_init == 0) {
         add_parm_info_type(0, string_ops, array_of_t_reqs);
         find_type_instance(array_ops, 1, &array_ownreqs, &(array_of_string_ops));
-        add_selector_info("key", 0, string_ops); 
-        add_selector_info("users", 1, array_of_string_ops); 
+        add_selector_info("key", 0, string_ops);
+        add_selector_info("users", 1, array_of_string_ops);
         find_selector_ops("record", 2, &(record_key_users_ops));
         add_parm_info_type(0, record_key_users_ops, xref_op_find_index_of_etype_reqs);
         find_typeop_instance(xref_ops, xrefOPfind_index, 1, 0, &xref_op_find_index_ownreqs, &xref_ownreqs, &(xref_op_find_index_of_record_key_users_ops));
@@ -190,7 +190,7 @@ xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = musers.array->ext_high; 
+        T_1_2.num = musers.array->ext_high;
         T_1_3 = musers;
         for (T_1_1.num = musers.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -311,7 +311,7 @@ xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = users.array->ext_high; 
+        T_1_2.num = users.array->ext_high;
         T_1_3 = users;
         for (T_1_1.num = users.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -331,7 +331,7 @@ xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
             CLUREF T_2_1;
             CLUREF T_2_2;
             CLUREF T_2_3;
-                T_2_2.num = musers.array->ext_high; 
+                T_2_2.num = musers.array->ext_high;
                 T_2_3 = musers;
                 for (T_2_1.num = musers.array->ext_low; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                     if (T_2_1.num > T_2_3.array->ext_high || T_2_1.num < T_2_3.array->ext_low) {
@@ -486,12 +486,12 @@ xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_1.num = i.num - ll.num;
-     if ((T_1_1.num >= 0 && i.num < 0 && (-ll.num) < 0) || 
+     if ((T_1_1.num >= 0 && i.num < 0 && (-ll.num) < 0) ||
          (T_1_1.num <= 0 && i.num > 0 && (-ll.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     T_1_2.num = hh.num - i.num;
-     if ((T_1_2.num >= 0 && hh.num < 0 && (-i.num) < 0) || 
+     if ((T_1_2.num >= 0 && hh.num < 0 && (-i.num) < 0) ||
          (T_1_2.num <= 0 && hh.num > 0 && (-i.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -504,7 +504,7 @@ xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
         CLUREF T_2_2;
         CLUREF T_2_3;
             T_2_1.num = i.num + 1;
-             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -517,7 +517,7 @@ xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
                 CLUREF T_3_1;
                 CLUREF T_3_2;
                 T_3_1.num = j.num - 1;
-                 if ((T_3_1.num >= 0 && j.num < 0 && (-1) < 0) || 
+                 if ((T_3_1.num >= 0 && j.num < 0 && (-1) < 0) ||
                      (T_3_1.num <= 0 && j.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -552,7 +552,7 @@ xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
         CLUREF T_2_3;
         CLUREF T_2_4;
             T_2_1.num = i.num - 1;
-             if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+             if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                  (T_2_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -566,7 +566,7 @@ xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
                 CLUREF T_3_1;
                 CLUREF T_3_2;
                 T_3_1.num = j.num + 1;
-                 if ((T_3_1.num > 0 && j.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && j.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && j.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -738,7 +738,7 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
             {CLUREF T_2_1;
             CLUREF T_2_2;
             T_2_1.num = l.num + h.num;
-             if ((T_2_1.num > 0 && l.num < 0 && h.num < 0) || 
+             if ((T_2_1.num > 0 && l.num < 0 && h.num < 0) ||
                  (T_2_1.num < 0 && l.num > 0 && h.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -780,7 +780,7 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = m.num - 1;
-             if ((T_3_1.num >= 0 && m.num < 0 && (-1) < 0) || 
+             if ((T_3_1.num >= 0 && m.num < 0 && (-1) < 0) ||
                  (T_3_1.num <= 0 && m.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -806,7 +806,7 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = m.num + 1;
-             if ((T_3_1.num > 0 && m.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && m.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && m.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -832,12 +832,12 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_1.num = hh.num - l.num;
-     if ((T_1_1.num >= 0 && hh.num < 0 && (-l.num) < 0) || 
+     if ((T_1_1.num >= 0 && hh.num < 0 && (-l.num) < 0) ||
          (T_1_1.num <= 0 && hh.num > 0 && (-l.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     T_1_2.num = h.num - ll.num;
-     if ((T_1_2.num >= 0 && h.num < 0 && (-ll.num) < 0) || 
+     if ((T_1_2.num >= 0 && h.num < 0 && (-ll.num) < 0) ||
          (T_1_2.num <= 0 && h.num > 0 && (-ll.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -871,7 +871,7 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
                 CLUREF T_3_1;
                 CLUREF T_3_2;
                 T_3_1.num = n.num + 1;
-                 if ((T_3_1.num > 0 && n.num < 0 && 1 < 0) || 
+                 if ((T_3_1.num > 0 && n.num < 0 && 1 < 0) ||
                      (T_3_1.num < 0 && n.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -930,7 +930,7 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
                 CLUREF T_3_1;
                 CLUREF T_3_2;
                 T_3_1.num = n.num - 1;
-                 if ((T_3_1.num >= 0 && n.num < 0 && (-1) < 0) || 
+                 if ((T_3_1.num >= 0 && n.num < 0 && (-1) < 0) ||
                      (T_3_1.num <= 0 && n.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -1003,7 +1003,7 @@ xrefOPelements(CLUREF tab, errcode (*proc)(), char **user_locals, errcode *iecod
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = tab.array->ext_high; 
+        T_1_2.num = tab.array->ext_high;
         T_1_3 = tab;
         for (T_1_1.num = tab.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -1027,7 +1027,7 @@ xrefOPelements(CLUREF tab, errcode (*proc)(), char **user_locals, errcode *iecod
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = ent.vec->data[1];
-                T_2_3.num = T_2_1.array->ext_high; 
+                T_2_3.num = T_2_1.array->ext_high;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = T_2_1.array->ext_low; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     if (T_2_2.num > T_2_4.array->ext_high || T_2_2.num < T_2_4.array->ext_low) {
@@ -1087,7 +1087,7 @@ xrefOPkeys(CLUREF tab, errcode (*proc)(), char **user_locals, errcode *iecode)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = tab.array->ext_high; 
+        T_1_2.num = tab.array->ext_high;
         T_1_3 = tab;
         for (T_1_1.num = tab.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -1174,7 +1174,7 @@ xrefOPoutput(CLUREF tab, CLUREF lhead, CLUREF rhead, CLUREF st)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = tab.array->ext_high; 
+        T_1_2.num = tab.array->ext_high;
         T_1_3 = tab;
         for (T_1_1.num = tab.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -1214,7 +1214,7 @@ xrefOPoutput(CLUREF tab, CLUREF lhead, CLUREF rhead, CLUREF st)
     {
     CLUREF T_1_1;
     T_1_1.num = max.num + 4;
-     if ((T_1_1.num > 0 && max.num < 0 && 4 < 0) || 
+     if ((T_1_1.num > 0 && max.num < 0 && 4 < 0) ||
          (T_1_1.num < 0 && max.num > 0 && 4 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1263,7 +1263,7 @@ xrefOPoutput(CLUREF tab, CLUREF lhead, CLUREF rhead, CLUREF st)
         CLUREF T_3_1;
         CLUREF T_3_2;
         CLUREF T_3_3;
-            T_3_2.num = tab.array->ext_high; 
+            T_3_2.num = tab.array->ext_high;
             T_3_3 = tab;
             for (T_3_1.num = tab.array->ext_low; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                 if (T_3_1.num > T_3_3.array->ext_high || T_3_1.num < T_3_3.array->ext_low) {
@@ -1340,7 +1340,7 @@ xrefOPputout(CLUREF st, CLUREF key, CLUREF users, CLUREF max)
         CLUREF T_3_1;
         CLUREF T_3_2;
         CLUREF T_3_3;
-            T_3_2.num = users.array->ext_high; 
+            T_3_2.num = users.array->ext_high;
             T_3_3 = users;
             for (T_3_1.num = users.array->ext_low; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                 if (T_3_1.num > T_3_3.array->ext_high || T_3_1.num < T_3_3.array->ext_low) {
@@ -1356,7 +1356,7 @@ xrefOPputout(CLUREF st, CLUREF key, CLUREF users, CLUREF max)
                     err = stringOPsize(user, &T_4_1);
                     if (err != ERR_ok) goto ex_1;
                     T_4_2.num = T_4_1.num + 1;
-                     if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) || 
+                     if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) ||
                          (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -1370,7 +1370,7 @@ xrefOPputout(CLUREF st, CLUREF key, CLUREF users, CLUREF max)
                 CLUREF T_4_2;
                 CLUREF T_4_3;
                 T_4_1.num = pos.num + n.num;
-                 if ((T_4_1.num > 0 && pos.num < 0 && n.num < 0) || 
+                 if ((T_4_1.num > 0 && pos.num < 0 && n.num < 0) ||
                      (T_4_1.num < 0 && pos.num > 0 && n.num > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -1417,7 +1417,7 @@ xrefOPputout(CLUREF st, CLUREF key, CLUREF users, CLUREF max)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = pos.num + n.num;
-                 if ((T_4_1.num > 0 && pos.num < 0 && n.num < 0) || 
+                 if ((T_4_1.num > 0 && pos.num < 0 && n.num < 0) ||
                      (T_4_1.num < 0 && pos.num > 0 && n.num > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}

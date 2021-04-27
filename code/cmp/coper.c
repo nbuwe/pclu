@@ -64,7 +64,7 @@ c_cluster_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
   LINE(9);
     {
     switch (specs.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_1;
         T_1_1.num = specs.cell->value;
         inf.num = T_1_1.num;
@@ -75,7 +75,7 @@ c_cluster_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(13);
@@ -156,7 +156,7 @@ c_cluster_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = info.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             op.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -366,7 +366,7 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
   LINE(42);
     {
     switch (specs.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_1_1;
         T_1_1.num = specs.cell->value;
         inf.num = T_1_1.num;
@@ -377,7 +377,7 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(46);
@@ -466,7 +466,7 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = info.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             op.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -549,7 +549,7 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
                         err = stringOPsize(opn, &T_4_1);
                         if (err != ERR_ok) goto ex_0;
                         T_4_2.num = T_4_1.num + 1;
-                         if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) || 
+                         if ((T_4_2.num > 0 && T_4_1.num < 0 && 1 < 0) ||
                              (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -1081,7 +1081,7 @@ c_sel_type(CLUREF e, CLUREF sel, CLUREF specs, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = specs.vec->size; 
+        T_1_2.num = specs.vec->size;
         T_1_3 = specs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             spec.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1194,8 +1194,8 @@ c_idn_op(CLUREF e, CLUREF i, CLUREF cop, CLUREF *ret_1)
     err = idnOPget_kind(i, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 6: 
-    case 5: 
+    case 6:
+    case 5:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         k.num = T_1_2.num;
@@ -1221,7 +1221,7 @@ c_idn_op(CLUREF e, CLUREF i, CLUREF cop, CLUREF *ret_1)
             CLUREF T_2_1;
             CLUREF T_2_2;
             CLUREF T_2_3;
-                T_2_2.num = k.vec->size; 
+                T_2_2.num = k.vec->size;
                 T_2_3 = k;
                 for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                     spec.num = T_2_3.vec->data[T_2_1.num - 1];
@@ -1288,8 +1288,8 @@ c_idn_op(CLUREF e, CLUREF i, CLUREF cop, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 9: 
-    case 4: 
+    case 9:
+    case 4:
          {
 
   LINE(141);
@@ -1387,7 +1387,7 @@ c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
   LINE(150);
     {
     switch (specs.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_1_1;
         T_1_1.num = specs.cell->value;
         inf.num = T_1_1.num;
@@ -1398,7 +1398,7 @@ c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(154);
@@ -1479,7 +1479,7 @@ c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = info.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             op.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -1816,7 +1816,7 @@ c_requires(CLUREF e, CLUREF vals, CLUREF parms, CLUREF reqs)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = reqs.vec->size; 
+        T_1_2.num = reqs.vec->size;
         T_1_3 = reqs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             req.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1833,7 +1833,7 @@ c_requires(CLUREF e, CLUREF vals, CLUREF parms, CLUREF reqs)
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
-                T_2_2.num = parms.vec->size; 
+                T_2_2.num = parms.vec->size;
                 for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                     i.num = T_2_1.num;
 
@@ -1901,7 +1901,7 @@ c_select_requires(CLUREF e, CLUREF specs, CLUREF reqs)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = reqs.vec->size; 
+        T_1_2.num = reqs.vec->size;
         T_1_3 = reqs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             req.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1911,7 +1911,7 @@ c_select_requires(CLUREF e, CLUREF specs, CLUREF reqs)
             CLUREF T_2_1;
             CLUREF T_2_2;
             CLUREF T_2_3;
-                T_2_2.num = specs.vec->size; 
+                T_2_2.num = specs.vec->size;
                 T_2_3 = specs;
                 for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                     spec.num = T_2_3.vec->data[T_2_1.num - 1];
@@ -2185,7 +2185,7 @@ c_restrictions(CLUREF e, CLUREF x, CLUREF vals, CLUREF forms, CLUREF specs, CLUR
     err = exprOPget_abs(x, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 25: 
+    case 25:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         xa.num = T_1_2.num;
@@ -2196,7 +2196,7 @@ c_restrictions(CLUREF e, CLUREF x, CLUREF vals, CLUREF forms, CLUREF specs, CLUR
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(255);
@@ -2207,7 +2207,7 @@ c_restrictions(CLUREF e, CLUREF x, CLUREF vals, CLUREF forms, CLUREF specs, CLUR
             {signal (ERR_ok);}}
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(257);
@@ -2241,7 +2241,7 @@ c_restrictions(CLUREF e, CLUREF x, CLUREF vals, CLUREF forms, CLUREF specs, CLUR
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = specs.vec->size; 
+        T_1_2.num = specs.vec->size;
         T_1_3 = specs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             spec.num = T_1_3.vec->data[T_1_1.num - 1];

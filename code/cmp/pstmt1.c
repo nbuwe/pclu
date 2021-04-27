@@ -87,7 +87,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_2_1);
     if (err != ERR_ok) goto ex_1;
     switch (T_2_1.cell->tag) {
-    case 34: 
+    case 34:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         k.num = T_2_2.num;
@@ -102,7 +102,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
   LINE(18);
             {
             switch (k.cell->tag) {
-            case 6: 
+            case 6:
                  {
 
   LINE(19);
@@ -114,7 +114,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 5: 
+            case 5:
                  {
 
   LINE(20);
@@ -126,7 +126,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 10: 
+            case 10:
                  {
 
   LINE(21);
@@ -138,7 +138,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 11: 
+            case 11:
                  {
 
   LINE(22);
@@ -150,7 +150,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 8: 
+            case 8:
                  {
 
   LINE(23);
@@ -193,7 +193,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 12: 
+            case 12:
                  {
 
   LINE(28);
@@ -236,7 +236,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 9: 
+            case 9:
                  {
 
   LINE(33);
@@ -250,7 +250,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 4: 
+            case 4:
                  {
 
   LINE(34);
@@ -264,7 +264,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 2: 
+            case 2:
                  {
 
   LINE(35);
@@ -275,7 +275,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 3: 
+            case 3:
                  {
 
   LINE(36);
@@ -286,7 +286,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 1: 
+            case 1:
                  {
 
   LINE(37);
@@ -306,7 +306,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 7: 
+            case 7:
                  {
 
   LINE(39);
@@ -322,7 +322,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
             }
             break;
             }
-    case 16: 
+    case 16:
          {
 
   LINE(42);
@@ -331,9 +331,9 @@ p_stmt(CLUREF e, CLUREF *ret_1)
             err = p_envOPpeek(e, CLU_2, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             switch (T_3_1.cell->tag) {
-            case 3: 
-            case 1: 
-            case 2: 
+            case 3:
+            case 1:
+            case 2:
                  {
 
   LINE(44);
@@ -345,7 +345,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 11: 
+            case 11:
                  {
 
   LINE(46);
@@ -354,7 +354,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     err = p_envOPpeek(e, CLU_3, &T_4_1);
                     if (err != ERR_ok) goto ex_1;
                     switch (T_4_1.cell->tag) {
-                    case 4: 
+                    case 4:
                          {
 
   LINE(47);
@@ -390,7 +390,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
             }
             break;
             }
-    case 14: 
+    case 14:
          {CLUREF T_2_3;
         T_2_3.num = T_2_1.cell->value;
         k.num = T_2_3.num;
@@ -398,7 +398,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
   LINE(54);
             {
             switch (k.cell->tag) {
-            case 2: 
+            case 2:
                  {
 
   LINE(56);
@@ -407,7 +407,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     err = p_envOPpeek(e, CLU_2, &T_4_1);
                     if (err != ERR_ok) goto ex_1;
                     switch (T_4_1.cell->tag) {
-                    case 16: 
+                    case 16:
                          {
 
   LINE(57);
@@ -447,9 +447,9 @@ p_stmt(CLUREF e, CLUREF *ret_1)
             }
             break;
             }
-    case 37: 
-    case 38: 
-    case 13: 
+    case 37:
+    case 38:
+    case 13:
          {
 
   LINE(64);
@@ -461,9 +461,9 @@ p_stmt(CLUREF e, CLUREF *ret_1)
             }
             break;
             }
-    case 23: 
-    case 22: 
-    case 21: 
+    case 23:
+    case 22:
+    case 21:
          {
 
   LINE(66);
@@ -481,7 +481,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
             }
             break;
             }
-    case 12: 
+    case 12:
          {
 
   LINE(69);
@@ -639,7 +639,7 @@ p_if(CLUREF e, CLUREF *ret_1)
         err = p_envOPget_peek1(e, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         switch (T_2_1.cell->tag) {
-        case 36: 
+        case 36:
              {
 
   LINE(92);
@@ -689,7 +689,7 @@ p_if(CLUREF e, CLUREF *ret_1)
         err = p_envOPget_peek1(e, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         switch (T_2_1.cell->tag) {
-        case 8: 
+        case 8:
              {
 
   LINE(100);
@@ -703,7 +703,7 @@ p_if(CLUREF e, CLUREF *ret_1)
                 continue;
                 break;
                 }
-        case 7: 
+        case 7:
              {
 
   LINE(102);
@@ -796,7 +796,7 @@ p_for(CLUREF e, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 17: 
+    case 17:
          {
 
   LINE(118);
@@ -829,7 +829,7 @@ p_for(CLUREF e, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 17: 
+    case 17:
          {
 
   LINE(122);
@@ -840,7 +840,7 @@ p_for(CLUREF e, CLUREF *ret_1)
             }
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(123);
@@ -946,7 +946,7 @@ p_do(CLUREF e, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 5: 
+    case 5:
          {
 
   LINE(141);
@@ -1049,8 +1049,8 @@ p_idns_or_decls(CLUREF e, CLUREF *ret_1)
         find_prociter_instance(p_clist, 1, &p_clist_ownreqs, &(p_clist_of_idn_ops));
         add_parm_info_type(0, idn_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_idn_ops));
-        add_selector_info("idns", 0, sequence_of_idn_ops); 
-        add_selector_info("type_", 1, typespec_ops); 
+        add_selector_info("idns", 0, sequence_of_idn_ops);
+        add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_idns_type__ops));
         add_parm_info_type(0, record_idns_type__ops, p_clist_of_t_reqs);
         find_prociter_instance(p_clist, 1, &p_clist_ownreqs, &(p_clist_of_record_idns_type__ops));
@@ -1085,7 +1085,7 @@ p_idns_or_decls(CLUREF e, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 2: 
+    case 2:
          {
 
   LINE(155);
@@ -1110,7 +1110,7 @@ p_idns_or_decls(CLUREF e, CLUREF *ret_1)
             err = p_envOPget_peek1(e, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 3: 
+            case 3:
                  {
 
   LINE(159);
@@ -1218,7 +1218,7 @@ p_idn(CLUREF e, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 16: 
+    case 16:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         k.num = T_1_2.num;
@@ -1358,7 +1358,7 @@ p_decl(CLUREF e, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 2: 
+    case 2:
          {
 
   LINE(196);
@@ -1484,23 +1484,23 @@ p_tagcase(CLUREF e, CLUREF *ret_1)
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_equate_ops));
         add_parm_info_type(0, stmt_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_stmt_ops));
-        add_selector_info("equates", 0, sequence_of_equate_ops); 
-        add_selector_info("stmts", 1, sequence_of_stmt_ops); 
+        add_selector_info("equates", 0, sequence_of_equate_ops);
+        add_selector_info("stmts", 1, sequence_of_stmt_ops);
         find_selector_ops("record", 2, &(record_equates_stmts_ops));
         add_parm_info_type(0, string_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_string_ops));
         add_parm_info_type(0, idn_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_idn_ops));
-        add_selector_info("idns", 0, sequence_of_idn_ops); 
-        add_selector_info("type_", 1, typespec_ops); 
+        add_selector_info("idns", 0, sequence_of_idn_ops);
+        add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_idns_type__ops));
-        add_selector_info("decl", 0, record_idns_type__ops); 
-        add_selector_info("none", 1, null_ops); 
+        add_selector_info("decl", 0, record_idns_type__ops);
+        add_selector_info("none", 1, null_ops);
         find_selector_ops("oneof", 2, &(oneof_decl_none_ops));
-        add_selector_info("body", 0, record_equates_stmts_ops); 
-        add_selector_info("line", 1, int_ops); 
-        add_selector_info("tags", 2, sequence_of_string_ops); 
-        add_selector_info("var", 3, oneof_decl_none_ops); 
+        add_selector_info("body", 0, record_equates_stmts_ops);
+        add_selector_info("line", 1, int_ops);
+        add_selector_info("tags", 2, sequence_of_string_ops);
+        add_selector_info("var", 3, oneof_decl_none_ops);
         find_selector_ops("record", 4, &(record_body_line_tags_var_ops));
         add_parm_info_type(0, record_body_line_tags_var_ops, p_list_of_t_reqs);
         find_prociter_instance(p_list, 1, &p_list_ownreqs, &(p_list_of_record_body_line_tags_var_ops));
@@ -1527,7 +1527,7 @@ p_tagcase(CLUREF e, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 17: 
+    case 17:
          {
 
   LINE(212);
@@ -1595,7 +1595,7 @@ p_tagcase(CLUREF e, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 24: 
+    case 24:
          {
 
   LINE(223);
@@ -1684,7 +1684,7 @@ p_tagarm(CLUREF e, CLUREF *ret_1)
     err = p_envOPget_peek1(e, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 35: 
+    case 35:
          {
 
   LINE(236);

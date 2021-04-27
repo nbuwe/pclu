@@ -65,7 +65,7 @@ _fixup_dir_part(CLUREF s, CLUREF *ret_1)
         err = stringOPsubstr(s, CLU_1, i, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = i.num + 2;
-         if ((T_2_2.num > 0 && i.num < 0 && 2 < 0) || 
+         if ((T_2_2.num > 0 && i.num < 0 && 2 < 0) ||
              (T_2_2.num < 0 && i.num > 0 && 2 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -110,7 +110,7 @@ _fixup_dir_part(CLUREF s, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = i.num - 1;
-         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && i.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}

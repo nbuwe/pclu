@@ -25,7 +25,7 @@ e_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
     err = exprOPget_abs(x, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 13: 
+    case 13:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         i.num = T_1_2.num;
@@ -36,9 +36,9 @@ e_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             err = idnOPget_kind(i, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 6: 
-            case 10: 
-            case 5: 
+            case 6:
+            case 10:
+            case 5:
                  {
 
   LINE(11);
@@ -145,16 +145,16 @@ e_expr1(CLUREF e, CLUREF x, CLUREF *ret_1)
     err = exprOPget_abs(x, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 19: 
-    case 5: 
-    case 15: 
-    case 21: 
-    case 7: 
-    case 24: 
-    case 25: 
-    case 3: 
-    case 20: 
-    case 11: 
+    case 19:
+    case 5:
+    case 15:
+    case 21:
+    case 7:
+    case 24:
+    case 25:
+    case 3:
+    case 20:
+    case 11:
          {
 
   LINE(24);
@@ -165,7 +165,7 @@ e_expr1(CLUREF e, CLUREF x, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 13: 
+    case 13:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         xa.num = T_1_2.num;
@@ -181,7 +181,7 @@ e_expr1(CLUREF e, CLUREF x, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         xa.num = T_1_3.num;
@@ -197,7 +197,7 @@ e_expr1(CLUREF e, CLUREF x, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         xa.num = T_1_4.num;
@@ -213,7 +213,7 @@ e_expr1(CLUREF e, CLUREF x, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 16: 
+    case 16:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         xa.num = T_1_5.num;
@@ -229,7 +229,7 @@ e_expr1(CLUREF e, CLUREF x, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         xa.num = T_1_6.num;
@@ -245,7 +245,7 @@ e_expr1(CLUREF e, CLUREF x, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 23: 
+    case 23:
          {CLUREF T_1_7;
         T_1_7.num = T_1_1.cell->value;
         xa.num = T_1_7.num;
@@ -261,7 +261,7 @@ e_expr1(CLUREF e, CLUREF x, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 27: 
+    case 27:
          {
 
   LINE(38);
@@ -271,7 +271,7 @@ e_expr1(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 9: 
+    case 9:
          {
 
   LINE(40);
@@ -281,7 +281,7 @@ e_expr1(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {
 
   LINE(42);
@@ -291,7 +291,7 @@ e_expr1(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
             break;
             }
@@ -353,9 +353,9 @@ e_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
     err = idnOPget_kind(i, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 6: 
-    case 10: 
-    case 5: 
+    case 6:
+    case 10:
+    case 5:
          {
 
   LINE(52);
@@ -373,8 +373,8 @@ e_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
             }
             break;
             }
-    case 9: 
-    case 4: 
+    case 9:
+    case 4:
          {
 
   LINE(55);
@@ -461,7 +461,7 @@ e_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     err = typespecOPget_abs(T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_2.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_3;
         T_1_3.num = T_1_2.cell->value;
         ta.num = T_1_3.num;
@@ -499,7 +499,7 @@ e_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 9: 
+    case 9:
          {
 
   LINE(69);
@@ -552,7 +552,7 @@ e_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = elts.vec->size; 
+        T_1_2.num = elts.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -689,7 +689,7 @@ e_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     err = typespecOPget_abs(T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_2.cell->tag) {
-    case 7: 
+    case 7:
          {CLUREF T_1_3;
         T_1_3.num = T_1_2.cell->value;
         ta.num = T_1_3.num;
@@ -727,7 +727,7 @@ e_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 9: 
+    case 9:
          {
 
   LINE(100);
@@ -780,7 +780,7 @@ e_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = fields.vec->size; 
+        T_1_2.num = fields.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -991,7 +991,7 @@ e_invoke(CLUREF e, CLUREF x, CLUREF inv, CLUREF *ret_1)
     err = exprOPget_abs(p, &T_2_1);
     if (err != ERR_ok) goto ex_1;
     switch (T_2_1.cell->tag) {
-    case 20: 
+    case 20:
          {CLUREF T_2_2;
         T_2_2.num = T_2_1.cell->value;
         pa.num = T_2_2.num;
@@ -1018,7 +1018,7 @@ e_invoke(CLUREF e, CLUREF x, CLUREF inv, CLUREF *ret_1)
             err = typespecOPget_abs(t, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             switch (T_3_1.cell->tag) {
-            case 3: 
+            case 3:
                  {CLUREF T_3_2;
                 T_3_2.num = T_3_1.cell->value;
                 ta.num = T_3_2.num;
@@ -1190,7 +1190,7 @@ e_invoke(CLUREF e, CLUREF x, CLUREF inv, CLUREF *ret_1)
                         }}}}}}}}/* end if */
                     break;
                     }
-            case 7: 
+            case 7:
                  {CLUREF T_3_3;
                 T_3_3.num = T_3_1.cell->value;
                 ta.num = T_3_3.num;
@@ -1241,7 +1241,7 @@ e_invoke(CLUREF e, CLUREF x, CLUREF inv, CLUREF *ret_1)
                         }}/* end if */
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_3_4;
                 T_3_4.num = T_3_1.cell->value;
                 ta.num = T_3_4.num;
@@ -1290,8 +1290,8 @@ e_invoke(CLUREF e, CLUREF x, CLUREF inv, CLUREF *ret_1)
             }
             break;
             }
-    case 3: 
-    case 11: 
+    case 3:
+    case 11:
          {
             break;
             }
@@ -1426,7 +1426,7 @@ e_exprlist(CLUREF e, CLUREF exprs, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = exprs.vec->size; 
+        T_1_2.num = exprs.vec->size;
         T_1_3 = exprs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             x.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1908,78 +1908,78 @@ e_applyop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         if (e_applyop_own_init == 0) {
         add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
-        add_selector_info("none", 0, null_ops); 
-        add_selector_info("one", 1, expr_ops); 
+        add_selector_info("none", 0, null_ops);
+        add_selector_info("one", 1, expr_ops);
         find_selector_ops("oneof", 2, &(oneof_none_one_ops));
-        add_selector_info("elts", 0, sequence_of_expr_ops); 
-        add_selector_info("low", 1, oneof_none_one_ops); 
-        add_selector_info("type_", 2, typespec_ops); 
+        add_selector_info("elts", 0, sequence_of_expr_ops);
+        add_selector_info("low", 1, oneof_none_one_ops);
+        add_selector_info("type_", 2, typespec_ops);
         find_selector_ops("record", 3, &(record_elts_low_type__ops));
-        add_selector_info("gen", 0, du_ops); 
-        add_selector_info("parms", 1, sequence_of_expr_ops); 
+        add_selector_info("gen", 0, du_ops);
+        add_selector_info("parms", 1, sequence_of_expr_ops);
         find_selector_ops("record", 2, &(record_gen_parms_ops));
-        add_selector_info("left", 0, expr_ops); 
-        add_selector_info("right", 1, expr_ops); 
+        add_selector_info("left", 0, expr_ops);
+        add_selector_info("right", 1, expr_ops);
         find_selector_ops("record", 2, &(record_left_right_ops));
-        add_selector_info("index", 0, expr_ops); 
-        add_selector_info("object", 1, expr_ops); 
+        add_selector_info("index", 0, expr_ops);
+        add_selector_info("object", 1, expr_ops);
         find_selector_ops("record", 2, &(record_index_object_ops));
-        add_selector_info("object", 0, expr_ops); 
-        add_selector_info("sel", 1, string_ops); 
+        add_selector_info("object", 0, expr_ops);
+        add_selector_info("sel", 1, string_ops);
         find_selector_ops("record", 2, &(record_object_sel_ops));
-        add_selector_info("left", 0, expr_ops); 
-        add_selector_info("neg", 1, bool_ops); 
-        add_selector_info("op", 2, string_ops); 
-        add_selector_info("right", 3, expr_ops); 
+        add_selector_info("left", 0, expr_ops);
+        add_selector_info("neg", 1, bool_ops);
+        add_selector_info("op", 2, string_ops);
+        add_selector_info("right", 3, expr_ops);
         find_selector_ops("record", 4, &(record_left_neg_op_right_ops));
-        add_selector_info("apply", 0, expr_ops); 
-        add_selector_info("args", 1, sequence_of_expr_ops); 
+        add_selector_info("apply", 0, expr_ops);
+        add_selector_info("args", 1, sequence_of_expr_ops);
         find_selector_ops("record", 2, &(record_apply_args_ops));
-        add_selector_info("name", 0, string_ops); 
-        add_selector_info("parms", 1, sequence_of_expr_ops); 
-        add_selector_info("type_", 2, typespec_ops); 
+        add_selector_info("name", 0, string_ops);
+        add_selector_info("parms", 1, sequence_of_expr_ops);
+        add_selector_info("type_", 2, typespec_ops);
         find_selector_ops("record", 3, &(record_name_parms_type__ops));
-        add_selector_info("idn", 0, idn_ops); 
-        add_selector_info("parms", 1, sequence_of_expr_ops); 
+        add_selector_info("idn", 0, idn_ops);
+        add_selector_info("parms", 1, sequence_of_expr_ops);
         find_selector_ops("record", 2, &(record_idn_parms_ops));
         add_parm_info_type(0, string_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_string_ops));
-        add_selector_info("line", 0, int_ops); 
-        add_selector_info("sels", 1, sequence_of_string_ops); 
-        add_selector_info("val", 2, expr_ops); 
+        add_selector_info("line", 0, int_ops);
+        add_selector_info("sels", 1, sequence_of_string_ops);
+        add_selector_info("val", 2, expr_ops);
         find_selector_ops("record", 3, &(record_line_sels_val_ops));
         add_parm_info_type(0, record_line_sels_val_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_line_sels_val_ops));
-        add_selector_info("fields", 0, sequence_of_record_line_sels_val_ops); 
-        add_selector_info("type_", 1, typespec_ops); 
+        add_selector_info("fields", 0, sequence_of_record_line_sels_val_ops);
+        add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_fields_type__ops));
-        add_selector_info("a_cons", 0, record_elts_low_type__ops); 
-        add_selector_info("any_", 1, expr_ops); 
-        add_selector_info("apply", 2, record_gen_parms_ops); 
-        add_selector_info("bad", 3, null_ops); 
-        add_selector_info("bool_", 4, bool_ops); 
-        add_selector_info("cand_", 5, record_left_right_ops); 
-        add_selector_info("char_", 6, char_ops); 
-        add_selector_info("cor_", 7, record_left_right_ops); 
-        add_selector_info("down_", 8, expr_ops); 
-        add_selector_info("fetch", 9, record_index_object_ops); 
-        add_selector_info("force_", 10, typespec_ops); 
-        add_selector_info("get", 11, record_object_sel_ops); 
-        add_selector_info("idn", 12, idn_ops); 
-        add_selector_info("infix", 13, record_left_neg_op_right_ops); 
-        add_selector_info("int_", 14, int_ops); 
-        add_selector_info("invoke", 15, record_apply_args_ops); 
-        add_selector_info("minus", 16, expr_ops); 
-        add_selector_info("not", 17, expr_ops); 
-        add_selector_info("null_", 18, null_ops); 
-        add_selector_info("op", 19, record_name_parms_type__ops); 
-        add_selector_info("real_", 20, real_ops); 
-        add_selector_info("ref", 21, record_idn_parms_ops); 
-        add_selector_info("s_cons", 22, record_fields_type__ops); 
-        add_selector_info("str", 23, string_ops); 
-        add_selector_info("type_", 24, typespec_ops); 
-        add_selector_info("type_of_", 25, expr_ops); 
-        add_selector_info("up_", 26, expr_ops); 
+        add_selector_info("a_cons", 0, record_elts_low_type__ops);
+        add_selector_info("any_", 1, expr_ops);
+        add_selector_info("apply", 2, record_gen_parms_ops);
+        add_selector_info("bad", 3, null_ops);
+        add_selector_info("bool_", 4, bool_ops);
+        add_selector_info("cand_", 5, record_left_right_ops);
+        add_selector_info("char_", 6, char_ops);
+        add_selector_info("cor_", 7, record_left_right_ops);
+        add_selector_info("down_", 8, expr_ops);
+        add_selector_info("fetch", 9, record_index_object_ops);
+        add_selector_info("force_", 10, typespec_ops);
+        add_selector_info("get", 11, record_object_sel_ops);
+        add_selector_info("idn", 12, idn_ops);
+        add_selector_info("infix", 13, record_left_neg_op_right_ops);
+        add_selector_info("int_", 14, int_ops);
+        add_selector_info("invoke", 15, record_apply_args_ops);
+        add_selector_info("minus", 16, expr_ops);
+        add_selector_info("not", 17, expr_ops);
+        add_selector_info("null_", 18, null_ops);
+        add_selector_info("op", 19, record_name_parms_type__ops);
+        add_selector_info("real_", 20, real_ops);
+        add_selector_info("ref", 21, record_idn_parms_ops);
+        add_selector_info("s_cons", 22, record_fields_type__ops);
+        add_selector_info("str", 23, string_ops);
+        add_selector_info("type_", 24, typespec_ops);
+        add_selector_info("type_of_", 25, expr_ops);
+        add_selector_info("up_", 26, expr_ops);
         find_selector_ops("oneof", 27, &(oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops));
         e_applyop_own_init = 1;
     }
@@ -2525,7 +2525,7 @@ e_intop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = i1.num + i2.num;
-                 if ((T_5_1.num > 0 && i1.num < 0 && i2.num < 0) || 
+                 if ((T_5_1.num > 0 && i1.num < 0 && i2.num < 0) ||
                      (T_5_1.num < 0 && i1.num > 0 && i2.num > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -2542,7 +2542,7 @@ e_intop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = i1.num - i2.num;
-                 if ((T_5_1.num >= 0 && i1.num < 0 && (-i2.num) < 0) || 
+                 if ((T_5_1.num >= 0 && i1.num < 0 && (-i2.num) < 0) ||
                      (T_5_1.num <= 0 && i1.num > 0 && (-i2.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}

@@ -127,7 +127,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = pos.num + 1;
-             if ((T_4_1.num > 0 && pos.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && pos.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && pos.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -176,7 +176,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
             {
             CLUREF T_5_1;
             T_5_1.num = pos.num + 1;
-             if ((T_5_1.num > 0 && pos.num < 0 && 1 < 0) || 
+             if ((T_5_1.num > 0 && pos.num < 0 && 1 < 0) ||
                  (T_5_1.num < 0 && pos.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -277,7 +277,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
                 CLUREF T_6_3;
                 T_6_1.num = (long)(c.ch & 0xff);
                 T_6_2.num = T_6_1.num + 32;
-                 if ((T_6_2.num > 0 && T_6_1.num < 0 && 32 < 0) || 
+                 if ((T_6_2.num > 0 && T_6_1.num < 0 && 32 < 0) ||
                      (T_6_2.num < 0 && T_6_1.num > 0 && 32 > 0)) {
                     err = ERR_overflow;
                     goto ex_3;}
@@ -300,7 +300,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
             {
             CLUREF T_5_1;
             T_5_1.num = pos.num + 1;
-             if ((T_5_1.num > 0 && pos.num < 0 && 1 < 0) || 
+             if ((T_5_1.num > 0 && pos.num < 0 && 1 < 0) ||
                  (T_5_1.num < 0 && pos.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_3;}
@@ -341,7 +341,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = pos.num + 1;
-             if ((T_4_1.num > 0 && pos.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && pos.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && pos.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -494,7 +494,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
             err = stringOPindexs(ms, STR_jan_040feb_040mar_040apr_040may_040jun_040jul_040aug_040sep_040oct_040nov_040dec_040, &T_4_1);
             if (err != ERR_ok) goto ex_4;
             T_4_2.num = T_4_1.num + 3;
-             if ((T_4_2.num > 0 && T_4_1.num < 0 && 3 < 0) || 
+             if ((T_4_2.num > 0 && T_4_1.num < 0 && 3 < 0) ||
                  (T_4_2.num < 0 && T_4_1.num > 0 && 3 > 0)) {
                 err = ERR_overflow;
                 goto ex_4;}
@@ -622,7 +622,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
             err = stringOPindexs(ms, STR_jan_040feb_040mar_040apr_040may_040jun_040jul_040aug_040sep_040oct_040nov_040dec_040, &T_4_1);
             if (err != ERR_ok) goto ex_4;
             T_4_2.num = T_4_1.num + 3;
-             if ((T_4_2.num > 0 && T_4_1.num < 0 && 3 < 0) || 
+             if ((T_4_2.num > 0 && T_4_1.num < 0 && 3 < 0) ||
                  (T_4_2.num < 0 && T_4_1.num > 0 && 3 > 0)) {
                 err = ERR_overflow;
                 goto ex_4;}
@@ -716,7 +716,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
                     CLUREF T_5_4;
                     T_5_1.num = as.array->ext_low;
                     T_5_2.num = T_5_1.num + 1;
-                     if ((T_5_2.num > 0 && T_5_1.num < 0 && 1 < 0) || 
+                     if ((T_5_2.num > 0 && T_5_1.num < 0 && 1 < 0) ||
                          (T_5_2.num < 0 && T_5_1.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_4;}
@@ -797,7 +797,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
             CLUREF T_4_2;
             T_4_1.num = 1900;
             T_4_2.num = year.num + T_4_1.num;
-             if ((T_4_2.num > 0 && year.num < 0 && T_4_1.num < 0) || 
+             if ((T_4_2.num > 0 && year.num < 0 && T_4_1.num < 0) ||
                  (T_4_2.num < 0 && year.num > 0 && T_4_1.num > 0)) {
                 err = ERR_overflow;
                 goto ex_4;}
@@ -1081,7 +1081,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
     {
     CLUREF T_2_1;
     T_2_1.num = day.num - days.num;
-     if ((T_2_1.num >= 0 && day.num < 0 && (-days.num) < 0) || 
+     if ((T_2_1.num >= 0 && day.num < 0 && (-days.num) < 0) ||
          (T_2_1.num <= 0 && day.num > 0 && (-days.num) > 0)) {
         err = ERR_overflow;
         goto ex_1;}
@@ -1114,7 +1114,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = month.num - 1;
-             if ((T_4_1.num >= 0 && month.num < 0 && (-1) < 0) || 
+             if ((T_4_1.num >= 0 && month.num < 0 && (-1) < 0) ||
                  (T_4_1.num <= 0 && month.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -1136,7 +1136,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = year.num - 1;
-                 if ((T_5_1.num >= 0 && year.num < 0 && (-1) < 0) || 
+                 if ((T_5_1.num >= 0 && year.num < 0 && (-1) < 0) ||
                      (T_5_1.num <= 0 && year.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_2;}
@@ -1203,7 +1203,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = day.num + dim.num;
-             if ((T_4_1.num > 0 && day.num < 0 && dim.num < 0) || 
+             if ((T_4_1.num > 0 && day.num < 0 && dim.num < 0) ||
                  (T_4_1.num < 0 && day.num > 0 && dim.num > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -1231,7 +1231,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = day.num - dim.num;
-             if ((T_4_1.num >= 0 && day.num < 0 && (-dim.num) < 0) || 
+             if ((T_4_1.num >= 0 && day.num < 0 && (-dim.num) < 0) ||
                  (T_4_1.num <= 0 && day.num > 0 && (-dim.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -1242,7 +1242,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = month.num + 1;
-             if ((T_4_1.num > 0 && month.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && month.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && month.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -1264,7 +1264,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = year.num + 1;
-                 if ((T_5_1.num > 0 && year.num < 0 && 1 < 0) || 
+                 if ((T_5_1.num > 0 && year.num < 0 && 1 < 0) ||
                      (T_5_1.num < 0 && year.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_2;}
@@ -1283,12 +1283,12 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
         CLUREF T_3_1;
         CLUREF T_3_2;
         T_3_1.num = month.num - 1;
-         if ((T_3_1.num >= 0 && month.num < 0 && (-1) < 0) || 
+         if ((T_3_1.num >= 0 && month.num < 0 && (-1) < 0) ||
              (T_3_1.num <= 0 && month.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_2;}
         T_3_2.num = T_3_1.num - months.num;
-         if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-months.num) < 0) || 
+         if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-months.num) < 0) ||
              (T_3_2.num <= 0 && T_3_1.num > 0 && (-months.num) > 0)) {
             err = ERR_overflow;
             goto ex_2;}
@@ -1301,14 +1301,14 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
         CLUREF T_3_2;
         CLUREF T_3_3;
         T_3_1.num = year.num - years.num;
-         if ((T_3_1.num >= 0 && year.num < 0 && (-years.num) < 0) || 
+         if ((T_3_1.num >= 0 && year.num < 0 && (-years.num) < 0) ||
              (T_3_1.num <= 0 && year.num > 0 && (-years.num) > 0)) {
             err = ERR_overflow;
             goto ex_2;}
         err = intOPdiv(month, CLU_12, &T_3_2);
         if (err != ERR_ok) goto ex_2;
         T_3_3.num = T_3_1.num + T_3_2.num;
-         if ((T_3_3.num > 0 && T_3_1.num < 0 && T_3_2.num < 0) || 
+         if ((T_3_3.num > 0 && T_3_1.num < 0 && T_3_2.num < 0) ||
              (T_3_3.num < 0 && T_3_1.num > 0 && T_3_2.num > 0)) {
             err = ERR_overflow;
             goto ex_2;}
@@ -1322,7 +1322,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
         err = intOPmod(month, CLU_12, &T_3_1);
         if (err != ERR_ok) goto ex_2;
         T_3_2.num = T_3_1.num + 1;
-         if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+         if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
              (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_2;}

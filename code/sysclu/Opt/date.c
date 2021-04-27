@@ -56,12 +56,12 @@ errcode date_own_init_proc()
     errcode err;
     enter_own_init_proc();
         if (date_own_init == 0) {
-        add_selector_info("day", 0, int_ops); 
-        add_selector_info("hour", 1, int_ops); 
-        add_selector_info("minute", 2, int_ops); 
-        add_selector_info("month", 3, int_ops); 
-        add_selector_info("second", 4, int_ops); 
-        add_selector_info("year", 5, int_ops); 
+        add_selector_info("day", 0, int_ops);
+        add_selector_info("hour", 1, int_ops);
+        add_selector_info("minute", 2, int_ops);
+        add_selector_info("month", 3, int_ops);
+        add_selector_info("second", 4, int_ops);
+        add_selector_info("year", 5, int_ops);
         find_selector_ops("struct", 6, &(struct_day_hour_minute_month_second_year_ops));
         stringOPcons(" ", CLU_1, CLU_1, &STR__040);
         stringOPcons("January", CLU_1, CLU_7, &STR_January);

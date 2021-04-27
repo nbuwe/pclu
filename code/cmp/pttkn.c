@@ -116,7 +116,7 @@ pt_token(CLUREF t, CLUREF st)
   LINE(8);
     {
     switch (t.cell->tag) {
-    case 13: 
+    case 13:
          {CLUREF T_1_1;
         T_1_1.num = t.cell->value;
         x.num = T_1_1.num;
@@ -124,7 +124,7 @@ pt_token(CLUREF t, CLUREF st)
   LINE(10);
             {
             switch (x.cell->tag) {
-            case 19: 
+            case 19:
                  {
 
   LINE(12);
@@ -133,7 +133,7 @@ pt_token(CLUREF t, CLUREF st)
                     }
                     break;
                     }
-            case 5: 
+            case 5:
                  {CLUREF T_2_1;
                 T_2_1.num = x.cell->value;
                 k.num = T_2_1.num;
@@ -156,7 +156,7 @@ pt_token(CLUREF t, CLUREF st)
                         }}/* end if */
                     break;
                     }
-            case 15: 
+            case 15:
                  {CLUREF T_2_2;
                 T_2_2.num = x.cell->value;
                 k.num = T_2_2.num;
@@ -170,7 +170,7 @@ pt_token(CLUREF t, CLUREF st)
                     }
                     break;
                     }
-            case 21: 
+            case 21:
                  {CLUREF T_2_3;
                 T_2_3.num = x.cell->value;
                 k.num = T_2_3.num;
@@ -184,7 +184,7 @@ pt_token(CLUREF t, CLUREF st)
                     }
                     break;
                     }
-            case 7: 
+            case 7:
                  {CLUREF T_2_4;
                 T_2_4.num = x.cell->value;
                 k.num = T_2_4.num;
@@ -200,7 +200,7 @@ pt_token(CLUREF t, CLUREF st)
                     {signal (ERR_ok);}}
                     break;
                     }
-            case 24: 
+            case 24:
                  {CLUREF T_2_5;
                 T_2_5.num = x.cell->value;
                 k.num = T_2_5.num;
@@ -227,7 +227,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 16: 
+    case 16:
          {CLUREF T_1_2;
         T_1_2.num = t.cell->value;
         k.num = T_1_2.num;
@@ -241,8 +241,8 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 11: 
-    case 23: 
+    case 11:
+    case 23:
          {CLUREF T_1_3;
         T_1_3.num = t.cell->value;
         k.num = T_1_3.num;
@@ -258,7 +258,7 @@ pt_token(CLUREF t, CLUREF st)
             {signal (ERR_ok);}}
             break;
             }
-    case 22: 
+    case 22:
          {
 
   LINE(36);
@@ -267,7 +267,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(37);
@@ -276,7 +276,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 2: 
+    case 2:
          {
 
   LINE(38);
@@ -285,7 +285,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(39);
@@ -294,7 +294,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 31: 
+    case 31:
          {
 
   LINE(40);
@@ -303,7 +303,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 6: 
+    case 6:
          {
 
   LINE(41);
@@ -312,7 +312,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 25: 
+    case 25:
          {
 
   LINE(42);
@@ -321,7 +321,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 32: 
+    case 32:
          {
 
   LINE(43);
@@ -330,7 +330,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 21: 
+    case 21:
          {
 
   LINE(44);
@@ -339,7 +339,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 19: 
+    case 19:
          {
 
   LINE(45);
@@ -348,7 +348,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 20: 
+    case 20:
          {
 
   LINE(46);
@@ -357,7 +357,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 28: 
+    case 28:
          {
 
   LINE(47);
@@ -366,7 +366,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 26: 
+    case 26:
          {
 
   LINE(48);
@@ -375,7 +375,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 27: 
+    case 27:
          {
 
   LINE(49);
@@ -384,7 +384,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 37: 
+    case 37:
          {CLUREF T_1_4;
         T_1_4.num = t.cell->value;
         k.num = T_1_4.num;
@@ -395,7 +395,7 @@ pt_token(CLUREF t, CLUREF st)
             err = typespecOPget_abs(k, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 3: 
+            case 3:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 clut.num = T_2_2.num;
@@ -411,7 +411,7 @@ pt_token(CLUREF t, CLUREF st)
                     }
                     break;
                     }
-            case 1: 
+            case 1:
                  {
 
   LINE(55);
@@ -420,7 +420,7 @@ pt_token(CLUREF t, CLUREF st)
                     }
                     break;
                     }
-            case 8: 
+            case 8:
                  {
 
   LINE(57);
@@ -429,7 +429,7 @@ pt_token(CLUREF t, CLUREF st)
                     }
                     break;
                     }
-            case 4: 
+            case 4:
                  {
 
   LINE(59);
@@ -449,7 +449,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 38: 
+    case 38:
          {CLUREF T_1_5;
         T_1_5.num = t.cell->value;
         k.num = T_1_5.num;
@@ -463,7 +463,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 14: 
+    case 14:
          {CLUREF T_1_6;
         T_1_6.num = t.cell->value;
         k.num = T_1_6.num;
@@ -477,7 +477,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 34: 
+    case 34:
          {CLUREF T_1_7;
         T_1_7.num = t.cell->value;
         k.num = T_1_7.num;
@@ -491,7 +491,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 4: 
+    case 4:
          {CLUREF T_1_8;
         T_1_8.num = t.cell->value;
         k.num = T_1_8.num;
@@ -505,7 +505,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 5: 
+    case 5:
          {
 
   LINE(71);
@@ -514,7 +514,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 9: 
+    case 9:
          {
 
   LINE(72);
@@ -523,7 +523,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 36: 
+    case 36:
          {
 
   LINE(73);
@@ -532,7 +532,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 8: 
+    case 8:
          {
 
   LINE(74);
@@ -541,7 +541,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 7: 
+    case 7:
          {
 
   LINE(75);
@@ -550,7 +550,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 35: 
+    case 35:
          {
 
   LINE(76);
@@ -559,7 +559,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 17: 
+    case 17:
          {
 
   LINE(77);
@@ -568,7 +568,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 24: 
+    case 24:
          {
 
   LINE(78);
@@ -577,7 +577,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 12: 
+    case 12:
          {
 
   LINE(79);
@@ -586,7 +586,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 39: 
+    case 39:
          {
 
   LINE(80);
@@ -595,7 +595,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 30: 
+    case 30:
          {
 
   LINE(81);
@@ -604,7 +604,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 33: 
+    case 33:
          {
 
   LINE(82);
@@ -613,7 +613,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 29: 
+    case 29:
          {
 
   LINE(83);
@@ -622,7 +622,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 41: 
+    case 41:
          {
 
   LINE(84);
@@ -631,7 +631,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 40: 
+    case 40:
          {
 
   LINE(85);
@@ -640,7 +640,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 18: 
+    case 18:
          {
 
   LINE(86);
@@ -649,7 +649,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 15: 
+    case 15:
          {
 
   LINE(87);
@@ -658,7 +658,7 @@ pt_token(CLUREF t, CLUREF st)
             }
             break;
             }
-    case 10: 
+    case 10:
          {
 
   LINE(88);
@@ -716,9 +716,9 @@ typekey_string(CLUREF k, CLUREF *ret_1)
   LINE(96);
     {
     switch (k.cell->tag) {
-    case 2: 
-    case 4: 
-    case 1: 
+    case 2:
+    case 4:
+    case 1:
          {CLUREF T_1_1;
         T_1_1.num = k.cell->value;
         d.num = T_1_1.num;
@@ -732,7 +732,7 @@ typekey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(100);
@@ -790,7 +790,7 @@ exprkey_string(CLUREF k, CLUREF *ret_1)
   LINE(107);
     {
     switch (k.cell->tag) {
-    case 2: 
+    case 2:
          {
 
   LINE(108);
@@ -799,7 +799,7 @@ exprkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(109);
@@ -808,7 +808,7 @@ exprkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(110);
@@ -817,7 +817,7 @@ exprkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(111);
@@ -891,7 +891,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
   LINE(118);
     {
     switch (k.cell->tag) {
-    case 6: 
+    case 6:
          {
 
   LINE(119);
@@ -900,7 +900,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 5: 
+    case 5:
          {
 
   LINE(120);
@@ -909,7 +909,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 10: 
+    case 10:
          {
 
   LINE(121);
@@ -918,7 +918,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 11: 
+    case 11:
          {
 
   LINE(122);
@@ -927,7 +927,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 8: 
+    case 8:
          {
 
   LINE(123);
@@ -936,7 +936,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 12: 
+    case 12:
          {
 
   LINE(124);
@@ -945,7 +945,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 9: 
+    case 9:
          {
 
   LINE(125);
@@ -954,7 +954,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(126);
@@ -963,7 +963,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {
 
   LINE(127);
@@ -972,7 +972,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(128);
@@ -981,7 +981,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(129);
@@ -990,7 +990,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 7: 
+    case 7:
          {
 
   LINE(130);
@@ -1050,7 +1050,7 @@ defnkey_string(CLUREF k, CLUREF *ret_1)
   LINE(137);
     {
     switch (k.cell->tag) {
-    case 4: 
+    case 4:
          {
 
   LINE(138);
@@ -1059,7 +1059,7 @@ defnkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(139);
@@ -1068,7 +1068,7 @@ defnkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {
 
   LINE(140);
@@ -1077,7 +1077,7 @@ defnkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 5: 
+    case 5:
          {
 
   LINE(141);
@@ -1086,7 +1086,7 @@ defnkey_string(CLUREF k, CLUREF *ret_1)
             }
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(142);
@@ -1360,7 +1360,7 @@ struct {
         T_2_1.num = (long)(locals->c.ch & 0xff);
         T_2_2.num = 64;
         T_2_3.num = T_2_1.num + T_2_2.num;
-         if ((T_2_3.num > 0 && T_2_1.num < 0 && T_2_2.num < 0) || 
+         if ((T_2_3.num > 0 && T_2_1.num < 0 && T_2_2.num < 0) ||
              (T_2_3.num < 0 && T_2_1.num > 0 && T_2_2.num > 0)) {
             locals->err = ERR_overflow;
             goto ex_0;}
@@ -1501,7 +1501,7 @@ struct {
             CLUREF T_3_4;
             T_3_1.num = 64;
             T_3_2.num = locals->i.num - T_3_1.num;
-             if ((T_3_2.num >= 0 && locals->i.num < 0 && (-T_3_1.num) < 0) || 
+             if ((T_3_2.num >= 0 && locals->i.num < 0 && (-T_3_1.num) < 0) ||
                  (T_3_2.num <= 0 && locals->i.num > 0 && (-T_3_1.num) > 0)) {
                 locals->err = ERR_overflow;
                 goto ex_0;}
@@ -1525,7 +1525,7 @@ struct {
             CLUREF T_3_2;
             T_3_1.num = 128;
             T_3_2.num = locals->i.num - T_3_1.num;
-             if ((T_3_2.num >= 0 && locals->i.num < 0 && (-T_3_1.num) < 0) || 
+             if ((T_3_2.num >= 0 && locals->i.num < 0 && (-T_3_1.num) < 0) ||
                  (T_3_2.num <= 0 && locals->i.num > 0 && (-T_3_1.num) > 0)) {
                 locals->err = ERR_overflow;
                 goto ex_0;}

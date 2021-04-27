@@ -418,7 +418,7 @@ _ernum(CLUREF msg, CLUREF *ret_1)
         T_1_1.vec->data[61] = STR_too_040many_040levels_040of_040symbols_040links.num;
         T_1_1.vec->data[62] = STR_file_040name_040too_040long.num;
         T_1_1.vec->data[63] = STR_directory_040not_040empty.num;
-        T_1_4.num = T_1_1.vec->size; 
+        T_1_4.num = T_1_1.vec->size;
         for (T_1_3.num = 1; T_1_3.num <= T_1_4.num; T_1_3.num++) {
             i.num = T_1_3.num;
 

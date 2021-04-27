@@ -1564,7 +1564,7 @@ dbg_infoOPemit_externs(CLUREF e)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = dbg_infoOPap.vec->data[10];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_val.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -1584,7 +1584,7 @@ dbg_infoOPemit_externs(CLUREF e)
     CLUREF T_1_2;
     CLUREF T_1_3;
         T_1_1.num = dbg_infoOPap.vec->data[8];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             i.num = T_1_2.num;
 
@@ -1602,7 +1602,7 @@ dbg_infoOPemit_externs(CLUREF e)
                     goto ex_0;}
                 T_2_2.num = T_2_1.vec->data[i.num - 1];
                 T_2_3.num = T_2_2.vec->data[1];
-                T_2_5.num = T_2_3.vec->size; 
+                T_2_5.num = T_2_3.vec->size;
                 T_2_6 = T_2_3;
                 for (T_2_4.num = 1; T_2_4.num <= T_2_5.num; T_2_4.num++) {
                     each_val.num = T_2_6.vec->data[T_2_4.num - 1];
@@ -1639,7 +1639,7 @@ dbg_infoOPemit_externs(CLUREF e)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = dbg_infoOPlocals_UNIQ.array->ext_high; 
+        T_1_2.num = dbg_infoOPlocals_UNIQ.array->ext_high;
         T_1_3 = dbg_infoOPlocals_UNIQ;
         for (T_1_1.num = dbg_infoOPlocals_UNIQ.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -1655,7 +1655,7 @@ dbg_infoOPemit_externs(CLUREF e)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = each_val.vec->data[0];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_idn.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -1669,7 +1669,7 @@ dbg_infoOPemit_externs(CLUREF e)
                         err = idnOPget_kind(each_idn, &T_5_1);
                         if (err != ERR_ok) goto ex_1;
                         switch (T_5_1.cell->tag) {
-                        case 9: 
+                        case 9:
                              {CLUREF T_5_2;
                             T_5_2.num = T_5_1.cell->value;
                             t.num = T_5_2.num;
@@ -1680,7 +1680,7 @@ dbg_infoOPemit_externs(CLUREF e)
                                 }
                                 break;
                                 }
-                        case 10: 
+                        case 10:
                              {CLUREF T_5_3;
                             T_5_3.num = T_5_1.cell->value;
                             t.num = T_5_3.num;
@@ -1691,8 +1691,8 @@ dbg_infoOPemit_externs(CLUREF e)
                                 }
                                 break;
                                 }
-                        case 6: 
-                        case 5: 
+                        case 6:
+                        case 5:
                              {CLUREF T_5_4;
                             T_5_4.num = T_5_1.cell->value;
                             o.num = T_5_4.num;
@@ -1709,7 +1709,7 @@ dbg_infoOPemit_externs(CLUREF e)
                                     }
                                 break;
                                 }
-                        case 4: 
+                        case 4:
                              {
 
   LINE(207);
@@ -1778,7 +1778,7 @@ dbg_infoOPemit_externs(CLUREF e)
         CLUREF T_2_1;
         CLUREF T_2_2;
         CLUREF T_2_3;
-            T_2_2.num = tinit.vec->size; 
+            T_2_2.num = tinit.vec->size;
             T_2_3 = tinit;
             for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                 each_init.num = T_2_3.vec->data[T_2_1.num - 1];
@@ -1794,7 +1794,7 @@ dbg_infoOPemit_externs(CLUREF e)
   LINE(221);
                 {
                 switch (each_val.cell->tag) {
-                case 1: 
+                case 1:
                      {CLUREF T_3_1;
                     T_3_1.num = each_val.cell->value;
                     d.num = T_3_1.num;
@@ -1814,7 +1814,7 @@ dbg_infoOPemit_externs(CLUREF e)
                         }
                         break;
                         }
-                case 2: 
+                case 2:
                      {CLUREF T_3_2;
                     T_3_2.num = each_val.cell->value;
                     di.num = T_3_2.num;
@@ -1826,7 +1826,7 @@ dbg_infoOPemit_externs(CLUREF e)
                         CLUREF T_4_3;
                         CLUREF T_4_4;
                             T_4_1.num = di.vec->data[1];
-                            T_4_3.num = T_4_1.vec->size; 
+                            T_4_3.num = T_4_1.vec->size;
                             T_4_4 = T_4_1;
                             for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                 d.num = T_4_4.vec->data[T_4_2.num - 1];
@@ -1868,7 +1868,7 @@ dbg_infoOPemit_externs(CLUREF e)
         CLUREF T_2_1;
         CLUREF T_2_2;
         CLUREF T_2_3;
-            T_2_2.num = opinit.vec->size; 
+            T_2_2.num = opinit.vec->size;
             T_2_3 = opinit;
             for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                 each_init.num = T_2_3.vec->data[T_2_1.num - 1];
@@ -1884,7 +1884,7 @@ dbg_infoOPemit_externs(CLUREF e)
   LINE(236);
                 {
                 switch (each_val.cell->tag) {
-                case 1: 
+                case 1:
                      {CLUREF T_3_1;
                     T_3_1.num = each_val.cell->value;
                     d.num = T_3_1.num;
@@ -1904,7 +1904,7 @@ dbg_infoOPemit_externs(CLUREF e)
                         }
                         break;
                         }
-                case 2: 
+                case 2:
                      {CLUREF T_3_2;
                     T_3_2.num = each_val.cell->value;
                     di.num = T_3_2.num;
@@ -1916,7 +1916,7 @@ dbg_infoOPemit_externs(CLUREF e)
                         CLUREF T_4_3;
                         CLUREF T_4_4;
                             T_4_1.num = di.vec->data[1];
-                            T_4_3.num = T_4_1.vec->size; 
+                            T_4_3.num = T_4_1.vec->size;
                             T_4_4 = T_4_1;
                             for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                 d.num = T_4_4.vec->data[T_4_2.num - 1];
@@ -2004,7 +2004,7 @@ dbg_infoOPemit_own_externs(CLUREF e)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = dbg_infoOPowns.array->ext_high; 
+        T_1_2.num = dbg_infoOPowns.array->ext_high;
         T_1_3 = dbg_infoOPowns;
         for (T_1_1.num = dbg_infoOPowns.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -2016,7 +2016,7 @@ dbg_infoOPemit_own_externs(CLUREF e)
   LINE(258);
             {
             switch (each_anown.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = each_anown.cell->value;
                 il.num = T_2_1.num;
@@ -2026,7 +2026,7 @@ dbg_infoOPemit_own_externs(CLUREF e)
                     CLUREF T_3_1;
                     CLUREF T_3_2;
                     CLUREF T_3_3;
-                        T_3_2.num = il.vec->size; 
+                        T_3_2.num = il.vec->size;
                         T_3_3 = il;
                         for (T_3_1.num = 1; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                             each_init.num = T_3_3.vec->data[T_3_1.num - 1];
@@ -2042,7 +2042,7 @@ dbg_infoOPemit_own_externs(CLUREF e)
   LINE(262);
                             {
                             switch (each_val.cell->tag) {
-                            case 1: 
+                            case 1:
                                  {CLUREF T_4_1;
                                 T_4_1.num = each_val.cell->value;
                                 d.num = T_4_1.num;
@@ -2062,7 +2062,7 @@ dbg_infoOPemit_own_externs(CLUREF e)
                                     }
                                     break;
                                     }
-                            case 2: 
+                            case 2:
                                  {CLUREF T_4_2;
                                 T_4_2.num = each_val.cell->value;
                                 di.num = T_4_2.num;
@@ -2074,7 +2074,7 @@ dbg_infoOPemit_own_externs(CLUREF e)
                                     CLUREF T_5_3;
                                     CLUREF T_5_4;
                                         T_5_1.num = di.vec->data[1];
-                                        T_5_3.num = T_5_1.vec->size; 
+                                        T_5_3.num = T_5_1.vec->size;
                                         T_5_4 = T_5_1;
                                         for (T_5_2.num = 1; T_5_2.num <= T_5_3.num; T_5_2.num++) {
                                             d.num = T_5_4.vec->data[T_5_2.num - 1];
@@ -2154,8 +2154,8 @@ dbg_infoOPemit_extern_typespec(CLUREF e, CLUREF each_val)
     err = typespecOPget_abs(each_val, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 3: 
-    case 8: 
+    case 3:
+    case 8:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         ct.num = T_1_2.num;
@@ -2229,7 +2229,7 @@ dbg_infoOPemit_extern_typespec(CLUREF e, CLUREF each_val)
                 CLUREF T_3_3;
                 CLUREF T_3_4;
                     T_3_1.num = ct.vec->data[1];
-                    T_3_3.num = T_3_1.vec->size; 
+                    T_3_3.num = T_3_1.vec->size;
                     T_3_4 = T_3_1;
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         each_parm.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -2261,7 +2261,7 @@ dbg_infoOPemit_extern_typespec(CLUREF e, CLUREF each_val)
                 }}/* end if */
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         at.num = T_1_3.num;
@@ -2271,7 +2271,7 @@ dbg_infoOPemit_extern_typespec(CLUREF e, CLUREF each_val)
             {signal (ERR_ok);}}
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         xt.num = T_1_4.num;
@@ -2326,7 +2326,7 @@ dbg_infoOPemit_extern_typespec(CLUREF e, CLUREF each_val)
             }
             break;
             }
-    case 5: 
+    case 5:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         id.num = T_1_5.num;
@@ -2337,7 +2337,7 @@ dbg_infoOPemit_extern_typespec(CLUREF e, CLUREF each_val)
             err = idnOPget_kind(id, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 6: 
+            case 6:
                  {
 
   LINE(305);
@@ -2362,7 +2362,7 @@ dbg_infoOPemit_extern_typespec(CLUREF e, CLUREF each_val)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(310);
@@ -2387,7 +2387,7 @@ dbg_infoOPemit_extern_typespec(CLUREF e, CLUREF each_val)
             {signal (ERR_ok);}}
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(314);
@@ -2501,7 +2501,7 @@ dbg_infoOPemit_sub_typedefs(CLUREF e)
     if (err != ERR_ok) goto ex_0;
     T_1_2.num = dbg_infoOPinternal_locals.array->ext_size;
     T_1_3.num = T_1_1.num + T_1_2.num;
-     if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) || 
+     if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) ||
          (T_1_3.num < 0 && T_1_1.num > 0 && T_1_2.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2540,7 +2540,7 @@ dbg_infoOPemit_sub_typedefs(CLUREF e)
                 if (err != ERR_ok) goto ex_0;
                 T_4_3.num = dbg_infoOPpopowns.array->ext_size;
                 T_4_4.num = T_4_2.num + T_4_3.num;
-                 if ((T_4_4.num > 0 && T_4_2.num < 0 && T_4_3.num < 0) || 
+                 if ((T_4_4.num > 0 && T_4_2.num < 0 && T_4_3.num < 0) ||
                      (T_4_4.num < 0 && T_4_2.num > 0 && T_4_3.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -2566,7 +2566,7 @@ dbg_infoOPemit_sub_typedefs(CLUREF e)
                     {
                     CLUREF T_5_1;
                     T_5_1.num = dbg_infoOPnpopowns.num + 1;
-                     if ((T_5_1.num > 0 && dbg_infoOPnpopowns.num < 0 && 1 < 0) || 
+                     if ((T_5_1.num > 0 && dbg_infoOPnpopowns.num < 0 && 1 < 0) ||
                          (T_5_1.num < 0 && dbg_infoOPnpopowns.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -2603,7 +2603,7 @@ dbg_infoOPemit_sub_typedefs(CLUREF e)
                 if (err != ERR_ok) goto ex_0;
                 T_4_3.num = dbg_infoOPpopowns.array->ext_size;
                 T_4_4.num = T_4_2.num + T_4_3.num;
-                 if ((T_4_4.num > 0 && T_4_2.num < 0 && T_4_3.num < 0) || 
+                 if ((T_4_4.num > 0 && T_4_2.num < 0 && T_4_3.num < 0) ||
                      (T_4_4.num < 0 && T_4_2.num > 0 && T_4_3.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -2629,7 +2629,7 @@ dbg_infoOPemit_sub_typedefs(CLUREF e)
                     {
                     CLUREF T_5_1;
                     T_5_1.num = dbg_infoOPnpopowns.num + 1;
-                     if ((T_5_1.num > 0 && dbg_infoOPnpopowns.num < 0 && 1 < 0) || 
+                     if ((T_5_1.num > 0 && dbg_infoOPnpopowns.num < 0 && 1 < 0) ||
                          (T_5_1.num < 0 && dbg_infoOPnpopowns.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -2667,7 +2667,7 @@ dbg_infoOPemit_sub_typedefs(CLUREF e)
             if (err != ERR_ok) goto ex_0;
             T_3_3.num = dbg_infoOPpopowns.array->ext_size;
             T_3_4.num = T_3_2.num + T_3_3.num;
-             if ((T_3_4.num > 0 && T_3_2.num < 0 && T_3_3.num < 0) || 
+             if ((T_3_4.num > 0 && T_3_2.num < 0 && T_3_3.num < 0) ||
                  (T_3_4.num < 0 && T_3_2.num > 0 && T_3_3.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -2693,7 +2693,7 @@ dbg_infoOPemit_sub_typedefs(CLUREF e)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = dbg_infoOPnpopowns.num + 1;
-                 if ((T_4_1.num > 0 && dbg_infoOPnpopowns.num < 0 && 1 < 0) || 
+                 if ((T_4_1.num > 0 && dbg_infoOPnpopowns.num < 0 && 1 < 0) ||
                      (T_4_1.num < 0 && dbg_infoOPnpopowns.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -3303,7 +3303,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = dbg_infoOPap.vec->data[10];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_val.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -3345,7 +3345,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
     CLUREF T_1_2;
     CLUREF T_1_3;
         T_1_1.num = dbg_infoOPap.vec->data[8];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             i.num = T_1_2.num;
 
@@ -3405,7 +3405,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
             err = stringOPconcat(T_2_7, STR__040_075_040_1730_054_040, &T_2_8);
             if (err != ERR_ok) goto ex_0;
             T_2_9.num = 3 + tsz.num;
-             if ((T_2_9.num > 0 && 3 < 0 && tsz.num < 0) || 
+             if ((T_2_9.num > 0 && 3 < 0 && tsz.num < 0) ||
                  (T_2_9.num < 0 && 3 > 0 && tsz.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -3468,7 +3468,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
                     goto ex_0;}
                 T_2_2.num = T_2_1.vec->data[i.num - 1];
                 T_2_3.num = T_2_2.vec->data[1];
-                T_2_5.num = T_2_3.vec->size; 
+                T_2_5.num = T_2_3.vec->size;
                 T_2_6 = T_2_3;
                 for (T_2_4.num = 1; T_2_4.num <= T_2_5.num; T_2_4.num++) {
                     each_val.num = T_2_6.vec->data[T_2_4.num - 1];
@@ -3549,7 +3549,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
     CLUREF T_1_2;
     CLUREF T_1_3;
         T_1_1.num = dbg_infoOPap.vec->data[8];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             i.num = T_1_2.num;
 
@@ -3640,7 +3640,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = dbg_infoOPinternal_locals.array->ext_high; 
+        T_1_2.num = dbg_infoOPinternal_locals.array->ext_high;
         T_1_3 = dbg_infoOPinternal_locals;
         for (T_1_1.num = dbg_infoOPinternal_locals.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -3685,7 +3685,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = dbg_infoOPlocals_UNIQ.array->ext_high; 
+        T_1_2.num = dbg_infoOPlocals_UNIQ.array->ext_high;
         T_1_3 = dbg_infoOPlocals_UNIQ;
         for (T_1_1.num = dbg_infoOPlocals_UNIQ.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -3701,7 +3701,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = each_val.vec->data[0];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_idn.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -3715,7 +3715,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
                         err = idnOPget_kind(each_idn, &T_5_1);
                         if (err != ERR_ok) goto ex_1;
                         switch (T_5_1.cell->tag) {
-                        case 9: 
+                        case 9:
                              {CLUREF T_5_2;
                             T_5_2.num = T_5_1.cell->value;
                             t.num = T_5_2.num;
@@ -3726,7 +3726,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
                                 }
                                 break;
                                 }
-                        case 10: 
+                        case 10:
                              {CLUREF T_5_3;
                             T_5_3.num = T_5_1.cell->value;
                             t.num = T_5_3.num;
@@ -3737,8 +3737,8 @@ dbg_infoOPemit_sub_decls(CLUREF e)
                                 }
                                 break;
                                 }
-                        case 6: 
-                        case 5: 
+                        case 6:
+                        case 5:
                              {CLUREF T_5_4;
                             T_5_4.num = T_5_1.cell->value;
                             o.num = T_5_4.num;
@@ -3771,7 +3771,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
                                     }
                                 break;
                                 }
-                        case 4: 
+                        case 4:
                              {
 
   LINE(510);
@@ -4025,7 +4025,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = dbg_infoOPtypeformals.array->ext_high; 
+        T_1_2.num = dbg_infoOPtypeformals.array->ext_high;
         T_1_3 = dbg_infoOPtypeformals;
         for (T_1_1.num = dbg_infoOPtypeformals.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -4102,7 +4102,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = dbg_infoOPopformals.array->ext_high; 
+        T_1_2.num = dbg_infoOPopformals.array->ext_high;
         T_1_3 = dbg_infoOPopformals;
         for (T_1_1.num = dbg_infoOPopformals.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -4465,7 +4465,7 @@ dbg_infoOPprocess_mixedlist(CLUREF e, CLUREF list)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = list.array->ext_high; 
+        T_1_2.num = list.array->ext_high;
         T_1_3 = list;
         for (T_1_1.num = list.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -4477,7 +4477,7 @@ dbg_infoOPprocess_mixedlist(CLUREF e, CLUREF list)
   LINE(622);
             {
             switch (each_item.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = each_item.cell->value;
                 il.num = T_2_1.num;
@@ -4525,7 +4525,7 @@ dbg_infoOPprocess_mixedlist(CLUREF e, CLUREF list)
                         }}/* end if */
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_2;
                 T_2_2.num = each_item.cell->value;
                 s.num = T_2_2.num;
@@ -4656,7 +4656,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = tylist.vec->size; 
+        T_1_2.num = tylist.vec->size;
         T_1_3 = tylist;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_init.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -4672,7 +4672,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
   LINE(654);
             {
             switch (each_val.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = each_val.cell->value;
                 d.num = T_2_1.num;
@@ -4692,7 +4692,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = d.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             each_idn.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -4711,7 +4711,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
                     end_inline_for_2:;
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_2;
                 T_2_2.num = each_val.cell->value;
                 di.num = T_2_2.num;
@@ -4723,7 +4723,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = di.vec->data[1];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             d.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -4743,7 +4743,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
                             CLUREF T_4_3;
                             CLUREF T_4_4;
                                 T_4_1.num = d.vec->data[0];
-                                T_4_3.num = T_4_1.vec->size; 
+                                T_4_3.num = T_4_1.vec->size;
                                 T_4_4 = T_4_1;
                                 for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                     each_idn.num = T_4_4.vec->data[T_4_2.num - 1];
@@ -4776,7 +4776,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = oplist.vec->size; 
+        T_1_2.num = oplist.vec->size;
         T_1_3 = oplist;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_init.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -4792,7 +4792,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
   LINE(672);
             {
             switch (each_val.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = each_val.cell->value;
                 d.num = T_2_1.num;
@@ -4812,7 +4812,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = d.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             each_idn.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -4831,7 +4831,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
                     end_inline_for_6:;
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_2;
                 T_2_2.num = each_val.cell->value;
                 di.num = T_2_2.num;
@@ -4843,7 +4843,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = di.vec->data[1];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             d.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -4863,7 +4863,7 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
                             CLUREF T_4_3;
                             CLUREF T_4_4;
                                 T_4_1.num = d.vec->data[0];
-                                T_4_3.num = T_4_1.vec->size; 
+                                T_4_3.num = T_4_1.vec->size;
                                 T_4_4 = T_4_1;
                                 for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                     each_idn.num = T_4_4.vec->data[T_4_2.num - 1];
@@ -4934,7 +4934,7 @@ dbg_infoOPprocess_ownlists(CLUREF e, CLUREF own_list)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = own_list.array->ext_high; 
+        T_1_2.num = own_list.array->ext_high;
         T_1_3 = own_list;
         for (T_1_1.num = own_list.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -4999,7 +4999,7 @@ dbg_infoOPemit_sub_decl_typespec(CLUREF e, CLUREF id, CLUREF each_val, CLUREF fi
     err = typespecOPget_abs(each_val, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 4: 
+    case 4:
          {
 
   LINE(703);
@@ -5063,8 +5063,8 @@ dbg_infoOPemit_sub_decl_typespec(CLUREF e, CLUREF id, CLUREF each_val, CLUREF fi
     err = typespecOPget_abs(each_val, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 3: 
-    case 8: 
+    case 3:
+    case 8:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         ct.num = T_1_2.num;
@@ -5117,7 +5117,7 @@ dbg_infoOPemit_sub_decl_typespec(CLUREF e, CLUREF id, CLUREF each_val, CLUREF fi
                 CLUREF T_3_3;
                 CLUREF T_3_4;
                     T_3_1.num = ct.vec->data[1];
-                    T_3_3.num = T_3_1.vec->size; 
+                    T_3_3.num = T_3_1.vec->size;
                     T_3_4 = T_3_1;
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         each_parm.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -5187,7 +5187,7 @@ dbg_infoOPemit_sub_decl_typespec(CLUREF e, CLUREF id, CLUREF each_val, CLUREF fi
                 }}/* end if */
             break;
             }
-    case 2: 
+    case 2:
          {
 
   LINE(730);
@@ -5197,7 +5197,7 @@ dbg_infoOPemit_sub_decl_typespec(CLUREF e, CLUREF id, CLUREF each_val, CLUREF fi
             }
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         xt.num = T_1_3.num;
@@ -5284,7 +5284,7 @@ dbg_infoOPemit_sub_decl_typespec(CLUREF e, CLUREF id, CLUREF each_val, CLUREF fi
                 }}/* end if */
             break;
             }
-    case 5: 
+    case 5:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         i.num = T_1_4.num;
@@ -5295,7 +5295,7 @@ dbg_infoOPemit_sub_decl_typespec(CLUREF e, CLUREF id, CLUREF each_val, CLUREF fi
             err = idnOPget_kind(i, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 6: 
+            case 6:
                  {
 
   LINE(744);
@@ -5335,7 +5335,7 @@ dbg_infoOPemit_sub_decl_typespec(CLUREF e, CLUREF id, CLUREF each_val, CLUREF fi
             }
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(749);
@@ -5523,7 +5523,7 @@ dbg_infoOPemit_decl(CLUREF e)
         {
         CLUREF T_2_1;
         T_2_1.num = is_parmd.num + 1;
-         if ((T_2_1.num > 0 && is_parmd.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && is_parmd.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && is_parmd.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -5877,7 +5877,7 @@ dbg_infoOPidns_in_decls(CLUREF a, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = a.array->ext_high; 
+        T_1_2.num = a.array->ext_high;
         T_1_3 = a;
         for (T_1_1.num = a.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -5894,7 +5894,7 @@ dbg_infoOPidns_in_decls(CLUREF a, CLUREF *ret_1)
             T_2_1.num = each_d.vec->data[0];
             T_2_2.num = T_2_1.vec->size;
             T_2_3.num = count.num + T_2_2.num;
-             if ((T_2_3.num > 0 && count.num < 0 && T_2_2.num < 0) || 
+             if ((T_2_3.num > 0 && count.num < 0 && T_2_2.num < 0) ||
                  (T_2_3.num < 0 && count.num > 0 && T_2_2.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -5952,7 +5952,7 @@ dbg_infoOPowns_in_mixedlist(CLUREF it, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = it.array->ext_high; 
+        T_1_2.num = it.array->ext_high;
         T_1_3 = it;
         for (T_1_1.num = it.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -5964,14 +5964,14 @@ dbg_infoOPowns_in_mixedlist(CLUREF it, CLUREF *ret_1)
   LINE(857);
             {
             switch (each_item.cell->tag) {
-            case 2: 
+            case 2:
                  {
 
   LINE(859);
                     {
                     CLUREF T_3_1;
                     T_3_1.num = count.num + 1;
-                     if ((T_3_1.num > 0 && count.num < 0 && 1 < 0) || 
+                     if ((T_3_1.num > 0 && count.num < 0 && 1 < 0) ||
                          (T_3_1.num < 0 && count.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -5979,7 +5979,7 @@ dbg_infoOPowns_in_mixedlist(CLUREF it, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = each_item.cell->value;
                 il.num = T_2_1.num;
@@ -6003,7 +6003,7 @@ dbg_infoOPowns_in_mixedlist(CLUREF it, CLUREF *ret_1)
                         {
                         CLUREF T_4_1;
                         T_4_1.num = count.num + 1;
-                         if ((T_4_1.num > 0 && count.num < 0 && 1 < 0) || 
+                         if ((T_4_1.num > 0 && count.num < 0 && 1 < 0) ||
                              (T_4_1.num < 0 && count.num > 0 && 1 > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -6016,7 +6016,7 @@ dbg_infoOPowns_in_mixedlist(CLUREF it, CLUREF *ret_1)
                         {
                         CLUREF T_4_1;
                         T_4_1.num = count.num + delta.num;
-                         if ((T_4_1.num > 0 && count.num < 0 && delta.num < 0) || 
+                         if ((T_4_1.num > 0 && count.num < 0 && delta.num < 0) ||
                              (T_4_1.num < 0 && count.num > 0 && delta.num > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -6093,7 +6093,7 @@ dbg_infoOPvars_in_mixedlist(CLUREF it, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = it.array->ext_high; 
+        T_1_2.num = it.array->ext_high;
         T_1_3 = it;
         for (T_1_1.num = it.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -6105,14 +6105,14 @@ dbg_infoOPvars_in_mixedlist(CLUREF it, CLUREF *ret_1)
   LINE(877);
             {
             switch (each_item.cell->tag) {
-            case 2: 
+            case 2:
                  {
 
   LINE(879);
                     {
                     CLUREF T_3_1;
                     T_3_1.num = count.num + 1;
-                     if ((T_3_1.num > 0 && count.num < 0 && 1 < 0) || 
+                     if ((T_3_1.num > 0 && count.num < 0 && 1 < 0) ||
                          (T_3_1.num < 0 && count.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -6120,7 +6120,7 @@ dbg_infoOPvars_in_mixedlist(CLUREF it, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = each_item.cell->value;
                 il.num = T_2_1.num;
@@ -6132,7 +6132,7 @@ dbg_infoOPvars_in_mixedlist(CLUREF it, CLUREF *ret_1)
                     err = dbg_infoOPvars_in_initlist(il, &T_3_1);
                     if (err != ERR_ok) goto ex_0;
                     T_3_2.num = count.num + T_3_1.num;
-                     if ((T_3_2.num > 0 && count.num < 0 && T_3_1.num < 0) || 
+                     if ((T_3_2.num > 0 && count.num < 0 && T_3_1.num < 0) ||
                          (T_3_2.num < 0 && count.num > 0 && T_3_1.num > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -6211,7 +6211,7 @@ dbg_infoOPvars_in_initlist(CLUREF it, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = it.vec->size; 
+        T_1_2.num = it.vec->size;
         T_1_3 = it;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_init.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -6227,7 +6227,7 @@ dbg_infoOPvars_in_initlist(CLUREF it, CLUREF *ret_1)
   LINE(892);
             {
             switch (each_val.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = each_val.cell->value;
                 d.num = T_2_1.num;
@@ -6240,7 +6240,7 @@ dbg_infoOPvars_in_initlist(CLUREF it, CLUREF *ret_1)
                     T_3_1.num = d.vec->data[0];
                     T_3_2.num = T_3_1.vec->size;
                     T_3_3.num = count.num + T_3_2.num;
-                     if ((T_3_3.num > 0 && count.num < 0 && T_3_2.num < 0) || 
+                     if ((T_3_3.num > 0 && count.num < 0 && T_3_2.num < 0) ||
                          (T_3_3.num < 0 && count.num > 0 && T_3_2.num > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
@@ -6248,7 +6248,7 @@ dbg_infoOPvars_in_initlist(CLUREF it, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_2;
                 T_2_2.num = each_val.cell->value;
                 di.num = T_2_2.num;
@@ -6260,7 +6260,7 @@ dbg_infoOPvars_in_initlist(CLUREF it, CLUREF *ret_1)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = di.vec->data[1];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             each_d.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -6273,7 +6273,7 @@ dbg_infoOPvars_in_initlist(CLUREF it, CLUREF *ret_1)
                             T_4_1.num = each_d.vec->data[0];
                             T_4_2.num = T_4_1.vec->size;
                             T_4_3.num = count.num + T_4_2.num;
-                             if ((T_4_3.num > 0 && count.num < 0 && T_4_2.num < 0) || 
+                             if ((T_4_3.num > 0 && count.num < 0 && T_4_2.num < 0) ||
                                  (T_4_3.num < 0 && count.num > 0 && T_4_2.num > 0)) {
                                 err = ERR_overflow;
                                 goto ex_0;}
@@ -6295,7 +6295,7 @@ dbg_infoOPvars_in_initlist(CLUREF it, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = count.num + 1;
-     if ((T_1_1.num > 0 && count.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && count.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && count.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -6342,7 +6342,7 @@ dbg_infoOPvars_in_decllist(CLUREF dl, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = dl.vec->size; 
+        T_1_2.num = dl.vec->size;
         T_1_3 = dl;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_d.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -6355,7 +6355,7 @@ dbg_infoOPvars_in_decllist(CLUREF dl, CLUREF *ret_1)
             T_2_1.num = each_d.vec->data[0];
             T_2_2.num = T_2_1.vec->size;
             T_2_3.num = count.num + T_2_2.num;
-             if ((T_2_3.num > 0 && count.num < 0 && T_2_2.num < 0) || 
+             if ((T_2_3.num > 0 && count.num < 0 && T_2_2.num < 0) ||
                  (T_2_3.num < 0 && count.num > 0 && T_2_2.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -6540,7 +6540,7 @@ escape_ckeyword(CLUREF nm, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = escape_ckeywordOPreserved.vec->size; 
+        T_1_2.num = escape_ckeywordOPreserved.vec->size;
         T_1_3 = escape_ckeywordOPreserved;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_st.num = T_1_3.vec->data[T_1_1.num - 1];

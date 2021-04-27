@@ -94,7 +94,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         CLUREF T_1_2;
         T_1_1.num = a1.array->ext_low;
         T_1_2.num = b1.num - T_1_1.num;
-         if ((T_1_2.num >= 0 && b1.num < 0 && (-T_1_1.num) < 0) || 
+         if ((T_1_2.num >= 0 && b1.num < 0 && (-T_1_1.num) < 0) ||
              (T_1_2.num <= 0 && b1.num > 0 && (-T_1_1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -108,7 +108,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         CLUREF T_1_2;
         T_1_1.num = a1.array->ext_size;
         T_1_2.num = T_1_1.num - f1.num;
-         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-f1.num) < 0) || 
+         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-f1.num) < 0) ||
              (T_1_2.num <= 0 && T_1_1.num > 0 && (-f1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -122,7 +122,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         CLUREF T_1_2;
         T_1_1.num = a2.array->ext_low;
         T_1_2.num = b2.num - T_1_1.num;
-         if ((T_1_2.num >= 0 && b2.num < 0 && (-T_1_1.num) < 0) || 
+         if ((T_1_2.num >= 0 && b2.num < 0 && (-T_1_1.num) < 0) ||
              (T_1_2.num <= 0 && b2.num > 0 && (-T_1_1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -136,7 +136,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         CLUREF T_1_2;
         T_1_1.num = a2.array->ext_size;
         T_1_2.num = T_1_1.num - f2.num;
-         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-f2.num) < 0) || 
+         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-f2.num) < 0) ||
              (T_1_2.num <= 0 && T_1_1.num > 0 && (-f2.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -278,7 +278,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
             err = _advOPget_start(T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
             T_2_3.num = T_2_2.num + f1.num;
-             if ((T_2_3.num > 0 && T_2_2.num < 0 && f1.num < 0) || 
+             if ((T_2_3.num > 0 && T_2_2.num < 0 && f1.num < 0) ||
                  (T_2_3.num < 0 && T_2_2.num > 0 && f1.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -298,7 +298,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
             CLUREF T_3_2;
             T_3_1.num = a1.num;
             T_3_2.num = s1.num + w1.num;
-             if ((T_3_2.num > 0 && s1.num < 0 && w1.num < 0) || 
+             if ((T_3_2.num > 0 && s1.num < 0 && w1.num < 0) ||
                  (T_3_2.num < 0 && s1.num > 0 && w1.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -322,12 +322,12 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
                 CLUREF T_4_1;
                 CLUREF T_4_2;
                 T_4_1.num = s1.num + w1.num;
-                 if ((T_4_1.num > 0 && s1.num < 0 && w1.num < 0) || 
+                 if ((T_4_1.num > 0 && s1.num < 0 && w1.num < 0) ||
                      (T_4_1.num < 0 && s1.num > 0 && w1.num > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
                 T_4_2.num = r1.num - w1.num;
-                 if ((T_4_2.num >= 0 && r1.num < 0 && (-w1.num) < 0) || 
+                 if ((T_4_2.num >= 0 && r1.num < 0 && (-w1.num) < 0) ||
                      (T_4_2.num <= 0 && r1.num > 0 && (-w1.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
@@ -345,7 +345,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
             T_3_1.num = a1.num;
             T_3_2.num = a1.array->ext_size;
             T_3_3.num = T_3_2.num - w1.num;
-             if ((T_3_3.num >= 0 && T_3_2.num < 0 && (-w1.num) < 0) || 
+             if ((T_3_3.num >= 0 && T_3_2.num < 0 && (-w1.num) < 0) ||
                  (T_3_3.num <= 0 && T_3_2.num > 0 && (-w1.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -387,7 +387,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
     {
         {CLUREF T_1_1;
         T_1_1.num = r1.num - w1.num;
-         if ((T_1_1.num >= 0 && r1.num < 0 && (-w1.num) < 0) || 
+         if ((T_1_1.num >= 0 && r1.num < 0 && (-w1.num) < 0) ||
              (T_1_1.num <= 0 && r1.num > 0 && (-w1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -400,12 +400,12 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         T_1_1.num = f1.num + w2.num;
-         if ((T_1_1.num > 0 && f1.num < 0 && w2.num < 0) || 
+         if ((T_1_1.num > 0 && f1.num < 0 && w2.num < 0) ||
              (T_1_1.num < 0 && f1.num > 0 && w2.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_1_2.num = T_1_1.num + w3.num;
-         if ((T_1_2.num > 0 && T_1_1.num < 0 && w3.num < 0) || 
+         if ((T_1_2.num > 0 && T_1_1.num < 0 && w3.num < 0) ||
              (T_1_2.num < 0 && T_1_1.num > 0 && w3.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -439,7 +439,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         err = _advOPget_start(T_1_1, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         T_1_3.num = T_1_2.num + f2.num;
-         if ((T_1_3.num > 0 && T_1_2.num < 0 && f2.num < 0) || 
+         if ((T_1_3.num > 0 && T_1_2.num < 0 && f2.num < 0) ||
              (T_1_3.num < 0 && T_1_2.num > 0 && f2.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -452,12 +452,12 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         T_1_1.num = s1.num + f1.num;
-         if ((T_1_1.num > 0 && s1.num < 0 && f1.num < 0) || 
+         if ((T_1_1.num > 0 && s1.num < 0 && f1.num < 0) ||
              (T_1_1.num < 0 && s1.num > 0 && f1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_1_2.num = T_1_1.num + w1.num;
-         if ((T_1_2.num > 0 && T_1_1.num < 0 && w1.num < 0) || 
+         if ((T_1_2.num > 0 && T_1_1.num < 0 && w1.num < 0) ||
              (T_1_2.num < 0 && T_1_1.num > 0 && w1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -509,7 +509,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         {
         CLUREF T_2_1;
         T_2_1.num = s1.num + f1.num;
-         if ((T_2_1.num > 0 && s1.num < 0 && f1.num < 0) || 
+         if ((T_2_1.num > 0 && s1.num < 0 && f1.num < 0) ||
              (T_2_1.num < 0 && s1.num > 0 && f1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -528,12 +528,12 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = s3.num - w1.num;
-             if ((T_3_1.num >= 0 && s3.num < 0 && (-w1.num) < 0) || 
+             if ((T_3_1.num >= 0 && s3.num < 0 && (-w1.num) < 0) ||
                  (T_3_1.num <= 0 && s3.num > 0 && (-w1.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
             T_3_2.num = T_3_1.num + w2.num;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && w2.num < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && w2.num < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && w2.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -594,7 +594,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         {
         CLUREF T_2_1;
         T_2_1.num = f1.num + 1;
-         if ((T_2_1.num > 0 && f1.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && f1.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && f1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -607,12 +607,12 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = f1.num + w2.num;
-         if ((T_2_1.num > 0 && f1.num < 0 && w2.num < 0) || 
+         if ((T_2_1.num > 0 && f1.num < 0 && w2.num < 0) ||
              (T_2_1.num < 0 && f1.num > 0 && w2.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -681,7 +681,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
     {
         {CLUREF T_1_1;
         T_1_1.num = w2.num - w1.num;
-         if ((T_1_1.num >= 0 && w2.num < 0 && (-w1.num) < 0) || 
+         if ((T_1_1.num >= 0 && w2.num < 0 && (-w1.num) < 0) ||
              (T_1_1.num <= 0 && w2.num > 0 && (-w1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -699,7 +699,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         {
             {CLUREF T_2_1;
             T_2_1.num = s1.num - df.num;
-             if ((T_2_1.num >= 0 && s1.num < 0 && (-df.num) < 0) || 
+             if ((T_2_1.num >= 0 && s1.num < 0 && (-df.num) < 0) ||
                  (T_2_1.num <= 0 && s1.num > 0 && (-df.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -728,7 +728,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         {
         CLUREF T_2_1;
         T_2_1.num = s0.num + f1.num;
-         if ((T_2_1.num > 0 && s0.num < 0 && f1.num < 0) || 
+         if ((T_2_1.num > 0 && s0.num < 0 && f1.num < 0) ||
              (T_2_1.num < 0 && s0.num > 0 && f1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -746,18 +746,18 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
     err = _vecOPsize(v1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_3.num = T_1_2.num - s1.num;
-     if ((T_1_3.num >= 0 && T_1_2.num < 0 && (-s1.num) < 0) || 
+     if ((T_1_3.num >= 0 && T_1_2.num < 0 && (-s1.num) < 0) ||
          (T_1_3.num <= 0 && T_1_2.num > 0 && (-s1.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     T_1_4.num = a1.array->ext_size;
     T_1_5.num = T_1_3.num - T_1_4.num;
-     if ((T_1_5.num >= 0 && T_1_3.num < 0 && (-T_1_4.num) < 0) || 
+     if ((T_1_5.num >= 0 && T_1_3.num < 0 && (-T_1_4.num) < 0) ||
          (T_1_5.num <= 0 && T_1_3.num > 0 && (-T_1_4.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     T_1_6.num = T_1_5.num + 1;
-     if ((T_1_6.num > 0 && T_1_5.num < 0 && 1 < 0) || 
+     if ((T_1_6.num > 0 && T_1_5.num < 0 && 1 < 0) ||
          (T_1_6.num < 0 && T_1_5.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -779,7 +779,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         {
         CLUREF T_2_1;
         T_2_1.num = s3.num + df.num;
-         if ((T_2_1.num > 0 && s3.num < 0 && df.num < 0) || 
+         if ((T_2_1.num > 0 && s3.num < 0 && df.num < 0) ||
              (T_2_1.num < 0 && s3.num > 0 && df.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -791,7 +791,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         {
         CLUREF T_2_1;
         T_2_1.num = s1.num + f1.num;
-         if ((T_2_1.num > 0 && s1.num < 0 && f1.num < 0) || 
+         if ((T_2_1.num > 0 && s1.num < 0 && f1.num < 0) ||
              (T_2_1.num < 0 && s1.num > 0 && f1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -823,12 +823,12 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = f1.num + w2.num;
-         if ((T_2_1.num > 0 && f1.num < 0 && w2.num < 0) || 
+         if ((T_2_1.num > 0 && f1.num < 0 && w2.num < 0) ||
              (T_2_1.num < 0 && f1.num > 0 && w2.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -840,7 +840,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         {
         CLUREF T_2_1;
         T_2_1.num = f1.num + 1;
-         if ((T_2_1.num > 0 && f1.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && f1.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && f1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}

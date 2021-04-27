@@ -190,7 +190,7 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), char **user_locals, errcode *ieco
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = locals.z.num + 1;
-     if ((T_1_1.num > 0 && locals.z.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && locals.z.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && locals.z.num > 0 && 1 > 0)) {
         locals.err = ERR_overflow;
         goto ex_0;}
@@ -221,7 +221,7 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), char **user_locals, errcode *ieco
         {
         CLUREF T_2_1;
         T_2_1.num = locals.z.num - 1;
-         if ((T_2_1.num >= 0 && locals.z.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && locals.z.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && locals.z.num > 0 && (-1) > 0)) {
             locals.err = ERR_overflow;
             goto ex_0;}
@@ -530,7 +530,7 @@ struct {
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = locals->list.array->ext_high; 
+        T_1_2.num = locals->list.array->ext_high;
         T_1_3 = locals->list;
         for (T_1_1.num = locals->list.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -655,7 +655,7 @@ struct {
     {
     CLUREF T_2_1;
     CLUREF T_2_2;
-        T_2_2.num = locals->list.array->ext_high; 
+        T_2_2.num = locals->list.array->ext_high;
         for (T_2_1.num = locals->list.array->ext_low; T_2_1.num <= T_2_2.num; T_2_1.num++) {
             locals->z.num = T_2_1.num;
 
@@ -709,7 +709,7 @@ struct {
                 {
                 CLUREF T_4_1;
                 T_4_1.num = locals->z.num + 1;
-                 if ((T_4_1.num > 0 && locals->z.num < 0 && 1 < 0) || 
+                 if ((T_4_1.num > 0 && locals->z.num < 0 && 1 < 0) ||
                      (T_4_1.num < 0 && locals->z.num > 0 && 1 > 0)) {
                     locals->err = ERR_overflow;
                     goto ex_1;}
@@ -805,7 +805,7 @@ _restar(CLUREF s, CLUREF *ret_1)
         CLUREF T_2_6;
         CLUREF T_2_7;
         T_2_1.num = i.num - 1;
-         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && i.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && i.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -815,7 +815,7 @@ _restar(CLUREF s, CLUREF *ret_1)
         err = stringOPappend(T_2_2, T_2_3, &T_2_4);
         if (err != ERR_ok) goto ex_0;
         T_2_5.num = i.num + 1;
-         if ((T_2_5.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_5.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_5.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -950,7 +950,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = l.num + 1;
-         if ((T_2_1.num > 0 && l.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && l.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && l.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -961,7 +961,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = i.num + 1;
-         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -978,7 +978,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = i.num + 1;
-         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -1008,7 +1008,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = j.num + 1;
-             if ((T_4_1.num > 0 && j.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && j.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && j.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -1117,7 +1117,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
                 {
                 CLUREF T_6_1;
                 T_6_1.num = l.num + 1;
-                 if ((T_6_1.num > 0 && l.num < 0 && 1 < 0) || 
+                 if ((T_6_1.num > 0 && l.num < 0 && 1 < 0) ||
                      (T_6_1.num < 0 && l.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_2;}
@@ -1128,7 +1128,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
                 {
                 CLUREF T_6_1;
                 T_6_1.num = i.num + 1;
-                 if ((T_6_1.num > 0 && i.num < 0 && 1 < 0) || 
+                 if ((T_6_1.num > 0 && i.num < 0 && 1 < 0) ||
                      (T_6_1.num < 0 && i.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_2;}
@@ -1141,7 +1141,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
             {
             CLUREF T_5_1;
             T_5_1.num = m.num + 1;
-             if ((T_5_1.num > 0 && m.num < 0 && 1 < 0) || 
+             if ((T_5_1.num > 0 && m.num < 0 && 1 < 0) ||
                  (T_5_1.num < 0 && m.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
@@ -1184,17 +1184,17 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
         err = _bytevecOPindexc(T_1_1, buf, l, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         T_1_3.num = h.num - i.num;
-         if ((T_1_3.num >= 0 && h.num < 0 && (-i.num) < 0) || 
+         if ((T_1_3.num >= 0 && h.num < 0 && (-i.num) < 0) ||
              (T_1_3.num <= 0 && h.num > 0 && (-i.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_1_4.num = T_1_3.num + 1;
-         if ((T_1_4.num > 0 && T_1_3.num < 0 && 1 < 0) || 
+         if ((T_1_4.num > 0 && T_1_3.num < 0 && 1 < 0) ||
              (T_1_4.num < 0 && T_1_3.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_1_5.num = T_1_2.num - T_1_4.num;
-         if ((T_1_5.num >= 0 && T_1_2.num < 0 && (-T_1_4.num) < 0) || 
+         if ((T_1_5.num >= 0 && T_1_2.num < 0 && (-T_1_4.num) < 0) ||
              (T_1_5.num <= 0 && T_1_2.num > 0 && (-T_1_4.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1275,7 +1275,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = m.num + 1;
-         if ((T_2_1.num > 0 && m.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && m.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && m.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1286,7 +1286,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = i.num + 1;
-         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1300,7 +1300,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = m.num - off.num;
-     if ((T_1_1.num >= 0 && m.num < 0 && (-off.num) < 0) || 
+     if ((T_1_1.num >= 0 && m.num < 0 && (-off.num) < 0) ||
          (T_1_1.num <= 0 && m.num > 0 && (-off.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}

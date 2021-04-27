@@ -121,7 +121,7 @@ file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1)
             err = stringOPsize(dir, &T_3_1);
             if (err != ERR_ok) goto ex_0;
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -138,7 +138,7 @@ file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1)
         CLUREF T_3_4;
         CLUREF T_3_5;
         T_3_1.num = z.num - 2;
-         if ((T_3_1.num >= 0 && z.num < 0 && (-2) < 0) || 
+         if ((T_3_1.num >= 0 && z.num < 0 && (-2) < 0) ||
              (T_3_1.num <= 0 && z.num > 0 && (-2) > 0)) {
             err = ERR_overflow;
             goto ex_1;}

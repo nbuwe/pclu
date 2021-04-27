@@ -143,7 +143,7 @@ CLUREF STR_add_137selector_137info_050;
 CLUREF STR__042;
 CLUREF STR__042_054_040;
 CLUREF STR__054_040;
-CLUREF STR__137ops_051_073_040;
+CLUREF STR__137ops_051_073;
 CLUREF STR_find_137selector_137ops_050_042;
 CLUREF STR__054_040_046_050;
 CLUREF STR__137ops_051_051_073;
@@ -159,8 +159,8 @@ errcode g_tbl_own_init_proc()
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_idn_ops));
         add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
-        add_selector_info("sel", 0, string_ops); 
-        add_selector_info("type_", 1, typespec_ops); 
+        add_selector_info("sel", 0, string_ops);
+        add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_sel_type__ops));
         add_parm_info_type(0, record_sel_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_sel_type__ops));
@@ -186,7 +186,7 @@ errcode g_tbl_own_init_proc()
         stringOPcons("\"", CLU_1, CLU_1, &STR__042);
         stringOPcons("\", ", CLU_1, CLU_3, &STR__042_054_040);
         stringOPcons(", ", CLU_1, CLU_2, &STR__054_040);
-        stringOPcons("_ops); ", CLU_1, CLU_7, &STR__137ops_051_073_040);
+        stringOPcons("_ops);", CLU_1, CLU_6, &STR__137ops_051_073);
         stringOPcons("find_selector_ops(\"", CLU_1, CLU_19, &STR_find_137selector_137ops_050_042);
         stringOPcons(", &(", CLU_1, CLU_4, &STR__054_040_046_050);
         stringOPcons("_ops));", CLU_1, CLU_7, &STR__137ops_051_051_073);
@@ -313,7 +313,7 @@ g_tblOPfind_tables(CLUREF e, CLUREF bod, CLUREF d)
                 if (d.cell->tag != 3) {err = ERR_wrong_tag; goto ex_0;}
                 T_3_1.num = d.cell->value;
                 T_3_2.num = T_3_1.vec->data[0];
-                T_3_4.num = T_3_2.vec->size; 
+                T_3_4.num = T_3_2.vec->size;
                 T_3_5 = T_3_2;
                 for (T_3_3.num = 1; T_3_3.num <= T_3_4.num; T_3_3.num++) {
                     each_ap.num = T_3_5.vec->data[T_3_3.num - 1];
@@ -415,7 +415,7 @@ g_tblOPfind_tbls_in_signature(CLUREF ap, CLUREF pbl)
         CLUREF T_2_3;
         CLUREF T_2_4;
             T_2_1.num = ap.vec->data[8];
-            T_2_3.num = T_2_1.vec->size; 
+            T_2_3.num = T_2_1.vec->size;
             T_2_4 = T_2_1;
             for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                 e.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -480,7 +480,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = bod.vec->size; 
+        T_1_2.num = bod.vec->size;
         T_1_3 = bod;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             s.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -491,7 +491,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
             err = stmtOPget_abs(s, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 7: 
+            case 7:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 di.num = T_2_2.num;
@@ -513,7 +513,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 1: 
+            case 1:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 as.num = T_2_3.num;
@@ -527,7 +527,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 17: 
+            case 17:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_1.cell->value;
                 as.num = T_2_4.num;
@@ -549,7 +549,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 13: 
+            case 13:
                  {CLUREF T_2_5;
                 T_2_5.num = T_2_1.cell->value;
                 inv.num = T_2_5.num;
@@ -571,7 +571,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 19: 
+            case 19:
                  {CLUREF T_2_6;
                 T_2_6.num = T_2_1.cell->value;
                 w.num = T_2_6.num;
@@ -595,7 +595,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 10: 
+            case 10:
                  {CLUREF T_2_7;
                 T_2_7.num = T_2_1.cell->value;
                 f.num = T_2_7.num;
@@ -612,7 +612,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                         CLUREF T_4_1;
                         T_4_1.num = f.vec->data[3];
                         switch (T_4_1.cell->tag) {
-                        case 1: 
+                        case 1:
                              {CLUREF T_4_2;
                             T_4_2.num = T_4_1.cell->value;
                             dl.num = T_4_2.num;
@@ -624,7 +624,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                                 }
                                 break;
                                 }
-                        case 2: 
+                        case 2:
                              {
                                 break;
                                 }
@@ -664,7 +664,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 12: 
+            case 12:
                  {CLUREF T_2_8;
                 T_2_8.num = T_2_1.cell->value;
                 i.num = T_2_8.num;
@@ -676,7 +676,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = i.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             arm.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -707,7 +707,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     CLUREF T_3_1;
                     T_3_1.num = i.vec->data[1];
                     switch (T_3_1.cell->tag) {
-                    case 1: 
+                    case 1:
                          {CLUREF T_3_2;
                         T_3_2.num = T_3_1.cell->value;
                         b.num = T_3_2.num;
@@ -727,7 +727,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 18: 
+            case 18:
                  {CLUREF T_2_9;
                 T_2_9.num = T_2_1.cell->value;
                 t.num = T_2_9.num;
@@ -747,7 +747,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = t.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             arm.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -770,7 +770,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     CLUREF T_3_1;
                     T_3_1.num = t.vec->data[2];
                     switch (T_3_1.cell->tag) {
-                    case 1: 
+                    case 1:
                          {CLUREF T_3_2;
                         T_3_2.num = T_3_1.cell->value;
                         b.num = T_3_2.num;
@@ -790,7 +790,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 15: 
+            case 15:
                  {CLUREF T_2_10;
                 T_2_10.num = T_2_1.cell->value;
                 el.num = T_2_10.num;
@@ -802,7 +802,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 20: 
+            case 20:
                  {CLUREF T_2_11;
                 T_2_11.num = T_2_1.cell->value;
                 el.num = T_2_11.num;
@@ -814,7 +814,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 16: 
+            case 16:
                  {CLUREF T_2_12;
                 T_2_12.num = T_2_1.cell->value;
                 c.num = T_2_12.num;
@@ -828,7 +828,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 9: 
+            case 9:
                  {CLUREF T_2_13;
                 T_2_13.num = T_2_1.cell->value;
                 c.num = T_2_13.num;
@@ -842,7 +842,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 3: 
+            case 3:
                  {CLUREF T_2_14;
                 T_2_14.num = T_2_1.cell->value;
                 b.num = T_2_14.num;
@@ -856,7 +856,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 8: 
+            case 8:
                  {CLUREF T_2_15;
                 T_2_15.num = T_2_1.cell->value;
                 e.num = T_2_15.num;
@@ -879,7 +879,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = e.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             a.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -902,7 +902,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     CLUREF T_3_1;
                     T_3_1.num = e.vec->data[1];
                     switch (T_3_1.cell->tag) {
-                    case 1: 
+                    case 1:
                          {CLUREF T_3_2;
                         T_3_2.num = T_3_1.cell->value;
                         a.num = T_3_2.num;
@@ -924,7 +924,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 14: 
+            case 14:
                  {CLUREF T_2_16;
                 T_2_16.num = T_2_1.cell->value;
                 r.num = T_2_16.num;
@@ -941,7 +941,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 11: 
+            case 11:
                  {CLUREF T_2_17;
                 T_2_17.num = T_2_1.cell->value;
                 f.num = T_2_17.num;
@@ -955,7 +955,7 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                     }
                     break;
                     }
-            case 6: 
+            case 6:
                  {CLUREF T_2_18;
                 T_2_18.num = T_2_1.cell->value;
                 d.num = T_2_18.num;
@@ -1015,7 +1015,7 @@ g_tblOPfind_tbl_decllist(CLUREF dl, CLUREF pbl)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = dl.vec->size; 
+        T_1_2.num = dl.vec->size;
         T_1_3 = dl;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_d.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1093,7 +1093,7 @@ g_tblOPfind_tbl_typelist(CLUREF tys, CLUREF pbl)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = tys.vec->size; 
+        T_1_2.num = tys.vec->size;
         T_1_3 = tys;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             ty.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1146,7 +1146,7 @@ g_tblOPfind_tbl_type_(CLUREF type_, CLUREF pbl)
     err = typespecOPget_abs(type_, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         ct.num = T_1_2.num;
@@ -1212,7 +1212,7 @@ g_tblOPfind_tbl_type_(CLUREF type_, CLUREF pbl)
                 }}/* end if */
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         xt.num = T_1_3.num;
@@ -1251,19 +1251,19 @@ g_tblOPfind_tbl_type_(CLUREF type_, CLUREF pbl)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         ap.num = T_1_4.num;
             break;
             }
-    case 5: 
+    case 5:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         i.num = T_1_5.num;
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         ct.num = T_1_6.num;
@@ -1291,11 +1291,11 @@ g_tblOPfind_tbl_type_(CLUREF type_, CLUREF pbl)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
             break;
             }
-    case 1: 
+    case 1:
          {
             break;
             }
@@ -1349,7 +1349,7 @@ g_tblOPfind_tbl_exprlist(CLUREF el, CLUREF pbl)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = el.vec->size; 
+        T_1_2.num = el.vec->size;
         T_1_3 = el;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_e.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1394,7 +1394,7 @@ g_tblOPfind_tbl_fieldspeclist(CLUREF fl, CLUREF pbl)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = fl.vec->size; 
+        T_1_2.num = fl.vec->size;
         T_1_3 = fl;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_f.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1455,7 +1455,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
     err = exprOPget_abs(exp, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         ct.num = T_1_2.num;
@@ -1532,7 +1532,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                 }/* end if */
             break;
             }
-    case 20: 
+    case 20:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         cop.num = T_1_3.num;
@@ -1545,7 +1545,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             err = typespecOPget_abs(T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_2.cell->tag) {
-            case 7: 
+            case 7:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_2.cell->value;
                 sel.num = T_2_3.num;
@@ -1605,7 +1605,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                         }/* end if */
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_2.cell->value;
                 a.num = T_2_4.num;
@@ -1644,8 +1644,8 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                         }/* end if */
                     break;
                     }
-            case 3: 
-            case 8: 
+            case 3:
+            case 8:
                  {CLUREF T_2_5;
                 T_2_5.num = T_2_2.cell->value;
                 ct.num = T_2_5.num;
@@ -1724,7 +1724,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                         }/* end if */
                     break;
                     }
-            case 5: 
+            case 5:
                  {
                     break;
                     }
@@ -1734,7 +1734,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             }
             break;
             }
-    case 23: 
+    case 23:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         s.num = T_1_4.num;
@@ -1788,7 +1788,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                 CLUREF T_3_3;
                 CLUREF T_3_4;
                     T_3_1.num = s.vec->data[0];
-                    T_3_3.num = T_3_1.vec->size; 
+                    T_3_3.num = T_3_1.vec->size;
                     T_3_4 = T_3_1;
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         this_field.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -1866,7 +1866,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                 }}/* end if */
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         a.num = T_1_5.num;
@@ -1920,7 +1920,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                 }/* end if */
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         c.num = T_1_6.num;
@@ -1942,7 +1942,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             }
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_1_7;
         T_1_7.num = T_1_1.cell->value;
         c.num = T_1_7.num;
@@ -1964,7 +1964,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             }
             break;
             }
-    case 16: 
+    case 16:
          {CLUREF T_1_8;
         T_1_8.num = T_1_1.cell->value;
         inv.num = T_1_8.num;
@@ -1986,7 +1986,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             }
             break;
             }
-    case 27: 
+    case 27:
          {CLUREF T_1_9;
         T_1_9.num = T_1_1.cell->value;
         e.num = T_1_9.num;
@@ -1998,7 +1998,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             }
             break;
             }
-    case 9: 
+    case 9:
          {CLUREF T_1_10;
         T_1_10.num = T_1_1.cell->value;
         e.num = T_1_10.num;
@@ -2010,7 +2010,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             }
             break;
             }
-    case 25: 
+    case 25:
          {CLUREF T_1_11;
         T_1_11.num = T_1_1.cell->value;
         t.num = T_1_11.num;
@@ -2021,7 +2021,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             err = typespecOPget_abs(t, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 7: 
+            case 7:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 sel.num = T_2_2.num;
@@ -2060,7 +2060,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                     }
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 a.num = T_2_3.num;
@@ -2077,8 +2077,8 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                         }/* end if */
                     break;
                     }
-            case 3: 
-            case 8: 
+            case 3:
+            case 8:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_1.cell->value;
                 ct.num = T_2_4.num;
@@ -2125,11 +2125,11 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                         }/* end if */
                     break;
                     }
-            case 5: 
+            case 5:
                  {
                     break;
                     }
-            case 1: 
+            case 1:
                  {
                     break;
                     }
@@ -2153,7 +2153,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_12;
         T_1_12.num = T_1_1.cell->value;
         ex.num = T_1_12.num;
@@ -2188,7 +2188,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             }
             break;
             }
-    case 11: 
+    case 11:
          {CLUREF T_1_13;
         T_1_13.num = T_1_1.cell->value;
         ty.num = T_1_13.num;
@@ -2214,7 +2214,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             }
             break;
             }
-    case 26: 
+    case 26:
          {CLUREF T_1_14;
         T_1_14.num = T_1_1.cell->value;
         ex.num = T_1_14.num;
@@ -2234,7 +2234,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
             }
             break;
             }
-    case 13: 
+    case 13:
          {
 
   LINE(372);
@@ -2297,8 +2297,8 @@ g_tblOPfind_tbl_field(CLUREF f, CLUREF pbl)
     err = typespecOPget_abs(T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_2.cell->tag) {
-    case 3: 
-    case 8: 
+    case 3:
+    case 8:
          {CLUREF T_1_3;
         T_1_3.num = T_1_2.cell->value;
         ct.num = T_1_3.num;
@@ -2372,7 +2372,7 @@ g_tblOPfind_tbl_field(CLUREF f, CLUREF pbl)
                 }}/* end if */
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_4;
         T_1_4.num = T_1_2.cell->value;
         sel.num = T_1_4.num;
@@ -2411,19 +2411,19 @@ g_tblOPfind_tbl_field(CLUREF f, CLUREF pbl)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_5;
         T_1_5.num = T_1_2.cell->value;
         a.num = T_1_5.num;
             break;
             }
-    case 5: 
-    case 1: 
-    case 4: 
-    case 9: 
-    case 11: 
-    case 10: 
-    case 6: 
+    case 5:
+    case 1:
+    case 4:
+    case 9:
+    case 11:
+    case 10:
+    case 6:
          {
             break;
             }
@@ -2550,7 +2550,7 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
         T_1_1.num = low.num + 1;
-         if ((T_1_1.num > 0 && low.num < 0 && 1 < 0) || 
+         if ((T_1_1.num > 0 && low.num < 0 && 1 < 0) ||
              (T_1_1.num < 0 && low.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2572,7 +2572,7 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
   LINE(428);
             {
             switch (possible_pb.cell->tag) {
-            case 7: 
+            case 7:
                  {
 
   LINE(430);
@@ -2596,7 +2596,7 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 3: 
+            case 3:
                  {
 
   LINE(433);
@@ -2611,7 +2611,7 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 5: 
+            case 5:
                  {
 
   LINE(435);
@@ -2649,7 +2649,7 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             CLUREF T_3_3;
-                T_3_2.num = newpbl.array->ext_high; 
+                T_3_2.num = newpbl.array->ext_high;
                 T_3_3 = newpbl;
                 for (T_3_1.num = newpbl.array->ext_low; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                     if (T_3_1.num > T_3_3.array->ext_high || T_3_1.num < T_3_3.array->ext_low) {
@@ -2661,11 +2661,11 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
   LINE(441);
                     {
                     switch (each_pb.cell->tag) {
-                    case 6: 
-                    case 1: 
-                    case 4: 
-                    case 2: 
-                    case 8: 
+                    case 6:
+                    case 1:
+                    case 4:
+                    case 2:
+                    case 8:
                          {
 
   LINE(443);
@@ -2743,7 +2743,7 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
                                 }/* end if */
                             break;
                             }
-                    case 7: 
+                    case 7:
                          {CLUREF T_4_1;
                         T_4_1.num = each_pb.cell->value;
                         s.num = T_4_1.num;
@@ -2800,7 +2800,7 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
                                 }/* end if */
                             break;
                             }
-                    case 3: 
+                    case 3:
                          {CLUREF T_4_2;
                         T_4_2.num = each_pb.cell->value;
                         ex.num = T_4_2.num;
@@ -2835,7 +2835,7 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
                                 }/* end if */
                             break;
                             }
-                    case 5: 
+                    case 5:
                          {CLUREF T_4_3;
                         T_4_3.num = each_pb.cell->value;
                         ty.num = T_4_3.num;
@@ -2940,7 +2940,7 @@ g_tblOPg_field_tables(CLUREF e, CLUREF pass)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_tblOPcum_pbl.array->ext_high; 
+        T_1_2.num = g_tblOPcum_pbl.array->ext_high;
         T_1_3 = g_tblOPcum_pbl;
         for (T_1_1.num = g_tblOPcum_pbl.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -2958,7 +2958,7 @@ g_tblOPg_field_tables(CLUREF e, CLUREF pass)
   LINE(483);
                 {
                 switch (each_pb.cell->tag) {
-                case 7: 
+                case 7:
                      {CLUREF T_3_1;
                     T_3_1.num = each_pb.cell->value;
                     s.num = T_3_1.num;
@@ -3027,7 +3027,7 @@ g_tblOPg_field_tables(CLUREF e, CLUREF pass)
   LINE(499);
             {
             switch (each_pb.cell->tag) {
-            case 7: 
+            case 7:
                  {CLUREF T_2_1;
                 T_2_1.num = each_pb.cell->value;
                 s.num = T_2_1.num;
@@ -3176,7 +3176,7 @@ g_tblOPg_sel_extern(CLUREF e, CLUREF each_fl)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = each_fl.vec->size; 
+        T_1_2.num = each_fl.vec->size;
         T_1_3 = each_fl;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_field.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -3280,7 +3280,7 @@ g_tblOPbuild_tables(CLUREF e, CLUREF pass)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_tblOPcum_pbl.array->ext_high; 
+        T_1_2.num = g_tblOPcum_pbl.array->ext_high;
         T_1_3 = g_tblOPcum_pbl;
         for (T_1_1.num = g_tblOPcum_pbl.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -3344,7 +3344,7 @@ g_tblOPbuild_tables(CLUREF e, CLUREF pass)
   LINE(548);
             {
             switch (each_pb.cell->tag) {
-            case 7: 
+            case 7:
                  {CLUREF T_2_1;
                 T_2_1.num = each_pb.cell->value;
                 s.num = T_2_1.num;
@@ -3432,7 +3432,7 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
   LINE(563);
     {
     switch (p.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_1;
         T_1_1.num = p.cell->value;
         cop.num = T_1_1.num;
@@ -3450,7 +3450,7 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 4: 
+    case 4:
          {CLUREF T_1_2;
         T_1_2.num = p.cell->value;
         ct.num = T_1_2.num;
@@ -3468,7 +3468,7 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_3;
         T_1_3.num = p.cell->value;
         a.num = T_1_3.num;
@@ -3488,8 +3488,8 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
                 err = typespecOPget_abs(T_3_1, &T_3_2);
                 if (err != ERR_ok) goto ex_0;
                 switch (T_3_2.cell->tag) {
-                case 3: 
-                case 8: 
+                case 3:
+                case 8:
                      {CLUREF T_3_3;
                     T_3_3.num = T_3_2.cell->value;
                     ct.num = T_3_3.num;
@@ -3541,7 +3541,7 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_4;
         T_1_4.num = p.cell->value;
         s.num = T_1_4.num;
@@ -3559,7 +3559,7 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_5;
         T_1_5.num = p.cell->value;
         ex.num = T_1_5.num;
@@ -3578,7 +3578,7 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 5: 
+    case 5:
          {CLUREF T_1_6;
         T_1_6.num = p.cell->value;
         ty.num = T_1_6.num;
@@ -3589,7 +3589,7 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
             err = typespecOPget_abs(ty, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 5: 
+            case 5:
                  {
 
   LINE(590);
@@ -3600,8 +3600,8 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
                     {signal (ERR_ok);}}
                     break;
                     }
-            case 8: 
-            case 3: 
+            case 8:
+            case 3:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 ct.num = T_2_2.num;
@@ -3619,7 +3619,7 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
                     {signal (ERR_ok);}}
                     break;
                     }
-            case 7: 
+            case 7:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 s.num = T_2_3.num;
@@ -3733,7 +3733,7 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = el.vec->size; 
+        T_1_2.num = el.vec->size;
         T_1_3 = el;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_e.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -3744,7 +3744,7 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
             err = exprOPget_abs(each_e, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 25: 
+            case 25:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 ty.num = T_2_2.num;
@@ -3764,19 +3764,19 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
                         }/* end if */
                     break;
                     }
-            case 19: 
+            case 19:
                  {
                     break;
                     }
-            case 15: 
-            case 24: 
-            case 5: 
-            case 7: 
-            case 21: 
+            case 15:
+            case 24:
+            case 5:
+            case 7:
+            case 21:
                  {
                     break;
                     }
-            case 13: 
+            case 13:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 i.num = T_2_3.num;
@@ -3787,8 +3787,8 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
                     err = idnOPget_kind(i, &T_3_1);
                     if (err != ERR_ok) goto ex_0;
                     switch (T_3_1.cell->tag) {
-                    case 6: 
-                    case 10: 
+                    case 6:
+                    case 10:
                          {
 
   LINE(632);
@@ -3805,7 +3805,7 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 23: 
+            case 23:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_1.cell->value;
                 sc.num = T_2_4.num;
@@ -3817,7 +3817,7 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = sc.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             each_field.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -3853,8 +3853,8 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
                     end_inline_for_2:;
                     break;
                     }
-            case 27: 
-            case 9: 
+            case 27:
+            case 9:
                  {CLUREF T_2_5;
                 T_2_5.num = T_2_1.cell->value;
                 ex.num = T_2_5.num;
@@ -3877,7 +3877,7 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
                         }/* end if */
                     break;
                     }
-            case 16: 
+            case 16:
                  {CLUREF T_2_6;
                 T_2_6.num = T_2_1.cell->value;
                 inv.num = T_2_6.num;
@@ -3994,7 +3994,7 @@ g_tblOPtest_pb_exprs_type_asst(CLUREF ty, CLUREF *ret_1)
     err = typespecOPget_abs(ty, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 5: 
+    case 5:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         i.num = T_1_2.num;
@@ -4007,8 +4007,8 @@ g_tblOPtest_pb_exprs_type_asst(CLUREF ty, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 8: 
-    case 3: 
+    case 8:
+    case 3:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         ct.num = T_1_3.num;
@@ -4032,7 +4032,7 @@ g_tblOPtest_pb_exprs_type_asst(CLUREF ty, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         s.num = T_1_4.num;
@@ -4264,7 +4264,7 @@ g_tblOPtest_pb_fields_asst(CLUREF fl, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = fl.vec->size; 
+        T_1_2.num = fl.vec->size;
         T_1_3 = fl;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_f.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -4283,7 +4283,7 @@ g_tblOPtest_pb_fields_asst(CLUREF fl, CLUREF *ret_1)
             err = typespecOPget_abs(ty, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 5: 
+            case 5:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 i.num = T_2_2.num;
@@ -4296,8 +4296,8 @@ g_tblOPtest_pb_fields_asst(CLUREF fl, CLUREF *ret_1)
                     {signal (ERR_ok);}}
                     break;
                     }
-            case 8: 
-            case 3: 
+            case 8:
+            case 3:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 ct.num = T_2_3.num;
@@ -4319,7 +4319,7 @@ g_tblOPtest_pb_fields_asst(CLUREF fl, CLUREF *ret_1)
                         }/* end if */
                     break;
                     }
-            case 7: 
+            case 7:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_1.cell->value;
                 s.num = T_2_4.num;
@@ -4341,11 +4341,11 @@ g_tblOPtest_pb_fields_asst(CLUREF fl, CLUREF *ret_1)
                         }/* end if */
                     break;
                     }
-            case 1: 
+            case 1:
                  {
                     break;
                     }
-            case 2: 
+            case 2:
                  {
                     break;
                     }
@@ -4425,7 +4425,7 @@ g_tblOPbuild_one_selector_table(CLUREF e, CLUREF each_fn, CLUREF each_fl)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = each_fl.vec->size; 
+        T_1_2.num = each_fl.vec->size;
         T_1_3 = each_fl;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_field.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -4472,7 +4472,7 @@ g_tblOPbuild_one_selector_table(CLUREF e, CLUREF each_fn, CLUREF each_fl)
 
   LINE(741);
             {
-            err = g_envOPputl(e, STR__137ops_051_073_040);
+            err = g_envOPputl(e, STR__137ops_051_073);
             if (err != ERR_ok) goto ex_0;
             }
 
@@ -4480,7 +4480,7 @@ g_tblOPbuild_one_selector_table(CLUREF e, CLUREF each_fn, CLUREF each_fl)
             {
             CLUREF T_2_1;
             T_2_1.num = ind.num + 1;
-             if ((T_2_1.num > 0 && ind.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && ind.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && ind.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -4597,7 +4597,7 @@ g_tblOPprune()
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_tblOPcum_pbl.array->ext_high; 
+        T_1_2.num = g_tblOPcum_pbl.array->ext_high;
         T_1_3 = g_tblOPcum_pbl;
         for (T_1_1.num = g_tblOPcum_pbl.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -4609,7 +4609,7 @@ g_tblOPprune()
   LINE(758);
             {
             switch (each_pb.cell->tag) {
-            case 7: 
+            case 7:
                  {CLUREF T_2_1;
                 T_2_1.num = each_pb.cell->value;
                 si.num = T_2_1.num;
@@ -4640,7 +4640,7 @@ g_tblOPprune()
                         }}/* end if */
                     break;
                     }
-            case 1: 
+            case 1:
                  {CLUREF T_2_2;
                 T_2_2.num = each_pb.cell->value;
                 ac.num = T_2_2.num;
@@ -4683,7 +4683,7 @@ g_tblOPprune()
                         }}/* end if */
                     break;
                     }
-            case 6: 
+            case 6:
                  {CLUREF T_2_3;
                 T_2_3.num = each_pb.cell->value;
                 cop.num = T_2_3.num;
@@ -4696,7 +4696,7 @@ g_tblOPprune()
                     err = typespecOPget_abs(T_3_1, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
                     switch (T_3_2.cell->tag) {
-                    case 7: 
+                    case 7:
                          {CLUREF T_3_3;
                         T_3_3.num = T_3_2.cell->value;
                         xt.num = T_3_3.num;
@@ -4727,7 +4727,7 @@ g_tblOPprune()
                                 }}/* end if */
                             break;
                             }
-                    case 2: 
+                    case 2:
                          {CLUREF T_3_4;
                         T_3_4.num = T_3_2.cell->value;
                         ap.num = T_3_4.num;
@@ -4758,8 +4758,8 @@ g_tblOPprune()
                                 }}/* end if */
                             break;
                             }
-                    case 3: 
-                    case 8: 
+                    case 3:
+                    case 8:
                          {CLUREF T_3_5;
                         T_3_5.num = T_3_2.cell->value;
                         ct.num = T_3_5.num;
@@ -4802,7 +4802,7 @@ g_tblOPprune()
                                 }}/* end if */
                             break;
                             }
-                    case 5: 
+                    case 5:
                          {
                             break;
                             }
@@ -4812,7 +4812,7 @@ g_tblOPprune()
                     }
                     break;
                     }
-            case 4: 
+            case 4:
                  {CLUREF T_2_4;
                 T_2_4.num = each_pb.cell->value;
                 ct.num = T_2_4.num;
@@ -4845,19 +4845,19 @@ g_tblOPprune()
                         }}/* end if */
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_5;
                 T_2_5.num = each_pb.cell->value;
                 ai.num = T_2_5.num;
                     break;
                     }
-            case 8: 
+            case 8:
                  {CLUREF T_2_6;
                 T_2_6.num = each_pb.cell->value;
                 ti.num = T_2_6.num;
                     break;
                     }
-            case 3: 
+            case 3:
                  {CLUREF T_2_7;
                 T_2_7.num = each_pb.cell->value;
                 ex.num = T_2_7.num;
@@ -4889,7 +4889,7 @@ g_tblOPprune()
                         }}/* end if */
                     break;
                     }
-            case 5: 
+            case 5:
                  {CLUREF T_2_8;
                 T_2_8.num = each_pb.cell->value;
                 ty.num = T_2_8.num;
@@ -4990,8 +4990,8 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
     CLUREF first;
     CLUREF each_field;
         if (make_sel_name_own_init == 0) {
-        add_selector_info("sel", 0, string_ops); 
-        add_selector_info("type_", 1, typespec_ops); 
+        add_selector_info("sel", 0, string_ops);
+        add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_sel_type__ops));
         add_parm_info_type(0, record_sel_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_sel_type__ops));
@@ -5027,7 +5027,7 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
     CLUREF T_2_1;
     CLUREF T_2_2;
     CLUREF T_2_3;
-        T_2_2.num = make_sel_nameOPtable.array->ext_high; 
+        T_2_2.num = make_sel_nameOPtable.array->ext_high;
         T_2_3 = make_sel_nameOPtable;
         for (T_2_1.num = make_sel_nameOPtable.array->ext_low; T_2_1.num <= T_2_2.num; T_2_1.num++) {
             if (T_2_1.num > T_2_3.array->ext_high || T_2_1.num < T_2_3.array->ext_low) {
@@ -5073,7 +5073,7 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             CLUREF T_4_2;
-                T_4_2.num = fl.vec->size; 
+                T_4_2.num = fl.vec->size;
                 for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                     i.num = T_4_1.num;
 
@@ -5126,7 +5126,7 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = nth.num + 1;
-             if ((T_3_1.num > 0 && nth.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && nth.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && nth.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -5184,7 +5184,7 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = fl.vec->size; 
+        T_1_2.num = fl.vec->size;
         T_1_3 = fl;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_field.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -5341,8 +5341,8 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
   LINE(845);
     {
     switch (each_pb.cell->tag) {
-    case 4: 
-    case 6: 
+    case 4:
+    case 6:
          {
 
   LINE(847);
@@ -5392,7 +5392,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                 CLUREF T_3_1;
                 CLUREF T_3_2;
                 CLUREF T_3_3;
-                    T_3_2.num = formals.vec->size; 
+                    T_3_2.num = formals.vec->size;
                     T_3_3 = formals;
                     for (T_3_1.num = 1; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                         each_parm.num = T_3_3.vec->data[T_3_1.num - 1];
@@ -5480,7 +5480,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                         CLUREF T_4_1;
                         CLUREF T_4_2;
                         CLUREF T_4_3;
-                            T_4_2.num = actuals.vec->size; 
+                            T_4_2.num = actuals.vec->size;
                             T_4_3 = actuals;
                             for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                                 each_e.num = T_4_3.vec->data[T_4_1.num - 1];
@@ -5513,7 +5513,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                         err = exprOPget_abs(T_4_1, &T_4_2);
                         if (err != ERR_ok) goto ex_0;
                         switch (T_4_2.cell->tag) {
-                        case 25: 
+                        case 25:
                              {
 
   LINE(870);
@@ -5523,7 +5523,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                                 CLUREF T_5_3;
                                 CLUREF T_5_4;
                                 T_5_1.num = index.num - 1;
-                                 if ((T_5_1.num >= 0 && index.num < 0 && (-1) < 0) || 
+                                 if ((T_5_1.num >= 0 && index.num < 0 && (-1) < 0) ||
                                      (T_5_1.num <= 0 && index.num > 0 && (-1) > 0)) {
                                     err = ERR_overflow;
                                     goto ex_0;}
@@ -5604,13 +5604,13 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                                 }
                                 break;
                                 }
-                        case 19: 
-                        case 15: 
-                        case 21: 
-                        case 7: 
-                        case 5: 
-                        case 24: 
-                        case 13: 
+                        case 19:
+                        case 15:
+                        case 21:
+                        case 7:
+                        case 5:
+                        case 24:
+                        case 13:
                              {
 
   LINE(880);
@@ -5620,7 +5620,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                                 CLUREF T_5_3;
                                 CLUREF T_5_4;
                                 T_5_1.num = index.num - 1;
-                                 if ((T_5_1.num >= 0 && index.num < 0 && (-1) < 0) || 
+                                 if ((T_5_1.num >= 0 && index.num < 0 && (-1) < 0) ||
                                      (T_5_1.num <= 0 && index.num > 0 && (-1) > 0)) {
                                     err = ERR_overflow;
                                     goto ex_0;}
@@ -5669,7 +5669,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                         {
                         CLUREF T_4_1;
                         T_4_1.num = index.num + 1;
-                         if ((T_4_1.num > 0 && index.num < 0 && 1 < 0) || 
+                         if ((T_4_1.num > 0 && index.num < 0 && 1 < 0) ||
                              (T_4_1.num < 0 && index.num > 0 && 1 > 0)) {
                             err = ERR_overflow;
                             goto ex_0;}
@@ -5682,7 +5682,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                 }/* end if */
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_1;
         T_1_1.num = each_pb.cell->value;
         a.num = T_1_1.num;
@@ -5702,7 +5702,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                 err = typespecOPget_abs(T_3_1, &T_3_2);
                 if (err != ERR_ok) goto ex_0;
                 switch (T_3_2.cell->tag) {
-                case 3: 
+                case 3:
                      {CLUREF T_3_3;
                     T_3_3.num = T_3_2.cell->value;
                     ct.num = T_3_3.num;
@@ -5777,7 +5777,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                 }/* end if */
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = each_pb.cell->value;
         ex.num = T_1_2.num;
@@ -5828,7 +5828,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
             }
             break;
             }
-    case 5: 
+    case 5:
          {CLUREF T_1_3;
         T_1_3.num = each_pb.cell->value;
         ty.num = T_1_3.num;
@@ -6001,7 +6001,7 @@ own_defnOPtest(CLUREF s, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = own_defnOPold.array->ext_high; 
+        T_1_2.num = own_defnOPold.array->ext_high;
         T_1_3 = own_defnOPold;
         for (T_1_1.num = own_defnOPold.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {

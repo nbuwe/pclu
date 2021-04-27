@@ -119,7 +119,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
-            T_2_2.num = _home_dirOPusers.vec->size; 
+            T_2_2.num = _home_dirOPusers.vec->size;
             for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                 i.num = T_2_1.num;
 
@@ -267,7 +267,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
         err = stringOPsize(user, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         T_1_2.num = T_1_1.num + 1;
-         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
              (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}

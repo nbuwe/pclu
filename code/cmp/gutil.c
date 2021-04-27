@@ -81,7 +81,7 @@ pb_print(CLUREF p)
   LINE(12);
     {
     switch (p.cell->tag) {
-    case 4: 
+    case 4:
          {CLUREF T_1_1;
         T_1_1.num = p.cell->value;
         ct.num = T_1_1.num;
@@ -157,7 +157,7 @@ pb_print(CLUREF p)
                 }}/* end if */
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = p.cell->value;
         cop.num = T_1_2.num;
@@ -169,7 +169,7 @@ pb_print(CLUREF p)
             }
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(26);
@@ -179,7 +179,7 @@ pb_print(CLUREF p)
             }
             break;
             }
-    case 2: 
+    case 2:
          {
 
   LINE(28);
@@ -189,7 +189,7 @@ pb_print(CLUREF p)
             }
             break;
             }
-    case 8: 
+    case 8:
          {
 
   LINE(30);
@@ -199,7 +199,7 @@ pb_print(CLUREF p)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(32);
@@ -209,7 +209,7 @@ pb_print(CLUREF p)
             }
             break;
             }
-    case 5: 
+    case 5:
          {
 
   LINE(34);
@@ -332,7 +332,7 @@ typespec_print(CLUREF a)
     err = typespecOPget_abs(a, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         ct.num = T_1_2.num;
@@ -391,7 +391,7 @@ typespec_print(CLUREF a)
                 }}/* end if */
             break;
             }
-    case 7: 
+    case 7:
          {
 
   LINE(53);
@@ -401,7 +401,7 @@ typespec_print(CLUREF a)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         ap.num = T_1_3.num;
@@ -449,7 +449,7 @@ typespec_print(CLUREF a)
                 }}/* end if */
             break;
             }
-    case 5: 
+    case 5:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         i.num = T_1_4.num;
@@ -470,7 +470,7 @@ typespec_print(CLUREF a)
             }
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(66);
@@ -480,7 +480,7 @@ typespec_print(CLUREF a)
             }
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         ct.num = T_1_5.num;
@@ -545,7 +545,7 @@ typespec_print(CLUREF a)
                 }}/* end if */
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(77);
@@ -555,7 +555,7 @@ typespec_print(CLUREF a)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         o.num = T_1_6.num;
@@ -569,7 +569,7 @@ typespec_print(CLUREF a)
   LINE(80);
             {
             switch (o.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = o.cell->value;
                 ct.num = T_2_1.num;
@@ -634,7 +634,7 @@ typespec_print(CLUREF a)
                         }}/* end if */
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_2;
                 T_2_2.num = o.cell->value;
                 ct.num = T_2_2.num;
@@ -662,7 +662,7 @@ typespec_print(CLUREF a)
                     }
                     break;
                     }
-            case 3: 
+            case 3:
                  {CLUREF T_2_3;
                 T_2_3.num = o.cell->value;
                 rt.num = T_2_3.num;
@@ -684,7 +684,7 @@ typespec_print(CLUREF a)
             }
             break;
             }
-    case 10: 
+    case 10:
          {CLUREF T_1_7;
         T_1_7.num = T_1_1.cell->value;
         x.num = T_1_7.num;
@@ -707,7 +707,7 @@ typespec_print(CLUREF a)
             }
             break;
             }
-    case 11: 
+    case 11:
          {
 
   LINE(100);
@@ -717,7 +717,7 @@ typespec_print(CLUREF a)
             }
             break;
             }
-    case 9: 
+    case 9:
          {
 
   LINE(102);
@@ -798,7 +798,7 @@ restrictkind_print(CLUREF r)
   LINE(110);
     {
     switch (r.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_1_1;
         T_1_1.num = r.cell->value;
         i.num = T_1_1.num;
@@ -819,7 +819,7 @@ restrictkind_print(CLUREF r)
             }
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = r.cell->value;
         x.num = T_1_2.num;
@@ -842,7 +842,7 @@ restrictkind_print(CLUREF r)
             }
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_3;
         T_1_3.num = r.cell->value;
         o.num = T_1_3.num;
@@ -920,7 +920,7 @@ restrictkind_similar(CLUREF r1, CLUREF r2, CLUREF *ret_1)
   LINE(123);
     {
     switch (r1.cell->tag) {
-    case 2: 
+    case 2:
          {CLUREF T_1_1;
         T_1_1.num = r1.cell->value;
         i.num = T_1_1.num;
@@ -955,7 +955,7 @@ restrictkind_similar(CLUREF r1, CLUREF r2, CLUREF *ret_1)
                 }}/* end if */
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = r1.cell->value;
         x1.num = T_1_2.num;
@@ -1041,7 +1041,7 @@ restrictkind_similar(CLUREF r1, CLUREF r2, CLUREF *ret_1)
                 }}/* end if */
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_3;
         T_1_3.num = r1.cell->value;
         o.num = T_1_3.num;
@@ -1145,7 +1145,7 @@ operdecllist_similar(CLUREF o1, CLUREF o2, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = o1.vec->size; 
+        T_1_2.num = o1.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -1195,7 +1195,7 @@ operdecllist_similar(CLUREF o1, CLUREF o2, CLUREF *ret_1)
                     goto ex_0;}
                 T_2_1.num = o1.vec->data[i.num - 1];
                 T_2_2.num = T_2_1.vec->data[1];
-                T_2_4.num = T_2_2.vec->size; 
+                T_2_4.num = T_2_2.vec->size;
                 for (T_2_3.num = 1; T_2_3.num <= T_2_4.num; T_2_3.num++) {
                     j.num = T_2_3.num;
 
@@ -1410,8 +1410,8 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         if (typespec_similar_own_init == 0) {
         add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
-        add_selector_info("sel", 0, string_ops); 
-        add_selector_info("type_", 1, typespec_ops); 
+        add_selector_info("sel", 0, string_ops);
+        add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_sel_type__ops));
         add_parm_info_type(0, record_sel_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_sel_type__ops));
@@ -1425,7 +1425,7 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     err = typespecOPget_abs(t1, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         c1.num = T_1_2.num;
@@ -1524,7 +1524,7 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                 }}/* end if */
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         c1.num = T_1_3.num;
@@ -1623,7 +1623,7 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                 }}/* end if */
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         s1.num = T_1_4.num;
@@ -1722,7 +1722,7 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                 }}/* end if */
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         a1.num = T_1_5.num;
@@ -1846,7 +1846,7 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                 }}/* end if */
             break;
             }
-    case 6: 
+    case 6:
          {
 
   LINE(224);
@@ -1870,7 +1870,7 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 10: 
+    case 10:
          {
 
   LINE(228);
@@ -1894,7 +1894,7 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 11: 
+    case 11:
          {
 
   LINE(232);
@@ -1918,7 +1918,7 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 5: 
+    case 5:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         i.num = T_1_6.num;
@@ -1982,7 +1982,7 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                 }}/* end if */
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(243);
@@ -2006,7 +2006,7 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(247);
@@ -2030,7 +2030,7 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                 }/* end if */
             break;
             }
-    case 9: 
+    case 9:
          {
 
   LINE(251);
@@ -2106,7 +2106,7 @@ typelist_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = t1.vec->size; 
+        T_1_2.num = t1.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -2197,7 +2197,7 @@ exceptionlist_similar(CLUREF e1, CLUREF e2, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-        T_1_2.num = e1.vec->size; 
+        T_1_2.num = e1.vec->size;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
@@ -2340,7 +2340,7 @@ idnkind_print(CLUREF i)
   LINE(283);
     {
     switch (i.cell->tag) {
-    case 9: 
+    case 9:
          {
 
   LINE(285);
@@ -2350,7 +2350,7 @@ idnkind_print(CLUREF i)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(287);
@@ -2360,7 +2360,7 @@ idnkind_print(CLUREF i)
             }
             break;
             }
-    case 6: 
+    case 6:
          {
 
   LINE(289);
@@ -2370,7 +2370,7 @@ idnkind_print(CLUREF i)
             }
             break;
             }
-    case 10: 
+    case 10:
          {
 
   LINE(291);
@@ -2380,7 +2380,7 @@ idnkind_print(CLUREF i)
             }
             break;
             }
-    case 5: 
+    case 5:
          {
 
   LINE(293);
@@ -2390,7 +2390,7 @@ idnkind_print(CLUREF i)
             }
             break;
             }
-    case 1: 
+    case 1:
          {
 
   LINE(295);
@@ -2400,7 +2400,7 @@ idnkind_print(CLUREF i)
             }
             break;
             }
-    case 7: 
+    case 7:
          {
 
   LINE(297);
@@ -2410,7 +2410,7 @@ idnkind_print(CLUREF i)
             }
             break;
             }
-    case 2: 
+    case 2:
          {
 
   LINE(299);
@@ -2420,7 +2420,7 @@ idnkind_print(CLUREF i)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(301);
@@ -2430,7 +2430,7 @@ idnkind_print(CLUREF i)
             }
             break;
             }
-    case 8: 
+    case 8:
          {
 
   LINE(303);
@@ -2504,7 +2504,7 @@ duspec_print(CLUREF d, CLUREF short_UNIQ)
   LINE(310);
     {
     switch (d.cell->tag) {
-    case 1: 
+    case 1:
          {CLUREF T_1_1;
         T_1_1.num = d.cell->value;
         a.num = T_1_1.num;
@@ -2543,7 +2543,7 @@ duspec_print(CLUREF d, CLUREF short_UNIQ)
             }
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = d.cell->value;
         ti.num = T_1_2.num;
@@ -2567,7 +2567,7 @@ duspec_print(CLUREF d, CLUREF short_UNIQ)
                 }/* end if */
             break;
             }
-    case 5: 
+    case 5:
          {
 
   LINE(321);
@@ -2577,7 +2577,7 @@ duspec_print(CLUREF d, CLUREF short_UNIQ)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_3;
         T_1_3.num = d.cell->value;
         ti.num = T_1_3.num;
@@ -2595,7 +2595,7 @@ duspec_print(CLUREF d, CLUREF short_UNIQ)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(326);
@@ -2675,7 +2675,7 @@ ti_print(CLUREF t)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = t.vec->data[1];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_p.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -2708,7 +2708,7 @@ ti_print(CLUREF t)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = t.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_op.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -2812,7 +2812,7 @@ ti_print_1(CLUREF t)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = t.vec->data[1];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_p.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -2845,7 +2845,7 @@ ti_print_1(CLUREF t)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = t.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_op.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -2962,7 +2962,7 @@ stmt_print(CLUREF s)
     err = stmtOPget_abs(s, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 6: 
+    case 6:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         sa.num = T_1_2.num;
@@ -2974,7 +2974,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         sa.num = T_1_3.num;
@@ -2986,7 +2986,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         sa.num = T_1_4.num;
@@ -2998,7 +2998,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 13: 
+    case 13:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         sa.num = T_1_5.num;
@@ -3010,7 +3010,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 19: 
+    case 19:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         sa.num = T_1_6.num;
@@ -3022,7 +3022,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 10: 
+    case 10:
          {CLUREF T_1_7;
         T_1_7.num = T_1_1.cell->value;
         sa.num = T_1_7.num;
@@ -3034,7 +3034,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 12: 
+    case 12:
          {CLUREF T_1_8;
         T_1_8.num = T_1_1.cell->value;
         sa.num = T_1_8.num;
@@ -3046,7 +3046,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 18: 
+    case 18:
          {CLUREF T_1_9;
         T_1_9.num = T_1_1.cell->value;
         sa.num = T_1_9.num;
@@ -3058,7 +3058,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 15: 
+    case 15:
          {CLUREF T_1_10;
         T_1_10.num = T_1_1.cell->value;
         sa.num = T_1_10.num;
@@ -3070,7 +3070,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 20: 
+    case 20:
          {CLUREF T_1_11;
         T_1_11.num = T_1_1.cell->value;
         sa.num = T_1_11.num;
@@ -3082,7 +3082,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 16: 
+    case 16:
          {CLUREF T_1_12;
         T_1_12.num = T_1_1.cell->value;
         sa.num = T_1_12.num;
@@ -3094,7 +3094,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 9: 
+    case 9:
          {CLUREF T_1_13;
         T_1_13.num = T_1_1.cell->value;
         sa.num = T_1_13.num;
@@ -3106,7 +3106,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 4: 
+    case 4:
          {
 
   LINE(388);
@@ -3116,7 +3116,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 5: 
+    case 5:
          {
 
   LINE(390);
@@ -3126,7 +3126,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_14;
         T_1_14.num = T_1_1.cell->value;
         sa.num = T_1_14.num;
@@ -3138,7 +3138,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_1_15;
         T_1_15.num = T_1_1.cell->value;
         sa.num = T_1_15.num;
@@ -3150,7 +3150,7 @@ stmt_print(CLUREF s)
             }
             break;
             }
-    case 14: 
+    case 14:
          {CLUREF T_1_16;
         T_1_16.num = T_1_1.cell->value;
         sa.num = T_1_16.num;
@@ -3295,7 +3295,7 @@ expr_print(CLUREF exp, CLUREF stage)
     err = exprOPget_abs(exp, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 13: 
+    case 13:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         id.num = T_1_2.num;
@@ -3316,7 +3316,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         xa.num = T_1_3.num;
@@ -3328,7 +3328,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         xa.num = T_1_4.num;
@@ -3340,7 +3340,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         xa.num = T_1_5.num;
@@ -3352,7 +3352,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 16: 
+    case 16:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         inv.num = T_1_6.num;
@@ -3364,7 +3364,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_7;
         T_1_7.num = T_1_1.cell->value;
         xa.num = T_1_7.num;
@@ -3376,7 +3376,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 23: 
+    case 23:
          {CLUREF T_1_8;
         T_1_8.num = T_1_1.cell->value;
         xa.num = T_1_8.num;
@@ -3388,7 +3388,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_9;
         T_1_9.num = T_1_1.cell->value;
         xa.num = T_1_9.num;
@@ -3466,7 +3466,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 20: 
+    case 20:
          {CLUREF T_1_10;
         T_1_10.num = T_1_1.cell->value;
         xa.num = T_1_10.num;
@@ -3513,7 +3513,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 11: 
+    case 11:
          {CLUREF T_1_11;
         T_1_11.num = T_1_1.cell->value;
         xa.num = T_1_11.num;
@@ -3525,7 +3525,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 27: 
+    case 27:
          {CLUREF T_1_12;
         T_1_12.num = T_1_1.cell->value;
         xa.num = T_1_12.num;
@@ -3537,7 +3537,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 9: 
+    case 9:
          {CLUREF T_1_13;
         T_1_13.num = T_1_1.cell->value;
         xa.num = T_1_13.num;
@@ -3549,7 +3549,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 25: 
+    case 25:
          {CLUREF T_1_14;
         T_1_14.num = T_1_1.cell->value;
         xa.num = T_1_14.num;
@@ -3573,7 +3573,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 26: 
+    case 26:
          {CLUREF T_1_15;
         T_1_15.num = T_1_1.cell->value;
         xa.num = T_1_15.num;
@@ -3585,7 +3585,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 19: 
+    case 19:
          {
 
   LINE(449);
@@ -3595,7 +3595,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 5: 
+    case 5:
          {
 
   LINE(451);
@@ -3605,7 +3605,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 15: 
+    case 15:
          {CLUREF T_1_16;
         T_1_16.num = T_1_1.cell->value;
         i.num = T_1_16.num;
@@ -3626,7 +3626,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 21: 
+    case 21:
          {CLUREF T_1_17;
         T_1_17.num = T_1_1.cell->value;
         r.num = T_1_17.num;
@@ -3647,7 +3647,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_18;
         T_1_18.num = T_1_1.cell->value;
         c.num = T_1_18.num;
@@ -3668,7 +3668,7 @@ expr_print(CLUREF exp, CLUREF stage)
             }
             break;
             }
-    case 24: 
+    case 24:
          {CLUREF T_1_19;
         T_1_19.num = T_1_1.cell->value;
         s.num = T_1_19.num;
@@ -3762,7 +3762,7 @@ other_print(CLUREF o)
   LINE(471);
     {
     switch (o.cell->tag) {
-    case 1: 
+    case 1:
          {
 
   LINE(473);
@@ -3772,7 +3772,7 @@ other_print(CLUREF o)
             }
             break;
             }
-    case 2: 
+    case 2:
          {
 
   LINE(475);
@@ -3782,7 +3782,7 @@ other_print(CLUREF o)
             }
             break;
             }
-    case 3: 
+    case 3:
          {
 
   LINE(477);
@@ -3953,7 +3953,7 @@ array_extend(CLUREF a, CLUREF b)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = b.vec->size; 
+        T_1_2.num = b.vec->size;
         T_1_3 = b;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             elt.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -4030,7 +4030,7 @@ array_concat(CLUREF a, CLUREF b)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = b.array->ext_high; 
+        T_1_2.num = b.array->ext_high;
         T_1_3 = b;
         for (T_1_1.num = b.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -4133,7 +4133,7 @@ seq_extend(CLUREF a, CLUREF b, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = b.vec->size; 
+        T_1_2.num = b.vec->size;
         T_1_3 = b;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             elt.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -4203,7 +4203,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = i.vec->size; 
+        T_1_2.num = i.vec->size;
         T_1_3 = i;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_init.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -4213,7 +4213,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
             CLUREF T_2_1;
             T_2_1.num = each_init.vec->data[1];
             switch (T_2_1.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 d.num = T_2_2.num;
@@ -4246,7 +4246,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 di.num = T_2_3.num;

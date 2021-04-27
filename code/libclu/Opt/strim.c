@@ -109,7 +109,7 @@ trim_head(CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = idx.num + 1;
-         if ((T_2_1.num > 0 && idx.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && idx.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && idx.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -250,7 +250,7 @@ trim_tail(CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = idx.num - 1;
-         if ((T_2_1.num >= 0 && idx.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && idx.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && idx.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -380,7 +380,7 @@ trim_both(CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = idx.num + 1;
-         if ((T_2_1.num > 0 && idx.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && idx.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && idx.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -451,12 +451,12 @@ trim_both(CLUREF s, CLUREF *ret_1)
             CLUREF T_3_2;
             CLUREF T_3_3;
             T_3_1.num = len.num - idx.num;
-             if ((T_3_1.num >= 0 && len.num < 0 && (-idx.num) < 0) || 
+             if ((T_3_1.num >= 0 && len.num < 0 && (-idx.num) < 0) ||
                  (T_3_1.num <= 0 && len.num > 0 && (-idx.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -472,7 +472,7 @@ trim_both(CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = len.num - 1;
-         if ((T_2_1.num >= 0 && len.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && len.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && len.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}

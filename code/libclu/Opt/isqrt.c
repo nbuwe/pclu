@@ -79,7 +79,7 @@ isqrt(CLUREF i, CLUREF *ret_1)
         T_1_1.num = T_1_3.num;
         if (T_1_3.num) {
             T_1_4.num = b.num - a.num;
-             if ((T_1_4.num >= 0 && b.num < 0 && (-a.num) < 0) || 
+             if ((T_1_4.num >= 0 && b.num < 0 && (-a.num) < 0) ||
                  (T_1_4.num <= 0 && b.num > 0 && (-a.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -102,7 +102,7 @@ isqrt(CLUREF i, CLUREF *ret_1)
         err = intOPdiv(i, a, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = a.num + T_2_1.num;
-         if ((T_2_2.num > 0 && a.num < 0 && T_2_1.num < 0) || 
+         if ((T_2_2.num > 0 && a.num < 0 && T_2_1.num < 0) ||
              (T_2_2.num < 0 && a.num > 0 && T_2_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}

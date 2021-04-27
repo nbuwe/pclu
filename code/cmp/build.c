@@ -27,7 +27,7 @@ b_duspecs(CLUREF e, CLUREF specs, CLUREF *ret_1)
   LINE(7);
     {
     switch (specs.cell->tag) {
-    case 1: 
+    case 1:
          {CLUREF T_1_1;
         T_1_1.num = specs.cell->value;
         inf.num = T_1_1.num;
@@ -73,7 +73,7 @@ b_duspecs(CLUREF e, CLUREF specs, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = specs.cell->value;
         inf.num = T_1_2.num;
@@ -91,7 +91,7 @@ b_duspecs(CLUREF e, CLUREF specs, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 5: 
+    case 5:
          {CLUREF T_1_3;
         T_1_3.num = specs.cell->value;
         inf.num = T_1_3.num;
@@ -109,7 +109,7 @@ b_duspecs(CLUREF e, CLUREF specs, CLUREF *ret_1)
             {signal (ERR_ok);}}
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_4;
         T_1_4.num = specs.cell->value;
         inf.num = T_1_4.num;
@@ -239,7 +239,7 @@ b_typeinfo(CLUREF e, CLUREF info, CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
         T_1_1.num = info.vec->data[0];
-        T_1_3.num = T_1_1.vec->size; 
+        T_1_3.num = T_1_1.vec->size;
         T_1_4 = T_1_1;
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             inf.num = T_1_4.vec->data[T_1_2.num - 1];
@@ -378,7 +378,7 @@ b_typesetlist(CLUREF e, CLUREF reqs, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = reqs.vec->size; 
+        T_1_2.num = reqs.vec->size;
         T_1_3 = reqs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             req.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -450,7 +450,7 @@ b_get_idn(CLUREF e, CLUREF i, CLUREF *ret_1)
     err = idnOPget_kind(i, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 1: 
+    case 1:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         k.num = T_1_2.num;
@@ -461,7 +461,7 @@ b_get_idn(CLUREF e, CLUREF i, CLUREF *ret_1)
             err = exprOPget_abs(k, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 13: 
+            case 13:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 xa.num = T_2_2.num;
@@ -474,7 +474,7 @@ b_get_idn(CLUREF e, CLUREF i, CLUREF *ret_1)
                     {signal (ERR_ok);}}
                     break;
                     }
-            case 25: 
+            case 25:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 xa.num = T_2_3.num;
@@ -485,7 +485,7 @@ b_get_idn(CLUREF e, CLUREF i, CLUREF *ret_1)
                     err = typespecOPget_abs(xa, &T_3_1);
                     if (err != ERR_ok) goto ex_0;
                     switch (T_3_1.cell->tag) {
-                    case 5: 
+                    case 5:
                          {CLUREF T_3_2;
                         T_3_2.num = T_3_1.cell->value;
                         ta.num = T_3_2.num;
@@ -723,7 +723,7 @@ b_parameters(CLUREF e, CLUREF parms, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = parms.vec->size; 
+        T_1_2.num = parms.vec->size;
         T_1_3 = parms;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -788,7 +788,7 @@ b_idnkinds(CLUREF e, CLUREF parms)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = parms.vec->size; 
+        T_1_2.num = parms.vec->size;
         T_1_3 = parms;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -799,7 +799,7 @@ b_idnkinds(CLUREF e, CLUREF parms)
             err = idnOPget_kind(i, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 6: 
+            case 6:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 k.num = T_2_2.num;
@@ -816,7 +816,7 @@ b_idnkinds(CLUREF e, CLUREF parms)
                     }
                     break;
                     }
-            case 10: 
+            case 10:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 k.num = T_2_3.num;
@@ -833,7 +833,7 @@ b_idnkinds(CLUREF e, CLUREF parms)
                     }
                     break;
                     }
-            case 5: 
+            case 5:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_1.cell->value;
                 k.num = T_2_4.num;
@@ -897,7 +897,7 @@ b_opspeclist(CLUREF e, CLUREF ops, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = ops.vec->size; 
+        T_1_2.num = ops.vec->size;
         T_1_3 = ops;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             op.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -984,7 +984,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
     err = typespecOPget_abs(t, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         dut.num = T_1_2.num;
@@ -1008,7 +1008,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             }
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         st.num = T_1_3.num;
@@ -1029,7 +1029,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = st.vec->data[1];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     parm.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -1070,7 +1070,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         at.num = T_1_4.num;
@@ -1091,7 +1091,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             CLUREF T_2_3;
             CLUREF T_2_4;
                 T_2_1.num = at.vec->data[2];
-                T_2_3.num = T_2_1.vec->size; 
+                T_2_3.num = T_2_1.vec->size;
                 T_2_4 = T_2_1;
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     sig.num = T_2_4.vec->data[T_2_2.num - 1];
@@ -1144,7 +1144,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             }
             break;
             }
-    case 5: 
+    case 5:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         ta.num = T_1_5.num;
@@ -1155,7 +1155,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             err = idnOPget_kind(ta, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 x.num = T_2_2.num;
@@ -1166,7 +1166,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
                     err = exprOPget_abs(x, &T_3_1);
                     if (err != ERR_ok) goto ex_0;
                     switch (T_3_1.cell->tag) {
-                    case 25: 
+                    case 25:
                          {CLUREF T_3_2;
                         T_3_2.num = T_3_1.cell->value;
                         tt.num = T_3_2.num;
@@ -1179,7 +1179,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
                             {signal (ERR_ok);}}
                             break;
                             }
-                    case 4: 
+                    case 4:
                          {
                             break;
                             }
@@ -1212,7 +1212,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         ot.num = T_1_6.num;
@@ -1220,7 +1220,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
   LINE(173);
             {
             switch (ot.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_1;
                 T_2_1.num = ot.cell->value;
                 dut.num = T_2_1.num;
@@ -1244,7 +1244,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_2;
                 T_2_2.num = ot.cell->value;
                 cop.num = T_2_2.num;
@@ -1274,7 +1274,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
                     }
                     break;
                     }
-            case 3: 
+            case 3:
                  {CLUREF T_2_3;
                 T_2_3.num = ot.cell->value;
                 tt.num = T_2_3.num;
@@ -1362,7 +1362,7 @@ b_typelist(CLUREF e, CLUREF types, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = types.vec->size; 
+        T_1_2.num = types.vec->size;
         T_1_3 = types;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             t.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -1444,7 +1444,7 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
     err = exprOPget_abs(x, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 25: 
+    case 25:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         xa.num = T_1_2.num;
@@ -1460,7 +1460,7 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 13: 
+    case 13:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         xa.num = T_1_3.num;
@@ -1471,7 +1471,7 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             err = idnOPget_kind(xa, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 1: 
+            case 1:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 k.num = T_2_2.num;
@@ -1497,7 +1497,7 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 16: 
+    case 16:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         inv.num = T_1_4.num;
@@ -1524,7 +1524,7 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 3: 
+    case 3:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         dut.num = T_1_5.num;
@@ -1551,7 +1551,7 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 20: 
+    case 20:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         cop.num = T_1_6.num;
@@ -1581,7 +1581,7 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             }
             break;
             }
-    case 11: 
+    case 11:
          {CLUREF T_1_7;
         T_1_7.num = T_1_1.cell->value;
         xa.num = T_1_7.num;
@@ -1664,7 +1664,7 @@ b_exprlist(CLUREF e, CLUREF exprs, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = exprs.vec->size; 
+        T_1_2.num = exprs.vec->size;
         T_1_3 = exprs;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             x.num = T_1_3.vec->data[T_1_1.num - 1];

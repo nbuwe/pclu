@@ -1085,7 +1085,7 @@ gcrOPmake_bvec2(CLUREF ch, CLUREF o)
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = size.num + 4;
-     if ((T_1_1.num > 0 && size.num < 0 && 4 < 0) || 
+     if ((T_1_1.num > 0 && size.num < 0 && 4 < 0) ||
          (T_1_1.num < 0 && size.num > 0 && 4 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1271,7 +1271,7 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
         err = gcbOPget_size(ch, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         T_1_2.num = T_1_1.num - 8;
-         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-8) < 0) || 
+         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-8) < 0) ||
              (T_1_2.num <= 0 && T_1_1.num > 0 && (-8) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1960,7 +1960,7 @@ gcbOPgeti(CLUREF ch, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = gcbOPlook_count.num - 4;
-     if ((T_1_1.num >= 0 && gcbOPlook_count.num < 0 && (-4) < 0) || 
+     if ((T_1_1.num >= 0 && gcbOPlook_count.num < 0 && (-4) < 0) ||
          (T_1_1.num <= 0 && gcbOPlook_count.num > 0 && (-4) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1971,7 +1971,7 @@ gcbOPgeti(CLUREF ch, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = gcbOPlook_index.num + 1;
-     if ((T_1_1.num > 0 && gcbOPlook_index.num < 0 && 1 < 0) || 
+     if ((T_1_1.num > 0 && gcbOPlook_index.num < 0 && 1 < 0) ||
          (T_1_1.num < 0 && gcbOPlook_index.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1982,7 +1982,7 @@ gcbOPgeti(CLUREF ch, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = gcbOPobj_addr.num + 4;
-     if ((T_1_1.num > 0 && gcbOPobj_addr.num < 0 && 4 < 0) || 
+     if ((T_1_1.num > 0 && gcbOPobj_addr.num < 0 && 4 < 0) ||
          (T_1_1.num < 0 && gcbOPobj_addr.num > 0 && 4 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2049,7 +2049,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         CLUREF T_1_3;
         CLUREF T_1_4;
         T_1_1.num = data_count.num + 4;
-         if ((T_1_1.num > 0 && data_count.num < 0 && 4 < 0) || 
+         if ((T_1_1.num > 0 && data_count.num < 0 && 4 < 0) ||
              (T_1_1.num < 0 && data_count.num > 0 && 4 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2058,7 +2058,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         err = intOPmul(T_1_2, CLU_4, &T_1_3);
         if (err != ERR_ok) goto ex_0;
         T_1_4.num = T_1_3.num - data_count.num;
-         if ((T_1_4.num >= 0 && T_1_3.num < 0 && (-data_count.num) < 0) || 
+         if ((T_1_4.num >= 0 && T_1_3.num < 0 && (-data_count.num) < 0) ||
              (T_1_4.num <= 0 && T_1_3.num > 0 && (-data_count.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2111,12 +2111,12 @@ gcbOPgetb(CLUREF ch, CLUREF b)
             CLUREF T_2_2;
             CLUREF T_2_3;
             T_2_1.num = data_count.num - b_index.num;
-             if ((T_2_1.num >= 0 && data_count.num < 0 && (-b_index.num) < 0) || 
+             if ((T_2_1.num >= 0 && data_count.num < 0 && (-b_index.num) < 0) ||
                  (T_2_1.num <= 0 && data_count.num > 0 && (-b_index.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
             T_2_2.num = T_2_1.num + 1;
-             if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+             if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
                  (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -2132,14 +2132,14 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         CLUREF T_2_2;
         CLUREF T_2_3;
         T_2_1.num = gcbOPlook_index.num - 1;
-         if ((T_2_1.num >= 0 && gcbOPlook_index.num < 0 && (-1) < 0) || 
+         if ((T_2_1.num >= 0 && gcbOPlook_index.num < 0 && (-1) < 0) ||
              (T_2_1.num <= 0 && gcbOPlook_index.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         err = intOPmul(T_2_1, CLU_4, &T_2_2);
         if (err != ERR_ok) goto ex_0;
         T_2_3.num = T_2_2.num + 1;
-         if ((T_2_3.num > 0 && T_2_2.num < 0 && 1 < 0) || 
+         if ((T_2_3.num > 0 && T_2_2.num < 0 && 1 < 0) ||
              (T_2_3.num < 0 && T_2_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2151,7 +2151,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         {
         CLUREF T_2_1;
         T_2_1.num = gcbOPlook_count.num - count.num;
-         if ((T_2_1.num >= 0 && gcbOPlook_count.num < 0 && (-count.num) < 0) || 
+         if ((T_2_1.num >= 0 && gcbOPlook_count.num < 0 && (-count.num) < 0) ||
              (T_2_1.num <= 0 && gcbOPlook_count.num > 0 && (-count.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2165,7 +2165,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         err = intOPdiv(count, CLU_4, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = gcbOPlook_index.num + T_2_1.num;
-         if ((T_2_2.num > 0 && gcbOPlook_index.num < 0 && T_2_1.num < 0) || 
+         if ((T_2_2.num > 0 && gcbOPlook_index.num < 0 && T_2_1.num < 0) ||
              (T_2_2.num < 0 && gcbOPlook_index.num > 0 && T_2_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2176,7 +2176,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         {
         CLUREF T_2_1;
         T_2_1.num = b_index.num + count.num;
-         if ((T_2_1.num > 0 && b_index.num < 0 && count.num < 0) || 
+         if ((T_2_1.num > 0 && b_index.num < 0 && count.num < 0) ||
              (T_2_1.num < 0 && b_index.num > 0 && count.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2187,7 +2187,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         {
         CLUREF T_2_1;
         T_2_1.num = copied.num + count.num;
-         if ((T_2_1.num > 0 && copied.num < 0 && count.num < 0) || 
+         if ((T_2_1.num > 0 && copied.num < 0 && count.num < 0) ||
              (T_2_1.num < 0 && copied.num > 0 && count.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2227,7 +2227,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
     {
     CLUREF T_1_1;
     T_1_1.num = gcbOPlook_count.num - pad_count.num;
-     if ((T_1_1.num >= 0 && gcbOPlook_count.num < 0 && (-pad_count.num) < 0) || 
+     if ((T_1_1.num >= 0 && gcbOPlook_count.num < 0 && (-pad_count.num) < 0) ||
          (T_1_1.num <= 0 && gcbOPlook_count.num > 0 && (-pad_count.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2244,7 +2244,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         {
         CLUREF T_2_1;
         T_2_1.num = gcbOPlook_index.num + 1;
-         if ((T_2_1.num > 0 && gcbOPlook_index.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && gcbOPlook_index.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && gcbOPlook_index.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2258,12 +2258,12 @@ gcbOPgetb(CLUREF ch, CLUREF b)
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = gcbOPobj_addr.num + data_count.num;
-     if ((T_1_1.num > 0 && gcbOPobj_addr.num < 0 && data_count.num < 0) || 
+     if ((T_1_1.num > 0 && gcbOPobj_addr.num < 0 && data_count.num < 0) ||
          (T_1_1.num < 0 && gcbOPobj_addr.num > 0 && data_count.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     T_1_2.num = T_1_1.num + pad_count.num;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && pad_count.num < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && pad_count.num < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && pad_count.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2351,7 +2351,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
             {CLUREF T_2_1;
             CLUREF T_2_2;
             T_2_1.num = i4.num - skipped.num;
-             if ((T_2_1.num >= 0 && i4.num < 0 && (-skipped.num) < 0) || 
+             if ((T_2_1.num >= 0 && i4.num < 0 && (-skipped.num) < 0) ||
                  (T_2_1.num <= 0 && i4.num > 0 && (-skipped.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -2365,7 +2365,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
         {
         CLUREF T_2_1;
         T_2_1.num = gcbOPlook_count.num - count.num;
-         if ((T_2_1.num >= 0 && gcbOPlook_count.num < 0 && (-count.num) < 0) || 
+         if ((T_2_1.num >= 0 && gcbOPlook_count.num < 0 && (-count.num) < 0) ||
              (T_2_1.num <= 0 && gcbOPlook_count.num > 0 && (-count.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2379,7 +2379,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
         err = intOPdiv(count, CLU_4, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = gcbOPlook_index.num + T_2_1.num;
-         if ((T_2_2.num > 0 && gcbOPlook_index.num < 0 && T_2_1.num < 0) || 
+         if ((T_2_2.num > 0 && gcbOPlook_index.num < 0 && T_2_1.num < 0) ||
              (T_2_2.num < 0 && gcbOPlook_index.num > 0 && T_2_1.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2390,7 +2390,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
         {
         CLUREF T_2_1;
         T_2_1.num = skipped.num + count.num;
-         if ((T_2_1.num > 0 && skipped.num < 0 && count.num < 0) || 
+         if ((T_2_1.num > 0 && skipped.num < 0 && count.num < 0) ||
              (T_2_1.num < 0 && skipped.num > 0 && count.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2403,7 +2403,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
     {
     CLUREF T_1_1;
     T_1_1.num = gcbOPobj_addr.num + i4.num;
-     if ((T_1_1.num > 0 && gcbOPobj_addr.num < 0 && i4.num < 0) || 
+     if ((T_1_1.num > 0 && gcbOPobj_addr.num < 0 && i4.num < 0) ||
          (T_1_1.num < 0 && gcbOPobj_addr.num > 0 && i4.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -2528,7 +2528,7 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
         err = hash_int(i, T_1_1, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         T_1_3.num = T_1_2.num + 1;
-         if ((T_1_3.num > 0 && T_1_2.num < 0 && 1 < 0) || 
+         if ((T_1_3.num > 0 && T_1_2.num < 0 && 1 < 0) ||
              (T_1_3.num < 0 && T_1_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -2637,7 +2637,7 @@ gcoOPsave_new_obj(CLUREF i, CLUREF o)
         err = hash_int(i, T_1_1, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         T_1_3.num = T_1_2.num + 1;
-         if ((T_1_3.num > 0 && T_1_2.num < 0 && 1 < 0) || 
+         if ((T_1_3.num > 0 && T_1_2.num < 0 && 1 < 0) ||
              (T_1_3.num < 0 && T_1_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}

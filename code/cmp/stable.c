@@ -426,7 +426,7 @@ stableOPmatch(CLUREF tbl, CLUREF ms, errcode (*proc)(), char **user_locals, errc
         {
         CLUREF T_3_1;
         T_3_1.num = i.num + 1;
-         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_3_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_3_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -532,7 +532,7 @@ stableOPinsert(CLUREF tbl, CLUREF name, CLUREF val)
         CLUREF T_3_5;
             T_3_1.num = tbl.array->ext_high;
             T_3_2.num = i.num + 1;
-             if ((T_3_2.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -546,7 +546,7 @@ stableOPinsert(CLUREF tbl, CLUREF name, CLUREF val)
                 CLUREF T_4_1;
                 CLUREF T_4_2;
                 T_4_1.num = j.num - 1;
-                 if ((T_4_1.num >= 0 && j.num < 0 && (-1) < 0) || 
+                 if ((T_4_1.num >= 0 && j.num < 0 && (-1) < 0) ||
                      (T_4_1.num <= 0 && j.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -691,7 +691,7 @@ stableOPfind_index(CLUREF tbl, CLUREF look_for, CLUREF exact, CLUREF *ret_1)
         CLUREF T_1_2;
         T_1_1.num = tbl.array->ext_low;
         T_1_2.num = T_1_1.num - 1;
-         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
              (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -705,7 +705,7 @@ stableOPfind_index(CLUREF tbl, CLUREF look_for, CLUREF exact, CLUREF *ret_1)
         CLUREF T_1_2;
         T_1_1.num = tbl.array->ext_high;
         T_1_2.num = T_1_1.num + 1;
-         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
              (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -722,7 +722,7 @@ stableOPfind_index(CLUREF tbl, CLUREF look_for, CLUREF exact, CLUREF *ret_1)
             {CLUREF T_2_1;
             CLUREF T_2_2;
             T_2_1.num = low.num + high.num;
-             if ((T_2_1.num > 0 && low.num < 0 && high.num < 0) || 
+             if ((T_2_1.num > 0 && low.num < 0 && high.num < 0) ||
                  (T_2_1.num < 0 && low.num > 0 && high.num > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -810,7 +810,7 @@ stableOPfind_index(CLUREF tbl, CLUREF look_for, CLUREF exact, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = low.num + 1;
-         if ((T_2_1.num > 0 && low.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && low.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && low.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -898,7 +898,7 @@ stableOPdelete(CLUREF tbl, CLUREF name)
     CLUREF T_1_4;
         T_1_1.num = tbl.array->ext_high;
         T_1_2.num = T_1_1.num - 1;
-         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
              (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -911,7 +911,7 @@ stableOPdelete(CLUREF tbl, CLUREF name)
             CLUREF T_2_1;
             CLUREF T_2_2;
             T_2_1.num = i.num + 1;
-             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+             if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
                  (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -971,7 +971,7 @@ stableOPentries(CLUREF tbl, errcode (*proc)(), char **user_locals, errcode *ieco
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = tbl.array->ext_high; 
+        T_1_2.num = tbl.array->ext_high;
         T_1_3 = tbl;
         for (T_1_1.num = tbl.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {

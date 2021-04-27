@@ -136,7 +136,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                 T_4_1.ch = '/';
                 T_4_2.num = d.num;
                 T_4_3.num = i.num + 1;
-                 if ((T_4_3.num > 0 && i.num < 0 && 1 < 0) || 
+                 if ((T_4_3.num > 0 && i.num < 0 && 1 < 0) ||
                      (T_4_3.num < 0 && i.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -162,17 +162,17 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                 err = stringOPsize(d, &T_5_1);
                 if (err != ERR_ok) goto ex_1;
                 T_5_2.num = T_5_1.num + 1;
-                 if ((T_5_2.num > 0 && T_5_1.num < 0 && 1 < 0) || 
+                 if ((T_5_2.num > 0 && T_5_1.num < 0 && 1 < 0) ||
                      (T_5_2.num < 0 && T_5_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
                 T_5_3.num = i.num + dez.num;
-                 if ((T_5_3.num > 0 && i.num < 0 && dez.num < 0) || 
+                 if ((T_5_3.num > 0 && i.num < 0 && dez.num < 0) ||
                      (T_5_3.num < 0 && i.num > 0 && dez.num > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
                 T_5_4.num = T_5_3.num + 1;
-                 if ((T_5_4.num > 0 && T_5_3.num < 0 && 1 < 0) || 
+                 if ((T_5_4.num > 0 && T_5_3.num < 0 && 1 < 0) ||
                      (T_5_4.num < 0 && T_5_3.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -189,12 +189,12 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
             CLUREF T_4_3;
             CLUREF T_4_4;
             T_4_2.num = j.num - i.num;
-             if ((T_4_2.num >= 0 && j.num < 0 && (-i.num) < 0) || 
+             if ((T_4_2.num >= 0 && j.num < 0 && (-i.num) < 0) ||
                  (T_4_2.num <= 0 && j.num > 0 && (-i.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
             T_4_3.num = dez.num + 1;
-             if ((T_4_3.num > 0 && dez.num < 0 && 1 < 0) || 
+             if ((T_4_3.num > 0 && dez.num < 0 && 1 < 0) ||
                  (T_4_3.num < 0 && dez.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -208,7 +208,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                 CLUREF T_5_3;
                 CLUREF T_5_4;
                 T_5_1.num = i.num + dez.num;
-                 if ((T_5_1.num > 0 && i.num < 0 && dez.num < 0) || 
+                 if ((T_5_1.num > 0 && i.num < 0 && dez.num < 0) ||
                      (T_5_1.num < 0 && i.num > 0 && dez.num > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -226,12 +226,12 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                 CLUREF T_5_1;
                 CLUREF T_5_2;
                 T_5_1.num = i.num + dez.num;
-                 if ((T_5_1.num > 0 && i.num < 0 && dez.num < 0) || 
+                 if ((T_5_1.num > 0 && i.num < 0 && dez.num < 0) ||
                      (T_5_1.num < 0 && i.num > 0 && dez.num > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
                 T_5_2.num = T_5_1.num + 1;
-                 if ((T_5_2.num > 0 && T_5_1.num < 0 && 1 < 0) || 
+                 if ((T_5_2.num > 0 && T_5_1.num < 0 && 1 < 0) ||
                      (T_5_2.num < 0 && T_5_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -257,7 +257,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                 CLUREF T_5_4;
                 CLUREF T_5_5;
                 T_5_1.num = i.num + 1;
-                 if ((T_5_1.num > 0 && i.num < 0 && 1 < 0) || 
+                 if ((T_5_1.num > 0 && i.num < 0 && 1 < 0) ||
                      (T_5_1.num < 0 && i.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -278,7 +278,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                     {CLUREF T_5_1;
                     CLUREF T_5_2;
                     T_5_1.num = i.num + 2;
-                     if ((T_5_1.num > 0 && i.num < 0 && 2 < 0) || 
+                     if ((T_5_1.num > 0 && i.num < 0 && 2 < 0) ||
                          (T_5_1.num < 0 && i.num > 0 && 2 > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -305,7 +305,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                     err = stringOPsubstr(d, CLU_1, i, &T_6_1);
                     if (err != ERR_ok) goto ex_1;
                     T_6_2.num = i.num + 3;
-                     if ((T_6_2.num > 0 && i.num < 0 && 3 < 0) || 
+                     if ((T_6_2.num > 0 && i.num < 0 && 3 < 0) ||
                          (T_6_2.num < 0 && i.num > 0 && 3 > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -340,7 +340,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = i.num + 3;
-                 if ((T_5_1.num > 0 && i.num < 0 && 3 < 0) || 
+                 if ((T_5_1.num > 0 && i.num < 0 && 3 < 0) ||
                      (T_5_1.num < 0 && i.num > 0 && 3 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -378,7 +378,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                     {
                     CLUREF T_6_1;
                     T_6_1.num = j.num + 1;
-                     if ((T_6_1.num > 0 && j.num < 0 && 1 < 0) || 
+                     if ((T_6_1.num > 0 && j.num < 0 && 1 < 0) ||
                          (T_6_1.num < 0 && j.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
@@ -417,7 +417,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                     {
                     CLUREF T_7_1;
                     T_7_1.num = i.num - 1;
-                     if ((T_7_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+                     if ((T_7_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                          (T_7_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                         err = ERR_overflow;
                         goto ex_2;}
@@ -508,7 +508,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = i.num - 1;
-             if ((T_3_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+             if ((T_3_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                  (T_3_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -566,7 +566,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
         err = _last_indexc(T_2_1, d, &T_2_2);
         if (err != ERR_ok) goto ex_0;
         T_2_3.num = T_2_2.num - 1;
-         if ((T_2_3.num >= 0 && T_2_2.num < 0 && (-1) < 0) || 
+         if ((T_2_3.num >= 0 && T_2_2.num < 0 && (-1) < 0) ||
              (T_2_3.num <= 0 && T_2_2.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -612,14 +612,14 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
     err = stringOPsize(s, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_3.num = T_1_1.num + T_1_2.num;
-     if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) || 
+     if ((T_1_3.num > 0 && T_1_1.num < 0 && T_1_2.num < 0) ||
          (T_1_3.num < 0 && T_1_1.num > 0 && T_1_2.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     err = stringOPsize(o, &T_1_4);
     if (err != ERR_ok) goto ex_0;
     T_1_5.num = T_1_3.num + T_1_4.num;
-     if ((T_1_5.num > 0 && T_1_3.num < 0 && T_1_4.num < 0) || 
+     if ((T_1_5.num > 0 && T_1_3.num < 0 && T_1_4.num < 0) ||
          (T_1_5.num < 0 && T_1_3.num > 0 && T_1_4.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -639,7 +639,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = i.num + 2;
-         if ((T_2_1.num > 0 && i.num < 0 && 2 < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && 2 < 0) ||
              (T_2_1.num < 0 && i.num > 0 && 2 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -658,7 +658,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = i.num + 1;
-         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) || 
+         if ((T_2_1.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_1.num < 0 && i.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}

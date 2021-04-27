@@ -334,7 +334,7 @@ pstreamOPstart(CLUREF ps, CLUREF s, CLUREF *ret_1)
         CLUREF T_1_2;
         T_1_1.num = ps.vec->data[3];
         T_1_2.num = T_1_1.num + 1;
-         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) || 
+         if ((T_1_2.num > 0 && T_1_1.num < 0 && 1 < 0) ||
              (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -466,7 +466,7 @@ pstreamOPstop(CLUREF ps, CLUREF s, CLUREF *ret_1)
         CLUREF T_1_2;
         T_1_1.num = ps.vec->data[3];
         T_1_2.num = T_1_1.num - 1;
-         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) || 
+         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-1) < 0) ||
              (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -685,7 +685,7 @@ pstreamOPpause(CLUREF ps, CLUREF s, CLUREF *ret_1)
         err = arrayOPtop(T_1_1, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         T_1_3.num = T_1_2.num + 1;
-         if ((T_1_3.num > 0 && T_1_2.num < 0 && 1 < 0) || 
+         if ((T_1_3.num > 0 && T_1_2.num < 0 && 1 < 0) ||
              (T_1_3.num < 0 && T_1_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -869,7 +869,7 @@ pstreamOPtextc(CLUREF ps, CLUREF c, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = ps.vec->data[5];
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -926,7 +926,7 @@ pstreamOPtextc(CLUREF ps, CLUREF c, CLUREF *ret_1)
             CLUREF T_3_2;
             T_3_1.num = ps.vec->data[9];
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
@@ -998,7 +998,7 @@ pstreamOPputleft(CLUREF ps, CLUREF s, CLUREF size, CLUREF *ret_1)
         err = stringOPsize(s, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         T_1_2.num = size.num - T_1_1.num;
-         if ((T_1_2.num >= 0 && size.num < 0 && (-T_1_1.num) < 0) || 
+         if ((T_1_2.num >= 0 && size.num < 0 && (-T_1_1.num) < 0) ||
              (T_1_2.num <= 0 && size.num > 0 && (-T_1_1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1083,7 +1083,7 @@ pstreamOPputright(CLUREF ps, CLUREF s, CLUREF size, CLUREF *ret_1)
         err = stringOPsize(s, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         T_1_2.num = size.num - T_1_1.num;
-         if ((T_1_2.num >= 0 && size.num < 0 && (-T_1_1.num) < 0) || 
+         if ((T_1_2.num >= 0 && size.num < 0 && (-T_1_1.num) < 0) ||
              (T_1_2.num <= 0 && size.num > 0 && (-T_1_1.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1244,7 +1244,7 @@ pstreamOPputs(CLUREF ps, CLUREF s)
     CLUREF T_1_2;
     T_1_1.num = locals.ps.vec->data[5];
     T_1_2.num = T_1_1.num + locals.len.num;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && locals.len.num < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && locals.len.num < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && locals.len.num > 0)) {
         locals.err = ERR_overflow;
         goto ex_0;}
@@ -1294,7 +1294,7 @@ pstreamOPputs(CLUREF ps, CLUREF s)
     CLUREF T_1_2;
     T_1_1.num = locals.ps.vec->data[9];
     T_1_2.num = T_1_1.num + locals.len.num;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && locals.len.num < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && locals.len.num < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && locals.len.num > 0)) {
         locals.err = ERR_overflow;
         goto ex_0;}
@@ -1343,7 +1343,7 @@ pstreamOPputs(CLUREF ps, CLUREF s)
     CLUREF T_1_2;
     T_1_1.num = locals.ps.vec->data[5];
     T_1_2.num = T_1_1.num - locals.len.num;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-locals.len.num) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-locals.len.num) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-locals.len.num) > 0)) {
         locals.err = ERR_overflow;
         goto ex_0;}
@@ -1356,7 +1356,7 @@ pstreamOPputs(CLUREF ps, CLUREF s)
     CLUREF T_1_2;
     T_1_1.num = locals.ps.vec->data[9];
     T_1_2.num = T_1_1.num - locals.len.num;
-     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-locals.len.num) < 0) || 
+     if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-locals.len.num) < 0) ||
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-locals.len.num) > 0)) {
         locals.err = ERR_overflow;
         goto ex_0;}
@@ -1489,7 +1489,7 @@ struct {
             CLUREF T_3_2;
             T_3_1.num = locals->ps.vec->data[9];
             T_3_2.num = T_3_1.num + 1;
-             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) || 
+             if ((T_3_2.num > 0 && T_3_1.num < 0 && 1 < 0) ||
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 locals->err = ERR_overflow;
                 goto ex_0;}
@@ -1504,7 +1504,7 @@ struct {
         CLUREF T_2_2;
         T_2_1.num = locals->ps.vec->data[5];
         T_2_2.num = T_2_1.num + 1;
-         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) || 
+         if ((T_2_2.num > 0 && T_2_1.num < 0 && 1 < 0) ||
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             locals->err = ERR_overflow;
             goto ex_0;}
@@ -1553,7 +1553,7 @@ pstreamOPputsp(CLUREF ps, CLUREF len)
     CLUREF T_1_2;
     T_1_1.num = ps.vec->data[5];
     T_1_2.num = T_1_1.num + len.num;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && len.num < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && len.num < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && len.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1591,7 +1591,7 @@ pstreamOPputsp(CLUREF ps, CLUREF len)
     CLUREF T_1_2;
     T_1_1.num = ps.vec->data[9];
     T_1_2.num = T_1_1.num + len.num;
-     if ((T_1_2.num > 0 && T_1_1.num < 0 && len.num < 0) || 
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && len.num < 0) ||
          (T_1_2.num < 0 && T_1_1.num > 0 && len.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
@@ -1650,7 +1650,7 @@ pstreamOPputsp(CLUREF ps, CLUREF len)
         T_2_1.num = ps.vec->data[9];
         T_2_2.num = ps.vec->data[6];
         T_2_3.num = T_2_1.num - T_2_2.num;
-         if ((T_2_3.num >= 0 && T_2_1.num < 0 && (-T_2_2.num) < 0) || 
+         if ((T_2_3.num >= 0 && T_2_1.num < 0 && (-T_2_2.num) < 0) ||
              (T_2_3.num <= 0 && T_2_1.num > 0 && (-T_2_2.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}

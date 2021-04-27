@@ -252,7 +252,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
                 locals.err = e_e2qc(locals.a1, &T_4_1);
                 if (locals.err != ERR_ok) goto ex_1;
                 T_4_2.num = T_4_1.vec->data[0];
-                T_4_4.num = T_4_2.vec->size; 
+                T_4_4.num = T_4_2.vec->size;
                 T_4_5 = T_4_2;
                 for (T_4_3.num = 1; T_4_3.num <= T_4_4.num; T_4_3.num++) {
                     locals.cx.num = T_4_5.vec->data[T_4_3.num - 1];
@@ -1098,7 +1098,7 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                 err = e_e2sc(a1, &T_4_1);
                 if (err != ERR_ok) goto ex_1;
                 T_4_2.num = T_4_1.vec->data[0];
-                T_4_4.num = T_4_2.vec->size; 
+                T_4_4.num = T_4_2.vec->size;
                 T_4_5 = T_4_2;
                 for (T_4_3.num = 1; T_4_3.num <= T_4_4.num; T_4_3.num++) {
                     f.num = T_4_5.vec->data[T_4_3.num - 1];
@@ -1110,7 +1110,7 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                     CLUREF T_5_3;
                     CLUREF T_5_4;
                         T_5_1.num = f.vec->data[1];
-                        T_5_3.num = T_5_1.vec->size; 
+                        T_5_3.num = T_5_1.vec->size;
                         T_5_4 = T_5_1;
                         for (T_5_2.num = 1; T_5_2.num <= T_5_3.num; T_5_2.num++) {
                             xsel.num = T_5_4.vec->data[T_5_2.num - 1];
@@ -1188,7 +1188,7 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             CLUREF T_4_2;
-                T_4_2.num = fields.vec->size; 
+                T_4_2.num = fields.vec->size;
                 for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                     j.num = T_4_1.num;
 
@@ -1209,7 +1209,7 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                     {
                     CLUREF T_5_1;
                     CLUREF T_5_2;
-                        T_5_2.num = sels.vec->size; 
+                        T_5_2.num = sels.vec->size;
                         for (T_5_1.num = 1; T_5_1.num <= T_5_2.num; T_5_1.num++) {
                             i.num = T_5_1.num;
 
@@ -1258,14 +1258,14 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                                 CLUREF T_7_4;
                                 CLUREF T_7_5;
                                 T_7_1.num = i.num - 1;
-                                 if ((T_7_1.num >= 0 && i.num < 0 && (-1) < 0) || 
+                                 if ((T_7_1.num >= 0 && i.num < 0 && (-1) < 0) ||
                                      (T_7_1.num <= 0 && i.num > 0 && (-1) > 0)) {
                                     err = ERR_overflow;
                                     goto ex_1;}
                                 err = sequenceOPsubseq(sels, CLU_1, T_7_1, &T_7_2);
                                 if (err != ERR_ok) goto ex_1;
                                 T_7_3.num = i.num + 1;
-                                 if ((T_7_3.num > 0 && i.num < 0 && 1 < 0) || 
+                                 if ((T_7_3.num > 0 && i.num < 0 && 1 < 0) ||
                                      (T_7_3.num < 0 && i.num > 0 && 1 > 0)) {
                                     err = ERR_overflow;
                                     goto ex_1;}
@@ -1284,14 +1284,14 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                                 CLUREF T_7_4;
                                 CLUREF T_7_5;
                                 T_7_1.num = j.num - 1;
-                                 if ((T_7_1.num >= 0 && j.num < 0 && (-1) < 0) || 
+                                 if ((T_7_1.num >= 0 && j.num < 0 && (-1) < 0) ||
                                      (T_7_1.num <= 0 && j.num > 0 && (-1) > 0)) {
                                     err = ERR_overflow;
                                     goto ex_1;}
                                 err = sequenceOPsubseq(fields, CLU_1, T_7_1, &T_7_2);
                                 if (err != ERR_ok) goto ex_1;
                                 T_7_3.num = j.num + 1;
-                                 if ((T_7_3.num > 0 && j.num < 0 && 1 < 0) || 
+                                 if ((T_7_3.num > 0 && j.num < 0 && 1 < 0) ||
                                      (T_7_3.num < 0 && j.num > 0 && 1 > 0)) {
                                     err = ERR_overflow;
                                     goto ex_1;}
@@ -2318,7 +2318,7 @@ e_e2o(CLUREF x, CLUREF *ret_1, CLUREF *ret_2)
     err = exprOPget_abs(x, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 16: 
+    case 16:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         xa.num = T_1_2.num;
@@ -2331,7 +2331,7 @@ e_e2o(CLUREF x, CLUREF *ret_1, CLUREF *ret_2)
             err = exprOPget_abs(T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_2.cell->tag) {
-            case 20: 
+            case 20:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_2.cell->value;
                 opa.num = T_2_3.num;

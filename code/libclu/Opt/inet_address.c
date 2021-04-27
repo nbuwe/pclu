@@ -74,7 +74,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
         CLUREF T_3_2;
         CLUREF T_3_3;
         T_3_1.num = t.num - 1;
-         if ((T_3_1.num >= 0 && t.num < 0 && (-1) < 0) || 
+         if ((T_3_1.num >= 0 && t.num < 0 && (-1) < 0) ||
              (T_3_1.num <= 0 && t.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -89,7 +89,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
         {
             {CLUREF T_3_1;
             T_3_1.num = t.num + 1;
-             if ((T_3_1.num > 0 && t.num < 0 && 1 < 0) || 
+             if ((T_3_1.num > 0 && t.num < 0 && 1 < 0) ||
                  (T_3_1.num < 0 && t.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -172,7 +172,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
             CLUREF T_4_2;
             CLUREF T_4_3;
             T_4_1.num = t.num - s.num;
-             if ((T_4_1.num >= 0 && t.num < 0 && (-s.num) < 0) || 
+             if ((T_4_1.num >= 0 && t.num < 0 && (-s.num) < 0) ||
                  (T_4_1.num <= 0 && t.num > 0 && (-s.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -187,7 +187,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
             {
             CLUREF T_4_1;
             T_4_1.num = t.num + 1;
-             if ((T_4_1.num > 0 && t.num < 0 && 1 < 0) || 
+             if ((T_4_1.num > 0 && t.num < 0 && 1 < 0) ||
                  (T_4_1.num < 0 && t.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
@@ -254,7 +254,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
                 CLUREF T_5_2;
                 CLUREF T_5_3;
                 T_5_1.num = t.num - s.num;
-                 if ((T_5_1.num >= 0 && t.num < 0 && (-s.num) < 0) || 
+                 if ((T_5_1.num >= 0 && t.num < 0 && (-s.num) < 0) ||
                      (T_5_1.num <= 0 && t.num > 0 && (-s.num) > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -271,7 +271,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
                 CLUREF T_5_2;
                 CLUREF T_5_3;
                 T_5_1.num = t.num + 1;
-                 if ((T_5_1.num > 0 && t.num < 0 && 1 < 0) || 
+                 if ((T_5_1.num > 0 && t.num < 0 && 1 < 0) ||
                      (T_5_1.num < 0 && t.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
@@ -294,7 +294,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
         err = intOPmul(d, T_3_1, &T_3_2);
         if (err != ERR_ok) goto ex_1;
         T_3_3.num = c.num + T_3_2.num;
-         if ((T_3_3.num > 0 && c.num < 0 && T_3_2.num < 0) || 
+         if ((T_3_3.num > 0 && c.num < 0 && T_3_2.num < 0) ||
              (T_3_3.num < 0 && c.num > 0 && T_3_2.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
@@ -308,7 +308,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
         err = intOPmul(b, T_3_4, &T_3_5);
         if (err != ERR_ok) goto ex_1;
         T_3_6.num = a.num + T_3_5.num;
-         if ((T_3_6.num > 0 && a.num < 0 && T_3_5.num < 0) || 
+         if ((T_3_6.num > 0 && a.num < 0 && T_3_5.num < 0) ||
              (T_3_6.num < 0 && a.num > 0 && T_3_5.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}

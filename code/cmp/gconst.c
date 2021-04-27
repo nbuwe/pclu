@@ -241,7 +241,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = bod.vec->size; 
+        T_1_2.num = bod.vec->size;
         T_1_3 = bod;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             s.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -252,7 +252,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
             err = stmtOPget_abs(s, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 7: 
+            case 7:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 di.num = T_2_2.num;
@@ -266,7 +266,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 1: 
+            case 1:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 as.num = T_2_3.num;
@@ -280,7 +280,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 17: 
+            case 17:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_1.cell->value;
                 as.num = T_2_4.num;
@@ -302,7 +302,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 13: 
+            case 13:
                  {CLUREF T_2_5;
                 T_2_5.num = T_2_1.cell->value;
                 inv.num = T_2_5.num;
@@ -324,7 +324,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 19: 
+            case 19:
                  {CLUREF T_2_6;
                 T_2_6.num = T_2_1.cell->value;
                 w.num = T_2_6.num;
@@ -348,7 +348,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 10: 
+            case 10:
                  {CLUREF T_2_7;
                 T_2_7.num = T_2_1.cell->value;
                 f.num = T_2_7.num;
@@ -384,7 +384,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 12: 
+            case 12:
                  {CLUREF T_2_8;
                 T_2_8.num = T_2_1.cell->value;
                 i.num = T_2_8.num;
@@ -396,7 +396,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = i.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             arm.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -427,7 +427,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     CLUREF T_3_1;
                     T_3_1.num = i.vec->data[1];
                     switch (T_3_1.cell->tag) {
-                    case 1: 
+                    case 1:
                          {CLUREF T_3_2;
                         T_3_2.num = T_3_1.cell->value;
                         b.num = T_3_2.num;
@@ -447,7 +447,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 18: 
+            case 18:
                  {CLUREF T_2_9;
                 T_2_9.num = T_2_1.cell->value;
                 t.num = T_2_9.num;
@@ -467,7 +467,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = t.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             arm.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -490,7 +490,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     CLUREF T_3_1;
                     T_3_1.num = t.vec->data[2];
                     switch (T_3_1.cell->tag) {
-                    case 1: 
+                    case 1:
                          {CLUREF T_3_2;
                         T_3_2.num = T_3_1.cell->value;
                         b.num = T_3_2.num;
@@ -510,7 +510,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 15: 
+            case 15:
                  {CLUREF T_2_10;
                 T_2_10.num = T_2_1.cell->value;
                 el.num = T_2_10.num;
@@ -522,7 +522,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 20: 
+            case 20:
                  {CLUREF T_2_11;
                 T_2_11.num = T_2_1.cell->value;
                 el.num = T_2_11.num;
@@ -534,7 +534,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 16: 
+            case 16:
                  {CLUREF T_2_12;
                 T_2_12.num = T_2_1.cell->value;
                 c.num = T_2_12.num;
@@ -548,7 +548,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 9: 
+            case 9:
                  {CLUREF T_2_13;
                 T_2_13.num = T_2_1.cell->value;
                 c.num = T_2_13.num;
@@ -562,7 +562,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 3: 
+            case 3:
                  {CLUREF T_2_14;
                 T_2_14.num = T_2_1.cell->value;
                 b.num = T_2_14.num;
@@ -576,7 +576,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 8: 
+            case 8:
                  {CLUREF T_2_15;
                 T_2_15.num = T_2_1.cell->value;
                 e.num = T_2_15.num;
@@ -599,7 +599,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     CLUREF T_3_3;
                     CLUREF T_3_4;
                         T_3_1.num = e.vec->data[0];
-                        T_3_3.num = T_3_1.vec->size; 
+                        T_3_3.num = T_3_1.vec->size;
                         T_3_4 = T_3_1;
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             a.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -622,7 +622,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     CLUREF T_3_1;
                     T_3_1.num = e.vec->data[1];
                     switch (T_3_1.cell->tag) {
-                    case 1: 
+                    case 1:
                          {CLUREF T_3_2;
                         T_3_2.num = T_3_1.cell->value;
                         a.num = T_3_2.num;
@@ -644,7 +644,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 14: 
+            case 14:
                  {CLUREF T_2_16;
                 T_2_16.num = T_2_1.cell->value;
                 r.num = T_2_16.num;
@@ -661,7 +661,7 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 11: 
+            case 11:
                  {CLUREF T_2_17;
                 T_2_17.num = T_2_1.cell->value;
                 f.num = T_2_17.num;
@@ -714,7 +714,7 @@ g_constOPfind_const_exprlist(CLUREF el, CLUREF const_UNIQ)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = el.vec->size; 
+        T_1_2.num = el.vec->size;
         T_1_3 = el;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_e.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -759,7 +759,7 @@ g_constOPfind_const_fieldspeclist(CLUREF fl, CLUREF const_UNIQ)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = fl.vec->size; 
+        T_1_2.num = fl.vec->size;
         T_1_3 = fl;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_f.num = T_1_3.vec->data[T_1_1.num - 1];
@@ -815,13 +815,13 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
     err = exprOPget_abs(exp, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_1.cell->tag) {
-    case 3: 
+    case 3:
          {CLUREF T_1_2;
         T_1_2.num = T_1_1.cell->value;
         ct.num = T_1_2.num;
             break;
             }
-    case 20: 
+    case 20:
          {CLUREF T_1_3;
         T_1_3.num = T_1_1.cell->value;
         cop.num = T_1_3.num;
@@ -834,7 +834,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             err = typespecOPget_abs(T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_2.cell->tag) {
-            case 7: 
+            case 7:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_2.cell->value;
                 sel.num = T_2_3.num;
@@ -853,14 +853,14 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
                         }/* end if */
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_2.cell->value;
                 a.num = T_2_4.num;
                     break;
                     }
-            case 3: 
-            case 8: 
+            case 3:
+            case 8:
                  {CLUREF T_2_5;
                 T_2_5.num = T_2_2.cell->value;
                 ct.num = T_2_5.num;
@@ -882,7 +882,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
                     }
                     break;
                     }
-            case 5: 
+            case 5:
                  {
                     break;
                     }
@@ -892,7 +892,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             }
             break;
             }
-    case 23: 
+    case 23:
          {CLUREF T_1_4;
         T_1_4.num = T_1_1.cell->value;
         s.num = T_1_4.num;
@@ -929,7 +929,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
                 CLUREF T_3_3;
                 CLUREF T_3_4;
                     T_3_1.num = s.vec->data[0];
-                    T_3_3.num = T_3_1.vec->size; 
+                    T_3_3.num = T_3_1.vec->size;
                     T_3_4 = T_3_1;
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         this_field.num = T_3_4.vec->data[T_3_2.num - 1];
@@ -948,7 +948,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
                 }/* end if */
             break;
             }
-    case 1: 
+    case 1:
          {CLUREF T_1_5;
         T_1_5.num = T_1_1.cell->value;
         a.num = T_1_5.num;
@@ -962,7 +962,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             }
             break;
             }
-    case 6: 
+    case 6:
          {CLUREF T_1_6;
         T_1_6.num = T_1_1.cell->value;
         c.num = T_1_6.num;
@@ -984,7 +984,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             }
             break;
             }
-    case 8: 
+    case 8:
          {CLUREF T_1_7;
         T_1_7.num = T_1_1.cell->value;
         c.num = T_1_7.num;
@@ -1006,7 +1006,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             }
             break;
             }
-    case 16: 
+    case 16:
          {CLUREF T_1_8;
         T_1_8.num = T_1_1.cell->value;
         inv.num = T_1_8.num;
@@ -1028,7 +1028,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             }
             break;
             }
-    case 27: 
+    case 27:
          {CLUREF T_1_9;
         T_1_9.num = T_1_1.cell->value;
         e.num = T_1_9.num;
@@ -1040,7 +1040,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             }
             break;
             }
-    case 9: 
+    case 9:
          {CLUREF T_1_10;
         T_1_10.num = T_1_1.cell->value;
         e.num = T_1_10.num;
@@ -1052,7 +1052,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             }
             break;
             }
-    case 25: 
+    case 25:
          {CLUREF T_1_11;
         T_1_11.num = T_1_1.cell->value;
         t.num = T_1_11.num;
@@ -1063,13 +1063,13 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             err = typespecOPget_abs(t, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             switch (T_2_1.cell->tag) {
-            case 7: 
+            case 7:
                  {CLUREF T_2_2;
                 T_2_2.num = T_2_1.cell->value;
                 sel.num = T_2_2.num;
                     break;
                     }
-            case 2: 
+            case 2:
                  {CLUREF T_2_3;
                 T_2_3.num = T_2_1.cell->value;
                 a.num = T_2_3.num;
@@ -1086,8 +1086,8 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
                         }/* end if */
                     break;
                     }
-            case 3: 
-            case 8: 
+            case 3:
+            case 8:
                  {CLUREF T_2_4;
                 T_2_4.num = T_2_1.cell->value;
                 ct.num = T_2_4.num;
@@ -1104,11 +1104,11 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
                         }/* end if */
                     break;
                     }
-            case 5: 
+            case 5:
                  {
                     break;
                     }
-            case 1: 
+            case 1:
                  {
                     break;
                     }
@@ -1118,7 +1118,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             }
             break;
             }
-    case 24: 
+    case 24:
          {CLUREF T_1_12;
         T_1_12.num = T_1_1.cell->value;
         s.num = T_1_12.num;
@@ -1138,13 +1138,13 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             }
             break;
             }
-    case 26: 
+    case 26:
          {CLUREF T_1_13;
         T_1_13.num = T_1_1.cell->value;
         ex.num = T_1_13.num;
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_14;
         T_1_14.num = T_1_1.cell->value;
         ex.num = T_1_14.num;
@@ -1197,8 +1197,8 @@ g_constOPfind_const_field(CLUREF f, CLUREF const_UNIQ)
     err = typespecOPget_abs(T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     switch (T_1_2.cell->tag) {
-    case 3: 
-    case 8: 
+    case 3:
+    case 8:
          {CLUREF T_1_3;
         T_1_3.num = T_1_2.cell->value;
         ct.num = T_1_3.num;
@@ -1228,7 +1228,7 @@ g_constOPfind_const_field(CLUREF f, CLUREF const_UNIQ)
                 }}/* end if */
             break;
             }
-    case 7: 
+    case 7:
          {CLUREF T_1_4;
         T_1_4.num = T_1_2.cell->value;
         sel.num = T_1_4.num;
@@ -1242,19 +1242,19 @@ g_constOPfind_const_field(CLUREF f, CLUREF const_UNIQ)
             }
             break;
             }
-    case 2: 
+    case 2:
          {CLUREF T_1_5;
         T_1_5.num = T_1_2.cell->value;
         a.num = T_1_5.num;
             break;
             }
-    case 5: 
-    case 4: 
-    case 9: 
-    case 1: 
-    case 11: 
-    case 10: 
-    case 6: 
+    case 5:
+    case 4:
+    case 9:
+    case 1:
+    case 11:
+    case 10:
+    case 6:
          {
             break;
             }
@@ -1354,7 +1354,7 @@ g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
         T_1_1.num = low.num + 1;
-         if ((T_1_1.num > 0 && low.num < 0 && 1 < 0) || 
+         if ((T_1_1.num > 0 && low.num < 0 && 1 < 0) ||
              (T_1_1.num < 0 && low.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
@@ -1378,7 +1378,7 @@ g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             CLUREF T_3_3;
-                T_3_2.num = newconst.array->ext_high; 
+                T_3_2.num = newconst.array->ext_high;
                 T_3_3 = newconst;
                 for (T_3_1.num = newconst.array->ext_low; T_3_1.num <= T_3_2.num; T_3_1.num++) {
                     if (T_3_1.num > T_3_3.array->ext_high || T_3_1.num < T_3_3.array->ext_low) {
@@ -1390,7 +1390,7 @@ g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
   LINE(281);
                     {
                     switch (each_cst.cell->tag) {
-                    case 2: 
+                    case 2:
                          {CLUREF T_4_1;
                         T_4_1.num = each_cst.cell->value;
                         each_s.num = T_4_1.num;
@@ -1499,7 +1499,7 @@ g_constOPg_consts(CLUREF e, CLUREF pass)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_constOPcum_const.array->ext_high; 
+        T_1_2.num = g_constOPcum_const.array->ext_high;
         T_1_3 = g_constOPcum_const;
         for (T_1_1.num = g_constOPcum_const.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
@@ -1517,7 +1517,7 @@ g_constOPg_consts(CLUREF e, CLUREF pass)
   LINE(305);
                 {
                 switch (each_cst.cell->tag) {
-                case 2: 
+                case 2:
                      {CLUREF T_3_1;
                     T_3_1.num = each_cst.cell->value;
                     s.num = T_3_1.num;
@@ -1539,7 +1539,7 @@ g_constOPg_consts(CLUREF e, CLUREF pass)
   LINE(321);
                 {
                 switch (each_cst.cell->tag) {
-                case 2: 
+                case 2:
                      {CLUREF T_3_1;
                     T_3_1.num = each_cst.cell->value;
                     s.num = T_3_1.num;
@@ -1886,7 +1886,7 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = const_defnOPold.array->ext_high; 
+        T_1_2.num = const_defnOPold.array->ext_high;
         T_1_3 = const_defnOPold;
         for (T_1_1.num = const_defnOPold.array->ext_low; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             if (T_1_1.num > T_1_3.array->ext_high || T_1_1.num < T_1_3.array->ext_low) {
