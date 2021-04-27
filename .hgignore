@@ -19,6 +19,7 @@ cludent/*.c
 cludent/cludent.lib
 cmpclu/cmp.lib
 code/cmp/pclu
+exe/cludent
 exe/pclu
 include/pclu_err.h
 include/pclu_sys.h
