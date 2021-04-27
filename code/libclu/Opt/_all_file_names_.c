@@ -518,9 +518,9 @@ struct {
         if (locals->err == ERR_break && !locals->body_ctrl_req) {signal(ERR_break);}
         if (locals->err == ERR_iteriterbodyexit && !locals->body_ctrl_req) {signal(ERR_iteriterbodyexit);}
         if (locals->err == ERR_break) locals->err = ERR_ok;
-        if (locals->err == ERR_iteriterbodyexit) 
+        if (locals->err == ERR_iteriterbodyexit)
         locals->err = *iecode;
-        if (locals->err != ERR_ok) 
+        if (locals->err != ERR_ok)
         goto ex_0;
         }
         }

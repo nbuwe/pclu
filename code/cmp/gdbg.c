@@ -5567,7 +5567,7 @@ dbg_infoOPemit_decl(CLUREF e)
     if (err != ERR_ok) goto ex_0;
     err = stringOPconcat(STR__054_040, T_1_3, &T_1_4);
     if (err != ERR_ok) goto ex_0;
-    err = stringOPconcat(T_1_4, STR__054_040, &T_1_5);
+    err = stringOPconcat(T_1_4, STR__054, &T_1_5);
     if (err != ERR_ok) goto ex_0;
     err = g_envOPputl(e, T_1_5);
     if (err != ERR_ok) goto ex_0;
