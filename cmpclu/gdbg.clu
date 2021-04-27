@@ -781,7 +781,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$puts(e, ", (long)")
 	g_env$puts(e, nm)
 	% nargs
-	g_env$putl(e, ", " || int$unparse(vars_in_decllist(ap.args)) || ", ")
+	g_env$putl(e, ", " || int$unparse(vars_in_decllist(ap.args)) || ",")
 	% emit vals, sigs, locals, static_owns, ptype_owns, pop_owns
 	g_env$puts(e, "&vals_")
 	g_env$puts(e, nm)
