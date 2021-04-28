@@ -627,16 +627,28 @@ g_inv = proc(e: g_env, exp, gen_clu_proc_val: expr)
 
     end g_inv
 
+
 g_locals = proc(e: g_env)
+    prefix: string := s_locals()
+    if ~string$empty(prefix) then
+	g_env$puts(e, prefix);
+      end
+    end g_locals
+
+
+s_locals = proc() returns (string)
     if ib$exist() cor dbg_info$active() then
        if ib$bodies()
 	  then
-	       g_env$puts(e, "locals->")
+	       return ("locals->")
 	  else
-	       g_env$puts(e, "locals.")
+	       return ("locals.")
 	  end
+       else
+	    return("")
        end
-    end g_locals
+    end s_locals
+
 
 g_err = proc (e: g_env)
 
@@ -839,18 +851,6 @@ ownref = proc(i:idn, nm: string, trailer: string) returns (string)
 
     end ownref
 
-s_locals = proc() returns (string)
-    if ib$exist() cor dbg_info$active() then
-       if ib$bodies()
-	  then
-	       return ("locals->")
-	  else
-	       return ("locals.")
-	  end
-       else
-	    return("")
-       end
-    end s_locals
 
 g_idn_plain = proc (e: g_env, i: idn)
 
