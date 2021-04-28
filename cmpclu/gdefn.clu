@@ -113,13 +113,12 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 
 	% declare parameter blocks, and locals
 	g_env$newline(e)
-	g_env$indent(e)
 	g_env$puts(e, "{")
+	g_env$indent(e)
 	g_localvars(e, a, iterp)
 	g_env$newline(e)
 
 	% initialize owns, build parameter blocks
-  
 	if ~current_apply$parmd() cand
 	   (~current_type$exists() cor ~current_type$parmd())
 	   then
