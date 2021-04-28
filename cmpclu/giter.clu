@@ -472,8 +472,10 @@ current_locals = cluster is set, get
 %%% Cluster to remember current applydefn to get # of return values
 %%%
 
-current_apply = cluster is set, get, get_val_count, get_apply_name, get_short_name,
-			   get_name, is_iter, parmd, get_formals_string, reset,
+current_apply = cluster is set, get, get_val_count,
+    			   get_apply_name, get_short_name, get_name,
+			   is_iter, is_type_own_init,
+			   parmd, get_formals_string, reset,
 			   get_formals
 
     as = array[string]
@@ -509,6 +511,20 @@ current_apply = cluster is set, get, get_val_count, get_apply_name, get_short_na
 	   else return(tname || curr_app_name)
 	   end
 	end get_name
+
+    % uwe: An operation with an empty name in the current type
+    % represents, as far as I can tell, the own init for that type.
+    % This op is intended to be a more comprehensible alternative for
+    % the equivalent open-coded test of that condition:
+    %
+    %     current_type$exists() cand
+    %         current_apply$get_name() = current_type$get_name()
+    %
+    % that is still used throughout the sources (and relies on the
+    % get_name behavior above).
+    is_type_own_init = proc() returns (bool)
+	return (string$empty(curr_app_name) cand current_type$exists())
+      end is_type_own_init
 
     get_short_name = proc() returns (string)
 	return(curr_app_name)

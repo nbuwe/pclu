@@ -546,23 +546,20 @@ g_pownvars = proc (e: g_env, ilist: initlist, pass:int)
        end
     end g_pownvars
 
+
 % generate statements to initialize own variables belonging to
 %	unparameterized type, unparameterized proc/iter
 
 g_ownvars = proc (e: g_env, ilist: initlist, pass:int)
 
-    %% ilist[1]
-    %%  :
-    %% ilist[n]
     owns: bool := g_tbl$exist() cor g_const$exist() cor own_init(ilist)
     if pass = 1 then
        if owns
 	  then
 	       g_env$putl(e, "static int " || current_apply$get_name()
 			       || "_own_init = 0;")
-	elseif current_type$exists() cand
-	       current_apply$get_name() = current_type$get_name() then
-	  g_env$putl(e, "static int " || current_apply$get_name()
+	elseif current_apply$is_type_own_init() then
+	  g_env$putl(e, "static int " || current_type$get_name()
 			  || "_own_init = 1;")
 	end
        if current_type$exists() then
@@ -577,18 +574,17 @@ g_ownvars = proc (e: g_env, ilist: initlist, pass:int)
        if owns then
 	  g_env$putl(e, "if (" || current_apply$get_name() ||"_own_init == 0) {")
           end
-       if owns cand 
-	  (~current_type$exists() cor (current_apply$get_name() =
-				       current_type$get_name()))
+       if owns cand
+	  (~current_type$exists() cor current_apply$is_type_own_init())
 	  then
 	       g_tbl$build_tables(e, 1)
 	       g_tbl$build_tables(e, 2)
 	       g_const$g_consts(e, 1)
 	       g_const$g_consts(e, 2)
 	  end
-       if current_type$exists()
-	    cand current_apply$get_name() ~= current_type$get_name() 
-	    cand current_type$own_init_proc_exists()
+       % call type's own init proc from its ops if it exists
+       if current_type$exists() cand current_type$own_init_proc_exists()
+	    cand ~current_apply$is_type_own_init()
 	  then
 	       % catching of err added 8/24/90
 	       g_env$putl(e, "if (" || current_type$get_name() ||
@@ -610,8 +606,7 @@ g_ownvars = proc (e: g_env, ilist: initlist, pass:int)
 	end
     if pass = 2 then
        g_env$outdent(e)
-       if current_type$exists()
-	    cand current_apply$get_name() = current_type$get_name()
+       if current_apply$is_type_own_init()
 	  then
 	       g_env$indent(e)
 	       g_env$putl(e, "{signal(ERR_ok);}") % return to signal & unhandled 8/24/90 
@@ -627,6 +622,7 @@ g_ownvars = proc (e: g_env, ilist: initlist, pass:int)
 	  end
        end
     end g_ownvars
+
 
 g_pown = proc (e: g_env, i: init, pass:int)
 
