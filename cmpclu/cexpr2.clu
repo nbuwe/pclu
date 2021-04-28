@@ -345,8 +345,7 @@ get_inv_print = proc (inv: invoke) returns (str)
 	end get_inv_print
 
 get_clusterop_print = proc (cop: clusterop) returns (string)
-	n: name := cop.name
-	if n[1] = '%' then n := str$rest(n, 2) end
+	n: name := c_fixup_opname(cop.name)
 	n := get_type_print(cop.type_) || "$" || n
 	if exprlist$empty(cop.parms)
 	   then return(n)

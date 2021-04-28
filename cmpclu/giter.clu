@@ -484,10 +484,7 @@ current_apply = cluster is set, get, get_val_count, get_apply_name, get_short_na
 
     set = proc(app: applydefn)
 	curr_app := app
-	curr_app_name := curr_app.idn.str
-	if curr_app_name[1] = '%' then
-	   curr_app_name := string$rest(curr_app_name, 2)
-	   end
+	curr_app_name := c_fixup_opname(curr_app.idn.str)
 	if curr_app.gen.unique = "itertype" then iterp := true
 	   else iterp := false end
 	end set

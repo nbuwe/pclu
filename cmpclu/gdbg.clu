@@ -42,8 +42,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	if e.space cor e.time then yes := false return else yes := true end
 	locals := ad$new()
 	internal_locals := as$new()
-	nm := ap.idn.str
-	if nm[1] = '%' then nm := string$rest(nm, 2) end
+	nm := c_fixup_opname(ap.idn.str)
 	if cname ~= "" then nm := cname || "OP" || nm end
 	if cname = "" then nm := escape_ckeyword(nm) end
 	is_iter := iterp

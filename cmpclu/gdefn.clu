@@ -100,9 +100,7 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	g_env$puts(e, "/**** BEGIN ")
 	if iterp then g_env$puts(e, "ITERATOR ")
 	   else g_env$puts(e, "PROCEDURE ") end
-	nm: string := a.idn.str
-	if nm[1] = '%' then
-	   nm := string$rest(nm, 2) end
+	nm: string := c_fixup_opname(a.idn.str)
 	g_env$putl(e, nm || " ****/")
 	g_env$blankline(e)
 
@@ -201,8 +199,7 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 % name of the C function for this proc or iter
 g_function_name = proc (a: applydefn, cname: str) returns(string)
 
-    nm: string := a.idn.str
-    if nm[1] = '%' then nm := string$rest(nm, 2) end
+    nm: string := c_fixup_opname(a.idn.str)
     if string$empty(cname) then
 	return (escape_ckeyword(nm))
       else
@@ -342,8 +339,7 @@ g_ptypeownvars = proc(e: g_env, ti: initlist, aps: applydefnlist)
     own_count := own_count + own_counter(ti)
     for a: applydefn in applydefnlist$elements(aps) do
 	if decllist$size(a.parms) ~= 0 then continue end
-	n: string := a.idn.str
-	if n[1] = '%' then n := string$rest(n, 2) end
+	n: string := c_fixup_opname(a.idn.str)
 	g_env$putl(e, "long " || n || "_own_init;")
 	%	dbg_info$add_own(n || "_own_init")
 	dbg_info$add_ilist(a.init)
@@ -997,8 +993,7 @@ g_typedefn = proc (e: g_env, t: typedefn)
 	    dbg_info$add_ilist(t.init)
 	    for each_ap: applydefn in applydefnlist$elements(t.body) do
 		if ~decllist$empty(each_ap.parms) then continue end
-		n: string := each_ap.idn.str
-		if n[1] = '%' then n := string$rest(n, 2) end
+		n: string := c_fixup_opname(each_ap.idn.str)
 		%		dbg_info$add_own(t.idn.str || "OP" || n)
 	        dbg_info$add_ilist(each_ap.init)
 		end
@@ -1045,7 +1040,7 @@ g_opstruct = proc(e:g_env, id:idn, ops:idnlist)
     for each_op:idn in idnlist$elements(ops) do
 	nm: string := each_op.str
 	% if nm = "%debug_print" cand ~dbg_info$active() then continue end
-	if nm[1] = '%' then nm := string$substr(nm, 2, string$size(nm) - 1) end
+	nm := c_fixup_opname(nm)
     	g_env$puts(e, "CLU_proc ")
 	g_env$puts(e, id.str)
 	g_env$puts(e, "_oe_")
@@ -1076,8 +1071,7 @@ g_opstruct = proc(e:g_env, id:idn, ops:idnlist)
     g_env$putl(e, "_own_init, {")
     g_env$indent(e)
     for each_op:idn in idnlist$elements(ops) do
-	nm: string := each_op.str
-	if nm[1] = '%' then nm := string$substr(nm, 2, string$size(nm) - 1) end
+	nm: string := c_fixup_opname(each_op.str)
 	if nth then g_env$putl(e, ",") else nth := true end
 	g_env$puts(e, "{&")
 	g_env$puts(e, id.str)

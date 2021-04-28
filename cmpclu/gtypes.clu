@@ -785,7 +785,7 @@ alt_tinfo_op_sigs = proc(op:name) returns(exceptionlist)
 tinfo_op_sigs = proc(t:typeinfo, op:name) returns(exceptionlist) signals (not_found)
     % logit(1202, "op")
     % logit(1202, op)
-    if op[1] = '%' then 
+    if op[1] = '%' then
 	return (alt_tinfo_op_sigs(op))
 	end
 	resignal not_found

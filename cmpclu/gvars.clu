@@ -121,10 +121,7 @@ g_proc_exprs = proc(a:an, ex:expr)
        tag apply (ct:clutype):
 	   addh_if_new[name](a, ct.gen.common)
        tag op (cop:clusterop):
-	   nm: string := cop.name
-	   if nm[1] = '%'
-	      then nm := string$substr(nm, 2, string$size(nm) - 1)
-	      end
+	   nm: string := c_fixup_opname(cop.name)
 	   if typeabs$is_select(cop.type_.abs) then
 	      ta: seltype := typeabs$value_select(cop.type_.abs)
 	      op: string, ind: int := field_index(nm, ta.parms)

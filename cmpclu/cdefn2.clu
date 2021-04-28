@@ -62,6 +62,15 @@ c_setup_opers = proc (e: c_env, def: typedefn)
 		end
 	end c_setup_opers
 
+
+% inverse of the the "%nm" transformation c_setup_opers() does on
+% internal names.  not sure this is the right place for it.
+c_fixup_opname = proc (nm: string) returns (string)
+    if nm[1] = '%' then nm := string$rest(nm, 2) end
+    return (nm)
+  end c_fixup_opname
+
+
 c_member = proc (i: idn, idns: idnlist) returns (bool)
 	for id: idn in idnlist$elements(idns) do
 		if i = id then return(true) end

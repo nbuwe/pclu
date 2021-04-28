@@ -183,7 +183,7 @@ current_type_restricted = proc() returns (bool)
 current_type_op_restricted = proc(op:clusterop) returns (bool)
 
     nm: string := op.name
-    %    if nm[1] = '%' then nm := string$rest(nm,2) end
+    % nm := c_fixup_opname(nm)
     if current_type$exists()
        then
 	    ct: typedefn := current_type$get()
@@ -492,9 +492,7 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 	          op_name := ""
 		  if pb$is_op (each_pb) then
 		     if is_op_parm(each_parm, gen) then
-			tail: string := pb$value_op(each_pb).name
-			if tail[1] = '%' then
-			   tail := string$rest(tail, 2) end
+			tail: string := c_fixup_opname(pb$value_op(each_pb).name)
 			op_name := "_op_" || tail end
 		     end
 		  nm: string := gen.common || op_name || "_of_" 
@@ -517,9 +515,7 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 	   if parmct ~= 0 then  % new 2/11/93 dwc suppress bad entries in popowns
 	      if pb$is_op(each_pb) then
 		 if is_op_parmd(each_pb) then
-		    tail: string := pb$value_op(each_pb).name
-		    if tail[1] = '%' then
-		       tail := string$rest(tail, 2) end
+		    tail: string := c_fixup_opname(pb$value_op(each_pb).name)
 		    op_name := "_op_" || tail end
 		 end
 	      nm := gen.common || op_name || "_of"
@@ -551,9 +547,7 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 	   if parmct ~= 0 then
 	      if pb$is_op(each_pb) then
 		 if is_op_parmd(each_pb) then
-		    tail: string := pb$value_op(each_pb).name
-		    if tail[1] = '%' then
-		       tail := string$rest(tail, 2) end
+		    tail: string := c_fixup_opname(pb$value_op(each_pb).name)
 		    op_name := "_op_" || tail end
 		 end
 	      sname: string := gen.common || op_name || "_of"
@@ -673,9 +667,7 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 		  % PARAMETER REQUIREMENTS
 		  if pb$is_op (each_pb) then
 		     if is_op_parm(each_parm, gen) then
-			tail: string := pb$value_op(each_pb).name
-			if tail[1] = '%' then
-			   tail := string$rest(tail, 2) end
+			tail: string := c_fixup_opname(pb$value_op(each_pb).name)
 			op_name := "_op_" || tail end
 		     end
 		  rname: string := gen.common || op_name 
@@ -704,9 +696,7 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 	      op_name := ""
 	      if pb$is_op(each_pb) then
 		 if is_op_parmd(each_pb) then
-		    tail: string := pb$value_op(each_pb).name
-		    if tail[1] = '%' then
-		       tail := string$rest(tail, 2) end
+		    tail: string := c_fixup_opname(pb$value_op(each_pb).name)
 		    op_name := "_op_" || tail end
 		 end
 	      ename: string := gen.common || op_name || "_ownreqs"
@@ -769,9 +759,7 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 		  op_name: string := ""
 		  if pb$is_op(each_pb) then
 		     if is_op_parmd(each_pb) then
-			tail: string := pb$value_op(each_pb).name
-			if tail[1] = '%' then
-			   tail := string$rest(tail, 2) end
+			tail: string := c_fixup_opname(pb$value_op(each_pb).name)
 			op_name := "_op_" || tail end
 		     end
 		  aname := s_typespec(a.type_) || "_ownreqs"
@@ -817,9 +805,7 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 	   op_name: string := ""
 	   if pb$is_op(each_pb) then
 	      if is_op_parmd(each_pb) then
-		 tail: string := pb$value_op(each_pb).name
-		 if tail[1] = '%' then
-		    tail := string$rest(tail, 2) end
+		 tail: string := c_fixup_opname(pb$value_op(each_pb).name)
 		 op_name := "_op_" || tail end
 	      end
 	   aname := "_anyize_ownreqs"
@@ -858,9 +844,7 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 	   op_name: string := ""
 	   if pb$is_op(each_pb) then
 	      if is_op_parmd(each_pb) then
-		 tail: string := pb$value_op(each_pb).name
-		 if tail[1] = '%' then
-		    tail := string$rest(tail, 2) end
+		 tail: string := c_fixup_opname(pb$value_op(each_pb).name)
 		 op_name := "_op_" || tail end
 	      end
 	   aname := "_anyize_ownreqs"
@@ -1016,9 +1000,7 @@ g_parm_build_one = proc(e: g_env, each_pb:pb)
 
 		      % (NAME COMPUTATION FOR FOLLOWING SECTIONS)
 		      op_name: string := ""
-		      tail: string := pb$value_op(each_pb).name
-		      if tail[1] = '%' then
-			 tail := string$rest(tail, 2) end
+		      tail: string := c_fixup_opname(pb$value_op(each_pb).name)
 		      op_name := "_op_" || tail
 		      all_name: string := gen.common || op_name
 
@@ -1062,9 +1044,7 @@ g_parm_build_one = proc(e: g_env, each_pb:pb)
 		      op_name: string := ""
 		      if pb$is_op(each_pb) then
 			 if is_op_parmd(each_pb) then
-			    tail: string := pb$value_op(each_pb).name
-			    if tail[1] = '%' then
-			       tail := string$rest(tail, 2) end
+			    tail: string := c_fixup_opname(pb$value_op(each_pb).name)
 			    op_name := "_op_" || tail end
 			 end
 		      all_name: string := gen.common || op_name
@@ -1321,9 +1301,7 @@ reqs = cluster is start, preprocessing, more, parms, output,
 	arp := p
 	if cluster_prep then op_name := ""
 	   else
-		op_name := op.str
-		if op_name[1] = '%'
-		   then op_name := string$rest(op_name, 2)  end
+		op_name := c_fixup_opname(op.str)
 		return
 	   end
 	end parms
@@ -1365,9 +1343,7 @@ reqs = cluster is start, preprocessing, more, parms, output,
 	    op: name
 	    if cluster_context cand nm ~= type_name cand ~op_parm(each_idn)
 	       then
-		    op := nm
-		    if op[1] = '%' then
-		       op := string$rest(op, 2) end
+		    op := c_fixup_opname(nm)
 	       else
 		    op := ""
 	       end

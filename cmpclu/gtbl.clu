@@ -853,9 +853,7 @@ g_own_build_one = proc(e: g_env, each_pb:pb)
 		  op_name: string := ""
 		  if pb$is_op (each_pb) then
 		     if is_op_parmd(each_pb) then
-			tail: string := pb$value_op(each_pb).name
-			if tail[1] = '%' then
-			   tail := string$rest(tail, 2) end
+			tail: string := c_fixup_opname(pb$value_op(each_pb).name)
 			op_name := "_op_" || tail end
 		     end
 		  inst_table_name: string := gen.common || op_name || "_of"

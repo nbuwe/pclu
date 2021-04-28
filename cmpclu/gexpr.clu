@@ -446,8 +446,7 @@ g_inv1 = proc(e: g_env, exp: expr) returns (exprlist)
 	   flist: fieldspeclist := fieldspeclist$new()
 	   gen: DU
 	   type_parms_ct: int := 0
-	   cop_name: string := cop.name
-	   if cop_name[1] = '%' then cop_name := string$rest(cop_name, 2) end
+	   cop_name: string := c_fixup_opname(cop.name)
 	   tagcase cop.type_.abs
 	      tag cluster_(ct:clutype):
 		  gen := ct.gen
@@ -680,12 +679,7 @@ g_user_locals = proc (e: g_env)
 
 g_idn = proc (e: g_env, i: idn)
 
-    %% i.str
-    % strip off leading '%' if necessary
-    nm: string := i.str
-    if nm[1] = '%'
-       then nm := string$substr(nm, 2, string$size(nm) - 1)
-       end
+    nm: string := c_fixup_opname(i.str)
     nm := purify(nm)
     if is_temp(i) cor string$equal(i.str, "generic_CLU_proc")
        then
@@ -752,12 +746,7 @@ g_idn = proc (e: g_env, i: idn)
 
 g_idn_no_trailer = proc (e: g_env, i: idn)
 
-    %% i.str
-    % strip off leading '%' if necessary
-    nm: string := i.str
-    if nm[1] = '%'
-       then nm := string$substr(nm, 2, string$size(nm) - 1)
-       end
+    nm: string := c_fixup_opname(i.str)
     nm := purify(nm)
     if is_temp(i) cor string$equal(i.str, "generic_CLU_proc")
        then
@@ -865,12 +854,7 @@ s_locals = proc() returns (string)
 
 g_idn_plain = proc (e: g_env, i: idn)
 
-    %% i.str
-    % strip off leading '%' if necessary
-    nm: string := i.str
-    if nm[1] = '%'
-       then nm := string$substr(nm, 2, string$size(nm) - 1)
-       end
+    nm: string := c_fixup_opname(i.str)
     nm := purify(nm)
     if is_temp(i) then
        g_env$puts(e, nm)
@@ -927,13 +911,7 @@ purify = proc(nm: string) returns (string)
 
 g_idnlit = proc (e: g_env, i: idn)
 
-    %% i.str
-    % strip off leading '%' if necessary
-    nm: string := i.str
-    
-    if nm[1] = '%'
-       then nm := string$substr(nm, 2, string$size(nm) - 1)
-       end
+    nm: string := c_fixup_opname(i.str)
     nm := purify(nm)
     % 7/29/93: omitted extra output of nm for ownvar case
     if (idnkind$is_ownvar(i.kind)) then
@@ -946,14 +924,8 @@ g_idnlit = proc (e: g_env, i: idn)
 
 idnlit = proc (i: idn) returns (string)
 
-    %% i.str
-    % strip off leading '%' if necessary
-    nm: string := i.str
+    nm: string := c_fixup_opname(i.str)
     nm := purify(nm)
-    
-    if nm[1] = '%'
-       then nm := string$substr(nm, 2, string$size(nm) - 1)
-       end
     if (idnkind$is_ownvar(i.kind)) then
        %       return(current_apply$get_name() || sep ||nm)
        return(ownref(i, nm, "lit"))
@@ -1135,8 +1107,7 @@ g_op1 = proc(e: g_env, exp: expr, cop: clusterop) returns (exprlist)
     flist: fieldspeclist := fieldspeclist$new()
     gen: DU
     type_parms_ct: int := 0
-    cop_name: string := cop.name
-    if cop_name[1] = '%' then cop_name := string$rest(cop_name, 2) end
+    cop_name: string := c_fixup_opname(cop.name)
     tagcase cop.type_.abs
        tag cluster_(ct:clutype):
 	   if ~base_cluster_test(cop, ct) then
@@ -1603,18 +1574,10 @@ g_apply3 = proc (e: g_env, ct: clutype)
 
 g_clusterop = proc (e: g_env, cop: clusterop)
 
-    % strip leading '%' off name if there (and leave off cluster name prefix
-    % in that case)
     %% cop.type_$cop.name [ cop.parms ]
 
-    
-    nm: string := cop.name
+    nm: string := c_fixup_opname(cop.name)
 
-    if nm[1] = '%'
-       then nm := string$substr(nm, 2, string$size(nm) - 1)
-	    % dont want cluster name prefix
-	    % for an internal routine
-       end
     if parm$member(cop.type_)
        then
 	    tn:idn := typeabs$value_idn(cop.type_.abs)
@@ -1649,18 +1612,10 @@ g_clusterop = proc (e: g_env, cop: clusterop)
 
 g_clusterop3 = proc (e: g_env, cop: clusterop)
 
-    % strip leading '%' off name if there (and leave off cluster name prefix
-    % in that case)
     %% cop.type_$cop.name [ cop.parms ]
 
-    
-    nm: string := cop.name
+    nm: string := c_fixup_opname(cop.name)
 
-    if nm[1] = '%'
-       then nm := string$substr(nm, 2, string$size(nm) - 1)
-	    % dont want cluster name prefix
-	    % for an internal routine
-       end
     if parm$member(cop.type_)
        then
        else
