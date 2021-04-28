@@ -2806,11 +2806,9 @@ struct OPS *current_locals_ops = (struct OPS *)&current_locals_ops_actual;
 
 /**** BEGIN CLUSTER current_apply ****/
 
+extern errcode c_fixup_opname();
 extern errcode idnOPget_str();
 extern errcode recordOPget_5();
-extern errcode charOPequal();
-extern errcode stringOPfetch();
-extern errcode stringOPrest();
 extern errcode stringOPequal();
 extern errcode duOPget_unique();
 extern errcode recordOPget_11();
@@ -2876,34 +2874,16 @@ current_applyOPset(CLUREF app)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
+    CLUREF T_1_3;
     T_1_1.num = current_applyOPcurr_app.vec->data[4];
     err = idnOPget_str(T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    current_applyOPcurr_app_name.num = T_1_2.num;
+    err = c_fixup_opname(T_1_2, &T_1_3);
+    if (err != ERR_ok) goto ex_0;
+    current_applyOPcurr_app_name.num = T_1_3.num;
     }
 
   LINE(488);
-    {
-    CLUREF T_1_1;
-    CLUREF T_1_2;
-    CLUREF T_1_3;
-    err = stringOPfetch(current_applyOPcurr_app_name, CLU_1, &T_1_1);
-    if (err != ERR_ok) goto ex_0;
-    T_1_2.ch = '%';
-    T_1_3.num = (T_1_1.ch == T_1_2.ch)? true : false;
-    if (T_1_3.num == true) {
-
-  LINE(489);
-        {
-        CLUREF T_2_1;
-        err = stringOPrest(current_applyOPcurr_app_name, CLU_2, &T_2_1);
-        if (err != ERR_ok) goto ex_0;
-        current_applyOPcurr_app_name.num = T_2_1.num;
-        }
-        }
-        }/* end if */
-
-  LINE(491);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2920,7 +2900,7 @@ current_applyOPset(CLUREF app)
         }
     else {
 
-  LINE(492);
+  LINE(489);
         {
         current_applyOPiterp.tf = false;
         }
@@ -2949,9 +2929,9 @@ current_applyOPget(CLUREF *ret_1)
             err = current_apply_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(495);
+    enter_proc(492);
 
-  LINE(496);
+  LINE(493);
     {
     {
     ret_1->num = current_applyOPcurr_app.num;
@@ -2982,9 +2962,9 @@ current_applyOPget_val_count(CLUREF *ret_1)
             err = current_apply_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(499);
+    enter_proc(496);
 
-  LINE(500);
+  LINE(497);
     {
     {
     CLUREF T_1_1;
@@ -3019,9 +2999,9 @@ current_applyOPget_apply_name(CLUREF *ret_1)
             err = current_apply_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(503);
+    enter_proc(500);
 
-  LINE(504);
+  LINE(501);
     {
     {
     ret_1->num = current_applyOPcurr_app_name.num;
@@ -3057,9 +3037,9 @@ current_applyOPget_name(CLUREF *ret_1)
             }
         current_applyOPget_name_own_init = 1;
     }
-    enter_proc(507);
+    enter_proc(504);
 
-  LINE(508);
+  LINE(505);
     {
         {CLUREF T_1_1;
         err = current_typeOPget_name(&T_1_1);
@@ -3068,7 +3048,7 @@ current_applyOPget_name(CLUREF *ret_1)
         }
         }
 
-  LINE(509);
+  LINE(506);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3087,7 +3067,7 @@ current_applyOPget_name(CLUREF *ret_1)
     }
     if (T_1_1.num == true) {
 
-  LINE(511);
+  LINE(508);
         {
         {
         CLUREF T_2_1;
@@ -3105,7 +3085,7 @@ current_applyOPget_name(CLUREF *ret_1)
         }
     else {
 
-  LINE(512);
+  LINE(509);
         {
         {
         CLUREF T_2_1;
@@ -3140,9 +3120,9 @@ current_applyOPget_short_name(CLUREF *ret_1)
             err = current_apply_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(516);
+    enter_proc(513);
 
-  LINE(517);
+  LINE(514);
     {
     {
     ret_1->num = current_applyOPcurr_app_name.num;
@@ -3173,9 +3153,9 @@ current_applyOPis_iter(CLUREF *ret_1)
             err = current_apply_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(520);
+    enter_proc(517);
 
-  LINE(521);
+  LINE(518);
     {
     {
     ret_1->num = current_applyOPiterp.num;
@@ -3210,9 +3190,9 @@ current_applyOPparmd(CLUREF *ret_1)
             }
         current_applyOPparmd_own_init = 1;
     }
-    enter_proc(524);
+    enter_proc(521);
 
-  LINE(525);
+  LINE(522);
     {
     CLUREF T_1_1;
     T_1_1.num = ((current_applyOPcurr_app_name.str->size != STR_.str->size)? false :
@@ -3226,7 +3206,7 @@ current_applyOPparmd(CLUREF *ret_1)
         }
         }/* end if */
 
-  LINE(526);
+  LINE(523);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3245,7 +3225,7 @@ current_applyOPparmd(CLUREF *ret_1)
         }
     else {
 
-  LINE(527);
+  LINE(524);
         {
         {
         ret_1->tf = false;
@@ -3284,15 +3264,15 @@ current_applyOPget_formals_string(CLUREF *ret_1)
             }
         current_applyOPget_formals_string_own_init = 1;
     }
-    enter_proc(530);
+    enter_proc(527);
 
-  LINE(531);
+  LINE(528);
     {
         {result = STR_;
         }
         }
 
-  LINE(532);
+  LINE(529);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3304,7 +3284,7 @@ current_applyOPget_formals_string(CLUREF *ret_1)
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_d.num = T_1_4.vec->data[T_1_2.num - 1];
 
-  LINE(533);
+  LINE(530);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -3316,7 +3296,7 @@ current_applyOPget_formals_string(CLUREF *ret_1)
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_i.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(534);
+  LINE(531);
                     {
                     CLUREF T_3_1;
                     CLUREF T_3_2;
@@ -3336,7 +3316,7 @@ current_applyOPget_formals_string(CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(537);
+  LINE(534);
     {
     {
     ret_1->num = result.num;
@@ -3370,9 +3350,9 @@ current_applyOPget_formals(CLUREF *ret_1)
             err = current_apply_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(540);
+    enter_proc(537);
 
-  LINE(541);
+  LINE(538);
     {
         {CLUREF T_1_1;
         err = arrayOPpredict(CLU_1, CLU_10, &T_1_1);
@@ -3381,7 +3361,7 @@ current_applyOPget_formals(CLUREF *ret_1)
         }
         }
 
-  LINE(542);
+  LINE(539);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3393,7 +3373,7 @@ current_applyOPget_formals(CLUREF *ret_1)
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_d.num = T_1_4.vec->data[T_1_2.num - 1];
 
-  LINE(543);
+  LINE(540);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -3405,7 +3385,7 @@ current_applyOPget_formals(CLUREF *ret_1)
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_i.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(544);
+  LINE(541);
                     {
                     CLUREF T_3_1;
                     err = idnOPget_str(each_i, &T_3_1);
@@ -3426,7 +3406,7 @@ current_applyOPget_formals(CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(547);
+  LINE(544);
     {
     {
     ret_1->num = result.num;
@@ -3461,14 +3441,14 @@ current_applyOPreset()
             }
         current_applyOPreset_own_init = 1;
     }
-    enter_proc(550);
+    enter_proc(547);
 
-  LINE(551);
+  LINE(548);
     {
     current_applyOPcurr_app_name = STR_;
     }
 
-  LINE(552);
+  LINE(549);
     {
     current_applyOPiterp.tf = false;
     }
@@ -3560,14 +3540,14 @@ current_typeOPset(CLUREF typ)
             err = current_type_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(571);
+    enter_proc(568);
 
-  LINE(572);
+  LINE(569);
     {
     current_typeOPcurr_typ.num = typ.num;
     }
 
-  LINE(573);
+  LINE(570);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3600,9 +3580,9 @@ current_typeOPget(CLUREF *ret_1)
             err = current_type_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(576);
+    enter_proc(573);
 
-  LINE(577);
+  LINE(574);
     {
     {
     ret_1->num = current_typeOPcurr_typ.num;
@@ -3637,9 +3617,9 @@ current_typeOPexists(CLUREF *ret_1)
             }
         current_typeOPexists_own_init = 1;
     }
-    enter_proc(580);
+    enter_proc(577);
 
-  LINE(581);
+  LINE(578);
     {
     CLUREF T_1_1;
     T_1_1.num = ((current_typeOPcurr_typ_name.str->size != STR_.str->size)? false :
@@ -3653,7 +3633,7 @@ current_typeOPexists(CLUREF *ret_1)
         }
     else {
 
-  LINE(582);
+  LINE(579);
         {
         {
         ret_1->tf = true;
@@ -3685,9 +3665,9 @@ current_typeOPparmd(CLUREF *ret_1)
             err = current_type_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(585);
+    enter_proc(582);
 
-  LINE(586);
+  LINE(583);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3706,7 +3686,7 @@ current_typeOPparmd(CLUREF *ret_1)
         }
     else {
 
-  LINE(587);
+  LINE(584);
         {
         {
         ret_1->tf = false;
@@ -3745,15 +3725,15 @@ current_typeOPget_formals_string(CLUREF *ret_1)
             }
         current_typeOPget_formals_string_own_init = 1;
     }
-    enter_proc(590);
+    enter_proc(587);
 
-  LINE(591);
+  LINE(588);
     {
         {result = STR_;
         }
         }
 
-  LINE(592);
+  LINE(589);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3765,7 +3745,7 @@ current_typeOPget_formals_string(CLUREF *ret_1)
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_d.num = T_1_4.vec->data[T_1_2.num - 1];
 
-  LINE(593);
+  LINE(590);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -3777,7 +3757,7 @@ current_typeOPget_formals_string(CLUREF *ret_1)
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_i.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(594);
+  LINE(591);
                     {
                     CLUREF T_3_1;
                     CLUREF T_3_2;
@@ -3797,7 +3777,7 @@ current_typeOPget_formals_string(CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(597);
+  LINE(594);
     {
     {
     ret_1->num = result.num;
@@ -3831,9 +3811,9 @@ current_typeOPget_formals(CLUREF *ret_1)
             err = current_type_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(600);
+    enter_proc(597);
 
-  LINE(601);
+  LINE(598);
     {
         {CLUREF T_1_1;
         err = arrayOPpredict(CLU_1, CLU_10, &T_1_1);
@@ -3842,7 +3822,7 @@ current_typeOPget_formals(CLUREF *ret_1)
         }
         }
 
-  LINE(602);
+  LINE(599);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3854,7 +3834,7 @@ current_typeOPget_formals(CLUREF *ret_1)
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_d.num = T_1_4.vec->data[T_1_2.num - 1];
 
-  LINE(603);
+  LINE(600);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -3866,7 +3846,7 @@ current_typeOPget_formals(CLUREF *ret_1)
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_i.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(604);
+  LINE(601);
                     {
                     CLUREF T_3_1;
                     err = idnOPget_str(each_i, &T_3_1);
@@ -3887,7 +3867,7 @@ current_typeOPget_formals(CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(607);
+  LINE(604);
     {
     {
     ret_1->num = result.num;
@@ -3918,9 +3898,9 @@ current_typeOPget_name(CLUREF *ret_1)
             err = current_type_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(610);
+    enter_proc(607);
 
-  LINE(611);
+  LINE(608);
     {
     {
     ret_1->num = current_typeOPcurr_typ_name.num;
@@ -3951,9 +3931,9 @@ current_typeOPset_own_init_proc(CLUREF generated)
             err = current_type_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(614);
+    enter_proc(611);
 
-  LINE(615);
+  LINE(612);
     {
     current_typeOPown_init_proc.num = generated.num;
     }
@@ -3985,9 +3965,9 @@ current_typeOPown_init_proc_exists(CLUREF *ret_1)
             }
         current_typeOPown_init_proc_exists_own_init = 1;
     }
-    enter_proc(618);
+    enter_proc(615);
 
-  LINE(619);
+  LINE(616);
     {
     CLUREF T_1_1;
     T_1_1.num = ((current_typeOPcurr_typ_name.str->size != STR_.str->size)? false :
@@ -4001,7 +3981,7 @@ current_typeOPown_init_proc_exists(CLUREF *ret_1)
         }
         }/* end if */
 
-  LINE(620);
+  LINE(617);
     {
     {
     ret_1->num = current_typeOPown_init_proc.num;
@@ -4036,14 +4016,14 @@ current_typeOPreset()
             }
         current_typeOPreset_own_init = 1;
     }
-    enter_proc(623);
+    enter_proc(620);
 
-  LINE(624);
+  LINE(621);
     {
     current_typeOPcurr_typ_name = STR_;
     }
 
-  LINE(625);
+  LINE(622);
     {
     current_typeOPown_init_proc.tf = false;
     }
@@ -4130,9 +4110,9 @@ ownsOPsave(CLUREF ilist)
             err = owns_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(635);
+    enter_proc(632);
 
-  LINE(637);
+  LINE(634);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4142,7 +4122,7 @@ ownsOPsave(CLUREF ilist)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_i.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(638);
+  LINE(635);
             {
             CLUREF T_2_1;
             err = sequenceOPaddh(ownsOPcurrent_owns, each_i, &T_2_1);
@@ -4176,9 +4156,9 @@ ownsOPforget()
             err = owns_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(643);
+    enter_proc(640);
 
-  LINE(645);
+  LINE(642);
     {
     CLUREF T_1_1;
     err = sequenceOPnew(&T_1_1);
@@ -4214,9 +4194,9 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
             err = owns_own_init_proc();
             if (err != ERR_ok) goto ex_0;
             }
-    enter_proc(649);
+    enter_proc(646);
 
-  LINE(650);
+  LINE(647);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4226,7 +4206,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             this_init.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(651);
+  LINE(648);
             {
             CLUREF T_2_1;
             T_2_1.num = this_init.vec->data[1];
@@ -4236,7 +4216,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
                 T_2_2.num = T_2_1.cell->value;
                 d.num = T_2_2.num;
 
-  LINE(653);
+  LINE(650);
                     {
                     CLUREF T_3_1;
                     CLUREF T_3_2;
@@ -4248,7 +4228,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             this_idn.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(654);
+  LINE(651);
                             {
                             CLUREF T_4_1;
                             err = idnOPequal(this_idn, i, &T_4_1);
@@ -4271,7 +4251,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
                 T_2_3.num = T_2_1.cell->value;
                 di.num = T_2_3.num;
 
-  LINE(657);
+  LINE(654);
                     {
                     CLUREF T_3_1;
                     CLUREF T_3_2;
@@ -4283,7 +4263,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             this_decl.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(658);
+  LINE(655);
                             {
                             CLUREF T_4_1;
                             CLUREF T_4_2;
@@ -4295,7 +4275,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
                                 for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                     this_idn.num = T_4_4.vec->data[T_4_2.num - 1];
 
-  LINE(659);
+  LINE(656);
                                     {
                                     CLUREF T_5_1;
                                     err = idnOPequal(this_idn, i, &T_5_1);
@@ -4322,7 +4302,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(664);
+  LINE(661);
     {
     {
     ret_1->tf = false;

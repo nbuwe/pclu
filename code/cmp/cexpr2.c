@@ -2773,9 +2773,7 @@ get_inv_print(CLUREF inv, CLUREF *ret_1)
 /**** END PROCEDURE get_inv_print ****/
 
 
-extern errcode charOPequal();
-extern errcode stringOPfetch();
-extern errcode stringOPrest();
+extern errcode c_fixup_opname();
 extern errcode sequenceOPempty();
 CLUREF STR__044;
 static int get_clusterop_print_own_init = 0;
@@ -2799,31 +2797,15 @@ get_clusterop_print(CLUREF cop, CLUREF *ret_1)
   LINE(348);
     {
         {CLUREF T_1_1;
+        CLUREF T_1_2;
         T_1_1.num = cop.vec->data[0];
-        n.num = T_1_1.num;
+        err = c_fixup_opname(T_1_1, &T_1_2);
+        if (err != ERR_ok) goto ex_0;
+        n.num = T_1_2.num;
         }
         }
 
   LINE(349);
-    {
-    CLUREF T_1_1;
-    CLUREF T_1_2;
-    CLUREF T_1_3;
-    err = stringOPfetch(n, CLU_1, &T_1_1);
-    if (err != ERR_ok) goto ex_0;
-    T_1_2.ch = '%';
-    T_1_3.num = (T_1_1.ch == T_1_2.ch)? true : false;
-    if (T_1_3.num == true) {
-        {
-        CLUREF T_2_1;
-        err = stringOPrest(n, CLU_2, &T_2_1);
-        if (err != ERR_ok) goto ex_0;
-        n.num = T_2_1.num;
-        }
-        }
-        }/* end if */
-
-  LINE(350);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2839,7 +2821,7 @@ get_clusterop_print(CLUREF cop, CLUREF *ret_1)
     n.num = T_1_4.num;
     }
 
-  LINE(351);
+  LINE(350);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2848,7 +2830,7 @@ get_clusterop_print(CLUREF cop, CLUREF *ret_1)
     if (err != ERR_ok) goto ex_0;
     if (T_1_2.num == true) {
 
-  LINE(352);
+  LINE(351);
         {
         {
         ret_1->num = n.num;
@@ -2857,7 +2839,7 @@ get_clusterop_print(CLUREF cop, CLUREF *ret_1)
         }
     else {
 
-  LINE(353);
+  LINE(352);
         {
         {
         CLUREF T_2_1;
@@ -2913,9 +2895,9 @@ get_clutype_print(CLUREF clut, CLUREF *ret_1)
         stringOPcons("..]", CLU_1, CLU_3, &STR__056_056_135);
         get_clutype_print_own_init = 1;
     }
-    enter_proc(358);
+    enter_proc(357);
 
-  LINE(359);
+  LINE(358);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -2926,7 +2908,7 @@ get_clutype_print(CLUREF clut, CLUREF *ret_1)
         }
         }
 
-  LINE(360);
+  LINE(359);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2935,7 +2917,7 @@ get_clutype_print(CLUREF clut, CLUREF *ret_1)
     if (err != ERR_ok) goto ex_0;
     if (T_1_2.num == true) {
 
-  LINE(361);
+  LINE(360);
         {
         {
         ret_1->num = gs.num;
@@ -2951,7 +2933,7 @@ get_clutype_print(CLUREF clut, CLUREF *ret_1)
     T_1_5.num = (T_1_4.num == 1)? true : false;
     if (T_1_5.num == true) {
 
-  LINE(363);
+  LINE(362);
         {
         {
         CLUREF T_2_1;
@@ -2977,7 +2959,7 @@ get_clutype_print(CLUREF clut, CLUREF *ret_1)
         }
     else {
 
-  LINE(365);
+  LINE(364);
         {
         {
         CLUREF T_2_1;
@@ -3045,9 +3027,9 @@ get_expr_print(CLUREF x, CLUREF *ret_1)
         stringOPcons("...", CLU_1, CLU_3, &STR__056_056_056);
         get_expr_print_own_init = 1;
     }
-    enter_proc(370);
+    enter_proc(369);
 
-  LINE(371);
+  LINE(370);
     {
     CLUREF T_1_1;
     err = exprOPget_abs(x, &T_1_1);
@@ -3056,7 +3038,7 @@ get_expr_print(CLUREF x, CLUREF *ret_1)
     case 19:
          {
 
-  LINE(373);
+  LINE(372);
             {
             {
             ret_1->str = STR_nil.str;
@@ -3069,11 +3051,11 @@ get_expr_print(CLUREF x, CLUREF *ret_1)
         T_1_2.num = T_1_1.cell->value;
         b.num = T_1_2.num;
 
-  LINE(375);
+  LINE(374);
             {
             if (b.num == true) {
 
-  LINE(376);
+  LINE(375);
                 {
                 {
                 ret_1->str = STR_true.str;
@@ -3082,7 +3064,7 @@ get_expr_print(CLUREF x, CLUREF *ret_1)
                 }
             else {
 
-  LINE(377);
+  LINE(376);
                 {
                 {
                 ret_1->str = STR_false.str;
@@ -3096,7 +3078,7 @@ get_expr_print(CLUREF x, CLUREF *ret_1)
         T_1_3.num = T_1_1.cell->value;
         i.num = T_1_3.num;
 
-  LINE(380);
+  LINE(379);
             {
             {
             CLUREF T_2_1;
@@ -3112,7 +3094,7 @@ get_expr_print(CLUREF x, CLUREF *ret_1)
         T_1_4.num = T_1_1.cell->value;
         r.num = T_1_4.num;
 
-  LINE(382);
+  LINE(381);
             {
             {
             CLUREF T_2_1;
@@ -3128,7 +3110,7 @@ get_expr_print(CLUREF x, CLUREF *ret_1)
         T_1_5.num = T_1_1.cell->value;
         c.num = T_1_5.num;
 
-  LINE(384);
+  LINE(383);
             {
             {
             CLUREF T_2_1;
@@ -3150,7 +3132,7 @@ get_expr_print(CLUREF x, CLUREF *ret_1)
         T_1_6.num = T_1_1.cell->value;
         s.num = T_1_6.num;
 
-  LINE(386);
+  LINE(385);
             {
             {
             CLUREF T_2_1;
@@ -3169,7 +3151,7 @@ get_expr_print(CLUREF x, CLUREF *ret_1)
         T_1_7.num = T_1_1.cell->value;
         t.num = T_1_7.num;
 
-  LINE(388);
+  LINE(387);
             {
             {
             CLUREF T_2_1;
@@ -3185,7 +3167,7 @@ get_expr_print(CLUREF x, CLUREF *ret_1)
         T_1_8.num = T_1_1.cell->value;
         i.num = T_1_8.num;
 
-  LINE(390);
+  LINE(389);
             {
             {
             CLUREF T_2_1;
@@ -3198,7 +3180,7 @@ get_expr_print(CLUREF x, CLUREF *ret_1)
             }
     default: {
 
-  LINE(392);
+  LINE(391);
         {
         {
         ret_1->str = STR__056_056_056.str;
