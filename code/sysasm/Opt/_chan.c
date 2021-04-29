@@ -28,16 +28,15 @@ extern errcode _chanOPOP_put_doit();
 extern errcode _chanOPOPreadit();
 
 typedef struct {
-	CLUREF	fn;
-	CLUREF	rd;
-	CLUREF	wr;
-	CLUREF	typ;
-	CLUREF	new;
-	CLUREF	perm;
-	} _chan;
+    CLUREF fn;			/* file name */
+    CLUREF rd;			/* read fd */
+    CLUREF wr;			/* write fd */
+    CLUREF typ;			/* type */
+    CLUREF new;			/* new: discard on abort */
+    CLUREF perm;		/* permanent */
+} _chan;
 
-typedef char  * CLUREFP;
-
+/* _char::typ values */
 #define tty 0
 #define bty 1
 #define nul 2
