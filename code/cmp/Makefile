@@ -50,5 +50,5 @@ clean:
 
 veryclean:
 	cd ../cmpasm; make veryclean
-	${RM} pclu npclu basic.junk ${FLUFF}
+	${RM} pclu npclu basic.junk *.o ${FLUFF}
 
