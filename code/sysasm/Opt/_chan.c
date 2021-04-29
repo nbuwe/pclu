@@ -1,76 +1,26 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
 
-#ifndef lint
-static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/_chan.c,v 1.11 91/09/27 10:18:56 dcurtis Exp $";
-#endif
-/* $Log:	_chan.c,v $
- * Revision 1.11  91/09/27  10:18:56  dcurtis
- * fixed literal output to ttys in put functions
- * 	per sony news fixes from Howard Wilkinson
- * 
- * Revision 1.10  91/07/18  14:38:26  root
- * eliminate warnings for addresses used in sigvec calls
- * 
- * Revision 1.9  91/06/06  13:24:06  root
- * added copyright notice
- * 
- * Revision 1.8  91/06/03  16:20:07  root
- * sparcstation compatibility: int->CLUREF
- * 
- * Revision 1.7  91/05/31  11:47:40  root
- * fixed aggregate initialization in ops_actual
- * removed some unused variable declarations
- * fixed _chan$similar == => =
- * 
- * Revision 1.6  91/02/18  13:37:02  dcurtis
- * removed definition of elist as a local variablein _chan$$set_tty
- * 
- * Revision 1.5  91/02/14  16:10:40  dcurtis
- * fixed get to return max, max when last char in buf is terminator,
- * rather than max, 0
- * 
- * Revision 1.4  91/02/11  14:09:52  dcurtis
- * added signal(ERR_ok) to socket
- * /
- * 
- * Revision 1.3  91/02/11  11:32:06  dcurtis
- * _chanOPsendto: changed send to sendto & initialized size & asize
- * _chanOPputb: >= to > in bounds test on low: now single byte strings
- * 		can be sent
- * 
- * Revision 1.2  91/02/08  15:20:19  dcurtis
- * fixed warnings related to signal handler signatures
- * 
- * Revision 1.1  91/02/04  15:49:30  mtv
- * Initial revision
- * 
- * Revision 1.1  91/02/04  15:45:49  mtv
- * Initial revision
- * 
- */
-
 #include <signal.h>
-#include <stdio.h>
-#include <sys/time.h>
+#undef signal
 
-#include "pclu_err.h"       
-#include "pclu_sys.h"       
+#include "pclu_err.h"
+#include "pclu_sys.h"
 
-#include <errno.h>
 #include <sys/types.h>
 #include <sys/file.h>
-/* #include <sys/ioctl.h> */
-#ifdef LINUX
-#include <unistd.h>
-#include <termios.h>
 #include <sys/ioctl.h>
-#else
-/* #include <sgtty.h> */
-#endif
+#include <sys/socket.h>
 #include <sys/stat.h>
+#include <sys/time.h>
 
-extern char *index();
+#include <errno.h>
+#include <stdio.h>
+#include <string.h>
+#include <termios.h>
+#include <unistd.h>
+
+errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
+
 extern int _chanOPtstop();
 extern int _chanOPtdie();
 extern errcode _chanOPOPset_tty();
@@ -364,7 +314,7 @@ errcode err;
 	temp_chan2->fn.str = fname.str;
 	temp_chan2->typ.num = oth;
 
-	result = socketpair(fildes);
+	result = socketpair(domain.num, socktype.num, protocol.num, fildes);
 	if (result == -1) {
 		elist[0] = _unix_erstr(errno);
 		signal(ERR_not_possible);
@@ -980,7 +930,7 @@ _chan *ch = (_chan *)chref.ref;
 	while (string_chars_left > 0) {
 
 /* look for newline char */
-		newline_addr = index(&s.str->data[string_offset], '\n');
+		newline_addr = strchr(&s.str->data[string_offset], '\n');
 		if (newline_addr == NULL) {
 			force = false; 
 			string_chars_to_newline = 0;
@@ -2560,7 +2510,7 @@ long count;
 struct OP_ENTRY entry[4];
 } _chan_OPS;
 
-OWN_ptr _chan_own_init = {1, 0};
+OWN_ptr _chan_own_init = {1, { 0 } };
 
 CLU_proc _chan_oe_copy = {{0,0,0,0}, _chanOPcopy, &_chan_own_init, &_chan_own_init};
 CLU_proc _chan_oe_equal = {{0,0,0,0}, _chanOPequal, &_chan_own_init, &_chan_own_init};
