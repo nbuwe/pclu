@@ -21,6 +21,8 @@
 
 errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
 
+errcode _chanOP_open(CLUREF fn, CLUREF flags, CLUREF fmode, CLUREF *uchan);
+
 extern int _chanOPtstop();
 extern int _chanOPtdie();
 extern errcode _chanOPOPset_tty();
@@ -59,102 +61,48 @@ static long lbuf;
 int speeds[16] = {50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400, 4800,
 			9600, 19200, 38400};
 
-errcode _chanOPopen(fn, mode, fmode, uchan)
-CLUREF fn;
-CLUREF mode;
-CLUREF fmode;
-CLUREF *uchan;
-{
 /*
-static bool illegal_access_mode_EXISTS = false;
-static CLUSTRING illegal_access_mode_STRING;
-*/
-long flags = -1;
-CLUREF fullname;
-_chan *newch;
-CLUREF fname;
-int acc;
-int fd;
-errcode err;
-int current_mode;
-struct termios obuf;
-CLUREF temp_str;
+ * open = proc (fn: file_name, mode: string, fmode: int) returns (cvt)
+ *                signals (not_possible(string))
+ *
+ * Version that takes named mode ("read", "write", ...)
+ */
+errcode
+_chanOPopen(CLUREF fn, CLUREF mode, CLUREF fmode, CLUREF *uchan)
+{
+    CLUREF flags = CLUREF_make_num(-1);
 
-	if (!strcmp(mode.str->data, "read")) flags = 0;
-	if (!strcmp(mode.str->data, "write"))
-			flags = O_WRONLY + O_TRUNC + O_CREAT;
-	if (!strcmp(mode.str->data, "append"))
-			flags = O_WRONLY + O_APPEND + O_CREAT;
-	if (!strcmp(mode.str->data, "random"))
-			flags = O_RDWR + O_TRUNC + O_CREAT;
-	if (!strcmp(mode.str->data, "modify"))
-			flags = O_RDWR + O_CREAT;
-	if (flags == -1) {
-		elist[0] = illegal_access_mode_STRING;
-		signal(ERR_not_possible);}
-	clu_alloc(sizeof(_chan), &newch);
-	err = stringOPcons("", CLU_1, CLU_0, &temp_str);
-	if (err != ERR_ok) goto def_err_hdlr;
-	err = file_name_fill(fn, temp_str, &fullname);
-	if (err != ERR_ok) goto def_err_hdlr;
-	newch->fn = fullname;
-	err = file_nameOPunparse(newch->fn, &fname);	
-	/* assume fname is zero terminated */
-	newch->new.tf = false;
-	if (flags & O_WRONLY || flags & O_RDWR) {
-		newch->new.tf = true;
-		if (flags & O_TRUNC || flags & O_CREAT) {
-			acc = access(fname.str->data, F_OK);
-			if (acc == 0) newch->new.tf = false;
-			}
-		}
-	current_mode = 0666;
-	if (_chan_defmode != 0) current_mode = _chan_defmode;
-	if (fmode.num != 0) current_mode = fmode.num;
-	fd = open(fname.str->data, flags, current_mode);
-	if (fd < 0) {
-		elist[0] = _unix_erstr(errno);
-		signal(ERR_not_possible);
-		}
-	newch->rd.num = -1;
-	newch->wr.num = -1;
-	if (flags & O_RDWR || (!flags & 1)) {
-		newch->rd.num = fd;}
-	if (flags & O_RDWR || flags & O_WRONLY) {
-		newch->wr.num = fd;}
-	newch->typ.num = oth;
-	err = tcgetattr(fd, &obuf);
-	if (err == 0) {
-		newch->typ.num = tty;	
-		if (newch->rd.num == newch->wr.num) {
-			obuf.c_iflag |= ICRNL;
-			obuf.c_oflag |= OPOST + ONLCR;
-			obuf.c_lflag &= ~(ICANON + ECHO);
-			obuf.c_cc[VMIN] = 1;
-			obuf.c_cc[VTIME] = 0;
-			err = tcsetattr(fd, TCSANOW, &obuf);
-			if (err != 0) {
-				close(fd);
-				elist[0] = _unix_erstr(errno);
-				signal(ERR_not_possible);
-				}
-			}
-		}
-	err = _fixup_file_name(newch->fn, CLU_0, &fullname);
-	if (err != ERR_ok) goto def_err_hdlr;
-	newch->fn = fullname;
-	uchan->ref = (char *)newch;
-	signal(ERR_ok);
-def_err_hdlr:
-	elist[0] = _pclu_erstr(err);
-	signal(ERR_failure);
-	}
- 
-errcode _chanOP_open(fn, flags, fmode, uchan)
-CLUREF fn;
-CLUREF flags;
-CLUREF fmode;
-CLUREF *uchan;
+    /* map to open(2) flags */
+    const char *how = mode.str->data;
+    if (!strcmp(how, "read"))
+	flags.num = O_RDONLY;
+    else if (!strcmp(how, "write"))
+	flags.num = O_WRONLY | O_TRUNC | O_CREAT;
+    else if (!strcmp(how, "append"))
+	flags.num = O_WRONLY | O_APPEND | O_CREAT;
+    else if (!strcmp(how, "random"))
+	flags.num = O_RDWR | O_TRUNC | O_CREAT;
+    else if (!strcmp(how, "modify"))
+	flags.num = O_RDWR | O_CREAT;
+
+    if (flags.num == -1) {
+	elist[0] = illegal_access_mode_STRING;
+	signal(ERR_not_possible);
+    }
+
+    /* and hand off */
+    return _chanOP_open(fn, flags, fmode, uchan);
+}
+
+
+/*
+ * _open = proc (fn: file_name, flags: int, fmode: int) returns (cvt)
+ *                 signals (not_possible(string))
+ *
+ * Version that takes open(2) flags bitmask (O_RDONLY, ...)
+ */
+errcode
+_chanOP_open(CLUREF fn, CLUREF flags, CLUREF fmode, CLUREF *uchan)
 {
 CLUREF fullname;
 _chan *newch;
