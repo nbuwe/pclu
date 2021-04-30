@@ -481,8 +481,7 @@ g_pownvars = proc (e: g_env, ilist: initlist, pass:int)
 
 
        % build type owns if appropriate
-       if current_type$exists()
-	    cand current_apply$get_name() ~= current_type$get_name()
+       if current_type$exists() cand ~current_apply$is_type_own_init()
 	    cand initlist$size(current_type$get().init) ~= 0
 	  %	    cand current_type$own_init_proc_exists()
 	  then
@@ -524,8 +523,7 @@ g_pownvars = proc (e: g_env, ilist: initlist, pass:int)
 	end
     if pass = 2 then
        g_env$outdent(e)
-       if current_type$exists()
-	    cand current_apply$get_name() = current_type$get_name() then
+       if current_type$exists() cand current_apply$is_type_own_init() then
 	  g_env$indent(e)
 	  g_env$putl(e, "{signal(ERR_ok);}") %return->signal 5/22/90
 	  % unhandled 8/24/90
