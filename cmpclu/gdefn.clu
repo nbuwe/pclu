@@ -401,22 +401,25 @@ g_powninit = proc (e: g_env, ilist:initlist)
 
 g_owninit = proc (e: g_env, ilist:initlist) returns (bool)
     if g_tbl$exist() cor g_const$exist() cor own_init(ilist) then
-       g_env$putl(e, "errcode " || current_apply$get_name()
-		       || "_own_init_proc()")
+       g_env$blankline(e)
+       g_env$putl(e, "errcode")
+       g_env$putl(e, current_type$get_name() || "_own_init_proc(void)")
        g_env$putl(e, "{")
+       g_env$indent(e)
        if dbg_info$active() then
 	  g_env$putl(e, "struct {")
+	  g_env$indent(e)
 	  end
        g_tbl$build_tables(e, 0)
-       g_env$indent(e)
        g_env$putl(e, "errcode err;")
        if dbg_info$active() then
+	  g_env$outdent(e)
 	  g_env$putl(e, "} locals;")
 	  end
        g_env$putl(e, "enter_own_init_proc();")
        g_ownvars(e, ilist, 2)
-       g_env$putl(e, "}")
        g_env$outdent(e)
+       g_env$putl(e, "}")
        g_env$blankline(e)
        return (true)
        end
@@ -570,9 +573,9 @@ g_ownvars = proc (e: g_env, ilist: initlist, pass:int)
 	  end
        end
     if pass = 2 then
-       g_env$indent(e)
        if owns then
 	  g_env$putl(e, "if (" || current_apply$get_name() ||"_own_init == 0) {")
+	  g_env$indent(e)
           end
        if owns cand
 	  (~current_type$exists() cor current_apply$is_type_own_init())
@@ -593,8 +596,8 @@ g_ownvars = proc (e: g_env, ilist: initlist, pass:int)
 	       g_env$putl(e, s_locals() || "err = " || current_type$get_name() ||
 			     "_own_init_proc();")
 	       g_env$putl(e, "if (" || s_locals() || "err != ERR_ok) goto ex_0;")
-	       g_env$putl(e, "}")
 	       g_env$outdent(e)
+	       g_env$putl(e, "}")
 	  end
        if owns then
 	  g_env$putl(e, current_apply$get_name() || "_own_init = 1;")
@@ -605,22 +608,20 @@ g_ownvars = proc (e: g_env, ilist: initlist, pass:int)
 	g_env$newline(e)
 	end
     if pass = 2 then
-       g_env$outdent(e)
-       if current_apply$is_type_own_init()
-	  then
-	       g_env$indent(e)
-	       g_env$putl(e, "{signal(ERR_ok);}") % return to signal & unhandled 8/24/90 
-	       g_env$outdent(e)
-	       g_env$putl(e, "ex_0: pclu_unhandled(" || s_locals() || "err); {signal(ERR_failure);}")
-	       g_env$indent(e)
-	       g_env$putl(e, "}")
-	       g_env$outdent(e)
-	  else
-       	       if owns then 
-		  g_env$putl(e, "}")
-		  end
+	if owns then
+	    if current_apply$is_type_own_init() then
+		% return to signal & unhandled 8/24/90 
+		g_env$putl(e, "signal(ERR_ok);")
+		g_env$outdent(e)
+		g_env$putl(e, "ex_0:");
+		g_env$indent(e)
+		g_env$putl(e, "pclu_unhandled(" || s_locals() || "err);");
+		g_env$putl(e, "signal(ERR_failure);")
+	      end
+	    g_env$outdent(e)
+	    g_env$putl(e, "}")
 	  end
-       end
+      end
     end g_ownvars
 
 
