@@ -586,13 +586,15 @@ g_ownvars = proc (e: g_env, ilist: initlist, pass:int)
 	       g_const$g_consts(e, 2)
 	  end
        % call type's own init proc from its ops if it exists
-       if current_type$exists() cand current_type$own_init_proc_exists()
-	    cand ~current_apply$is_type_own_init()
+       % here "current_type$own_init_proc_exists()" corresponds
+       % to "owns" in the previous test for type's own init.
+       if current_type$exists() cand ~current_apply$is_type_own_init()
+	    cand current_type$own_init_proc_exists()
 	  then
-	       % catching of err added 8/24/90
 	       g_env$putl(e, "if (" || current_type$get_name() ||
 			     "_own_init == 0) {")
 	       g_env$indent(e)
+	       % catching of err added 8/24/90
 	       g_env$putl(e, s_locals() || "err = " || current_type$get_name() ||
 			     "_own_init_proc();")
 	       g_env$putl(e, "if (" || s_locals() || "err != ERR_ok) goto ex_0;")
