@@ -168,11 +168,10 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	% finish up
 	g_env$outdent(e)
 	g_env$putl(e, "}")
-
 	g_env$blankline(e)
+
 	dbg_info$emit_decls(e)
 
-	g_env$blankline(e)
 	g_env$puts(e, "/**** END ")
 	if iterp then g_env$puts(e, "ITERATOR ")
 	   else g_env$puts(e, "PROCEDURE ") end
