@@ -14,7 +14,10 @@ FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 all: regen rebuild
 
 regen:
-	$(PCLU) -xf cmp.xfile -opt time -ccopt 0 -co *.clu
+	$(PCLU) -xf cmp.xfile -opt time -bindir ../code/cmp -co *.clu
+
+regen-debug:
+	$(PCLU) -xf cmp.xfile -opt false -bindir ../code/cmpdbg -co *.clu
 
 rebuild:
 	(cd ../code/cmp && make)
