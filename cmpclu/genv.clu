@@ -190,7 +190,7 @@ g_env = cluster is create, reset, end_all, force_signal, reset_err, set_space,
 	end blankline
 
     ensure_newline = proc (e: cvt)
-	% makes sure a newline() operation proceeds the next puts
+	% makes sure a newline() operation precedes the next puts
 	e.ensure := true
 	end ensure_newline
 
