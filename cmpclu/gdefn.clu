@@ -56,14 +56,23 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	parm$enter(a.parms) % remember parameters
 	if ~current_type$exists() cand ~current_apply$parmd() then
 		dbg_info$add_ilist(a.init) end
-	dbg_info$start(e, a, cname, iterp)  % prime debugger information generation
+
+	g_env$blankline(e)
+	g_env$puts(e, "/**** BEGIN ")
+	if iterp then g_env$puts(e, "ITERATOR ")
+	   else g_env$puts(e, "PROCEDURE ") end
+	nm: string := c_fixup_opname(a.idn.str)
+	g_env$putl(e, nm || " ****/")
+	g_env$blankline(e)
+
+	% prime debugger information generation
+	dbg_info$start(e, a, cname, iterp)
 
 	% generate REQS structures for parameter block building
 	reqs$parms(a.idn, a.parms)
 	reqs$more(e, a.idn, a.where_)
 
-	% generate extern stmts for iterator bodies and declare owns
-   
+	% generate forward declarations for iterator bodies
 	all_stmts: stmtlist
 	% omitted type owninit from all_stmts 1/18/91 dwc
 	%    if current_type$exists()
@@ -80,6 +89,8 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
     	g_xref$add_ent(ext_names)
 	g_externs(e, ext_names, all_stmts)
 	g_check_handlers(e, all_stmts)
+
+	% define params and owns
 	g_tbl$find_tables(e, all_stmts, definition$make_apply(a))
 	g_const$find_consts(e, all_stmts)
 	owns$save(a.init)
@@ -94,16 +105,7 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	ib$reset()
 
 	% generate signature
-
-
 	g_env$blankline(e)
-	g_env$puts(e, "/**** BEGIN ")
-	if iterp then g_env$puts(e, "ITERATOR ")
-	   else g_env$puts(e, "PROCEDURE ") end
-	nm: string := c_fixup_opname(a.idn.str)
-	g_env$putl(e, nm || " ****/")
-	g_env$blankline(e)
-
 	if iterp
 	   then
 		g_iter_signature(e, a, cname)
@@ -128,13 +130,13 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	   end
 
 	g_env$putl(e, "enter_proc(" || int$unparse(a.line) || ");")
+
 	% generate statements
 	for s: stmt in stmtlist$elements(a.body) do
 	    g_stmt(e, s)
 	    end
 
 	% generate default exception handler
-
 	g_env$putl(e, "goto "||ex$get_current_end_label()||";")
 	g_env$putl(e, ex$get_current_ex_label()||":")
 	g_env$indent(e)
@@ -164,17 +166,19 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	g_env$ensure_newline(e)
 
 	% finish up
-	g_env$putl(e, "}")
-	g_env$blankline(e)
 	g_env$outdent(e)
+	g_env$putl(e, "}")
+
+	g_env$blankline(e)
+	dbg_info$emit_decls(e)
+
+	g_env$blankline(e)
 	g_env$puts(e, "/**** END ")
 	if iterp then g_env$puts(e, "ITERATOR ")
 	   else g_env$puts(e, "PROCEDURE ") end
 	g_env$puts(e, nm)
 	g_env$putl(e, " ****/")
 	g_env$blankline(e)
-
-	dbg_info$emit_decls(e)
 
 	% generate iterator bodies
 	%ib$reset()
