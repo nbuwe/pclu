@@ -452,12 +452,8 @@ g_pownvars = proc (e: g_env, ilist: initlist, pass:int)
        ptr := "type_own_ptr"
        end
     ref: string := current_apply$get_short_name()
-    % revamped 5/22/90: 2 lines omitted, one added
-    %    if (current_type$exists() cand ~current_apply$parmd()) 
-    %	 cor ref = ""
-    if ref = ""
-       then
-	    ref := current_type$get_name() end
+    if string$empty(ref) then
+       ref := current_type$get_name() end
     if pass = 1 then
        g_env$blankline(e)
        g_env$putl(e, "typedef struct {")
