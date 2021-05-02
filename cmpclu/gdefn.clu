@@ -693,25 +693,23 @@ own_counter = proc(i: initlist) returns (int)
     return (own_count)
     end own_counter
 
-g_localvars = proc (e: g_env, ap:applydefn, iterp: bool)
 
-    bod: stmtlist := ap.body
-    args: decllist := ap.args
-    parms: decllist := parm$get_base()
+g_localvars = proc (e: g_env, ap: applydefn, iterp: bool)
 
     % pick up decls, declinits, tag, for except decls
     % recurse on bodies of if, tag, body, while, for, except, beginend
-
     locals: array[decl] := array[decl]$new()
-    g_lvs_stmts(locals, bod)
+    g_lvs_stmts(locals, ap.body)
     locals := g_lvs_uniq(locals)
     current_locals$set(locals)
+
     g_env$newline(e)
 
     % build struct: CLUREFs for args, usual locals, and program's locals
 
     if (iterp) then g_env$putl(e, "errcode ecode;") end
     g_tbl$build_tables(e, 0)
+
     if ib$exist() cor dbg_info$active() then 
        g_env$putl(e, "struct {")
        g_env$indent(e)
@@ -723,21 +721,27 @@ g_localvars = proc (e: g_env, ap:applydefn, iterp: bool)
 	  dbg_info$add_local("proc")
 	  g_env$putl(e, "errcode (*proc)();") end
        end
+
     dbg_info$add_local("err")
     g_env$putl(e, "errcode err;")
+
     dbg_info$add_local("ecode2")
     g_env$putl(e, "errcode ecode2;")
+
     if iterp then 
        dbg_info$add_local("body_ctrl_req")
        g_env$putl(e, "bool body_ctrl_req;") end
+
     if current_type$exists() cand current_type$parmd() then
        dbg_info$add_local("type_own_ptr")
        g_env$putl(e, current_type$get_name() || "_OWN_DEFN *type_own_ptr;")
        end
+
     if current_apply$parmd() then
        defn_name: string := op_own_name()
        dbg_info$add_local("op_own_ptr")
        g_env$putl(e, defn_name || "_OWN_DEFN *op_own_ptr;") end
+
     dbg_info$add_locals(locals)
     for lv: decl in array[decl]$elements(locals) do
 	ts: typespec := lv.type_
@@ -746,6 +750,8 @@ g_localvars = proc (e: g_env, ap:applydefn, iterp: bool)
 	    end
 	end
     typ$fix_typelist(sequence[decl]$a2s(locals))
+
+    args: decllist := ap.args
     if ib$exist() cor dbg_info$active() then
        for a: decl in decllist$elements(args) do
 	   dbg_info$extend_locals(a)
@@ -757,11 +763,15 @@ g_localvars = proc (e: g_env, ap:applydefn, iterp: bool)
        end
     typ$fix_typelist(args)
 
-    %%%%%%%%%%%%%%%%%%%%%%  building of parms in locals removed 6/11/90
+    % building of parms in locals removed 6/11/90
+    % parms: decllist := parm$get_base()
+
     if ib$exist() cor dbg_info$active() then 
        g_env$putl(e, "} locals;")
        g_env$outdent(e)
        end
+
+    % init local variables
 
     if dbg_info$active() then
        for lv: decl in array[decl]$elements(locals) do
@@ -802,6 +812,7 @@ g_localvars = proc (e: g_env, ap:applydefn, iterp: bool)
        g_env$putl(e, s_locals() || "op_own_ptr = ("|| defn_name || "_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;")
        end
     end g_localvars
+
 
 g_parm_decls = proc(e: g_env, tparms: decllist, aparms: decllist)
     typ$fix_parm_typelist(tparms)
