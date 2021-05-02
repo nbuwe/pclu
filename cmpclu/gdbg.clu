@@ -39,7 +39,8 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 
     start = proc(e: g_env, a: applydefn, cname: string, iterp: bool)
 	ap := a
-	if e.space cor e.time then yes := false return else yes := true end
+	yes := ~(e.space cor e.time)
+	if ~yes then return end
 	locals := ad$new()
 	internal_locals := as$new()
 	nm := c_fixup_opname(ap.idn.str)
@@ -90,7 +91,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
     set_own_context = proc(e: g_env, context: string, parmd: bool)
 	if context = "type" then 
 	   is_type_parmd := parmd
-	   if e.space cor e.time then yes := false else yes := true end
+	   yes := ~(e.space cor e.time)
 	   owns := an$new()	% chuck ops found so far (static ones)
 	   ptowns := an$new()
 	   popowns := as$new()
