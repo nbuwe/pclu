@@ -134,6 +134,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$putl(e, "#undef MY_TRACE_FLAG")
 	g_env$putl(e, "#define MY_TRACE_FLAG " || nm || "_TRACE")
 	g_env$putl(e, "long " || nm || "_TRACE;")
+	g_env$blankline(e)
 	end emit_extern
 
     emit_local_entry = proc(e: g_env)
@@ -172,6 +173,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	emit_typedef(e)
 	emit_sub_decls(e)
 	emit_decl(e)
+	g_env$blankline(e)
 	end emit_decls
 
     emit_externs = proc(e: g_env)
@@ -244,7 +246,6 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		  end
 	       end
 	   end
-	
 	end emit_externs
 
     emit_own_externs = proc(e: g_env)
@@ -436,8 +437,9 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$putl(e, "Vlist" || int$unparse(npopowns) || " *popowns;")
 	g_env$putl(e, "Slist" || int$unparse(ntypeformals) || " *type_formals;")
 	g_env$putl(e, "Slist" || int$unparse(nopformals) || " *op_formals;")
-	g_env$putl(e, "} dbg_info_" || nm || "_actual;")
 	g_env$outdent(e)
+	g_env$putl(e, "} dbg_info_" || nm || "_actual;")
+	g_env$blankline(e)
 	end emit_typedef
 
     % declare and initialize sub structures (varying length)
@@ -836,9 +838,9 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	   end
 	% emit trailer
 	g_env$putl(e, "};")
+	g_env$outdent(e)
 	g_env$putl(e, "struct dbg_info *dbg_info_" || nm
 			|| " = (struct dbg_info*)&dbg_info_" || nm || "_data;")
-	g_env$outdent(e)
 	end emit_decl
 
     idns_in_decls = proc(a: ad) returns (int)
