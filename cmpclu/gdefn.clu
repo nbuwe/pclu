@@ -801,11 +801,6 @@ g_localvars = proc (e: g_env, ap:applydefn, iterp: bool)
        defn_name: string := op_own_name()
        g_env$putl(e, s_locals() || "op_own_ptr = ("|| defn_name || "_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;")
        end
-    if ib$exist() then
-       if (iterp) then g_env$putl(e, s_locals() || "user_locals = user_locals;") end
-       if (iterp) then g_env$putl(e, s_locals() || "proc = proc;") end
-       end
-
     end g_localvars
 
 g_parm_decls = proc(e: g_env, tparms: decllist, aparms: decllist)
