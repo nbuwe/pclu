@@ -94,12 +94,12 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	g_tbl$find_tables(e, all_stmts, definition$make_apply(a))
 	g_const$find_consts(e, all_stmts)
 	owns$save(a.init)
-	if ~current_apply$parmd() cand
-	   (~current_type$exists() cor ~current_type$parmd()) then
+	if ~(current_apply$parmd() cor
+	       (current_type$exists() cand current_type$parmd())) then
 	   g_ownvars(e, a.init, 1)
 	 elseif current_apply$parmd() then
 	   g_pownvars(e, a.init, 1)
-	 else % unparmed proc/iter in parmd type: do nothing on pass 1
+	 % else % unparmed proc/iter in parmd type: do nothing on pass 1
 	 end
 
 	ib$reset()
@@ -121,8 +121,8 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	g_env$newline(e)
 
 	% initialize owns, build parameter blocks
-	if ~current_apply$parmd() cand
-	   (~current_type$exists() cor ~current_type$parmd())
+	if ~(current_apply$parmd() cor
+	     (current_type$exists() cand current_type$parmd()))
 	   then
 		g_ownvars(e, a.init, 2)
 	   else
