@@ -104,8 +104,12 @@ ib = cluster is init, reset, add_body, gen_bodies, next_name,
 	% generate signature
 	ibname: name := current_apply$get_name()||"_IB_" || int$unparse(index)
 	% save_name()
-	g_env$puts(e, "errcode " || ibname ||"(")
-	iv_count:int := 0
+
+	g_env$putl(e, "errcode")
+	g_env$puts(e, ibname)
+	g_env$puts(e, "(")
+
+	iv_count: int := 0
 	tagcase f.vars
 	   tag old(o: idnlist):
 	       iv_count := idnlist$size(o)
@@ -114,15 +118,13 @@ ib = cluster is init, reset, add_body, gen_bodies, next_name,
 		   iv_count := iv_count + idnlist$size(this_d.idns)
 		   end
 	   end
+
 	for each_i: int in int$from_to(1, iv_count) do
-	    g_env$puts(e, "iv_"||int$unparse(each_i)||", ")
+	    g_env$puts(e, "CLUREF iv_"||int$unparse(each_i)||", ")
 	    end
-	g_env$putl(e, "locals, iecode)")
-	g_env$putl(e, "errcode *iecode;")
-	for each_i: int in int$from_to(1, iv_count) do
-	    g_env$putl(e, "CLUREF iv_"||int$unparse(each_i)|| ";")
-	    end
-	gen_locals(e)
+
+	g_env$puts(e, current_apply$get_name() || "_LOCALS_t *locals, ")
+	g_env$putl(e, "errcode *iecode)")
 
 	% generate the body
 	g_env$putl(e, "{")
@@ -187,75 +189,6 @@ ib = cluster is init, reset, add_body, gen_bodies, next_name,
 
 	end gen_body
 
-    gen_locals = proc(e:g_env)
-
-	iterp: bool := current_apply$is_iter()
-
-	locals: array[decl] := current_locals$get()
-	args: decllist := current_apply$get().args
-	ap: applydefn := current_apply$get()
-	parms: decllist := parm$get_base()
-
-	g_env$newline(e)
-
-	% build struct: CLUREFs for args, usual locals, and program's locals
-
-	g_env$putl(e, "struct {")
-	if dbg_info$active() then
-		g_env$putl(e, "    struct dbg_info *DBG_INFO;")
-		g_env$putl(e, "    int DBG_LINE;")
-		end
-	if iterp then
-	   g_env$putl(e, "    char **user_locals;")
-	   g_env$putl(e, "    errcode (*proc)();")
-	   end
-	g_env$putl(e, "    errcode err;")
-	g_env$putl(e, "    errcode ecode2;")
-	if iterp then g_env$putl(e, "    bool body_ctrl_req;") end
-
-	if current_type$exists() cand current_type$parmd() then
-	   g_env$putl(e, current_type$get_name() || "_OWN_DEFN *type_own_ptr;")
-	   end
-	if current_apply$parmd() then
-	   defn_name: string := op_own_name()
-	   g_env$putl(e, defn_name || "_OWN_DEFN *op_own_ptr;") end
-	% build defines for each local var
-	for lv: decl in array[decl]$elements(locals) do
-	    ts: typespec := lv.type_
-	    for id: idn in idnlist$elements(lv.idns) do
-		g_env$puts(e, "    ")
-	 	g_decl_typespec(e, ts, idnlit(id))
-		end
-	    end
-	if ~dbg_info$active() then
-	   for a: decl in decllist$elements(args) do
-	       ts: typespec := a.type_
-	       for id: idn in idnlist$elements(a.idns) do
-		   g_env$puts(e, "    ")
-		   g_decl_typespec(e, ts, idnlit(id))
-		   end
-	       end
-	   end
-
-	%	for each_d:decl in decllist$elements(parms) do
-	%	    for each_idn: idn in idnlist$elements(each_d.idns) do
-	%		g_env$putl(e, "    " || reqs$get_tid() || "_of_" ||
-	%			      each_idn.str || "_OPS *" ||
-	%			      each_idn.str || "_ops;")
-	%		end
-	%	    end
-	%
-	%	for each_d:decl in decllist$elements(ap.parms) do
-	%	    for each_idn: idn in idnlist$elements(each_d.idns) do
-	%		g_env$putl(e, reqs$get_id() || "_of_" ||
-	%			      each_idn.str || "_OPS *" ||
-	%			      each_idn.str || "_ops;")
-	%		end
-	%	    end
-
-	g_env$putl(e, "    } *locals;")
-
-	end gen_locals
     end ib
 
 %%%
@@ -447,26 +380,6 @@ loop_context = cluster is init, enter_while, enter_for, enter_inline_for,
 	end get_current_inline_for_count
 
     end loop_context
-
-%%%
-%%% Cluster to remember current locals to save them for iterator bodies
-%%%
-
-current_locals = cluster is set, get
-
-    rep = null
-
-    own curr_lvs: array[decl] := array[decl]$new()
-
-    set = proc(lvs: array[decl])
-	curr_lvs := lvs
-	end set
-
-    get = proc() returns (array[decl])
-	return(curr_lvs)
-	end get
-
-    end current_locals
 
 %%%
 %%% Cluster to remember current applydefn to get # of return values

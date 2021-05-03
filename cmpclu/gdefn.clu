@@ -104,6 +104,14 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 
 	ib$reset()
 
+	% pick up decls, declinits, tag, for except decls
+	% recurse on bodies of if, tag, body, while, for, except, beginend
+	locals: array[decl] := array[decl]$new()
+	g_lvs_stmts(locals, a.body)
+	locals := g_lvs_uniq(locals)
+
+	g_localvars_struct(e, a, locals, iterp)
+
 	% generate signature
 	g_env$blankline(e)
 	if iterp
@@ -115,9 +123,9 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 
 	% declare parameter blocks, and locals
 	g_env$newline(e)
-	g_env$puts(e, "{")
+	g_env$putl(e, "{")
 	g_env$indent(e)
-	g_localvars(e, a, iterp)
+	g_localvars(e, a, locals, iterp)
 	g_env$newline(e)
 
 	% initialize owns, build parameter blocks
@@ -694,33 +702,34 @@ own_counter = proc(i: initlist) returns (int)
     end own_counter
 
 
-g_localvars = proc (e: g_env, ap: applydefn, iterp: bool)
 
-    % pick up decls, declinits, tag, for except decls
-    % recurse on bodies of if, tag, body, while, for, except, beginend
-    locals: array[decl] := array[decl]$new()
-    g_lvs_stmts(locals, ap.body)
-    locals := g_lvs_uniq(locals)
-    current_locals$set(locals)
+g_localvars_struct = proc (e: g_env, ap: applydefn, locals: array[decl],
+			   iterp: bool)
+    if ~(ib$exist() cor dbg_info$active()) then
+	return end
 
-    g_env$newline(e)
+    g_env$putl(e, "typedef struct {")
+    g_env$indent(e)
 
-    % build struct: CLUREFs for args, usual locals, and program's locals
+    dbg_info$emit_local_entry(e)
 
-    if (iterp) then g_env$putl(e, "errcode ecode;") end
-    g_tbl$build_tables(e, 0)
+    if (iterp) then
+	dbg_info$add_local("user_locals")
+	g_env$putl(e, "char **user_locals;")
 
-    if ib$exist() cor dbg_info$active() then 
-       g_env$putl(e, "struct {")
-       g_env$indent(e)
-       dbg_info$emit_local_entry(e)
-       if (iterp) then 
-	  dbg_info$add_local("user_locals")
-	  g_env$putl(e, "char **user_locals;") end
-       if (iterp) then 
-	  dbg_info$add_local("proc")
-	  g_env$putl(e, "errcode (*proc)();") end
-       end
+	dbg_info$add_local("proc")
+	g_env$putl(e, "errcode (*proc)();")
+      end
+
+    g_localvars_vars(e, ap, locals, iterp)
+
+    g_env$outdent(e)
+    g_env$putl(e, "} " || current_apply$get_name() || "_LOCALS_t;")
+  end g_localvars_struct
+
+
+g_localvars_vars = proc (e: g_env, ap: applydefn, locals: array[decl],
+			 iterp: bool)
 
     dbg_info$add_local("err")
     g_env$putl(e, "errcode err;")
@@ -766,10 +775,21 @@ g_localvars = proc (e: g_env, ap: applydefn, iterp: bool)
     % building of parms in locals removed 6/11/90
     % parms: decllist := parm$get_base()
 
-    if ib$exist() cor dbg_info$active() then 
-       g_env$putl(e, "} locals;")
-       g_env$outdent(e)
-       end
+  end g_localvars_vars
+
+
+g_localvars = proc (e: g_env, ap: applydefn, locals: array[decl],
+			   iterp: bool)
+
+    if (iterp) then g_env$putl(e, "errcode ecode;") end
+    g_tbl$build_tables(e, 0)
+
+    if ib$exist() cor dbg_info$active() then
+	g_env$putl(e, current_apply$get_name() || "_LOCALS_t locals;")
+      else
+	g_localvars_vars(e, ap, locals, iterp)
+      end
+
 
     % init local variables
 
@@ -785,7 +805,7 @@ g_localvars = proc (e: g_env, ap: applydefn, iterp: bool)
 
     dbg_info$init_local_entry(e)
     if ib$exist() cor dbg_info$active() then
-       for a: decl in decllist$elements(args) do
+       for a: decl in decllist$elements(ap.args) do
 	   ts: typespec := a.type_
 	   for id: idn in idnlist$elements(a.idns) do
 	       g_locals(e)
