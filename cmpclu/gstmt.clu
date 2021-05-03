@@ -428,6 +428,7 @@ g_for = proc (e: g_env, stmnt: forstmt)
 		    g_env$puts(e, "if (")
 		    g_err(e)
 		    g_env$putl(e, " == ERR_iterbodyreturn) {")
+		    g_env$indent(e)
 		    count: int := current_apply$get_val_count()
 		    for i: int in int$from_to(1, count) do
 			g_env$puts(e, "ret_" || int$unparse(i) || "->num = ")
@@ -435,7 +436,9 @@ g_for = proc (e: g_env, stmnt: forstmt)
 			% .ref new as of 2/27/90
 			% ref to num 6/26/90
 			end % for
-		    g_env$putl(e, "signal(ERR_ok);}")
+		    g_env$putl(e, "signal(ERR_ok);")
+		    g_env$outdent(e)
+		    g_env$putl(e, "}")
 		    g_env$puts(e, "if (")
 		    g_err(e)
 		    g_env$putl(e, " == ERR_iterbodysignal) {signal(locals.ecode2);}")
