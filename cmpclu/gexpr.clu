@@ -628,14 +628,6 @@ g_inv = proc(e: g_env, exp, gen_clu_proc_val: expr)
     end g_inv
 
 
-g_locals = proc(e: g_env)
-    prefix: string := s_locals()
-    if ~string$empty(prefix) then
-	g_env$puts(e, prefix);
-      end
-    end g_locals
-
-
 s_locals = proc() returns (string)
     if ib$exist() cor dbg_info$active() then
        if ib$bodies()
@@ -650,44 +642,31 @@ s_locals = proc() returns (string)
     end s_locals
 
 
-g_err = proc (e: g_env)
+g_locals = proc(e: g_env)
+    prefix: string := s_locals()
+    if ~string$empty(prefix) then
+	g_env$puts(e, prefix);
+      end
+  end g_locals
 
-    if ib$exist() cor dbg_info$active() then
-       if ib$bodies() then
-	  g_env$puts(e, "locals->err")
-	  else
-	       g_env$puts(e, "locals.err")
-	  end
-       else
-	    g_env$puts(e, "err")
-       end
-    end g_err
+
+g_err = proc (e: g_env)
+    g_locals(e)
+    g_env$puts(e, "err")
+  end g_err
+
 
 g_proc = proc (e: g_env)
+    g_locals(e)
+    g_env$puts(e, "proc")
+  end g_proc
 
-    if ib$exist() cor dbg_info$active() then
-       if ib$bodies() then
-	  g_env$puts(e, "locals->proc")
-	  else
-	       g_env$puts(e, "locals.proc")
-	  end
-       else
-	    g_env$puts(e, "proc")
-       end
-    end g_proc
 
 g_user_locals = proc (e: g_env)
+    g_locals(e)
+    g_env$puts(e, "user_locals")
+  end g_user_locals
 
-    if ib$exist() cor dbg_info$active() then
-       if ib$bodies() then
-	  g_env$puts(e, "locals->user_locals")
-	  else
-	       g_env$puts(e, "locals.user_locals")
-	  end
-       else
-	    g_env$puts(e, "user_locals")
-       end
-    end g_user_locals
 
 g_idn = proc (e: g_env, i: idn)
 
