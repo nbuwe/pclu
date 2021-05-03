@@ -1522,7 +1522,7 @@ g_selectcons = proc (e: g_env, sc: selectcons) returns (exprlist)
 	    junk: string, ind: int := 
 		field_index("set_" || each_name, flist)
 	    g_idn_plain(e, recidn)
-	    g_env$puts(e, ".vec->data[" || int$unparse(ind-1) || "]  = ") %%% cast new 6/11/90
+	    g_env$puts(e, ".vec->data[" || int$unparse(ind-1) || "] = ") %%% cast new 6/11/90
 	    g_constr_rhs(e, el[1])
 	    end % for
 	end % for
