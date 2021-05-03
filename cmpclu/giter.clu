@@ -92,12 +92,7 @@ ib = cluster is init, reset, add_body, gen_bodies, next_name,
 	ex$init()           % initialize exception handling cluster
 
 	% indicate context is an iterator body
-
 	loop_context$enter_for()
-
-	% indicate whether surrounding context is a proc or an iter
-
-	iterp: bool := current_apply$is_iter()
 
 	g_env$newline(e)
 
