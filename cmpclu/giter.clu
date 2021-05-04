@@ -237,8 +237,6 @@ g_iterbody_names_asst = proc (fors: array[forstmt], bod: stmtlist)
 		       array[forstmt]$addh(fors, f)
 		  end
 	   % recurse into nested statement lists
-	   tag decl (d: decl):
-	   tag declinit(di: declinit):
 	   tag body (b: body):
 	       g_iterbody_names_asst (fors, b.stmts)
 	   tag while_ (w: whilestmt):
