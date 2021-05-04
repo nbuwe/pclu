@@ -934,8 +934,8 @@ op_own_name = proc() returns (string)
     end op_own_name
 
 g_externs = proc (e: g_env, names: an, b: stmtlist)
-
-    g_iterbody_names(names, b)
+    if ~current_apply$is_type_own_init() then
+	g_iterbody_names(names, b) end
     g_env$newline(e)
     for each_name: name in array[name]$elements(names) do
 	if g_env$add_extern(each_name) then
