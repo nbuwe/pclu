@@ -72,7 +72,6 @@ ib = cluster is init, reset, add_body, gen_bodies, next_name,
 	   g_env$puts(e, "/**** BEGIN ITERATOR BODIES for ")
 	   g_idnlit(e, id)
 	   g_env$puts(e, " ****/")
-	   g_env$blankline(e)
 	   index: int := 1
 	   for each_bod: forstmt in sf$elements(iblist) do
 	       gen_body(e, each_bod, index)
@@ -94,7 +93,7 @@ ib = cluster is init, reset, add_body, gen_bodies, next_name,
 	% indicate context is an iterator body
 	loop_context$enter_for()
 
-	g_env$newline(e)
+	g_env$blankline(e)
 
 	% generate signature
 	ibname: name := current_apply$get_name()||"_IB_" || int$unparse(index)
