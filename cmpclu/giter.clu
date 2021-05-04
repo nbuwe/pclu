@@ -173,11 +173,12 @@ ib = cluster is init, reset, add_body, gen_bodies, next_name,
 	g_env$newline(e)
 	g_env$puts(e, ex$get_current_end_label() || ": {signal(ERR_ok);}")
 	g_env$ensure_newline(e)
-	
+
 	% finish up
-	g_env$puts(e, "}")
-	g_env$putl(e, "/* end " || ibname || " */")
 	g_env$outdent(e)
+	g_env$puts(e, "}")
+	g_env$putl(e, "   /* end " || ibname || " */")
+
 	loop_context$leave()
 	% restore_name()
 
