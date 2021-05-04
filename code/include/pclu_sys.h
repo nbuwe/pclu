@@ -399,8 +399,13 @@ extern long size_map[];
 	     Result.obj->obj_link = 0;
 
 #ifdef athena
-#define RecordAlloc(Size, Result) recordOPnew(Size, &Result)
-#define CellAlloc(Tag, Value, Result) oneofOPnew(Tag, Value, &Result)
+extern errcode oneofOPnew(CLUREF tag, CLUREF val, CLUREF *ans);
+extern errcode recordOPnew(CLUREF size, CLUREF *ans);
+
+#define RecordAlloc(Size, Result) \
+	    recordOPnew(CLUREF_make_num(Size), &Result)
+#define CellAlloc(Tag, Value, Result) \
+	    oneofOPnew(CLUREF_make_num(Tag), CLUREF_make_num(Value), &Result)
 #else
 #define RecordAlloc(Size, Result) \
 	     Alloc(Size + CLU_sequence_sizew, Result); \
