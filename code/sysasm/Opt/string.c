@@ -87,10 +87,9 @@ long i;
 	signal(ERR_ok);
 	}
 
-errcode stringOPcons(buf, start, len, ans)
-C_STRING buf;
-CLUREF start, len;
-CLUREF *ans;
+
+errcode
+stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans)
 {
 CLUREF temp;
 long i,j,count;

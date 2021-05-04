@@ -68,7 +68,7 @@ CLUREF x1, ps;
 errcode err;
 CLUREF ans, str;
 
-	stringOPcons("itertype", 1, 8, &str);
+	stringOPcons("itertype", CLU_1, CLU_8, &str);
 	err = pstreamOPtextc(ps, str, &ans);
 	if (err != ERR_ok) resignal(err);
 	signal(ERR_ok);

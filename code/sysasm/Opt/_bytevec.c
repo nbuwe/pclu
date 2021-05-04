@@ -273,7 +273,7 @@ CLUREF bv, tab, *ans;
 errcode err;
 CLUREF temp_oneof;
 
-        err = oneofOPnew(1, 0, &temp_oneof);
+        err = oneofOPnew(CLU_1, CLU_0, &temp_oneof);
         if (err != ERR_ok) resignal(err);
 /*                 16 for type + size, 1 for trailing 0, +3 &~3 to round up */
         err = gcd_tabOPinsert(tab, 2*CLUREFSZ + 
