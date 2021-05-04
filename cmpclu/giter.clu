@@ -262,7 +262,7 @@ g_iterbody_names_asst = proc (fors: array[forstmt], bod: stmtlist)
 		  others:
 		  end
 	   tag except_ (e: exceptstmt):
-	       g_iterbody_names_asst(fors, stmtlist$fill(1, e.stmt))
+	       g_iterbody_names_asst(fors, stmtlist$[e.stmt])
 	       for a: handler in handlerlist$elements(e.arms) do
 		   g_iterbody_names_asst(fors, a.body.stmts)
 		   end
@@ -272,7 +272,7 @@ g_iterbody_names_asst = proc (fors: array[forstmt], bod: stmtlist)
 		  others:
 		  end
 	   tag resignal_ (rs: resignalstmt):
-	       g_iterbody_names_asst(fors, stmtlist$fill(1, rs.stmt))
+	       g_iterbody_names_asst(fors, stmtlist$[rs.stmt])
 	   others:
 	   end
 	end % for
