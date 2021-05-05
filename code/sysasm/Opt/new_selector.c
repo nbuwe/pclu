@@ -1,26 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/new_selector.c,v 1.5 91/08/29 15:19:59 dcurtis Exp $";
-#endif 
-/* $Log:	new_selector.c,v $
- * Revision 1.5  91/08/29  15:19:59  dcurtis
- * fixed casting (lint)
- * 
- * Revision 1.4  91/08/29  15:04:15  dcurtis
- * added elist to proctypeOPnew calls
- * 
- * Revision 1.3  91/06/06  13:28:45  root
- * added copyright notice
- * 
- * Revision 1.2  91/05/31  12:25:38  root
- * *** empty log message ***
- * 
- * Revision 1.1  91/02/04  15:49:46  mtv
- * Initial revision
- * 
- */
 
 /********************************************************/
 /*							*/
@@ -31,12 +9,18 @@ static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/new_selector.c,v
 /*							*/
 /********************************************************/
 
-#include <stdio.h>
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode add_sel_ops();
-extern errcode find_sel_ops();
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/* pstream$text = proc (ps: cvt, s: string) returns (bool) */
+extern errcode pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1);
+
+static errcode add_sel_ops(const char *selname, long count, struct OPS *new_ops);
+static long find_sel_ops(const char *selname, long count, struct OPS **result);
 
 extern char *mystrcat(const char *s1, const char *s2);
 extern errcode missing_print_fcn();
@@ -44,14 +28,12 @@ extern errcode missing_print_fcn();
 #define MAX_SELECTORS 500
 #define MAX_FIELDS    50
 
-static char *sel_inst_fieldname[MAX_FIELDS];
+static const char *sel_inst_fieldname[MAX_FIELDS];
 static long sel_inst_fieldops[MAX_FIELDS];
 
 
-errcode add_selector_info(field_name, index, ops)
-char *field_name;
-long index;
-struct OPS * ops;
+errcode
+add_selector_info(const char *field_name, long index, struct OPS *ops)
 {
 	sel_inst_fieldname[index] = field_name;
 	sel_inst_fieldops[index] = (long)ops;
@@ -75,20 +57,17 @@ extern void sel_ops_restricts();
 
 long generic_field_count;
 
-errcode find_selector_ops(selname, nfields, table)
-char *selname;
-long nfields;
-struct SELOPS **table;
+errcode
+find_selector_ops(const char *selname, long nfields, struct SELOPS **table)
 {
 errcode err;
 struct SELOPS *temp;
 long nentries;
-long nops;
 long i, j, jj, k, ans, index, offset;
 CLUREF temp_proc;
 long *temp_type_owns, *temp_op_owns;
 struct OPS *ops;
-char *name, *name1, *field_name;
+const char *name, *name1, *field_name;
 long *op_own_ptr;
 bool found;
 static bool init = false;
@@ -250,23 +229,28 @@ if (init == false) {
 	signal(ERR_ok);
 }
 
-errcode missing_print_fcn(val, pst)
-CLUREF val, pst;
-{
-static bool init = false;
-static CLUREF msg;
-CLUREF ans, mpf;
-errcode err;
 
-	if (init == false) {
-		err = stringOPcons("no print function", CLU_1, CLU_17, &msg);  
-		if (err != ERR_ok) resignal(err);
-		init = true;
-		}
-	err = pstreamOPtext(pst, msg, &ans);
+errcode
+missing_print_fcn(CLUREF val, CLUREF pst)
+{
+    static bool init = false;
+    static CLUREF msg;
+
+    CLUREF ans;
+    errcode err;
+
+    if (init == false) {
+	err = stringOPcons("no print function", CLU_1, CLU_17, &msg);
 	if (err != ERR_ok) resignal(err);
-	signal(ERR_ok);
-	}
+	init = true;
+    }
+
+    err = pstreamOPtext(pst, msg, &ans);
+    if (err != ERR_ok) resignal(err);
+    signal(ERR_ok);
+}
+
+
 /* storage for following routine */
 
 OWNPTR	record_opsptr_arr[MAX_SELECTORS]; /* instantiated ops */
@@ -322,14 +306,11 @@ find_selops_init(OWNPTR *ans1, OWNPTR *ans2, OWNPTR *ans3, OWNPTR *ans4)
 /* routine to find selector ops given selector name, # of fields */
 /*	type info for fields is in sel_inst_info arrays */
 
-long find_sel_ops(selname, count, result)
-char *selname;
-long count;
-struct OPS **result;
+static long
+find_sel_ops(const char *selname, long count, struct OPS **result)
 {
 long i, j;
 bool found = false;
-struct OPS *new_owns;
 long *pcount;
 OWNPTR *table;
 long *(*parm_vals)[MAX_FIELDS];
@@ -395,10 +376,8 @@ long *parm_count;
 		}
 	}
 
-errcode add_sel_ops(selname, count, new_ops)
-char * selname;
-long count;
-struct OPS *new_ops;
+static errcode
+add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 {
 long j;
 long *pcount;
@@ -479,12 +458,10 @@ long count;
 /********************************************************/
 
 
-void sel_ops_counts(name, pfcount, paramcount, plaincount)
-char * name;
-long *pfcount, *paramcount, *plaincount;
+void
+sel_ops_counts(const char *name,
+	       long *pfcount, long *paramcount, long *plaincount)
 {
-long i;
-
 /*	if (strcmp(name, "oneof") == 0) { */
 	if (name[0] == 'o') {
 		*pfcount = 3;
@@ -523,12 +500,10 @@ long i;
 /********************************************************/
 
 
-void sel_ops_names(name, pfname, paramname, plainname)
-char * name;
-char ***pfname, ***paramname, ***plainname;
+void
+sel_ops_names(const char *name,
+	      char ***pfname, char ***paramname, char ***plainname)
 {
-long i;
-
 /*	if (strcmp(name, "oneof") == 0) { */
 	if (name[0] == 'o') {
 		*pfname = oneof_prefix_name_table;
@@ -567,12 +542,10 @@ long i;
 /********************************************************/
 
 
-void sel_ops_fcns(name, pffcn, paramfcn, plainfcn)
-char * name;
-PROC ***pffcn, ***paramfcn, ***plainfcn;
+void
+sel_ops_fcns(const char *name,
+	     PROC ***pffcn, PROC ***paramfcn, PROC ***plainfcn)
 {
-long i;
-
 /*	if (strcmp(name, "oneof") == 0) { */
 	if (name[0] == 'o') {
 		*pffcn = oneof_prefix_fcn_table;
@@ -610,12 +583,10 @@ long i;
 /********************************************************/
 
 
-void sel_ops_restricts(name, parm_reqs_names)
-char * name;
-char ***parm_reqs_names;
+void
+sel_ops_restricts(const char *name,
+		  char ***parm_reqs_names)
 {
-long i;
-
 /*	if (strcmp(name, "oneof") == 0) { */
 	if (name[0] == 'o') {
 		*parm_reqs_names = oneof_reqs_name_table;
