@@ -34,6 +34,9 @@
 #include <limits.h>
 #endif
 
+#include <string.h>
+
+
 #ifdef LINUX
 #define gcollect GC_gcollect
 #define gc_init GC_init
