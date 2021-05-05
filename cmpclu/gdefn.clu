@@ -372,40 +372,45 @@ g_ptypeownvars = proc(e: g_env, ti: initlist, aps: applydefnlist)
     g_env$blankline(e)
     end g_ptypeownvars
 
+
 % generate a routine to initialize own variables belonging to
 %	a parameterized type
 
 g_powninit = proc (e: g_env, ilist:initlist)
-    g_env$putl(e, "errcode " || current_type$get_name()
-		    || "_own_init_proc()")
+    g_env$putl(e, "errcode")
+    g_env$putl(e, current_type$get_name() || "_own_init_proc()")
     g_env$putl(e, "{")
+    g_env$indent(e)
+
+    own_defn_name: string := current_type$get_name() || "_OWN_DEFN"
+
     if dbg_info$active() then
-       g_env$putl(e, "struct {")
-       end
+	g_env$putl(e, "struct {")
+	g_env$indent(e)
+      end
     g_tbl$build_tables(e, 0)
     g_env$putl(e, "errcode err;")
+    g_env$putl(e, own_defn_name || " *type_own_ptr;")
     if dbg_info$active() then
-       g_env$puts(e, current_type$get_name() || "_OWN_DEFN *type_own_ptr;")
-       g_env$putl(e, "} locals;")
-       end
-    if dbg_info$active()
-       then
-	    g_env$puts(e, "locals.type_own_ptr = (")
-	    g_env$puts(e, current_type$get_name() || "_OWN_DEFN")
-	    g_env$putl(e, " *) CUR_PROC_VAR.proc->type_owns;")
-       else
-	    g_env$puts(e, current_type$get_name() || "_OWN_DEFN *type_own_ptr = (")
-	    g_env$puts(e, current_type$get_name() || "_OWN_DEFN")
-	    g_env$putl(e, " *) CUR_PROC_VAR.proc->type_owns;")
-       end
+	g_env$outdent(e)
+	g_env$putl(e, "} locals;")
+      end
+
+    g_locals(e)
+    g_env$puts(e, "type_own_ptr = (")
+    g_env$puts(e, own_defn_name)
+    g_env$putl(e, " *)CUR_PROC_VAR.proc->type_owns;")
     g_env$blankline(e)
-    g_env$indent(e)
-    g_env$outdent(e)
+
     g_env$putl(e, "enter_own_init_proc();")
     g_pownvars(e, ilist, 2)
+
+    g_env$putl(e, "signal(ERR_ok);")
+    g_env$outdent(e)
     g_env$putl(e, "}")
     g_env$blankline(e)
-    end g_powninit
+  end g_powninit
+
 
 % generate a routine to initialize own variables belonging to
 %	unparameterized type
