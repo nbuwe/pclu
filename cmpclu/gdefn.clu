@@ -478,17 +478,17 @@ g_pownvars = proc (e: g_env, ilist: initlist, pass:int)
        g_env$putl(e, "long " || ref || "_own_init;")
        end
     if pass = 2 then
-       g_env$indent(e)
-
        % if 1st time in this apply, then build constant tables
        if g_tbl$exist() cor g_const$exist() then
 	  g_env$putl(e, "if (" || s_locals() || ptr || "->" || 
 			ref ||"_own_init == 0) {")
+	  g_env$indent(e)
 	  g_tbl$build_tables(e, 1)
 	  g_const$g_consts(e, 1)
 	  % build dynamic table
 	  g_tbl$build_tables(e, 2)
 	  g_const$g_consts(e, 2)
+	  g_env$outdent(e)
           g_env$putl(e, "}")
 	  end
 
@@ -500,17 +500,17 @@ g_pownvars = proc (e: g_env, ilist: initlist, pass:int)
 	  then
 	       if current_type$parmd()
 		  then
-		       g_env$indent(e)
 		       g_env$putl(e, "if (" || s_locals() ||
 				     "type_own_ptr->" || current_type$get_name() ||
 				     "_own_init == 0) {")
+		       g_env$indent(e)
 		       g_env$putl(e, generic_name||".type_owns = (OWNPTR)" || s_locals() || "type_own_ptr;")
 		       g_env$putl(e, generic_name||".op_owns = 0;")
 		       g_env$putl(e, generic_name || ".proc = " || current_type$get_name() || "_own_init_proc;")
 		       g_env$putl(e, s_locals() || "err = "||generic_name||".proc();")
 		       g_env$putl(e, "if (" || s_locals() || "err != ERR_ok) goto ex_0;")
-		       g_env$putl(e, "}")
 		       g_env$outdent(e)
+		       g_env$putl(e, "}")
 		  else
 		       % catching of err added 8/24/90
 		       g_env$putl(e, "if (" ||  current_type$get_name() ||
@@ -519,14 +519,15 @@ g_pownvars = proc (e: g_env, ilist: initlist, pass:int)
 		       g_env$putl(e, s_locals() || "err = " || current_type$get_name() ||
 				     "_own_init_proc();")
 		       g_env$putl(e, "if (" || s_locals() || "err != ERR_ok) goto ex_0;")
-		       g_env$putl(e, "}")
 		       g_env$outdent(e)
+		       g_env$putl(e, "}")
 		  end
 	  end
 
        % if 1st time in this apply, then build do apply's own init
        g_env$putl(e, "if (" || s_locals() || ptr || "->" || ref 
 		       ||"_own_init == 0) {")
+       g_env$indent(e)
        g_env$putl(e, s_locals() || ptr || "->" || ref
 		       || "_own_init = 1;")
        end
@@ -535,14 +536,12 @@ g_pownvars = proc (e: g_env, ilist: initlist, pass:int)
 	g_env$newline(e)
 	end
     if pass = 2 then
-       g_env$outdent(e)
        if current_type$exists() cand current_apply$is_type_own_init() then
-	  g_env$indent(e)
 	  g_env$putl(e, "{signal(ERR_ok);}") %return->signal 5/22/90
 	  % unhandled 8/24/90
 	  g_env$putl(e, "ex_0: pclu_unhandled(" || s_locals() || "err); {signal(ERR_failure);}")
-	  g_env$outdent(e)
 	  end
+       g_env$outdent(e)
        g_env$putl(e, "}")
        end
     if pass = 1 then
@@ -550,9 +549,9 @@ g_pownvars = proc (e: g_env, ilist: initlist, pass:int)
        own_defn$start()
        g_tbl$g_field_tables(e, dynamic)
        defn_name: string := op_own_name()
+       g_env$outdent(e)
        g_env$putl(e, "} " || defn_name || "_OWN_DEFN;")
        own_defn$stop()
-       g_env$outdent(e)
        g_env$putl(e, "OWN_req " || defn_name || "_ownreqs"
 		       || " = {sizeof(" || defn_name || "_OWN_DEFN), "
        		       || int$unparse(own_counter(ilist)) || "};")
