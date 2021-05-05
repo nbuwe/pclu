@@ -97,10 +97,15 @@ typedef long errcode;
 #define UMAXERR 503
 #define MAX_INTERNAL_ERROR	1000
 
+/*
+ * FIXME: Compiler only emits errcmp() when s2 is a string (it emits
+ * == otherwise), hence the first "false".  But then checking s2 for
+ * being a numeric error is redundant.
+ */
 #define errcmp(s1, s2) \
 	(((long) (s1) < 0 && (long)(s1) > -MAX_INTERNAL_ERROR) ? false : \
 	(((long) (s2) < 0 && (long)(s2) > -MAX_INTERNAL_ERROR) ? false : \
-		(!strcmp(s1, s2))))
+		strcmp((const char *)(s1), (s2)) == 0))
 #if defined(sun) && defined(sparc) /* errcmp macro breaks -O on Sparcs */
 #undef errcmp
 #endif
