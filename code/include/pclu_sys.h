@@ -343,6 +343,8 @@ extern errcode arrayOPnew();
 extern errcode arrayOPaddh();
 
 /* calls to private OPs emitted by the compiler */
+extern errcode proctypeOPnew(CLUREF nops, CLUREF *ans);
+extern errcode sequenceOPnew2(CLUREF size, CLUREF *ans);
 extern errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
 
 
