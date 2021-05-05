@@ -423,7 +423,7 @@ g_inv1 = proc(e: g_env, exp: expr) returns (exprlist)
 	   g_env$puts(e, generic_name || ".op_owns = ")
 	   if exprlist$size(parm_list) ~= 0
 	      then
-		   g_env$puts(e, "(long)" || s_owns_prefix_exprlist(parm_list))
+		   g_env$puts(e, s_owns_prefix_exprlist(parm_list))
 		   g_env$puts(e, gen.common || "_of_")
 		   for ind: int in exprlist$indexes(parm_list) do
 		       g_expr4(e, parm_list[ind])
