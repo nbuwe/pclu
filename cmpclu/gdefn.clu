@@ -429,6 +429,7 @@ g_owninit = proc (e: g_env, ilist:initlist) returns (bool)
 	  end
        g_env$putl(e, "enter_own_init_proc();")
        g_ownvars(e, ilist, 2)
+       g_env$putl(e, "signal(ERR_ok);")
        g_env$outdent(e)
        g_env$putl(e, "}")
        g_env$blankline(e)
