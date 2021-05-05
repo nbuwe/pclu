@@ -752,8 +752,19 @@ struct OP_ENTRY _gcd;
 struct OP_ENTRY debug_print;
 } selector_TABLE;
 
-selector_REQS selector_reqs_actual = {8, "equal", "similar", "copy", "print", "encode", "decode",
-"_gcd", "debug_print"};
+selector_REQS selector_reqs_actual = {
+    8,
+    {
+	{ "equal" },
+	{ "similar" },
+	{ "copy" },
+	{ "print" },
+	{ "encode" },
+	{ "decode" },
+	{ "_gcd" },
+	{ "debug_print" },
+    }
+};
 
 selector_REQS *selector_reqs = &selector_reqs_actual;
 
