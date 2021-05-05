@@ -520,11 +520,6 @@ struct OP_ENTRY {
 	C_STRING name;
 	};
 
-struct SELOP_ENTRY {
-	CLUSELPROC fcn;
-	C_STRING name;
-	};
-
 struct OPS {
 	long count;
 	OWNPTR	type_owns;
@@ -533,6 +528,11 @@ struct OPS {
 	} OPS;
 
 typedef struct OPS * OPSPTR;
+
+struct SELOP_ENTRY {
+	CLUSELPROC fcn;
+	C_STRING name;
+	};
 
 struct SELOPS {
 	long count;
