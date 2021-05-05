@@ -107,7 +107,7 @@ PROC **pf_op_fcns, **parm_op_fcns, **plain_op_fcns;
 
 /* initial procedure type object for missing print function */
 if (init == false) {
-	err = proctypeOPnew(1, &mpf);
+	err = proctypeOPnew(CLU_1, &mpf);
 	if (err != ERR_ok) resignal(err);
 	mpf.proc->proc = missing_print_fcn;
 	init = true;
@@ -138,7 +138,7 @@ if (init == false) {
 
 	for (i = 0; i < parm_op_count; i++) {
 		temp->entry[i].name = parm_op_names[i];
-		err = proctypeOPnew(1, &temp_proc);
+		err = proctypeOPnew(CLU_1, &temp_proc);
 		if (err != ERR_ok) resignal(err);
 		temp->entry[i].fcn = temp_proc.selproc;
 
@@ -161,7 +161,7 @@ if (init == false) {
 
 	for (j = 0; j < plain_op_count; j++, i++) {
 		temp->entry[i].name = plain_op_names[j];
-		err = proctypeOPnew(1, &temp_proc);
+		err = proctypeOPnew(CLU_1, &temp_proc);
 		if (err != ERR_ok) resignal(err);
 		temp->entry[i].fcn = temp_proc.selproc;
 
@@ -175,7 +175,7 @@ if (init == false) {
 	for (k = 0; k < nfields; k++) {
 	for (j = 0; j < pf_op_count; j++, i++) {
 		temp->entry[i].name = pf_op_names[j];
-		err = proctypeOPnew(1, &temp_proc);
+		err = proctypeOPnew(CLU_1, &temp_proc);
 		if (err != ERR_ok) resignal(err);
 		temp->entry[i].fcn = temp_proc.selproc;
 
