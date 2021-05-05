@@ -342,6 +342,10 @@ errcode start_up(void);
 extern errcode arrayOPnew();
 extern errcode arrayOPaddh();
 
+/* calls to private OPs emitted by the compiler */
+extern errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
+
+
 extern CLUREF CUR_PROC_VAR;
 extern long CLU_TRACE;
 extern errcode debugOPenter_proc();
