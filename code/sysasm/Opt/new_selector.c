@@ -598,37 +598,3 @@ sel_ops_restricts(const char *name,
 	fprintf(stderr, "sel_ops_fcns: bad name %s\n", name);
 	exit(-1);
 	}
-/*********************************************************
-long sel_ops_count(name, prefix_name_table, restrict_fcn_table, field_access_table)
-char *name;
-char ***prefix_name_table;
-char **record_plain_name_table = {"o2v", v2o"};
-PROC ***restrict_fcn_table;
-PROC ***field_access_table;
-{
-long i;
-
-	if (strcmp(name, "oneof") == 0) {
-		*prefix_name_table = oneof_prefix_name_table;	
-		*restrict_fcn_table = oneof_restrict_fcn_table;	
-		*field_access_table = oneof_field_access_ops;	
-		return(3); }
-	if (strcmp(name, "variant") == 0) {
-		*prefix_name_table = variant_prefix_name_table;	
-		*restrict_fcn_table = variant_restrict_fcn_table;	
-		*field_access_table = variant_field_access_ops;	
-		return(4); }
-	if (strcmp(name, "record") == 0) {
-		*prefix_name_table = record_prefix_name_table;	
-		*restrict_fcn_table = record_restrict_fcn_table;	
-		*field_access_table = record_field_access_ops;	
-		return(2); }
-	if (strcmp(name, "struct") == 0) {
-		*prefix_name_table = struct_prefix_name_table;	
-		*restrict_fcn_table = struct_restrict_fcn_table;	
-		*field_access_table = struct_field_access_ops;	
-		return(2); }
-	fprintf(stderr, "sel_ops_count: bad name %s\n", name);
-	exit(-1);
-	}
-**********************************************************/
