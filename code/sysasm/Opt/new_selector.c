@@ -40,10 +40,14 @@ add_selector_info(const char *field_name, long index, struct OPS *ops)
 	signal(ERR_ok);	
 }
 
-extern void sel_ops_counts();
-extern void sel_ops_names();
-extern void sel_ops_fcns();
-extern void sel_ops_restricts();
+
+static void sel_ops_counts(const char *name,
+			   long *pfcount, long *paramcount, long *plaincount);
+static void sel_ops_names(const char *name,
+			  char ***pfname, char ***paramname, char ***plainname);
+static void sel_ops_fcns(const char *name,
+			 PROC ***pffcn, PROC ***paramfcn, PROC ***plainfcn);
+static void sel_ops_restricts(const char *name, char ***parm_reqs_names);
 
 /********************************************************/
 /*							*/
@@ -440,6 +444,7 @@ long *parm_count;
 /********************************************************/
 #include "selector.h"
 
+
 /********************************************************/
 /*							*/
 /*	Sel_Ops_Counts					*/
@@ -449,8 +454,7 @@ long *parm_count;
 /*							*/
 /********************************************************/
 
-
-void
+static void
 sel_ops_counts(const char *name,
 	       long *pfcount, long *paramcount, long *plaincount)
 {
@@ -482,6 +486,7 @@ sel_ops_counts(const char *name,
 	exit(-1);
 	}
 
+
 /********************************************************/
 /*							*/
 /*	Sel_Ops_Names					*/
@@ -491,8 +496,7 @@ sel_ops_counts(const char *name,
 /*							*/
 /********************************************************/
 
-
-void
+static void
 sel_ops_names(const char *name,
 	      char ***pfname, char ***paramname, char ***plainname)
 {
@@ -524,6 +528,7 @@ sel_ops_names(const char *name,
 	exit(-1);
 	}
 
+
 /********************************************************/
 /*							*/
 /*	Sel_Ops_Fcns					*/
@@ -533,8 +538,7 @@ sel_ops_names(const char *name,
 /*							*/
 /********************************************************/
 
-
-void
+static void
 sel_ops_fcns(const char *name,
 	     PROC ***pffcn, PROC ***paramfcn, PROC ***plainfcn)
 {
@@ -566,6 +570,7 @@ sel_ops_fcns(const char *name,
 	exit(-1);
 	}
 
+
 /********************************************************/
 /*							*/
 /*	Sel_Ops_Restricts				*/
@@ -574,8 +579,7 @@ sel_ops_fcns(const char *name,
 /*							*/
 /********************************************************/
 
-
-void
+static void
 sel_ops_restricts(const char *name,
 		  char ***parm_reqs_names)
 {
