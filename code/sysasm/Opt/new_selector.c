@@ -426,14 +426,6 @@ long *parm_count;
 		signal(ERR_ok);
 		}	
 
-struct {
-long count;
-long init_flags[40];
-} generic_inst_info;
-
-struct {
-long count;
-} generic_own_reqs = {0};
 
 /********************************************************/
 /*							*/
