@@ -652,10 +652,21 @@ PROC *variant_prefix_fcn_table[120] = {
 
 
 
-char *oneof_prefix_name_table[3] = {"make_", "value_", "is_"};
-char *variant_prefix_name_table[4] = {"make_", "value_", "is_", "change_"};
-char *record_prefix_name_table[2] = {"get_", "set_"};
-char *struct_prefix_name_table[2] = {"get_", "replace_"};
+const char * const oneof_prefix_name_table[3] = {
+    "make_", "value_", "is_"
+};
+
+const char * const variant_prefix_name_table[4] = {
+    "make_", "value_", "is_", "change_"
+};
+
+const char * const record_prefix_name_table[2] = {
+    "get_", "set_"
+};
+
+const char * const struct_prefix_name_table[2] = {
+    "get_", "replace_"
+};
 
 extern errcode oneofOPequal();
 extern errcode oneofOPcopy();
@@ -768,25 +779,61 @@ selector_REQS selector_reqs_actual = {
 
 selector_REQS *selector_reqs = &selector_reqs_actual;
 
-char *oneof_param_name_table[8] = {"equal", "similar", "copy", "print", "encode", "decode",
-"_gcd", "debug_print"};
-char *variant_param_name_table[8] = {"similar", "similar1", "copy", "print", "encode", "decode",
-"_gcd", "debug_print"};
-char *record_param_name_table[8] = {"similar", "similar1", "copy", "print", "encode", "decode",
-"_gcd", "debug_print"};
-char *struct_param_name_table[8] = {"equal", "similar", "copy", "print", "encode", "decode",
-"_gcd", "debug_print"};
 
-char *oneof_reqs_name_table[8] = {"equal", "similar", "copy", "print", "encode", "decode",
-"_gcd", "debug_print"};
-char *variant_reqs_name_table[8] = {"similar", "equal", "copy", "print", "encode", "decode",
-"_gcd", "debug_print"};
-char *record_reqs_name_table[8] = {"similar", "equal", "copy", "print", "encode", "decode",
-"_gcd", "debug_print"};
-char *struct_reqs_name_table[8] = {"equal", "similar", "copy", "print", "encode", "decode",
-"_gcd", "debug_print"};
+static const char * const oneof_param_name_table[8] = {
+    "equal", "similar", "copy", "print",
+    "encode", "decode", "_gcd", "debug_print"
+};
 
-char *oneof_plain_name_table[2] = {"o2v", "v2o"};
-char *variant_plain_name_table[4] = {"v_gets_v", "v_gets_o", "equal", "copy1"};
-char *record_plain_name_table[4] = {"r_gets_r", "r_gets_s", "equal", "copy1"};
-char *struct_plain_name_table[2] = {"s2r", "r2s"};
+static const char * const variant_param_name_table[8] = {
+    "similar", "similar1", "copy", "print",
+    "encode", "decode", "_gcd", "debug_print"
+};
+
+static const char * const record_param_name_table[8] = {
+    "similar", "similar1", "copy", "print",
+    "encode", "decode", "_gcd", "debug_print"
+};
+
+static const char * const struct_param_name_table[8] = {
+    "equal", "similar", "copy", "print",
+    "encode", "decode", "_gcd", "debug_print"
+};
+
+
+static const char * const oneof_reqs_name_table[8] = {
+    "equal", "similar", "copy", "print",
+    "encode", "decode", "_gcd", "debug_print"
+};
+
+static const char * const variant_reqs_name_table[8] = {
+    "similar", "equal", "copy", "print",
+    "encode", "decode", "_gcd", "debug_print"
+};
+
+static const char * const record_reqs_name_table[8] = {
+    "similar", "equal", "copy", "print",
+    "encode", "decode", "_gcd", "debug_print"
+};
+
+static const char * const struct_reqs_name_table[8] = {
+    "equal", "similar", "copy", "print",
+    "encode", "decode", "_gcd", "debug_print"
+};
+
+
+static const char * const oneof_plain_name_table[2] = {
+    "o2v", "v2o"
+};
+
+static const char * const variant_plain_name_table[4] = {
+    "v_gets_v", "v_gets_o", "equal", "copy1"
+};
+
+static const char * const record_plain_name_table[4] = {
+    "r_gets_r", "r_gets_s", "equal", "copy1"
+};
+
+static const char * const struct_plain_name_table[2] = {
+    "s2r", "r2s"
+};
