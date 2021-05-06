@@ -266,7 +266,7 @@ struct OPS ** table;
 long *defs;
 {
 long i,j;
-char *name, *name1;
+const char *name, *name1;
 struct OPS * temp;
 errcode err;
 
@@ -368,7 +368,7 @@ long *defs;
 {
 struct OPS * temp;
 long i,j;
-char *name, *name1;
+const char *name, *name1;
 
 	temp = *table;
 /* added one to number of entries to cover print function for debugger 11/12/91*/

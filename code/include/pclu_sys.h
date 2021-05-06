@@ -509,69 +509,70 @@ extern CLUREF	array_bounds_exception_STRING;
 /*							*/
 /*		GENERIC PARAMETER DEFINITIONS		*/
 /*							*/
-struct REQ_ENTRY { 
-	C_STRING name;
-	};
+struct REQ_ENTRY {
+    const char *name;
+};
 
 struct REQS {
-	long count;
-	struct REQ_ENTRY entry[VARYING_LENGTH];
-	} REQS;
+    long count;
+    struct REQ_ENTRY entry[VARYING_LENGTH];
+} REQS;
 
 struct OP_ENTRY {
-	CLUPROC fcn;
-	C_STRING name;
-	};
+    CLUPROC fcn;
+    const char *name;
+};
 
 struct OPS {
-	long count;
-	OWNPTR	type_owns;
-	OWNPTR  op_owns;
-	struct OP_ENTRY entry[VARYING_LENGTH];
-	} OPS;
+    long count;
+    OWNPTR type_owns;
+    OWNPTR op_owns;
+    struct OP_ENTRY entry[VARYING_LENGTH];
+} OPS;
 
-typedef struct OPS * OPSPTR;
+typedef struct OPS *OPSPTR;
 
 struct SELOP_ENTRY {
-	CLUSELPROC fcn;
-	C_STRING name;
-	};
+    CLUSELPROC fcn;
+    const char *name;
+};
 
 struct SELOPS {
-	long count;
-	OWNPTR	type_owns;
-	OWNPTR  op_owns;
-	struct SELOP_ENTRY entry[VARYING_LENGTH];
-	} SELOPS;
+    long count;
+    OWNPTR type_owns;
+    OWNPTR op_owns;
+    struct SELOP_ENTRY entry[VARYING_LENGTH];
+} SELOPS;
 
 typedef struct {
-	long count;
-	C_STRING name[VARYING_LENGTH];
-	} RLIST;
+    long count;
+    const char *name[VARYING_LENGTH];
+} RLIST;
 
 typedef struct {
-	RLIST *param[VARYING_LENGTH];
-	} PTABLE;
+    RLIST *param[VARYING_LENGTH];
+} PTABLE;
 
 typedef struct {
-	char 	*name;
-	errcode (*proc)();
-	bool	restricted;
-	PTABLE  *_restrict;
-	} TG_ENTRY;
+    char *name;
+    errcode (*proc)();
+    bool restricted;
+    PTABLE *_restrict;
+} TG_ENTRY;
 
 typedef struct {
-	long pcount;		/* number of parameters */
-	long count;		/* nubmer of operations */
-	TG_ENTRY entry[VARYING_LENGTH];	/* one per operation	*/
-	} TG_OPS;
+    long pcount;		    /* number of parameters */
+    long count;			    /* number of operations */
+    TG_ENTRY entry[VARYING_LENGTH]; /* one per operation    */
+} TG_OPS;
 
 struct {
-	long count;
-	OWNPTR	type_owns;
-	OWNPTR  op_owns;
-	struct OP_ENTRY entry[VARYING_LENGTH];
-	} TABLE;
+    long count;
+    OWNPTR type_owns;
+    OWNPTR op_owns;
+    struct OP_ENTRY entry[VARYING_LENGTH];
+} TABLE;
+
 
 typedef struct {
 	long hdr;
