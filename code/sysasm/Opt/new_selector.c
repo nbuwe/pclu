@@ -59,8 +59,6 @@ static void sel_ops_restricts(const char *name, char ***parm_reqs_names);
 /*							*/
 /********************************************************/
 
-long generic_field_count;
-
 errcode
 find_selector_ops(const char *selname, long nfields, struct SELOPS **table)
 {
@@ -101,7 +99,6 @@ if (init == false) {
 	temp_type_owns[0] = 1;
 
 /* gather up some initial context */
-	generic_field_count = nfields;
         sel_ops_counts(selname, &pf_op_count, &parm_op_count, &plain_op_count);
         sel_ops_names(selname, &pf_op_names, &parm_op_names, &plain_op_names);
         sel_ops_fcns(selname, &pf_op_fcns, &parm_op_fcns, &plain_op_fcns);
