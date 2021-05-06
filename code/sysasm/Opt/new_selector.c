@@ -42,6 +42,7 @@ add_selector_info(const char *field_name, long index, struct OPS *ops)
 
 
 typedef const char * const *nametable_t;
+typedef PROC * const *proctable_t;
 
 static void sel_ops_counts(const char *name,
 			   long *pfcount, long *paramcount, long *plaincount);
@@ -50,7 +51,9 @@ static void sel_ops_names(const char *name,
 			  nametable_t *paramname,
 			  nametable_t *plainname);
 static void sel_ops_fcns(const char *name,
-			 PROC ***pffcn, PROC ***paramfcn, PROC ***plainfcn);
+			 proctable_t *pffcn,
+			 proctable_t *paramfcn,
+			 proctable_t *plainfcn);
 static void sel_ops_restricts(const char *name,
 			      nametable_t *parm_reqs_names);
 
@@ -85,7 +88,7 @@ nametable_t pf_op_names;
 nametable_t parm_op_names;
 nametable_t plain_op_names;
 nametable_t parm_restrict_name;
-PROC **pf_op_fcns, **parm_op_fcns, **plain_op_fcns;
+proctable_t pf_op_fcns, parm_op_fcns, plain_op_fcns;
 
 /* try to find an existing ops */
 	ans = find_sel_ops(selname, nfields, (struct OPS**)table);
@@ -546,7 +549,7 @@ sel_ops_names(const char *name,
 
 static void
 sel_ops_fcns(const char *name,
-	     PROC ***pffcn, PROC ***paramfcn, PROC ***plainfcn)
+	     proctable_t *pffcn, proctable_t *paramfcn, proctable_t *plainfcn)
 {
 /*	if (strcmp(name, "oneof") == 0) { */
 	if (name[0] == 'o') {

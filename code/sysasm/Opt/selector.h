@@ -62,7 +62,7 @@ extern errcode recordOPset_24();
 extern errcode recordOPget_25();
 extern errcode recordOPset_25();
 
-PROC *record_prefix_fcn_table[50] = {
+static PROC * const record_prefix_fcn_table[50] = {
     recordOPget_1,
     recordOPset_1,
     recordOPget_2,
@@ -113,7 +113,7 @@ PROC *record_prefix_fcn_table[50] = {
     recordOPset_24,
     recordOPget_25,
     recordOPset_25,
-    };
+};
 
 
 extern errcode structOPget_1();
@@ -167,7 +167,7 @@ extern errcode structOPreplace_24();
 extern errcode structOPget_25();
 extern errcode structOPreplace_25();
 
-PROC *struct_prefix_fcn_table[50] = {
+static PROC * const struct_prefix_fcn_table[50] = {
     structOPget_1,
     structOPreplace_1,
     structOPget_2,
@@ -218,7 +218,7 @@ PROC *struct_prefix_fcn_table[50] = {
     structOPreplace_24,
     structOPget_25,
     structOPreplace_25,
-    };
+};
 
 
 extern errcode oneofOPmake_1();
@@ -312,7 +312,7 @@ extern errcode oneofOPmake_30();
 extern errcode oneofOPvalue_30();
 extern errcode oneofOPis_30();
 
-PROC *oneof_prefix_fcn_table[90] = {
+static PROC * const oneof_prefix_fcn_table[90] = {
     oneofOPmake_1,
     oneofOPvalue_1,
     oneofOPis_1,
@@ -403,7 +403,7 @@ PROC *oneof_prefix_fcn_table[90] = {
     oneofOPmake_30,
     oneofOPmake_30,
     oneofOPvalue_30,
-    };
+};
 
 
 extern errcode variantOPmake_1();
@@ -527,7 +527,7 @@ extern errcode variantOPvalue_30();
 extern errcode variantOPis_30();
 extern errcode variantOPchange_30();
 
-PROC *variant_prefix_fcn_table[120] = {
+static PROC * const variant_prefix_fcn_table[120] = {
     variantOPmake_1,
     variantOPvalue_1,
     variantOPis_1,
@@ -648,7 +648,7 @@ PROC *variant_prefix_fcn_table[120] = {
     variantOPvalue_30,
     variantOPis_30,
     variantOPchange_30,
-    };
+};
 
 
 
@@ -706,18 +706,26 @@ extern errcode structOPdecode();
 extern errcode structOP_gcd();
 extern errcode structOPdebug_print();
 
-PROC *oneof_param_fcn_table[8] = 
-	{oneofOPequal, oneofOPsimilar, oneofOPcopy, oneofOPprint, 
-		oneofOPencode, oneofOPdecode, oneofOP_gcd, oneofOPdebug_print};
-PROC *variant_param_fcn_table[8] = 
-	{variantOPsimilar, variantOPsimilar1, variantOPcopy, variantOPprint,
-		variantOPencode, variantOPdecode, variantOP_gcd, variantOPdebug_print};
-PROC *record_param_fcn_table[8] = 
-	{recordOPsimilar, recordOPsimilar1, recordOPcopy, recordOPprint,
-		recordOPencode, recordOPdecode, recordOP_gcd, recordOPdebug_print};
-PROC *struct_param_fcn_table[8] = 
-	{structOPequal, structOPsimilar, structOPcopy, structOPprint,
-		structOPencode, structOPdecode, structOP_gcd, structOPdebug_print};
+static PROC * const oneof_param_fcn_table[8] = {
+    oneofOPequal, oneofOPsimilar, oneofOPcopy, oneofOPprint,
+    oneofOPencode, oneofOPdecode, oneofOP_gcd, oneofOPdebug_print
+};
+
+static PROC * const variant_param_fcn_table[8] = {
+    variantOPsimilar, variantOPsimilar1, variantOPcopy, variantOPprint,
+    variantOPencode, variantOPdecode, variantOP_gcd, variantOPdebug_print
+};
+
+static PROC * const record_param_fcn_table[8] =	{
+    recordOPsimilar, recordOPsimilar1, recordOPcopy, recordOPprint,
+    recordOPencode, recordOPdecode, recordOP_gcd, recordOPdebug_print
+};
+
+static PROC * const struct_param_fcn_table[8] = {
+    structOPequal, structOPsimilar, structOPcopy, structOPprint,
+    structOPencode, structOPdecode, structOP_gcd, structOPdebug_print
+};
+
 
 extern errcode oneofOPo2v();
 extern errcode oneofOPv2o();
@@ -732,14 +740,22 @@ extern errcode recordOPcopy1();
 extern errcode structOPs2r();
 extern errcode structOPr2s();
 
-PROC *oneof_plain_fcn_table[2] = 
-	{oneofOPo2v, oneofOPv2o};
-PROC *variant_plain_fcn_table[4] = 
-	{variantOPv_gets_v, variantOPv_gets_o, variantOPequal, variantOPcopy1};
-PROC *record_plain_fcn_table[4] = 
-	{recordOPr_gets_r, recordOPr_gets_s, recordOPequal, recordOPcopy1};
-PROC *struct_plain_fcn_table[2] = 
-	{structOPs2r, structOPr2s};
+static PROC * const oneof_plain_fcn_table[2] = {
+    oneofOPo2v, oneofOPv2o
+};
+
+static PROC * const variant_plain_fcn_table[4] = {
+    variantOPv_gets_v, variantOPv_gets_o, variantOPequal, variantOPcopy1
+};
+
+static PROC * const record_plain_fcn_table[4] = {
+    recordOPr_gets_r, recordOPr_gets_s, recordOPequal, recordOPcopy1
+};
+
+static PROC * const struct_plain_fcn_table[2] = {
+    structOPs2r, structOPr2s
+};
+
 
 typedef struct {
 int count;
