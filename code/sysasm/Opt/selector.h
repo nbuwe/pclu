@@ -1,15 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-/* $Header: selector.h,v 1.2 91/06/06 13:33:20 root Exp $
- * $Log:	selector.h,v $
- * Revision 1.2  91/06/06  13:33:20  root
- * added copyright notice
- * 
- * Revision 1.1  91/02/04  15:49:59  mtv
- * Initial revision
- * 
- */
 
 extern errcode recordOPget_1();
 extern errcode recordOPset_1();
