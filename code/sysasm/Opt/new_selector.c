@@ -365,6 +365,10 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
 	parm_count = oneof_field_count;
 	parm_vals = oneof_field_vals;
     }
+    else {
+	fprintf(stderr, "%s: bad name %s\n", __func__, selname);
+	exit(-1);
+    }
 
 
     long slot;
@@ -429,6 +433,11 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 	parm_count = oneof_field_count;
 	parm_vals = oneof_field_vals;
     }
+    else {
+	fprintf(stderr, "%s: bad name %s\n", __func__, selname);
+	exit(-1);
+    }
+
 
     long slot = *pcount;
     if (slot == MAX_SELECTORS) {
