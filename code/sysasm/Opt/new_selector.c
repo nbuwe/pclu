@@ -14,13 +14,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdlib.h>
 #include <string.h>
+
+#ifndef __arraycount
+#define __arraycount(__x) (sizeof(__x) / sizeof(__x[0]))
+#endif
 
 /* pstream$text = proc (ps: cvt, s: string) returns (bool) */
 extern errcode pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1);
-
-static errcode add_sel_ops(const char *selname, long count, struct OPS *new_ops);
-static long find_sel_ops(const char *selname, long count, struct OPS **result);
 
 extern char *mystrcat(const char *s1, const char *s2);
 extern errcode missing_print_fcn();
@@ -35,14 +37,17 @@ static long sel_inst_fieldops[MAX_FIELDS];
 errcode
 add_selector_info(const char *field_name, long index, struct OPS *ops)
 {
-	sel_inst_fieldname[index] = field_name;
-	sel_inst_fieldops[index] = (long)ops;
-	signal(ERR_ok);	
+    sel_inst_fieldname[index] = field_name;
+    sel_inst_fieldops[index] = (long)ops;
+    signal(ERR_ok);
 }
 
 
 typedef const char * const *nametable_t;
 typedef PROC * const *proctable_t;
+
+static errcode add_sel_ops(const char *selname, long count, struct OPS *new_ops);
+static long find_sel_ops(const char *selname, long count, struct OPS **result);
 
 static void sel_ops_counts(const char *name,
 			   long *pfcount, long *paramcount, long *plaincount);
@@ -70,174 +75,174 @@ static void sel_ops_restricts(const char *name,
 errcode
 find_selector_ops(const char *selname, long nfields, struct SELOPS **table)
 {
-errcode err;
-struct SELOPS *temp;
-long nentries;
-long i, j, jj, k, ans, index, offset;
-CLUREF temp_proc;
-long *temp_type_owns, *temp_op_owns;
-struct OPS *ops;
-const char *name, *name1, *field_name;
-long *op_own_ptr;
-bool found;
-static bool init = false;
-static CLUREF mpf;
+    static bool init = false;
+    static CLUREF mpf;
 
-long pf_op_count, parm_op_count, plain_op_count;
-nametable_t pf_op_names;
-nametable_t parm_op_names;
-nametable_t plain_op_names;
-nametable_t parm_restrict_name;
-proctable_t pf_op_fcns, parm_op_fcns, plain_op_fcns;
+    errcode err;
+    struct SELOPS *temp;
+    long nentries;
+    long i, j, jj, k, ans, index, offset;
+    CLUREF temp_proc;
+    long *temp_type_owns, *temp_op_owns;
+    struct OPS *ops;
+    const char *name, *name1, *field_name;
+    long *op_own_ptr;
+    bool found;
 
-/* try to find an existing ops */
-	ans = find_sel_ops(selname, nfields, (struct OPS**)table);
-	if (ans == true) {
-		signal(ERR_ok);
-		}
+    long pf_op_count, parm_op_count, plain_op_count;
+    nametable_t pf_op_names, parm_op_names, plain_op_names;
+    proctable_t pf_op_fcns, parm_op_fcns, plain_op_fcns;
+    nametable_t parm_restrict_name;
 
-/* initial procedure type object for missing print function */
-if (init == false) {
+    /* try to find an existing ops */
+    ans = find_sel_ops(selname, nfields, (struct OPS**)table);
+    if (ans == true) {
+	signal(ERR_ok);
+    }
+
+    /* initial procedure type object for missing print function */
+    if (init == false) {
 	err = proctypeOPnew(CLU_1, &mpf);
 	if (err != ERR_ok) resignal(err);
 	mpf.proc->proc = missing_print_fcn;
 	init = true;
+    }
+
+    /* create type owns */
+    clu_alloc(UNIT, &temp_type_owns);
+    temp_type_owns[0] = 1;	/* mark initialized */
+
+    /* gather up some initial context */
+    sel_ops_counts(selname, &pf_op_count, &parm_op_count, &plain_op_count);
+    sel_ops_names(selname, &pf_op_names, &parm_op_names, &plain_op_names);
+    sel_ops_fcns(selname, &pf_op_fcns, &parm_op_fcns, &plain_op_fcns);
+    sel_ops_restricts(selname, &parm_restrict_name);
+
+    /* create basic ops structure */
+    nentries = parm_op_count + plain_op_count + nfields * pf_op_count;
+    clu_alloc(sizeof(struct SELOPS) +
+	      (nentries - 1) * sizeof(struct SELOP_ENTRY), &temp);
+    temp->count = nentries;
+    temp->type_owns = (OWNPTR)temp_type_owns;
+    temp->op_owns = NULL;
+
+    /* set up storage for parameterized operations */
+    /* --- assumes 4th entry (i == 3) is print & allocates storage for names */
+    /* --- assumes 8th entry (i == 7) is debug_print & allocates storage for names */
+
+    for (i = 0; i < parm_op_count; ++i) {
+	temp->entry[i].name = parm_op_names[i];
+	err = proctypeOPnew(CLU_1, &temp_proc);
+	if (err != ERR_ok) resignal(err);
+	temp->entry[i].fcn = temp_proc.selproc;
+
+	if (i == 3 || i == 7) {
+	    clu_alloc(UNIT + nfields*sizeof(CLUPROC) + 
+		      nfields*sizeof(char*), &temp_op_owns);
+	}
+	else {
+	    clu_alloc(UNIT + nfields*sizeof(CLUPROC), 
+		      &temp_op_owns);
 	}
 
-/* create type owns */
-	clu_alloc(UNIT, &temp_type_owns);
-	temp_type_owns[0] = 1;
+	temp->entry[i].fcn->proc = parm_op_fcns[i];
+	temp->entry[i].fcn->type_owns = (OWNPTR)temp_type_owns;
+	temp->entry[i].fcn->op_owns = (OWNPTR)temp_op_owns;
+	temp_op_owns[0] = 1;
+    }
 
-/* gather up some initial context */
-        sel_ops_counts(selname, &pf_op_count, &parm_op_count, &plain_op_count);
-        sel_ops_names(selname, &pf_op_names, &parm_op_names, &plain_op_names);
-        sel_ops_fcns(selname, &pf_op_fcns, &parm_op_fcns, &plain_op_fcns);
-	sel_ops_restricts(selname, &parm_restrict_name);
+    /* set up storage for plain operations */
+    for (j = 0; j < plain_op_count; j++, i++) {
+	temp->entry[i].name = plain_op_names[j];
+	err = proctypeOPnew(CLU_1, &temp_proc);
+	if (err != ERR_ok) resignal(err);
+	temp->entry[i].fcn = temp_proc.selproc;
 
-/* create basic ops structure */
-	nentries = parm_op_count + plain_op_count + nfields * pf_op_count;
-	clu_alloc(sizeof(struct SELOPS) + 
-		(nentries-1)*sizeof(struct SELOP_ENTRY), &temp);
-	temp->count = nentries;
-	temp->type_owns = (OWNPTR)temp_type_owns;
-	temp->op_owns = 0;
+	temp->entry[i].fcn->proc = plain_op_fcns[j];
+#if 0
+	temp->entry[i].fcn->table = NULL;
+#endif
+    }
 
-/* set up storage for parameterized operations */
-/* 	--- assumes 4th entry (i == 3) is print & allocates storage for names */
-/* 	--- assumes 8th entry (i == 7) is debug_print & allocates storage for names */
-
-	for (i = 0; i < parm_op_count; i++) {
-		temp->entry[i].name = parm_op_names[i];
-		err = proctypeOPnew(CLU_1, &temp_proc);
-		if (err != ERR_ok) resignal(err);
-		temp->entry[i].fcn = temp_proc.selproc;
-
-		if (i == 3 || i == 7) {
-			clu_alloc(UNIT + nfields*sizeof(CLUPROC) + 
-				nfields*sizeof(char*), &temp_op_owns);
-			}
-		else {
-			clu_alloc(UNIT + nfields*sizeof(CLUPROC), 
-				&temp_op_owns);
-			}
-
-		temp->entry[i].fcn->proc = parm_op_fcns[i];
-		temp->entry[i].fcn->type_owns = (OWNPTR)temp_type_owns;
-		temp->entry[i].fcn->op_owns = (OWNPTR)temp_op_owns;
-		temp_op_owns[0] = 1;
-		}
-
-/* set up storage for plain operations */
-
-	for (j = 0; j < plain_op_count; j++, i++) {
-		temp->entry[i].name = plain_op_names[j];
-		err = proctypeOPnew(CLU_1, &temp_proc);
-		if (err != ERR_ok) resignal(err);
-		temp->entry[i].fcn = temp_proc.selproc;
-
-		temp->entry[i].fcn->proc = plain_op_fcns[j];
-/*		temp->entry[i].fcn->table = NULL; */
-		}
-
-/* set up storage for postfixable operations */
-
-	jj = 0;
-	for (k = 0; k < nfields; k++) {
+    /* set up storage for postfixable operations */
+    jj = 0;
+    for (k = 0; k < nfields; k++) {
 	for (j = 0; j < pf_op_count; j++, i++) {
-		temp->entry[i].name = pf_op_names[j];
-		err = proctypeOPnew(CLU_1, &temp_proc);
-		if (err != ERR_ok) resignal(err);
-		temp->entry[i].fcn = temp_proc.selproc;
-
-/*		temp->entry[i].fcn->proc = plain_op_fcns[j]; */
-		temp->entry[i].fcn->proc = pf_op_fcns[jj]; jj++;
-/*		temp->entry[i].fcn->table = NULL; */
-		}
-		}
+	    temp->entry[i].name = pf_op_names[j];
+	    err = proctypeOPnew(CLU_1, &temp_proc);
+	    if (err != ERR_ok) resignal(err);
+	    temp->entry[i].fcn = temp_proc.selproc;
+	    temp->entry[i].fcn->proc = pf_op_fcns[jj];
+	    ++jj;
+	}
+    }
 
      for (index = 0; index < nfields; index++) {
-	ops = (struct OPS *)sel_inst_fieldops[index];
-	field_name = sel_inst_fieldname[index];
-	for (i = 0; i < parm_op_count; i++) {
-		name = parm_restrict_name[i];
-		for (j = 0; j < ops->count; j++) {
-			name1 = ops->entry[j].name;
-			if (name1 == 0 || name1[0] != name[0]) continue;
-			if (!(strcmp(name1, name))) {
-				op_own_ptr = (long *)temp->entry[i].fcn->op_owns;
-				op_own_ptr[index+1] =
-					 (long)ops->entry[j].fcn;
-				break;}
-			}
-		}
-	offset = index*pf_op_count + parm_op_count + plain_op_count;
-	for (i = 0; i < pf_op_count; i++) {
-		temp->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
-		}
-	}
+	 ops = (struct OPS *)sel_inst_fieldops[index];
+	 field_name = sel_inst_fieldname[index];
+	 for (i = 0; i < parm_op_count; i++) {
+	     name = parm_restrict_name[i];
+	     for (j = 0; j < ops->count; j++) {
+		 name1 = ops->entry[j].name;
+		 if (name1 == 0 || name1[0] != name[0])
+		     continue;
+		 if (!(strcmp(name1, name))) {
+		     op_own_ptr = (long *)temp->entry[i].fcn->op_owns;
+		     op_own_ptr[index+1] =
+			 (long)ops->entry[j].fcn;
+		     break;}
+	     }
+	 }
+	 offset = index*pf_op_count + parm_op_count + plain_op_count;
+	 for (i = 0; i < pf_op_count; i++) {
+	     temp->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
+	 }
+     }
 
-/* set up storage for parameterized operations */
-/*	& names for postfixable operations */
-/* 	--- assumes 4th entry (i == 3) is print & adds field names */
-/* 	--- assumes 8th entry (i == 7) is print & adds field names */
+     /* set up storage for parameterized operations */
+     /*     & names for postfixable operations */
+     /* --- assumes 4th entry (i == 3) is print & adds field names */
+     /* --- assumes 8th entry (i == 7) is print & adds field names */
+     for (index = 0; index < nfields; ++index) {
+	 ops = (struct OPS *)sel_inst_fieldops[index];
+	 field_name = sel_inst_fieldname[index];
+	 for (i = 0; i < parm_op_count; ++i) {
+	     name = parm_restrict_name[i];
+	     found = false;
+	     for (j = 0; j < ops->count; ++j) {
+		 name1 = ops->entry[j].name;
+		 if (name1 == 0 || name1[0] != name[0])
+		     continue;
+		 if (!(strcmp(name1, name))) {
+		     op_own_ptr = (long *)temp->entry[i].fcn->op_owns;
+		     op_own_ptr[index+1] =
+			 (long)ops->entry[j].fcn;
+		     if (i == 3 || i == 7) {
+			 op_own_ptr[index+1+nfields] =
+			     (long)field_name;
+		     }
+		     found = true;
+		     break;
+		 }
+	     }
+	     if (found == false && (i == 3 || i == 7)) {
+		 op_own_ptr = (long *)temp->entry[i].fcn->op_owns;
+		 op_own_ptr[index+1] = (long)mpf.proc;
+		 op_own_ptr[index+1+nfields] = (long)field_name;
+	     }
+	 }
+	 offset = index*pf_op_count + parm_op_count + plain_op_count;
+	 for (i = 0; i < pf_op_count; ++i) {
+	     temp->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
+	 }
+     }
 
-     for (index = 0; index < nfields; index++) {
-	ops = (struct OPS *)sel_inst_fieldops[index];
-	field_name = sel_inst_fieldname[index];
-	for (i = 0; i < parm_op_count; i++) {
-		name = parm_restrict_name[i];
-		found = false;
-		for (j = 0; j < ops->count; j++) {
-			name1 = ops->entry[j].name;
-			if (name1 == 0 || name1[0] != name[0]) continue;
-			if (!(strcmp(name1, name))) {
-				op_own_ptr = (long *)temp->entry[i].fcn->op_owns;
-				op_own_ptr[index+1] =
-					 (long)ops->entry[j].fcn;
-				if (i == 3 || i == 7) {
-					op_own_ptr[index+1+nfields] =
-						 (long)field_name;
-					}
-				found = true; break;}
-			}
-		if (found == false && (i == 3 || i == 7)) {
-			op_own_ptr = (long *)temp->entry[i].fcn->op_owns;
-			op_own_ptr[index+1] = (long)mpf.proc;
-			op_own_ptr[index+1+nfields] = (long)field_name;
-			}
-		}
-	offset = index*pf_op_count + parm_op_count + plain_op_count;
-	for (i = 0; i < pf_op_count; i++) {
-		temp->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
-		}
-	}
+     /* save ops for future users */
+     add_sel_ops(selname, nfields, (struct OPS*)temp);
 
-/* save ops for future users */
-	add_sel_ops(selname, nfields, (struct OPS*)temp);
-
-/* return created ops */
-	*table = temp;
-	signal(ERR_ok);
+     /* return created ops */
+     *table = temp;
+     signal(ERR_ok);
 }
 
 
@@ -278,6 +283,7 @@ long *	record_field_vals [MAX_SELECTORS][MAX_FIELDS];
 long *	struct_field_vals [MAX_SELECTORS][MAX_FIELDS];
 long *	variant_field_vals [MAX_SELECTORS][MAX_FIELDS];
 long *	oneof_field_vals [MAX_SELECTORS][MAX_FIELDS];
+
 static long record_num_entries = 0;
 static long struct_num_entries = 0;
 static long variant_num_entries = 0;
@@ -288,29 +294,29 @@ void
 find_selops_init(OWNPTR *ans1, OWNPTR *ans2, OWNPTR *ans3, OWNPTR *ans4)
 {
 #if 0 /* removed 1/28/91 to speed up start_up dwc */
-	for (size_t i = 0; i < MAX_SELECTORS; i++) {
+    for (size_t i = 0; i < MAX_SELECTORS; i++) {
+	record_opsptr_arr[i] = NULL;
+	struct_opsptr_arr[i] = NULL;
+	variant_opsptr_arr[i] = NULL;
+	oneof_opsptr_arr[i] = NULL;
 
-		record_opsptr_arr[i] = 0;
-		struct_opsptr_arr[i] = 0;
-		variant_opsptr_arr[i] = 0;
-		oneof_opsptr_arr[i] = 0;
+	record_field_count[i] = 0;
+	struct_field_count[i] = 0;
+	variant_field_count[i] = 0;
+	oneof_field_count[i] = 0;
 
-		record_field_count[i] = 0;
-		struct_field_count[i] = 0;
-		variant_field_count[i] = 0;
-		oneof_field_count[i] = 0;
-		for (size_t j = 0; j < MAX_FIELDS; j++) {
-			record_field_vals[i][j]    = (long*) 0;
-			struct_field_vals[i][j]    = (long*) 0;
-			variant_field_vals[i][j]    = (long*) 0;
-			oneof_field_vals[i][j]    = (long*) 0;
-			}
-		}
+	for (size_t j = 0; j < MAX_FIELDS; ++j) {
+	    record_field_vals[i][j] = NULL;
+	    struct_field_vals[i][j] = NULL;
+	    variant_field_vals[i][j] = NULL;
+	    oneof_field_vals[i][j] = NULL;
+	}
+    }
 #endif
-	*ans1 = (OWNPTR)record_opsptr_arr;
-	*ans2 = (OWNPTR)struct_opsptr_arr;
-	*ans3 = (OWNPTR)variant_opsptr_arr;
-	*ans4 = (OWNPTR)oneof_opsptr_arr;
+    *ans1 = (OWNPTR)record_opsptr_arr;
+    *ans2 = (OWNPTR)struct_opsptr_arr;
+    *ans3 = (OWNPTR)variant_opsptr_arr;
+    *ans4 = (OWNPTR)oneof_opsptr_arr;
 }
 
 
@@ -320,122 +326,124 @@ find_selops_init(OWNPTR *ans1, OWNPTR *ans2, OWNPTR *ans3, OWNPTR *ans4)
 static long
 find_sel_ops(const char *selname, long count, struct OPS **result)
 {
-long i, j;
-bool found = false;
-long *pcount;
-OWNPTR *table;
-long *(*parm_vals)[MAX_FIELDS];
-long *parm_count;
+    bool found = false;
+    long *pcount;
+    OWNPTR *table;
+    long *(*parm_vals)[MAX_FIELDS];
+    long *parm_count;
 
 
-	/* if too many fields, then die */
+    /* if too many fields, then die */
+    if (count >= MAX_FIELDS) {
+	fprintf(stderr,
+		"find_sel_ops: too many fields: increase MAX_FIELDS\n");
+	exit(-10);
+    }
 
-	if (count >= MAX_FIELDS) {
-		fprintf(stderr, 
-			"find_sel_ops: too many fields: increase MAX_FIELDS\n");
-		exit(-10);
-		}
-
-	/* first select which table */
-	if (selname[0] == 'r') {
-		pcount = &record_num_entries;
-		table = record_opsptr_arr;
-		parm_count = record_field_count;
-		parm_vals = record_field_vals;
-		}
-	if (selname[0] == 's') {
-		pcount = &struct_num_entries;
-		table = struct_opsptr_arr;
-		parm_count = struct_field_count;
-		parm_vals = struct_field_vals;
-		}
-	if (selname[0] == 'v') {
-		pcount = &variant_num_entries;
-		table = variant_opsptr_arr;
-		parm_count = variant_field_count;
-		parm_vals = variant_field_vals;
-		}
-	if (selname[0] == 'o') {
-		pcount = &oneof_num_entries;
-		table = oneof_opsptr_arr;
-		parm_count = oneof_field_count;
-		parm_vals = oneof_field_vals;
-		}
-
-
-	found = false;
-	for (i = 0 ; i < *pcount; i++) {
-		if ((parm_count)[i] != count) continue;
-		found = true;
-		for (j = 0; j < count; j++) {
-			if (sel_inst_fieldops[j] ==
-				(long)(parm_vals)[i][j]) continue;
-			else {found = false; break;}
-			}
-		if (found) break;
-		}
+    /* first select which table */
+    if (selname[0] == 'r') {	/* record */
+	pcount = &record_num_entries;
+	table = record_opsptr_arr;
+	parm_count = record_field_count;
+	parm_vals = record_field_vals;
+    }
+    else if (selname[0] == 's') { /* struct */
+	pcount = &struct_num_entries;
+	table = struct_opsptr_arr;
+	parm_count = struct_field_count;
+	parm_vals = struct_field_vals;
+    }
+    else if (selname[0] == 'v') { /* variant */
+	pcount = &variant_num_entries;
+	table = variant_opsptr_arr;
+	parm_count = variant_field_count;
+	parm_vals = variant_field_vals;
+    }
+    else if (selname[0] == 'o') { /* oneof */
+	pcount = &oneof_num_entries;
+	table = oneof_opsptr_arr;
+	parm_count = oneof_field_count;
+	parm_vals = oneof_field_vals;
+    }
 
 
+    long i;
+    found = false;
+    for (i = 0 ; i < *pcount; ++i) {
+	if (parm_count[i] != count)
+	    continue;
 
-	if (found) {
-	/* entry found: return owns */
-		*result = (struct OPS *)table[i];
-		return (true);
-		}
-	else {
-		return (false);
-		}
+	found = true;
+	for (long j = 0; j < count; ++j) {
+	    if (sel_inst_fieldops[j] == (long)parm_vals[i][j])
+		continue;
+	    else {
+		found = false;
+		break;
+	    }
 	}
+	if (found)
+	    break;
+    }
+
+    if (found) {
+	/* entry found: return owns */
+	*result = (struct OPS *)table[i];
+	return true;
+    }
+    else {
+	return false;
+    }
+}
+
 
 static errcode
 add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 {
-long j;
-long *pcount;
-OWNPTR *table;
-long *(*parm_vals)[MAX_FIELDS];
-long *parm_count;
+    long *pcount;
+    OWNPTR *table;
+    long *(*parm_vals)[MAX_FIELDS];
+    long *parm_count;
 
-	/* first select which table */
-	if (selname[0] == 'r') {
-		pcount = &record_num_entries;
-		table = record_opsptr_arr;
-		parm_count = record_field_count;
-		parm_vals = record_field_vals;
-		}
-	if (selname[0] == 's') {
-		pcount = &struct_num_entries;
-		table = struct_opsptr_arr;
-		parm_count = struct_field_count;
-		parm_vals = struct_field_vals;
-		}
-	if (selname[0] == 'v') {
-		pcount = &variant_num_entries;
-		table = variant_opsptr_arr;
-		parm_count = variant_field_count;
-		parm_vals = variant_field_vals;
-		}
-	if (selname[0] == 'o') {
-		pcount = &oneof_num_entries;
-		table = oneof_opsptr_arr;
-		parm_count = oneof_field_count;
-		parm_vals = oneof_field_vals;
-		}
+    /* first select which table */
+    if (selname[0] == 'r') {	/* record */
+	pcount = &record_num_entries;
+	table = record_opsptr_arr;
+	parm_count = record_field_count;
+	parm_vals = record_field_vals;
+    }
+    else if (selname[0] == 's') { /* struct */
+	pcount = &struct_num_entries;
+	table = struct_opsptr_arr;
+	parm_count = struct_field_count;
+	parm_vals = struct_field_vals;
+    }
+    else if (selname[0] == 'v') { /* variant */
+	pcount = &variant_num_entries;
+	table = variant_opsptr_arr;
+	parm_count = variant_field_count;
+	parm_vals = variant_field_vals;
+    }
+    else if (selname[0] == 'o') { /* oneof */
+	pcount = &oneof_num_entries;
+	table = oneof_opsptr_arr;
+	parm_count = oneof_field_count;
+	parm_vals = oneof_field_vals;
+    }
 
-		table[*pcount] = (OWNPTR) new_ops;
-		(parm_count)[*pcount] = count;
-		for (j = 0 ; j < count; j++) {
-			(parm_vals)[*pcount][j] =
-				(long*)sel_inst_fieldops[j]; 
-			}
-		(*pcount)++;
-		if (*pcount == MAX_SELECTORS) {
-			fprintf(stderr, 
+    table[*pcount] = (OWNPTR) new_ops;
+    (parm_count)[*pcount] = count;
+    for (long j = 0 ; j < count; ++j) {
+	parm_vals[*pcount][j] = (long *)sel_inst_fieldops[j];
+    }
+    ++(*pcount);
+    if (*pcount == MAX_SELECTORS) {
+	fprintf(stderr,
 		"add_sel_ops: too many instantiations: increase MAX_INSTS\n");
-			exit(-10);
-			}
-		signal(ERR_ok);
-		}	
+	exit(-10);
+    }
+    signal(ERR_ok);
+}
 
 
 /********************************************************/
@@ -465,33 +473,34 @@ static void
 sel_ops_counts(const char *name,
 	       long *pfcount, long *paramcount, long *plaincount)
 {
-/*	if (strcmp(name, "oneof") == 0) { */
-	if (name[0] == 'o') {
-		*pfcount = 3;
-		*paramcount = 8;
-		*plaincount = 2;
-		return; }
-/*	if (strcmp(name, "variant") == 0) { */
-	if (name[0] == 'v') {
-		*pfcount = 4;
-		*paramcount = 8;
-		*plaincount = 4;
-		return; }
-/*	if (strcmp(name, "record") == 0) { */
-	if (name[0] == 'r') {
-		*pfcount = 2;
-		*paramcount = 8;
-		*plaincount = 4;
-		return; }
-/*	if (strcmp(name, "struct") == 0) { */
-	if (name[0] == 's') {
-		*pfcount = 2;
-		*paramcount = 8;
-		*plaincount = 2;
-		return; }
-	fprintf(stderr, "sel_ops_counts: bad name %s\n", name);
-	exit(-1);
-	}
+    if (name[0] == 'o') {
+	*pfcount    = __arraycount(oneof_prefix_name_table);
+	*paramcount = __arraycount(oneof_param_name_table);
+	*plaincount = __arraycount(oneof_plain_name_table);
+	return;
+    }
+    if (name[0] == 'v') {
+	*pfcount    = __arraycount(variant_prefix_name_table);
+	*paramcount = __arraycount(variant_param_name_table);
+	*plaincount = __arraycount(variant_plain_name_table);
+	return;
+    }
+    if (name[0] == 'r') {
+	*pfcount    = __arraycount(record_prefix_name_table);
+	*paramcount = __arraycount(record_param_name_table);
+	*plaincount = __arraycount(record_plain_name_table);
+	return;
+    }
+    if (name[0] == 's') {
+	*pfcount    = __arraycount(struct_prefix_name_table);
+	*paramcount = __arraycount(struct_param_name_table);
+	*plaincount = __arraycount(struct_plain_name_table);
+	return;
+    }
+
+    fprintf(stderr, "%s: bad name %s\n", __func__, name);
+    exit(-1);
+}
 
 
 /********************************************************/
@@ -509,33 +518,34 @@ sel_ops_names(const char *name,
 	      nametable_t *paramname,
 	      nametable_t *plainname)
 {
-/*	if (strcmp(name, "oneof") == 0) { */
-	if (name[0] == 'o') {
-		*pfname = oneof_prefix_name_table;
-		*paramname = oneof_param_name_table;
-		*plainname = oneof_plain_name_table;
-		return; }
-/*	if (strcmp(name, "variant") == 0) { */
-	if (name[0] == 'v') {
-		*pfname = variant_prefix_name_table;
-		*paramname = variant_param_name_table;
-		*plainname = variant_plain_name_table;
-		return; }
-/*	if (strcmp(name, "record") == 0) { */
-	if (name[0] == 'r') {
-		*pfname = record_prefix_name_table;
-		*paramname = record_param_name_table;
-		*plainname = record_plain_name_table;
-		return; }
-/*	if (strcmp(name, "struct") == 0) { */
-	if (name[0] == 's') {
-		*pfname = struct_prefix_name_table;
-		*paramname = struct_param_name_table;
-		*plainname = struct_plain_name_table;
-		return; }
-	fprintf(stderr, "sel_ops_names: bad name %s\n", name);
-	exit(-1);
-	}
+    if (name[0] == 'o') {
+	*pfname    = oneof_prefix_name_table;
+	*paramname = oneof_param_name_table;
+	*plainname = oneof_plain_name_table;
+	return;
+    }
+    if (name[0] == 'v') {
+	*pfname    = variant_prefix_name_table;
+	*paramname = variant_param_name_table;
+	*plainname = variant_plain_name_table;
+	return;
+    }
+    if (name[0] == 'r') {
+	*pfname    = record_prefix_name_table;
+	*paramname = record_param_name_table;
+	*plainname = record_plain_name_table;
+	return;
+    }
+    if (name[0] == 's') {
+	*pfname    = struct_prefix_name_table;
+	*paramname = struct_param_name_table;
+	*plainname = struct_plain_name_table;
+	return;
+    }
+
+    fprintf(stderr, "%s: bad name %s\n", __func__, name);
+    exit(-1);
+}
 
 
 /********************************************************/
@@ -551,33 +561,35 @@ static void
 sel_ops_fcns(const char *name,
 	     proctable_t *pffcn, proctable_t *paramfcn, proctable_t *plainfcn)
 {
-/*	if (strcmp(name, "oneof") == 0) { */
-	if (name[0] == 'o') {
-		*pffcn = oneof_prefix_fcn_table;
-		*paramfcn = oneof_param_fcn_table;
-		*plainfcn = oneof_plain_fcn_table;
-		return; }
-/*	if (strcmp(name, "variant") == 0) { */
-	if (name[0] == 'v') {
-		*pffcn = variant_prefix_fcn_table;
-		*paramfcn = variant_param_fcn_table;
-		*plainfcn = variant_plain_fcn_table;
-		return; }
-/*	if (strcmp(name, "record") == 0) { */
-	if (name[0] == 'r') {
-		*pffcn = record_prefix_fcn_table;
-		*paramfcn = record_param_fcn_table;
-		*plainfcn = record_plain_fcn_table;
-		return; }
-/*	if (strcmp(name, "struct") == 0) { */
-	if (name[0] == 's') {
-		*pffcn = struct_prefix_fcn_table;
-		*paramfcn = struct_param_fcn_table;
-		*plainfcn = struct_plain_fcn_table;
-		return; }
-	fprintf(stderr, "sel_ops_fcns: bad name %s\n", name);
-	exit(-1);
-	}
+    if (name[0] == 'o') {
+	*pffcn    = oneof_prefix_fcn_table;
+	*paramfcn = oneof_param_fcn_table;
+	*plainfcn = oneof_plain_fcn_table;
+	return;
+    }
+    if (name[0] == 'v') {
+	*pffcn    = variant_prefix_fcn_table;
+	*paramfcn = variant_param_fcn_table;
+	*plainfcn = variant_plain_fcn_table;
+	return;
+    }
+
+    if (name[0] == 'r') {
+	*pffcn    = record_prefix_fcn_table;
+	*paramfcn = record_param_fcn_table;
+	*plainfcn = record_plain_fcn_table;
+	return;
+    }
+    if (name[0] == 's') {
+	*pffcn    = struct_prefix_fcn_table;
+	*paramfcn = struct_param_fcn_table;
+	*plainfcn = struct_plain_fcn_table;
+	return;
+    }
+
+    fprintf(stderr, "%s: bad name %s\n", __func__, name);
+    exit(-1);
+}
 
 
 /********************************************************/
@@ -592,22 +604,23 @@ static void
 sel_ops_restricts(const char *name,
 		  nametable_t *parm_reqs_names)
 {
-/*	if (strcmp(name, "oneof") == 0) { */
-	if (name[0] == 'o') {
-		*parm_reqs_names = oneof_reqs_name_table;
-		return; }
-/*	if (strcmp(name, "variant") == 0) { */
-	if (name[0] == 'v') {
-		*parm_reqs_names = variant_reqs_name_table;
-		return; }
-/*	if (strcmp(name, "record") == 0) { */
-	if (name[0] == 'r') {
-		*parm_reqs_names = record_reqs_name_table;
-		return; }
-/*	if (strcmp(name, "struct") == 0) { */
-	if (name[0] == 's') {
-		*parm_reqs_names = struct_reqs_name_table;
-		return; }
-	fprintf(stderr, "sel_ops_fcns: bad name %s\n", name);
-	exit(-1);
-	}
+    if (name[0] == 'o') {
+	*parm_reqs_names = oneof_reqs_name_table;
+	return;
+    }
+    if (name[0] == 'v') {
+	*parm_reqs_names = variant_reqs_name_table;
+	return;
+    }
+    if (name[0] == 'r') {
+	*parm_reqs_names = record_reqs_name_table;
+	return;
+    }
+    if (name[0] == 's') {
+	*parm_reqs_names = struct_reqs_name_table;
+	return;
+    }
+
+    fprintf(stderr, "%s: bad name %s\n", __func__, name);
+    exit(-1);
+}
