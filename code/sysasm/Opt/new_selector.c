@@ -336,7 +336,7 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
     /* if too many fields, then die */
     if (count >= MAX_FIELDS) {
 	fprintf(stderr,
-		"find_sel_ops: too many fields: increase MAX_FIELDS\n");
+		"%s: too many fields: increase MAX_FIELDS\n", __func__);
 	exit(-10);
     }
 
@@ -367,20 +367,19 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
     }
 
 
-    long i;
+    long slot;
     found = false;
-    for (i = 0 ; i < *pcount; ++i) {
-	if (parm_count[i] != count)
+    for (slot = 0 ; slot < *pcount; ++slot) {
+	if (parm_count[slot] != count)
 	    continue;
 
 	found = true;
-	for (long j = 0; j < count; ++j) {
-	    if (sel_inst_fieldops[j] == (long)parm_vals[i][j])
+	for (long i = 0; i < count; ++i) {
+	    if ((long)parm_vals[slot][i] == sel_inst_fieldops[i])
 		continue;
-	    else {
-		found = false;
-		break;
-	    }
+
+	    found = false;
+	    break;
 	}
 	if (found)
 	    break;
@@ -388,7 +387,7 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
 
     if (found) {
 	/* entry found: return owns */
-	*result = (struct OPS *)table[i];
+	*result = (struct OPS *)table[slot];
 	return true;
     }
     else {
@@ -431,17 +430,21 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 	parm_vals = oneof_field_vals;
     }
 
-    table[*pcount] = (OWNPTR) new_ops;
-    (parm_count)[*pcount] = count;
-    for (long j = 0 ; j < count; ++j) {
-	parm_vals[*pcount][j] = (long *)sel_inst_fieldops[j];
-    }
-    ++(*pcount);
-    if (*pcount == MAX_SELECTORS) {
+    long slot = *pcount;
+    if (slot == MAX_SELECTORS) {
 	fprintf(stderr,
-		"add_sel_ops: too many instantiations: increase MAX_INSTS\n");
+		"%s: too many %s instantiations: increase MAX_INSTS\n",
+		__func__, selname);
 	exit(-10);
     }
+
+    table[slot] = (OWNPTR) new_ops;
+    parm_count[slot] = count;
+    for (long i = 0 ; i < count; ++i) {
+	parm_vals[slot][i] = (long *)sel_inst_fieldops[i];
+    }
+
+    *pcount = slot + 1;
     signal(ERR_ok);
 }
 
