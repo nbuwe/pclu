@@ -757,45 +757,6 @@ static PROC * const struct_plain_fcn_table[2] = {
 };
 
 
-typedef struct {
-int count;
-struct OP_ENTRY entry[8];
-} selector_OPS;
-
-typedef struct {
-int count;
-struct REQ_ENTRY entry[8];
-} selector_REQS;
-
-typedef struct {
-int count;
-struct OP_ENTRY equal;
-struct OP_ENTRY copy;
-struct OP_ENTRY similar;
-struct OP_ENTRY print;
-struct OP_ENTRY encode;
-struct OP_ENTRY decode;
-struct OP_ENTRY _gcd;
-struct OP_ENTRY debug_print;
-} selector_TABLE;
-
-selector_REQS selector_reqs_actual = {
-    8,
-    {
-	{ "equal" },
-	{ "similar" },
-	{ "copy" },
-	{ "print" },
-	{ "encode" },
-	{ "decode" },
-	{ "_gcd" },
-	{ "debug_print" },
-    }
-};
-
-selector_REQS *selector_reqs = &selector_reqs_actual;
-
-
 static const char * const oneof_param_name_table[8] = {
     "equal", "similar", "copy", "print",
     "encode", "decode", "_gcd", "debug_print"
