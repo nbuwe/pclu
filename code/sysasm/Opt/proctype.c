@@ -105,10 +105,10 @@ proctype_OPS proctype_ops_actual = {
     &proctype_own_init,
     &proctype_own_init,
     {
-	{&proctype_oe_copy, "copy"},
-	{&proctype_oe_equal, "equal"},
-	{&proctype_oe_similar, "similar"},
-	{&proctype_oe_debug_print, "debug_print"},
+	{ &proctype_oe_copy, "copy" },
+	{ &proctype_oe_equal, "equal" },
+	{ &proctype_oe_similar, "similar" },
+	{ &proctype_oe_debug_print, "debug_print" },
     }
 };
 
