@@ -75,8 +75,7 @@ static void sel_ops_restricts(const char *name,
 errcode
 find_selector_ops(const char *selname, long nfields, struct OPS **table)
 {
-    static bool init = false;
-    static CLUREF mpf;
+    static CLUREF mpf = { .proc = NULL };
 
     errcode err;
     struct OPS *temp;
@@ -101,11 +100,11 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     }
 
     /* initial procedure type object for missing print function */
-    if (init == false) {
+    if (mpf.proc == NULL) {
 	err = proctypeOPnew(CLU_1, &mpf);
 	if (err != ERR_ok) resignal(err);
+
 	mpf.proc->proc = missing_print_fcn;
-	init = true;
     }
 
     /* create type owns */
@@ -249,20 +248,18 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 errcode
 missing_print_fcn(CLUREF val, CLUREF pst)
 {
-    static bool init = false;
-    static CLUREF msg;
-
-    CLUREF ans;
     errcode err;
 
-    if (init == false) {
+    static CLUREF msg = { .str = NULL };
+    if (msg.str == NULL) {
 	err = stringOPcons("no print function", CLU_1, CLU_17, &msg);
 	if (err != ERR_ok) resignal(err);
-	init = true;
     }
 
+    CLUREF ans;
     err = pstreamOPtext(pst, msg, &ans);
     if (err != ERR_ok) resignal(err);
+
     signal(ERR_ok);
 }
 
