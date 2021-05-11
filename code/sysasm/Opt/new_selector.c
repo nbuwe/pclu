@@ -47,7 +47,7 @@ typedef const char * const *nametable_t;
 typedef PROC * const *proctable_t;
 
 static errcode add_sel_ops(const char *selname, long count, struct OPS *new_ops);
-static long find_sel_ops(const char *selname, long count, struct OPS **result);
+static bool find_sel_ops(const char *selname, long count, struct OPS **result);
 
 static void sel_ops_counts(const char *name,
 			   long *pfcount, long *paramcount, long *plaincount);
@@ -80,7 +80,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     errcode err;
     struct OPS *temp;
     long nentries;
-    long i, j, jj, k, ans, index, offset;
+    long i, j, jj, k, index, offset;
     CLUREF temp_proc;
     long *temp_type_owns, *temp_op_owns;
     struct OPS *ops;
@@ -94,8 +94,8 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     nametable_t parm_restrict_name;
 
     /* try to find an existing ops */
-    ans = find_sel_ops(selname, nfields, table);
-    if (ans == true) {
+    bool already = find_sel_ops(selname, nfields, table);
+    if (already) {
 	signal(ERR_ok);
     }
 
@@ -320,7 +320,7 @@ find_selops_init(OWNPTR *ans1, OWNPTR *ans2, OWNPTR *ans3, OWNPTR *ans4)
 /* routine to find selector ops given selector name, # of fields */
 /*	type info for fields is in sel_inst_info arrays */
 
-static long
+static bool
 find_sel_ops(const char *selname, long count, struct OPS **result)
 {
     bool found = false;
@@ -387,7 +387,7 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
     }
 
     if (found) {
-	/* entry found: return owns */
+	/* entry found: return ops */
 	*result = (struct OPS *)table[slot];
 	return true;
     }
