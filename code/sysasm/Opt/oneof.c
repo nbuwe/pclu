@@ -1223,7 +1223,7 @@ CLUREF one, *ans;
 errcode err;
 CLUREF temp, tag, value;
 long i;
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to copy fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to copy fcns */
 
 	tag.num = one.cell->tag;
 	value.num = one.cell->value;
@@ -1265,7 +1265,7 @@ CLUREF temp;
 errcode oneofOPsimilar(one1, one2, ans)
 CLUREF one1, one2, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to similar fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to similar fcns */
 long i;
 errcode err;
 CLUREF value1, value2;
@@ -1285,7 +1285,7 @@ CLUREF value1, value2;
 errcode oneofOP_gcd(one, tab, ans)
 CLUREF one, tab, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to _gcd fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to _gcd fcns */
 errcode err;
 long i;
 CLUREF temp_oneof, temp_seq, sz, tag;
@@ -1307,7 +1307,7 @@ errcode oneofOPencode(one, ist)
 CLUREF one, ist;
 {
 errcode err;
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to encode fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to encode fcns */
 CLUREF temp;
 
 	temp.num = one.cell->tag;
@@ -1325,7 +1325,7 @@ errcode oneofOPdecode(ist, ans)
 CLUREF ist, *ans;
 {
 errcode err;
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to decode fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to decode fcns */
 CLUREF tag, val, temp;
 
 	err = istreamOPgeti(ist, &tag);
@@ -1347,7 +1347,7 @@ CLUREF tag, val, temp;
 errcode oneofOPequal(one1, one2, ans)
 CLUREF one1, one2, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to equal fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to equal fcns */
 errcode err;
 CLUREF value1, value2;
 
@@ -1377,7 +1377,7 @@ errcode err;
 errcode oneofOPprint(one, pst)
 CLUREF one, pst;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to print fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to print fcns */
 char **table2;
 char *nm;
 errcode err;
@@ -1420,7 +1420,7 @@ done:
 }
 
 char **find_names(table)
-CLUSELPROC *table;
+CLUPROC *table;
 {
 long i, *j;
 

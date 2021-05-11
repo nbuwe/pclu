@@ -73,13 +73,13 @@ static void sel_ops_restricts(const char *name,
 /********************************************************/
 
 errcode
-find_selector_ops(const char *selname, long nfields, struct SELOPS **table)
+find_selector_ops(const char *selname, long nfields, struct OPS **table)
 {
     static bool init = false;
     static CLUREF mpf;
 
     errcode err;
-    struct SELOPS *temp;
+    struct OPS *temp;
     long nentries;
     long i, j, jj, k, ans, index, offset;
     CLUREF temp_proc;
@@ -95,7 +95,7 @@ find_selector_ops(const char *selname, long nfields, struct SELOPS **table)
     nametable_t parm_restrict_name;
 
     /* try to find an existing ops */
-    ans = find_sel_ops(selname, nfields, (struct OPS**)table);
+    ans = find_sel_ops(selname, nfields, table);
     if (ans == true) {
 	signal(ERR_ok);
     }
@@ -120,8 +120,8 @@ find_selector_ops(const char *selname, long nfields, struct SELOPS **table)
 
     /* create basic ops structure */
     nentries = parm_op_count + plain_op_count + nfields * pf_op_count;
-    clu_alloc(sizeof(struct SELOPS) +
-	      (nentries - 1) * sizeof(struct SELOP_ENTRY), &temp);
+    clu_alloc(sizeof(struct OPS) +
+	      (nentries - 1) * sizeof(struct OP_ENTRY), &temp);
     temp->count = nentries;
     temp->type_owns = (OWNPTR)temp_type_owns;
     temp->op_owns = NULL;
@@ -134,7 +134,7 @@ find_selector_ops(const char *selname, long nfields, struct SELOPS **table)
 	temp->entry[i].name = parm_op_names[i];
 	err = proctypeOPnew(CLU_1, &temp_proc);
 	if (err != ERR_ok) resignal(err);
-	temp->entry[i].fcn = temp_proc.selproc;
+	temp->entry[i].fcn = temp_proc.proc;
 
 	if (i == 3 || i == 7) {
 	    clu_alloc(UNIT + nfields*sizeof(CLUPROC) + 
@@ -156,7 +156,7 @@ find_selector_ops(const char *selname, long nfields, struct SELOPS **table)
 	temp->entry[i].name = plain_op_names[j];
 	err = proctypeOPnew(CLU_1, &temp_proc);
 	if (err != ERR_ok) resignal(err);
-	temp->entry[i].fcn = temp_proc.selproc;
+	temp->entry[i].fcn = temp_proc.proc;
 
 	temp->entry[i].fcn->proc = plain_op_fcns[j];
 #if 0
@@ -171,7 +171,7 @@ find_selector_ops(const char *selname, long nfields, struct SELOPS **table)
 	    temp->entry[i].name = pf_op_names[j];
 	    err = proctypeOPnew(CLU_1, &temp_proc);
 	    if (err != ERR_ok) resignal(err);
-	    temp->entry[i].fcn = temp_proc.selproc;
+	    temp->entry[i].fcn = temp_proc.proc;
 	    temp->entry[i].fcn->proc = pf_op_fcns[jj];
 	    ++jj;
 	}

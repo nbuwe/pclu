@@ -605,7 +605,7 @@ CLUREF temp;
 errcode structOPcopy(strct, ans)
 CLUREF strct, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to copy fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to copy fcns */
 errcode err;
 CLUREF temp, elt;
 long i;
@@ -630,7 +630,7 @@ long i;
 errcode structOPsimilar(rec1, rec2, ans)
 CLUREF rec1, rec2, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to similar fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to similar fcns */
 long i;
 errcode err;
 CLUREF elt1, elt2;
@@ -652,7 +652,7 @@ CLUREF elt1, elt2;
 errcode structOPequal(str1, str2, ans)
 CLUREF str1, str2, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to equal fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to equal fcns */
 long i;
 errcode err;
 CLUREF elt1, elt2;
@@ -674,7 +674,7 @@ CLUREF elt1, elt2;
 errcode structOP_gcd(str, tab, ans)
 CLUREF str, tab, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to _gcd fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to _gcd fcns */
 errcode err;
 long i;
 CLUREF temp_oneof, temp_seq, sz;
@@ -733,7 +733,7 @@ errcode err;
 errcode structOPprint(str, pst)
 CLUREF str, pst;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to print fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to print fcns */
 char**table2 = (char**)(table + str.vec->size); /* ptr to field names */
 long i;
 errcode err;
@@ -776,7 +776,7 @@ done:
 errcode structOPencode(str, ist)
 CLUREF str, ist;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to encode fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to encode fcns */
 long i;
 errcode err;
 CLUREF ref;
@@ -797,7 +797,7 @@ CLUREF ref;
 errcode structOPdecode(ist, ans)
 CLUREF ist, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to decode fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to decode fcns */
 long i;
 errcode err;
 CLUREF temp, size;

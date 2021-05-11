@@ -250,20 +250,6 @@ typedef CLU_proc *CLUPROC;
 
 
 /*					*/
-/*	PROC VAR DEFINITIONS		*/
-/*	   for selectors		*/
-/*					*/
-
-typedef struct {
-	CLUTYPE typ;
-	errcode (*proc)();
-	OWNPTR	type_owns;
-	OWNPTR  op_owns;
-	} CLU_selproc;
-
-typedef CLU_selproc *CLUSELPROC;
-
-/*					*/
 /*	ARRAY DEFINITIONS		*/
 /*					*/
 
@@ -327,7 +313,6 @@ typedef union {
 	CLUSEQ  vec;
 	CLUCELL cell;
 	CLUPROC proc;
-	CLUSELPROC selproc;
 	CLUARRAY array;
 	CLUSTORE store;
 	struct obj * obj;
@@ -532,18 +517,6 @@ struct OPS {
 
 typedef struct OPS *OPSPTR;
 
-struct SELOP_ENTRY {
-    CLUSELPROC fcn;
-    const char *name;
-};
-
-struct SELOPS {
-    long count;
-    OWNPTR type_owns;
-    OWNPTR op_owns;
-    struct SELOP_ENTRY entry[VARYING_LENGTH];
-} SELOPS;
-
 typedef struct {
     long count;
     const char *name[VARYING_LENGTH];
@@ -572,6 +545,11 @@ struct {
     OWNPTR op_owns;
     struct OP_ENTRY entry[VARYING_LENGTH];
 } TABLE;
+
+
+errcode add_selector_info(const char *field_name, long index, OPSPTR ops);
+errcode find_selector_ops(const char *selname, long nfields, OPSPTR *table);
+
 
 
 typedef struct {

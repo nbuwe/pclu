@@ -459,7 +459,7 @@ CLUREF record, val;
 errcode recordOPcopy(record, ans)
 CLUREF record, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to copy fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to copy fcns */
 errcode err;
 CLUREF temp;
 CLUREF size, e1, e2;
@@ -507,7 +507,7 @@ long i;
 errcode recordOPsimilar(rec1, rec2, ans)
 CLUREF rec1, rec2, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to similar fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to similar fcns */
 long i;
 errcode err;
 CLUREF e1, e2;
@@ -530,7 +530,7 @@ CLUREF e1, e2;
 errcode recordOP_gcd(rec, tab, ans)
 CLUREF rec, tab, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to _gcd fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to _gcd fcns */
 long i;
 errcode err;
 CLUREF temp_oneof, temp_seq, temp_seq_data, sz;
@@ -583,7 +583,7 @@ errcode err;
 errcode recordOPprint(rec, pst)
 CLUREF rec, pst;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to print fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to print fcns */
 char **table2 = (char**)(table+rec.vec->size); /* ptr to field names */
 long i;
 errcode err;
@@ -628,7 +628,7 @@ done:
 errcode recordOPencode(rec, ist)
 CLUREF rec, ist;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to encode fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to encode fcns */
 long i;
 errcode err;
 CLUREF e1;
@@ -649,7 +649,7 @@ CLUREF e1;
 errcode recordOPdecode(ist, ans)
 CLUREF ist, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to decode fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to decode fcns */
 long i;
 errcode err;
 CLUREF temp, size;
@@ -675,7 +675,7 @@ CLUREF temp, size;
 errcode recordOPsimilar1(rec1, rec2, ans)
 CLUREF rec1, rec2, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; 
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; 
 long i;
 errcode err;
 CLUREF e1, e2;

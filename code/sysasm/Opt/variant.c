@@ -1206,7 +1206,7 @@ CLUREF variant, *ans;
 errcode variantOPcopy(variant, ans)
 CLUREF variant, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to copy fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to copy fcns */
 errcode err;
 CLUREF tag, value, temp;
 
@@ -1224,7 +1224,7 @@ CLUREF tag, value, temp;
 errcode variantOPsimilar(vnt1, vnt2, ans)
 CLUREF vnt1, vnt2, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to similar fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to similar fcns */
 errcode err;
 CLUREF value1, value2;
 
@@ -1243,7 +1243,7 @@ CLUREF value1, value2;
 errcode variantOP_gcd(vnt, tab, ans)
 CLUREF vnt, tab, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to _gcd fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to _gcd fcns */
 errcode err;
 long i;
 CLUREF temp_oneof, temp_seq, sz;
@@ -1283,7 +1283,7 @@ extern char**find_names();
 errcode variantOPprint(vnt, pst)
 CLUREF vnt, pst;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to print fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to print fcns */
 char**table2; /* ptr to print fcns */
 char *nm;
 errcode err;
@@ -1334,7 +1334,7 @@ errcode variantOPencode(vnt, ist)
 CLUREF vnt, ist;
 {
 errcode err;
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to encode fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to encode fcns */
 CLUREF tag, value;
 
 	tag.num = vnt.cell->tag;
@@ -1352,7 +1352,7 @@ errcode variantOPdecode(ist, ans)
 CLUREF ist, *ans;
 {
 errcode err;
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to decode fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to decode fcns */
 CLUREF tag, value, temp;
 
 	err = istreamOPgeti(ist, &tag);
@@ -1405,7 +1405,7 @@ CLUREF tag, value, temp;
 errcode variantOPsimilar1(vnt1, vnt2, ans)
 CLUREF vnt1, vnt2, *ans;
 {
-CLUSELPROC *table = (CLUSELPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to equal fcns */
+CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to equal fcns */
 errcode err;
 CLUREF value1, value2;
 
