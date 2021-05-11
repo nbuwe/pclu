@@ -237,7 +237,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
      }
 
      /* save ops for future users */
-     add_sel_ops(selname, nfields, (struct OPS*)temp);
+     add_sel_ops(selname, nfields, temp);
 
      /* return created ops */
      *table = temp;
