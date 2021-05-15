@@ -188,84 +188,84 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     }
 
 
-     for (index = 0; index < nfields; index++) {
-	 struct OPS *field_ops = (struct OPS *)sel_inst_fieldops[index];
-	 const char *field_name = sel_inst_fieldname[index];
+    for (index = 0; index < nfields; index++) {
+	struct OPS *field_ops = (struct OPS *)sel_inst_fieldops[index];
+	const char *field_name = sel_inst_fieldname[index];
 
-	 for (size_t i = 0; i < parm_op_count; i++) {
-	     const char *reqname = parm_restrict_name[i];
+	for (size_t i = 0; i < parm_op_count; i++) {
+	    const char *reqname = parm_restrict_name[i];
 
-	     for (size_t j = 0; j < field_ops->count; j++) {
-		 const char *name = field_ops->entry[j].name;
-		 if (name == NULL
-		     || name[0] != reqname[0]
-		     || strcmp(name, reqname) != 0)
-		     continue;
+	    for (size_t j = 0; j < field_ops->count; j++) {
+		const char *name = field_ops->entry[j].name;
+		if (name == NULL
+		    || name[0] != reqname[0]
+		    || strcmp(name, reqname) != 0)
+		    continue;
 
-		 /* found required name, save the function */
-		 op_own_ptr = (long *)ops->entry[i].fcn->op_owns;
-		 op_own_ptr[index+1] = (long)field_ops->entry[j].fcn;
-		 break;
-	     }
-	 }
+		/* found required name, save the function */
+		op_own_ptr = (long *)ops->entry[i].fcn->op_owns;
+		op_own_ptr[index+1] = (long)field_ops->entry[j].fcn;
+		break;
+	    }
+	}
 
-	 offset = index*pf_op_count + parm_op_count + plain_op_count;
-	 for (size_t i = 0; i < pf_op_count; i++) {
-	     ops->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
-	 }
-     }
+	offset = index*pf_op_count + parm_op_count + plain_op_count;
+	for (size_t i = 0; i < pf_op_count; i++) {
+	    ops->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
+	}
+    }
 
-     /* set up storage for parameterized operations */
-     /*     & names for postfixable operations */
-     /* --- assumes 4th entry (i == 3) is print & adds field names */
-     /* --- assumes 8th entry (i == 7) is print & adds field names */
-     for (index = 0; index < nfields; ++index) {
-	 struct OPS *field_ops = (struct OPS *)sel_inst_fieldops[index];
-	 const char *field_name = sel_inst_fieldname[index];
+    /* set up storage for parameterized operations */
+    /*     & names for postfixable operations */
+    /* --- assumes 4th entry (i == 3) is print & adds field names */
+    /* --- assumes 8th entry (i == 7) is print & adds field names */
+    for (index = 0; index < nfields; ++index) {
+	struct OPS *field_ops = (struct OPS *)sel_inst_fieldops[index];
+	const char *field_name = sel_inst_fieldname[index];
 
-	 for (size_t i = 0; i < parm_op_count; ++i) {
-	     const char *reqname = parm_restrict_name[i];
+	for (size_t i = 0; i < parm_op_count; ++i) {
+	    const char *reqname = parm_restrict_name[i];
 
-	     found = false;
-	     for (size_t j = 0; j < field_ops->count; ++j) {
-		 const char *name = field_ops->entry[j].name;
-		 if (name == NULL
-		     || name[0] != reqname[0]
-		     || strcmp(name, reqname) != 0)
-		     continue;
+	    found = false;
+	    for (size_t j = 0; j < field_ops->count; ++j) {
+		const char *name = field_ops->entry[j].name;
+		if (name == NULL
+		    || name[0] != reqname[0]
+		    || strcmp(name, reqname) != 0)
+		    continue;
 
-		 /* found required name, save the function */
-		 op_own_ptr = (long *)ops->entry[i].fcn->op_owns;
-		 op_own_ptr[index+1] = (long)field_ops->entry[j].fcn;
+		/* found required name, save the function */
+		op_own_ptr = (long *)ops->entry[i].fcn->op_owns;
+		op_own_ptr[index+1] = (long)field_ops->entry[j].fcn;
 
-		 /* for print and debug_print save the field name too */
-		 if (i == 3 || i == 7) {
-		     op_own_ptr[index+1+nfields] = (long)field_name;
-		 }
-		 found = true;
-		 break;
-	     }
+		/* for print and debug_print save the field name too */
+		if (i == 3 || i == 7) {
+		    op_own_ptr[index+1+nfields] = (long)field_name;
+		}
+		found = true;
+		break;
+	    }
 
-	     /* stub for a missing debug/print function */
-	     if (found == false && (i == 3 || i == 7)) {
-		 op_own_ptr = (long *)ops->entry[i].fcn->op_owns;
-		 op_own_ptr[index+1] = (long)mpf.proc;
-		 op_own_ptr[index+1+nfields] = (long)field_name;
-	     }
-	 }
+	    /* stub for a missing debug/print function */
+	    if (found == false && (i == 3 || i == 7)) {
+		op_own_ptr = (long *)ops->entry[i].fcn->op_owns;
+		op_own_ptr[index+1] = (long)mpf.proc;
+		op_own_ptr[index+1+nfields] = (long)field_name;
+	    }
+	}
 
-	 offset = index*pf_op_count + parm_op_count + plain_op_count;
-	 for (size_t i = 0; i < pf_op_count; ++i) {
-	     ops->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
-	 }
-     }
+	offset = index*pf_op_count + parm_op_count + plain_op_count;
+	for (size_t i = 0; i < pf_op_count; ++i) {
+	    ops->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
+	}
+    }
 
-     /* save ops for future users */
-     add_sel_ops(selname, nfields, ops);
+    /* save ops for future users */
+    add_sel_ops(selname, nfields, ops);
 
-     /* return created ops */
-     *table = ops;
-     signal(ERR_ok);
+    /* return created ops */
+    *table = ops;
+    signal(ERR_ok);
 }
 
 
