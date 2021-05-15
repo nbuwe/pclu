@@ -206,7 +206,6 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	    struct OP_ENTRY *entry = &ops->entry[i];
 	    OWNPTR owns = entry->fcn->op_owns;
 
-	    bool found = false;
 	    for (long j = 0; j < field_ops->count; ++j) {
 		const char *name = field_ops->entry[j].name;
 		if (name == NULL
@@ -221,12 +220,11 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 		if (i == 3 || i == 7) {
 		    owns->info[nfields + index] = (long)field_name;
 		}
-		found = true;
 		break;
 	    }
 
 	    /* stub for a missing debug/print function */
-	    if (found == false && (i == 3 || i == 7)) {
+	    if (owns->info[index] == NULL && (i == 3 || i == 7)) {
 		owns->info[index] = (long)mpf.proc;
 		owns->info[nfields + index] = (long)field_name;
 	    }
