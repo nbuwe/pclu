@@ -198,7 +198,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
      * names.
      */
     for (long index = 0; index < nfields; ++index) {
-	struct OPS *field_ops = sel_inst_fieldops[index];
+	const struct OPS *field_ops = sel_inst_fieldops[index];
 	const char *field_name = sel_inst_fieldname[index];
 
 	for (long i = 0; i < parm_op_count; ++i) {
