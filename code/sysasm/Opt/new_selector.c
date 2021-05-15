@@ -83,8 +83,6 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     long i, j, jj, k, index, offset;
     CLUREF temp_proc;
     long *temp_type_owns, *temp_op_owns;
-    struct OPS *ops;
-    const char *name, *name1, *field_name;
     long *op_own_ptr;
     bool found;
 
@@ -177,21 +175,26 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     }
 
      for (index = 0; index < nfields; index++) {
-	 ops = (struct OPS *)sel_inst_fieldops[index];
-	 field_name = sel_inst_fieldname[index];
+	 struct OPS *field_ops = (struct OPS *)sel_inst_fieldops[index];
+	 const char *field_name = sel_inst_fieldname[index];
+
 	 for (i = 0; i < parm_op_count; i++) {
-	     name = parm_restrict_name[i];
-	     for (j = 0; j < ops->count; j++) {
-		 name1 = ops->entry[j].name;
-		 if (name1 == 0 || name1[0] != name[0])
+	     const char *reqname = parm_restrict_name[i];
+
+	     for (j = 0; j < field_ops->count; j++) {
+		 const char *name = field_ops->entry[j].name;
+		 if (name == NULL
+		     || name[0] != reqname[0]
+		     || strcmp(name, reqname) != 0)
 		     continue;
-		 if (!(strcmp(name1, name))) {
-		     op_own_ptr = (long *)temp->entry[i].fcn->op_owns;
-		     op_own_ptr[index+1] =
-			 (long)ops->entry[j].fcn;
-		     break;}
+
+		 /* found required name, save the function */
+		 op_own_ptr = (long *)temp->entry[i].fcn->op_owns;
+		 op_own_ptr[index+1] = (long)field_ops->entry[j].fcn;
+		 break;
 	     }
 	 }
+
 	 offset = index*pf_op_count + parm_op_count + plain_op_count;
 	 for (i = 0; i < pf_op_count; i++) {
 	     temp->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
@@ -203,33 +206,40 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
      /* --- assumes 4th entry (i == 3) is print & adds field names */
      /* --- assumes 8th entry (i == 7) is print & adds field names */
      for (index = 0; index < nfields; ++index) {
-	 ops = (struct OPS *)sel_inst_fieldops[index];
-	 field_name = sel_inst_fieldname[index];
+	 struct OPS *field_ops = (struct OPS *)sel_inst_fieldops[index];
+	 const char *field_name = sel_inst_fieldname[index];
+
 	 for (i = 0; i < parm_op_count; ++i) {
-	     name = parm_restrict_name[i];
+	     const char *reqname = parm_restrict_name[i];
+
 	     found = false;
-	     for (j = 0; j < ops->count; ++j) {
-		 name1 = ops->entry[j].name;
-		 if (name1 == 0 || name1[0] != name[0])
+	     for (j = 0; j < field_ops->count; ++j) {
+		 const char *name = field_ops->entry[j].name;
+		 if (name == NULL
+		     || name[0] != reqname[0]
+		     || strcmp(name, reqname) != 0)
 		     continue;
-		 if (!(strcmp(name1, name))) {
-		     op_own_ptr = (long *)temp->entry[i].fcn->op_owns;
-		     op_own_ptr[index+1] =
-			 (long)ops->entry[j].fcn;
-		     if (i == 3 || i == 7) {
-			 op_own_ptr[index+1+nfields] =
-			     (long)field_name;
-		     }
-		     found = true;
-		     break;
+
+		 /* found required name, save the function */
+		 op_own_ptr = (long *)temp->entry[i].fcn->op_owns;
+		 op_own_ptr[index+1] = (long)field_ops->entry[j].fcn;
+
+		 /* for print and debug_print save the field name too */
+		 if (i == 3 || i == 7) {
+		     op_own_ptr[index+1+nfields] = (long)field_name;
 		 }
+		 found = true;
+		 break;
 	     }
+
+	     /* stub for a missing debug/print function */
 	     if (found == false && (i == 3 || i == 7)) {
 		 op_own_ptr = (long *)temp->entry[i].fcn->op_owns;
 		 op_own_ptr[index+1] = (long)mpf.proc;
 		 op_own_ptr[index+1+nfields] = (long)field_name;
 	     }
 	 }
+
 	 offset = index*pf_op_count + parm_op_count + plain_op_count;
 	 for (i = 0; i < pf_op_count; ++i) {
 	     temp->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
