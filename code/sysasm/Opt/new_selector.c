@@ -77,17 +77,11 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 {
     static CLUREF mpf = { .proc = NULL };
 
-    struct OPS *ops;
     errcode err;
     long index, offset;
     CLUREF temp_proc;
     long *op_own_ptr;
     bool found;
-
-    long pf_op_count, parm_op_count, plain_op_count;
-    nametable_t pf_op_names, parm_op_names, plain_op_names;
-    proctable_t pf_op_fcns, parm_op_fcns, plain_op_fcns;
-    nametable_t parm_restrict_name;
 
     /* try to find an existing ops */
     bool already = find_sel_ops(selname, nfields, table);
@@ -103,14 +97,22 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	mpf.proc->proc = missing_print_fcn;
     }
 
-    /* gather up some initial context */
+    /* get the building blocks */
+    long pf_op_count, parm_op_count, plain_op_count;
+    nametable_t pf_op_names, parm_op_names, plain_op_names;
+    proctable_t pf_op_fcns, parm_op_fcns, plain_op_fcns;
+    nametable_t parm_restrict_name;
+
     sel_ops_counts(selname, &pf_op_count, &parm_op_count, &plain_op_count);
     sel_ops_names(selname, &pf_op_names, &parm_op_names, &plain_op_names);
     sel_ops_fcns(selname, &pf_op_fcns, &parm_op_fcns, &plain_op_fcns);
     sel_ops_restricts(selname, &parm_restrict_name);
 
 
-    /* create basic ops structure */
+    /*
+     * Create basic ops structure.
+     */
+    struct OPS *ops;
     size_t nentries
 	= parm_op_count	     /* ops parametrized by field ops (equal, &c) */
 	+ plain_op_count     /* container level ops don't depend on fields */
@@ -128,7 +130,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     type_owns->init_flag = 1;
 
 
-    size_t slot = 0;
+    size_t slot = 0;		/* index into ops->entry[] */
 
     /*
      * Set up storage for parameterized operations (equal &c).
@@ -137,9 +139,10 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	struct OP_ENTRY *entry = &ops->entry[slot];
 	entry->name = parm_op_names[i];
 
-	/* cluproc storage */
 	err = proctypeOPnew(CLU_1, &temp_proc);
 	if (err != ERR_ok) resignal(err);
+	entry->fcn = temp_proc.proc;
+	entry->fcn->proc = parm_op_fcns[i];
 
 	/* op's own storage */
 	OWNPTR op_owns;
@@ -149,8 +152,6 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	clu_alloc(owns_size, &op_owns);
 	op_owns->init_flag = 1; /* will complete it later */
 
-	entry->fcn = temp_proc.proc;
-	entry->fcn->proc = parm_op_fcns[i];
 	entry->fcn->type_owns = ops->type_owns;
 	entry->fcn->op_owns = op_owns;
     }
