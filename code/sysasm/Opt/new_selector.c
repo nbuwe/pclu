@@ -189,33 +189,6 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     }
 
 
-    for (index = 0; index < nfields; index++) {
-	struct OPS *field_ops = sel_inst_fieldops[index];
-	const char *field_name = sel_inst_fieldname[index];
-
-	for (long i = 0; i < parm_op_count; i++) {
-	    const char *reqname = parm_restrict_name[i];
-
-	    for (long j = 0; j < field_ops->count; j++) {
-		const char *name = field_ops->entry[j].name;
-		if (name == NULL
-		    || name[0] != reqname[0]
-		    || strcmp(name, reqname) != 0)
-		    continue;
-
-		/* found required name, save the function */
-		op_own_ptr = (long *)ops->entry[i].fcn->op_owns;
-		op_own_ptr[index+1] = (long)field_ops->entry[j].fcn;
-		break;
-	    }
-	}
-
-	offset = index*pf_op_count + parm_op_count + plain_op_count;
-	for (long i = 0; i < pf_op_count; i++) {
-	    ops->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
-	}
-    }
-
     /* set up storage for parameterized operations */
     /*     & names for postfixable operations */
     /* --- assumes 4th entry (i == 3) is print & adds field names */
