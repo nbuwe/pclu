@@ -78,11 +78,9 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     static CLUREF mpf = { .proc = NULL };
 
     struct OPS *ops;
-    OWNPTR type_owns;
     errcode err;
-    long i, j, jj, k, index, offset;
+    long i, j, k, index, offset;
     CLUREF temp_proc;
-    long *temp_op_owns;
     long *op_own_ptr;
     bool found;
 
@@ -124,61 +122,66 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     ops->count = nentries;
 
     /* Create trivial type owns (OWN_ptr with empty info[]) */
+    OWNPTR type_owns;
     clu_alloc(UNIT, &type_owns);
     ops->type_owns = type_owns;
-    ops->type_owns->init_flag = 1;
+    type_owns->init_flag = 1;
 
 
-    /* set up storage for parameterized operations */
-    /* --- assumes 4th entry (i == 3) is print & allocates storage for names */
-    /* --- assumes 8th entry (i == 7) is debug_print & allocates storage for names */
-
+    /*
+     * Set up storage for parameterized operations (equal &c).
+     */
     for (i = 0; i < parm_op_count; ++i) {
 	ops->entry[i].name = parm_op_names[i];
+
+	/* cluproc storage */
 	err = proctypeOPnew(CLU_1, &temp_proc);
 	if (err != ERR_ok) resignal(err);
+
+	/* op's own storage */
+	OWNPTR op_owns;
+	size_t owns_size = UNIT + nfields * sizeof(CLUPROC);
+	if (i == 3 || i == 7)	/* assume: print and debug_print */
+	    owns_size += nfields * sizeof(const char *);
+	clu_alloc(owns_size, &op_owns);
+
 	ops->entry[i].fcn = temp_proc.proc;
-
-	if (i == 3 || i == 7) {
-	    clu_alloc(UNIT + nfields*sizeof(CLUPROC) + 
-		      nfields*sizeof(char*), &temp_op_owns);
-	}
-	else {
-	    clu_alloc(UNIT + nfields*sizeof(CLUPROC), 
-		      &temp_op_owns);
-	}
-
 	ops->entry[i].fcn->proc = parm_op_fcns[i];
 	ops->entry[i].fcn->type_owns = ops->type_owns;
-	ops->entry[i].fcn->op_owns = (OWNPTR)temp_op_owns;
-	temp_op_owns[0] = 1;
+	ops->entry[i].fcn->op_owns = op_owns;
+	op_owns->init_flag = 1; /* will complete it later */
     }
 
-    /* set up storage for plain operations */
+
+    /*
+     * Set up storage for plain (container level) operations.
+     */
     for (j = 0; j < plain_op_count; j++, i++) {
 	ops->entry[i].name = plain_op_names[j];
+
 	err = proctypeOPnew(CLU_1, &temp_proc);
 	if (err != ERR_ok) resignal(err);
 	ops->entry[i].fcn = temp_proc.proc;
-
 	ops->entry[i].fcn->proc = plain_op_fcns[j];
-#if 0
-	ops->entry[i].fcn->table = NULL;
-#endif
     }
 
-    /* set up storage for postfixable operations */
-    jj = 0;
+
+    /*
+     * Set up storage for postfixable operations (i.e. field accessors &c).
+     * pf_op_fcns[] is a Cartesian product of field x prefix.
+     */
     for (k = 0; k < nfields; k++) {
 	for (j = 0; j < pf_op_count; j++, i++) {
-	    ops->entry[i].name = pf_op_names[j];
+	    ops->entry[i].name = pf_op_names[j]; /* XXX: prefix only for now */
+
 	    err = proctypeOPnew(CLU_1, &temp_proc);
 	    if (err != ERR_ok) resignal(err);
 	    ops->entry[i].fcn = temp_proc.proc;
-	    ops->entry[i].fcn->proc = pf_op_fcns[jj];
-	    ++jj;
+	    ops->entry[i].fcn->proc
+		= pf_op_fcns[k * pf_op_count + j]; /* [k][j] */
 	}
     }
+
 
      for (index = 0; index < nfields; index++) {
 	 struct OPS *field_ops = (struct OPS *)sel_inst_fieldops[index];
