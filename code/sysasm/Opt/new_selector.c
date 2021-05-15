@@ -80,7 +80,6 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     struct OPS *ops;
     OWNPTR type_owns;
     errcode err;
-    long nentries;
     long i, j, jj, k, index, offset;
     CLUREF temp_proc;
     long *temp_op_owns;
@@ -112,17 +111,23 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     sel_ops_fcns(selname, &pf_op_fcns, &parm_op_fcns, &plain_op_fcns);
     sel_ops_restricts(selname, &parm_restrict_name);
 
-    /* Create trivial type owns (OWN_ptr with empty info[]) */
-    clu_alloc(UNIT, &type_owns);
-    type_owns->init_flag = 1;
 
     /* create basic ops structure */
-    nentries = parm_op_count + plain_op_count + nfields * pf_op_count;
-    clu_alloc(sizeof(struct OPS) +
-	      (nentries - 1) * sizeof(struct OP_ENTRY), &ops);
+    size_t nentries
+	= parm_op_count	     /* ops parametrized by field ops (equal, &c) */
+	+ plain_op_count     /* container level ops don't depend on fields */
+	+ nfields * pf_op_count; /* accessors for each field */
+    size_t ops_size = sizeof(struct OPS)
+	+ (nentries - (VARYING_LENGTH + 0)) * sizeof(struct OP_ENTRY);
+
+    clu_alloc(ops_size, &ops);
     ops->count = nentries;
+
+    /* Create trivial type owns (OWN_ptr with empty info[]) */
+    clu_alloc(UNIT, &type_owns);
     ops->type_owns = type_owns;
-    ops->op_owns = NULL;
+    ops->type_owns->init_flag = 1;
+
 
     /* set up storage for parameterized operations */
     /* --- assumes 4th entry (i == 3) is print & allocates storage for names */
@@ -144,7 +149,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	}
 
 	ops->entry[i].fcn->proc = parm_op_fcns[i];
-	ops->entry[i].fcn->type_owns = type_owns;
+	ops->entry[i].fcn->type_owns = ops->type_owns;
 	ops->entry[i].fcn->op_owns = (OWNPTR)temp_op_owns;
 	temp_op_owns[0] = 1;
     }
