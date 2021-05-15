@@ -77,11 +77,8 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 {
     static CLUREF mpf = { .proc = NULL };
 
-    errcode err;
-    long index, offset;
     CLUREF temp_proc;
-    long *op_own_ptr;
-    bool found;
+    errcode err;
 
     /* try to find an existing ops */
     bool already = find_sel_ops(selname, nfields, table);
@@ -150,7 +147,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	if (i == 3 || i == 7)	/* assume: print and debug_print */
 	    owns_size += nfields * sizeof(const char *);
 	clu_alloc(owns_size, &op_owns);
-	op_owns->init_flag = 1; /* will complete it later */
+	op_owns->init_flag = 1; /* a promise, will complete it below */
 
 	entry->fcn->type_owns = ops->type_owns;
 	entry->fcn->op_owns = op_owns;
@@ -176,9 +173,11 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
      * pf_op_fcns[] is a Cartesian product of field x prefix.
      */
     for (long k = 0; k < nfields; ++k) {
+	const char *field_name = sel_inst_fieldname[k];
+
 	for (long i = 0; i < pf_op_count; ++i, ++slot) {
 	    struct OP_ENTRY *entry = &ops->entry[slot];
-	    entry->name = pf_op_names[i]; /* XXX: prefix only for now */
+	    entry->name = mystrcat(pf_op_names[i], field_name);
 
 	    err = proctypeOPnew(CLU_1, &temp_proc);
 	    if (err != ERR_ok) resignal(err);
@@ -189,18 +188,25 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     }
 
 
-    /* set up storage for parameterized operations */
-    /*     & names for postfixable operations */
-    /* --- assumes 4th entry (i == 3) is print & adds field names */
-    /* --- assumes 8th entry (i == 7) is print & adds field names */
-    for (index = 0; index < nfields; ++index) {
+    /*
+     * Finish initialization of op owns for the parameterized ops of
+     * this new selector type (cf. the first loop above).
+     *
+     * Each parameterized operation ("equal" &c) of this new selector
+     * type needs to know the corresponding operation for each field.
+     * Additionally "print" and "debug_print" need to know the field
+     * names.
+     */
+    for (long index = 0; index < nfields; ++index) {
 	struct OPS *field_ops = sel_inst_fieldops[index];
 	const char *field_name = sel_inst_fieldname[index];
 
 	for (long i = 0; i < parm_op_count; ++i) {
 	    const char *reqname = parm_restrict_name[i];
+	    struct OP_ENTRY *entry = &ops->entry[i];
+	    OWNPTR owns = entry->fcn->op_owns;
 
-	    found = false;
+	    bool found = false;
 	    for (long j = 0; j < field_ops->count; ++j) {
 		const char *name = field_ops->entry[j].name;
 		if (name == NULL
@@ -208,13 +214,12 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 		    || strcmp(name, reqname) != 0)
 		    continue;
 
-		/* found required name, save the function */
-		op_own_ptr = (long *)ops->entry[i].fcn->op_owns;
-		op_own_ptr[index+1] = (long)field_ops->entry[j].fcn;
+		/* save the corresponding field's op */
+		owns->info[index] = (long)field_ops->entry[j].fcn;
 
 		/* for print and debug_print save the field name too */
 		if (i == 3 || i == 7) {
-		    op_own_ptr[index+1+nfields] = (long)field_name;
+		    owns->info[nfields + index] = (long)field_name;
 		}
 		found = true;
 		break;
@@ -222,15 +227,9 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 
 	    /* stub for a missing debug/print function */
 	    if (found == false && (i == 3 || i == 7)) {
-		op_own_ptr = (long *)ops->entry[i].fcn->op_owns;
-		op_own_ptr[index+1] = (long)mpf.proc;
-		op_own_ptr[index+1+nfields] = (long)field_name;
+		owns->info[index] = (long)mpf.proc;
+		owns->info[nfields + index] = (long)field_name;
 	    }
-	}
-
-	offset = index*pf_op_count + parm_op_count + plain_op_count;
-	for (long i = 0; i < pf_op_count; ++i) {
-	    ops->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
 	}
     }
 
