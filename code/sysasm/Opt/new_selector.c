@@ -79,7 +79,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 
     struct OPS *ops;
     errcode err;
-    long i, j, k, index, offset;
+    long index, offset;
     CLUREF temp_proc;
     long *op_own_ptr;
     bool found;
@@ -128,11 +128,14 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     type_owns->init_flag = 1;
 
 
+    size_t slot = 0;
+
     /*
      * Set up storage for parameterized operations (equal &c).
      */
-    for (i = 0; i < parm_op_count; ++i) {
-	ops->entry[i].name = parm_op_names[i];
+    for (size_t i = 0; i < parm_op_count; ++i, ++slot) {
+	struct OP_ENTRY *entry = &ops->entry[slot];
+	entry->name = parm_op_names[i];
 
 	/* cluproc storage */
 	err = proctypeOPnew(CLU_1, &temp_proc);
@@ -144,25 +147,26 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	if (i == 3 || i == 7)	/* assume: print and debug_print */
 	    owns_size += nfields * sizeof(const char *);
 	clu_alloc(owns_size, &op_owns);
-
-	ops->entry[i].fcn = temp_proc.proc;
-	ops->entry[i].fcn->proc = parm_op_fcns[i];
-	ops->entry[i].fcn->type_owns = ops->type_owns;
-	ops->entry[i].fcn->op_owns = op_owns;
 	op_owns->init_flag = 1; /* will complete it later */
+
+	entry->fcn = temp_proc.proc;
+	entry->fcn->proc = parm_op_fcns[i];
+	entry->fcn->type_owns = ops->type_owns;
+	entry->fcn->op_owns = op_owns;
     }
 
 
     /*
      * Set up storage for plain (container level) operations.
      */
-    for (j = 0; j < plain_op_count; j++, i++) {
-	ops->entry[i].name = plain_op_names[j];
+    for (size_t i = 0; i < plain_op_count; ++i, ++slot) {
+	struct OP_ENTRY *entry = &ops->entry[slot];
+	entry->name = plain_op_names[i];
 
 	err = proctypeOPnew(CLU_1, &temp_proc);
 	if (err != ERR_ok) resignal(err);
-	ops->entry[i].fcn = temp_proc.proc;
-	ops->entry[i].fcn->proc = plain_op_fcns[j];
+	entry->fcn = temp_proc.proc;
+	entry->fcn->proc = plain_op_fcns[i];
     }
 
 
@@ -170,15 +174,16 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
      * Set up storage for postfixable operations (i.e. field accessors &c).
      * pf_op_fcns[] is a Cartesian product of field x prefix.
      */
-    for (k = 0; k < nfields; k++) {
-	for (j = 0; j < pf_op_count; j++, i++) {
-	    ops->entry[i].name = pf_op_names[j]; /* XXX: prefix only for now */
+    for (size_t k = 0; k < nfields; ++k) {
+	for (size_t i = 0; i < pf_op_count; ++i, ++slot) {
+	    struct OP_ENTRY *entry = &ops->entry[slot];
+	    entry->name = pf_op_names[i]; /* XXX: prefix only for now */
 
 	    err = proctypeOPnew(CLU_1, &temp_proc);
 	    if (err != ERR_ok) resignal(err);
-	    ops->entry[i].fcn = temp_proc.proc;
-	    ops->entry[i].fcn->proc
-		= pf_op_fcns[k * pf_op_count + j]; /* [k][j] */
+	    entry->fcn = temp_proc.proc;
+	    entry->fcn->proc
+		= pf_op_fcns[k * pf_op_count + i]; /* [k][i] */
 	}
     }
 
@@ -187,10 +192,10 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	 struct OPS *field_ops = (struct OPS *)sel_inst_fieldops[index];
 	 const char *field_name = sel_inst_fieldname[index];
 
-	 for (i = 0; i < parm_op_count; i++) {
+	 for (size_t i = 0; i < parm_op_count; i++) {
 	     const char *reqname = parm_restrict_name[i];
 
-	     for (j = 0; j < field_ops->count; j++) {
+	     for (size_t j = 0; j < field_ops->count; j++) {
 		 const char *name = field_ops->entry[j].name;
 		 if (name == NULL
 		     || name[0] != reqname[0]
@@ -205,7 +210,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	 }
 
 	 offset = index*pf_op_count + parm_op_count + plain_op_count;
-	 for (i = 0; i < pf_op_count; i++) {
+	 for (size_t i = 0; i < pf_op_count; i++) {
 	     ops->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
 	 }
      }
@@ -218,11 +223,11 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	 struct OPS *field_ops = (struct OPS *)sel_inst_fieldops[index];
 	 const char *field_name = sel_inst_fieldname[index];
 
-	 for (i = 0; i < parm_op_count; ++i) {
+	 for (size_t i = 0; i < parm_op_count; ++i) {
 	     const char *reqname = parm_restrict_name[i];
 
 	     found = false;
-	     for (j = 0; j < field_ops->count; ++j) {
+	     for (size_t j = 0; j < field_ops->count; ++j) {
 		 const char *name = field_ops->entry[j].name;
 		 if (name == NULL
 		     || name[0] != reqname[0]
@@ -250,7 +255,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	 }
 
 	 offset = index*pf_op_count + parm_op_count + plain_op_count;
-	 for (i = 0; i < pf_op_count; ++i) {
+	 for (size_t i = 0; i < pf_op_count; ++i) {
 	     ops->entry[offset+i].name = mystrcat(pf_op_names[i], field_name);
 	 }
      }
