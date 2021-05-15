@@ -261,10 +261,10 @@ missing_print_fcn(CLUREF val, CLUREF pst)
 
 /* storage for following routine */
 
-OWNPTR	record_opsptr_arr[MAX_SELECTORS]; /* instantiated ops */
-OWNPTR	struct_opsptr_arr[MAX_SELECTORS]; /* instantiated ops */
-OWNPTR	variant_opsptr_arr[MAX_SELECTORS]; /* instantiated ops */
-OWNPTR	oneof_opsptr_arr[MAX_SELECTORS]; /* instantiated ops */
+OPSPTR	record_opsptr_arr[MAX_SELECTORS]; /* instantiated ops */
+OPSPTR	struct_opsptr_arr[MAX_SELECTORS]; /* instantiated ops */
+OPSPTR	variant_opsptr_arr[MAX_SELECTORS]; /* instantiated ops */
+OPSPTR	oneof_opsptr_arr[MAX_SELECTORS]; /* instantiated ops */
 
 long 	record_field_count [MAX_SELECTORS];
 long 	struct_field_count [MAX_SELECTORS];
@@ -320,7 +320,7 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
 {
     bool found = false;
     long *pcount;
-    OWNPTR *table;
+    OPSPTR *table;
     OPSPTR (*parm_vals)[MAX_FIELDS];
     long *parm_count;
 
@@ -383,7 +383,7 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
 
     if (found) {
 	/* entry found: return ops */
-	*result = (struct OPS *)table[slot];
+	*result = table[slot];
 	return true;
     }
     else {
@@ -396,7 +396,7 @@ static errcode
 add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 {
     long *pcount;
-    OWNPTR *table;
+    OPSPTR *table;
     OPSPTR (*parm_vals)[MAX_FIELDS];
     long *parm_count;
 
@@ -439,7 +439,7 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 	exit(-10);
     }
 
-    table[slot] = (OWNPTR) new_ops;
+    table[slot] = new_ops;
     parm_count[slot] = count;
     for (long i = 0 ; i < count; ++i) {
 	parm_vals[slot][i] = sel_inst_fieldops[i];
