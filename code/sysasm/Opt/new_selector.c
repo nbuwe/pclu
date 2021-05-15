@@ -31,14 +31,14 @@ extern errcode missing_print_fcn();
 #define MAX_FIELDS    50
 
 static const char *sel_inst_fieldname[MAX_FIELDS];
-static long sel_inst_fieldops[MAX_FIELDS];
+static struct OPS *sel_inst_fieldops[MAX_FIELDS];
 
 
 errcode
 add_selector_info(const char *field_name, long index, struct OPS *ops)
 {
     sel_inst_fieldname[index] = field_name;
-    sel_inst_fieldops[index] = (long)ops;
+    sel_inst_fieldops[index] = ops;
     signal(ERR_ok);
 }
 
@@ -190,7 +190,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 
 
     for (index = 0; index < nfields; index++) {
-	struct OPS *field_ops = (struct OPS *)sel_inst_fieldops[index];
+	struct OPS *field_ops = sel_inst_fieldops[index];
 	const char *field_name = sel_inst_fieldname[index];
 
 	for (size_t i = 0; i < parm_op_count; i++) {
@@ -221,7 +221,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
     /* --- assumes 4th entry (i == 3) is print & adds field names */
     /* --- assumes 8th entry (i == 7) is print & adds field names */
     for (index = 0; index < nfields; ++index) {
-	struct OPS *field_ops = (struct OPS *)sel_inst_fieldops[index];
+	struct OPS *field_ops = sel_inst_fieldops[index];
 	const char *field_name = sel_inst_fieldname[index];
 
 	for (size_t i = 0; i < parm_op_count; ++i) {
@@ -301,10 +301,10 @@ long 	struct_field_count [MAX_SELECTORS];
 long 	variant_field_count [MAX_SELECTORS];
 long 	oneof_field_count [MAX_SELECTORS];
 
-long *	record_field_vals [MAX_SELECTORS][MAX_FIELDS];
-long *	struct_field_vals [MAX_SELECTORS][MAX_FIELDS];
-long *	variant_field_vals [MAX_SELECTORS][MAX_FIELDS];
-long *	oneof_field_vals [MAX_SELECTORS][MAX_FIELDS];
+OPSPTR	record_field_vals [MAX_SELECTORS][MAX_FIELDS];
+OPSPTR	struct_field_vals [MAX_SELECTORS][MAX_FIELDS];
+OPSPTR	variant_field_vals [MAX_SELECTORS][MAX_FIELDS];
+OPSPTR	oneof_field_vals [MAX_SELECTORS][MAX_FIELDS];
 
 static long record_num_entries = 0;
 static long struct_num_entries = 0;
@@ -351,7 +351,7 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
     bool found = false;
     long *pcount;
     OWNPTR *table;
-    long *(*parm_vals)[MAX_FIELDS];
+    OPSPTR (*parm_vals)[MAX_FIELDS];
     long *parm_count;
 
 
@@ -401,7 +401,7 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
 
 	found = true;
 	for (long i = 0; i < count; ++i) {
-	    if ((long)parm_vals[slot][i] == sel_inst_fieldops[i])
+	    if (parm_vals[slot][i] == sel_inst_fieldops[i])
 		continue;
 
 	    found = false;
@@ -427,7 +427,7 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 {
     long *pcount;
     OWNPTR *table;
-    long *(*parm_vals)[MAX_FIELDS];
+    OPSPTR (*parm_vals)[MAX_FIELDS];
     long *parm_count;
 
     /* first select which table */
@@ -472,7 +472,7 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
     table[slot] = (OWNPTR) new_ops;
     parm_count[slot] = count;
     for (long i = 0 ; i < count; ++i) {
-	parm_vals[slot][i] = (long *)sel_inst_fieldops[i];
+	parm_vals[slot][i] = sel_inst_fieldops[i];
     }
 
     *pcount = slot + 1;
