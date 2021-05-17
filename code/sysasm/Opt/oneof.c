@@ -31,6 +31,7 @@ oneofOPnew(CLUREF tag, CLUREF val, CLUREF *ans)
     temp.cell->typ.spare = 0;
     temp.cell->tag = tag.num;
     temp.cell->value = val.num;
+
     ans->cell = temp.cell;
     signal(ERR_ok);
 }
@@ -39,17 +40,22 @@ oneofOPnew(CLUREF tag, CLUREF val, CLUREF *ans)
 errcode
 oneofOPcopy(CLUREF one, CLUREF *ans)
 {
+    CLUREF temp;
     errcode err;
-    CLUREF temp, tag, value;
-    CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to copy fcns */
 
-    tag.num = one.cell->tag;
-    value.num = one.cell->value;
-    err = oneofOPnew(tag, value, &temp);
+    CLUREF tag = { .num = one.cell->tag };
+    err = oneofOPnew(tag, CLU_0, &temp);
     if (err != ERR_ok) resignal(err);
-    CUR_PROC_VAR.proc = (CLUPROC)table[one.cell->tag - 1];
-    err = table[one.cell->tag - 1]->proc(value, &temp.cell->value);
+
+    /* call tag's copy function to do the work */
+    const OWN_ptr *owns = CUR_PROC_VAR.proc->op_owns;
+    const CLUPROC *copy = (CLUPROC *)owns->info;
+
+    CLUREF value = { .num = one.cell->value };
+    CUR_PROC_VAR.proc = copy[one.cell->tag - 1];
+    err = (*CUR_PROC_VAR.proc->proc)(value, &temp.cell->value);
     if (err != ERR_ok) resignal(err);
+
     ans->cell = temp.cell;
     signal(ERR_ok);
 }
@@ -58,13 +64,14 @@ oneofOPcopy(CLUREF one, CLUREF *ans)
 errcode
 oneofOPo2v(CLUREF one, CLUREF *ans)
 {
-    errcode err;
     CLUREF temp;
+    errcode err;
 
     err = variantOPnew(CLUREF_make_num(one.cell->tag),
 		       CLUREF_make_num(one.cell->value),
 		       &temp);
     if (err != ERR_ok) resignal(err);
+
     ans->cell = temp.cell;
     signal(ERR_ok);
 }
@@ -73,13 +80,14 @@ oneofOPo2v(CLUREF one, CLUREF *ans)
 errcode
 oneofOPv2o(CLUREF vnt, CLUREF *ans)
 {
-    errcode err;
     CLUREF temp;
+    errcode err;
 
     err = oneofOPnew(CLUREF_make_num(vnt.cell->tag),
 		     CLUREF_make_num(vnt.cell->value),
 		     &temp);
     if (err != ERR_ok) resignal(err);
+
     ans->cell = temp.cell;
     signal(ERR_ok);
 }
@@ -88,18 +96,21 @@ oneofOPv2o(CLUREF vnt, CLUREF *ans)
 errcode
 oneofOPsimilar(CLUREF one1, CLUREF one2, CLUREF *ans)
 {
-    CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to similar fcns */
     errcode err;
-    CLUREF value1, value2;
 
     if (one1.cell->tag != one2.cell->tag) {
 	ans->tf = false;
 	signal(ERR_ok);
     }
-    value1.num = one1.cell->value;
-    value2.num = one2.cell->value;
-    CUR_PROC_VAR.proc = (CLUPROC)table[one1.cell->tag - 1];
-    err = table[one1.cell->tag - 1]->proc(value1, value2, ans);
+
+    /* call tag's similar function to do the work */
+    const OWN_ptr *owns = CUR_PROC_VAR.proc->op_owns;
+    const CLUPROC *similar = (CLUPROC *)owns->info;
+
+    CLUREF value1 = { .num = one1.cell->value };
+    CLUREF value2 = { .num = one2.cell->value };
+    CUR_PROC_VAR.proc = similar[one1.cell->tag - 1];
+    err = (*CUR_PROC_VAR.proc->proc)(value1, value2, ans);
     if (err != ERR_ok) resignal(err);
     signal(ERR_ok);
 }
@@ -108,19 +119,25 @@ oneofOPsimilar(CLUREF one1, CLUREF one2, CLUREF *ans)
 errcode
 oneofOP_gcd(CLUREF one, CLUREF tab, CLUREF *ans)
 {
-    CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to _gcd fcns */
     errcode err;
-    CLUREF temp_oneof, temp_seq, sz, tag;
 
-    tag.num = one.cell->tag;
-    sequenceOPnew2(tag, &temp_seq);
+    const OWN_ptr *owns = CUR_PROC_VAR.proc->op_owns;
+    const CLUPROC *_gcd = (CLUPROC *)owns->info;
+
+    CLUREF gproclist;
+    CLUREF len = { .num = one.cell->tag };
+    sequenceOPnew2(len, &gproclist);
     for (long i = 0; i < one.cell->tag; ++i) {
-	temp_seq.vec->data[i] = (long)table[i];
+	gproclist.vec->data[i] = (long)_gcd[i];
     }
-    err = oneofOPnew(CLU_4, temp_seq, &temp_oneof);
+
+    CLUREF ginfo;
+    CLUREF d_cell_tag = CLU_4;
+    err = oneofOPnew(d_cell_tag, gproclist, &ginfo);
     if (err != ERR_ok) resignal(err);
-    sz.num = 2*CLUREFSZ + GCD_REF_SIZE;
-    err = gcd_tabOPinsert(tab, sz, temp_oneof, one, ans);
+
+    CLUREF size = { .num = 2 * CLUREFSZ + GCD_REF_SIZE };
+    err = gcd_tabOPinsert(tab, size, ginfo, one, ans);
     if (err != ERR_ok) resignal(err);
     signal(ERR_ok);
 }
@@ -130,15 +147,19 @@ errcode
 oneofOPencode(CLUREF one, CLUREF ist)
 {
     errcode err;
-    CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to encode fcns */
-    CLUREF temp;
 
-    temp.num = one.cell->tag;
-    err = istreamOPputi(ist, temp);
+    /* encode the tag */
+    CLUREF tag = { .num = one.cell->tag };
+    err = istreamOPputi(ist, tag);
     if (err != ERR_ok) resignal(ERR_ok);
-    temp.num = one.cell->value;
-    CUR_PROC_VAR.proc = (CLUPROC)table[one.cell->tag - 1];
-    err = table[one.cell->tag - 1]->proc(temp, ist);
+
+    /* call tag's encode function to encode the value */
+    const OWN_ptr *owns = CUR_PROC_VAR.proc->op_owns;
+    const CLUPROC *encode = (CLUPROC *)owns->info;
+
+    CLUREF value = { .num = one.cell->value };
+    CUR_PROC_VAR.proc = encode[one.cell->tag - 1];
+    err = (*CUR_PROC_VAR.proc->proc)(value, ist);
     if (err == ERR_not_possible) signal(err);
     if (err != ERR_ok) resignal(err);
     signal(ERR_ok);
@@ -148,22 +169,28 @@ oneofOPencode(CLUREF one, CLUREF ist)
 errcode
 oneofOPdecode(CLUREF ist, CLUREF *ans)
 {
+    CLUREF temp;
     errcode err;
-    CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to decode fcns */
-    CLUREF tag, val, temp;
 
+    /* decode the tag */
+    CLUREF tag;
     err = istreamOPgeti(ist, &tag);
     if (err != ERR_ok) resignal(ERR_ok);
 
-    /* error checking on tag value */
-    CUR_PROC_VAR.proc = (CLUPROC)table[tag.num - 1];
-    err = table[tag.num - 1]->proc(ist, &val);
+    /* call tag's decode function to decode the value */
+    const OWN_ptr *owns = CUR_PROC_VAR.proc->op_owns;
+    const CLUPROC *decode = (CLUPROC *)owns->info;
+
+    CLUREF value;
+    CUR_PROC_VAR.proc = decode[tag.num - 1];
+    err = (*CUR_PROC_VAR.proc->proc)(ist, &value);
     if (err == ERR_not_possible) signal(err);
     if (err == ERR_end_of_file) signal(err);
     if (err != ERR_ok) resignal(err);
 
-    err = oneofOPnew(tag, val, &temp);
+    err = oneofOPnew(tag, value, &temp);
     if (err != ERR_ok) resignal(err);
+
     ans->cell = temp.cell;
     signal(ERR_ok);
 }
@@ -172,18 +199,21 @@ oneofOPdecode(CLUREF ist, CLUREF *ans)
 errcode
 oneofOPequal(CLUREF one1, CLUREF one2, CLUREF *ans)
 {
-    CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to equal fcns */
     errcode err;
-    CLUREF value1, value2;
 
     if (one1.cell->tag != one2.cell->tag) {
 	ans->tf = false;
 	signal(ERR_ok);
     }
-    value1.num = one1.cell->value;
-    value2.num = one2.cell->value;
-    CUR_PROC_VAR.proc = (CLUPROC)table[one1.cell->tag - 1];
-    err = table[one1.cell->tag - 1]->proc(value1, value2, ans);
+
+    /* call tag's equal function to do the work */
+    const OWN_ptr *owns = CUR_PROC_VAR.proc->op_owns;
+    const CLUPROC *equal = (CLUPROC *)owns->info;
+
+    CLUREF value1 = { .num = one1.cell->value };
+    CLUREF value2 = { .num = one2.cell->value };
+    CUR_PROC_VAR.proc = equal[one1.cell->tag - 1];
+    err = (*CUR_PROC_VAR.proc->proc)(value1, value2, ans);
     if (err != ERR_ok) resignal(err);
     signal(ERR_ok);
 }
