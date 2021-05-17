@@ -9,6 +9,8 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+errcode pstreamOPtextc(CLUREF ps, CLUREF c, CLUREF *ret_1);
+
 
 errcode
 proctypeOPnew(CLUREF nops, CLUREF *ans)
