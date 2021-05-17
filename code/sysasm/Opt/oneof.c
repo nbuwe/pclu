@@ -67,9 +67,9 @@ oneofOPo2v(CLUREF one, CLUREF *ans)
     CLUREF temp;
     errcode err;
 
-    err = variantOPnew(CLUREF_make_num(one.cell->tag),
-		       CLUREF_make_num(one.cell->value),
-		       &temp);
+    CLUREF tag = { .num = one.cell->tag };
+    CLUREF value = { .num = one.cell->value };
+    err = variantOPnew(tag, value, &temp);
     if (err != ERR_ok) resignal(err);
 
     ans->cell = temp.cell;
@@ -78,14 +78,14 @@ oneofOPo2v(CLUREF one, CLUREF *ans)
 
 
 errcode
-oneofOPv2o(CLUREF vnt, CLUREF *ans)
+oneofOPv2o(CLUREF variant, CLUREF *ans)
 {
     CLUREF temp;
     errcode err;
 
-    err = oneofOPnew(CLUREF_make_num(vnt.cell->tag),
-		     CLUREF_make_num(vnt.cell->value),
-		     &temp);
+    CLUREF tag = { .num = variant.cell->tag };
+    CLUREF value = { .num = variant.cell->value };
+    err = oneofOPnew(tag, value, &temp);
     if (err != ERR_ok) resignal(err);
 
     ans->cell = temp.cell;
