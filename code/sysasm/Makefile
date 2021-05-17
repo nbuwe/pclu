@@ -15,9 +15,10 @@ OBJS  = _adv.o _anyize.o _bytevec.o _chan.o _cvt.o _environ.o _environs.o \
 	_event.o _get_pid.o _gprof.o _local_time.o _round_real.o _tagcell.o \
 	_unparse_real.o _vec.o alloc.o array.o bool.o char.o connected_dir.o \
 	delete_file.o force.o gprof.o int.o itertype.o log.o new_parm_util.o \
-	new_selector.o now.o null.o oneof.o proctype.o real.o record.o \
-	rename_file.o sequence.o string.o struct.o type.o \
-	type_of.o unimp.o unix_cmd.o util.o variant.o
+	new_selector.o now.o null.o oneof.o oneof_pfx.o proctype.o real.o \
+	record.o record_pfx.o rename_file.o sequence.o string.o \
+	struct.o struct_pfx.o type.o type_of.o unimp.o unix_cmd.o util.o \
+	variant.o variant_pfx.o
 
 opt: fictitious_file
 	cd Opt; make CC="${CC}" CFLAGS="${CFLAGS} ${OPT_FLAGS}" OBJS="${OBJS}"
