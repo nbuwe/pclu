@@ -7,7 +7,16 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode oneofOPprint();
+errcode gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1);
+errcode istreamOPgeti(CLUREF ist, CLUREF *ret_1);
+errcode istreamOPputi(CLUREF ist, CLUREF i);
+errcode pstreamOPstart(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode pstreamOPstop(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode variantOPnew(CLUREF tag, CLUREF val, CLUREF *ans);
+
+errcode oneofOPprint(CLUREF one, CLUREF pst);
+const char * const *find_names(const OWN_ptr *owns); /* used by variant.c */
 
 
 errcode
@@ -52,7 +61,9 @@ oneofOPo2v(CLUREF one, CLUREF *ans)
     errcode err;
     CLUREF temp;
 
-    err = variantOPnew(one.cell->tag, one.cell->value, &temp);
+    err = variantOPnew(CLUREF_make_num(one.cell->tag),
+		       CLUREF_make_num(one.cell->value),
+		       &temp);
     if (err != ERR_ok) resignal(err);
     ans->cell = temp.cell;
     signal(ERR_ok);
@@ -178,9 +189,6 @@ oneofOPequal(CLUREF one1, CLUREF one2, CLUREF *ans)
 }
 
 
-char **find_names();
-
-
 errcode
 oneofOPdebug_print(CLUREF one, CLUREF pst)
 {
@@ -194,64 +202,75 @@ oneofOPdebug_print(CLUREF one, CLUREF pst)
 errcode
 oneofOPprint(CLUREF one, CLUREF pst)
 {
-    CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to print fcns */
-    char **table2;
-    char *nm;
+    OWN_ptr *owns = CUR_PROC_VAR.proc->op_owns;
+    CLUPROC *table = (CLUPROC *)owns->info; /* ptr to print fcns */
     errcode err;
-    CLUREF temp_str, temp_st2, tag, value, size, ans;
+    CLUREF temp_str, temp_st2, tag, value, ans;
 
     err = stringOPcons("<", CLU_1, CLU_1, &temp_str);
     if (err != ERR_ok) resignal(err);
+
     err = pstreamOPstart(pst, temp_str, &ans);
     if (err != ERR_ok) resignal(err);
-    if (ans.tf == false) goto done;
-#ifdef sparc
-    tag.num = one.cell->tag;
-    err = intOPprint(tag, pst);
-    if (err != ERR_ok) resignal(err);
-#else
-    table2 = find_names(table);
-    nm = table2[one.cell->tag-1];
-    size.num = strlen(nm);
-    stringOPcons(nm, CLU_1, size, &temp_str);
+    if (ans.tf == false) {
+	err = pstreamOPstop(pst, temp_str, &ans);
+	if (err != ERR_ok) resignal(err);
+	signal(ERR_ok);
+    }
+
+    /* find the tag's name in owns */
+    const char * const *names = find_names(owns);
+    const char *name = names[one.cell->tag - 1];
+    size_t size = strlen(name);
+    stringOPcons(name, CLU_1, CLUREF_make_num(size), &temp_str);
+
     err = pstreamOPtext(pst, temp_str, &ans);
     if (err != ERR_ok) resignal(err);
-#endif
 
     err = stringOPcons(": ", CLU_1, CLU_2, &temp_str);
     if (err != ERR_ok) resignal(err);
+
     err = pstreamOPtext(pst, temp_str, &ans);
     if (err != ERR_ok) resignal(err);
 
+    /* call the tag's print function */
     value.num = one.cell->value;
     CUR_PROC_VAR.proc = (CLUPROC)table[one.cell->tag - 1];
     err = table[one.cell->tag - 1]->proc(value, pst);
     if (err != ERR_ok) resignal(err);
-  done:
+
     err = stringOPcons(">", CLU_1, CLU_1, &temp_str);
     if (err != ERR_ok) resignal(err);
+
     err = pstreamOPstop(pst, temp_str, &ans);
     if (err != ERR_ok) resignal(err);
+
     signal(ERR_ok);
 }
 
 
-char **
-find_names(CLUPROC *table)
+/*
+ * Find the field names saved in the owns for print and debug_print by
+ * find_selector_ops() after the function table.
+ */
+const char * const *
+find_names(const OWN_ptr *owns)
 {
-    long i, *j;
-
-    for (i = 0; i < 41; i++) {
-	j = (long*)table[i];
-	if (j == 0) continue;
-	if (*j == 0) continue;
-	if ((table[i]->typ.val == CT_PROC) 
-	    && (table[i]->typ.mark == 0) 
-	    && (table[i]->typ.refp == 0) 
-	    && (table[i]->typ.spare == 0))
+    for (size_t i = 0; i < 41; ++i) {
+	CLUPROC p = (CLUPROC)owns->info[i];
+	if (p == NULL)
 	    continue;
-	return ((char**)&table[i]);
+	if (*(long *)p == 0)
+	    continue;
+	if ((p->typ.mark == 0)
+	    && (p->typ.val == CT_PROC)
+	    && (p->typ.refp == 0)
+	    && (p->typ.spare == 0))
+	    continue;
+
+	return (const char **)&owns->info[i];
     }
+    return NULL;
 }
 
 

@@ -35,7 +35,16 @@ static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/variant.c,v 1.6 
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+errcode gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1);
+errcode istreamOPgeti(CLUREF ist, CLUREF *ret_1);
+errcode istreamOPputi(CLUREF ist, CLUREF i);
+errcode pstreamOPstart(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode pstreamOPstop(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1);
+
+const char * const *find_names(const OWN_ptr *owns); /* in oneof.c */
 extern errcode variantOPprint();
+
 
 errcode variantOPnew(tag, val, ans)
 CLUREF tag, val;
@@ -131,56 +140,56 @@ errcode err;
 	signal(ERR_ok);
 	}
 
-extern char**find_names();
-errcode variantOPprint(vnt, pst)
-CLUREF vnt, pst;
+
+errcode
+variantOPprint(CLUREF vnt, CLUREF pst)
 {
-CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to print fcns */
-char**table2; /* ptr to print fcns */
-char *nm;
-errcode err;
-CLUREF temp_str, temp_st2, tag, value, size, ans;
+    OWN_ptr *owns = CUR_PROC_VAR.proc->op_owns;
+    CLUPROC *table = (CLUPROC *)owns->info; /* ptr to print fcns */
+    errcode err;
+    CLUREF temp_str, temp_st2, tag, value, ans;
 
-	err = stringOPcons("<", CLU_1, CLU_1, &temp_str);
-	if (err != ERR_ok) resignal(err);
-	err = pstreamOPstart(pst, temp_str, &ans);
-	if (err != ERR_ok) resignal(err);
-	if (ans.tf == false) {
-		err = pstreamOPstop(pst, temp_str, &ans);
-		if (err != ERR_ok) resignal(err);
-		signal(ERR_ok);
-		}
+    err = stringOPcons("<", CLU_1, CLU_1, &temp_str);
+    if (err != ERR_ok) resignal(err);
 
-#ifdef sparc
-	tag.num = vnt.cell->tag;
-	err = intOPprint(tag, pst);
-	if (err != ERR_ok) resignal(err);
-#else
-	table2 = find_names(table); /* ptr to print fcns */
-	nm = table2[vnt.cell->tag-1];
-	size.num = strlen(nm);
-	err = stringOPcons(nm, CLU_1, size, &temp_str);
-	if (err != ERR_ok) resignal(err);
-	err = pstreamOPtext(pst, temp_str, &ans);
-	if (err != ERR_ok) resignal(err);
-#endif
-
-	err = stringOPcons(": ", CLU_1, CLU_2, &temp_str);
-	if (err != ERR_ok) resignal(err);
-	err = pstreamOPtext(pst, temp_str, &ans);
-	if (err != ERR_ok) resignal(err);
-
-	value.num = vnt.cell->value;
-	CUR_PROC_VAR.proc = (CLUPROC)table[vnt.cell->tag - 1];
-	err = table[vnt.cell->tag - 1]->proc(value, pst);
-	if (err != ERR_ok) resignal(err);
-
-	err = stringOPcons(">", CLU_1, CLU_1, &temp_str);
-	if (err != ERR_ok) resignal(err);
+    err = pstreamOPstart(pst, temp_str, &ans);
+    if (err != ERR_ok) resignal(err);
+    if (ans.tf == false) {
 	err = pstreamOPstop(pst, temp_str, &ans);
 	if (err != ERR_ok) resignal(err);
 	signal(ERR_ok);
-	}
+    }
+
+    /* find the tag's name in owns */
+    const char * const *names = find_names(owns);
+    const char *name = names[vnt.cell->tag - 1];
+    size_t size = strlen(name);
+    stringOPcons(name, CLU_1, CLUREF_make_num(size), &temp_str);
+
+    err = pstreamOPtext(pst, temp_str, &ans);
+    if (err != ERR_ok) resignal(err);
+
+    err = stringOPcons(": ", CLU_1, CLU_2, &temp_str);
+    if (err != ERR_ok) resignal(err);
+
+    err = pstreamOPtext(pst, temp_str, &ans);
+    if (err != ERR_ok) resignal(err);
+
+    /* call the tag's print function */
+    value.num = vnt.cell->value;
+    CUR_PROC_VAR.proc = (CLUPROC)table[vnt.cell->tag - 1];
+    err = table[vnt.cell->tag - 1]->proc(value, pst);
+    if (err != ERR_ok) resignal(err);
+
+    err = stringOPcons(">", CLU_1, CLU_1, &temp_str);
+    if (err != ERR_ok) resignal(err);
+
+    err = pstreamOPstop(pst, temp_str, &ans);
+    if (err != ERR_ok) resignal(err);
+
+    signal(ERR_ok);
+}
+
 
 errcode variantOPencode(vnt, ist)
 CLUREF vnt, ist;
