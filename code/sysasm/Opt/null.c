@@ -1,25 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: null.c,v 1.4 91/07/09 13:11:21 root Exp $";
-#endif 
-/* $Log:	null.c,v $
- * Revision 1.4  91/07/09  13:11:21  root
- * changed args to stringOPcons to CLUREFs (sun compatibility)
- * 
- * Revision 1.3  91/06/06  13:29:28  root
- * added copyright notice
- * 
- * Revision 1.2  91/05/31  12:23:03  root
- * fixed aggregate initialization in ops_actual
- * removed unused variables
- * fixed printing: consed CLU_string, rather than using C string
- * 
- * Revision 1.1  91/02/04  15:49:48  mtv
- * Initial revision
- * 
- */
 
 /*								*/
 /*		NULL IMPLEMENTATION				*/
@@ -29,120 +8,145 @@ static char rcsid[] = "$Header: null.c,v 1.4 91/07/09 13:11:21 root Exp $";
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode nullOPprint();
+errcode istreamOPgeti(CLUREF ist, CLUREF *ret_1);
+errcode istreamOPputi(CLUREF ist, CLUREF i);
+errcode pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1);
 
-errcode nullOPequal(nn1, nn2, ans)
-CLUREF nn1, nn2;
-CLUREF *ans;
+errcode nullOPprint(CLUREF n, CLUREF pst);
+
+
+errcode
+nullOPequal(CLUREF nn1, CLUREF nn2, CLUREF *ans)
 {
-	ans->tf = true;
-	signal(ERR_ok);
-	}
+    ans->tf = true;
+    signal(ERR_ok);
+}
 
-errcode nullOPsimilar(nn1, nn2, ans)
-CLUREF nn1, nn2;
-CLUREF *ans;
+
+errcode
+nullOPsimilar(CLUREF nn1, CLUREF nn2, CLUREF *ans)
 {
-	ans->tf = true;	
-	signal(ERR_ok);
-	}
+    ans->tf = true;
+    signal(ERR_ok);
+}
 
-errcode nullOPcopy(n, ans)
-CLUREF n;
-CLUREF *ans;
+
+errcode
+nullOPcopy(CLUREF n, CLUREF *ans)
 {
-	ans->num = n.num;
-	signal(ERR_ok);
-	}
+    ans->num = n.num;
+    signal(ERR_ok);
+}
 
-errcode nullOPdebug_print(n, pst)
-CLUREF n, pst;
+
+errcode
+nullOPdebug_print(CLUREF n, CLUREF pst)
 {
-errcode err;
-	err = nullOPprint(n, pst);
-	if (err != ERR_ok) resignal(err);
-	signal(ERR_ok);
-	}
+    errcode err;
+
+    err = nullOPprint(n, pst);
+    if (err != ERR_ok) resignal(err);
+    signal(ERR_ok);
+}
 
 
-errcode nullOPprint(n, pst)
-CLUREF n, pst;
+errcode
+nullOPprint(CLUREF n, CLUREF pst)
 {
-errcode err;
-CLUREF temp_str, ans;
+    errcode err;
+    CLUREF temp_str, ans;
 
-	err = stringOPcons("nil", CLU_1, CLU_3, &temp_str);
-	err = pstreamOPtext(pst, temp_str, &ans);
-	if (err != ERR_ok) resignal(err);
-	signal(ERR_ok);	
-	}
+    err = stringOPcons("nil", CLU_1, CLU_3, &temp_str);
+    if (err != ERR_ok) resignal(err);
 
-errcode nullOPencode(n, ist)
-CLUREF n, ist;
+    err = pstreamOPtext(pst, temp_str, &ans);
+    if (err != ERR_ok) resignal(err);
+    signal(ERR_ok);
+}
+
+
+errcode
+nullOPencode(CLUREF n, CLUREF ist)
 {
-errcode err;
+    errcode err;
 
-	err = istreamOPputi(ist, n);
-	if (err == ERR_not_possible) signal(err);
-	if (err != ERR_ok) resignal(err);
-	signal(ERR_ok);
-	}
+    err = istreamOPputi(ist, n);
+    if (err == ERR_not_possible) signal(err);
+    if (err != ERR_ok) resignal(err);
+    signal(ERR_ok);
+}
 
-errcode nullOPdecode(ist, ans)
-CLUREF ist, *ans;
+
+errcode
+nullOPdecode(CLUREF ist, CLUREF *ans)
 {
-errcode err;
-CLUREF temp;
+    CLUREF temp;
+    errcode err;
 
-	err = istreamOPgeti(ist, &temp);
-	if (err == ERR_end_of_file) signal(err);
-	if (err == ERR_not_possible) signal(err);
-	if (err != ERR_ok) resignal(err);
-	if (temp.num != 0) {
-		elist[0] = bad_format_STRING;
-		signal(ERR_not_possible);
-		}
-	ans->num = 0;
-	signal(ERR_ok);
-	}
+    err = istreamOPgeti(ist, &temp);
+    if (err == ERR_end_of_file) signal(err);
+    if (err == ERR_not_possible) signal(err);
+    if (err != ERR_ok) resignal(err);
 
-errcode nullOP_gcd(s, tab, ans)
-CLUREF s, tab, *ans;
+    if (temp.num != 0) {
+	elist[0] = bad_format_STRING;
+	signal(ERR_not_possible);
+    }
+
+    ans->num = 0;
+    signal(ERR_ok);
+}
+
+
+errcode
+nullOP_gcd(CLUREF s, CLUREF tab, CLUREF *ans)
 {
-	ans->num = -1;
-	signal(ERR_ok);
-	}
+    ans->num = -1;
+    signal(ERR_ok);
+}
 
 
+
+OWN_ptr null_own_init = { .init_flag = 1 };
+
+#define CLU_proc_INIT(f) {			\
+ /* .typ = { .val = CT_PROC }, */		\
+    .proc = f,					\
+    .type_owns = &null_own_init,		\
+    .op_owns = &null_own_init,			\
+}
+
+CLU_proc null_oe_copy = CLU_proc_INIT(nullOPcopy);
+CLU_proc null_oe_equal = CLU_proc_INIT(nullOPequal);
+CLU_proc null_oe_similar = CLU_proc_INIT(nullOPsimilar);
+CLU_proc null_oe_print = CLU_proc_INIT(nullOPprint);
+CLU_proc null_oe_encode = CLU_proc_INIT(nullOPencode);
+CLU_proc null_oe_decode = CLU_proc_INIT(nullOPdecode);
+CLU_proc null_oe__gcd = CLU_proc_INIT(nullOP_gcd);
+CLU_proc null_oe_debug_print = CLU_proc_INIT(nullOPdebug_print);
+
+/* extends struct OPS */
 typedef struct {
-long count;
+    long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-struct OP_ENTRY entry[8];
+    struct OP_ENTRY entry[8];
 } null_OPS;
 
-OWN_ptr null_own_init = {1, 0};
-
-CLU_proc null_oe_copy = {{0,0,0,0}, nullOPcopy, &null_own_init, &null_own_init};
-CLU_proc null_oe_equal = {{0,0,0,0}, nullOPequal, &null_own_init, &null_own_init};
-CLU_proc null_oe_similar = {{0,0,0,0}, nullOPsimilar, &null_own_init, &null_own_init};
-CLU_proc null_oe_print = {{0,0,0,0}, nullOPprint, &null_own_init, &null_own_init};
-CLU_proc null_oe_encode = {{0,0,0,0}, nullOPencode, &null_own_init, &null_own_init};
-CLU_proc null_oe_decode = {{0,0,0,0}, nullOPdecode, &null_own_init, &null_own_init};
-CLU_proc null_oe__gcd = {{0,0,0,0}, nullOP_gcd, &null_own_init, &null_own_init};
-CLU_proc null_oe_debug_print = {{0,0,0,0}, nullOPdebug_print, &null_own_init, &null_own_init};
-
-null_OPS null_ops_actual = {8,
+null_OPS null_ops_actual = {
+    8,
     &null_own_init,
-    &null_own_init, {
-{&null_oe_copy, "copy"},
-{&null_oe_equal, "equal"},
-{&null_oe_similar, "similar"},
-{&null_oe_print, "print"},
-{&null_oe_encode, "encode"},
-{&null_oe_decode, "decode"},
-{&null_oe__gcd, "_gcd"},
-{&null_oe_debug_print, "debug_print"}
-}};
+    &null_own_init,
+    {
+	{ &null_oe_copy, "copy" },
+	{ &null_oe_equal, "equal" },
+	{ &null_oe_similar, "similar" },
+	{ &null_oe_print, "print" },
+	{ &null_oe_encode, "encode" },
+	{ &null_oe_decode, "decode" },
+	{ &null_oe__gcd, "_gcd" },
+	{ &null_oe_debug_print, "debug_print" },
+    }
+};
 
 null_OPS *null_ops = &null_ops_actual;
