@@ -311,7 +311,7 @@ OWN_ptr oneof_own_init = { .init_flag = 0 };
  /* .typ = { .val = CT_PROC }, */		\
     .proc = f,					\
     .type_owns = &oneof_own_init,		\
-    .op_owns = &oneof_own_init,		\
+    .op_owns = &oneof_own_init,			\
 }
 
 CLU_proc oneof_oe_equal = CLU_proc_INIT(oneofOPequal);
