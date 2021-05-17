@@ -1,20 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: itertype.c,v 1.3 91/06/06 13:28:17 root Exp $";
-#endif
-/* $Log:	itertype.c,v $
- * Revision 1.3  91/06/06  13:28:17  root
- * added copyright notice
- * 
- * Revision 1.2  91/05/31  12:19:47  root
- * fixed aggregate initialization in ops_actual
- * 
- * Revision 1.1  91/02/04  15:49:44  mtv
- * Initial revision
- * 
- */
 
 /*						*/
 /*						*/
@@ -25,78 +9,104 @@ static char rcsid[] = "$Header: itertype.c,v 1.3 91/06/06 13:28:17 root Exp $";
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-errcode itertypeOPnew(nops, ans)
-CLUREF nops;
-CLUREF *ans;
+errcode pstreamOPtextc(CLUREF ps, CLUREF c, CLUREF *ret_1);
+
+
+errcode
+itertypeOPnew(CLUREF nops, CLUREF *ans)
 {
-CLUREF temp;
+    CLUREF temp;
 
-	clu_alloc(sizeof(CLU_proc) + (nops.num - 1)*sizeof(struct OPS *), &temp);
-	temp.proc->typ.val = CT_PROC;
-	temp.proc->typ.mark = 0;
-	temp.proc->typ.refp = 0;
-	ans->proc = temp.proc;
-	signal(ERR_ok);
-	}
+    size_t size = sizeof(CLU_proc);
+    if (nops.num > 1)		/* XXX? */
+	size += (nops.num - 1) * sizeof(struct OPS *);
 
-errcode itertypeOPequal(x1, x2, ans)
-CLUREF x1, x2, *ans;
+    clu_alloc(size, &temp);
+    temp.proc->typ.val = CT_PROC;
+    temp.proc->typ.mark = 0;
+    temp.proc->typ.refp = 0;
+
+    ans->proc = temp.proc;
+    signal(ERR_ok);
+}
+
+
+errcode
+itertypeOPequal(CLUREF x1, CLUREF x2, CLUREF *ans)
 {
-	if (x1.proc == x2.proc) ans->tf = true;
-	else ans->tf = false;
-	signal(ERR_ok);
-	}
+    if (x1.proc == x2.proc)
+	ans->tf = true;
+    else
+	ans->tf = false;
+    signal(ERR_ok);
+}
 
-errcode itertypeOPsimilar(x1, x2, ans)
-CLUREF x1, x2, *ans;
+
+errcode
+itertypeOPsimilar(CLUREF x1, CLUREF x2, CLUREF *ans)
 {
-	if (x1.proc == x2.proc) ans->tf = true;
-	else ans->tf = false;
-	signal(ERR_ok);
-	}
+    if (x1.proc == x2.proc)
+	ans->tf = true;
+    else
+	ans->tf = false;
+    signal(ERR_ok);
+}
 
-errcode itertypeOPcopy(x1, ans)
-CLUREF x1, *ans;
+
+errcode
+itertypeOPcopy(CLUREF x1, CLUREF *ans)
 {
-	ans->proc = x1.proc;
-	signal(ERR_ok);
-	}
+    ans->proc = x1.proc;
+    signal(ERR_ok);
+}
 
-errcode itertypeOPdebug_print(x1, ps)
-CLUREF x1, ps;
+
+errcode
+itertypeOPdebug_print(CLUREF x1, CLUREF ps)
 {
-errcode err;
-CLUREF ans, str;
+    CLUREF str, ans;
+    errcode err;
 
-	stringOPcons("itertype", CLU_1, CLU_8, &str);
-	err = pstreamOPtextc(ps, str, &ans);
-	if (err != ERR_ok) resignal(err);
-	signal(ERR_ok);
-	}
+    stringOPcons("itertype", CLU_1, CLU_8, &str);
+    err = pstreamOPtextc(ps, str, &ans);
+    if (err != ERR_ok) resignal(err);
+    signal(ERR_ok);
+}
 
 
 
+OWN_ptr itertype_own_init = { .init_flag = 1 };
+
+#define CLU_proc_INIT(f) {			\
+ /* .typ = { .val = CT_PROC }, */		\
+    .proc = f,					\
+    .type_owns = &itertype_own_init,		\
+    .op_owns = &itertype_own_init,		\
+}
+
+CLU_proc itertype_oe_copy = CLU_proc_INIT(itertypeOPcopy);
+CLU_proc itertype_oe_equal = CLU_proc_INIT(itertypeOPequal);
+CLU_proc itertype_oe_similar = CLU_proc_INIT(itertypeOPsimilar);
+CLU_proc itertype_oe_debug_print = CLU_proc_INIT(itertypeOPdebug_print);
+
+/* extends struct OPS */
 typedef struct {
-long count;
+    long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-struct OP_ENTRY entry[4];
+    struct OP_ENTRY entry[4];
 } itertype_OPS;
 
-OWN_ptr itertype_own_init = {1, 0};
-
-CLU_proc itertype_oe_copy = {{0,0,0,0}, itertypeOPcopy, &itertype_own_init, &itertype_own_init};
-CLU_proc itertype_oe_equal = {{0,0,0,0}, itertypeOPequal, &itertype_own_init, &itertype_own_init};
-CLU_proc itertype_oe_similar = {{0,0,0,0}, itertypeOPsimilar, &itertype_own_init, &itertype_own_init};
-CLU_proc itertype_oe_debug_print = {{0,0,0,0}, itertypeOPdebug_print, &itertype_own_init, &itertype_own_init};
-
-itertype_OPS itertype_ops_actual = {4,
+itertype_OPS itertype_ops_actual = {
+    4,
     &itertype_own_init,
-    &itertype_own_init, {
-{&itertype_oe_copy, "copy"},
-{&itertype_oe_equal, "equal"},
-{&itertype_oe_similar, "similar"},
-{&itertype_oe_debug_print, "debug_print"}}
+    &itertype_own_init,
+    {
+	{ &itertype_oe_copy, "copy" },
+	{ &itertype_oe_equal, "equal" },
+	{ &itertype_oe_similar, "similar" },
+	{ &itertype_oe_debug_print, "debug_print" },
+    }
 };
 
 itertype_OPS *itertype_ops = &itertype_ops_actual;
