@@ -337,14 +337,14 @@ selector_OPS oneof_ops_actual = {
     &oneof_own_init,
     &oneof_own_init,
     {
-	{ &oneof_oe_equal, "equal"},
-	{ &oneof_oe_similar, "similar"},
-	{ &oneof_oe_copy, "copy"},
-	{ &oneof_oe_print, "print"},
-	{ &oneof_oe_encode, "encode"},
-	{ &oneof_oe_decode, "decode"},
-	{ &oneof_oe__gcd, "_gcd"},
-	{ &oneof_oe_print, "debug_print"}
+	{ &oneof_oe_equal, "equal" },
+	{ &oneof_oe_similar, "similar" },
+	{ &oneof_oe_copy, "copy" },
+	{ &oneof_oe_print, "print" },
+	{ &oneof_oe_encode, "encode" },
+	{ &oneof_oe_decode, "decode" },
+	{ &oneof_oe__gcd, "_gcd" },
+	{ &oneof_oe_print, "debug_print" },
     }
 };
 
