@@ -1,10 +1,32 @@
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
 
-/*						*/
-/*						*/
-/*		IMPLEMENTATION OF		*/
-/*	parameterized type utilities		*/
-/*						*/
+/*
+ * IMPLEMENTATION of Parameterized Type utilities
+ *
+ * For something like:
+ *
+ *   foos = sequence[foo]
+ *
+ * the compiler generates C code like:
+ *
+ *   // built-in (sequence.c)
+ *   extern struct OPS *sequence_ops;        // the template
+ *   extern struct REQS *sequence_of_t_reqs; // what it needs
+ *   extern OWN_req sequence_ownreqs;        // how to instantiate owns
+ *
+ *   // comes from elsewhere
+ *   extern struct OPS *foo_ops;             // parameter's ops
+ *
+ *   // the ops for "foos"
+ *   struct OPS *sequence_of_foo_ops;        // the instance
+ *
+ *   // pass parameters on an internal argument stack
+ *   add_parm_info_type(0, foo_ops, sequence_of_t_reqs);
+ *
+ *   // build ops
+ *   find_type_instance(sequence_ops, 1, &sequence_ownreqs,
+ *       &sequence_of_foo_ops);
+ */
 
 #include "pclu_err.h"
 #include "pclu_sys.h"
