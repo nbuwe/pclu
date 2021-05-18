@@ -1,13 +1,27 @@
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
 
-/********************************************************/
-/*							*/
-/*	IMPLEMENTATION of SELECTORS		        */
-/*							*/
-/*	    routines common to oneof,variant,		*/
-/*			       struct,record  		*/
-/*							*/
-/********************************************************/
+/*
+ * IMPLEMENTATION of SELECTORS
+ *   - routines common to oneof/variant, struct/record.
+ *
+ * For something like:
+ *
+ *   foos = sequence[foo]
+ *   spec = record[name: string, foos: foos]
+ *
+ * the compiler generates C code like:
+ *
+ *   extern struct OPS *string_ops;
+ *   struct OPS *sequence_of_foo_ops;
+ *   struct OPS *record_foos_name_ops;
+ *
+ *   // pass parameters for fields/tags on an internal argument stack
+ *   add_selector_info("foos", 0, sequence_of_foo_ops); // built previously
+ *   add_selector_info("name", 1, string_ops); // built-in (string.c)
+ *
+ *   // build selector ops for "spec"
+ *   find_selector_ops("record", 2, &record_foos_name_ops);
+ */
 
 #include "pclu_err.h"
 #include "pclu_sys.h"
