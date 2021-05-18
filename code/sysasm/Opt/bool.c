@@ -72,21 +72,24 @@ boolOPdebug_print(CLUREF b, CLUREF pst)
 errcode
 boolOPprint(CLUREF b, CLUREF pst)
 {
-    errcode err;
-    static bool init = false;
-    static CLUREF true_STRING, false_STRING;
     CLUREF ans;
+    errcode err;
 
-    if (!init) {
+    static CLUREF true_STRING = { .str = NULL };
+    static CLUREF false_STRING = { .str = NULL };
+    if (true_STRING.str == NULL) {
 	err = stringOPcons("true", CLU_1, CLU_4, &true_STRING);
+	if (err != ERR_ok) resignal(err)
+
 	err = stringOPcons("false", CLU_1, CLU_5, &false_STRING);
-	init = true;
+	if (err != ERR_ok) resignal(err)
     }
 
-    if (b.tf == true)
+    if (b.tf)
 	err = pstreamOPtext(pst, true_STRING, &ans);
     else
 	err = pstreamOPtext(pst, false_STRING, &ans);
+    if (err != ERR_ok) resignal(err)
     signal(ERR_ok);
 }
 
