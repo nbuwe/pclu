@@ -120,7 +120,7 @@ find_typeop_instance_old(struct OPS *aops,
 			 OWNREQ ownreqp, OWNREQ townreqp,
 			 struct OPS **result)
 {
-    long ans, i, size, tdefs, odefs;
+    long ans, i, size, tdefs;
     struct OPS *temp;
     long *temp_owns;
 
@@ -150,7 +150,8 @@ find_typeop_instance_old(struct OPS *aops,
 	}
 	build_parm_table2((struct REQS *)inst_info_reqs[ntparm+i],
 			  (struct OPS *)inst_info_value[ntparm+i],
-			  (struct OPS **)&temp_owns[i+ownreqp->own_count]);
+			  (struct OPS **)&temp_owns[i+ownreqp->own_count],
+			  &tdefs);
     }
 
     /* save result for the future */
