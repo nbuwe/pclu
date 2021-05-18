@@ -238,7 +238,7 @@ find_selector_ops(const char *selname, long nfields, struct OPS **table)
 	    }
 
 	    /* stub for a missing debug/print function */
-	    if (owns->info[index] == NULL && (i == 3 || i == 7)) {
+	    if (owns->info[index] == 0 && (i == 3 || i == 7)) {
 		owns->info[index] = (long)mpf.proc;
 		owns->info[nfields + index] = (long)field_name;
 	    }
