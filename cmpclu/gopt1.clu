@@ -410,7 +410,7 @@ g_qapply = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
        then
 	    residn: idn := exprabs$value_idn(exprlist$bottom(results).abs)
 	    g_idn_plain(e, residn)
-	    g_env$puts(e, ".num = ")
+	    g_env$puts(e, ".num = (long)")
 	    g_expr2(e, exprlist$bottom(args))
 	    g_env$putl(e, ";")
 	    return (true)
