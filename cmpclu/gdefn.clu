@@ -240,7 +240,7 @@ g_iter_signature = proc(e:g_env, a:applydefn, cname:str)
     if ~decllist$empty(a.args) then
 	g_env$puts(e, ", ") end
     g_env$puts(e, "errcode (*proc)()")
-    g_env$puts(e, ", char **user_locals")
+    g_env$puts(e, ", void *user_locals")
     g_env$putl(e, ", errcode *iecode)")
 
     end g_iter_signature
@@ -749,7 +749,7 @@ g_localvars_struct = proc (e: g_env, ap: applydefn, locals: array[decl],
 
     if (iterp) then
 	dbg_info$add_local("user_locals")
-	g_env$putl(e, "char **user_locals;")
+	g_env$putl(e, "void *user_locals;")
 
 	dbg_info$add_local("proc")
 	g_env$putl(e, "errcode (*proc)();")
