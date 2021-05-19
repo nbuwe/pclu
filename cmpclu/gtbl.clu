@@ -866,6 +866,7 @@ g_own_build_one = proc(e: g_env, each_pb:pb)
 		     tag type_:
 	 		 % logit("add_parm_info_type: type_")
 			 g_env$puts(e, "add_parm_info_type(" || int$unparse(index - 1) || ", ")
+			 g_env$puts(e, "(struct OPS *)")
 			 g_env$puts(e, s_expr5(actuals[index]) || "_ops, ")
 			 g_env$puts(e, gen.common)
 			 if index > cluster_parm_count(gen) then
