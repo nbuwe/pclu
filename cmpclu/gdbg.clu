@@ -480,7 +480,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nsigs))
 	for i: int in exceptionlist$indexes(ap.sigs) do
-	    g_env$puts(e, ", (sig_desc*)&sig_" || nm || "_" || int$unparse(i))
+	    g_env$puts(e, ", (sig_desc *)&sig_" || nm || "_" || int$unparse(i))
 	    end
 	g_env$putl(e, "};")
 
@@ -841,7 +841,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$putl(e, "};")
 	g_env$outdent(e)
 	g_env$putl(e, "struct dbg_info *dbg_info_" || nm
-			|| " = (struct dbg_info*)&dbg_info_" || nm || "_data;")
+			|| " = (struct dbg_info *)&dbg_info_" || nm || "_data;")
 	end emit_decl
 
     idns_in_decls = proc(a: ad) returns (int)

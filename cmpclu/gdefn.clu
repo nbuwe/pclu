@@ -865,7 +865,7 @@ g_localvars = proc (e: g_env, ap: applydefn, locals: array[decl],
        end
     if current_apply$parmd() then
        defn_name: string := op_own_name()
-       g_env$putl(e, s_locals() || "op_own_ptr = ("|| defn_name || "_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;")
+       g_env$putl(e, s_locals() || "op_own_ptr = ("|| defn_name || "_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;")
        end
     end g_localvars
 
