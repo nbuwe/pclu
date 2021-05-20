@@ -500,7 +500,7 @@ struct REQ_ENTRY {
 
 struct REQS {
     long count;
-    struct REQ_ENTRY entry[VARYING_LENGTH];
+    const struct REQ_ENTRY entry[VARYING_LENGTH];
 } REQS;
 
 struct OP_ENTRY {
