@@ -42,9 +42,9 @@ static bool find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 static errcode build_parm_ops_table2(struct OPS *base_ops,
 				     long nparams, OWNPTR inst_owns,
 				     struct OPS **ans);
-static errcode build_parm_table2(struct REQS *reqs, struct OPS *ops,
+static errcode build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 				 struct OPS **table, long *defs);
-static errcode update_parm_table2(struct REQS *reqs, struct OPS *ops,
+static errcode update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 				  struct OPS **table, long *defs);
 static void update_type_ops(long nparm, OWNREQ ownreqp, struct OPS **table);
 static void update_op_ops(long nparm, long ntparm, OWNREQ ownreqp,
@@ -55,7 +55,7 @@ static void update_ops(void);
 #define MAX_PARMS 20
 
 static long inst_info_value[MAX_PARMS];
-static long inst_info_reqs[MAX_PARMS];   /* reqs for types, 0 for consts */
+static const struct REQS *inst_info_reqs[MAX_PARMS]; /* NULL for consts */
 static long current_tdefs;
 static long current_odefs;
 
@@ -95,11 +95,11 @@ find_type_instance(struct OPS *aops,
     /*   build parm table per reqs for type parameters and put in owns */
     tdefs = 0;
     for (i = 0; i < nparm; i++) {
-	if (inst_info_reqs[i] == 0) {
+	if (inst_info_reqs[i] == NULL) {
 	    temp_owns[i+ownreqp->own_count] = inst_info_value[i];
 	    continue;
 	}
-	build_parm_table2((struct REQS*)inst_info_reqs[i],
+	build_parm_table2(inst_info_reqs[i],
 			  (struct OPS*)inst_info_value[i],
 			  (struct OPS**)&temp_owns[i+ownreqp->own_count],
 			  &tdefs);
@@ -144,12 +144,12 @@ find_typeop_instance_old(struct OPS *aops,
     /*   put const value for const parameters */
     /*   build parm table per reqs for type parameters and put in owns */
     for (i = 0; i < nparm-ntparm; i++) {
-	if (inst_info_reqs[ntparm+i] == 0) {
+	if (inst_info_reqs[ntparm+i] == NULL) {
 	    temp_owns[i+ownreqp->own_count]
 		= inst_info_value[ntparm+i];
 	    continue;
 	}
-	build_parm_table2((struct REQS *)inst_info_reqs[ntparm+i],
+	build_parm_table2(inst_info_reqs[ntparm+i],
 			  (struct OPS *)inst_info_value[ntparm+i],
 			  (struct OPS **)&temp_owns[i+ownreqp->own_count],
 			  &tdefs);
@@ -204,12 +204,12 @@ find_typeop_instance(struct OPS *aops,
     /*   build parm table per reqs for type parameters and put in owns */
     odefs = 0;
     for (i = 0; i < nparm-ntparm; i++) {
-	if (inst_info_reqs[ntparm+i] == 0) {
+	if (inst_info_reqs[ntparm+i] == NULL) {
 	    temp_owns[i+ownreqp->own_count]
 		= inst_info_value[ntparm+i];
 	    continue;
 	}
-	build_parm_table2((struct REQS*)inst_info_reqs[ntparm+i],
+	build_parm_table2(inst_info_reqs[ntparm+i],
 			  (struct OPS *)inst_info_value[ntparm+i],
 			  (struct OPS **)&temp_owns[i+ownreqp->own_count],
 			  &odefs);
@@ -257,11 +257,11 @@ find_prociter_instance(errcode (*procaddr)(),
     /*   build parm table per reqs for type parameters and put in owns */
     odefs = 0;
     for (i = 0; i < nparm; i++) {
-	if (inst_info_reqs[i] == 0) {
+	if (inst_info_reqs[i] == NULL) {
 	    temp_owns[i+ownreqp->own_count] = inst_info_value[i];
 	    continue;
 	}
-	build_parm_table2((struct REQS*)inst_info_reqs[i],
+	build_parm_table2(inst_info_reqs[i],
 			  (struct OPS*)inst_info_value[i],
 			  (struct OPS**)&temp_owns[i+ownreqp->own_count],
 			  &odefs);
@@ -277,7 +277,7 @@ find_prociter_instance(errcode (*procaddr)(),
 
 
 errcode
-build_parm_table2(struct REQS *reqs, struct OPS *ops,
+build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 		  struct OPS **table, long *defs)
 {
     long i,j;
@@ -347,10 +347,10 @@ update_type_ops(long nparm, OWNREQ ownreqp, struct OPS **table)
     tdefs = current_tdefs;
     temp_owns = (long*)(*table)->type_owns;
     for (i = 0; i < nparm; i++) {
-	if (inst_info_reqs[i] == 0) {
+	if (inst_info_reqs[i] == NULL) {
 	    continue;
 	}
-	update_parm_table2((struct REQS*)inst_info_reqs[i],
+	update_parm_table2(inst_info_reqs[i],
 			   (struct OPS*)inst_info_value[i],
 			   (struct OPS**)&temp_owns[i+ownreqp->own_count],
 			   &tdefs);
@@ -369,10 +369,10 @@ update_op_ops(long nparm, long ntparm, OWNREQ ownreqp, struct OPS **table)
     odefs = current_odefs;
     temp_owns = (long*)(*table)->op_owns;
     for (i = 0; i < nparm-ntparm; i++) {
-	if (inst_info_reqs[ntparm+i] == 0) {
+	if (inst_info_reqs[ntparm+i] == NULL) {
 	    continue;
 	}
-	update_parm_table2((struct REQS*)inst_info_reqs[ntparm+i],
+	update_parm_table2(inst_info_reqs[ntparm+i],
 			   (struct OPS*)inst_info_value[ntparm+i],
 			   (struct OPS**)&temp_owns[i+ownreqp->own_count],
 			   &odefs);
@@ -382,7 +382,7 @@ update_op_ops(long nparm, long ntparm, OWNREQ ownreqp, struct OPS **table)
 
 
 errcode
-update_parm_table2(struct REQS *reqs, struct OPS *ops,
+update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 		   struct OPS **table, long *defs)
 {
     struct OPS *temp;
@@ -501,10 +501,10 @@ init_parm_ops_table_centry(full_ops_table, nth, nth_ops_val)
 /*	for use in instance finding routines */
 
 void
-add_parm_info_type(long nth_entry, struct OPS *ptr_to_ops, struct REQS *ptr_to_reqs)
+add_parm_info_type(long nth_entry, struct OPS *ptr_to_ops, const struct REQS *reqs)
 {
     inst_info_value[nth_entry] = (long)ptr_to_ops;
-    inst_info_reqs[nth_entry] = (long)ptr_to_reqs;
+    inst_info_reqs[nth_entry] = reqs;
     return;
 }
 
@@ -516,7 +516,7 @@ void
 add_parm_info_const(long nth_entry, CLUREF value)
 {
     inst_info_value[nth_entry] = value.num;
-    inst_info_reqs[nth_entry] = 0;
+    inst_info_reqs[nth_entry] = NULL;
     return;
 }
 
@@ -527,10 +527,10 @@ OWNREQ  ops_arr[MAX_INSTS];   /* abstract ops */
 errcode  (*ops_proc[MAX_INSTS])();   /* abstract proc */
 OWNPTR	opsptr_arr[MAX_INSTS]; /* instantiated ops */
 
-long *	parm_vals [MAX_INSTS][MAX_PARMS];
-long *	parm_types [MAX_INSTS][MAX_PARMS]; /* 0 => const, !0 => type */
-long     parm_types_defs [MAX_INSTS]; /* count of missing fcns on type*/
-long     parm_ops_defs [MAX_INSTS]; /* count of missing fcns per op/proc*/
+long *parm_vals[MAX_INSTS][MAX_PARMS];
+long *parm_types[MAX_INSTS][MAX_PARMS]; /* 0 => const, !0 => type */
+long  parm_types_defs[MAX_INSTS]; /* count of missing fcns on type*/
+long  parm_ops_defs[MAX_INSTS]; /* count of missing fcns per op/proc*/
 long num_entries = 0;
 
 /* routine to initialize structures used by find_ops */
@@ -581,7 +581,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 		if (parm_types[i][j] == 0) {
 		    /* make sure instance is a constant */
 		    /* and check constant value equality */
-		    if (inst_info_reqs[j] == 0
+		    if (inst_info_reqs[j] == NULL
 			&& inst_info_value[j] == (long)parm_vals[i][j])
 			continue;
 		    else {
@@ -592,7 +592,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 		else {
 		    /* make sure isntance is a type */
 		    /* and check type match via type_owns */
-		    if (inst_info_reqs[j] != 0) {
+		    if (inst_info_reqs[j] != NULL) {
 			ops1 = (struct OPS*)inst_info_value[j];
 			ops2 = (struct OPS*)parm_vals[i][j];
 			if (ops1->type_owns == ops2->type_owns)

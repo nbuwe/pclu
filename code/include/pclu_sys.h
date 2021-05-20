@@ -551,7 +551,7 @@ errcode add_selector_info(const char *field_name, long index, OPSPTR ops);
 errcode find_selector_ops(const char *selname, long nfields, OPSPTR *table);
 
 
-void add_parm_info_type(long index, struct OPS *ops, struct REQS *reqs);
+void add_parm_info_type(long index, struct OPS *ops, const struct REQS *reqs);
 void add_parm_info_const(long index, CLUREF value);
 
 errcode find_type_instance(struct OPS *aops,
