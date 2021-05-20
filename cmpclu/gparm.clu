@@ -673,7 +673,8 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 		  rname: string := gen.common || op_name 
 				     ||"_of_"||each_parm.str || "_reqs"
 		  if g_env$add_extern(rname) then
-		     g_env$putl(e, "extern const struct REQS *"|| rname || ";")
+		     g_env$putl(e, "extern const struct REQS * const "
+				|| rname || ";")
 		     end
 		  % TYPE OPERATIONS TABLE
 		  doit: bool := true
@@ -740,7 +741,8 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 		      % REQUIREMENTS TABLE
 		      aname := s_typespec(a.type_) || "_of_t_reqs"  % pretty bogus
 		      if g_env$add_extern(aname) then
-			 g_env$putl(e, "extern const struct REQS *"||aname||";") % new 3/23/90
+			 g_env$putl(e, "extern const struct REQS * const "
+				    || aname || ";") % new 3/23/90
 			 end
 		      % TYPE OPERATIONS TABLE
 		      doit: bool := true
@@ -787,7 +789,8 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 	   % REQUIREMENTS TABLE
 	   aname := "_anyize_of_t_reqs"
 	   if g_env$add_extern(aname) then
-	      g_env$putl(e, "extern const struct REQS *"||aname||";")
+	      g_env$putl(e, "extern const struct REQS * const "
+			 || aname || ";")
 	      end
 	   % TYPE OPERATIONS TABLE
 	   doit: bool := true
@@ -827,7 +830,8 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 	   % REQUIREMENTS TABLE
 	   aname := "_anyize_of_t_reqs"
 	   if g_env$add_extern(aname) then
-	      g_env$putl(e, "extern const struct REQS *"||aname||";")
+	      g_env$putl(e, "extern const struct REQS * const "
+			 || aname || ";")
 	      end
 	   % TYPE OPERATIONS TABLE
 	   % logit("1: " || s_name_typespec(ty))
@@ -1608,8 +1612,10 @@ reqs = cluster is start, preprocessing, more, parms, output,
 
 	% export "officially" typed pointer
 	g_env$blankline(e)
-	g_env$putl(e, "const struct REQS *" || this_name || "_reqs = " ||
-		      "(const struct REQS *)&" || this_name || "_reqs_actual;")
+	g_env$putl(e, "const struct REQS * const "
+		   || this_name || "_reqs = "
+		   || "(const struct REQS *)&"
+		   || this_name || "_reqs_actual;")
 
 	%	       g_env$putl(e, "struct REQS * " || alt_name || "_reqs = " ||
 	%			     "(struct REQS *)&" || this_name ||
@@ -1683,7 +1689,7 @@ reqs = cluster is start, preprocessing, more, parms, output,
 				 || "{ 0 };")
 
 		      g_env$blankline(e)
-		      g_env$putl(e, "const struct REQS *"
+		      g_env$putl(e, "const struct REQS * const "
 				 || this_name || "_reqs = "
 				 || "(const struct REQS *)&"
 				 || this_name || "_reqs_actual;")
