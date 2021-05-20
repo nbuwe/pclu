@@ -426,7 +426,8 @@ update_parm_table2(struct REQS *reqs, struct OPS *ops,
 	    *defs--;
 	    temp->entry[i].name = name1;
 	    temp->entry[i].fcn = ops->entry[j].fcn;
-	    break;}
+	    break;
+	}
     }
     *table = temp;
     signal(ERR_ok);
