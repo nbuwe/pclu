@@ -34,21 +34,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-errcode build_parm_ops_table2(struct OPS *base_ops,
-			      long nparams, OWNPTR inst_owns,
-			      struct OPS **ans);
-errcode build_parm_table2(struct REQS *reqs, struct OPS *ops,
-			  struct OPS **table, long *defs);
-errcode update_parm_table2(struct REQS *reqs, struct OPS *ops,
-			   struct OPS **table, long *defs);
-errcode update_type_ops(long nparm, OWNREQ ownreqp, struct OPS **table);
-errcode update_op_ops(long nparm, long ntparm, OWNREQ ownreqp,
-		      struct OPS **table);
-errcode add_ops(struct OPS *aops, errcode (*procaddr)(), long count,
-		struct OPS *new_ops, long tdefs, long odefs);
-errcode update_ops(void);
-errcode find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
-		 struct OPS **ptr_to_opsptr);
+static void add_ops(struct OPS *aops, errcode (*procaddr)(), long count,
+		    struct OPS *new_ops, long tdefs, long odefs);
+static bool find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
+		     struct OPS **ptr_to_opsptr);
+
+static errcode build_parm_ops_table2(struct OPS *base_ops,
+				     long nparams, OWNPTR inst_owns,
+				     struct OPS **ans);
+static errcode build_parm_table2(struct REQS *reqs, struct OPS *ops,
+				 struct OPS **table, long *defs);
+static errcode update_parm_table2(struct REQS *reqs, struct OPS *ops,
+				  struct OPS **table, long *defs);
+static void update_type_ops(long nparm, OWNREQ ownreqp, struct OPS **table);
+static void update_op_ops(long nparm, long ntparm, OWNREQ ownreqp,
+			  struct OPS **table);
+static void update_ops(void);
 
 #define MAX_INSTS 500
 #define MAX_PARMS 20
@@ -337,7 +338,7 @@ build_parm_table2(struct REQS *reqs, struct OPS *ops,
 /* suppose the same instantiation is desired but now there are where clauses */
 /* let's fill them in */
 
-errcode
+static void
 update_type_ops(long nparm, OWNREQ ownreqp, struct OPS **table)
 {
     long i, tdefs;
@@ -359,7 +360,7 @@ update_type_ops(long nparm, OWNREQ ownreqp, struct OPS **table)
 }
 
 
-errcode
+static void
 update_op_ops(long nparm, long ntparm, OWNREQ ownreqp, struct OPS **table)
 {
     long i, odefs;
@@ -435,7 +436,7 @@ update_parm_table2(struct REQS *reqs, struct OPS *ops,
 
 
 /* nparams - input to proctype$new, to be obsolete */
-errcode
+static errcode
 build_parm_ops_table2(struct OPS *base_ops, long nparams, OWNPTR inst_owns,
 		      struct OPS **ans)
 {
@@ -555,7 +556,7 @@ find_ops_init(OWNPTR *ans1, OWNREQ *ans2, void **ans3)
 
 /* routine to find ops given type and instance information */
 
-long
+static bool
 find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 	 struct OPS **ptr_to_opsptr)
 {
@@ -625,7 +626,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 }
 
 
-errcode
+static void
 add_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 	struct OPS *new_ops, long tdefs, long odefs)
 {
@@ -647,14 +648,12 @@ add_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 		"add_ops: too many instantiations: increase MAX_INSTS\n");
 	exit(-10);
     }
-    signal(ERR_ok);
 }
 
 
-errcode
+static void
 update_ops(void)
 {
     parm_types_defs[num_entries] = current_tdefs;
     parm_ops_defs[num_entries] = current_odefs;
-    signal(ERR_ok);
 }
