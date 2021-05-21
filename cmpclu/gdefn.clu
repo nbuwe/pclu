@@ -552,11 +552,15 @@ g_pownvars_init = proc (e: g_env, ilist: initlist)
      end % call type's own init
 
    % if 1st time in this apply, then build apply's own init
-   if ~initlist$empty(ilist) then
-       g_env$putl(e, "if (" || own_init || " == 0) {")
-       g_env$indent(e)
-       g_env$putl(e,  own_init || " = 1;")
+   % NB: this is outside the if below to set the init done flag
+   %     for the g_tbl/g_const block above
+   g_env$putl(e, "if (" || own_init || " == 0) {")
+   g_env$indent(e)
+   g_env$putl(e,  own_init || " = 1;")
 
+   if initlist$empty(ilist) then
+       g_env$putl(e, "/* no own vars to init */")
+     else
        for i: init in initlist$elements(ilist) do
 	   g_pown(e, i, 2)
 	   g_env$newline(e)
@@ -570,10 +574,11 @@ g_pownvars_init = proc (e: g_env, ilist: initlist)
 	   g_env$putl(e, "pclu_unhandled(" || s_locals() || "err);");
 	   g_env$putl(e, "signal(ERR_failure);")
 	 end
-
-       g_env$outdent(e)
-       g_env$putl(e, "}")
      end
+
+   g_env$outdent(e)
+   g_env$putl(e, "}")
+
  end g_pownvars_init
 
 
