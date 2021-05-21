@@ -31,6 +31,9 @@ all: regen rebuild
 regen:
 	$(PCLU) -xf cmp.xfile -opt time -bindir ../code/cmp -co ${SRCS}
 
+regen-small:
+	$(PCLU) -xf cmp.xfile -opt space -bindir ../code/cmpspc -co ${SRCS}
+
 regen-debug:
 	$(PCLU) -xf cmp.xfile -opt false -bindir ../code/cmpdbg -co ${SRCS}
 
