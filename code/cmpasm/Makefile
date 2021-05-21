@@ -2,8 +2,8 @@
 
 #  Builds files for the compiler.
 
-OPT_FLAGS   = -O2 
-DEBUG_FLAGS = -g 
+OPT_FLAGS   = -O2
+DEBUG_FLAGS = -g
 
 RM    = /bin/rm -f
 FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
