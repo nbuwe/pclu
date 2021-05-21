@@ -87,3 +87,29 @@ clean:
 
 veryclean: clean
 	${RM} test_gcd
+
+EXTRA_SOURCES =
+EXTRA_SOURCES += _job_stuff.clu
+EXTRA_SOURCES += _system_root.clu
+EXTRA_SOURCES += host_address.clu
+EXTRA_SOURCES += istream.clu
+EXTRA_SOURCES += maybe.clu
+EXTRA_SOURCES += pstream.clu
+EXTRA_SOURCES += table.clu
+
+regen-libclu:
+	for file in ${LOWLIB_SOURCES} ${MISC_SOURCES} ${USELIB_SOURCES} ${EXTRA_SOURCES}; do \
+	    echo '===>' $${file}; \
+	    $(CLU) \#opt \
+		\#cfiles TRUE \#ccopt 0 \
+		\#merge ../lowlev.lib \
+		\#merge ../misc.lib \
+		\#merge ../useful.lib \
+		\#spec ../_all_dir_entries_.spc \
+		\#spec ../_host_address.spc \
+		\#ce ${LIB_DIR}/gcd.equ \
+		\#spec gc_read.clu \
+		\#bindir ${CLUHOME}/code/libclu/Opt \
+		\#clu $${file} \
+	    || echo FAILED: $${file}; \
+	done
