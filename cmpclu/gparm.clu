@@ -1581,41 +1581,46 @@ reqs = cluster is start, preprocessing, more, parms, output,
 
     output_reqs = proc(e:g_env, this_name: string, names: namelist)
 
-	% define the structure that aliases/extends REQS
+	% define anonymous structure that aliases/extends REQS
 	g_env$blankline(e)
-	g_env$putl(e, "typedef struct {")
+	g_env$putl(e, "static const struct /* REQS */ {")
 	g_env$indent(e)
 	g_env$putl(e, "long count;")
-	for each_name: name in namelist$elements(names) do
-	    g_env$puts(e, "const char *" || each_name || "_name;")
-	    g_env$newline(e)
-	    end % for
-	g_env$outdent(e)
-	g_env$puts(e, "} ")
-	g_env$putl(e, this_name || "_REQS;")
-
-	% instantiate REQS structure
-	g_env$blankline(e)
-	g_env$putl(e, "static const "
-		   || this_name || "_REQS "
-		   || this_name || "_reqs_actual = " || "{ "
-		   || int$unparse(namelist$size(names)) || ",")
-	g_env$indent(e)
-	comma: string := ""
-	for each_n: name in namelist$elements(names) do
-	    g_env$puts(e, comma)
-	    g_env$puts(e, "\"" || each_n || "\"")
-	    comma := ", "
+	if ~namelist$empty(names) then
+	    g_env$puts(e, "const struct REQ_ENTRY entry[")
+	    g_env$puts(e, int$unparse(namelist$size(names)))
+	    g_env$putl(e, "];")
 	  end
-	g_env$putl(e, " };")
 	g_env$outdent(e)
+	g_env$puts(e, "} " || this_name || "_reqs_actual") % ctd.
+
+	% ... and initialize it
+	g_env$puts(e, " = {")
+	if namelist$empty(names) then
+	    g_env$puts(e, " 0 ")
+	  else
+	    g_env$newline(e)
+	    g_env$indent(e)
+	    g_env$puts(e, int$unparse(namelist$size(names)))
+	    g_env$putl(e, ", {")
+	    g_env$indent(e)
+	    for each_n: name in namelist$elements(names) do
+		g_env$putl(e, "{ \"" || each_n || "\" },")
+	      end
+	    g_env$outdent(e)
+	    g_env$putl(e, "}")
+	    g_env$outdent(e)
+	  end
+	g_env$putl(e, "};")
 
 	% export "officially" typed pointer
 	g_env$blankline(e)
 	g_env$putl(e, "const struct REQS * const "
-		   || this_name || "_reqs = "
-		   || "(const struct REQS *)&"
+		   || this_name || "_reqs")
+	g_env$indent(e)
+	g_env$puts(e, "= (const struct REQS *)&"
 		   || this_name || "_reqs_actual;")
+	g_env$outdent(e)
 
 	%	       g_env$putl(e, "struct REQS * " || alt_name || "_reqs = " ||
 	%			     "(struct REQS *)&" || this_name ||
@@ -1672,27 +1677,25 @@ reqs = cluster is start, preprocessing, more, parms, output,
 		       end % for
 		   if ~found then
 
-		      % define the structure that aliases REQS
+		      % define anonymous structure that aliases REQS
 		      g_env$blankline(e)
-		      g_env$putl(e, "typedef struct {")
+		      g_env$putl(e, "static const struct /* REQS */ {")
 		      g_env$indent(e)
 		      g_env$putl(e, "long count;")
 		      g_env$outdent(e)
-		      g_env$puts(e, "} ")
-		      g_env$putl(e, this_name || "_REQS;")
+		      g_env$puts(e, "} " || this_name || "_reqs_actual") % ctd.
 
-		      % instantiate REQS structure
-		      g_env$blankline(e)
-		      g_env$putl(e, "static const "
-				 || this_name || "_REQS "
-				 || this_name || "_reqs_actual = "
-				 || "{ 0 };")
+		      % ... and initialize it
+		      g_env$putl(e, " = { 0 };")
 
+		      % export "officially" typed pointer
 		      g_env$blankline(e)
 		      g_env$putl(e, "const struct REQS * const "
-				 || this_name || "_reqs = "
-				 || "(const struct REQS *)&"
+				 || this_name || "_reqs")
+		      g_env$indent(e)
+		      g_env$puts(e, "= (const struct REQS *)&"
 				 || this_name || "_reqs_actual;")
+		      g_env$outdent(e)
 
 		      g_env$blankline(e)
 		      %		      g_env$putl(e, "struct REQS * " || alt_name || "_reqs = " ||
