@@ -902,7 +902,7 @@ g_parm_decls = proc(e: g_env, tparms: decllist, aparms: decllist)
 		  ct.gen.common = "string"
 		  then
 		       for each_idn: idn in idnlist$elements(each_d.idns) do
-			   g_env$putl(e, "CLUREF " || each_idn.str || ";")
+			   g_env$putl(e, "const CLUREF " || each_idn.str || ";")
 			   % logit(98, "1 " || each_idn.str)
 			   dbg_info$add_own(each_idn.str)
 			   end
@@ -910,7 +910,7 @@ g_parm_decls = proc(e: g_env, tparms: decllist, aparms: decllist)
 		       for each_idn: idn in idnlist$elements(each_d.idns) do
 			   nm: string := each_idn.str || "_ops"
 			   g_env$putl(e, "const " || reqs$get_tid() || "_of_" ||
-					 each_idn.str || "_OPS *" || nm || ";")
+					 each_idn.str || "_OPS * const " || nm || ";")
 			   % logit(98, "2 " || each_idn.str)
 			   dbg_info$add_own(nm)
 			   end
@@ -932,7 +932,7 @@ g_parm_decls = proc(e: g_env, tparms: decllist, aparms: decllist)
 		  ct.gen.common = "string"
 		  then
 		       for each_idn: idn in idnlist$elements(each_d.idns) do
-			   g_env$putl(e, "CLUREF " || each_idn.str || ";")
+			   g_env$putl(e, "const CLUREF " || each_idn.str || ";")
 			   % logit(98, "3 " || each_idn.str)
 			   dbg_info$add_own(each_idn.str)
 			   end
@@ -940,7 +940,7 @@ g_parm_decls = proc(e: g_env, tparms: decllist, aparms: decllist)
 		       for each_idn: idn in idnlist$elements(each_d.idns) do
 			   nm: string := each_idn.str || "_ops"
 			   g_env$putl(e, "const " || reqs$get_id() || "_of_" ||
-					 each_idn.str || "_OPS *" || nm || ";")
+					 each_idn.str || "_OPS * const " || nm || ";")
 			   % logit(98, "4 " || each_idn.str)
 			   dbg_info$add_own(nm)
 			   end
