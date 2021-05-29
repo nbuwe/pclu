@@ -1764,13 +1764,13 @@ g_string2 = proc(e: g_env, s:string)
     g_env$puts(e, s_string_name(s) || ".num")
     end g_string2
 
-g_string_name = proc(e:g_env, s:string)
-    g_env$puts(e, "STR_" || s_string_embed(s))
-    end g_string_name
+g_string_name = proc(e: g_env, s: string)
+    g_env$puts(e, s_string_name(s))
+  end g_string_name
 
-s_string_name = proc(s:string) returns (string)
-    return("STR_" || s_string_embed(s))
-    end s_string_name
+s_string_name = proc(s: string) returns (string)
+    return ("STR_" || s_string_embed(s))
+  end s_string_name
 
 g_char = proc (e: g_env, c: char)
     if g_printing_char(c) cand c ~= '\\' cand c ~= '"' cand c ~= '\''
