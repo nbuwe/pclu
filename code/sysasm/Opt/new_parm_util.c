@@ -502,11 +502,10 @@ init_parm_ops_table_centry(full_ops_table, nth, nth_ops_val)
 /*	for use in instance finding routines */
 
 void
-add_parm_info_type(long nth_entry, struct OPS *ptr_to_ops, const struct REQS *reqs)
+add_parm_info_type(long index, struct OPS *ops, const struct REQS *reqs)
 {
-    inst_info_value[nth_entry] = (long)ptr_to_ops;
-    inst_info_reqs[nth_entry] = reqs;
-    return;
+    inst_info_value[index] = (long)ops;
+    inst_info_reqs[index] = reqs;
 }
 
 
@@ -514,11 +513,10 @@ add_parm_info_type(long nth_entry, struct OPS *ptr_to_ops, const struct REQS *re
 /*	for use in instance finding routines */
 
 void
-add_parm_info_const(long nth_entry, CLUREF value)
+add_parm_info_const(long index, CLUREF value)
 {
-    inst_info_value[nth_entry] = value.num;
-    inst_info_reqs[nth_entry] = NULL;
-    return;
+    inst_info_value[index] = value.num;
+    inst_info_reqs[index] = NULL;
 }
 
 
