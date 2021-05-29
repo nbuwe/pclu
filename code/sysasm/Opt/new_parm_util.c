@@ -502,7 +502,7 @@ init_parm_ops_table_centry(full_ops_table, nth, nth_ops_val)
 /*	for use in instance finding routines */
 
 void
-add_parm_info_type(long index, struct OPS *ops, const struct REQS *reqs)
+add_parm_info_type(long index, const struct OPS *ops, const struct REQS *reqs)
 {
     inst_info_value[index] = (long)ops;
     inst_info_reqs[index] = reqs;
