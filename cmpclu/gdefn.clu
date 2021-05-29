@@ -331,24 +331,31 @@ g_parmdecls = proc(e: g_env, a: applydefn)
 	end % for
     end g_parmdecls
 
+
 % generate typedef for own vars for a parameterized cluster
 %	includes owns for unparameterized ops
 
 g_ptypeownvars = proc(e: g_env, ti: initlist, aps: applydefnlist)
     g_env$blankline(e)
     g_env$putl(e, "OWN_ptr " || current_type$get_name() || "_own_init; /* dummy */")
-    g_env$putl(e, "typedef struct {")
+
+    g_env$putl(e, "typedef struct {") % ${type}_OWN_DEFN
     g_env$indent(e)
+    own_count: int := 0
+
+    % type owns (for this instantiation)
     g_env$putl(e, "long " || current_type$get_name() || "_own_init;")
-    own_count : int := 0
     dbg_info$add_ilist(ti)
     for i: init in initlist$elements(ti) do
-	g_pown(e, i, 1) 
+	g_pown(e, i, 1)
 	g_env$newline(e)
-	end
+      end
     own_count := own_count + own_counter(ti)
+
+    % owns for type's unparmd ops (i.e. only depend on type parms)
     for a: applydefn in applydefnlist$elements(aps) do
-	if decllist$size(a.parms) ~= 0 then continue end
+	if ~decllist$empty(a.parms) then continue end % skip parmd
+
 	n: string := c_fixup_opname(a.idn.str)
 	g_env$putl(e, "long " || n || "_own_init;")
 	%	dbg_info$add_own(n || "_own_init")
@@ -356,21 +363,27 @@ g_ptypeownvars = proc(e: g_env, ti: initlist, aps: applydefnlist)
 	for i: init in initlist$elements(a.init) do
 	    g_pown(e, i, 1)
 	    g_env$newline(e)
-	    end
+	  end
 	own_count := own_count + own_counter(a.init)
-	end % for
+      end
+
+    % parms (type param ops, constant param values) of this instantiation
     g_parm_decls(e, parm$get_base(), decllist$new())
     own_defn$start()
     g_tbl$g_field_tables(e, dynamic)
+    own_defn$stop()
+
     g_env$outdent(e)
     g_env$putl(e, "} " || current_type$get_name() || "_OWN_DEFN;")
-    own_defn$stop()
+
+    % tell the instantiation routine how much to allocate and where
+    % the instantiation parms start in the structure
     g_env$blankline(e)
     g_env$putl(e, "const OWN_req " || current_type$get_name() || "_ownreqs"
 		    || " = { sizeof(" || current_type$get_name() || "_OWN_DEFN), "
     		    || int$unparse(own_count) || " };")
     g_env$blankline(e)
-    end g_ptypeownvars
+  end g_ptypeownvars
 
 
 % generate a routine to initialize own variables belonging to
