@@ -555,15 +555,15 @@ void add_parm_info_type(long index, struct OPS *ops, const struct REQS *reqs);
 void add_parm_info_const(long index, CLUREF value);
 
 errcode find_type_instance(struct OPS *aops,
-			   long nparm, OWNREQ ownreqp,
+			   long nparm, const OWN_req *ownreqp,
 			   struct OPS **result);
 errcode find_typeop_instance(struct OPS *aops,
 			     errcode (*procaddr)(),
 			     long nparm, long ntparm,
-			     OWNREQ ownreqp, OWNREQ townreqp,
+			     const OWN_req *ownreqp, const OWN_req *townreqp,
 			     struct OPS **result);
 errcode find_prociter_instance(errcode (*procaddr)(),
-			       long nparm, OWNREQ ownreqp,
+			       long nparm, const OWN_req *ownreqp,
 			       struct OPS **result);
 
 

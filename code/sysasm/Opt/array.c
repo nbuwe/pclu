@@ -1145,7 +1145,7 @@ CLU_proc array_oe__gcd = {{0,0,0,0}, arrayOP_gcd, &array_own_init, &array_own_in
 CLU_proc array_oe_print = {{0,0,0,0}, arrayOPprint, &array_own_init, &array_own_init};
 CLU_proc array_oe_debug_print = {{0,0,0,0}, arrayOPdebug_print, &array_own_init, &array_own_init};
 
-OWN_req array_ownreqs = {2*UNIT, 1};
+const OWN_req array_ownreqs = { 2 * UNIT, 1 };
 
 
 array_OPS array_ops_actual = {32,

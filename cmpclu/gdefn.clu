@@ -366,9 +366,9 @@ g_ptypeownvars = proc(e: g_env, ti: initlist, aps: applydefnlist)
     g_env$putl(e, "} " || current_type$get_name() || "_OWN_DEFN;")
     own_defn$stop()
     g_env$blankline(e)
-    g_env$putl(e, "OWN_req " || current_type$get_name() || "_ownreqs"
-		    || " = {sizeof(" || current_type$get_name() || "_OWN_DEFN), "
-    		    || int$unparse(own_count) || "};")
+    g_env$putl(e, "const OWN_req " || current_type$get_name() || "_ownreqs"
+		    || " = { sizeof(" || current_type$get_name() || "_OWN_DEFN), "
+    		    || int$unparse(own_count) || " };")
     g_env$blankline(e)
     end g_ptypeownvars
 
@@ -485,9 +485,9 @@ g_pownvars_decl = proc (e: g_env, ilist: initlist)
    g_env$outdent(e)
    g_env$putl(e, "} " || defn_name || "_OWN_DEFN;")
 
-   g_env$putl(e, "OWN_req " || defn_name || "_ownreqs"
-	      || " = {sizeof(" || defn_name || "_OWN_DEFN), "
-	      || int$unparse(own_counter(ilist)) || "};")
+   g_env$putl(e, "const OWN_req " || defn_name || "_ownreqs"
+	      || " = { sizeof(" || defn_name || "_OWN_DEFN), "
+	      || int$unparse(own_counter(ilist)) || " };")
    g_env$blankline(e)
  end g_pownvars_decl
 
@@ -599,7 +599,7 @@ g_ownvars_decl = proc (e: g_env, ilist: initlist)
     if current_type$exists() then
 	nm: string := current_type$get_name() || "_ownreqs"
 	if g_env$add_global(nm) then
-	    g_env$putl(e, "OWN_req " || nm || " = { 0, 0 };")
+	    g_env$putl(e, "const OWN_req " || nm || " = { 0, 0 };")
 	  end
       end
 

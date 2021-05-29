@@ -797,7 +797,7 @@ struct OP_ENTRY entry[29];
 
 OWN_ptr sequence_own_init = {0, 0};
 
-OWN_req sequence_ownreqs = {2*UNIT, 1};
+const OWN_req sequence_ownreqs = { 2 * UNIT, 1 };
 
 CLU_proc sequence_oe_new = {{0,0,0,0}, sequenceOPnew, 0,0};
 CLU_proc sequence_oe_cons = {{0,0,0,0}, sequenceOPcons, 0,0};

@@ -135,7 +135,7 @@ typedef struct{
 } _tagcell_OPS;
 
 
-OWN_req _tagcell_ownreqs = {2*UNIT,1};
+const OWN_req _tagcell_ownreqs = { 2 * UNIT, 1 };
 
 OWN_ptr _tagcell_own_init = {0, 0};
 

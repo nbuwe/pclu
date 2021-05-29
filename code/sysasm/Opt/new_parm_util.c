@@ -12,7 +12,7 @@
  *   // built-in (sequence.c)
  *   extern struct OPS *sequence_ops;        // the template
  *   extern struct REQS *sequence_of_t_reqs; // what it needs
- *   extern OWN_req sequence_ownreqs;        // how to instantiate owns
+ *   extern const OWN_req sequence_ownreqs;  // how to instantiate owns
  *
  *   // comes from elsewhere
  *   extern struct OPS *foo_ops;             // parameter's ops
@@ -46,8 +46,8 @@ static errcode build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 				 struct OPS **table, long *defs);
 static errcode update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 				  struct OPS **table, long *defs);
-static void update_type_ops(long nparm, OWNREQ ownreqp, struct OPS **table);
-static void update_op_ops(long nparm, long ntparm, OWNREQ ownreqp,
+static void update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **table);
+static void update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
 			  struct OPS **table);
 static void update_ops(void);
 
@@ -64,7 +64,7 @@ static long fti_tdefs;
 
 errcode
 find_type_instance(struct OPS *aops,
-		   long nparm, OWNREQ ownreqp,
+		   long nparm, const OWN_req *ownreqp,
 		   struct OPS **result)
 {
     long ans, i, size, tdefs;
@@ -118,7 +118,7 @@ find_type_instance(struct OPS *aops,
 errcode
 find_typeop_instance_old(struct OPS *aops,
 			 long nparm, long ntparm,
-			 OWNREQ ownreqp, OWNREQ townreqp,
+			 const OWN_req *ownreqp, const OWN_req *townreqp,
 			 struct OPS **result)
 {
     long ans, i, size, tdefs;
@@ -167,7 +167,7 @@ errcode
 find_typeop_instance(struct OPS *aops,
 		     errcode (*procaddr)(),
 		     long nparm, long ntparm,
-		     OWNREQ ownreqp, OWNREQ townreqp,
+		     const OWN_req *ownreqp, const OWN_req *townreqp,
 		     struct OPS **result)
 {
     long ans, i, size, tdefs, odefs;
@@ -226,7 +226,7 @@ find_typeop_instance(struct OPS *aops,
 
 errcode
 find_prociter_instance(errcode (*procaddr)(),
-		       long nparm, OWNREQ ownreqp,
+		       long nparm, const OWN_req *ownreqp,
 		       struct OPS **result)
 {
     long ans, i, size, odefs;
@@ -339,7 +339,7 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 /* let's fill them in */
 
 static void
-update_type_ops(long nparm, OWNREQ ownreqp, struct OPS **table)
+update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **table)
 {
     long i, tdefs;
     long *temp_owns;
@@ -361,7 +361,8 @@ update_type_ops(long nparm, OWNREQ ownreqp, struct OPS **table)
 
 
 static void
-update_op_ops(long nparm, long ntparm, OWNREQ ownreqp, struct OPS **table)
+update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
+	      struct OPS **table)
 {
     long i, odefs;
     long *temp_owns;

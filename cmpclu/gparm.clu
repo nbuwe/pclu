@@ -702,7 +702,7 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 		 end
 	      ename: string := gen.common || op_name || "_ownreqs"
 	      if g_env$add_extern(ename) then
-		 g_env$putl(e, "extern OWN_req " || ename || ";")
+		 g_env$putl(e, "extern const OWN_req " || ename || ";")
 		 end
 	      else
 		   %		   logit("ext mismatch f,a:  " || gen.common || " "
@@ -730,7 +730,7 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 		 g_env$putl(e, "extern struct OPS *" || gen.common || "_ops;")
 		 end
 	      if g_env$add_extern(gen.common || "_ownreqs") then
-		 g_env$putl(e, "extern OWN_req " || gen.common || "_ownreqs;")
+		 g_env$putl(e, "extern const OWN_req " || gen.common || "_ownreqs;")
 		 end
 	      end
        tag a_cons(a:arraycons):
@@ -766,7 +766,7 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 		     end
 		  aname := s_typespec(a.type_) || "_ownreqs"
 		  if g_env$add_extern(aname) then
-		     g_env$putl(e, "extern OWN_req " || aname || ";")
+		     g_env$putl(e, "extern const OWN_req " || aname || ";")
 		     end
 		  % UNINSTANTIATED OPS TABLE
 		  aname := s_typespec(a.type_) || "_ops"
@@ -813,7 +813,7 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 	      end
 	   aname := "_anyize_ownreqs"
 	   if g_env$add_extern(aname) then
-	      g_env$putl(e, "extern OWN_req " || aname || ";")
+	      g_env$putl(e, "extern const OWN_req " || aname || ";")
 	      end
 	   % UNINSTANTIATED OPS TABLE
 	   aname := "_anyize_ops"
@@ -853,7 +853,7 @@ g_parm_extern = proc(e: g_env, each_pb: pb)
 	      end
 	   aname := "_anyize_ownreqs"
 	   if g_env$add_extern(aname) then
-	      g_env$putl(e, "extern OWN_req " || aname || ";")
+	      g_env$putl(e, "extern const OWN_req " || aname || ";")
 	      end
 	   % UNINSTANTIATED OPS TABLE
 	   aname := "_anyize_ops"

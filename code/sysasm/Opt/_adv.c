@@ -330,7 +330,7 @@ typedef struct{
 
 OWN_ptr _adv_own_init = {0, 0};
 
-OWN_req _adv_ownreqs = {2*UNIT,1};
+const OWN_req _adv_ownreqs = { 2 * UNIT, 1 };
 
 CLU_proc _adv_oe_create = {{0,0,0,0}, _advOPcreate, &_adv_own_init, &_adv_own_init};
 CLU_proc _adv_oe_equal = {{0,0,0,0}, _advOPequal, &_adv_own_init, &_adv_own_init};

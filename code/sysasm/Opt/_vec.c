@@ -209,7 +209,7 @@ CLUREF pfcn;
 	}
 
 
-OWN_req _vec_ownreqs = {2*UNIT,1};
+const OWN_req _vec_ownreqs = { 2 * UNIT, 1 };
 
 typedef struct{
     int count;

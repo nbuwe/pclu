@@ -30,7 +30,7 @@ CLUREF obj, *ans;
 	signal(ERR_ok);
 	}
 
-OWN_req _cvt_ownreqs = {0};
+const OWN_req _cvt_ownreqs = { 0, 0 };
 
 int _cvt_own_init = 0;
 
