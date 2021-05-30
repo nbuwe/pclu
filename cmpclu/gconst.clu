@@ -328,12 +328,14 @@ g_const = cluster is find_consts, g_consts, exist
 	end g_consts
 
     g_str_decl = proc(e: g_env, s: str)
+	if string$empty(s) then return end
 	if g_env$add_str(s) then
 	    g_env$putl(e, "static CLUREF " || s_string_name(s) || ";")
 	  end
       end g_str_decl
 
-    g_str_cons = proc(e: g_env, s:str)
+    g_str_cons = proc(e: g_env, s: str)
+	if string$empty(s) then return end
 	g_env$puts(e, "string" || sep || "cons(")
 	g_string(e, s)
 	g_env$puts(e, ", CLU_1")

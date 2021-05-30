@@ -1769,7 +1769,11 @@ g_string_name = proc(e: g_env, s: string)
   end g_string_name
 
 s_string_name = proc(s: string) returns (string)
-    return ("STR_" || s_string_embed(s))
+    if string$empty(s) then
+	return ("CLU_empty_string")
+      else
+	return ("STR_" || s_string_embed(s))
+      end
   end s_string_name
 
 g_char = proc (e: g_env, c: char)
