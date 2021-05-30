@@ -92,7 +92,7 @@ char **argv;
 char **envp;
 
 CLUREF empty_string;
-CLUREF clu_empty_string;
+CLUREF CLU_empty_string;
 bool print_stat = false;
 /* extern errcode string_anal(); */
 
@@ -214,7 +214,7 @@ struct timezone tz;
 
 	err = stringOPcons("", CLU_1, CLU_0, &empty_string);
 	if (err != ERR_ok) fprintf(stderr, "failure: %s\n", elist[0].str->data);
-	clu_empty_string = empty_string;
+	CLU_empty_string = empty_string;
 
 /* set up error string constants */
 

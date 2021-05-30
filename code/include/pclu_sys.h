@@ -414,7 +414,7 @@ extern errcode recordOPnew(CLUREF size, CLUREF *ans);
 
 /* 	Names for commonly used strings */
 
-extern CLUREF	clu_empty_string;
+extern CLUREF	CLU_empty_string;
 extern CLUREF 	illegal_access_mode_STRING;
 extern CLUREF	cannot_write_to_this__chan_STRING;
 extern CLUREF	unknown_error_STRING;

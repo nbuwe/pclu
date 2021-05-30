@@ -168,7 +168,7 @@ CLUREF msgs, str;
 	if (sig.num < 0 || sig.num > 32) signal(ERR_bad_code);
 	msgs.num = _signalOPmsgs;
 	if (_signalOPmsgs == 0 || msgs.vec->data[sig.num - 1] == 0) {
-		ans->vec = clu_empty_string.vec;
+		ans->vec = CLU_empty_string.vec;
 		signal(ERR_ok);
 		}
 	ans->num = msgs.vec->data[sig.num - 1];

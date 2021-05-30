@@ -48,8 +48,8 @@ CLUREF temp;
 		}
 	done = true;
 	if (argc <= 1) {
-		ans->str = clu_empty_string.str;
-		jcl.str = clu_empty_string.str;
+		ans->str = CLU_empty_string.str;
+		jcl.str = CLU_empty_string.str;
 		signal(ERR_ok);
 		}
 	size.num = 0;

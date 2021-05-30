@@ -1417,7 +1417,7 @@ _chan *ch  = (_chan *)chref.ref;
 		high.num = count - 1;   /* 5/23/90 */ /* unnecessary */
 		}
 
-	temp = clu_empty_string;
+	temp = CLU_empty_string;
 
 	if (term.str->size == 1) {
 /* search for single character terminator string in buffer (bv) */
