@@ -347,7 +347,6 @@ extern struct OPS NO_OPS;
 extern struct obj **NewObjPtr;
 #ifndef CLU_sysasm_util_impl
 extern CLU_proc generic_CLU_proc;
-extern CLUREF CLU_string_size;
 extern struct OPS *NULL_OPS;
 #endif
 #define zero_ops (struct OPS**)0

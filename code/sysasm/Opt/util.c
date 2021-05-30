@@ -84,7 +84,6 @@ char **environ;
 errlist elist;
 
 CLUREF CUR_PROC_VAR;
-CLUREF CLU_string_size;
 struct obj **NewObjPtr;
 
 static int main_2(int _argc, char **_argv, char **_envp);
