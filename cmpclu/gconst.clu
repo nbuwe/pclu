@@ -327,11 +327,11 @@ g_const = cluster is find_consts, g_consts, exist
 	    end % for
 	end g_consts
 
-    g_str_decl = proc(e: g_env, s:str)
+    g_str_decl = proc(e: g_env, s: str)
 	if g_env$add_str(s) then
-	   g_env$putl(e, "CLUREF STR_" || s_string_embed(s) ||";")
-	   end
-	end g_str_decl
+	    g_env$putl(e, "static CLUREF " || s_string_name(s) || ";")
+	  end
+      end g_str_decl
 
     g_str_cons = proc(e: g_env, s:str)
 	size: int := string$size(s)
