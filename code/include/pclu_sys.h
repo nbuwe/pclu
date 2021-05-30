@@ -517,35 +517,6 @@ struct OPS {
 
 typedef struct OPS *OPSPTR;
 
-typedef struct {
-    long count;
-    const char *name[VARYING_LENGTH];
-} RLIST;
-
-typedef struct {
-    RLIST *param[VARYING_LENGTH];
-} PTABLE;
-
-typedef struct {
-    char *name;
-    errcode (*proc)();
-    bool restricted;
-    PTABLE *_restrict;
-} TG_ENTRY;
-
-typedef struct {
-    long pcount;		    /* number of parameters */
-    long count;			    /* number of operations */
-    TG_ENTRY entry[VARYING_LENGTH]; /* one per operation    */
-} TG_OPS;
-
-struct {
-    long count;
-    OWNPTR type_owns;
-    OWNPTR op_owns;
-    struct OP_ENTRY entry[VARYING_LENGTH];
-} TABLE;
-
 
 errcode add_selector_info(const char *field_name, long index, OPSPTR ops);
 errcode find_selector_ops(const char *selname, long nfields, OPSPTR *table);
