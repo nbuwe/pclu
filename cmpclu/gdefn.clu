@@ -987,16 +987,23 @@ op_own_name = proc() returns (string)
     return (defn_name)
     end op_own_name
 
+
 g_externs = proc (e: g_env, names: an, b: stmtlist)
-    if ~current_apply$is_type_own_init() then
-	g_iterbody_names(names, b) end
     g_env$newline(e)
     for each_name: name in array[name]$elements(names) do
 	if g_env$add_extern(each_name) then
-	   g_env$putl(e, "extern errcode " || escape_ckeyword(each_name) || "();")
-	   end
-	end
-    end g_externs
+	    g_env$putl(e, "extern errcode " || escape_ckeyword(each_name) || "();")
+	  end
+      end
+    if ~current_apply$is_type_own_init() then
+	ibnames: an := an$[]
+	g_iterbody_names(ibnames, b)
+	for each_ibname: name in an$elements(ibnames) do
+	    g_env$putl(e, "static errcode " || each_ibname || "();")
+	  end
+      end
+  end g_externs
+
 
 g_typedefn = proc (e: g_env, t: typedefn)
 

@@ -99,7 +99,7 @@ ib = cluster is init, reset, add_body, gen_bodies, next_name,
 	ibname: name := current_apply$get_name()||"_IB_" || int$unparse(index)
 	% save_name()
 
-	g_env$putl(e, "errcode")
+	g_env$putl(e, "static errcode")
 	g_env$puts(e, ibname)
 	g_env$puts(e, "(")
 
