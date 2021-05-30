@@ -334,21 +334,12 @@ g_const = cluster is find_consts, g_consts, exist
       end g_str_decl
 
     g_str_cons = proc(e: g_env, s:str)
-	size: int := string$size(s)
-	if int_const$exists(size)
-	   then
-		g_env$puts(e, "string" || sep || "cons(")
-		g_string(e, s)
-		g_env$puts(e, ", CLU_1, CLU_" || int$unparse(string$size(s)))
-		g_env$putl(e,  ", &" || s_string_name(s) ||");")
-	   else
-	        g_env$putl(e, "CLU_string_size.num = " || int$unparse(size) || ";")
-		g_env$puts(e, "string" || sep || "cons(")
-		g_string(e, s)
-		g_env$puts(e, ", CLU_1, CLU_string_size")
-		g_env$putl(e,  ", &" || s_string_name(s) ||");")
-	   end
-	end g_str_cons
+	g_env$puts(e, "string" || sep || "cons(")
+	g_string(e, s)
+	g_env$puts(e, ", CLU_1")
+	g_env$puts(e, ", CLUREF_make_num(" || int$unparse(string$size(s)) || ")")
+	g_env$putl(e, ", &" || s_string_name(s) || ");")
+      end g_str_cons
 
     %    % returns true if this cst depends on a parameter (== cst is dynamic)
     %
