@@ -4,26 +4,26 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _time_format ****/
+
 extern errcode intOPadd();
 extern errcode intOPdiv();
 extern errcode stringOPconcat();
 extern errcode intOPunparse();
 extern errcode stringOPrest();
 extern errcode intOPmod();
-CLUREF STR__056;
-CLUREF STR__040seconds;
+static CLUREF STR__056;
+static CLUREF STR__040seconds;
 static int _time_format_own_init = 0;
-
-/**** BEGIN PROCEDURE _time_format ****/
 
 errcode
 _time_format(CLUREF sec, CLUREF msec, CLUREF usec, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (_time_format_own_init == 0) {
-        stringOPcons(".", CLU_1, CLU_1, &STR__056);
-        stringOPcons(" seconds", CLU_1, CLU_8, &STR__040seconds);
+    if (_time_format_own_init == 0) {
+        stringOPcons(".", CLU_1, CLUREF_make_num(1), &STR__056);
+        stringOPcons(" seconds", CLU_1, CLUREF_make_num(8), &STR__040seconds);
         _time_format_own_init = 1;
     }
     enter_proc(3);
@@ -109,7 +109,7 @@ _time_format(CLUREF sec, CLUREF msec, CLUREF usec, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _time_format ****/
 

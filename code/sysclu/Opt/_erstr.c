@@ -4,149 +4,149 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode sequenceOPfetch();
-extern errcode stringOPconcat();
-extern errcode intOPunparse();
-CLUREF STR_not_040owner;
-CLUREF STR_no_040such_040file_040or_040directory;
-CLUREF STR_no_040such_040process;
-CLUREF STR_interrupted_040system_040call;
-CLUREF STR_i_057o_040error;
-CLUREF STR_no_040such_040device_040or_040address;
-CLUREF STR_arg_040list_040too_040long;
-CLUREF STR_exec_040format_040error;
-CLUREF STR_bad_040file_040number;
-CLUREF STR_no_040children;
-CLUREF STR_no_040more_040processes;
-CLUREF STR_not_040enough_040core;
-CLUREF STR_permission_040denied;
-CLUREF STR_bad_040address;
-CLUREF STR_block_040device_040required;
-CLUREF STR_mount_040device_040busy;
-CLUREF STR_file_040exists;
-CLUREF STR_cross_055device_040link;
-CLUREF STR_no_040such_040device;
-CLUREF STR_not_040a_040directory;
-CLUREF STR_is_040a_040directory;
-CLUREF STR_invalid_040argument;
-CLUREF STR_file_040table_040overflow;
-CLUREF STR_too_040many_040open_040files;
-CLUREF STR_not_040a_040typewriter;
-CLUREF STR_text_040file_040busy;
-CLUREF STR_file_040too_040large;
-CLUREF STR_no_040space_040left_040on_040device;
-CLUREF STR_illegal_040seek;
-CLUREF STR_read_055only_040file_040system;
-CLUREF STR_too_040many_040links;
-CLUREF STR_broken_040pipe;
-CLUREF STR_math_040argument;
-CLUREF STR_result_040too_040large;
-CLUREF STR_operation_040would_040block;
-CLUREF STR_operation_040now_040in_040progress;
-CLUREF STR_operation_040already_040in_040progress;
-CLUREF STR_socket_040operation_040on_040non_055socket;
-CLUREF STR_destination_040address_040required;
-CLUREF STR_message_040too_040long;
-CLUREF STR_protocol_040wrong_040type_040for_040socket;
-CLUREF STR_bad_040protocol_040option;
-CLUREF STR_protocol_040not_040supported;
-CLUREF STR_socket_040type_040not_040supported;
-CLUREF STR_operation_040not_040supported_040on_040socket;
-CLUREF STR_protocol_040family_040not_040supported;
-CLUREF STR_address_040family_040not_040supported_040by_040protocol_040family;
-CLUREF STR_address_040already_040in_040use;
-CLUREF STR_cannot_040assign_040requested_040address;
-CLUREF STR_network_040is_040down;
-CLUREF STR_network_040is_040unreachable;
-CLUREF STR_network_040dropped_040connection_040on_040reset;
-CLUREF STR_software_040caused_040connection_040abort;
-CLUREF STR_connection_040reset_040by_040peer;
-CLUREF STR_no_040buffer_040space_040available;
-CLUREF STR_socket_040is_040already_040connected;
-CLUREF STR_socket_040is_040not_040connected;
-CLUREF STR_cannot_040send_040after_040socket_040shutdown;
-CLUREF STR_error_04059;
-CLUREF STR_connection_040timed_040out;
-CLUREF STR_connection_040refused;
-CLUREF STR_too_040many_040levels_040of_040symbols_040links;
-CLUREF STR_file_040name_040too_040long;
-CLUREF STR_directory_040not_040empty;
-CLUREF STR_error_040;
-static int _erstr_own_init = 0;
 
 /**** BEGIN PROCEDURE _erstr ****/
 
+extern errcode sequenceOPfetch();
+extern errcode stringOPconcat();
+extern errcode intOPunparse();
+static CLUREF STR_not_040owner;
+static CLUREF STR_no_040such_040file_040or_040directory;
+static CLUREF STR_no_040such_040process;
+static CLUREF STR_interrupted_040system_040call;
+static CLUREF STR_i_057o_040error;
+static CLUREF STR_no_040such_040device_040or_040address;
+static CLUREF STR_arg_040list_040too_040long;
+static CLUREF STR_exec_040format_040error;
+static CLUREF STR_bad_040file_040number;
+static CLUREF STR_no_040children;
+static CLUREF STR_no_040more_040processes;
+static CLUREF STR_not_040enough_040core;
+static CLUREF STR_permission_040denied;
+static CLUREF STR_bad_040address;
+static CLUREF STR_block_040device_040required;
+static CLUREF STR_mount_040device_040busy;
+static CLUREF STR_file_040exists;
+static CLUREF STR_cross_055device_040link;
+static CLUREF STR_no_040such_040device;
+static CLUREF STR_not_040a_040directory;
+static CLUREF STR_is_040a_040directory;
+static CLUREF STR_invalid_040argument;
+static CLUREF STR_file_040table_040overflow;
+static CLUREF STR_too_040many_040open_040files;
+static CLUREF STR_not_040a_040typewriter;
+static CLUREF STR_text_040file_040busy;
+static CLUREF STR_file_040too_040large;
+static CLUREF STR_no_040space_040left_040on_040device;
+static CLUREF STR_illegal_040seek;
+static CLUREF STR_read_055only_040file_040system;
+static CLUREF STR_too_040many_040links;
+static CLUREF STR_broken_040pipe;
+static CLUREF STR_math_040argument;
+static CLUREF STR_result_040too_040large;
+static CLUREF STR_operation_040would_040block;
+static CLUREF STR_operation_040now_040in_040progress;
+static CLUREF STR_operation_040already_040in_040progress;
+static CLUREF STR_socket_040operation_040on_040non_055socket;
+static CLUREF STR_destination_040address_040required;
+static CLUREF STR_message_040too_040long;
+static CLUREF STR_protocol_040wrong_040type_040for_040socket;
+static CLUREF STR_bad_040protocol_040option;
+static CLUREF STR_protocol_040not_040supported;
+static CLUREF STR_socket_040type_040not_040supported;
+static CLUREF STR_operation_040not_040supported_040on_040socket;
+static CLUREF STR_protocol_040family_040not_040supported;
+static CLUREF STR_address_040family_040not_040supported_040by_040protocol_040family;
+static CLUREF STR_address_040already_040in_040use;
+static CLUREF STR_cannot_040assign_040requested_040address;
+static CLUREF STR_network_040is_040down;
+static CLUREF STR_network_040is_040unreachable;
+static CLUREF STR_network_040dropped_040connection_040on_040reset;
+static CLUREF STR_software_040caused_040connection_040abort;
+static CLUREF STR_connection_040reset_040by_040peer;
+static CLUREF STR_no_040buffer_040space_040available;
+static CLUREF STR_socket_040is_040already_040connected;
+static CLUREF STR_socket_040is_040not_040connected;
+static CLUREF STR_cannot_040send_040after_040socket_040shutdown;
+static CLUREF STR_error_04059;
+static CLUREF STR_connection_040timed_040out;
+static CLUREF STR_connection_040refused;
+static CLUREF STR_too_040many_040levels_040of_040symbols_040links;
+static CLUREF STR_file_040name_040too_040long;
+static CLUREF STR_directory_040not_040empty;
+static CLUREF STR_error_040;
+static int _erstr_own_init = 0;
+
 errcode
 _erstr(CLUREF num, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (_erstr_own_init == 0) {
-        stringOPcons("not owner", CLU_1, CLU_9, &STR_not_040owner);
-        stringOPcons("no such file or directory", CLU_1, CLU_25, &STR_no_040such_040file_040or_040directory);
-        stringOPcons("no such process", CLU_1, CLU_15, &STR_no_040such_040process);
-        stringOPcons("interrupted system call", CLU_1, CLU_23, &STR_interrupted_040system_040call);
-        stringOPcons("i/o error", CLU_1, CLU_9, &STR_i_057o_040error);
-        stringOPcons("no such device or address", CLU_1, CLU_25, &STR_no_040such_040device_040or_040address);
-        stringOPcons("arg list too long", CLU_1, CLU_17, &STR_arg_040list_040too_040long);
-        stringOPcons("exec format error", CLU_1, CLU_17, &STR_exec_040format_040error);
-        stringOPcons("bad file number", CLU_1, CLU_15, &STR_bad_040file_040number);
-        stringOPcons("no children", CLU_1, CLU_11, &STR_no_040children);
-        stringOPcons("no more processes", CLU_1, CLU_17, &STR_no_040more_040processes);
-        stringOPcons("not enough core", CLU_1, CLU_15, &STR_not_040enough_040core);
-        stringOPcons("permission denied", CLU_1, CLU_17, &STR_permission_040denied);
-        stringOPcons("bad address", CLU_1, CLU_11, &STR_bad_040address);
-        stringOPcons("block device required", CLU_1, CLU_21, &STR_block_040device_040required);
-        stringOPcons("mount device busy", CLU_1, CLU_17, &STR_mount_040device_040busy);
-        stringOPcons("file exists", CLU_1, CLU_11, &STR_file_040exists);
-        stringOPcons("cross-device link", CLU_1, CLU_17, &STR_cross_055device_040link);
-        stringOPcons("no such device", CLU_1, CLU_14, &STR_no_040such_040device);
-        stringOPcons("not a directory", CLU_1, CLU_15, &STR_not_040a_040directory);
-        stringOPcons("is a directory", CLU_1, CLU_14, &STR_is_040a_040directory);
-        stringOPcons("invalid argument", CLU_1, CLU_16, &STR_invalid_040argument);
-        stringOPcons("file table overflow", CLU_1, CLU_19, &STR_file_040table_040overflow);
-        stringOPcons("too many open files", CLU_1, CLU_19, &STR_too_040many_040open_040files);
-        stringOPcons("not a typewriter", CLU_1, CLU_16, &STR_not_040a_040typewriter);
-        stringOPcons("text file busy", CLU_1, CLU_14, &STR_text_040file_040busy);
-        stringOPcons("file too large", CLU_1, CLU_14, &STR_file_040too_040large);
-        stringOPcons("no space left on device", CLU_1, CLU_23, &STR_no_040space_040left_040on_040device);
-        stringOPcons("illegal seek", CLU_1, CLU_12, &STR_illegal_040seek);
-        stringOPcons("read-only file system", CLU_1, CLU_21, &STR_read_055only_040file_040system);
-        stringOPcons("too many links", CLU_1, CLU_14, &STR_too_040many_040links);
-        stringOPcons("broken pipe", CLU_1, CLU_11, &STR_broken_040pipe);
-        stringOPcons("math argument", CLU_1, CLU_13, &STR_math_040argument);
-        stringOPcons("result too large", CLU_1, CLU_16, &STR_result_040too_040large);
-        stringOPcons("operation would block", CLU_1, CLU_21, &STR_operation_040would_040block);
-        stringOPcons("operation now in progress", CLU_1, CLU_25, &STR_operation_040now_040in_040progress);
-        stringOPcons("operation already in progress", CLU_1, CLU_29, &STR_operation_040already_040in_040progress);
-        stringOPcons("socket operation on non-socket", CLU_1, CLU_30, &STR_socket_040operation_040on_040non_055socket);
-        stringOPcons("destination address required", CLU_1, CLU_28, &STR_destination_040address_040required);
-        stringOPcons("message too long", CLU_1, CLU_16, &STR_message_040too_040long);
-        stringOPcons("protocol wrong type for socket", CLU_1, CLU_30, &STR_protocol_040wrong_040type_040for_040socket);
-        stringOPcons("bad protocol option", CLU_1, CLU_19, &STR_bad_040protocol_040option);
-        stringOPcons("protocol not supported", CLU_1, CLU_22, &STR_protocol_040not_040supported);
-        stringOPcons("socket type not supported", CLU_1, CLU_25, &STR_socket_040type_040not_040supported);
-        stringOPcons("operation not supported on socket", CLU_1, CLU_33, &STR_operation_040not_040supported_040on_040socket);
-        stringOPcons("protocol family not supported", CLU_1, CLU_29, &STR_protocol_040family_040not_040supported);
-        stringOPcons("address family not supported by protocol family", CLU_1, CLU_47, &STR_address_040family_040not_040supported_040by_040protocol_040family);
-        stringOPcons("address already in use", CLU_1, CLU_22, &STR_address_040already_040in_040use);
-        stringOPcons("cannot assign requested address", CLU_1, CLU_31, &STR_cannot_040assign_040requested_040address);
-        stringOPcons("network is down", CLU_1, CLU_15, &STR_network_040is_040down);
-        stringOPcons("network is unreachable", CLU_1, CLU_22, &STR_network_040is_040unreachable);
-        stringOPcons("network dropped connection on reset", CLU_1, CLU_35, &STR_network_040dropped_040connection_040on_040reset);
-        stringOPcons("software caused connection abort", CLU_1, CLU_32, &STR_software_040caused_040connection_040abort);
-        stringOPcons("connection reset by peer", CLU_1, CLU_24, &STR_connection_040reset_040by_040peer);
-        stringOPcons("no buffer space available", CLU_1, CLU_25, &STR_no_040buffer_040space_040available);
-        stringOPcons("socket is already connected", CLU_1, CLU_27, &STR_socket_040is_040already_040connected);
-        stringOPcons("socket is not connected", CLU_1, CLU_23, &STR_socket_040is_040not_040connected);
-        stringOPcons("cannot send after socket shutdown", CLU_1, CLU_33, &STR_cannot_040send_040after_040socket_040shutdown);
-        stringOPcons("error 59", CLU_1, CLU_8, &STR_error_04059);
-        stringOPcons("connection timed out", CLU_1, CLU_20, &STR_connection_040timed_040out);
-        stringOPcons("connection refused", CLU_1, CLU_18, &STR_connection_040refused);
-        stringOPcons("too many levels of symbols links", CLU_1, CLU_32, &STR_too_040many_040levels_040of_040symbols_040links);
-        stringOPcons("file name too long", CLU_1, CLU_18, &STR_file_040name_040too_040long);
-        stringOPcons("directory not empty", CLU_1, CLU_19, &STR_directory_040not_040empty);
-        stringOPcons("error ", CLU_1, CLU_6, &STR_error_040);
+    if (_erstr_own_init == 0) {
+        stringOPcons("not owner", CLU_1, CLUREF_make_num(9), &STR_not_040owner);
+        stringOPcons("no such file or directory", CLU_1, CLUREF_make_num(25), &STR_no_040such_040file_040or_040directory);
+        stringOPcons("no such process", CLU_1, CLUREF_make_num(15), &STR_no_040such_040process);
+        stringOPcons("interrupted system call", CLU_1, CLUREF_make_num(23), &STR_interrupted_040system_040call);
+        stringOPcons("i/o error", CLU_1, CLUREF_make_num(9), &STR_i_057o_040error);
+        stringOPcons("no such device or address", CLU_1, CLUREF_make_num(25), &STR_no_040such_040device_040or_040address);
+        stringOPcons("arg list too long", CLU_1, CLUREF_make_num(17), &STR_arg_040list_040too_040long);
+        stringOPcons("exec format error", CLU_1, CLUREF_make_num(17), &STR_exec_040format_040error);
+        stringOPcons("bad file number", CLU_1, CLUREF_make_num(15), &STR_bad_040file_040number);
+        stringOPcons("no children", CLU_1, CLUREF_make_num(11), &STR_no_040children);
+        stringOPcons("no more processes", CLU_1, CLUREF_make_num(17), &STR_no_040more_040processes);
+        stringOPcons("not enough core", CLU_1, CLUREF_make_num(15), &STR_not_040enough_040core);
+        stringOPcons("permission denied", CLU_1, CLUREF_make_num(17), &STR_permission_040denied);
+        stringOPcons("bad address", CLU_1, CLUREF_make_num(11), &STR_bad_040address);
+        stringOPcons("block device required", CLU_1, CLUREF_make_num(21), &STR_block_040device_040required);
+        stringOPcons("mount device busy", CLU_1, CLUREF_make_num(17), &STR_mount_040device_040busy);
+        stringOPcons("file exists", CLU_1, CLUREF_make_num(11), &STR_file_040exists);
+        stringOPcons("cross-device link", CLU_1, CLUREF_make_num(17), &STR_cross_055device_040link);
+        stringOPcons("no such device", CLU_1, CLUREF_make_num(14), &STR_no_040such_040device);
+        stringOPcons("not a directory", CLU_1, CLUREF_make_num(15), &STR_not_040a_040directory);
+        stringOPcons("is a directory", CLU_1, CLUREF_make_num(14), &STR_is_040a_040directory);
+        stringOPcons("invalid argument", CLU_1, CLUREF_make_num(16), &STR_invalid_040argument);
+        stringOPcons("file table overflow", CLU_1, CLUREF_make_num(19), &STR_file_040table_040overflow);
+        stringOPcons("too many open files", CLU_1, CLUREF_make_num(19), &STR_too_040many_040open_040files);
+        stringOPcons("not a typewriter", CLU_1, CLUREF_make_num(16), &STR_not_040a_040typewriter);
+        stringOPcons("text file busy", CLU_1, CLUREF_make_num(14), &STR_text_040file_040busy);
+        stringOPcons("file too large", CLU_1, CLUREF_make_num(14), &STR_file_040too_040large);
+        stringOPcons("no space left on device", CLU_1, CLUREF_make_num(23), &STR_no_040space_040left_040on_040device);
+        stringOPcons("illegal seek", CLU_1, CLUREF_make_num(12), &STR_illegal_040seek);
+        stringOPcons("read-only file system", CLU_1, CLUREF_make_num(21), &STR_read_055only_040file_040system);
+        stringOPcons("too many links", CLU_1, CLUREF_make_num(14), &STR_too_040many_040links);
+        stringOPcons("broken pipe", CLU_1, CLUREF_make_num(11), &STR_broken_040pipe);
+        stringOPcons("math argument", CLU_1, CLUREF_make_num(13), &STR_math_040argument);
+        stringOPcons("result too large", CLU_1, CLUREF_make_num(16), &STR_result_040too_040large);
+        stringOPcons("operation would block", CLU_1, CLUREF_make_num(21), &STR_operation_040would_040block);
+        stringOPcons("operation now in progress", CLU_1, CLUREF_make_num(25), &STR_operation_040now_040in_040progress);
+        stringOPcons("operation already in progress", CLU_1, CLUREF_make_num(29), &STR_operation_040already_040in_040progress);
+        stringOPcons("socket operation on non-socket", CLU_1, CLUREF_make_num(30), &STR_socket_040operation_040on_040non_055socket);
+        stringOPcons("destination address required", CLU_1, CLUREF_make_num(28), &STR_destination_040address_040required);
+        stringOPcons("message too long", CLU_1, CLUREF_make_num(16), &STR_message_040too_040long);
+        stringOPcons("protocol wrong type for socket", CLU_1, CLUREF_make_num(30), &STR_protocol_040wrong_040type_040for_040socket);
+        stringOPcons("bad protocol option", CLU_1, CLUREF_make_num(19), &STR_bad_040protocol_040option);
+        stringOPcons("protocol not supported", CLU_1, CLUREF_make_num(22), &STR_protocol_040not_040supported);
+        stringOPcons("socket type not supported", CLU_1, CLUREF_make_num(25), &STR_socket_040type_040not_040supported);
+        stringOPcons("operation not supported on socket", CLU_1, CLUREF_make_num(33), &STR_operation_040not_040supported_040on_040socket);
+        stringOPcons("protocol family not supported", CLU_1, CLUREF_make_num(29), &STR_protocol_040family_040not_040supported);
+        stringOPcons("address family not supported by protocol family", CLU_1, CLUREF_make_num(47), &STR_address_040family_040not_040supported_040by_040protocol_040family);
+        stringOPcons("address already in use", CLU_1, CLUREF_make_num(22), &STR_address_040already_040in_040use);
+        stringOPcons("cannot assign requested address", CLU_1, CLUREF_make_num(31), &STR_cannot_040assign_040requested_040address);
+        stringOPcons("network is down", CLU_1, CLUREF_make_num(15), &STR_network_040is_040down);
+        stringOPcons("network is unreachable", CLU_1, CLUREF_make_num(22), &STR_network_040is_040unreachable);
+        stringOPcons("network dropped connection on reset", CLU_1, CLUREF_make_num(35), &STR_network_040dropped_040connection_040on_040reset);
+        stringOPcons("software caused connection abort", CLU_1, CLUREF_make_num(32), &STR_software_040caused_040connection_040abort);
+        stringOPcons("connection reset by peer", CLU_1, CLUREF_make_num(24), &STR_connection_040reset_040by_040peer);
+        stringOPcons("no buffer space available", CLU_1, CLUREF_make_num(25), &STR_no_040buffer_040space_040available);
+        stringOPcons("socket is already connected", CLU_1, CLUREF_make_num(27), &STR_socket_040is_040already_040connected);
+        stringOPcons("socket is not connected", CLU_1, CLUREF_make_num(23), &STR_socket_040is_040not_040connected);
+        stringOPcons("cannot send after socket shutdown", CLU_1, CLUREF_make_num(33), &STR_cannot_040send_040after_040socket_040shutdown);
+        stringOPcons("error 59", CLU_1, CLUREF_make_num(8), &STR_error_04059);
+        stringOPcons("connection timed out", CLU_1, CLUREF_make_num(20), &STR_connection_040timed_040out);
+        stringOPcons("connection refused", CLU_1, CLUREF_make_num(18), &STR_connection_040refused);
+        stringOPcons("too many levels of symbols links", CLU_1, CLUREF_make_num(32), &STR_too_040many_040levels_040of_040symbols_040links);
+        stringOPcons("file name too long", CLU_1, CLUREF_make_num(18), &STR_file_040name_040too_040long);
+        stringOPcons("directory not empty", CLU_1, CLUREF_make_num(19), &STR_directory_040not_040empty);
+        stringOPcons("error ", CLU_1, CLUREF_make_num(6), &STR_error_040);
         _erstr_own_init = 1;
     }
     enter_proc(69);
@@ -260,88 +260,88 @@ _erstr(CLUREF num, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _erstr ****/
 
+
+
+/**** BEGIN PROCEDURE _ernum ****/
 
 extern errcode sequenceOPindexes();
 extern errcode stringOPequal();
 static int _ernum_own_init = 0;
 
-/**** BEGIN PROCEDURE _ernum ****/
-
 errcode
 _ernum(CLUREF msg, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
-        if (_ernum_own_init == 0) {
-        stringOPcons("not owner", CLU_1, CLU_9, &STR_not_040owner);
-        stringOPcons("no such file or directory", CLU_1, CLU_25, &STR_no_040such_040file_040or_040directory);
-        stringOPcons("no such process", CLU_1, CLU_15, &STR_no_040such_040process);
-        stringOPcons("interrupted system call", CLU_1, CLU_23, &STR_interrupted_040system_040call);
-        stringOPcons("i/o error", CLU_1, CLU_9, &STR_i_057o_040error);
-        stringOPcons("no such device or address", CLU_1, CLU_25, &STR_no_040such_040device_040or_040address);
-        stringOPcons("arg list too long", CLU_1, CLU_17, &STR_arg_040list_040too_040long);
-        stringOPcons("exec format error", CLU_1, CLU_17, &STR_exec_040format_040error);
-        stringOPcons("bad file number", CLU_1, CLU_15, &STR_bad_040file_040number);
-        stringOPcons("no children", CLU_1, CLU_11, &STR_no_040children);
-        stringOPcons("no more processes", CLU_1, CLU_17, &STR_no_040more_040processes);
-        stringOPcons("not enough core", CLU_1, CLU_15, &STR_not_040enough_040core);
-        stringOPcons("permission denied", CLU_1, CLU_17, &STR_permission_040denied);
-        stringOPcons("bad address", CLU_1, CLU_11, &STR_bad_040address);
-        stringOPcons("block device required", CLU_1, CLU_21, &STR_block_040device_040required);
-        stringOPcons("mount device busy", CLU_1, CLU_17, &STR_mount_040device_040busy);
-        stringOPcons("file exists", CLU_1, CLU_11, &STR_file_040exists);
-        stringOPcons("cross-device link", CLU_1, CLU_17, &STR_cross_055device_040link);
-        stringOPcons("no such device", CLU_1, CLU_14, &STR_no_040such_040device);
-        stringOPcons("not a directory", CLU_1, CLU_15, &STR_not_040a_040directory);
-        stringOPcons("is a directory", CLU_1, CLU_14, &STR_is_040a_040directory);
-        stringOPcons("invalid argument", CLU_1, CLU_16, &STR_invalid_040argument);
-        stringOPcons("file table overflow", CLU_1, CLU_19, &STR_file_040table_040overflow);
-        stringOPcons("too many open files", CLU_1, CLU_19, &STR_too_040many_040open_040files);
-        stringOPcons("not a typewriter", CLU_1, CLU_16, &STR_not_040a_040typewriter);
-        stringOPcons("text file busy", CLU_1, CLU_14, &STR_text_040file_040busy);
-        stringOPcons("file too large", CLU_1, CLU_14, &STR_file_040too_040large);
-        stringOPcons("no space left on device", CLU_1, CLU_23, &STR_no_040space_040left_040on_040device);
-        stringOPcons("illegal seek", CLU_1, CLU_12, &STR_illegal_040seek);
-        stringOPcons("read-only file system", CLU_1, CLU_21, &STR_read_055only_040file_040system);
-        stringOPcons("too many links", CLU_1, CLU_14, &STR_too_040many_040links);
-        stringOPcons("broken pipe", CLU_1, CLU_11, &STR_broken_040pipe);
-        stringOPcons("math argument", CLU_1, CLU_13, &STR_math_040argument);
-        stringOPcons("result too large", CLU_1, CLU_16, &STR_result_040too_040large);
-        stringOPcons("operation would block", CLU_1, CLU_21, &STR_operation_040would_040block);
-        stringOPcons("operation now in progress", CLU_1, CLU_25, &STR_operation_040now_040in_040progress);
-        stringOPcons("operation already in progress", CLU_1, CLU_29, &STR_operation_040already_040in_040progress);
-        stringOPcons("socket operation on non-socket", CLU_1, CLU_30, &STR_socket_040operation_040on_040non_055socket);
-        stringOPcons("destination address required", CLU_1, CLU_28, &STR_destination_040address_040required);
-        stringOPcons("message too long", CLU_1, CLU_16, &STR_message_040too_040long);
-        stringOPcons("protocol wrong type for socket", CLU_1, CLU_30, &STR_protocol_040wrong_040type_040for_040socket);
-        stringOPcons("bad protocol option", CLU_1, CLU_19, &STR_bad_040protocol_040option);
-        stringOPcons("protocol not supported", CLU_1, CLU_22, &STR_protocol_040not_040supported);
-        stringOPcons("socket type not supported", CLU_1, CLU_25, &STR_socket_040type_040not_040supported);
-        stringOPcons("operation not supported on socket", CLU_1, CLU_33, &STR_operation_040not_040supported_040on_040socket);
-        stringOPcons("protocol family not supported", CLU_1, CLU_29, &STR_protocol_040family_040not_040supported);
-        stringOPcons("address family not supported by protocol family", CLU_1, CLU_47, &STR_address_040family_040not_040supported_040by_040protocol_040family);
-        stringOPcons("address already in use", CLU_1, CLU_22, &STR_address_040already_040in_040use);
-        stringOPcons("cannot assign requested address", CLU_1, CLU_31, &STR_cannot_040assign_040requested_040address);
-        stringOPcons("network is down", CLU_1, CLU_15, &STR_network_040is_040down);
-        stringOPcons("network is unreachable", CLU_1, CLU_22, &STR_network_040is_040unreachable);
-        stringOPcons("network dropped connection on reset", CLU_1, CLU_35, &STR_network_040dropped_040connection_040on_040reset);
-        stringOPcons("software caused connection abort", CLU_1, CLU_32, &STR_software_040caused_040connection_040abort);
-        stringOPcons("connection reset by peer", CLU_1, CLU_24, &STR_connection_040reset_040by_040peer);
-        stringOPcons("no buffer space available", CLU_1, CLU_25, &STR_no_040buffer_040space_040available);
-        stringOPcons("socket is already connected", CLU_1, CLU_27, &STR_socket_040is_040already_040connected);
-        stringOPcons("socket is not connected", CLU_1, CLU_23, &STR_socket_040is_040not_040connected);
-        stringOPcons("cannot send after socket shutdown", CLU_1, CLU_33, &STR_cannot_040send_040after_040socket_040shutdown);
-        stringOPcons("error 59", CLU_1, CLU_8, &STR_error_04059);
-        stringOPcons("connection timed out", CLU_1, CLU_20, &STR_connection_040timed_040out);
-        stringOPcons("connection refused", CLU_1, CLU_18, &STR_connection_040refused);
-        stringOPcons("too many levels of symbols links", CLU_1, CLU_32, &STR_too_040many_040levels_040of_040symbols_040links);
-        stringOPcons("file name too long", CLU_1, CLU_18, &STR_file_040name_040too_040long);
-        stringOPcons("directory not empty", CLU_1, CLU_19, &STR_directory_040not_040empty);
+    if (_ernum_own_init == 0) {
+        stringOPcons("not owner", CLU_1, CLUREF_make_num(9), &STR_not_040owner);
+        stringOPcons("no such file or directory", CLU_1, CLUREF_make_num(25), &STR_no_040such_040file_040or_040directory);
+        stringOPcons("no such process", CLU_1, CLUREF_make_num(15), &STR_no_040such_040process);
+        stringOPcons("interrupted system call", CLU_1, CLUREF_make_num(23), &STR_interrupted_040system_040call);
+        stringOPcons("i/o error", CLU_1, CLUREF_make_num(9), &STR_i_057o_040error);
+        stringOPcons("no such device or address", CLU_1, CLUREF_make_num(25), &STR_no_040such_040device_040or_040address);
+        stringOPcons("arg list too long", CLU_1, CLUREF_make_num(17), &STR_arg_040list_040too_040long);
+        stringOPcons("exec format error", CLU_1, CLUREF_make_num(17), &STR_exec_040format_040error);
+        stringOPcons("bad file number", CLU_1, CLUREF_make_num(15), &STR_bad_040file_040number);
+        stringOPcons("no children", CLU_1, CLUREF_make_num(11), &STR_no_040children);
+        stringOPcons("no more processes", CLU_1, CLUREF_make_num(17), &STR_no_040more_040processes);
+        stringOPcons("not enough core", CLU_1, CLUREF_make_num(15), &STR_not_040enough_040core);
+        stringOPcons("permission denied", CLU_1, CLUREF_make_num(17), &STR_permission_040denied);
+        stringOPcons("bad address", CLU_1, CLUREF_make_num(11), &STR_bad_040address);
+        stringOPcons("block device required", CLU_1, CLUREF_make_num(21), &STR_block_040device_040required);
+        stringOPcons("mount device busy", CLU_1, CLUREF_make_num(17), &STR_mount_040device_040busy);
+        stringOPcons("file exists", CLU_1, CLUREF_make_num(11), &STR_file_040exists);
+        stringOPcons("cross-device link", CLU_1, CLUREF_make_num(17), &STR_cross_055device_040link);
+        stringOPcons("no such device", CLU_1, CLUREF_make_num(14), &STR_no_040such_040device);
+        stringOPcons("not a directory", CLU_1, CLUREF_make_num(15), &STR_not_040a_040directory);
+        stringOPcons("is a directory", CLU_1, CLUREF_make_num(14), &STR_is_040a_040directory);
+        stringOPcons("invalid argument", CLU_1, CLUREF_make_num(16), &STR_invalid_040argument);
+        stringOPcons("file table overflow", CLU_1, CLUREF_make_num(19), &STR_file_040table_040overflow);
+        stringOPcons("too many open files", CLU_1, CLUREF_make_num(19), &STR_too_040many_040open_040files);
+        stringOPcons("not a typewriter", CLU_1, CLUREF_make_num(16), &STR_not_040a_040typewriter);
+        stringOPcons("text file busy", CLU_1, CLUREF_make_num(14), &STR_text_040file_040busy);
+        stringOPcons("file too large", CLU_1, CLUREF_make_num(14), &STR_file_040too_040large);
+        stringOPcons("no space left on device", CLU_1, CLUREF_make_num(23), &STR_no_040space_040left_040on_040device);
+        stringOPcons("illegal seek", CLU_1, CLUREF_make_num(12), &STR_illegal_040seek);
+        stringOPcons("read-only file system", CLU_1, CLUREF_make_num(21), &STR_read_055only_040file_040system);
+        stringOPcons("too many links", CLU_1, CLUREF_make_num(14), &STR_too_040many_040links);
+        stringOPcons("broken pipe", CLU_1, CLUREF_make_num(11), &STR_broken_040pipe);
+        stringOPcons("math argument", CLU_1, CLUREF_make_num(13), &STR_math_040argument);
+        stringOPcons("result too large", CLU_1, CLUREF_make_num(16), &STR_result_040too_040large);
+        stringOPcons("operation would block", CLU_1, CLUREF_make_num(21), &STR_operation_040would_040block);
+        stringOPcons("operation now in progress", CLU_1, CLUREF_make_num(25), &STR_operation_040now_040in_040progress);
+        stringOPcons("operation already in progress", CLU_1, CLUREF_make_num(29), &STR_operation_040already_040in_040progress);
+        stringOPcons("socket operation on non-socket", CLU_1, CLUREF_make_num(30), &STR_socket_040operation_040on_040non_055socket);
+        stringOPcons("destination address required", CLU_1, CLUREF_make_num(28), &STR_destination_040address_040required);
+        stringOPcons("message too long", CLU_1, CLUREF_make_num(16), &STR_message_040too_040long);
+        stringOPcons("protocol wrong type for socket", CLU_1, CLUREF_make_num(30), &STR_protocol_040wrong_040type_040for_040socket);
+        stringOPcons("bad protocol option", CLU_1, CLUREF_make_num(19), &STR_bad_040protocol_040option);
+        stringOPcons("protocol not supported", CLU_1, CLUREF_make_num(22), &STR_protocol_040not_040supported);
+        stringOPcons("socket type not supported", CLU_1, CLUREF_make_num(25), &STR_socket_040type_040not_040supported);
+        stringOPcons("operation not supported on socket", CLU_1, CLUREF_make_num(33), &STR_operation_040not_040supported_040on_040socket);
+        stringOPcons("protocol family not supported", CLU_1, CLUREF_make_num(29), &STR_protocol_040family_040not_040supported);
+        stringOPcons("address family not supported by protocol family", CLU_1, CLUREF_make_num(47), &STR_address_040family_040not_040supported_040by_040protocol_040family);
+        stringOPcons("address already in use", CLU_1, CLUREF_make_num(22), &STR_address_040already_040in_040use);
+        stringOPcons("cannot assign requested address", CLU_1, CLUREF_make_num(31), &STR_cannot_040assign_040requested_040address);
+        stringOPcons("network is down", CLU_1, CLUREF_make_num(15), &STR_network_040is_040down);
+        stringOPcons("network is unreachable", CLU_1, CLUREF_make_num(22), &STR_network_040is_040unreachable);
+        stringOPcons("network dropped connection on reset", CLU_1, CLUREF_make_num(35), &STR_network_040dropped_040connection_040on_040reset);
+        stringOPcons("software caused connection abort", CLU_1, CLUREF_make_num(32), &STR_software_040caused_040connection_040abort);
+        stringOPcons("connection reset by peer", CLU_1, CLUREF_make_num(24), &STR_connection_040reset_040by_040peer);
+        stringOPcons("no buffer space available", CLU_1, CLUREF_make_num(25), &STR_no_040buffer_040space_040available);
+        stringOPcons("socket is already connected", CLU_1, CLUREF_make_num(27), &STR_socket_040is_040already_040connected);
+        stringOPcons("socket is not connected", CLU_1, CLUREF_make_num(23), &STR_socket_040is_040not_040connected);
+        stringOPcons("cannot send after socket shutdown", CLU_1, CLUREF_make_num(33), &STR_cannot_040send_040after_040socket_040shutdown);
+        stringOPcons("error 59", CLU_1, CLUREF_make_num(8), &STR_error_04059);
+        stringOPcons("connection timed out", CLU_1, CLUREF_make_num(20), &STR_connection_040timed_040out);
+        stringOPcons("connection refused", CLU_1, CLUREF_make_num(18), &STR_connection_040refused);
+        stringOPcons("too many levels of symbols links", CLU_1, CLUREF_make_num(32), &STR_too_040many_040levels_040of_040symbols_040links);
+        stringOPcons("file name too long", CLU_1, CLUREF_make_num(18), &STR_file_040name_040too_040long);
+        stringOPcons("directory not empty", CLU_1, CLUREF_make_num(19), &STR_directory_040not_040empty);
         _ernum_own_init = 1;
     }
     enter_proc(75);
@@ -499,7 +499,7 @@ _ernum(CLUREF msg, CLUREF *ret_1)
                 goto ex_0;}
             T_2_3.num = T_2_1.vec->data[i.num - 1];
             T_2_4.num = ((msg.str->size != T_2_3.str->size)? false :
-                !(bcmp(msg.str->data, T_2_3.str->data, msg.str->size)));
+                !(memcmp(msg.str->data, T_2_3.str->data, msg.str->size)));
             if (T_2_4.num == true) {
                 {
                 {
@@ -524,7 +524,7 @@ _ernum(CLUREF msg, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _ernum ****/
 

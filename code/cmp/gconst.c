@@ -48,37 +48,37 @@ extern errcode g_constOPg_str_cons();
 extern errcode g_envOPadd_str();
 extern errcode g_envOPputl();
 extern errcode stringOPconcat();
-extern errcode s_string_embed();
-extern errcode stringOPsize();
-extern errcode int_constOPexists();
+extern errcode s_string_name();
 extern errcode g_envOPputs();
 extern errcode g_string();
 extern errcode intOPunparse();
-extern errcode s_string_name();
-CLUREF STR_CLUREF_040STR_137;
-CLUREF STR__073;
-CLUREF STR_stringOPcons_050;
-CLUREF STR__054_040CLU_1371_054_040CLU_137;
-CLUREF STR__054_040_046;
-CLUREF STR__051_073;
-CLUREF STR_CLU_137string_137size_056num_040_075_040;
-CLUREF STR__054_040CLU_1371_054_040CLU_137string_137size;
+extern errcode stringOPsize();
+static CLUREF STR_static_040CLUREF_040;
+static CLUREF STR__073;
+static CLUREF STR_stringOPcons_050;
+static CLUREF STR__054_040CLU_1371;
+static CLUREF STR__054_040CLUREF_137make_137num_050;
+static CLUREF STR__051;
+static CLUREF STR__054_040_046;
+static CLUREF STR__051_073;
 static int g_const_own_init = 0;
-OWN_req g_const_ownreqs = {0,0};
+const OWN_req g_const_ownreqs = { 0, 0 };
 CLUREF g_constOPcum_const;
-errcode g_const_own_init_proc()
+
+errcode
+g_const_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (g_const_own_init == 0) {
-        stringOPcons("CLUREF STR_", CLU_1, CLU_11, &STR_CLUREF_040STR_137);
-        stringOPcons(";", CLU_1, CLU_1, &STR__073);
-        stringOPcons("stringOPcons(", CLU_1, CLU_13, &STR_stringOPcons_050);
-        stringOPcons(", CLU_1, CLU_", CLU_1, CLU_13, &STR__054_040CLU_1371_054_040CLU_137);
-        stringOPcons(", &", CLU_1, CLU_3, &STR__054_040_046);
-        stringOPcons(");", CLU_1, CLU_2, &STR__051_073);
-        stringOPcons("CLU_string_size.num = ", CLU_1, CLU_22, &STR_CLU_137string_137size_056num_040_075_040);
-        stringOPcons(", CLU_1, CLU_string_size", CLU_1, CLU_24, &STR__054_040CLU_1371_054_040CLU_137string_137size);
+    if (g_const_own_init == 0) {
+        stringOPcons("static CLUREF ", CLU_1, CLUREF_make_num(14), &STR_static_040CLUREF_040);
+        stringOPcons(";", CLU_1, CLUREF_make_num(1), &STR__073);
+        stringOPcons("stringOPcons(", CLU_1, CLUREF_make_num(13), &STR_stringOPcons_050);
+        stringOPcons(", CLU_1", CLU_1, CLUREF_make_num(7), &STR__054_040CLU_1371);
+        stringOPcons(", CLUREF_make_num(", CLU_1, CLUREF_make_num(18), &STR__054_040CLUREF_137make_137num_050);
+        stringOPcons(")", CLU_1, CLUREF_make_num(1), &STR__051);
+        stringOPcons(", &", CLU_1, CLUREF_make_num(3), &STR__054_040_046);
+        stringOPcons(");", CLU_1, CLUREF_make_num(2), &STR__051_073);
         g_const_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -87,23 +87,26 @@ errcode g_const_own_init_proc()
             g_constOPcum_const.num = T_0_1.num;
             }
             }
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE exist ****/
 
+
 errcode
 g_constOPexist(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (g_const_own_init == 0) {
-            err = g_const_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (g_const_own_init == 0) {
+        err = g_const_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(13);
 
   LINE(14);
@@ -139,23 +142,23 @@ g_constOPexist(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE exist ****/
 
 
 /**** BEGIN PROCEDURE find_consts ****/
 
+
 errcode
 g_constOPfind_consts(CLUREF e, CLUREF bod)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF const_UNIQ;
-        if (g_const_own_init == 0) {
-            err = g_const_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (g_const_own_init == 0) {
+        err = g_const_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(24);
 
   LINE(25);
@@ -203,18 +206,18 @@ g_constOPfind_consts(CLUREF e, CLUREF bod)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE find_consts ****/
 
 
 /**** BEGIN PROCEDURE find_consts2 ****/
 
+
 errcode
 g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF s;
     CLUREF di;
     CLUREF as;
@@ -230,10 +233,10 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
     CLUREF e;
     CLUREF a;
     CLUREF r;
-        if (g_const_own_init == 0) {
-            err = g_const_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (g_const_own_init == 0) {
+        err = g_const_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(36);
 
   LINE(37);
@@ -690,23 +693,23 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE find_consts2 ****/
 
 
 /**** BEGIN PROCEDURE find_const_exprlist ****/
 
+
 errcode
 g_constOPfind_const_exprlist(CLUREF el, CLUREF const_UNIQ)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF each_e;
-        if (g_const_own_init == 0) {
-            err = g_const_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (g_const_own_init == 0) {
+        err = g_const_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(109);
 
   LINE(110);
@@ -735,23 +738,23 @@ g_constOPfind_const_exprlist(CLUREF el, CLUREF const_UNIQ)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE find_const_exprlist ****/
 
 
 /**** BEGIN PROCEDURE find_const_fieldspeclist ****/
 
+
 errcode
 g_constOPfind_const_fieldspeclist(CLUREF fl, CLUREF const_UNIQ)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF each_f;
-        if (g_const_own_init == 0) {
-            err = g_const_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (g_const_own_init == 0) {
+        err = g_const_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(117);
 
   LINE(118);
@@ -780,18 +783,18 @@ g_constOPfind_const_fieldspeclist(CLUREF fl, CLUREF const_UNIQ)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE find_const_fieldspeclist ****/
 
 
 /**** BEGIN PROCEDURE find_const_exprs ****/
 
+
 errcode
 g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ct;
     CLUREF cop;
     CLUREF sel;
@@ -803,10 +806,10 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
     CLUREF e;
     CLUREF t;
     CLUREF ex;
-        if (g_const_own_init == 0) {
-            err = g_const_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (g_const_own_init == 0) {
+        err = g_const_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(125);
 
   LINE(130);
@@ -1168,25 +1171,25 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE find_const_exprs ****/
 
 
 /**** BEGIN PROCEDURE find_const_field ****/
 
+
 errcode
 g_constOPfind_const_field(CLUREF f, CLUREF const_UNIQ)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ct;
     CLUREF sel;
     CLUREF a;
-        if (g_const_own_init == 0) {
-            err = g_const_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (g_const_own_init == 0) {
+        err = g_const_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(239);
 
   LINE(242);
@@ -1268,18 +1271,18 @@ g_constOPfind_const_field(CLUREF f, CLUREF const_UNIQ)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE find_const_field ****/
 
 
 /**** BEGIN PROCEDURE const_uniq ****/
 
+
 errcode
 g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF low;
     CLUREF size;
     CLUREF newconst;
@@ -1287,10 +1290,10 @@ g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
     CLUREF possible_cst;
     CLUREF each_cst;
     CLUREF each_s;
-        if (g_const_own_init == 0) {
-            err = g_const_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (g_const_own_init == 0) {
+        err = g_const_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(269);
 
   LINE(270);
@@ -1413,7 +1416,7 @@ g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
                             if (possible_cst.cell->tag != 2) {err = ERR_wrong_tag; goto ex_1;}
                             T_5_1.num = possible_cst.cell->value;
                             T_5_2.num = ((each_s.str->size != T_5_1.str->size)? false :
-                                !(bcmp(each_s.str->data, T_5_1.str->data, each_s.str->size)));
+                                !(memcmp(each_s.str->data, T_5_1.str->data, each_s.str->size)));
                             if (T_5_2.num == true) {
 
   LINE(285);
@@ -1474,24 +1477,24 @@ g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE const_uniq ****/
 
 
 /**** BEGIN PROCEDURE g_consts ****/
 
+
 errcode
 g_constOPg_consts(CLUREF e, CLUREF pass)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF each_cst;
     CLUREF s;
-        if (g_const_own_init == 0) {
-            err = g_const_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (g_const_own_init == 0) {
+        err = g_const_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(298);
 
   LINE(301);
@@ -1567,24 +1570,24 @@ g_constOPg_consts(CLUREF e, CLUREF pass)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE g_consts ****/
 
-static int g_constOPg_str_decl_own_init = 0;
 
 /**** BEGIN PROCEDURE g_str_decl ****/
 
+static int g_constOPg_str_decl_own_init = 0;
+
 errcode
 g_constOPg_str_decl(CLUREF e, CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (g_constOPg_str_decl_own_init == 0) {
+    if (g_constOPg_str_decl_own_init == 0) {
         if (g_const_own_init == 0) {
             err = g_const_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         g_constOPg_str_decl_own_init = 1;
     }
     enter_proc(330);
@@ -1601,9 +1604,9 @@ g_constOPg_str_decl(CLUREF e, CLUREF s)
         CLUREF T_2_1;
         CLUREF T_2_2;
         CLUREF T_2_3;
-        err = s_string_embed(s, &T_2_1);
+        err = s_string_name(s, &T_2_1);
         if (err != ERR_ok) goto ex_0;
-        err = stringOPconcat(STR_CLUREF_040STR_137, T_2_1, &T_2_2);
+        err = stringOPconcat(STR_static_040CLUREF_040, T_2_1, &T_2_2);
         if (err != ERR_ok) goto ex_0;
         err = stringOPconcat(T_2_2, STR__073, &T_2_3);
         if (err != ERR_ok) goto ex_0;
@@ -1620,137 +1623,78 @@ g_constOPg_str_decl(CLUREF e, CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE g_str_decl ****/
 
-static int g_constOPg_str_cons_own_init = 0;
 
 /**** BEGIN PROCEDURE g_str_cons ****/
 
+static int g_constOPg_str_cons_own_init = 0;
+
 errcode
 g_constOPg_str_cons(CLUREF e, CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
-    CLUREF size;
-        if (g_constOPg_str_cons_own_init == 0) {
+    if (g_constOPg_str_cons_own_init == 0) {
         if (g_const_own_init == 0) {
             err = g_const_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         g_constOPg_str_cons_own_init = 1;
     }
     enter_proc(336);
 
   LINE(337);
     {
-        {CLUREF T_1_1;
-        err = stringOPsize(s, &T_1_1);
-        if (err != ERR_ok) goto ex_0;
-        size.num = T_1_1.num;
-        }
-        }
+    err = g_envOPputs(e, STR_stringOPcons_050);
+    if (err != ERR_ok) goto ex_0;
+    }
 
   LINE(338);
     {
-    CLUREF T_1_1;
-    err = int_constOPexists(size, &T_1_1);
+    err = g_string(e, s);
     if (err != ERR_ok) goto ex_0;
-    if (T_1_1.num == true) {
+    }
+
+  LINE(339);
+    {
+    err = g_envOPputs(e, STR__054_040CLU_1371);
+    if (err != ERR_ok) goto ex_0;
+    }
 
   LINE(340);
-        {
-        err = g_envOPputs(e, STR_stringOPcons_050);
-        if (err != ERR_ok) goto ex_0;
-        }
+    {
+    CLUREF T_1_1;
+    CLUREF T_1_2;
+    CLUREF T_1_3;
+    CLUREF T_1_4;
+    err = stringOPsize(s, &T_1_1);
+    if (err != ERR_ok) goto ex_0;
+    err = intOPunparse(T_1_1, &T_1_2);
+    if (err != ERR_ok) goto ex_0;
+    err = stringOPconcat(STR__054_040CLUREF_137make_137num_050, T_1_2, &T_1_3);
+    if (err != ERR_ok) goto ex_0;
+    err = stringOPconcat(T_1_3, STR__051, &T_1_4);
+    if (err != ERR_ok) goto ex_0;
+    err = g_envOPputs(e, T_1_4);
+    if (err != ERR_ok) goto ex_0;
+    }
 
   LINE(341);
-        {
-        err = g_string(e, s);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(342);
-        {
-        CLUREF T_2_1;
-        CLUREF T_2_2;
-        CLUREF T_2_3;
-        err = stringOPsize(s, &T_2_1);
-        if (err != ERR_ok) goto ex_0;
-        err = intOPunparse(T_2_1, &T_2_2);
-        if (err != ERR_ok) goto ex_0;
-        err = stringOPconcat(STR__054_040CLU_1371_054_040CLU_137, T_2_2, &T_2_3);
-        if (err != ERR_ok) goto ex_0;
-        err = g_envOPputs(e, T_2_3);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(343);
-        {
-        CLUREF T_2_1;
-        CLUREF T_2_2;
-        CLUREF T_2_3;
-        err = s_string_name(s, &T_2_1);
-        if (err != ERR_ok) goto ex_0;
-        err = stringOPconcat(STR__054_040_046, T_2_1, &T_2_2);
-        if (err != ERR_ok) goto ex_0;
-        err = stringOPconcat(T_2_2, STR__051_073, &T_2_3);
-        if (err != ERR_ok) goto ex_0;
-        err = g_envOPputl(e, T_2_3);
-        if (err != ERR_ok) goto ex_0;
-        }
-        }
-    else {
-
-  LINE(345);
-        {
-        CLUREF T_2_1;
-        CLUREF T_2_2;
-        CLUREF T_2_3;
-        err = intOPunparse(size, &T_2_1);
-        if (err != ERR_ok) goto ex_0;
-        err = stringOPconcat(STR_CLU_137string_137size_056num_040_075_040, T_2_1, &T_2_2);
-        if (err != ERR_ok) goto ex_0;
-        err = stringOPconcat(T_2_2, STR__073, &T_2_3);
-        if (err != ERR_ok) goto ex_0;
-        err = g_envOPputl(e, T_2_3);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(346);
-        {
-        err = g_envOPputs(e, STR_stringOPcons_050);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(347);
-        {
-        err = g_string(e, s);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(348);
-        {
-        err = g_envOPputs(e, STR__054_040CLU_1371_054_040CLU_137string_137size);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(349);
-        {
-        CLUREF T_2_1;
-        CLUREF T_2_2;
-        CLUREF T_2_3;
-        err = s_string_name(s, &T_2_1);
-        if (err != ERR_ok) goto ex_0;
-        err = stringOPconcat(STR__054_040_046, T_2_1, &T_2_2);
-        if (err != ERR_ok) goto ex_0;
-        err = stringOPconcat(T_2_2, STR__051_073, &T_2_3);
-        if (err != ERR_ok) goto ex_0;
-        err = g_envOPputl(e, T_2_3);
-        if (err != ERR_ok) goto ex_0;
-        }
-        }}/* end if */
+    {
+    CLUREF T_1_1;
+    CLUREF T_1_2;
+    CLUREF T_1_3;
+    err = s_string_name(s, &T_1_1);
+    if (err != ERR_ok) goto ex_0;
+    err = stringOPconcat(STR__054_040_046, T_1_1, &T_1_2);
+    if (err != ERR_ok) goto ex_0;
+    err = stringOPconcat(T_1_2, STR__051_073, &T_1_3);
+    if (err != ERR_ok) goto ex_0;
+    err = g_envOPputl(e, T_1_3);
+    if (err != ERR_ok) goto ex_0;
+    }
     goto end_0;
     ex_0:
         {
@@ -1759,7 +1703,7 @@ g_constOPg_str_cons(CLUREF e, CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE g_str_cons ****/
 
@@ -1770,9 +1714,9 @@ typedef struct{
     struct OP_ENTRY entry[3];
 } g_const_OPS;
 
-CLU_proc g_const_oe_exist = {{0,0,0,0}, g_constOPexist, 0};
-CLU_proc g_const_oe_find_consts = {{0,0,0,0}, g_constOPfind_consts, 0};
-CLU_proc g_const_oe_g_consts = {{0,0,0,0}, g_constOPg_consts, 0};
+CLU_proc g_const_oe_exist = { .proc = g_constOPexist };
+CLU_proc g_const_oe_find_consts = { .proc = g_constOPfind_consts };
+CLU_proc g_const_oe_g_consts = { .proc = g_constOPg_consts };
 
 g_const_OPS g_const_ops_actual = {3, (OWNPTR)&g_const_own_init, (OWNPTR)&g_const_own_init, {
     {&g_const_oe_exist, "exist"},
@@ -1786,14 +1730,16 @@ struct OPS *g_const_ops = (struct OPS *)&g_const_ops_actual;
 /**** BEGIN CLUSTER const_defn ****/
 
 static int const_defn_own_init = 0;
-OWN_req const_defn_ownreqs = {0,0};
+const OWN_req const_defn_ownreqs = { 0, 0 };
 CLUREF const_defnOPold;
 CLUREF const_defnOPactive;
-errcode const_defn_own_init_proc()
+
+errcode
+const_defn_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (const_defn_own_init == 0) {
+    if (const_defn_own_init == 0) {
         const_defn_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -1806,26 +1752,29 @@ errcode const_defn_own_init_proc()
             {const_defnOPactive.tf = false;
             }
             }
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE start ****/
 
+
 errcode
 const_defnOPstart()
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (const_defn_own_init == 0) {
-            err = const_defn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-    enter_proc(489);
+    if (const_defn_own_init == 0) {
+        err = const_defn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    enter_proc(480);
 
-  LINE(490);
+  LINE(481);
     {
     CLUREF T_1_1;
     err = arrayOPnew(&T_1_1);
@@ -1833,12 +1782,12 @@ const_defnOPstart()
     const_defnOPold.num = T_1_1.num;
     }
 
-  LINE(491);
+  LINE(482);
     {
     const_defnOPactive.tf = true;
     }
 
-  LINE(492);
+  LINE(483);
     {
     {signal (ERR_ok);}}
     goto end_0;
@@ -1849,26 +1798,26 @@ const_defnOPstart()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE start ****/
 
 
 /**** BEGIN PROCEDURE test ****/
 
+
 errcode
 const_defnOPtest(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF each_s;
-        if (const_defn_own_init == 0) {
-            err = const_defn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-    enter_proc(495);
+    if (const_defn_own_init == 0) {
+        err = const_defn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    enter_proc(486);
 
-  LINE(496);
+  LINE(487);
     {
     CLUREF T_1_1;
     T_1_1.num = const_defnOPactive.num ^ 1;
@@ -1881,7 +1830,7 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
         }
         }/* end if */
 
-  LINE(497);
+  LINE(488);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1895,11 +1844,11 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
                 goto ex_0;}
             each_s.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
-  LINE(498);
+  LINE(489);
             {
             CLUREF T_2_1;
             T_2_1.num = ((each_s.str->size != s.str->size)? false :
-                !(bcmp(each_s.str->data, s.str->data, each_s.str->size)));
+                !(memcmp(each_s.str->data, s.str->data, each_s.str->size)));
             if (T_2_1.num == true) {
                 {
                 {
@@ -1912,7 +1861,7 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(500);
+  LINE(491);
     {
     {
     if ((const_defnOPold.array->int_low + const_defnOPold.array->ext_size + 1) < const_defnOPold.array->int_size) {
@@ -1924,7 +1873,7 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
     }
     }
 
-  LINE(501);
+  LINE(492);
     {
     {
     ret_1->tf = true;
@@ -1939,25 +1888,25 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE test ****/
 
 
 /**** BEGIN PROCEDURE stop ****/
 
+
 errcode
 const_defnOPstop()
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (const_defn_own_init == 0) {
-            err = const_defn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-    enter_proc(504);
+    if (const_defn_own_init == 0) {
+        err = const_defn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    enter_proc(495);
 
-  LINE(505);
+  LINE(496);
     {
     const_defnOPactive.tf = false;
     }
@@ -1969,7 +1918,7 @@ const_defnOPstop()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE stop ****/
 
@@ -1980,9 +1929,9 @@ typedef struct{
     struct OP_ENTRY entry[3];
 } const_defn_OPS;
 
-CLU_proc const_defn_oe_start = {{0,0,0,0}, const_defnOPstart, 0};
-CLU_proc const_defn_oe_stop = {{0,0,0,0}, const_defnOPstop, 0};
-CLU_proc const_defn_oe_test = {{0,0,0,0}, const_defnOPtest, 0};
+CLU_proc const_defn_oe_start = { .proc = const_defnOPstart };
+CLU_proc const_defn_oe_stop = { .proc = const_defnOPstop };
+CLU_proc const_defn_oe_test = { .proc = const_defnOPtest };
 
 const_defn_OPS const_defn_ops_actual = {3, (OWNPTR)&const_defn_own_init, (OWNPTR)&const_defn_own_init, {
     {&const_defn_oe_start, "start"},

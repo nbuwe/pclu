@@ -5,6 +5,9 @@
 #include "pclu_sys.h"
 
 
+
+/**** BEGIN PROCEDURE start_up ****/
+
 extern errcode boolOPnot();
 extern errcode restore_compiler();
 extern errcode initialize_compiler();
@@ -28,34 +31,31 @@ extern errcode lineedit();
 extern errcode streamOPputl();
 extern errcode streamOPflush();
 extern errcode streamOPgetl();
-CLUREF STR_clu_040;
-CLUREF STR__012_012_052_052_052_052_052_040CLU_040COMPILER_0403_056;
-CLUREF STR__040_052_052_052_052_052_040_050;
-CLUREF STR__051_040_052_052_052_052_052_012_012;
-CLUREF STR_command_050s_051_072_040;
-CLUREF STR_;
+static CLUREF STR_clu_040;
+static CLUREF STR__012_012_052_052_052_052_052_040CLU_040COMPILER_0403_056;
+static CLUREF STR__040_052_052_052_052_052_040_050;
+static CLUREF STR__051_040_052_052_052_052_052_012_012;
+static CLUREF STR_command_050s_051_072_040;
+static CLUREF STR_;
 static int start_up_own_init = 0;
 CLUREF start_upOPinit;
 
-/**** BEGIN PROCEDURE start_up ****/
-
 errcode
 start_up()
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF allok;
     CLUREF line;
     CLUREF c;
     CLUREF tyo;
     CLUREF tyi;
-        if (start_up_own_init == 0) {
-        stringOPcons("clu ", CLU_1, CLU_4, &STR_clu_040);
-        stringOPcons("\n\n***** CLU COMPILER 3.", CLU_1, CLU_23, &STR__012_012_052_052_052_052_052_040CLU_040COMPILER_0403_056);
-        stringOPcons(" ***** (", CLU_1, CLU_8, &STR__040_052_052_052_052_052_040_050);
-        stringOPcons(") *****\n\n", CLU_1, CLU_9, &STR__051_040_052_052_052_052_052_012_012);
-        stringOPcons("command(s): ", CLU_1, CLU_12, &STR_command_050s_051_072_040);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (start_up_own_init == 0) {
+        stringOPcons("clu ", CLU_1, CLUREF_make_num(4), &STR_clu_040);
+        stringOPcons("\n\n***** CLU COMPILER 3.", CLU_1, CLUREF_make_num(23), &STR__012_012_052_052_052_052_052_040CLU_040COMPILER_0403_056);
+        stringOPcons(" ***** (", CLU_1, CLUREF_make_num(8), &STR__040_052_052_052_052_052_040_050);
+        stringOPcons(") *****\n\n", CLU_1, CLUREF_make_num(9), &STR__051_040_052_052_052_052_052_012_012);
+        stringOPcons("command(s): ", CLU_1, CLUREF_make_num(12), &STR_command_050s_051_072_040);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         start_up_own_init = 1;
         {
             {start_upOPinit.tf = false;
@@ -368,10 +368,13 @@ start_up()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE start_up ****/
 
+
+
+/**** BEGIN PROCEDURE addl_chars ****/
 
 extern errcode stringOPsize();
 extern errcode intOPgt();
@@ -379,13 +382,10 @@ extern errcode arrayOPaddl();
 extern errcode stringOPfetch();
 extern errcode intOPsub();
 
-/**** BEGIN PROCEDURE addl_chars ****/
-
 errcode
 addl_chars(CLUREF line, CLUREF chars)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     enter_proc(50);
 
@@ -433,10 +433,13 @@ addl_chars(CLUREF line, CLUREF chars)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE addl_chars ****/
 
+
+
+/**** BEGIN PROCEDURE process_commands ****/
 
 extern errcode parse_command_line();
 extern errcode get_outstream();
@@ -458,17 +461,14 @@ extern errcode streamOPclose();
 extern errcode streamOPabort();
 extern errcode dump_file();
 extern errcode streamOPget_name();
-CLUREF STR_options_040illegal;
-CLUREF STR_missing_040file_040name_050s_051;
+static CLUREF STR_options_040illegal;
+static CLUREF STR_missing_040file_040name_050s_051;
 static int process_commands_own_init = 0;
-
-/**** BEGIN PROCEDURE process_commands ****/
 
 errcode
 process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF allok;
     CLUREF comms;
     CLUREF rfs;
@@ -480,9 +480,9 @@ process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
     CLUREF comm;
     CLUREF mode;
     CLUREF allok1;
-        if (process_commands_own_init == 0) {
-        stringOPcons("options illegal", CLU_1, CLU_15, &STR_options_040illegal);
-        stringOPcons("missing file name(s)", CLU_1, CLU_20, &STR_missing_040file_040name_050s_051);
+    if (process_commands_own_init == 0) {
+        stringOPcons("options illegal", CLU_1, CLUREF_make_num(15), &STR_options_040illegal);
+        stringOPcons("missing file name(s)", CLU_1, CLUREF_make_num(20), &STR_missing_040file_040name_050s_051);
         process_commands_own_init = 1;
     }
     enter_proc(58);
@@ -811,23 +811,23 @@ process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE process_commands ****/
 
+
+
+/**** BEGIN PROCEDURE fake_stream ****/
 
 extern errcode streamOPcreate_output();
 static int fake_stream_own_init = 0;
 CLUREF fake_streamOPfake;
 
-/**** BEGIN PROCEDURE fake_stream ****/
-
 errcode
 fake_stream(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (fake_stream_own_init == 0) {
+    if (fake_stream_own_init == 0) {
         fake_stream_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -854,29 +854,29 @@ fake_stream(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE fake_stream ****/
 
 
-extern errcode make_file_name();
-extern errcode open_stream();
-extern errcode junk_name();
-CLUREF STR_write;
-static int get_outstream_own_init = 0;
 
 /**** BEGIN PROCEDURE get_outstream ****/
 
+extern errcode make_file_name();
+extern errcode open_stream();
+extern errcode junk_name();
+static CLUREF STR_write;
+static int get_outstream_own_init = 0;
+
 errcode
 get_outstream(CLUREF fs, CLUREF tyo, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF fn;
     CLUREF subst;
-        if (get_outstream_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("write", CLU_1, CLU_5, &STR_write);
+    if (get_outstream_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("write", CLU_1, CLUREF_make_num(5), &STR_write);
         get_outstream_own_init = 1;
     }
     enter_proc(107);
@@ -978,36 +978,36 @@ get_outstream(CLUREF fs, CLUREF tyo, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_outstream ****/
 
 
-extern errcode prefix();
-CLUREF STR_parse;
-CLUREF STR_check;
-CLUREF STR_compile;
-CLUREF STR_clu;
-CLUREF STR_specs;
-CLUREF STR_ce;
-CLUREF STR_xce;
-static int get_command_mode_own_init = 0;
 
 /**** BEGIN PROCEDURE get_command_mode ****/
 
+extern errcode prefix();
+static CLUREF STR_parse;
+static CLUREF STR_check;
+static CLUREF STR_compile;
+static CLUREF STR_clu;
+static CLUREF STR_specs;
+static CLUREF STR_ce;
+static CLUREF STR_xce;
+static int get_command_mode_own_init = 0;
+
 errcode
 get_command_mode(CLUREF cmnd, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (get_command_mode_own_init == 0) {
-        stringOPcons("parse", CLU_1, CLU_5, &STR_parse);
-        stringOPcons("check", CLU_1, CLU_5, &STR_check);
-        stringOPcons("compile", CLU_1, CLU_7, &STR_compile);
-        stringOPcons("clu", CLU_1, CLU_3, &STR_clu);
-        stringOPcons("specs", CLU_1, CLU_5, &STR_specs);
-        stringOPcons("ce", CLU_1, CLU_2, &STR_ce);
-        stringOPcons("xce", CLU_1, CLU_3, &STR_xce);
+    if (get_command_mode_own_init == 0) {
+        stringOPcons("parse", CLU_1, CLUREF_make_num(5), &STR_parse);
+        stringOPcons("check", CLU_1, CLUREF_make_num(5), &STR_check);
+        stringOPcons("compile", CLU_1, CLUREF_make_num(7), &STR_compile);
+        stringOPcons("clu", CLU_1, CLUREF_make_num(3), &STR_clu);
+        stringOPcons("specs", CLU_1, CLUREF_make_num(5), &STR_specs);
+        stringOPcons("ce", CLU_1, CLUREF_make_num(2), &STR_ce);
+        stringOPcons("xce", CLU_1, CLUREF_make_num(3), &STR_xce);
         get_command_mode_own_init = 1;
     }
     enter_proc(119);
@@ -1117,22 +1117,22 @@ get_command_mode(CLUREF cmnd, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_command_mode ****/
 
+
+
+/**** BEGIN PROCEDURE prefix ****/
 
 extern errcode _bytevecOPnc_indexv();
 extern errcode _cvt();
 extern errcode intOPge();
 
-/**** BEGIN PROCEDURE prefix ****/
-
 errcode
 prefix(CLUREF s, CLUREF cmnd, CLUREF cnt, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(135);
 
   LINE(136);
@@ -1145,8 +1145,8 @@ prefix(CLUREF s, CLUREF cmnd, CLUREF cnt, CLUREF *ret_1)
     CLUREF T_1_5;
     CLUREF T_1_6;
     CLUREF T_1_7;
-    T_1_2.num = s.num;
-    T_1_3.num = cmnd.num;
+    T_1_2.num = (long)s.num;
+    T_1_3.num = (long)cmnd.num;
     err = _bytevecOPnc_indexv(T_1_2, T_1_3, CLU_1, &T_1_4);
     if (err != ERR_ok) goto ex_0;
     T_1_5.num = (T_1_4.num == 1)? true : false;
@@ -1169,27 +1169,27 @@ prefix(CLUREF s, CLUREF cmnd, CLUREF cnt, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE prefix ****/
 
 
-extern errcode file_nameOPparse();
-extern errcode file_name_fill();
-extern errcode file_nameOPget_suffix();
-CLUREF STR_bad_040format_040file_040name_040_055_040;
-static int make_file_name_own_init = 0;
 
 /**** BEGIN PROCEDURE make_file_name ****/
 
+extern errcode file_nameOPparse();
+extern errcode file_name_fill();
+extern errcode file_nameOPget_suffix();
+static CLUREF STR_bad_040format_040file_040name_040_055_040;
+static int make_file_name_own_init = 0;
+
 errcode
 make_file_name(CLUREF fs, CLUREF suffix, CLUREF tyo, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF fn;
-        if (make_file_name_own_init == 0) {
-        stringOPcons("bad format file name - ", CLU_1, CLU_23, &STR_bad_040format_040file_040name_040_055_040);
+    if (make_file_name_own_init == 0) {
+        stringOPcons("bad format file name - ", CLU_1, CLUREF_make_num(23), &STR_bad_040format_040file_040name_040_055_040);
         make_file_name_own_init = 1;
     }
     enter_proc(143);
@@ -1266,10 +1266,13 @@ make_file_name(CLUREF fs, CLUREF suffix, CLUREF tyo, CLUREF *ret_1, CLUREF *ret_
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE make_file_name ****/
 
+
+
+/**** BEGIN PROCEDURE check_file_name ****/
 
 extern errcode file_exists();
 extern errcode file_nameOPget_other();
@@ -1280,22 +1283,19 @@ extern errcode file_nameOPcreate();
 extern errcode file_nameOPget_dir();
 extern errcode stringOPsubstr();
 extern errcode stringOPequal();
-CLUREF STR_spc;
+static CLUREF STR_spc;
 static int check_file_name_own_init = 0;
-
-/**** BEGIN PROCEDURE check_file_name ****/
 
 errcode
 check_file_name(CLUREF fn, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF fn1;
     CLUREF dez1;
-        if (check_file_name_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("spc", CLU_1, CLU_3, &STR_spc);
-        stringOPcons("clu", CLU_1, CLU_3, &STR_clu);
+    if (check_file_name_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("spc", CLU_1, CLUREF_make_num(3), &STR_spc);
+        stringOPcons("clu", CLU_1, CLUREF_make_num(3), &STR_clu);
         check_file_name_own_init = 1;
     }
     enter_proc(156);
@@ -1448,7 +1448,7 @@ check_file_name(CLUREF fn, CLUREF *ret_1)
         err = file_nameOPget_suffix(fn1, &T_3_1);
         if (err != ERR_ok) goto ex_1;
         T_3_2.num = ((T_3_1.str->size != STR_spc.str->size)? false :
-            !(bcmp(T_3_1.str->data, STR_spc.str->data, T_3_1.str->size)));
+            !(memcmp(T_3_1.str->data, STR_spc.str->data, T_3_1.str->size)));
         if (T_3_2.num == true) {
 
   LINE(171);
@@ -1538,34 +1538,34 @@ check_file_name(CLUREF fn, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE check_file_name ****/
 
 
-extern errcode check_file_name();
-extern errcode streamOPopen();
-extern errcode file_nameOPunparse();
-CLUREF STR_read;
-CLUREF STR_reading_040;
-CLUREF STR_writing_040;
-CLUREF STR__072_040;
-static int open_stream_own_init = 0;
 
 /**** BEGIN PROCEDURE open_stream ****/
 
+extern errcode check_file_name();
+extern errcode streamOPopen();
+extern errcode file_nameOPunparse();
+static CLUREF STR_read;
+static CLUREF STR_reading_040;
+static CLUREF STR_writing_040;
+static CLUREF STR__072_040;
+static int open_stream_own_init = 0;
+
 errcode
 open_stream(CLUREF fn, CLUREF mode, CLUREF tyo, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF why;
-        if (open_stream_own_init == 0) {
-        stringOPcons("write", CLU_1, CLU_5, &STR_write);
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons("reading ", CLU_1, CLU_8, &STR_reading_040);
-        stringOPcons("writing ", CLU_1, CLU_8, &STR_writing_040);
-        stringOPcons(": ", CLU_1, CLU_2, &STR__072_040);
+    if (open_stream_own_init == 0) {
+        stringOPcons("write", CLU_1, CLUREF_make_num(5), &STR_write);
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons("reading ", CLU_1, CLUREF_make_num(8), &STR_reading_040);
+        stringOPcons("writing ", CLU_1, CLUREF_make_num(8), &STR_writing_040);
+        stringOPcons(": ", CLU_1, CLUREF_make_num(2), &STR__072_040);
         open_stream_own_init = 1;
     }
     enter_proc(182);
@@ -1575,7 +1575,7 @@ open_stream(CLUREF fn, CLUREF mode, CLUREF tyo, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = ((mode.str->size != STR_write.str->size)? false :
-        !(bcmp(mode.str->data, STR_write.str->data, mode.str->size)));
+        !(memcmp(mode.str->data, STR_write.str->data, mode.str->size)));
     T_1_2.num = T_1_1.num ^ 1;
     if (T_1_2.num == true) {
 
@@ -1611,7 +1611,7 @@ open_stream(CLUREF fn, CLUREF mode, CLUREF tyo, CLUREF *ret_1)
                     {
                     CLUREF T_4_1;
                     T_4_1.num = ((mode.str->size != STR_read.str->size)? false :
-                        !(bcmp(mode.str->data, STR_read.str->data, mode.str->size)));
+                        !(memcmp(mode.str->data, STR_read.str->data, mode.str->size)));
                     if (T_4_1.num == true) {
 
   LINE(190);
@@ -1676,10 +1676,13 @@ open_stream(CLUREF fn, CLUREF mode, CLUREF tyo, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE open_stream ****/
 
+
+
+/**** BEGIN PROCEDURE execute_command ****/
 
 extern errcode arrayOPset_low();
 extern errcode xfile_execute();
@@ -1728,171 +1731,170 @@ extern errcode xlibOPlookup();
 extern errcode xlibOPunmerge();
 extern errcode execute_command_IB_1();
 extern errcode execute_command_IB_2();
-CLUREF STR_xfile;
-CLUREF STR_dir;
-CLUREF STR_DIR_040expects_0401_040argument;
-CLUREF STR_kill;
-CLUREF STR_quit;
-CLUREF STR_KILL_057QUIT_040expects_040no_040arguments;
-CLUREF STR_help;
-CLUREF STR__077;
-CLUREF STR_HELP_040_050_077_051_040expects_040no_040arguments;
-CLUREF STR_escape;
-CLUREF STR_ESCAPE_040expects_040no_040arguments;
-CLUREF STR_optimize;
-CLUREF STR_OPTIMIZE_040expects_0400_040or_0401_040arguments;
-CLUREF STR_time;
-CLUREF STR_space;
-CLUREF STR_false;
-CLUREF STR_bad_040OPTIMIZE_040option;
-CLUREF STR_safe;
-CLUREF STR_SAFE_040expects_0400_040or_0401_040arguments;
-CLUREF STR_true;
-CLUREF STR_SAFE_040failed_041;
-CLUREF STR_bad_040SAFE_040option;
-CLUREF STR_allow;
-CLUREF STR_ALLOW_040expects_0400_040or_0401_040arguments;
-CLUREF STR_bad_040ALLOW_040option;
-CLUREF STR_expunge;
-CLUREF STR_EXPUNGE_040expects_0400_040or_0401_040arguments;
-CLUREF STR_bad_040EXPUNGE_040option;
-CLUREF STR_externals;
-CLUREF STR_EXTERNALS_040expects_0400_040or_0401_040arguments;
-CLUREF STR_bad_040EXTERNALS_040option;
-CLUREF STR_force;
-CLUREF STR_FORCE_040expects_0400_040or_0401_040arguments;
-CLUREF STR_bad_040FORCE_040option;
-CLUREF STR_locals;
-CLUREF STR_LOCALS_040expects_0400_040or_0401_040arguments;
-CLUREF STR_bad_040LOCALS_040option;
-CLUREF STR_ccdbg;
-CLUREF STR_reset;
-CLUREF STR_ccopt;
-CLUREF STR_cfiles;
-CLUREF STR_CFILES_040expects_0400_040or_0401_040arguments;
-CLUREF STR_bad_040CFILES_040option;
-CLUREF STR_bindir;
-CLUREF STR_BINDIR_040expects_0400_040or_0401_040arguments;
-CLUREF STR_bad_040format_040directory_040name;
-CLUREF STR__057;
-CLUREF STR_binsuf;
-CLUREF STR_BINSUF_040expects_0400_040or_0401_040arguments;
-CLUREF STR_bad_040format_040suffix;
-CLUREF STR_newlib;
-CLUREF STR_NEWLIB_040expects_040no_040arguments;
-CLUREF STR_dump;
-CLUREF STR_DUMP_040expects_0401_040argument;
-CLUREF STR_lib;
-CLUREF STR_Dumped_040to_040;
-CLUREF STR_bad_040format_040file_040name;
-CLUREF STR_callers;
-CLUREF STR_CALLERS_040expects_0401_040argument;
-CLUREF STR__011;
-CLUREF STR_not_040called;
-CLUREF STR_merge;
-CLUREF STR_Merging_040;
-CLUREF STR_forget;
-CLUREF STR__072_040not_040found;
-CLUREF STR_unmerge;
-CLUREF STR_Un_055Merging_040;
-CLUREF STR_unknown_040command_072_040;
+static CLUREF STR_xfile;
+static CLUREF STR_dir;
+static CLUREF STR_DIR_040expects_0401_040argument;
+static CLUREF STR_kill;
+static CLUREF STR_quit;
+static CLUREF STR_KILL_057QUIT_040expects_040no_040arguments;
+static CLUREF STR_help;
+static CLUREF STR__077;
+static CLUREF STR_HELP_040_050_077_051_040expects_040no_040arguments;
+static CLUREF STR_escape;
+static CLUREF STR_ESCAPE_040expects_040no_040arguments;
+static CLUREF STR_optimize;
+static CLUREF STR_OPTIMIZE_040expects_0400_040or_0401_040arguments;
+static CLUREF STR_time;
+static CLUREF STR_space;
+static CLUREF STR_false;
+static CLUREF STR_bad_040OPTIMIZE_040option;
+static CLUREF STR_safe;
+static CLUREF STR_SAFE_040expects_0400_040or_0401_040arguments;
+static CLUREF STR_true;
+static CLUREF STR_SAFE_040failed_041;
+static CLUREF STR_bad_040SAFE_040option;
+static CLUREF STR_allow;
+static CLUREF STR_ALLOW_040expects_0400_040or_0401_040arguments;
+static CLUREF STR_bad_040ALLOW_040option;
+static CLUREF STR_expunge;
+static CLUREF STR_EXPUNGE_040expects_0400_040or_0401_040arguments;
+static CLUREF STR_bad_040EXPUNGE_040option;
+static CLUREF STR_externals;
+static CLUREF STR_EXTERNALS_040expects_0400_040or_0401_040arguments;
+static CLUREF STR_bad_040EXTERNALS_040option;
+static CLUREF STR_force;
+static CLUREF STR_FORCE_040expects_0400_040or_0401_040arguments;
+static CLUREF STR_bad_040FORCE_040option;
+static CLUREF STR_locals;
+static CLUREF STR_LOCALS_040expects_0400_040or_0401_040arguments;
+static CLUREF STR_bad_040LOCALS_040option;
+static CLUREF STR_ccdbg;
+static CLUREF STR_reset;
+static CLUREF STR_ccopt;
+static CLUREF STR_cfiles;
+static CLUREF STR_CFILES_040expects_0400_040or_0401_040arguments;
+static CLUREF STR_bad_040CFILES_040option;
+static CLUREF STR_bindir;
+static CLUREF STR_BINDIR_040expects_0400_040or_0401_040arguments;
+static CLUREF STR_bad_040format_040directory_040name;
+static CLUREF STR__057;
+static CLUREF STR_binsuf;
+static CLUREF STR_BINSUF_040expects_0400_040or_0401_040arguments;
+static CLUREF STR_bad_040format_040suffix;
+static CLUREF STR_newlib;
+static CLUREF STR_NEWLIB_040expects_040no_040arguments;
+static CLUREF STR_dump;
+static CLUREF STR_DUMP_040expects_0401_040argument;
+static CLUREF STR_lib;
+static CLUREF STR_Dumped_040to_040;
+static CLUREF STR_bad_040format_040file_040name;
+static CLUREF STR_callers;
+static CLUREF STR_CALLERS_040expects_0401_040argument;
+static CLUREF STR__011;
+static CLUREF STR_not_040called;
+static CLUREF STR_merge;
+static CLUREF STR_Merging_040;
+static CLUREF STR_forget;
+static CLUREF STR__072_040not_040found;
+static CLUREF STR_unmerge;
+static CLUREF STR_Un_055Merging_040;
+static CLUREF STR_unknown_040command_072_040;
 static int execute_command_own_init = 0;
-
-/**** BEGIN PROCEDURE execute_command ****/
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF nargs;
+    CLUREF ge;
+    CLUREF st;
+    CLUREF s;
+    CLUREF z;
+    CLUREF fn;
+    CLUREF why;
+    CLUREF nm;
+    CLUREF cmnd;
+    CLUREF args;
+    CLUREF tyo;
+} execute_command_LOCALS_t;
 
 errcode
 execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF nargs;
-        CLUREF ge;
-        CLUREF st;
-        CLUREF s;
-        CLUREF z;
-        CLUREF fn;
-        CLUREF why;
-        CLUREF nm;
-        CLUREF cmnd;
-        CLUREF args;
-        CLUREF tyo;
-        } locals;
+{
+    execute_command_LOCALS_t locals;
     locals.cmnd = cmnd;
     locals.args = args;
     locals.tyo = tyo;
-        if (execute_command_own_init == 0) {
-        stringOPcons("xfile", CLU_1, CLU_5, &STR_xfile);
-        stringOPcons("dir", CLU_1, CLU_3, &STR_dir);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("DIR expects 1 argument", CLU_1, CLU_22, &STR_DIR_040expects_0401_040argument);
-        stringOPcons("kill", CLU_1, CLU_4, &STR_kill);
-        stringOPcons("quit", CLU_1, CLU_4, &STR_quit);
-        stringOPcons("KILL/QUIT expects no arguments", CLU_1, CLU_30, &STR_KILL_057QUIT_040expects_040no_040arguments);
-        stringOPcons("help", CLU_1, CLU_4, &STR_help);
-        stringOPcons("?", CLU_1, CLU_1, &STR__077);
-        stringOPcons("HELP (?) expects no arguments", CLU_1, CLU_29, &STR_HELP_040_050_077_051_040expects_040no_040arguments);
-        stringOPcons("escape", CLU_1, CLU_6, &STR_escape);
-        stringOPcons("ESCAPE expects no arguments", CLU_1, CLU_27, &STR_ESCAPE_040expects_040no_040arguments);
-        stringOPcons("optimize", CLU_1, CLU_8, &STR_optimize);
-        stringOPcons("OPTIMIZE expects 0 or 1 arguments", CLU_1, CLU_33, &STR_OPTIMIZE_040expects_0400_040or_0401_040arguments);
-        stringOPcons("time", CLU_1, CLU_4, &STR_time);
-        stringOPcons("space", CLU_1, CLU_5, &STR_space);
-        stringOPcons("false", CLU_1, CLU_5, &STR_false);
-        stringOPcons("bad OPTIMIZE option", CLU_1, CLU_19, &STR_bad_040OPTIMIZE_040option);
-        stringOPcons("safe", CLU_1, CLU_4, &STR_safe);
-        stringOPcons("SAFE expects 0 or 1 arguments", CLU_1, CLU_29, &STR_SAFE_040expects_0400_040or_0401_040arguments);
-        stringOPcons("true", CLU_1, CLU_4, &STR_true);
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons("SAFE failed!", CLU_1, CLU_12, &STR_SAFE_040failed_041);
-        stringOPcons("bad SAFE option", CLU_1, CLU_15, &STR_bad_040SAFE_040option);
-        stringOPcons("allow", CLU_1, CLU_5, &STR_allow);
-        stringOPcons("ALLOW expects 0 or 1 arguments", CLU_1, CLU_30, &STR_ALLOW_040expects_0400_040or_0401_040arguments);
-        stringOPcons("bad ALLOW option", CLU_1, CLU_16, &STR_bad_040ALLOW_040option);
-        stringOPcons("expunge", CLU_1, CLU_7, &STR_expunge);
-        stringOPcons("EXPUNGE expects 0 or 1 arguments", CLU_1, CLU_32, &STR_EXPUNGE_040expects_0400_040or_0401_040arguments);
-        stringOPcons("bad EXPUNGE option", CLU_1, CLU_18, &STR_bad_040EXPUNGE_040option);
-        stringOPcons("externals", CLU_1, CLU_9, &STR_externals);
-        stringOPcons("EXTERNALS expects 0 or 1 arguments", CLU_1, CLU_34, &STR_EXTERNALS_040expects_0400_040or_0401_040arguments);
-        stringOPcons("bad EXTERNALS option", CLU_1, CLU_20, &STR_bad_040EXTERNALS_040option);
-        stringOPcons("force", CLU_1, CLU_5, &STR_force);
-        stringOPcons("FORCE expects 0 or 1 arguments", CLU_1, CLU_30, &STR_FORCE_040expects_0400_040or_0401_040arguments);
-        stringOPcons("bad FORCE option", CLU_1, CLU_16, &STR_bad_040FORCE_040option);
-        stringOPcons("locals", CLU_1, CLU_6, &STR_locals);
-        stringOPcons("LOCALS expects 0 or 1 arguments", CLU_1, CLU_31, &STR_LOCALS_040expects_0400_040or_0401_040arguments);
-        stringOPcons("bad LOCALS option", CLU_1, CLU_17, &STR_bad_040LOCALS_040option);
-        stringOPcons("ccdbg", CLU_1, CLU_5, &STR_ccdbg);
-        stringOPcons("reset", CLU_1, CLU_5, &STR_reset);
-        stringOPcons("ccopt", CLU_1, CLU_5, &STR_ccopt);
-        stringOPcons("cfiles", CLU_1, CLU_6, &STR_cfiles);
-        stringOPcons("CFILES expects 0 or 1 arguments", CLU_1, CLU_31, &STR_CFILES_040expects_0400_040or_0401_040arguments);
-        stringOPcons("bad CFILES option", CLU_1, CLU_17, &STR_bad_040CFILES_040option);
-        stringOPcons("bindir", CLU_1, CLU_6, &STR_bindir);
-        stringOPcons("BINDIR expects 0 or 1 arguments", CLU_1, CLU_31, &STR_BINDIR_040expects_0400_040or_0401_040arguments);
-        stringOPcons("bad format directory name", CLU_1, CLU_25, &STR_bad_040format_040directory_040name);
-        stringOPcons("/", CLU_1, CLU_1, &STR__057);
-        stringOPcons("binsuf", CLU_1, CLU_6, &STR_binsuf);
-        stringOPcons("BINSUF expects 0 or 1 arguments", CLU_1, CLU_31, &STR_BINSUF_040expects_0400_040or_0401_040arguments);
-        stringOPcons("bad format suffix", CLU_1, CLU_17, &STR_bad_040format_040suffix);
-        stringOPcons("newlib", CLU_1, CLU_6, &STR_newlib);
-        stringOPcons("NEWLIB expects no arguments", CLU_1, CLU_27, &STR_NEWLIB_040expects_040no_040arguments);
-        stringOPcons("dump", CLU_1, CLU_4, &STR_dump);
-        stringOPcons("DUMP expects 1 argument", CLU_1, CLU_23, &STR_DUMP_040expects_0401_040argument);
-        stringOPcons("lib", CLU_1, CLU_3, &STR_lib);
-        stringOPcons("Dumped to ", CLU_1, CLU_10, &STR_Dumped_040to_040);
-        stringOPcons("bad format file name", CLU_1, CLU_20, &STR_bad_040format_040file_040name);
-        stringOPcons("callers", CLU_1, CLU_7, &STR_callers);
-        stringOPcons("CALLERS expects 1 argument", CLU_1, CLU_26, &STR_CALLERS_040expects_0401_040argument);
-        stringOPcons("\t", CLU_1, CLU_1, &STR__011);
-        stringOPcons("not called", CLU_1, CLU_10, &STR_not_040called);
-        stringOPcons("merge", CLU_1, CLU_5, &STR_merge);
-        stringOPcons("Merging ", CLU_1, CLU_8, &STR_Merging_040);
-        stringOPcons(": ", CLU_1, CLU_2, &STR__072_040);
-        stringOPcons("forget", CLU_1, CLU_6, &STR_forget);
-        stringOPcons(": not found", CLU_1, CLU_11, &STR__072_040not_040found);
-        stringOPcons("unmerge", CLU_1, CLU_7, &STR_unmerge);
-        stringOPcons("Un-Merging ", CLU_1, CLU_11, &STR_Un_055Merging_040);
-        stringOPcons("unknown command: ", CLU_1, CLU_17, &STR_unknown_040command_072_040);
+    if (execute_command_own_init == 0) {
+        stringOPcons("xfile", CLU_1, CLUREF_make_num(5), &STR_xfile);
+        stringOPcons("dir", CLU_1, CLUREF_make_num(3), &STR_dir);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("DIR expects 1 argument", CLU_1, CLUREF_make_num(22), &STR_DIR_040expects_0401_040argument);
+        stringOPcons("kill", CLU_1, CLUREF_make_num(4), &STR_kill);
+        stringOPcons("quit", CLU_1, CLUREF_make_num(4), &STR_quit);
+        stringOPcons("KILL/QUIT expects no arguments", CLU_1, CLUREF_make_num(30), &STR_KILL_057QUIT_040expects_040no_040arguments);
+        stringOPcons("help", CLU_1, CLUREF_make_num(4), &STR_help);
+        stringOPcons("?", CLU_1, CLUREF_make_num(1), &STR__077);
+        stringOPcons("HELP (?) expects no arguments", CLU_1, CLUREF_make_num(29), &STR_HELP_040_050_077_051_040expects_040no_040arguments);
+        stringOPcons("escape", CLU_1, CLUREF_make_num(6), &STR_escape);
+        stringOPcons("ESCAPE expects no arguments", CLU_1, CLUREF_make_num(27), &STR_ESCAPE_040expects_040no_040arguments);
+        stringOPcons("optimize", CLU_1, CLUREF_make_num(8), &STR_optimize);
+        stringOPcons("OPTIMIZE expects 0 or 1 arguments", CLU_1, CLUREF_make_num(33), &STR_OPTIMIZE_040expects_0400_040or_0401_040arguments);
+        stringOPcons("time", CLU_1, CLUREF_make_num(4), &STR_time);
+        stringOPcons("space", CLU_1, CLUREF_make_num(5), &STR_space);
+        stringOPcons("false", CLU_1, CLUREF_make_num(5), &STR_false);
+        stringOPcons("bad OPTIMIZE option", CLU_1, CLUREF_make_num(19), &STR_bad_040OPTIMIZE_040option);
+        stringOPcons("safe", CLU_1, CLUREF_make_num(4), &STR_safe);
+        stringOPcons("SAFE expects 0 or 1 arguments", CLU_1, CLUREF_make_num(29), &STR_SAFE_040expects_0400_040or_0401_040arguments);
+        stringOPcons("true", CLU_1, CLUREF_make_num(4), &STR_true);
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons("SAFE failed!", CLU_1, CLUREF_make_num(12), &STR_SAFE_040failed_041);
+        stringOPcons("bad SAFE option", CLU_1, CLUREF_make_num(15), &STR_bad_040SAFE_040option);
+        stringOPcons("allow", CLU_1, CLUREF_make_num(5), &STR_allow);
+        stringOPcons("ALLOW expects 0 or 1 arguments", CLU_1, CLUREF_make_num(30), &STR_ALLOW_040expects_0400_040or_0401_040arguments);
+        stringOPcons("bad ALLOW option", CLU_1, CLUREF_make_num(16), &STR_bad_040ALLOW_040option);
+        stringOPcons("expunge", CLU_1, CLUREF_make_num(7), &STR_expunge);
+        stringOPcons("EXPUNGE expects 0 or 1 arguments", CLU_1, CLUREF_make_num(32), &STR_EXPUNGE_040expects_0400_040or_0401_040arguments);
+        stringOPcons("bad EXPUNGE option", CLU_1, CLUREF_make_num(18), &STR_bad_040EXPUNGE_040option);
+        stringOPcons("externals", CLU_1, CLUREF_make_num(9), &STR_externals);
+        stringOPcons("EXTERNALS expects 0 or 1 arguments", CLU_1, CLUREF_make_num(34), &STR_EXTERNALS_040expects_0400_040or_0401_040arguments);
+        stringOPcons("bad EXTERNALS option", CLU_1, CLUREF_make_num(20), &STR_bad_040EXTERNALS_040option);
+        stringOPcons("force", CLU_1, CLUREF_make_num(5), &STR_force);
+        stringOPcons("FORCE expects 0 or 1 arguments", CLU_1, CLUREF_make_num(30), &STR_FORCE_040expects_0400_040or_0401_040arguments);
+        stringOPcons("bad FORCE option", CLU_1, CLUREF_make_num(16), &STR_bad_040FORCE_040option);
+        stringOPcons("locals", CLU_1, CLUREF_make_num(6), &STR_locals);
+        stringOPcons("LOCALS expects 0 or 1 arguments", CLU_1, CLUREF_make_num(31), &STR_LOCALS_040expects_0400_040or_0401_040arguments);
+        stringOPcons("bad LOCALS option", CLU_1, CLUREF_make_num(17), &STR_bad_040LOCALS_040option);
+        stringOPcons("ccdbg", CLU_1, CLUREF_make_num(5), &STR_ccdbg);
+        stringOPcons("reset", CLU_1, CLUREF_make_num(5), &STR_reset);
+        stringOPcons("ccopt", CLU_1, CLUREF_make_num(5), &STR_ccopt);
+        stringOPcons("cfiles", CLU_1, CLUREF_make_num(6), &STR_cfiles);
+        stringOPcons("CFILES expects 0 or 1 arguments", CLU_1, CLUREF_make_num(31), &STR_CFILES_040expects_0400_040or_0401_040arguments);
+        stringOPcons("bad CFILES option", CLU_1, CLUREF_make_num(17), &STR_bad_040CFILES_040option);
+        stringOPcons("bindir", CLU_1, CLUREF_make_num(6), &STR_bindir);
+        stringOPcons("BINDIR expects 0 or 1 arguments", CLU_1, CLUREF_make_num(31), &STR_BINDIR_040expects_0400_040or_0401_040arguments);
+        stringOPcons("bad format directory name", CLU_1, CLUREF_make_num(25), &STR_bad_040format_040directory_040name);
+        stringOPcons("/", CLU_1, CLUREF_make_num(1), &STR__057);
+        stringOPcons("binsuf", CLU_1, CLUREF_make_num(6), &STR_binsuf);
+        stringOPcons("BINSUF expects 0 or 1 arguments", CLU_1, CLUREF_make_num(31), &STR_BINSUF_040expects_0400_040or_0401_040arguments);
+        stringOPcons("bad format suffix", CLU_1, CLUREF_make_num(17), &STR_bad_040format_040suffix);
+        stringOPcons("newlib", CLU_1, CLUREF_make_num(6), &STR_newlib);
+        stringOPcons("NEWLIB expects no arguments", CLU_1, CLUREF_make_num(27), &STR_NEWLIB_040expects_040no_040arguments);
+        stringOPcons("dump", CLU_1, CLUREF_make_num(4), &STR_dump);
+        stringOPcons("DUMP expects 1 argument", CLU_1, CLUREF_make_num(23), &STR_DUMP_040expects_0401_040argument);
+        stringOPcons("lib", CLU_1, CLUREF_make_num(3), &STR_lib);
+        stringOPcons("Dumped to ", CLU_1, CLUREF_make_num(10), &STR_Dumped_040to_040);
+        stringOPcons("bad format file name", CLU_1, CLUREF_make_num(20), &STR_bad_040format_040file_040name);
+        stringOPcons("callers", CLU_1, CLUREF_make_num(7), &STR_callers);
+        stringOPcons("CALLERS expects 1 argument", CLU_1, CLUREF_make_num(26), &STR_CALLERS_040expects_0401_040argument);
+        stringOPcons("\t", CLU_1, CLUREF_make_num(1), &STR__011);
+        stringOPcons("not called", CLU_1, CLUREF_make_num(10), &STR_not_040called);
+        stringOPcons("merge", CLU_1, CLUREF_make_num(5), &STR_merge);
+        stringOPcons("Merging ", CLU_1, CLUREF_make_num(8), &STR_Merging_040);
+        stringOPcons(": ", CLU_1, CLUREF_make_num(2), &STR__072_040);
+        stringOPcons("forget", CLU_1, CLUREF_make_num(6), &STR_forget);
+        stringOPcons(": not found", CLU_1, CLUREF_make_num(11), &STR__072_040not_040found);
+        stringOPcons("unmerge", CLU_1, CLUREF_make_num(7), &STR_unmerge);
+        stringOPcons("Un-Merging ", CLU_1, CLUREF_make_num(11), &STR_Un_055Merging_040);
+        stringOPcons("unknown command: ", CLU_1, CLUREF_make_num(17), &STR_unknown_040command_072_040);
         execute_command_own_init = 1;
     }
     enter_proc(201);
@@ -2011,7 +2013,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
     T_2_6.num = T_2_7.num;
     if (!T_2_7.num) {
         T_2_8.num = ((locals.cmnd.str->size != STR__077.str->size)? false :
-            !(bcmp(locals.cmnd.str->data, STR__077.str->data, locals.cmnd.str->size)));
+            !(memcmp(locals.cmnd.str->data, STR__077.str->data, locals.cmnd.str->size)));
         T_2_6.num = T_2_8.num;
     }
     if (T_2_6.num == true) {
@@ -2902,7 +2904,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
             CLUREF T_4_1;
             CLUREF T_4_2;
             T_4_1.num = ((locals.s.str->size != STR__057.str->size)? false :
-                !(bcmp(locals.s.str->data, STR__057.str->data, locals.s.str->size)));
+                !(memcmp(locals.s.str->data, STR__057.str->data, locals.s.str->size)));
             T_4_2.num = T_4_1.num ^ 1;
             if (T_4_2.num == true) {
 
@@ -3287,7 +3289,8 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
         {
             locals.err = all_input_names(locals.args, STR_lib, locals.tyo, execute_command_IB_1, &locals, &locals.ecode2);
             if (locals.err == ERR_iterbodyreturn) {
-            signal(ERR_ok);}
+                signal(ERR_ok);
+            }
             if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
             if (locals.err == ERR_break) locals.err = ERR_ok;
             if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -3356,7 +3359,8 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
         {
             locals.err = all_input_names(locals.args, STR_lib, locals.tyo, execute_command_IB_2, &locals, &locals.ecode2);
             if (locals.err == ERR_iterbodyreturn) {
-            signal(ERR_ok);}
+                signal(ERR_ok);
+            }
             if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
             if (locals.err == ERR_break) locals.err = ERR_ok;
             if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -3400,31 +3404,15 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE execute_command ****/
 
 
 /**** BEGIN ITERATOR BODIES for execute_command ****/
 
-errcode execute_command_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF nargs;
-    CLUREF ge;
-    CLUREF st;
-    CLUREF s;
-    CLUREF z;
-    CLUREF fn;
-    CLUREF why;
-    CLUREF nm;
-    CLUREF cmnd;
-    CLUREF args;
-    CLUREF tyo;
-    } *locals;
+errcode
+execute_command_IB_1(CLUREF iv_1, execute_command_LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
     enter_iter_body_proc(381);
@@ -3491,25 +3479,10 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end execute_command_IB_1 */
-errcode execute_command_IB_2(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF nargs;
-    CLUREF ge;
-    CLUREF st;
-    CLUREF s;
-    CLUREF z;
-    CLUREF fn;
-    CLUREF why;
-    CLUREF nm;
-    CLUREF cmnd;
-    CLUREF args;
-    CLUREF tyo;
-    } *locals;
+}   /* end execute_command_IB_1 */
+
+errcode
+execute_command_IB_2(CLUREF iv_1, execute_command_LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
     enter_iter_body_proc(401);
@@ -3576,33 +3549,35 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end execute_command_IB_2 */
+}   /* end execute_command_IB_2 */
 
 /**** END ITERATOR BODIES for execute_command ****/
 
 
-extern errcode xfile_execute_IB_1();
-static int xfile_execute_own_init = 0;
 
 /**** BEGIN PROCEDURE xfile_execute ****/
 
+extern errcode xfile_execute_IB_1();
+static int xfile_execute_own_init = 0;
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF fn;
+    CLUREF st;
+    CLUREF inl;
+    CLUREF args;
+    CLUREF tyo;
+} xfile_execute_LOCALS_t;
+
 errcode
 xfile_execute(CLUREF args, CLUREF tyo)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF fn;
-        CLUREF st;
-        CLUREF inl;
-        CLUREF args;
-        CLUREF tyo;
-        } locals;
+{
+    xfile_execute_LOCALS_t locals;
     locals.args = args;
     locals.tyo = tyo;
-        if (xfile_execute_own_init == 0) {
-        stringOPcons("xfile", CLU_1, CLU_5, &STR_xfile);
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
+    if (xfile_execute_own_init == 0) {
+        stringOPcons("xfile", CLU_1, CLUREF_make_num(5), &STR_xfile);
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
         xfile_execute_own_init = 1;
     }
     enter_proc(417);
@@ -3611,7 +3586,8 @@ xfile_execute(CLUREF args, CLUREF tyo)
     {
         locals.err = all_input_names(locals.args, STR_xfile, locals.tyo, xfile_execute_IB_1, &locals, &locals.ecode2);
         if (locals.err == ERR_iterbodyreturn) {
-        signal(ERR_ok);}
+            signal(ERR_ok);
+        }
         if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
         if (locals.err == ERR_break) locals.err = ERR_ok;
         if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -3625,25 +3601,15 @@ xfile_execute(CLUREF args, CLUREF tyo)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE xfile_execute ****/
 
 
 /**** BEGIN ITERATOR BODIES for xfile_execute ****/
 
-errcode xfile_execute_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF fn;
-    CLUREF st;
-    CLUREF inl;
-    CLUREF args;
-    CLUREF tyo;
-    } *locals;
+errcode
+xfile_execute_IB_1(CLUREF iv_1, xfile_execute_LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
     enter_iter_body_proc(420);
@@ -3726,24 +3692,24 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end xfile_execute_IB_1 */
+}   /* end xfile_execute_IB_1 */
 
 /**** END ITERATOR BODIES for xfile_execute ****/
 
 
-extern errcode set_working_dir();
-CLUREF STR_bad_040format_040for_040directory_041;
-static int set_dir_own_init = 0;
 
 /**** BEGIN PROCEDURE set_dir ****/
 
+extern errcode set_working_dir();
+static CLUREF STR_bad_040format_040for_040directory_041;
+static int set_dir_own_init = 0;
+
 errcode
 set_dir(CLUREF dir, CLUREF tyo)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (set_dir_own_init == 0) {
-        stringOPcons("bad format for directory!", CLU_1, CLU_25, &STR_bad_040format_040for_040directory_041);
+    if (set_dir_own_init == 0) {
+        stringOPcons("bad format for directory!", CLU_1, CLUREF_make_num(25), &STR_bad_040format_040for_040directory_041);
         set_dir_own_init = 1;
     }
     enter_proc(432);
@@ -3783,23 +3749,23 @@ set_dir(CLUREF dir, CLUREF tyo)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_dir ****/
 
 
-static int dump_file_own_init = 0;
 
 /**** BEGIN PROCEDURE dump_file ****/
 
+static int dump_file_own_init = 0;
+
 errcode
 dump_file(CLUREF fn, CLUREF tyo)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF st;
-        if (dump_file_own_init == 0) {
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
+    if (dump_file_own_init == 0) {
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
         dump_file_own_init = 1;
     }
     enter_proc(440);
@@ -3878,39 +3844,39 @@ dump_file(CLUREF fn, CLUREF tyo)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE dump_file ****/
 
 
-extern errcode all_derived_names();
-extern errcode all_input_names_IB_1();
 
 /**** BEGIN ITERATOR all_input_names ****/
 
+extern errcode all_derived_names();
+extern errcode all_input_names_IB_1();
+typedef struct {
+    void *user_locals;
+    errcode (*proc)();
+    errcode ecode2;
+    errcode err;
+    bool body_ctrl_req;
+    CLUREF fs;
+    CLUREF fn;
+    CLUREF args;
+    CLUREF suffix;
+    CLUREF tyo;
+} all_input_names_LOCALS_t;
+
 errcode
-all_input_names(CLUREF args, CLUREF suffix, CLUREF tyo, errcode (*proc)(), char **user_locals, errcode *iecode)
-    {
+all_input_names(CLUREF args, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void *user_locals, errcode *iecode)
+{
     errcode ecode;
-    struct {
-        char **user_locals;
-        errcode (*proc)();
-        errcode err;
-        errcode ecode2;
-        bool body_ctrl_req;
-        CLUREF fs;
-        CLUREF fn;
-        CLUREF args;
-        CLUREF suffix;
-        CLUREF tyo;
-        } locals;
+    all_input_names_LOCALS_t locals;
     locals.args = args;
     locals.suffix = suffix;
     locals.tyo = tyo;
     locals.proc = proc;
     locals.user_locals = user_locals;
-    locals.user_locals = user_locals;
-    locals.proc = proc;
     enter_proc(452);
 
   LINE(453);
@@ -3963,28 +3929,15 @@ all_input_names(CLUREF args, CLUREF suffix, CLUREF tyo, errcode (*proc)(), char 
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END ITERATOR all_input_names ****/
 
 
 /**** BEGIN ITERATOR BODIES for all_input_names ****/
 
-errcode all_input_names_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    char **user_locals;
-    errcode (*proc)();
-    errcode err;
-    errcode ecode2;
-    bool body_ctrl_req;
-    CLUREF fs;
-    CLUREF fn;
-    CLUREF args;
-    CLUREF suffix;
-    CLUREF tyo;
-    } *locals;
+errcode
+all_input_names_IB_1(CLUREF iv_1, all_input_names_LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
     enter_iter_body_proc(455);
@@ -4006,10 +3959,13 @@ struct {
             locals->body_ctrl_req = true;
             {signal(ERR_iteriterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end all_input_names_IB_1 */
+}   /* end all_input_names_IB_1 */
 
 /**** END ITERATOR BODIES for all_input_names ****/
 
+
+
+/**** BEGIN ITERATOR all_derived_names ****/
 
 extern errcode file_specOPparse();
 extern errcode file_specOPget_dir();
@@ -4024,52 +3980,49 @@ extern errcode all_derived_names_IB_1();
 extern errcode all_derived_names_IB_2();
 extern errcode all_derived_names_IB_3();
 extern errcode all_derived_names_IB_4();
-CLUREF STR_xload;
-CLUREF STR__072_040no_040matching_040files;
+static CLUREF STR_xload;
+static CLUREF STR__072_040no_040matching_040files;
 static int all_derived_names_own_init = 0;
-
-/**** BEGIN ITERATOR all_derived_names ****/
+typedef struct {
+    void *user_locals;
+    errcode (*proc)();
+    errcode ecode2;
+    errcode err;
+    bool body_ctrl_req;
+    CLUREF fn;
+    CLUREF subst;
+    CLUREF st;
+    CLUREF sp;
+    CLUREF ddir;
+    CLUREF dnam;
+    CLUREF dsuf;
+    CLUREF doth;
+    CLUREF why;
+    CLUREF fs;
+    CLUREF suffix;
+    CLUREF tyo;
+} all_derived_names_LOCALS_t;
 
 errcode
-all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), char **user_locals, errcode *iecode)
-    {
+all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void *user_locals, errcode *iecode)
+{
     errcode ecode;
-    struct {
-        char **user_locals;
-        errcode (*proc)();
-        errcode err;
-        errcode ecode2;
-        bool body_ctrl_req;
-        CLUREF fn;
-        CLUREF subst;
-        CLUREF st;
-        CLUREF sp;
-        CLUREF ddir;
-        CLUREF dnam;
-        CLUREF dsuf;
-        CLUREF doth;
-        CLUREF why;
-        CLUREF fs;
-        CLUREF suffix;
-        CLUREF tyo;
-        } locals;
+    all_derived_names_LOCALS_t locals;
     locals.fs = fs;
     locals.suffix = suffix;
     locals.tyo = tyo;
     locals.proc = proc;
     locals.user_locals = user_locals;
-    locals.user_locals = user_locals;
-    locals.proc = proc;
-        if (all_derived_names_own_init == 0) {
-        stringOPcons("xload", CLU_1, CLU_5, &STR_xload);
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons("bad format file name - ", CLU_1, CLU_23, &STR_bad_040format_040file_040name_040_055_040);
-        stringOPcons("reading ", CLU_1, CLU_8, &STR_reading_040);
-        stringOPcons(": ", CLU_1, CLU_2, &STR__072_040);
-        stringOPcons("spc", CLU_1, CLU_3, &STR_spc);
-        stringOPcons("clu", CLU_1, CLU_3, &STR_clu);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons(": no matching files", CLU_1, CLU_19, &STR__072_040no_040matching_040files);
+    if (all_derived_names_own_init == 0) {
+        stringOPcons("xload", CLU_1, CLUREF_make_num(5), &STR_xload);
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons("bad format file name - ", CLU_1, CLUREF_make_num(23), &STR_bad_040format_040file_040name_040_055_040);
+        stringOPcons("reading ", CLU_1, CLUREF_make_num(8), &STR_reading_040);
+        stringOPcons(": ", CLU_1, CLUREF_make_num(2), &STR__072_040);
+        stringOPcons("spc", CLU_1, CLUREF_make_num(3), &STR_spc);
+        stringOPcons("clu", CLU_1, CLUREF_make_num(3), &STR_clu);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons(": no matching files", CLU_1, CLUREF_make_num(19), &STR__072_040no_040matching_040files);
         all_derived_names_own_init = 1;
     }
     enter_proc(460);
@@ -4537,7 +4490,7 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), char 
     T_2_1.num = locals.subst.num;
     if (locals.subst.num) {
         T_2_2.num = ((locals.dsuf.str->size != STR_spc.str->size)? false :
-            !(bcmp(locals.dsuf.str->data, STR_spc.str->data, locals.dsuf.str->size)));
+            !(memcmp(locals.dsuf.str->data, STR_spc.str->data, locals.dsuf.str->size)));
         T_2_1.num = T_2_2.num;
     }
     if (T_2_1.num == true) {
@@ -4689,35 +4642,15 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), char 
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END ITERATOR all_derived_names ****/
 
 
 /**** BEGIN ITERATOR BODIES for all_derived_names ****/
 
-errcode all_derived_names_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    char **user_locals;
-    errcode (*proc)();
-    errcode err;
-    errcode ecode2;
-    bool body_ctrl_req;
-    CLUREF fn;
-    CLUREF subst;
-    CLUREF st;
-    CLUREF sp;
-    CLUREF ddir;
-    CLUREF dnam;
-    CLUREF dsuf;
-    CLUREF doth;
-    CLUREF why;
-    CLUREF fs;
-    CLUREF suffix;
-    CLUREF tyo;
-    } *locals;
+errcode
+all_derived_names_IB_1(CLUREF iv_1, all_derived_names_LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
     enter_iter_body_proc(470);
@@ -4739,29 +4672,10 @@ struct {
             locals->body_ctrl_req = true;
             {signal(ERR_iteriterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end all_derived_names_IB_1 */
-errcode all_derived_names_IB_2(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    char **user_locals;
-    errcode (*proc)();
-    errcode err;
-    errcode ecode2;
-    bool body_ctrl_req;
-    CLUREF fn;
-    CLUREF subst;
-    CLUREF st;
-    CLUREF sp;
-    CLUREF ddir;
-    CLUREF dnam;
-    CLUREF dsuf;
-    CLUREF doth;
-    CLUREF why;
-    CLUREF fs;
-    CLUREF suffix;
-    CLUREF tyo;
-    } *locals;
+}   /* end all_derived_names_IB_1 */
+
+errcode
+all_derived_names_IB_2(CLUREF iv_1, all_derived_names_LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
     enter_iter_body_proc(510);
@@ -4783,29 +4697,10 @@ struct {
             locals->body_ctrl_req = true;
             {signal(ERR_iteriterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end all_derived_names_IB_2 */
-errcode all_derived_names_IB_3(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    char **user_locals;
-    errcode (*proc)();
-    errcode err;
-    errcode ecode2;
-    bool body_ctrl_req;
-    CLUREF fn;
-    CLUREF subst;
-    CLUREF st;
-    CLUREF sp;
-    CLUREF ddir;
-    CLUREF dnam;
-    CLUREF dsuf;
-    CLUREF doth;
-    CLUREF why;
-    CLUREF fs;
-    CLUREF suffix;
-    CLUREF tyo;
-    } *locals;
+}   /* end all_derived_names_IB_2 */
+
+errcode
+all_derived_names_IB_3(CLUREF iv_1, all_derived_names_LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
     enter_iter_body_proc(526);
@@ -4827,29 +4722,10 @@ struct {
             locals->body_ctrl_req = true;
             {signal(ERR_iteriterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end all_derived_names_IB_3 */
-errcode all_derived_names_IB_4(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    char **user_locals;
-    errcode (*proc)();
-    errcode err;
-    errcode ecode2;
-    bool body_ctrl_req;
-    CLUREF fn;
-    CLUREF subst;
-    CLUREF st;
-    CLUREF sp;
-    CLUREF ddir;
-    CLUREF dnam;
-    CLUREF dsuf;
-    CLUREF doth;
-    CLUREF why;
-    CLUREF fs;
-    CLUREF suffix;
-    CLUREF tyo;
-    } *locals;
+}   /* end all_derived_names_IB_3 */
+
+errcode
+all_derived_names_IB_4(CLUREF iv_1, all_derived_names_LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
     enter_iter_body_proc(533);
@@ -4871,26 +4747,26 @@ struct {
             locals->body_ctrl_req = true;
             {signal(ERR_iteriterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end all_derived_names_IB_4 */
+}   /* end all_derived_names_IB_4 */
 
 /**** END ITERATOR BODIES for all_derived_names ****/
 
 
-CLUREF STR__040;
-static int as2str_own_init = 0;
 
 /**** BEGIN PROCEDURE as2str ****/
 
+static CLUREF STR__040;
+static int as2str_own_init = 0;
+
 errcode
 as2str(CLUREF a, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF res;
     CLUREF each_s;
-        if (as2str_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons(" ", CLU_1, CLU_1, &STR__040);
+    if (as2str_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons(" ", CLU_1, CLUREF_make_num(1), &STR__040);
         as2str_own_init = 1;
     }
     enter_proc(544);
@@ -4944,7 +4820,7 @@ as2str(CLUREF a, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE as2str ****/
 

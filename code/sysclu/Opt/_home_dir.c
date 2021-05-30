@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _home_dir ****/
+
 extern errcode stringOPempty();
 extern errcode _environ();
 extern errcode sequenceOPindexes();
@@ -28,33 +31,30 @@ extern errcode _file_exists();
 extern errcode _chanOPclose();
 extern errcode sequenceOPnew();
 extern errcode sequenceOPaddh();
-CLUREF STR_HOME;
-CLUREF STR_CLU;
-CLUREF STR_CLUHOME;
-CLUREF STR_ARGUS;
-CLUREF STR_ARGUSHOME;
-CLUREF STR__057etc_057passwd;
-CLUREF STR_read;
-CLUREF STR__072;
-CLUREF STR__057usr_057local_057lib_057clu;
-CLUREF STR__057usr_057lib_057clu;
-CLUREF STR__057mit_057PCLU_057decmipslib;
-CLUREF STR__057usr_057clu;
-CLUREF STR__057usr_057local_057lib_057argus;
-CLUREF STR__057usr_057lib_057argus;
-CLUREF STR__057usr_057argus;
+static CLUREF STR_HOME;
+static CLUREF STR_CLU;
+static CLUREF STR_CLUHOME;
+static CLUREF STR_ARGUS;
+static CLUREF STR_ARGUSHOME;
+static CLUREF STR__057etc_057passwd;
+static CLUREF STR_read;
+static CLUREF STR__072;
+static CLUREF STR__057usr_057local_057lib_057clu;
+static CLUREF STR__057usr_057lib_057clu;
+static CLUREF STR__057mit_057PCLU_057decmipslib;
+static CLUREF STR__057usr_057clu;
+static CLUREF STR__057usr_057local_057lib_057argus;
+static CLUREF STR__057usr_057lib_057argus;
+static CLUREF STR__057usr_057argus;
 static int _home_dir_own_init = 0;
 CLUREF _home_dirOPusers;
 CLUREF _home_dirOPhomes;
 CLUREF _home_dirOPhave;
 
-/**** BEGIN PROCEDURE _home_dir ****/
-
 errcode
 _home_dir(CLUREF user, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF c;
     CLUREF b;
@@ -62,22 +62,22 @@ _home_dir(CLUREF user, CLUREF *ret_1)
     CLUREF buser;
     CLUREF idx;
     CLUREF home;
-        if (_home_dir_own_init == 0) {
-        stringOPcons("HOME", CLU_1, CLU_4, &STR_HOME);
-        stringOPcons("CLU", CLU_1, CLU_3, &STR_CLU);
-        stringOPcons("CLUHOME", CLU_1, CLU_7, &STR_CLUHOME);
-        stringOPcons("ARGUS", CLU_1, CLU_5, &STR_ARGUS);
-        stringOPcons("ARGUSHOME", CLU_1, CLU_9, &STR_ARGUSHOME);
-        stringOPcons("/etc/passwd", CLU_1, CLU_11, &STR__057etc_057passwd);
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons(":", CLU_1, CLU_1, &STR__072);
-        stringOPcons("/usr/local/lib/clu", CLU_1, CLU_18, &STR__057usr_057local_057lib_057clu);
-        stringOPcons("/usr/lib/clu", CLU_1, CLU_12, &STR__057usr_057lib_057clu);
-        stringOPcons("/mit/PCLU/decmipslib", CLU_1, CLU_20, &STR__057mit_057PCLU_057decmipslib);
-        stringOPcons("/usr/clu", CLU_1, CLU_8, &STR__057usr_057clu);
-        stringOPcons("/usr/local/lib/argus", CLU_1, CLU_20, &STR__057usr_057local_057lib_057argus);
-        stringOPcons("/usr/lib/argus", CLU_1, CLU_14, &STR__057usr_057lib_057argus);
-        stringOPcons("/usr/argus", CLU_1, CLU_10, &STR__057usr_057argus);
+    if (_home_dir_own_init == 0) {
+        stringOPcons("HOME", CLU_1, CLUREF_make_num(4), &STR_HOME);
+        stringOPcons("CLU", CLU_1, CLUREF_make_num(3), &STR_CLU);
+        stringOPcons("CLUHOME", CLU_1, CLUREF_make_num(7), &STR_CLUHOME);
+        stringOPcons("ARGUS", CLU_1, CLUREF_make_num(5), &STR_ARGUS);
+        stringOPcons("ARGUSHOME", CLU_1, CLUREF_make_num(9), &STR_ARGUSHOME);
+        stringOPcons("/etc/passwd", CLU_1, CLUREF_make_num(11), &STR__057etc_057passwd);
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons(":", CLU_1, CLUREF_make_num(1), &STR__072);
+        stringOPcons("/usr/local/lib/clu", CLU_1, CLUREF_make_num(18), &STR__057usr_057local_057lib_057clu);
+        stringOPcons("/usr/lib/clu", CLU_1, CLUREF_make_num(12), &STR__057usr_057lib_057clu);
+        stringOPcons("/mit/PCLU/decmipslib", CLU_1, CLUREF_make_num(20), &STR__057mit_057PCLU_057decmipslib);
+        stringOPcons("/usr/clu", CLU_1, CLUREF_make_num(8), &STR__057usr_057clu);
+        stringOPcons("/usr/local/lib/argus", CLU_1, CLUREF_make_num(20), &STR__057usr_057local_057lib_057argus);
+        stringOPcons("/usr/lib/argus", CLU_1, CLUREF_make_num(14), &STR__057usr_057lib_057argus);
+        stringOPcons("/usr/argus", CLU_1, CLUREF_make_num(10), &STR__057usr_057argus);
         _home_dir_own_init = 1;
         {
             {_home_dirOPhave.tf = false;
@@ -132,7 +132,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
                     goto ex_0;}
                 T_3_1.num = _home_dirOPusers.vec->data[i.num - 1];
                 T_3_2.num = ((T_3_1.str->size != user.str->size)? false :
-                    !(bcmp(T_3_1.str->data, user.str->data, T_3_1.str->size)));
+                    !(memcmp(T_3_1.str->data, user.str->data, T_3_1.str->size)));
                 if (T_3_2.num == true) {
 
   LINE(13);
@@ -158,7 +158,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
     {
     CLUREF T_2_1;
     T_2_1.num = ((user.str->size != STR_CLU.str->size)? false :
-        !(bcmp(user.str->data, STR_CLU.str->data, user.str->size)));
+        !(memcmp(user.str->data, STR_CLU.str->data, user.str->size)));
     if (T_2_1.num == true) {
 
   LINE(17);
@@ -185,7 +185,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
     {
     CLUREF T_2_1;
     T_2_1.num = ((user.str->size != STR_ARGUS.str->size)? false :
-        !(bcmp(user.str->data, STR_ARGUS.str->data, user.str->size)));
+        !(memcmp(user.str->data, STR_ARGUS.str->data, user.str->size)));
     if (T_2_1.num == true) {
 
   LINE(22);
@@ -255,7 +255,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
   LINE(30);
     {
         {CLUREF T_1_1;
-        T_1_1.num = user.num;
+        T_1_1.num = (long)user.num;
         buser.num = T_1_1.num;
         }
         }
@@ -361,7 +361,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
                 {
                 CLUREF T_2_1;
                 T_2_1.num = ((user.str->size != STR_CLU.str->size)? false :
-                    !(bcmp(user.str->data, STR_CLU.str->data, user.str->size)));
+                    !(memcmp(user.str->data, STR_CLU.str->data, user.str->size)));
                 if (T_2_1.num == true) {
 
   LINE(44);
@@ -409,7 +409,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
                 else {
                 CLUREF T_2_2;
                 T_2_2.num = ((user.str->size != STR_ARGUS.str->size)? false :
-                    !(bcmp(user.str->data, STR_ARGUS.str->data, user.str->size)));
+                    !(memcmp(user.str->data, STR_ARGUS.str->data, user.str->size)));
                 if (T_2_2.num == true) {
 
   LINE(54);
@@ -527,7 +527,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _home_dir ****/
 

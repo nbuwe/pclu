@@ -7,13 +7,12 @@
 /**** BEGIN CLUSTER table ****/
 
 
-typedef struct {
-long count;
-} table_of_key_REQS;
+static const struct /* REQS */ {
+    long count;
+} table_of_key_reqs_actual = { 0 };
 
-table_of_key_REQS table_of_key_reqs_actual = {0};
-
-struct REQS * table_of_key_reqs = (struct REQS *)&table_of_key_reqs_actual;
+const struct REQS * const table_of_key_reqs
+    = (const struct REQS *)&table_of_key_reqs_actual;
 
 
 typedef struct {
@@ -23,13 +22,12 @@ typedef struct {
     } table_of_key_OPS;
 
 
-typedef struct {
-long count;
-} table_of_val_REQS;
+static const struct /* REQS */ {
+    long count;
+} table_of_val_reqs_actual = { 0 };
 
-table_of_val_REQS table_of_val_reqs_actual = {0};
-
-struct REQS * table_of_val_reqs = (struct REQS *)&table_of_val_reqs_actual;
+const struct REQS * const table_of_val_reqs
+    = (const struct REQS *)&table_of_val_reqs_actual;
 
 
 typedef struct {
@@ -86,44 +84,50 @@ typedef struct {
     long count_own_init;
     long empty_own_init;
     long sizes_own_init;
-    table_of_key_OPS *key_ops;
-    table_of_val_OPS *val_ops;
+    const table_of_key_OPS * const key_ops;
+    const table_of_val_OPS * const val_ops;
 } table_OWN_DEFN;
 
-OWN_req table_ownreqs = {sizeof(table_OWN_DEFN), 19};
+const OWN_req table_ownreqs = { sizeof(table_OWN_DEFN), 19 };
 
-errcode table_own_init_proc()
+errcode
+table_own_init_proc()
 {
-errcode err;
-table_OWN_DEFN *type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
+    errcode err;
+    table_OWN_DEFN *type_own_ptr;
+    type_own_ptr = (table_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
-enter_own_init_proc();
+    enter_own_init_proc();
     if (type_own_ptr->table_own_init == 0) {
-    type_own_ptr->table_own_init = 1;
-    {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-}
+        type_own_ptr->table_own_init = 1;
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
+    }
+    signal(ERR_ok);
 }
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 tableOPcreate(CLUREF size, CLUREF hasher, CLUREF comper, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->create_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->create_own_init == 0) {
         type_own_ptr->create_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(42);
 
@@ -143,7 +147,7 @@ tableOPcreate(CLUREF size, CLUREF hasher, CLUREF comper, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-    T_1_1.num = nil;
+    T_1_1.num = (long)nil;
     T_1_2.num = (type_own_ptr->unique.num == T_1_1.num)? true : false;
     if (T_1_2.num == true) {
 
@@ -153,7 +157,7 @@ tableOPcreate(CLUREF size, CLUREF hasher, CLUREF comper, CLUREF *ret_1)
         CLUREF T_2_2;
         err = _vecOPcreate(CLU_0, &T_2_1);
         if (err != ERR_ok) goto ex_0;
-        T_2_2.num = T_2_1.num;
+        T_2_2.num = (long)T_2_1.num;
         type_own_ptr->unique.num = T_2_2.num;
         }
         }
@@ -165,15 +169,15 @@ tableOPcreate(CLUREF size, CLUREF hasher, CLUREF comper, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     RecordAlloc(7, T_1_1);
-    T_1_1.vec->data[6]  = size.num;
-    T_1_1.vec->data[2]  = hasher.num;
-    T_1_1.vec->data[1]  = comper.num;
-    T_1_1.vec->data[4]  = type_own_ptr->unique.num;
-    T_1_1.vec->data[3]  = 0;
-    T_1_1.vec->data[5]  = type_own_ptr->unique.num;
+    T_1_1.vec->data[6] = size.num;
+    T_1_1.vec->data[2] = hasher.num;
+    T_1_1.vec->data[1] = comper.num;
+    T_1_1.vec->data[4] = type_own_ptr->unique.num;
+    T_1_1.vec->data[3] = 0;
+    T_1_1.vec->data[5] = type_own_ptr->unique.num;
     err = _vecOPcreate(size, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[0]  = T_1_2.num;
+    T_1_1.vec->data[0] = T_1_2.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -186,37 +190,38 @@ tableOPcreate(CLUREF size, CLUREF hasher, CLUREF comper, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
 
 /**** BEGIN PROCEDURE flush ****/
 
+
 errcode
 tableOPflush(CLUREF t)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF bucks;
     CLUREF i;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->flush_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->flush_own_init == 0) {
         type_own_ptr->flush_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(59);
 
   LINE(60);
     {
-    t.vec->data[4]  = type_own_ptr->unique.num;
+    t.vec->data[4] = type_own_ptr->unique.num;
     }
 
   LINE(61);
@@ -240,7 +245,7 @@ tableOPflush(CLUREF t)
   LINE(63);
             {
             CLUREF T_2_1;
-            T_2_1.num = nil;
+            T_2_1.num = (long)nil;
             err = _vecOPstore(bucks, i, T_2_1);
             if (err != ERR_ok) goto ex_0;
             }
@@ -255,18 +260,18 @@ tableOPflush(CLUREF t)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE flush ****/
 
 
 /**** BEGIN PROCEDURE cond_flush ****/
 
+
 errcode
 tableOPcond_flush(CLUREF t, CLUREF pred)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF bucks;
     CLUREF i;
@@ -275,21 +280,22 @@ tableOPcond_flush(CLUREF t, CLUREF pred)
     CLUREF mb;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->cond_flush_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->cond_flush_own_init == 0) {
         type_own_ptr->cond_flush_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(69);
 
   LINE(70);
     {
-    t.vec->data[4]  = type_own_ptr->unique.num;
+    t.vec->data[4] = type_own_ptr->unique.num;
     }
 
   LINE(71);
@@ -332,7 +338,7 @@ tableOPcond_flush(CLUREF t, CLUREF pred)
                 CLUREF T_2_1;
                 CLUREF T_2_2;
                 CLUREF T_2_3;
-                T_2_1.num = nil;
+                T_2_1.num = (long)nil;
                 T_2_2.num = (mb.num == T_2_1.num)? true : false;
                 T_2_3.num = T_2_2.num ^ 1;
                 if (T_2_3.num != true) { break; }
@@ -340,7 +346,7 @@ tableOPcond_flush(CLUREF t, CLUREF pred)
   LINE(77);
                 {
                     {CLUREF T_3_1;
-                    T_3_1.num = mb.num;
+                    T_3_1.num = (long)mb.num;
                     buck.num = T_3_1.num;
                     }
                     }
@@ -368,7 +374,7 @@ tableOPcond_flush(CLUREF t, CLUREF pred)
 
   LINE(81);
                         {
-                        lbuck.vec->data[1]  = mb.num;
+                        lbuck.vec->data[1] = mb.num;
                         }
                         }
                     else {
@@ -405,18 +411,20 @@ tableOPcond_flush(CLUREF t, CLUREF pred)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE cond_flush ****/
 
 
-typedef struct {
-long count;
-} table_op_pcond_flush_of_u_REQS;
+/**** BEGIN PROCEDURE pcond_flush ****/
 
-table_op_pcond_flush_of_u_REQS table_op_pcond_flush_of_u_reqs_actual = {0};
 
-struct REQS * table_op_pcond_flush_of_u_reqs = (struct REQS *)&table_op_pcond_flush_of_u_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} table_op_pcond_flush_of_u_reqs_actual = { 0 };
+
+const struct REQS * const table_op_pcond_flush_of_u_reqs
+    = (const struct REQS *)&table_op_pcond_flush_of_u_reqs_actual;
 
 
 typedef struct {
@@ -428,18 +436,15 @@ typedef struct {
 
 typedef struct {
     long pcond_flush_own_init;
-    table_op_pcond_flush_of_u_OPS *u_ops;
-    } table_op_pcond_flush_OWN_DEFN;
-OWN_req table_op_pcond_flush_ownreqs = {sizeof(table_op_pcond_flush_OWN_DEFN), 1};
+    const table_op_pcond_flush_of_u_OPS * const u_ops;
+} table_op_pcond_flush_OWN_DEFN;
+const OWN_req table_op_pcond_flush_ownreqs = { sizeof(table_op_pcond_flush_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE pcond_flush ****/
 
 errcode
 tableOPpcond_flush(CLUREF t, CLUREF pred, CLUREF thing)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     table_op_pcond_flush_OWN_DEFN *op_own_ptr;
     CLUREF bucks;
@@ -449,22 +454,23 @@ tableOPpcond_flush(CLUREF t, CLUREF pred, CLUREF thing)
     CLUREF mb;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-    op_own_ptr = (table_op_pcond_flush_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (op_own_ptr->pcond_flush_own_init == 0) {
+    op_own_ptr = (table_op_pcond_flush_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (op_own_ptr->pcond_flush_own_init == 0) {
         op_own_ptr->pcond_flush_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(93);
 
   LINE(95);
     {
-    t.vec->data[4]  = type_own_ptr->unique.num;
+    t.vec->data[4] = type_own_ptr->unique.num;
     }
 
   LINE(96);
@@ -507,7 +513,7 @@ tableOPpcond_flush(CLUREF t, CLUREF pred, CLUREF thing)
                 CLUREF T_2_1;
                 CLUREF T_2_2;
                 CLUREF T_2_3;
-                T_2_1.num = nil;
+                T_2_1.num = (long)nil;
                 T_2_2.num = (mb.num == T_2_1.num)? true : false;
                 T_2_3.num = T_2_2.num ^ 1;
                 if (T_2_3.num != true) { break; }
@@ -515,7 +521,7 @@ tableOPpcond_flush(CLUREF t, CLUREF pred, CLUREF thing)
   LINE(102);
                 {
                     {CLUREF T_3_1;
-                    T_3_1.num = mb.num;
+                    T_3_1.num = (long)mb.num;
                     buck.num = T_3_1.num;
                     }
                     }
@@ -543,7 +549,7 @@ tableOPpcond_flush(CLUREF t, CLUREF pred, CLUREF thing)
 
   LINE(106);
                         {
-                        lbuck.vec->data[1]  = mb.num;
+                        lbuck.vec->data[1] = mb.num;
                         }
                         }
                     else {
@@ -580,33 +586,34 @@ tableOPpcond_flush(CLUREF t, CLUREF pred, CLUREF thing)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE pcond_flush ****/
 
 
 /**** BEGIN PROCEDURE bind ****/
 
+
 errcode
 tableOPbind(CLUREF t, CLUREF k, CLUREF v)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF comper;
     CLUREF xmb;
     CLUREF mb;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->bind_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->bind_own_init == 0) {
         type_own_ptr->bind_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(118);
 
@@ -617,7 +624,7 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
     CLUREF T_1_3;
     CLUREF T_1_4;
     T_1_1.num = t.vec->data[4];
-    T_1_2.num = k.num;
+    T_1_2.num = (long)k.num;
     T_1_3.num = (T_1_1.num == T_1_2.num)? true : false;
     T_1_4.num = T_1_3.num ^ 1;
     if (T_1_4.num == true) {
@@ -638,7 +645,7 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
              (T_2_4.num < 0 && T_2_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        t.vec->data[3]  = T_2_4.num;
+        t.vec->data[3] = T_2_4.num;
         }
         }
     else {
@@ -690,7 +697,7 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
         CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         T_1_2.num = (mb.num == T_1_1.num)? true : false;
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
@@ -698,7 +705,7 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
   LINE(127);
         {
             {CLUREF T_2_1;
-            T_2_1.num = mb.num;
+            T_2_1.num = (long)mb.num;
             buck.num = T_2_1.num;
             }
             }
@@ -718,8 +725,8 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[0];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[4]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[4] = T_3_2.num;
             }
 
   LINE(130);
@@ -727,8 +734,8 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[2];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[5]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[5] = T_3_2.num;
             }
 
   LINE(131);
@@ -749,15 +756,15 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
   LINE(135);
     {
     CLUREF T_1_1;
-    T_1_1.num = k.num;
-    t.vec->data[4]  = T_1_1.num;
+    T_1_1.num = (long)k.num;
+    t.vec->data[4] = T_1_1.num;
     }
 
   LINE(136);
     {
     CLUREF T_1_1;
-    T_1_1.num = v.num;
-    t.vec->data[5]  = T_1_1.num;
+    T_1_1.num = (long)v.num;
+    t.vec->data[5] = T_1_1.num;
     }
 
   LINE(137);
@@ -769,10 +776,10 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
     T_1_1.num = t.vec->data[0];
     T_1_2.num = t.vec->data[3];
     RecordAlloc(3, T_1_3);
-    T_1_3.vec->data[0]  = k.num;
-    T_1_3.vec->data[2]  = v.num;
-    T_1_3.vec->data[1]  = xmb.num;
-    T_1_4.num = T_1_3.num;
+    T_1_3.vec->data[0] = k.num;
+    T_1_3.vec->data[2] = v.num;
+    T_1_3.vec->data[1] = xmb.num;
+    T_1_4.num = (long)T_1_3.num;
     err = _vecOPstore(T_1_1, T_1_2, T_1_4);
     if (err != ERR_ok) goto ex_0;
     }
@@ -784,33 +791,34 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE bind ****/
 
 
 /**** BEGIN PROCEDURE mbind ****/
 
+
 errcode
 tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF comper;
     CLUREF xmb;
     CLUREF mb;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->mbind_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->mbind_own_init == 0) {
         type_own_ptr->mbind_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(144);
 
@@ -821,7 +829,7 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
     CLUREF T_1_3;
     CLUREF T_1_4;
     T_1_1.num = t.vec->data[4];
-    T_1_2.num = k.num;
+    T_1_2.num = (long)k.num;
     T_1_3.num = (T_1_1.num == T_1_2.num)? true : false;
     T_1_4.num = T_1_3.num ^ 1;
     if (T_1_4.num == true) {
@@ -842,7 +850,7 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
              (T_2_4.num < 0 && T_2_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        t.vec->data[3]  = T_2_4.num;
+        t.vec->data[3] = T_2_4.num;
         }
         }
     else {
@@ -860,7 +868,7 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = t.vec->data[5];
-        T_2_2.num = T_2_1.num;
+        T_2_2.num = (long)T_2_1.num;
         ret_1->num = T_2_2.num;
         }
         {signal (ERR_ok);}}
@@ -901,7 +909,7 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
         CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         T_1_2.num = (mb.num == T_1_1.num)? true : false;
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
@@ -909,7 +917,7 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
   LINE(153);
         {
             {CLUREF T_2_1;
-            T_2_1.num = mb.num;
+            T_2_1.num = (long)mb.num;
             buck.num = T_2_1.num;
             }
             }
@@ -929,8 +937,8 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[0];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[4]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[4] = T_3_2.num;
             }
 
   LINE(156);
@@ -938,8 +946,8 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[2];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[5]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[5] = T_3_2.num;
             }
 
   LINE(157);
@@ -965,15 +973,15 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
   LINE(161);
     {
     CLUREF T_1_1;
-    T_1_1.num = k.num;
-    t.vec->data[4]  = T_1_1.num;
+    T_1_1.num = (long)k.num;
+    t.vec->data[4] = T_1_1.num;
     }
 
   LINE(162);
     {
     CLUREF T_1_1;
-    T_1_1.num = v.num;
-    t.vec->data[5]  = T_1_1.num;
+    T_1_1.num = (long)v.num;
+    t.vec->data[5] = T_1_1.num;
     }
 
   LINE(163);
@@ -985,10 +993,10 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
     T_1_1.num = t.vec->data[0];
     T_1_2.num = t.vec->data[3];
     RecordAlloc(3, T_1_3);
-    T_1_3.vec->data[0]  = k.num;
-    T_1_3.vec->data[2]  = v.num;
-    T_1_3.vec->data[1]  = xmb.num;
-    T_1_4.num = T_1_3.num;
+    T_1_3.vec->data[0] = k.num;
+    T_1_3.vec->data[2] = v.num;
+    T_1_3.vec->data[1] = xmb.num;
+    T_1_4.num = (long)T_1_3.num;
     err = _vecOPstore(T_1_1, T_1_2, T_1_4);
     if (err != ERR_ok) goto ex_0;
     }
@@ -1008,33 +1016,34 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE mbind ****/
 
 
 /**** BEGIN PROCEDURE alter ****/
 
+
 errcode
 tableOPalter(CLUREF t, CLUREF k, CLUREF v)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF comper;
     CLUREF xmb;
     CLUREF mb;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->alter_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->alter_own_init == 0) {
         type_own_ptr->alter_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(171);
 
@@ -1045,7 +1054,7 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
     CLUREF T_1_3;
     CLUREF T_1_4;
     T_1_1.num = t.vec->data[4];
-    T_1_2.num = k.num;
+    T_1_2.num = (long)k.num;
     T_1_3.num = (T_1_1.num == T_1_2.num)? true : false;
     T_1_4.num = T_1_3.num ^ 1;
     if (T_1_4.num == true) {
@@ -1066,7 +1075,7 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
              (T_2_4.num < 0 && T_2_2.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        t.vec->data[3]  = T_2_4.num;
+        t.vec->data[3] = T_2_4.num;
         }
         }
         }/* end if */
@@ -1074,8 +1083,8 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
   LINE(174);
     {
     CLUREF T_1_1;
-    T_1_1.num = v.num;
-    t.vec->data[5]  = T_1_1.num;
+    T_1_1.num = (long)v.num;
+    t.vec->data[5] = T_1_1.num;
     }
 
   LINE(175);
@@ -1112,7 +1121,7 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
         CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         T_1_2.num = (mb.num == T_1_1.num)? true : false;
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
@@ -1120,7 +1129,7 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
   LINE(179);
         {
             {CLUREF T_2_1;
-            T_2_1.num = mb.num;
+            T_2_1.num = (long)mb.num;
             buck.num = T_2_1.num;
             }
             }
@@ -1140,13 +1149,13 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[0];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[4]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[4] = T_3_2.num;
             }
 
   LINE(182);
             {
-            buck.vec->data[2]  = v.num;
+            buck.vec->data[2] = v.num;
             }
 
   LINE(183);
@@ -1167,8 +1176,8 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
   LINE(187);
     {
     CLUREF T_1_1;
-    T_1_1.num = k.num;
-    t.vec->data[4]  = T_1_1.num;
+    T_1_1.num = (long)k.num;
+    t.vec->data[4] = T_1_1.num;
     }
 
   LINE(188);
@@ -1180,10 +1189,10 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
     T_1_1.num = t.vec->data[0];
     T_1_2.num = t.vec->data[3];
     RecordAlloc(3, T_1_3);
-    T_1_3.vec->data[0]  = k.num;
-    T_1_3.vec->data[2]  = v.num;
-    T_1_3.vec->data[1]  = xmb.num;
-    T_1_4.num = T_1_3.num;
+    T_1_3.vec->data[0] = k.num;
+    T_1_3.vec->data[2] = v.num;
+    T_1_3.vec->data[1] = xmb.num;
+    T_1_4.num = (long)T_1_3.num;
     err = _vecOPstore(T_1_1, T_1_2, T_1_4);
     if (err != ERR_ok) goto ex_0;
     }
@@ -1195,32 +1204,33 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE alter ****/
 
 
 /**** BEGIN PROCEDURE lookup ****/
 
+
 errcode
 tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF comper;
     CLUREF mb;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->lookup_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->lookup_own_init == 0) {
         type_own_ptr->lookup_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(195);
 
@@ -1230,7 +1240,7 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_1.num = t.vec->data[4];
-    T_1_2.num = k.num;
+    T_1_2.num = (long)k.num;
     T_1_3.num = (T_1_1.num == T_1_2.num)? true : false;
     if (T_1_3.num == true) {
 
@@ -1254,7 +1264,7 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = t.vec->data[5];
-        T_2_2.num = T_2_1.num;
+        T_2_2.num = (long)T_2_1.num;
         ret_1->num = T_2_2.num;
         }
         {signal (ERR_ok);}}
@@ -1277,7 +1287,7 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
          (T_1_4.num < 0 && T_1_2.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    t.vec->data[3]  = T_1_4.num;
+    t.vec->data[3] = T_1_4.num;
     }
 
   LINE(202);
@@ -1308,7 +1318,7 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
         CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         T_1_2.num = (mb.num == T_1_1.num)? true : false;
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
@@ -1316,7 +1326,7 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
   LINE(205);
         {
             {CLUREF T_2_1;
-            T_2_1.num = mb.num;
+            T_2_1.num = (long)mb.num;
             buck.num = T_2_1.num;
             }
             }
@@ -1336,8 +1346,8 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[0];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[4]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[4] = T_3_2.num;
             }
 
   LINE(208);
@@ -1345,8 +1355,8 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[2];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[5]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[5] = T_3_2.num;
             }
 
   LINE(209);
@@ -1372,13 +1382,13 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
   LINE(213);
     {
     CLUREF T_1_1;
-    T_1_1.num = k.num;
-    t.vec->data[4]  = T_1_1.num;
+    T_1_1.num = (long)k.num;
+    t.vec->data[4] = T_1_1.num;
     }
 
   LINE(214);
     {
-    t.vec->data[5]  = type_own_ptr->unique.num;
+    t.vec->data[5] = type_own_ptr->unique.num;
     }
 
   LINE(215);
@@ -1393,32 +1403,33 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE lookup ****/
 
 
 /**** BEGIN PROCEDURE mlookup ****/
 
+
 errcode
 tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF comper;
     CLUREF mb;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->mlookup_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->mlookup_own_init == 0) {
         type_own_ptr->mlookup_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(220);
 
@@ -1428,7 +1439,7 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_1.num = t.vec->data[4];
-    T_1_2.num = k.num;
+    T_1_2.num = (long)k.num;
     T_1_3.num = (T_1_1.num == T_1_2.num)? true : false;
     if (T_1_3.num == true) {
 
@@ -1447,7 +1458,7 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = t.vec->data[5];
-            T_3_2.num = T_3_1.num;
+            T_3_2.num = (long)T_3_1.num;
             defv.num = T_3_2.num;
             }
             }
@@ -1478,7 +1489,7 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
          (T_1_4.num < 0 && T_1_2.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    t.vec->data[3]  = T_1_4.num;
+    t.vec->data[3] = T_1_4.num;
     }
 
   LINE(227);
@@ -1509,7 +1520,7 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
         CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         T_1_2.num = (mb.num == T_1_1.num)? true : false;
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
@@ -1517,7 +1528,7 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
   LINE(230);
         {
             {CLUREF T_2_1;
-            T_2_1.num = mb.num;
+            T_2_1.num = (long)mb.num;
             buck.num = T_2_1.num;
             }
             }
@@ -1537,8 +1548,8 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[0];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[4]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[4] = T_3_2.num;
             }
 
   LINE(233);
@@ -1546,8 +1557,8 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[2];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[5]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[5] = T_3_2.num;
             }
 
   LINE(234);
@@ -1573,13 +1584,13 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
   LINE(238);
     {
     CLUREF T_1_1;
-    T_1_1.num = k.num;
-    t.vec->data[4]  = T_1_1.num;
+    T_1_1.num = (long)k.num;
+    t.vec->data[4] = T_1_1.num;
     }
 
   LINE(239);
     {
-    t.vec->data[5]  = type_own_ptr->unique.num;
+    t.vec->data[5] = type_own_ptr->unique.num;
     }
 
   LINE(240);
@@ -1597,32 +1608,33 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE mlookup ****/
 
 
 /**** BEGIN PROCEDURE get_pair ****/
 
+
 errcode
 tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF comper;
     CLUREF mb;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->get_pair_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->get_pair_own_init == 0) {
         type_own_ptr->get_pair_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(246);
 
@@ -1632,7 +1644,7 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_1.num = t.vec->data[4];
-    T_1_2.num = k.num;
+    T_1_2.num = (long)k.num;
     T_1_3.num = (T_1_1.num == T_1_2.num)? true : false;
     if (T_1_3.num == true) {
 
@@ -1659,7 +1671,7 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = t.vec->data[5];
-        T_2_2.num = T_2_1.num;
+        T_2_2.num = (long)T_2_1.num;
         ret_2->num = T_2_2.num;
         }
         {signal (ERR_ok);}}
@@ -1682,7 +1694,7 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
          (T_1_4.num < 0 && T_1_2.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    t.vec->data[3]  = T_1_4.num;
+    t.vec->data[3] = T_1_4.num;
     }
 
   LINE(253);
@@ -1713,7 +1725,7 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
         CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         T_1_2.num = (mb.num == T_1_1.num)? true : false;
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
@@ -1721,7 +1733,7 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
   LINE(256);
         {
             {CLUREF T_2_1;
-            T_2_1.num = mb.num;
+            T_2_1.num = (long)mb.num;
             buck.num = T_2_1.num;
             }
             }
@@ -1741,8 +1753,8 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[0];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[4]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[4] = T_3_2.num;
             }
 
   LINE(259);
@@ -1750,8 +1762,8 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[2];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[5]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[5] = T_3_2.num;
             }
 
   LINE(260);
@@ -1782,13 +1794,13 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
   LINE(264);
     {
     CLUREF T_1_1;
-    T_1_1.num = k.num;
-    t.vec->data[4]  = T_1_1.num;
+    T_1_1.num = (long)k.num;
+    t.vec->data[4] = T_1_1.num;
     }
 
   LINE(265);
     {
-    t.vec->data[5]  = type_own_ptr->unique.num;
+    t.vec->data[5] = type_own_ptr->unique.num;
     }
 
   LINE(266);
@@ -1803,32 +1815,33 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_pair ****/
 
 
 /**** BEGIN PROCEDURE exists ****/
 
+
 errcode
 tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF comper;
     CLUREF mb;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->exists_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->exists_own_init == 0) {
         type_own_ptr->exists_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(271);
 
@@ -1838,7 +1851,7 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_1.num = t.vec->data[4];
-    T_1_2.num = k.num;
+    T_1_2.num = (long)k.num;
     T_1_3.num = (T_1_1.num == T_1_2.num)? true : false;
     if (T_1_3.num == true) {
 
@@ -1873,7 +1886,7 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
          (T_1_4.num < 0 && T_1_2.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    t.vec->data[3]  = T_1_4.num;
+    t.vec->data[3] = T_1_4.num;
     }
 
   LINE(275);
@@ -1904,7 +1917,7 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
         CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         T_1_2.num = (mb.num == T_1_1.num)? true : false;
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
@@ -1912,7 +1925,7 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
   LINE(278);
         {
             {CLUREF T_2_1;
-            T_2_1.num = mb.num;
+            T_2_1.num = (long)mb.num;
             buck.num = T_2_1.num;
             }
             }
@@ -1932,8 +1945,8 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[0];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[4]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[4] = T_3_2.num;
             }
 
   LINE(281);
@@ -1941,8 +1954,8 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
             CLUREF T_3_1;
             CLUREF T_3_2;
             T_3_1.num = buck.vec->data[2];
-            T_3_2.num = T_3_1.num;
-            t.vec->data[5]  = T_3_2.num;
+            T_3_2.num = (long)T_3_1.num;
+            t.vec->data[5] = T_3_2.num;
             }
 
   LINE(282);
@@ -1966,13 +1979,13 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
   LINE(286);
     {
     CLUREF T_1_1;
-    T_1_1.num = k.num;
-    t.vec->data[4]  = T_1_1.num;
+    T_1_1.num = (long)k.num;
+    t.vec->data[4] = T_1_1.num;
     }
 
   LINE(287);
     {
-    t.vec->data[5]  = type_own_ptr->unique.num;
+    t.vec->data[5] = type_own_ptr->unique.num;
     }
 
   LINE(288);
@@ -1990,18 +2003,18 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE exists ****/
 
 
 /**** BEGIN PROCEDURE remove ****/
 
+
 errcode
 tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF comper;
     CLUREF i;
@@ -2010,15 +2023,16 @@ tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
     CLUREF isprev;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->remove_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->remove_own_init == 0) {
         type_own_ptr->remove_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(294);
 
@@ -2074,7 +2088,7 @@ tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
         CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         T_1_2.num = (mb.num == T_1_1.num)? true : false;
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
@@ -2082,7 +2096,7 @@ tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
   LINE(301);
         {
             {CLUREF T_2_1;
-            T_2_1.num = mb.num;
+            T_2_1.num = (long)mb.num;
             buck.num = T_2_1.num;
             }
             }
@@ -2110,7 +2124,7 @@ tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
 
   LINE(305);
                 {
-                lbuck.vec->data[1]  = mb.num;
+                lbuck.vec->data[1] = mb.num;
                 }
                 }
             else {
@@ -2126,7 +2140,7 @@ tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
 
   LINE(308);
             {
-            t.vec->data[4]  = type_own_ptr->unique.num;
+            t.vec->data[4] = type_own_ptr->unique.num;
             }
 
   LINE(309);
@@ -2164,18 +2178,18 @@ tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE remove ****/
 
 
 /**** BEGIN PROCEDURE delete ****/
 
+
 errcode
 tableOPdelete(CLUREF t, CLUREF k)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF comper;
     CLUREF i;
@@ -2184,15 +2198,16 @@ tableOPdelete(CLUREF t, CLUREF k)
     CLUREF isprev;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->delete_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->delete_own_init == 0) {
         type_own_ptr->delete_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(319);
 
@@ -2248,7 +2263,7 @@ tableOPdelete(CLUREF t, CLUREF k)
         CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         T_1_2.num = (mb.num == T_1_1.num)? true : false;
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
@@ -2256,7 +2271,7 @@ tableOPdelete(CLUREF t, CLUREF k)
   LINE(326);
         {
             {CLUREF T_2_1;
-            T_2_1.num = mb.num;
+            T_2_1.num = (long)mb.num;
             buck.num = T_2_1.num;
             }
             }
@@ -2284,7 +2299,7 @@ tableOPdelete(CLUREF t, CLUREF k)
 
   LINE(330);
                 {
-                lbuck.vec->data[1]  = mb.num;
+                lbuck.vec->data[1] = mb.num;
                 }
                 }
             else {
@@ -2300,7 +2315,7 @@ tableOPdelete(CLUREF t, CLUREF k)
 
   LINE(333);
             {
-            t.vec->data[4]  = type_own_ptr->unique.num;
+            t.vec->data[4] = type_own_ptr->unique.num;
             }
 
   LINE(334);
@@ -2328,18 +2343,18 @@ tableOPdelete(CLUREF t, CLUREF k)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE delete ****/
 
 
 /**** BEGIN PROCEDURE rehash ****/
 
+
 errcode
 tableOPrehash(CLUREF t, CLUREF hasher)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF bucks;
     CLUREF size;
@@ -2349,26 +2364,27 @@ tableOPrehash(CLUREF t, CLUREF hasher)
     CLUREF buck;
     CLUREF hash;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->rehash_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->rehash_own_init == 0) {
         type_own_ptr->rehash_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(343);
 
   LINE(344);
     {
-    t.vec->data[2]  = hasher.num;
+    t.vec->data[2] = hasher.num;
     }
 
   LINE(345);
     {
-    t.vec->data[4]  = type_own_ptr->unique.num;
+    t.vec->data[4] = type_own_ptr->unique.num;
     }
 
   LINE(346);
@@ -2390,7 +2406,7 @@ tableOPrehash(CLUREF t, CLUREF hasher)
   LINE(348);
     {
         {CLUREF T_1_1;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         chain.num = T_1_1.num;
         }
         }
@@ -2418,7 +2434,7 @@ tableOPrehash(CLUREF t, CLUREF hasher)
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
-            T_2_1.num = nil;
+            T_2_1.num = (long)nil;
             T_2_2.num = (nchain.num == T_2_1.num)? true : false;
             if (T_2_2.num == true) {
 
@@ -2430,7 +2446,7 @@ tableOPrehash(CLUREF t, CLUREF hasher)
   LINE(353);
             {
             CLUREF T_2_1;
-            T_2_1.num = nil;
+            T_2_1.num = (long)nil;
             err = _vecOPstore(bucks, i, T_2_1);
             if (err != ERR_ok) goto ex_0;
             }
@@ -2438,7 +2454,7 @@ tableOPrehash(CLUREF t, CLUREF hasher)
   LINE(354);
             {
                 {CLUREF T_2_1;
-                T_2_1.num = nchain.num;
+                T_2_1.num = (long)nchain.num;
                 buck.num = T_2_1.num;
                 }
                 }
@@ -2450,7 +2466,7 @@ tableOPrehash(CLUREF t, CLUREF hasher)
                 CLUREF T_2_3;
                 CLUREF T_2_4;
                 T_2_1.num = buck.vec->data[1];
-                T_2_2.num = nil;
+                T_2_2.num = (long)nil;
                 T_2_3.num = (T_2_1.num == T_2_2.num)? true : false;
                 T_2_4.num = T_2_3.num ^ 1;
                 if (T_2_4.num != true) { break; }
@@ -2460,7 +2476,7 @@ tableOPrehash(CLUREF t, CLUREF hasher)
                 CLUREF T_3_1;
                 CLUREF T_3_2;
                 T_3_1.num = buck.vec->data[1];
-                T_3_2.num = T_3_1.num;
+                T_3_2.num = (long)T_3_1.num;
                 buck.num = T_3_2.num;
                 }
                 }
@@ -2468,7 +2484,7 @@ tableOPrehash(CLUREF t, CLUREF hasher)
 
   LINE(358);
             {
-            buck.vec->data[1]  = chain.num;
+            buck.vec->data[1] = chain.num;
             }
 
   LINE(359);
@@ -2484,7 +2500,7 @@ tableOPrehash(CLUREF t, CLUREF hasher)
         CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         T_1_2.num = (chain.num == T_1_1.num)? true : false;
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
@@ -2492,7 +2508,7 @@ tableOPrehash(CLUREF t, CLUREF hasher)
   LINE(362);
         {
             {CLUREF T_2_1;
-            T_2_1.num = chain.num;
+            T_2_1.num = (long)chain.num;
             buck.num = T_2_1.num;
             }
             }
@@ -2530,7 +2546,7 @@ tableOPrehash(CLUREF t, CLUREF hasher)
             err = ERR_bounds;
             goto ex_0;}
         T_2_1.num = bucks.vec->data[hash.num - 1];
-        buck.vec->data[1]  = T_2_1.num;
+        buck.vec->data[1] = T_2_1.num;
         }
 
   LINE(366);
@@ -2553,19 +2569,19 @@ tableOPrehash(CLUREF t, CLUREF hasher)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE rehash ****/
 
 
 /**** BEGIN ITERATOR elements ****/
 
+
 errcode
-tableOPelements(CLUREF t, errcode (*proc)(), char **user_locals, errcode *iecode)
-    {
+tableOPelements(CLUREF t, errcode (*proc)(), void *user_locals, errcode *iecode)
+{
     errcode ecode;
     errcode err;
-    errcode ecode2;
     bool body_ctrl_req;
     table_OWN_DEFN *type_own_ptr;
     CLUREF bucks;
@@ -2573,15 +2589,16 @@ tableOPelements(CLUREF t, errcode (*proc)(), char **user_locals, errcode *iecode
     CLUREF mb;
     CLUREF buck;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->elements_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->elements_own_init == 0) {
         type_own_ptr->elements_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(373);
 
@@ -2619,7 +2636,7 @@ tableOPelements(CLUREF t, errcode (*proc)(), char **user_locals, errcode *iecode
                 CLUREF T_2_1;
                 CLUREF T_2_2;
                 CLUREF T_2_3;
-                T_2_1.num = nil;
+                T_2_1.num = (long)nil;
                 T_2_2.num = (mb.num == T_2_1.num)? true : false;
                 T_2_3.num = T_2_2.num ^ 1;
                 if (T_2_3.num != true) { break; }
@@ -2627,7 +2644,7 @@ tableOPelements(CLUREF t, errcode (*proc)(), char **user_locals, errcode *iecode
   LINE(378);
                 {
                     {CLUREF T_3_1;
-                    T_3_1.num = mb.num;
+                    T_3_1.num = (long)mb.num;
                     buck.num = T_3_1.num;
                     }
                     }
@@ -2667,33 +2684,34 @@ tableOPelements(CLUREF t, errcode (*proc)(), char **user_locals, errcode *iecode
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END ITERATOR elements ****/
 
 
 /**** BEGIN PROCEDURE count ****/
 
+
 errcode
 tableOPcount(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF cnt;
     CLUREF bucks;
     CLUREF i;
     CLUREF mb;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->count_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->count_own_init == 0) {
         type_own_ptr->count_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(387);
 
@@ -2737,7 +2755,7 @@ tableOPcount(CLUREF t, CLUREF *ret_1)
                 CLUREF T_2_1;
                 CLUREF T_2_2;
                 CLUREF T_2_3;
-                T_2_1.num = nil;
+                T_2_1.num = (long)nil;
                 T_2_2.num = (mb.num == T_2_1.num)? true : false;
                 T_2_3.num = T_2_2.num ^ 1;
                 if (T_2_3.num != true) { break; }
@@ -2757,7 +2775,7 @@ tableOPcount(CLUREF t, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
-                T_3_1.num = mb.num;
+                T_3_1.num = (long)mb.num;
                 T_3_2.num = T_3_1.vec->data[1];
                 mb.num = T_3_2.num;
                 }
@@ -2782,31 +2800,32 @@ tableOPcount(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE count ****/
 
 
 /**** BEGIN PROCEDURE empty ****/
 
+
 errcode
 tableOPempty(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF bucks;
     CLUREF i;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->empty_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->empty_own_init == 0) {
         type_own_ptr->empty_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(402);
 
@@ -2838,7 +2857,7 @@ tableOPempty(CLUREF t, CLUREF *ret_1)
                 err = ERR_bounds;
                 goto ex_0;}
             T_2_1.num = bucks.vec->data[i.num - 1];
-            T_2_2.num = nil;
+            T_2_2.num = (long)nil;
             T_2_3.num = (T_2_1.num == T_2_2.num)? true : false;
             T_2_4.num = T_2_3.num ^ 1;
             if (T_2_4.num == true) {
@@ -2870,18 +2889,18 @@ tableOPempty(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE empty ****/
 
 
 /**** BEGIN PROCEDURE sizes ****/
 
+
 errcode
 tableOPsizes(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     table_OWN_DEFN *type_own_ptr;
     CLUREF z;
     CLUREF bucks;
@@ -2889,15 +2908,16 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
     CLUREF cnt;
     CLUREF mb;
     type_own_ptr = (table_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-            if (type_own_ptr->table_own_init == 0) {
-            generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
-            generic_CLU_proc.op_owns = 0;
-            generic_CLU_proc.proc = table_own_init_proc;
-            err = generic_CLU_proc.proc();
-            if (err != ERR_ok) goto ex_0;
-            }
-        if (type_own_ptr->sizes_own_init == 0) {
+    if (type_own_ptr->table_own_init == 0) {
+        generic_CLU_proc.type_owns = (OWNPTR)type_own_ptr;
+        generic_CLU_proc.op_owns = 0;
+        generic_CLU_proc.proc = table_own_init_proc;
+        err = generic_CLU_proc.proc();
+        if (err != ERR_ok) goto ex_0;
+    }
+    if (type_own_ptr->sizes_own_init == 0) {
         type_own_ptr->sizes_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(414);
 
@@ -2950,7 +2970,7 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
                 CLUREF T_2_1;
                 CLUREF T_2_2;
                 CLUREF T_2_3;
-                T_2_1.num = nil;
+                T_2_1.num = (long)nil;
                 T_2_2.num = (mb.num == T_2_1.num)? true : false;
                 T_2_3.num = T_2_2.num ^ 1;
                 if (T_2_3.num != true) { break; }
@@ -2970,7 +2990,7 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
-                T_3_1.num = mb.num;
+                T_3_1.num = (long)mb.num;
                 T_3_2.num = T_3_1.vec->data[1];
                 mb.num = T_3_2.num;
                 }
@@ -3058,7 +3078,7 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE sizes ****/
 
@@ -3069,24 +3089,24 @@ typedef struct{
     struct OP_ENTRY entry[18];
 } table_OPS;
 
-CLU_proc table_oe_alter = {{0,0,0,0}, tableOPalter, 0};
-CLU_proc table_oe_bind = {{0,0,0,0}, tableOPbind, 0};
-CLU_proc table_oe_cond_flush = {{0,0,0,0}, tableOPcond_flush, 0};
-CLU_proc table_oe_count = {{0,0,0,0}, tableOPcount, 0};
-CLU_proc table_oe_create = {{0,0,0,0}, tableOPcreate, 0};
-CLU_proc table_oe_delete = {{0,0,0,0}, tableOPdelete, 0};
-CLU_proc table_oe_elements = {{0,0,0,0}, tableOPelements, 0};
-CLU_proc table_oe_empty = {{0,0,0,0}, tableOPempty, 0};
-CLU_proc table_oe_exists = {{0,0,0,0}, tableOPexists, 0};
-CLU_proc table_oe_flush = {{0,0,0,0}, tableOPflush, 0};
-CLU_proc table_oe_get_pair = {{0,0,0,0}, tableOPget_pair, 0};
-CLU_proc table_oe_lookup = {{0,0,0,0}, tableOPlookup, 0};
-CLU_proc table_oe_mbind = {{0,0,0,0}, tableOPmbind, 0};
-CLU_proc table_oe_mlookup = {{0,0,0,0}, tableOPmlookup, 0};
-CLU_proc table_oe_pcond_flush = {{0,0,0,0}, tableOPpcond_flush, 0};
-CLU_proc table_oe_rehash = {{0,0,0,0}, tableOPrehash, 0};
-CLU_proc table_oe_remove = {{0,0,0,0}, tableOPremove, 0};
-CLU_proc table_oe_sizes = {{0,0,0,0}, tableOPsizes, 0};
+CLU_proc table_oe_alter = { .proc = tableOPalter };
+CLU_proc table_oe_bind = { .proc = tableOPbind };
+CLU_proc table_oe_cond_flush = { .proc = tableOPcond_flush };
+CLU_proc table_oe_count = { .proc = tableOPcount };
+CLU_proc table_oe_create = { .proc = tableOPcreate };
+CLU_proc table_oe_delete = { .proc = tableOPdelete };
+CLU_proc table_oe_elements = { .proc = tableOPelements };
+CLU_proc table_oe_empty = { .proc = tableOPempty };
+CLU_proc table_oe_exists = { .proc = tableOPexists };
+CLU_proc table_oe_flush = { .proc = tableOPflush };
+CLU_proc table_oe_get_pair = { .proc = tableOPget_pair };
+CLU_proc table_oe_lookup = { .proc = tableOPlookup };
+CLU_proc table_oe_mbind = { .proc = tableOPmbind };
+CLU_proc table_oe_mlookup = { .proc = tableOPmlookup };
+CLU_proc table_oe_pcond_flush = { .proc = tableOPpcond_flush };
+CLU_proc table_oe_rehash = { .proc = tableOPrehash };
+CLU_proc table_oe_remove = { .proc = tableOPremove };
+CLU_proc table_oe_sizes = { .proc = tableOPsizes };
 
 table_OPS table_ops_actual = {18, (OWNPTR)&table_own_init, (OWNPTR)&table_own_init, {
     {&table_oe_alter, "alter"},

@@ -4,15 +4,15 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode _case();
 
 /**** BEGIN PROCEDURE lower_case ****/
 
+extern errcode _case();
+
 errcode
 lower_case(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(4);
 
   LINE(5);
@@ -33,7 +33,7 @@ lower_case(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE lower_case ****/
 
@@ -41,11 +41,11 @@ lower_case(CLUREF s, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE upper_case ****/
 
+
 errcode
 upper_case(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(8);
 
   LINE(9);
@@ -66,7 +66,7 @@ upper_case(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE upper_case ****/
 
@@ -74,11 +74,11 @@ upper_case(CLUREF s, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE capitalize ****/
 
+
 errcode
 capitalize(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(12);
 
   LINE(13);
@@ -99,10 +99,13 @@ capitalize(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE capitalize ****/
 
+
+
+/**** BEGIN PROCEDURE _case ****/
 
 extern errcode arrayOPnew();
 extern errcode stringOPchars();
@@ -121,27 +124,26 @@ extern errcode _case_IB_1();
 extern errcode _case_IB_2();
 static int _case_own_init = 0;
 CLUREF _caseOPbuf;
-
-/**** BEGIN PROCEDURE _case ****/
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF pos;
+    CLUREF upper;
+    CLUREF c;
+    CLUREF npos;
+    CLUREF s;
+    CLUREF first;
+    CLUREF rest;
+} _case_LOCALS_t;
 
 errcode
 _case(CLUREF s, CLUREF first, CLUREF rest, CLUREF *ret_1)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF pos;
-        CLUREF upper;
-        CLUREF c;
-        CLUREF npos;
-        CLUREF s;
-        CLUREF first;
-        CLUREF rest;
-        } locals;
+{
+    _case_LOCALS_t locals;
     locals.s = s;
     locals.first = first;
     locals.rest = rest;
-        if (_case_own_init == 0) {
+    if (_case_own_init == 0) {
         _case_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -169,8 +171,9 @@ _case(CLUREF s, CLUREF first, CLUREF rest, CLUREF *ret_1)
     {
         locals.err = stringOPchars(locals.s, _case_IB_1, &locals, &locals.ecode2);
         if (locals.err == ERR_iterbodyreturn) {
-        ret_1->num = elist[0].num;
-        signal(ERR_ok);}
+            ret_1->num = elist[0].num;
+            signal(ERR_ok);
+        }
         if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
         if (locals.err == ERR_break) locals.err = ERR_ok;
         if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -195,8 +198,9 @@ _case(CLUREF s, CLUREF first, CLUREF rest, CLUREF *ret_1)
                 {
                     locals.err = stringOPchars(locals.s, _case_IB_2, &locals, &locals.ecode2);
                     if (locals.err == ERR_iterbodyreturn) {
-                    ret_1->num = elist[0].num;
-                    signal(ERR_ok);}
+                        ret_1->num = elist[0].num;
+                        signal(ERR_ok);
+                    }
                     if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
                     if (locals.err == ERR_break) locals.err = ERR_ok;
                     if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -237,27 +241,15 @@ _case(CLUREF s, CLUREF first, CLUREF rest, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _case ****/
 
 
 /**** BEGIN ITERATOR BODIES for _case ****/
 
-errcode _case_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF pos;
-    CLUREF upper;
-    CLUREF c;
-    CLUREF npos;
-    CLUREF s;
-    CLUREF first;
-    CLUREF rest;
-    } *locals;
+errcode
+_case_IB_1(CLUREF iv_1, _case_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
     enter_iter_body_proc(22);
@@ -342,21 +334,10 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end _case_IB_1 */
-errcode _case_IB_2(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF pos;
-    CLUREF upper;
-    CLUREF c;
-    CLUREF npos;
-    CLUREF s;
-    CLUREF first;
-    CLUREF rest;
-    } *locals;
+}   /* end _case_IB_1 */
+
+errcode
+_case_IB_2(CLUREF iv_1, _case_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
     enter_iter_body_proc(33);
@@ -485,7 +466,7 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end _case_IB_2 */
+}   /* end _case_IB_2 */
 
 /**** END ITERATOR BODIES for _case ****/
 

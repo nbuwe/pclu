@@ -7,15 +7,17 @@
 /**** BEGIN CLUSTER gcd_tab ****/
 
 
-typedef struct {
-long count;
-    char *_gcd_name;
-} gcd_tab_op_grind_of_t_REQS;
+static const struct /* REQS */ {
+    long count;
+    const struct REQ_ENTRY entry[1];
+} gcd_tab_op_grind_of_t_reqs_actual = {
+    1, {
+        { "_gcd" },
+    }
+};
 
-gcd_tab_op_grind_of_t_REQS gcd_tab_op_grind_of_t_reqs_actual = {1,
-    "_gcd"};
-
-struct REQS * gcd_tab_op_grind_of_t_reqs = (struct REQS *)&gcd_tab_op_grind_of_t_reqs_actual;
+const struct REQS * const gcd_tab_op_grind_of_t_reqs
+    = (const struct REQS *)&gcd_tab_op_grind_of_t_reqs_actual;
 
 typedef struct {
     long count;
@@ -24,15 +26,17 @@ typedef struct {
     struct OP_ENTRY _gcd;
 } gcd_tab_op_grind_of_t_OPS;
 
-typedef struct {
-long count;
-    char *_gcd_name;
-} gcd_tab_op_grindc_of_t_REQS;
+static const struct /* REQS */ {
+    long count;
+    const struct REQ_ENTRY entry[1];
+} gcd_tab_op_grindc_of_t_reqs_actual = {
+    1, {
+        { "_gcd" },
+    }
+};
 
-gcd_tab_op_grindc_of_t_REQS gcd_tab_op_grindc_of_t_reqs_actual = {1,
-    "_gcd"};
-
-struct REQS * gcd_tab_op_grindc_of_t_reqs = (struct REQS *)&gcd_tab_op_grindc_of_t_reqs_actual;
+const struct REQS * const gcd_tab_op_grindc_of_t_reqs
+    = (const struct REQS *)&gcd_tab_op_grindc_of_t_reqs_actual;
 
 typedef struct {
     long count;
@@ -41,15 +45,17 @@ typedef struct {
     struct OP_ENTRY _gcd;
 } gcd_tab_op_grindc_of_t_OPS;
 
-typedef struct {
-long count;
-    char *_gcd_name;
-} gcd_tab_op_grindp_of_t_REQS;
+static const struct /* REQS */ {
+    long count;
+    const struct REQ_ENTRY entry[1];
+} gcd_tab_op_grindp_of_t_reqs_actual = {
+    1, {
+        { "_gcd" },
+    }
+};
 
-gcd_tab_op_grindp_of_t_REQS gcd_tab_op_grindp_of_t_reqs_actual = {1,
-    "_gcd"};
-
-struct REQS * gcd_tab_op_grindp_of_t_reqs = (struct REQS *)&gcd_tab_op_grindp_of_t_reqs_actual;
+const struct REQS * const gcd_tab_op_grindp_of_t_reqs
+    = (const struct REQS *)&gcd_tab_op_grindp_of_t_reqs_actual;
 
 typedef struct {
     long count;
@@ -58,15 +64,17 @@ typedef struct {
     struct OP_ENTRY _gcd;
 } gcd_tab_op_grindp_of_t_OPS;
 
-typedef struct {
-long count;
-    char *_gcd_name;
-} gcd_tab_op_pgrind_of_t_REQS;
+static const struct /* REQS */ {
+    long count;
+    const struct REQ_ENTRY entry[1];
+} gcd_tab_op_pgrind_of_t_reqs_actual = {
+    1, {
+        { "_gcd" },
+    }
+};
 
-gcd_tab_op_pgrind_of_t_REQS gcd_tab_op_pgrind_of_t_reqs_actual = {1,
-    "_gcd"};
-
-struct REQS * gcd_tab_op_pgrind_of_t_reqs = (struct REQS *)&gcd_tab_op_pgrind_of_t_reqs_actual;
+const struct REQS * const gcd_tab_op_pgrind_of_t_reqs
+    = (const struct REQS *)&gcd_tab_op_pgrind_of_t_reqs_actual;
 
 typedef struct {
     long count;
@@ -75,15 +83,17 @@ typedef struct {
     struct OP_ENTRY _gcd;
 } gcd_tab_op_pgrind_of_t_OPS;
 
-typedef struct {
-long count;
-    char *_gcd_name;
-} gcd_tab_op_mgrind_of_t_REQS;
+static const struct /* REQS */ {
+    long count;
+    const struct REQ_ENTRY entry[1];
+} gcd_tab_op_mgrind_of_t_reqs_actual = {
+    1, {
+        { "_gcd" },
+    }
+};
 
-gcd_tab_op_mgrind_of_t_REQS gcd_tab_op_mgrind_of_t_reqs_actual = {1,
-    "_gcd"};
-
-struct REQS * gcd_tab_op_mgrind_of_t_reqs = (struct REQS *)&gcd_tab_op_mgrind_of_t_reqs_actual;
+const struct REQS * const gcd_tab_op_mgrind_of_t_reqs
+    = (const struct REQS *)&gcd_tab_op_mgrind_of_t_reqs_actual;
 
 typedef struct {
     long count;
@@ -143,79 +153,85 @@ extern errcode recordOPget_1();
 extern errcode recordOPget_2();
 extern errcode _vecOPstore();
 extern errcode arrayOPaddh();
-extern OWN_req gcd_tab_ownreqs;
+extern const OWN_req gcd_tab_ownreqs;
 extern struct OPS *gcd_tab_ops;
-extern struct REQS *gcd_tab_op_mgrind_of_t_reqs;
-extern OWN_req gcd_tab_op_mgrind_ownreqs;
-extern struct REQS *gcd_tab_op_pgrind_of_t_reqs;
-extern OWN_req gcd_tab_op_pgrind_ownreqs;
-extern struct REQS *_tagcell_of_t_reqs;
+extern const struct REQS * const gcd_tab_op_mgrind_of_t_reqs;
+extern const OWN_req gcd_tab_op_mgrind_ownreqs;
+extern const struct REQS * const gcd_tab_op_pgrind_of_t_reqs;
+extern const OWN_req gcd_tab_op_pgrind_ownreqs;
+extern const struct REQS * const _tagcell_of_t_reqs;
 extern struct OPS *_obj_ops;
-extern OWN_req _tagcell_ownreqs;
+extern const OWN_req _tagcell_ownreqs;
 extern struct OPS *_tagcell_ops;
 struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
 struct OPS *_tagcell_of__obj_ops;
 OWNPTR _tagcell_of__obj_owns;
-extern struct REQS *_adv_of_t_reqs;
-extern OWN_req _adv_ownreqs;
+extern const struct REQS * const _adv_of_t_reqs;
+extern const OWN_req _adv_ownreqs;
 extern struct OPS *_adv_ops;
 struct OPS *_adv_of__obj_table;
 struct OPS *_adv_of__obj_ops;
 struct OPS *_adv_of__obj_ops;
 OWNPTR _adv_of__obj_owns;
-CLUREF STR_write;
-CLUREF STR_gcd_137tab_072_040array_040store_040not_040a_040ref;
+static CLUREF STR_write;
+static CLUREF STR_gcd_137tab_072_040array_040store_040not_040a_040ref;
 static int gcd_tab_own_init = 0;
-OWN_req gcd_tab_ownreqs = {0,0};
-errcode gcd_tab_own_init_proc()
+const OWN_req gcd_tab_ownreqs = { 0, 0 };
+
+errcode
+gcd_tab_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (gcd_tab_own_init == 0) {
-        add_parm_info_type(0, _obj_ops, _tagcell_of_t_reqs);
+    if (gcd_tab_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, _tagcell_of_t_reqs);
         find_type_instance(_tagcell_ops, 1, &_tagcell_ownreqs, &(_tagcell_of__obj_ops));
-        add_parm_info_type(0, _obj_ops, _adv_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, _adv_of_t_reqs);
         find_type_instance(_adv_ops, 1, &_adv_ownreqs, &(_adv_of__obj_ops));
-        stringOPcons("write", CLU_1, CLU_5, &STR_write);
-        stringOPcons("gcd_tab: array store not a ref", CLU_1, CLU_30, &STR_gcd_137tab_072_040array_040store_040not_040a_040ref);
+        stringOPcons("write", CLU_1, CLUREF_make_num(5), &STR_write);
+        stringOPcons("gcd_tab: array store not a ref", CLU_1, CLUREF_make_num(30), &STR_gcd_137tab_072_040array_040store_040not_040a_040ref);
         gcd_tab_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
-
-
-typedef struct {
-    long grind_own_init;
-    gcd_tab_op_grind_of_t_OPS *t_ops;
-    struct OPS *gcd_tab_op_mgrind_of_t_table;
-    struct OPS *gcd_tab_op_mgrind_of_t_ops;
-    OWNPTR gcd_tab_op_mgrind_of_t_owns;
-    } gcd_tab_op_grind_OWN_DEFN;
-OWN_req gcd_tab_op_grind_ownreqs = {sizeof(gcd_tab_op_grind_OWN_DEFN), 1};
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE grind ****/
 
+
+typedef struct {
+    long grind_own_init;
+    const gcd_tab_op_grind_of_t_OPS * const t_ops;
+    struct OPS *gcd_tab_op_mgrind_of_t_table;
+    struct OPS *gcd_tab_op_mgrind_of_t_ops;
+    OWNPTR gcd_tab_op_mgrind_of_t_owns;
+} gcd_tab_op_grind_OWN_DEFN;
+const OWN_req gcd_tab_op_grind_ownreqs = { sizeof(gcd_tab_op_grind_OWN_DEFN), 1 };
+
+
 errcode
 gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     gcd_tab_op_grind_OWN_DEFN *op_own_ptr;
     CLUREF ch;
     CLUREF tab;
     CLUREF buf;
     CLUREF why;
-    op_own_ptr = (gcd_tab_op_grind_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->grind_own_init == 0) {
-        add_parm_info_type(0, op_own_ptr->t_ops, gcd_tab_op_mgrind_of_t_reqs);
+    op_own_ptr = (gcd_tab_op_grind_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->grind_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, gcd_tab_op_mgrind_of_t_reqs);
         find_typeop_instance(gcd_tab_ops, gcd_tabOPmgrind, 1, 0, &gcd_tab_op_mgrind_ownreqs, &gcd_tab_ownreqs, &(op_own_ptr->gcd_tab_op_mgrind_of_t_ops));
-        stringOPcons("write", CLU_1, CLU_5, &STR_write);
-        }
-        if (op_own_ptr->grind_own_init == 0) {
+        stringOPcons("write", CLU_1, CLUREF_make_num(5), &STR_write);
+    }
+    if (op_own_ptr->grind_own_init == 0) {
         op_own_ptr->grind_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(44);
 
@@ -253,22 +269,22 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
         CLUREF T_1_7;
         CLUREF T_1_8;
         RecordAlloc(5, T_1_1);
-        T_1_1.vec->data[3]  = 0;
+        T_1_1.vec->data[3] = 0;
         err = _gcOPcount(&T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_2.num;
+        T_1_1.vec->data[1] = T_1_2.num;
         T_1_3.num = 300000;
         err = arrayOPpredict(CLU_1, T_1_3, &T_1_4);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[4]  = T_1_4.num;
+        T_1_1.vec->data[4] = T_1_4.num;
         T_1_5.num = 300000;
         err = arrayOPpredict(CLU_1, T_1_5, &T_1_6);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[2]  = T_1_6.num;
+        T_1_1.vec->data[2] = T_1_6.num;
         T_1_7.num = 50000;
         err = _vecOPcreate(T_1_7, &T_1_8);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_8.num;
+        T_1_1.vec->data[0] = T_1_8.num;
         tab.num = T_1_1.num;
         }
         }
@@ -392,39 +408,40 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE grind ****/
 
 
+/**** BEGIN PROCEDURE grindc ****/
+
+
 typedef struct {
     long grindc_own_init;
-    gcd_tab_op_grindc_of_t_OPS *t_ops;
+    const gcd_tab_op_grindc_of_t_OPS * const t_ops;
     struct OPS *gcd_tab_op_mgrind_of_t_table;
     struct OPS *gcd_tab_op_mgrind_of_t_ops;
     OWNPTR gcd_tab_op_mgrind_of_t_owns;
-    } gcd_tab_op_grindc_OWN_DEFN;
-OWN_req gcd_tab_op_grindc_ownreqs = {sizeof(gcd_tab_op_grindc_OWN_DEFN), 1};
+} gcd_tab_op_grindc_OWN_DEFN;
+const OWN_req gcd_tab_op_grindc_ownreqs = { sizeof(gcd_tab_op_grindc_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE grindc ****/
 
 errcode
 gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
-    {
+{
     errcode err;
-    errcode ecode2;
     gcd_tab_op_grindc_OWN_DEFN *op_own_ptr;
     CLUREF tab;
     CLUREF buf;
     CLUREF why;
-    op_own_ptr = (gcd_tab_op_grindc_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->grindc_own_init == 0) {
-        add_parm_info_type(0, op_own_ptr->t_ops, gcd_tab_op_mgrind_of_t_reqs);
+    op_own_ptr = (gcd_tab_op_grindc_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->grindc_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, gcd_tab_op_mgrind_of_t_reqs);
         find_typeop_instance(gcd_tab_ops, gcd_tabOPmgrind, 1, 0, &gcd_tab_op_mgrind_ownreqs, &gcd_tab_ownreqs, &(op_own_ptr->gcd_tab_op_mgrind_of_t_ops));
-        }
-        if (op_own_ptr->grindc_own_init == 0) {
+    }
+    if (op_own_ptr->grindc_own_init == 0) {
         op_own_ptr->grindc_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(83);
 
@@ -449,20 +466,20 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
         CLUREF T_1_5;
         CLUREF T_1_6;
         RecordAlloc(5, T_1_1);
-        T_1_1.vec->data[3]  = 0;
+        T_1_1.vec->data[3] = 0;
         err = _gcOPcount(&T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_2.num;
+        T_1_1.vec->data[1] = T_1_2.num;
         err = arrayOPnew(&T_1_3);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[4]  = T_1_3.num;
+        T_1_1.vec->data[4] = T_1_3.num;
         err = arrayOPnew(&T_1_4);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[2]  = T_1_4.num;
+        T_1_1.vec->data[2] = T_1_4.num;
         T_1_5.num = 50000;
         err = _vecOPcreate(T_1_5, &T_1_6);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_6.num;
+        T_1_1.vec->data[0] = T_1_6.num;
         tab.num = T_1_1.num;
         }
         }
@@ -558,44 +575,45 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE grindc ****/
 
 
+/**** BEGIN PROCEDURE grindp ****/
+
+
 typedef struct {
     long grindp_own_init;
-    gcd_tab_op_grindp_of_t_OPS *t_ops;
+    const gcd_tab_op_grindp_of_t_OPS * const t_ops;
     struct OPS *gcd_tab_op_pgrind_of_t_table;
     struct OPS *gcd_tab_op_pgrind_of_t_ops;
     OWNPTR gcd_tab_op_pgrind_of_t_owns;
     struct OPS *gcd_tab_op_mgrind_of_t_table;
     struct OPS *gcd_tab_op_mgrind_of_t_ops;
     OWNPTR gcd_tab_op_mgrind_of_t_owns;
-    } gcd_tab_op_grindp_OWN_DEFN;
-OWN_req gcd_tab_op_grindp_ownreqs = {sizeof(gcd_tab_op_grindp_OWN_DEFN), 1};
+} gcd_tab_op_grindp_OWN_DEFN;
+const OWN_req gcd_tab_op_grindp_ownreqs = { sizeof(gcd_tab_op_grindp_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE grindp ****/
 
 errcode
 gcd_tabOPgrindp(CLUREF x, CLUREF ch)
-    {
+{
     errcode err;
-    errcode ecode2;
     gcd_tab_op_grindp_OWN_DEFN *op_own_ptr;
     CLUREF tab;
     CLUREF buf;
     CLUREF why;
-    op_own_ptr = (gcd_tab_op_grindp_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->grindp_own_init == 0) {
-        add_parm_info_type(0, op_own_ptr->t_ops, gcd_tab_op_pgrind_of_t_reqs);
+    op_own_ptr = (gcd_tab_op_grindp_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->grindp_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, gcd_tab_op_pgrind_of_t_reqs);
         find_typeop_instance(gcd_tab_ops, gcd_tabOPpgrind, 1, 0, &gcd_tab_op_pgrind_ownreqs, &gcd_tab_ownreqs, &(op_own_ptr->gcd_tab_op_pgrind_of_t_ops));
-        add_parm_info_type(0, op_own_ptr->t_ops, gcd_tab_op_mgrind_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, gcd_tab_op_mgrind_of_t_reqs);
         find_typeop_instance(gcd_tab_ops, gcd_tabOPmgrind, 1, 0, &gcd_tab_op_mgrind_ownreqs, &gcd_tab_ownreqs, &(op_own_ptr->gcd_tab_op_mgrind_of_t_ops));
-        }
-        if (op_own_ptr->grindp_own_init == 0) {
+    }
+    if (op_own_ptr->grindp_own_init == 0) {
         op_own_ptr->grindp_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(108);
 
@@ -608,20 +626,20 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
         CLUREF T_1_5;
         CLUREF T_1_6;
         RecordAlloc(5, T_1_1);
-        T_1_1.vec->data[3]  = 0;
+        T_1_1.vec->data[3] = 0;
         err = _gcOPcount(&T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_2.num;
+        T_1_1.vec->data[1] = T_1_2.num;
         err = arrayOPnew(&T_1_3);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[4]  = T_1_3.num;
+        T_1_1.vec->data[4] = T_1_3.num;
         err = arrayOPnew(&T_1_4);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[2]  = T_1_4.num;
+        T_1_1.vec->data[2] = T_1_4.num;
         T_1_5.num = 50000;
         err = _vecOPcreate(T_1_5, &T_1_6);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_6.num;
+        T_1_1.vec->data[0] = T_1_6.num;
         tab.num = T_1_1.num;
         }
         }
@@ -666,7 +684,7 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
 
   LINE(120);
         {
-        tab.vec->data[3]  = 0;
+        tab.vec->data[3] = 0;
         }
 
   LINE(121);
@@ -714,9 +732,12 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE grindp ****/
+
+
+/**** BEGIN PROCEDURE pgrind ****/
 
 struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
@@ -729,18 +750,15 @@ OWNPTR _adv_of__obj_owns;
 
 typedef struct {
     long pgrind_own_init;
-    gcd_tab_op_pgrind_of_t_OPS *t_ops;
-    } gcd_tab_op_pgrind_OWN_DEFN;
-OWN_req gcd_tab_op_pgrind_ownreqs = {sizeof(gcd_tab_op_pgrind_OWN_DEFN), 1};
+    const gcd_tab_op_pgrind_of_t_OPS * const t_ops;
+} gcd_tab_op_pgrind_OWN_DEFN;
+const OWN_req gcd_tab_op_pgrind_ownreqs = { sizeof(gcd_tab_op_pgrind_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE pgrind ****/
 
 errcode
 gcd_tabOPpgrind(CLUREF tab, CLUREF x)
-    {
+{
     errcode err;
-    errcode ecode2;
     gcd_tab_op_pgrind_OWN_DEFN *op_own_ptr;
     CLUREF iq;
     CLUREF oq;
@@ -752,15 +770,16 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
     CLUREF i;
     CLUREF inf;
     CLUREF a;
-    op_own_ptr = (gcd_tab_op_pgrind_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->pgrind_own_init == 0) {
-        add_parm_info_type(0, _obj_ops, _tagcell_of_t_reqs);
+    op_own_ptr = (gcd_tab_op_pgrind_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->pgrind_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, _tagcell_of_t_reqs);
         find_type_instance(_tagcell_ops, 1, &_tagcell_ownreqs, &(_tagcell_of__obj_ops));
-        add_parm_info_type(0, _obj_ops, _adv_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, _adv_of_t_reqs);
         find_type_instance(_adv_ops, 1, &_adv_ownreqs, &(_adv_of__obj_ops));
-        }
-        if (op_own_ptr->pgrind_own_init == 0) {
+    }
+    if (op_own_ptr->pgrind_own_init == 0) {
         op_own_ptr->pgrind_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(130);
 
@@ -836,7 +855,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                         err = ERR_bounds;
                         goto ex_1;}
                     T_4_1.num = oq.array->store->data[idx.num - oq.array->ext_low + oq.array->int_low];
-                    T_4_2.num = T_4_1.num;
+                    T_4_2.num = (long)T_4_1.num;
                     v.num = T_4_2.num;
                     }
                     }
@@ -876,7 +895,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                         err = ERR_bounds;
                         goto ex_1;}
                     T_4_1.num = oq.array->store->data[idx.num - oq.array->ext_low + oq.array->int_low];
-                    T_4_2.num = T_4_1.num;
+                    T_4_2.num = (long)T_4_1.num;
                     v.num = T_4_2.num;
                     }
                     }
@@ -926,7 +945,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                         err = ERR_bounds;
                         goto ex_1;}
                     T_4_1.num = oq.array->store->data[idx.num - oq.array->ext_low + oq.array->int_low];
-                    T_4_2.num = T_4_1.num;
+                    T_4_2.num = (long)T_4_1.num;
                     generic_CLU_proc.type_owns = _tagcell_of__obj_ops->type_owns;
                     generic_CLU_proc.proc = _tagcellOPget;
                     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -966,7 +985,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                         err = ERR_bounds;
                         goto ex_1;}
                     T_4_1.num = oq.array->store->data[idx.num - oq.array->ext_low + oq.array->int_low];
-                    T_4_2.num = T_4_1.num;
+                    T_4_2.num = (long)T_4_1.num;
                     generic_CLU_proc.type_owns = _tagcell_of__obj_ops->type_owns;
                     generic_CLU_proc.proc = _tagcellOPget;
                     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -999,7 +1018,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                         err = ERR_bounds;
                         goto ex_1;}
                     T_4_1.num = oq.array->store->data[idx.num - oq.array->ext_low + oq.array->int_low];
-                    T_4_2.num = T_4_1.num;
+                    T_4_2.num = (long)T_4_1.num;
                     a.num = T_4_2.num;
                     }
                     }
@@ -1033,8 +1052,8 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                     goto ex_1;}
                 err = intOPmul(CLU_4, T_4_2, &T_4_3);
                 if (err != ERR_ok) goto ex_1;
-                T_4_4.num = inf.num;
-                T_4_5.num = v.num;
+                T_4_4.num = (long)inf.num;
+                T_4_5.num = (long)v.num;
                 err = gcd_tabOPinsert(tab, T_4_3, T_4_4, T_4_5, &T_4_6);
                 if (err != ERR_ok) goto ex_1;
                 }
@@ -1053,7 +1072,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                         err = ERR_bounds;
                         goto ex_1;}
                     T_4_1.num = oq.array->store->data[idx.num - oq.array->ext_low + oq.array->int_low];
-                    T_4_2.num = T_4_1.num;
+                    T_4_2.num = (long)T_4_1.num;
                     v.num = T_4_2.num;
                     }
                     }
@@ -1073,7 +1092,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                         CLUREF T_5_1;
                         CLUREF T_5_2;
                         CLUREF T_5_3;
-                        T_5_1.num = nil;
+                        T_5_1.num = (long)nil;
                         T_5_2.num = (e.num == T_5_1.num)? true : false;
                         T_5_3.num = T_5_2.num ^ 1;
                         if (T_5_3.num == true) {
@@ -1112,9 +1131,12 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE pgrind ****/
+
+
+/**** BEGIN PROCEDURE mgrind ****/
 
 struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
@@ -1127,18 +1149,15 @@ OWNPTR _adv_of__obj_owns;
 
 typedef struct {
     long mgrind_own_init;
-    gcd_tab_op_mgrind_of_t_OPS *t_ops;
-    } gcd_tab_op_mgrind_OWN_DEFN;
-OWN_req gcd_tab_op_mgrind_ownreqs = {sizeof(gcd_tab_op_mgrind_OWN_DEFN), 1};
+    const gcd_tab_op_mgrind_of_t_OPS * const t_ops;
+} gcd_tab_op_mgrind_OWN_DEFN;
+const OWN_req gcd_tab_op_mgrind_ownreqs = { sizeof(gcd_tab_op_mgrind_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE mgrind ****/
 
 errcode
 gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
-    {
+{
     errcode err;
-    errcode ecode2;
     gcd_tab_op_mgrind_OWN_DEFN *op_own_ptr;
     CLUREF val;
     CLUREF iq;
@@ -1152,16 +1171,17 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
     CLUREF i;
     CLUREF inf;
     CLUREF a;
-    op_own_ptr = (gcd_tab_op_mgrind_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->mgrind_own_init == 0) {
-        add_parm_info_type(0, _obj_ops, _tagcell_of_t_reqs);
+    op_own_ptr = (gcd_tab_op_mgrind_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->mgrind_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, _tagcell_of_t_reqs);
         find_type_instance(_tagcell_ops, 1, &_tagcell_ownreqs, &(_tagcell_of__obj_ops));
-        add_parm_info_type(0, _obj_ops, _adv_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, _adv_of_t_reqs);
         find_type_instance(_adv_ops, 1, &_adv_ownreqs, &(_adv_of__obj_ops));
-        stringOPcons("gcd_tab: array store not a ref", CLU_1, CLU_30, &STR_gcd_137tab_072_040array_040store_040not_040a_040ref);
-        }
-        if (op_own_ptr->mgrind_own_init == 0) {
+        stringOPcons("gcd_tab: array store not a ref", CLU_1, CLUREF_make_num(30), &STR_gcd_137tab_072_040array_040store_040not_040a_040ref);
+    }
+    if (op_own_ptr->mgrind_own_init == 0) {
         op_own_ptr->mgrind_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(172);
 
@@ -1210,7 +1230,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
   LINE(183);
         {
         CLUREF T_3_1;
-        T_3_1.num = x.num;
+        T_3_1.num = (long)x.num;
         err = gcd_storeOPstore_lit(T_3_1);
         if (err != ERR_ok) goto ex_3;
         }
@@ -1271,7 +1291,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     CLUREF T_5_2;
                     err = arrayOPreml(oq, &T_5_1);
                     if (err != ERR_ok) goto ex_6;
-                    T_5_2.num = T_5_1.num;
+                    T_5_2.num = (long)T_5_1.num;
                     b.num = T_5_2.num;
                     }
                     }
@@ -1323,7 +1343,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     CLUREF T_5_2;
                     err = arrayOPreml(oq, &T_5_1);
                     if (err != ERR_ok) goto ex_6;
-                    T_5_2.num = T_5_1.num;
+                    T_5_2.num = (long)T_5_1.num;
                     v.num = T_5_2.num;
                     }
                     }
@@ -1372,7 +1392,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
   LINE(208);
                             {
                             CLUREF T_8_1;
-                            T_8_1.num = e.num;
+                            T_8_1.num = (long)e.num;
                             err = gcd_storeOPstore_lit(T_8_1);
                             if (err != ERR_ok) goto ex_10;
                             }
@@ -1413,7 +1433,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     CLUREF T_5_2;
                     err = arrayOPreml(oq, &T_5_1);
                     if (err != ERR_ok) goto ex_6;
-                    T_5_2.num = T_5_1.num;
+                    T_5_2.num = (long)T_5_1.num;
                     v.num = T_5_2.num;
                     }
                     }
@@ -1482,7 +1502,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
   LINE(224);
                             {
                             CLUREF T_8_1;
-                            T_8_1.num = e.num;
+                            T_8_1.num = (long)e.num;
                             err = gcd_storeOPstore_lit(T_8_1);
                             if (err != ERR_ok) goto ex_13;
                             }
@@ -1525,7 +1545,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     CLUREF T_5_4;
                     err = arrayOPreml(oq, &T_5_1);
                     if (err != ERR_ok) goto ex_6;
-                    T_5_2.num = T_5_1.num;
+                    T_5_2.num = (long)T_5_1.num;
                     generic_CLU_proc.type_owns = _tagcell_of__obj_ops->type_owns;
                     generic_CLU_proc.proc = _tagcellOPget;
                     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1573,7 +1593,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
   LINE(237);
                     {
                     CLUREF T_7_1;
-                    T_7_1.num = e.num;
+                    T_7_1.num = (long)e.num;
                     err = gcd_storeOPstore_lit(T_7_1);
                     if (err != ERR_ok) goto ex_16;
                     }
@@ -1613,7 +1633,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     CLUREF T_5_4;
                     err = arrayOPreml(oq, &T_5_1);
                     if (err != ERR_ok) goto ex_6;
-                    T_5_2.num = T_5_1.num;
+                    T_5_2.num = (long)T_5_1.num;
                     generic_CLU_proc.type_owns = _tagcell_of__obj_ops->type_owns;
                     generic_CLU_proc.proc = _tagcellOPget;
                     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1656,7 +1676,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
   LINE(249);
                     {
                     CLUREF T_7_1;
-                    T_7_1.num = e.num;
+                    T_7_1.num = (long)e.num;
                     err = gcd_storeOPstore_lit(T_7_1);
                     if (err != ERR_ok) goto ex_19;
                     }
@@ -1694,7 +1714,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     CLUREF T_5_2;
                     err = arrayOPreml(oq, &T_5_1);
                     if (err != ERR_ok) goto ex_6;
-                    T_5_2.num = T_5_1.num;
+                    T_5_2.num = (long)T_5_1.num;
                     a.num = T_5_2.num;
                     }
                     }
@@ -1734,8 +1754,8 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                      (T_5_2.num < 0 && T_5_1.num > 0 && 8 > 0)) {
                     err = ERR_overflow;
                     goto ex_6;}
-                T_5_3.num = inf.num;
-                T_5_4.num = v.num;
+                T_5_3.num = (long)inf.num;
+                T_5_4.num = (long)v.num;
                 err = gcd_tabOPinsert(tab, T_5_2, T_5_3, T_5_4, &T_5_5);
                 if (err != ERR_ok) goto ex_6;
                 val.num = T_5_5.num;
@@ -1791,7 +1811,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     CLUREF T_5_2;
                     err = arrayOPreml(oq, &T_5_1);
                     if (err != ERR_ok) goto ex_6;
-                    T_5_2.num = T_5_1.num;
+                    T_5_2.num = (long)T_5_1.num;
                     v.num = T_5_2.num;
                     }
                     }
@@ -1826,7 +1846,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                         {
                         CLUREF T_6_1;
                         CLUREF T_6_2;
-                        T_6_1.num = nil;
+                        T_6_1.num = (long)nil;
                         T_6_2.num = (e.num == T_6_1.num)? true : false;
                         if (T_6_2.num == true) {
 
@@ -1862,7 +1882,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
   LINE(284);
                                 {
                                 CLUREF T_9_1;
-                                T_9_1.num = e.num;
+                                T_9_1.num = (long)e.num;
                                 err = gcd_storeOPstore_lit(T_9_1);
                                 if (err != ERR_ok) goto ex_25;
                                 }
@@ -1931,26 +1951,26 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE mgrind ****/
 
 
 /**** BEGIN PROCEDURE insert ****/
 
+
 errcode
 gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF xmb;
     CLUREF mb;
     CLUREF addr;
-        if (gcd_tab_own_init == 0) {
-            err = gcd_tab_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcd_tab_own_init == 0) {
+        err = gcd_tab_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(300);
 
   LINE(307);
@@ -1994,7 +2014,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         T_1_2.num = (mb.num == T_1_1.num)? true : false;
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
@@ -2004,7 +2024,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         CLUREF T_2_3;
-        T_2_1.num = mb.num;
+        T_2_1.num = (long)mb.num;
         T_2_2.num = T_2_1.vec->data[2];
         T_2_3.num = (x.num == T_2_2.num)? true : false;
         if (T_2_3.num == true) {
@@ -2014,7 +2034,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
-            T_3_1.num = mb.num;
+            T_3_1.num = (long)mb.num;
             T_3_2.num = T_3_1.vec->data[0];
             ret_1->num = T_3_2.num;
             }
@@ -2026,7 +2046,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
-        T_2_1.num = mb.num;
+        T_2_1.num = (long)mb.num;
         T_2_2.num = T_2_1.vec->data[1];
         mb.num = T_2_2.num;
         }
@@ -2048,10 +2068,10 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
     CLUREF T_1_3;
     T_1_1.num = tab.vec->data[0];
     RecordAlloc(3, T_1_2);
-    T_1_2.vec->data[2]  = x.num;
-    T_1_2.vec->data[0]  = addr.num;
-    T_1_2.vec->data[1]  = xmb.num;
-    T_1_3.num = T_1_2.num;
+    T_1_2.vec->data[2] = x.num;
+    T_1_2.vec->data[0] = addr.num;
+    T_1_2.vec->data[1] = xmb.num;
+    T_1_3.num = (long)T_1_2.num;
     err = _vecOPstore(T_1_1, i, T_1_3);
     if (err != ERR_ok) goto ex_0;
     }
@@ -2092,7 +2112,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
          (T_1_1.num < 0 && addr.num > 0 && z.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    tab.vec->data[3]  = T_1_1.num;
+    tab.vec->data[3] = T_1_1.num;
     }
 
   LINE(322);
@@ -2110,7 +2130,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE insert ****/
 
@@ -2121,9 +2141,9 @@ typedef struct{
     struct OP_ENTRY entry[3];
 } gcd_tab_OPS;
 
-CLU_proc gcd_tab_oe_grind = {{0,0,0,0}, gcd_tabOPgrind, 0};
-CLU_proc gcd_tab_oe_grindc = {{0,0,0,0}, gcd_tabOPgrindc, 0};
-CLU_proc gcd_tab_oe_grindp = {{0,0,0,0}, gcd_tabOPgrindp, 0};
+CLU_proc gcd_tab_oe_grind = { .proc = gcd_tabOPgrind };
+CLU_proc gcd_tab_oe_grindc = { .proc = gcd_tabOPgrindc };
+CLU_proc gcd_tab_oe_grindp = { .proc = gcd_tabOPgrindp };
 
 gcd_tab_OPS gcd_tab_ops_actual = {3, (OWNPTR)&gcd_tab_own_init, (OWNPTR)&gcd_tab_own_init, {
     {&gcd_tab_oe_grind, "grind"},
@@ -2153,39 +2173,44 @@ struct OPS *_adv_of__obj_ops;
 struct OPS *_adv_of__obj_ops;
 OWNPTR _adv_of__obj_owns;
 static int gcd_store_own_init = 0;
-OWN_req gcd_store_ownreqs = {0,0};
+const OWN_req gcd_store_ownreqs = { 0, 0 };
 CLUREF gcd_storeOPpos;
 CLUREF gcd_storeOPbuf;
 CLUREF gcd_storeOPch;
-errcode gcd_store_own_init_proc()
+
+errcode
+gcd_store_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (gcd_store_own_init == 0) {
-        add_parm_info_type(0, _obj_ops, _adv_of_t_reqs);
+    if (gcd_store_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, _adv_of_t_reqs);
         find_type_instance(_adv_ops, 1, &_adv_ownreqs, &(_adv_of__obj_ops));
         gcd_store_own_init = 1;
         {
             {gcd_storeOPpos.num = 1;
             }
             }
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE init ****/
 
+
 errcode
 gcd_storeOPinit(CLUREF w, CLUREF c)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (gcd_store_own_init == 0) {
-            err = gcd_store_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcd_store_own_init == 0) {
+        err = gcd_store_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(364);
 
   LINE(365);
@@ -2210,29 +2235,29 @@ gcd_storeOPinit(CLUREF w, CLUREF c)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE init ****/
 
 
 /**** BEGIN PROCEDURE store_id ****/
 
+
 errcode
 gcd_storeOPstore_id()
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (gcd_store_own_init == 0) {
-            err = gcd_store_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcd_store_own_init == 0) {
+        err = gcd_store_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(370);
 
   LINE(378);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-    T_1_1.num = gcd_storeOPbuf.num;
+    T_1_1.num = (long)gcd_storeOPbuf.num;
     T_1_2.ch = 'D';
     err = _bytevecOPstore(T_1_1, CLU_1, T_1_2);
     if (err != ERR_ok) goto ex_0;
@@ -2242,7 +2267,7 @@ gcd_storeOPstore_id()
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-    T_1_1.num = gcd_storeOPbuf.num;
+    T_1_1.num = (long)gcd_storeOPbuf.num;
     T_1_2.ch = 'W';
     err = _bytevecOPstore(T_1_1, CLU_2, T_1_2);
     if (err != ERR_ok) goto ex_0;
@@ -2252,7 +2277,7 @@ gcd_storeOPstore_id()
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-    T_1_1.num = gcd_storeOPbuf.num;
+    T_1_1.num = (long)gcd_storeOPbuf.num;
     T_1_2.ch = 'C';
     err = _bytevecOPstore(T_1_1, CLU_3, T_1_2);
     if (err != ERR_ok) goto ex_0;
@@ -2262,7 +2287,7 @@ gcd_storeOPstore_id()
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-    T_1_1.num = gcd_storeOPbuf.num;
+    T_1_1.num = (long)gcd_storeOPbuf.num;
     T_1_2.ch = '1';
     err = _bytevecOPstore(T_1_1, CLU_4, T_1_2);
     if (err != ERR_ok) goto ex_0;
@@ -2280,22 +2305,22 @@ gcd_storeOPstore_id()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE store_id ****/
 
 
 /**** BEGIN PROCEDURE store_lit ****/
 
+
 errcode
 gcd_storeOPstore_lit(CLUREF i1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (gcd_store_own_init == 0) {
-            err = gcd_store_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcd_store_own_init == 0) {
+        err = gcd_store_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(385);
 
   LINE(388);
@@ -2365,22 +2390,22 @@ gcd_storeOPstore_lit(CLUREF i1)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE store_lit ****/
 
 
 /**** BEGIN PROCEDURE store_ref ****/
 
+
 errcode
 gcd_storeOPstore_ref(CLUREF i1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (gcd_store_own_init == 0) {
-            err = gcd_store_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcd_store_own_init == 0) {
+        err = gcd_store_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(398);
 
   LINE(401);
@@ -2450,22 +2475,22 @@ gcd_storeOPstore_ref(CLUREF i1)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE store_ref ****/
 
 
 /**** BEGIN PROCEDURE store_hdr ****/
 
+
 errcode
 gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (gcd_store_own_init == 0) {
-            err = gcd_store_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcd_store_own_init == 0) {
+        err = gcd_store_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(412);
 
   LINE(415);
@@ -2535,9 +2560,12 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE store_hdr ****/
+
+
+/**** BEGIN PROCEDURE store_array_desc ****/
 
 struct OPS *_adv_of__obj_table;
 struct OPS *_adv_of__obj_ops;
@@ -2545,18 +2573,15 @@ struct OPS *_adv_of__obj_ops;
 OWNPTR _adv_of__obj_owns;
 static int gcd_storeOPstore_array_desc_own_init = 0;
 
-/**** BEGIN PROCEDURE store_array_desc ****/
-
 errcode
 gcd_storeOPstore_array_desc(CLUREF a)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (gcd_storeOPstore_array_desc_own_init == 0) {
+    if (gcd_storeOPstore_array_desc_own_init == 0) {
         if (gcd_store_own_init == 0) {
             err = gcd_store_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         gcd_storeOPstore_array_desc_own_init = 1;
     }
     enter_proc(427);
@@ -2774,18 +2799,18 @@ gcd_storeOPstore_array_desc(CLUREF a)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE store_array_desc ****/
 
 
 /**** BEGIN PROCEDURE store_string ****/
 
+
 errcode
 gcd_storeOPstore_string(CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF bsize;
     CLUREF bytes_to_go;
     CLUREF total_bytes;
@@ -2795,10 +2820,10 @@ gcd_storeOPstore_string(CLUREF s)
     CLUREF i;
     CLUREF avail;
     CLUREF copy_count;
-        if (gcd_store_own_init == 0) {
-            err = gcd_store_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcd_store_own_init == 0) {
+        err = gcd_store_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(464);
 
   LINE(466);
@@ -2966,7 +2991,7 @@ gcd_storeOPstore_string(CLUREF s)
         T_3_1.num = (total_output.num == total_longs.num)? true : false;
         if (T_3_1.num == true) {
             {
-                err = "ERR_done";
+                err = (long)"ERR_done";
                 goto ex_1;
                 }
             }
@@ -3000,22 +3025,22 @@ gcd_storeOPstore_string(CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE store_string ****/
 
 
 /**** BEGIN PROCEDURE done ****/
 
+
 errcode
 gcd_storeOPdone()
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (gcd_store_own_init == 0) {
-            err = gcd_store_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcd_store_own_init == 0) {
+        err = gcd_store_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(495);
 
   LINE(497);
@@ -3046,22 +3071,22 @@ gcd_storeOPdone()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE done ****/
 
 
 /**** BEGIN PROCEDURE need ****/
 
+
 errcode
 gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (gcd_store_own_init == 0) {
-            err = gcd_store_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcd_store_own_init == 0) {
+        err = gcd_store_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(501);
 
   LINE(502);
@@ -3197,7 +3222,7 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE need ****/
 
@@ -3208,14 +3233,14 @@ typedef struct{
     struct OP_ENTRY entry[8];
 } gcd_store_OPS;
 
-CLU_proc gcd_store_oe_done = {{0,0,0,0}, gcd_storeOPdone, 0};
-CLU_proc gcd_store_oe_init = {{0,0,0,0}, gcd_storeOPinit, 0};
-CLU_proc gcd_store_oe_store_array_desc = {{0,0,0,0}, gcd_storeOPstore_array_desc, 0};
-CLU_proc gcd_store_oe_store_hdr = {{0,0,0,0}, gcd_storeOPstore_hdr, 0};
-CLU_proc gcd_store_oe_store_id = {{0,0,0,0}, gcd_storeOPstore_id, 0};
-CLU_proc gcd_store_oe_store_lit = {{0,0,0,0}, gcd_storeOPstore_lit, 0};
-CLU_proc gcd_store_oe_store_ref = {{0,0,0,0}, gcd_storeOPstore_ref, 0};
-CLU_proc gcd_store_oe_store_string = {{0,0,0,0}, gcd_storeOPstore_string, 0};
+CLU_proc gcd_store_oe_done = { .proc = gcd_storeOPdone };
+CLU_proc gcd_store_oe_init = { .proc = gcd_storeOPinit };
+CLU_proc gcd_store_oe_store_array_desc = { .proc = gcd_storeOPstore_array_desc };
+CLU_proc gcd_store_oe_store_hdr = { .proc = gcd_storeOPstore_hdr };
+CLU_proc gcd_store_oe_store_id = { .proc = gcd_storeOPstore_id };
+CLU_proc gcd_store_oe_store_lit = { .proc = gcd_storeOPstore_lit };
+CLU_proc gcd_store_oe_store_ref = { .proc = gcd_storeOPstore_ref };
+CLU_proc gcd_store_oe_store_string = { .proc = gcd_storeOPstore_string };
 
 gcd_store_OPS gcd_store_ops_actual = {8, (OWNPTR)&gcd_store_own_init, (OWNPTR)&gcd_store_own_init, {
     {&gcd_store_oe_done, "done"},
@@ -3231,22 +3256,22 @@ struct OPS *gcd_store_ops = (struct OPS *)&gcd_store_ops_actual;
 
 /**** END CLUSTER gcd_store ****/
 
-extern errcode streamOPerror_output();
-extern errcode streamOPputs();
-extern errcode stringOPconcat();
-CLUREF STR__012;
-static int logit_own_init = 0;
 
 /**** BEGIN PROCEDURE logit ****/
 
+extern errcode streamOPerror_output();
+extern errcode streamOPputs();
+extern errcode stringOPconcat();
+static CLUREF STR__012;
+static int logit_own_init = 0;
+
 errcode
 logit(CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF po;
-        if (logit_own_init == 0) {
-        stringOPcons("\n", CLU_1, CLU_1, &STR__012);
+    if (logit_own_init == 0) {
+        stringOPcons("\n", CLU_1, CLUREF_make_num(1), &STR__012);
         logit_own_init = 1;
     }
     enter_proc(558);
@@ -3276,7 +3301,7 @@ logit(CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE logit ****/
 

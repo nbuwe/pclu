@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE unify_spacing ****/
+
 extern errcode arrayOPpredict();
 extern errcode arrayOPtrim();
 extern errcode stringOPchars();
@@ -15,22 +18,21 @@ extern errcode stringOPac2s();
 extern errcode unify_spacing_IB_1();
 static int unify_spacing_own_init = 0;
 CLUREF unify_spacingOPbuf;
-
-/**** BEGIN PROCEDURE unify_spacing ****/
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF ever;
+    CLUREF out;
+    CLUREF c;
+    CLUREF s;
+} unify_spacing_LOCALS_t;
 
 errcode
 unify_spacing(CLUREF s, CLUREF *ret_1)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF ever;
-        CLUREF out;
-        CLUREF c;
-        CLUREF s;
-        } locals;
+{
+    unify_spacing_LOCALS_t locals;
     locals.s = s;
-        if (unify_spacing_own_init == 0) {
+    if (unify_spacing_own_init == 0) {
         unify_spacing_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -66,8 +68,9 @@ unify_spacing(CLUREF s, CLUREF *ret_1)
     {
         locals.err = stringOPchars(locals.s, unify_spacing_IB_1, &locals, &locals.ecode2);
         if (locals.err == ERR_iterbodyreturn) {
-        ret_1->num = elist[0].num;
-        signal(ERR_ok);}
+            ret_1->num = elist[0].num;
+            signal(ERR_ok);
+        }
         if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
         if (locals.err == ERR_break) locals.err = ERR_ok;
         if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -137,24 +140,15 @@ unify_spacing(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE unify_spacing ****/
 
 
 /**** BEGIN ITERATOR BODIES for unify_spacing ****/
 
-errcode unify_spacing_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF ever;
-    CLUREF out;
-    CLUREF c;
-    CLUREF s;
-    } *locals;
+errcode
+unify_spacing_IB_1(CLUREF iv_1, unify_spacing_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
     enter_iter_body_proc(10);
@@ -267,7 +261,7 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end unify_spacing_IB_1 */
+}   /* end unify_spacing_IB_1 */
 
 /**** END ITERATOR BODIES for unify_spacing ****/
 

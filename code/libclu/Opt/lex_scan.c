@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE lex_scan ****/
+
 extern errcode boolOPnot();
 extern errcode intOPequal();
 extern errcode stringOPsize();
@@ -16,16 +19,13 @@ extern errcode intOPsub();
 extern errcode stringOPindexc();
 extern errcode boolOPor();
 extern errcode intOPadd();
-CLUREF STR_Beginq_040and_040Endq_040must_040be_040of_040the_040same_040size;
+static CLUREF STR_Beginq_040and_040Endq_040must_040be_040of_040the_040same_040size;
 static int lex_scan_own_init = 0;
-
-/**** BEGIN PROCEDURE lex_scan ****/
 
 errcode
 lex_scan(CLUREF s, CLUREF sep_chars, CLUREF fill_chars, CLUREF beginq, CLUREF endq, CLUREF comment_char, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ps;
     CLUREF state;
     CLUREF mark;
@@ -37,8 +37,8 @@ lex_scan(CLUREF s, CLUREF sep_chars, CLUREF fill_chars, CLUREF beginq, CLUREF en
     CLUREF qix;
     CLUREF bq;
     CLUREF textc;
-        if (lex_scan_own_init == 0) {
-        stringOPcons("Beginq and Endq must be of the same size", CLU_1, CLU_40, &STR_Beginq_040and_040Endq_040must_040be_040of_040the_040same_040size);
+    if (lex_scan_own_init == 0) {
+        stringOPcons("Beginq and Endq must be of the same size", CLU_1, CLUREF_make_num(40), &STR_Beginq_040and_040Endq_040must_040be_040of_040the_040same_040size);
         lex_scan_own_init = 1;
     }
     enter_proc(26);
@@ -577,7 +577,7 @@ lex_scan(CLUREF s, CLUREF sep_chars, CLUREF fill_chars, CLUREF beginq, CLUREF en
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE lex_scan ****/
 

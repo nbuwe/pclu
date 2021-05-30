@@ -5,13 +5,15 @@
 #include "pclu_sys.h"
 
 
-typedef struct {
-long count;
-} quicksort_of_t_REQS;
+/**** BEGIN PROCEDURE quicksort ****/
 
-quicksort_of_t_REQS quicksort_of_t_reqs_actual = {0};
 
-struct REQS * quicksort_of_t_reqs = (struct REQS *)&quicksort_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} quicksort_of_t_reqs_actual = { 0 };
+
+const struct REQS * const quicksort_of_t_reqs
+    = (const struct REQS *)&quicksort_of_t_reqs_actual;
 
 
 typedef struct {
@@ -25,42 +27,40 @@ extern errcode intOPgt();
 extern errcode intOPlt();
 extern errcode sisort();
 extern errcode lqsort();
-extern struct REQS *sisort_of_t_reqs;
-extern OWN_req sisort_ownreqs;
-extern struct REQS *lqsort_of_t_reqs;
-extern OWN_req lqsort_ownreqs;
+extern const struct REQS * const sisort_of_t_reqs;
+extern const OWN_req sisort_ownreqs;
+extern const struct REQS * const lqsort_of_t_reqs;
+extern const OWN_req lqsort_ownreqs;
 
 typedef struct {
     long quicksort_own_init;
-    quicksort_of_t_OPS *t_ops;
+    const quicksort_of_t_OPS * const t_ops;
     struct OPS *sisort_of_t_table;
     struct OPS *sisort_of_t_ops;
     OWNPTR sisort_of_t_owns;
     struct OPS *lqsort_of_t_table;
     struct OPS *lqsort_of_t_ops;
     OWNPTR lqsort_of_t_owns;
-    } quicksort_OWN_DEFN;
-OWN_req quicksort_ownreqs = {sizeof(quicksort_OWN_DEFN), 1};
+} quicksort_OWN_DEFN;
+const OWN_req quicksort_ownreqs = { sizeof(quicksort_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE quicksort ****/
 
 errcode
 quicksort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
-    {
+{
     errcode err;
-    errcode ecode2;
     quicksort_OWN_DEFN *op_own_ptr;
     CLUREF size;
-    op_own_ptr = (quicksort_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->quicksort_own_init == 0) {
-        add_parm_info_type(0, op_own_ptr->t_ops, sisort_of_t_reqs);
+    op_own_ptr = (quicksort_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->quicksort_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, sisort_of_t_reqs);
         find_prociter_instance(sisort, 1, &sisort_ownreqs, &(op_own_ptr->sisort_of_t_ops));
-        add_parm_info_type(0, op_own_ptr->t_ops, lqsort_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, lqsort_of_t_reqs);
         find_prociter_instance(lqsort, 1, &lqsort_ownreqs, &(op_own_ptr->lqsort_of_t_ops));
-        }
-        if (op_own_ptr->quicksort_own_init == 0) {
+    }
+    if (op_own_ptr->quicksort_own_init == 0) {
         op_own_ptr->quicksort_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(18);
 
@@ -91,7 +91,7 @@ quicksort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
   LINE(27);
             {
             generic_CLU_proc.type_owns = 0;
-            generic_CLU_proc.op_owns = (long)op_own_ptr->sisort_of_t_ops->op_owns;
+            generic_CLU_proc.op_owns = op_own_ptr->sisort_of_t_ops->op_owns;
             generic_CLU_proc.proc = sisort;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
             err = sisort(items, low, high, less);
@@ -103,7 +103,7 @@ quicksort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
   LINE(28);
             {
             generic_CLU_proc.type_owns = 0;
-            generic_CLU_proc.op_owns = (long)op_own_ptr->lqsort_of_t_ops->op_owns;
+            generic_CLU_proc.op_owns = op_own_ptr->lqsort_of_t_ops->op_owns;
             generic_CLU_proc.proc = lqsort;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
             err = lqsort(items, low, high, size, less);
@@ -137,19 +137,21 @@ quicksort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE quicksort ****/
 
 
 
-typedef struct {
-long count;
-} lqsort_of_t_REQS;
+/**** BEGIN PROCEDURE lqsort ****/
 
-lqsort_of_t_REQS lqsort_of_t_reqs_actual = {0};
 
-struct REQS * lqsort_of_t_reqs = (struct REQS *)&lqsort_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} lqsort_of_t_reqs_actual = { 0 };
+
+const struct REQS * const lqsort_of_t_reqs
+    = (const struct REQS *)&lqsort_of_t_reqs_actual;
 
 
 typedef struct {
@@ -167,24 +169,21 @@ extern errcode intOPequal();
 
 typedef struct {
     long lqsort_own_init;
-    lqsort_of_t_OPS *t_ops;
+    const lqsort_of_t_OPS * const t_ops;
     struct OPS *sisort_of_t_table;
     struct OPS *sisort_of_t_ops;
     OWNPTR sisort_of_t_owns;
     struct OPS *lqsort_of_t_table;
     struct OPS *lqsort_of_t_ops;
     OWNPTR lqsort_of_t_owns;
-    } lqsort_OWN_DEFN;
-OWN_req lqsort_ownreqs = {sizeof(lqsort_OWN_DEFN), 1};
+} lqsort_OWN_DEFN;
+const OWN_req lqsort_ownreqs = { sizeof(lqsort_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE lqsort ****/
 
 errcode
 lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
-    {
+{
     errcode err;
-    errcode ecode2;
     lqsort_OWN_DEFN *op_own_ptr;
     CLUREF temp;
     CLUREF median;
@@ -192,15 +191,16 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
     CLUREF left;
     CLUREF right;
     CLUREF smlsize;
-    op_own_ptr = (lqsort_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->lqsort_own_init == 0) {
-        add_parm_info_type(0, op_own_ptr->t_ops, sisort_of_t_reqs);
+    op_own_ptr = (lqsort_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->lqsort_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, sisort_of_t_reqs);
         find_prociter_instance(sisort, 1, &sisort_ownreqs, &(op_own_ptr->sisort_of_t_ops));
-        add_parm_info_type(0, op_own_ptr->t_ops, lqsort_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, lqsort_of_t_reqs);
         find_prociter_instance(lqsort, 1, &lqsort_ownreqs, &(op_own_ptr->lqsort_of_t_ops));
-        }
-        if (op_own_ptr->lqsort_own_init == 0) {
+    }
+    if (op_own_ptr->lqsort_own_init == 0) {
         op_own_ptr->lqsort_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(39);
 
@@ -739,7 +739,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
   LINE(120);
                     {
                     generic_CLU_proc.type_owns = 0;
-                    generic_CLU_proc.op_owns = (long)op_own_ptr->sisort_of_t_ops->op_owns;
+                    generic_CLU_proc.op_owns = op_own_ptr->sisort_of_t_ops->op_owns;
                     generic_CLU_proc.proc = sisort;
                     CUR_PROC_VAR.proc = &generic_CLU_proc;
                     err = sisort(items, left, right, less);
@@ -751,7 +751,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
   LINE(121);
                     {
                     generic_CLU_proc.type_owns = 0;
-                    generic_CLU_proc.op_owns = (long)op_own_ptr->lqsort_of_t_ops->op_owns;
+                    generic_CLU_proc.op_owns = op_own_ptr->lqsort_of_t_ops->op_owns;
                     generic_CLU_proc.proc = lqsort;
                     CUR_PROC_VAR.proc = &generic_CLU_proc;
                     err = lqsort(items, left, right, smlsize, less);
@@ -766,7 +766,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
   LINE(127);
         {
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)op_own_ptr->sisort_of_t_ops->op_owns;
+        generic_CLU_proc.op_owns = op_own_ptr->sisort_of_t_ops->op_owns;
         generic_CLU_proc.proc = sisort;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = sisort(items, low, high, less);
@@ -787,19 +787,21 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE lqsort ****/
 
 
 
-typedef struct {
-long count;
-} sisort_of_t_REQS;
+/**** BEGIN PROCEDURE sisort ****/
 
-sisort_of_t_REQS sisort_of_t_reqs_actual = {0};
 
-struct REQS * sisort_of_t_reqs = (struct REQS *)&sisort_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} sisort_of_t_reqs_actual = { 0 };
+
+const struct REQS * const sisort_of_t_reqs
+    = (const struct REQS *)&sisort_of_t_reqs_actual;
 
 
 typedef struct {
@@ -813,26 +815,24 @@ extern errcode intOPle();
 
 typedef struct {
     long sisort_own_init;
-    sisort_of_t_OPS *t_ops;
-    } sisort_OWN_DEFN;
-OWN_req sisort_ownreqs = {sizeof(sisort_OWN_DEFN), 1};
+    const sisort_of_t_OPS * const t_ops;
+} sisort_OWN_DEFN;
+const OWN_req sisort_ownreqs = { sizeof(sisort_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE sisort ****/
 
 errcode
 sisort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
-    {
+{
     errcode err;
-    errcode ecode2;
     sisort_OWN_DEFN *op_own_ptr;
     CLUREF top;
     CLUREF item;
     CLUREF hole;
     CLUREF trial;
-    op_own_ptr = (sisort_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->sisort_own_init == 0) {
+    op_own_ptr = (sisort_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->sisort_own_init == 0) {
         op_own_ptr->sisort_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(136);
 
@@ -958,7 +958,7 @@ sisort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE sisort ****/
 

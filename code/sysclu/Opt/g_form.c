@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE g_form ****/
+
 extern errcode intOPlt();
 extern errcode intOPequal();
 extern errcode realOPexponent();
@@ -14,13 +17,10 @@ extern errcode intOPsub();
 extern errcode intOPadd();
 extern errcode e_form();
 
-/**** BEGIN PROCEDURE g_form ****/
-
 errcode
 g_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF expon;
     enter_proc(3);
 
@@ -166,7 +166,7 @@ g_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE g_form ****/
 

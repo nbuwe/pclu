@@ -23,17 +23,17 @@ extern errcode intOPsub();
 extern errcode stringOPrest();
 extern errcode intOPadd();
 extern errcode streamOPclose();
-CLUREF STR_;
-CLUREF STR__077_077_077;
-CLUREF STR_opt;
-CLUREF STR_dbg;
-CLUREF STR__057cmp;
-CLUREF STR_cc;
-CLUREF STR_cmd;
-CLUREF STR_read;
-CLUREF STR__176CLU;
+static CLUREF STR_;
+static CLUREF STR__077_077_077;
+static CLUREF STR_opt;
+static CLUREF STR_dbg;
+static CLUREF STR__057cmp;
+static CLUREF STR_cc;
+static CLUREF STR_cmd;
+static CLUREF STR_read;
+static CLUREF STR__176CLU;
 static int cmpvar_own_init = 0;
-OWN_req cmpvar_ownreqs = {0,0};
+const OWN_req cmpvar_ownreqs = { 0, 0 };
 CLUREF cmpvarOPlocal_vars;
 CLUREF cmpvarOPdo_force;
 CLUREF cmpvarOPlist_externals;
@@ -50,20 +50,22 @@ CLUREF cmpvarOPbase_cc_opt_cmd_string;
 CLUREF cmpvarOPbase_cc_dbg_cmd_string;
 CLUREF cmpvarOPcc_opt_cmd_string;
 CLUREF cmpvarOPcc_dbg_cmd_string;
-errcode cmpvar_own_init_proc()
+
+errcode
+cmpvar_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (cmpvar_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("???", CLU_1, CLU_3, &STR__077_077_077);
-        stringOPcons("opt", CLU_1, CLU_3, &STR_opt);
-        stringOPcons("dbg", CLU_1, CLU_3, &STR_dbg);
-        stringOPcons("/cmp", CLU_1, CLU_4, &STR__057cmp);
-        stringOPcons("cc", CLU_1, CLU_2, &STR_cc);
-        stringOPcons("cmd", CLU_1, CLU_3, &STR_cmd);
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons("~CLU", CLU_1, CLU_4, &STR__176CLU);
+    if (cmpvar_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("???", CLU_1, CLUREF_make_num(3), &STR__077_077_077);
+        stringOPcons("opt", CLU_1, CLUREF_make_num(3), &STR_opt);
+        stringOPcons("dbg", CLU_1, CLUREF_make_num(3), &STR_dbg);
+        stringOPcons("/cmp", CLU_1, CLUREF_make_num(4), &STR__057cmp);
+        stringOPcons("cc", CLU_1, CLUREF_make_num(2), &STR_cc);
+        stringOPcons("cmd", CLU_1, CLUREF_make_num(3), &STR_cmd);
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons("~CLU", CLU_1, CLUREF_make_num(4), &STR__176CLU);
         cmpvar_own_init = 1;
         {
             {cmpvarOPlocal_vars.tf = true;
@@ -134,23 +136,26 @@ errcode cmpvar_own_init_proc()
             {cmpvarOPcc_dbg_cmd_string.num = cmpvarOPbase_cc_dbg_cmd_string.num;
             }
             }
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE locals ****/
 
+
 errcode
 cmpvarOPlocals(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(39);
 
   LINE(40);
@@ -168,22 +173,22 @@ cmpvarOPlocals(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE locals ****/
 
 
 /**** BEGIN PROCEDURE set_locals ****/
 
+
 errcode
 cmpvarOPset_locals(CLUREF b)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(43);
 
   LINE(44);
@@ -198,22 +203,22 @@ cmpvarOPset_locals(CLUREF b)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_locals ****/
 
 
 /**** BEGIN PROCEDURE force_ ****/
 
+
 errcode
 cmpvarOPforce_(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(47);
 
   LINE(48);
@@ -231,22 +236,22 @@ cmpvarOPforce_(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE force_ ****/
 
 
 /**** BEGIN PROCEDURE set_force_ ****/
 
+
 errcode
 cmpvarOPset_force_(CLUREF b)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(51);
 
   LINE(52);
@@ -261,22 +266,22 @@ cmpvarOPset_force_(CLUREF b)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_force_ ****/
 
 
 /**** BEGIN PROCEDURE externals ****/
 
+
 errcode
 cmpvarOPexternals(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(55);
 
   LINE(56);
@@ -294,22 +299,22 @@ cmpvarOPexternals(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE externals ****/
 
 
 /**** BEGIN PROCEDURE set_externals ****/
 
+
 errcode
 cmpvarOPset_externals(CLUREF b)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(59);
 
   LINE(60);
@@ -324,22 +329,22 @@ cmpvarOPset_externals(CLUREF b)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_externals ****/
 
 
 /**** BEGIN PROCEDURE dir ****/
 
+
 errcode
 cmpvarOPdir(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(63);
 
   LINE(64);
@@ -357,22 +362,22 @@ cmpvarOPdir(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE dir ****/
 
 
 /**** BEGIN PROCEDURE set_dir ****/
 
+
 errcode
 cmpvarOPset_dir(CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(67);
 
   LINE(68);
@@ -387,22 +392,22 @@ cmpvarOPset_dir(CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_dir ****/
 
 
 /**** BEGIN PROCEDURE suffix ****/
 
+
 errcode
 cmpvarOPsuffix(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(71);
 
   LINE(72);
@@ -420,22 +425,22 @@ cmpvarOPsuffix(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE suffix ****/
 
 
 /**** BEGIN PROCEDURE set_suffix ****/
 
+
 errcode
 cmpvarOPset_suffix(CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(75);
 
   LINE(76);
@@ -467,22 +472,22 @@ cmpvarOPset_suffix(CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_suffix ****/
 
 
 /**** BEGIN PROCEDURE allow ****/
 
+
 errcode
 cmpvarOPallow(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(81);
 
   LINE(82);
@@ -500,22 +505,22 @@ cmpvarOPallow(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE allow ****/
 
 
 /**** BEGIN PROCEDURE set_allow ****/
 
+
 errcode
 cmpvarOPset_allow(CLUREF b)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(85);
 
   LINE(86);
@@ -530,22 +535,22 @@ cmpvarOPset_allow(CLUREF b)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_allow ****/
 
 
 /**** BEGIN PROCEDURE expunge ****/
 
+
 errcode
 cmpvarOPexpunge(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(89);
 
   LINE(90);
@@ -563,22 +568,22 @@ cmpvarOPexpunge(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE expunge ****/
 
 
 /**** BEGIN PROCEDURE set_expunge ****/
 
+
 errcode
 cmpvarOPset_expunge(CLUREF b)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(93);
 
   LINE(94);
@@ -593,22 +598,22 @@ cmpvarOPset_expunge(CLUREF b)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_expunge ****/
 
 
 /**** BEGIN PROCEDURE modules ****/
 
+
 errcode
 cmpvarOPmodules(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(97);
 
   LINE(98);
@@ -626,22 +631,22 @@ cmpvarOPmodules(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE modules ****/
 
 
 /**** BEGIN PROCEDURE set_modules ****/
 
+
 errcode
 cmpvarOPset_modules(CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(101);
 
   LINE(102);
@@ -656,22 +661,22 @@ cmpvarOPset_modules(CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_modules ****/
 
 
 /**** BEGIN PROCEDURE version ****/
 
+
 errcode
 cmpvarOPversion(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(105);
 
   LINE(106);
@@ -689,22 +694,22 @@ cmpvarOPversion(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE version ****/
 
 
 /**** BEGIN PROCEDURE set_version ****/
 
+
 errcode
 cmpvarOPset_version(CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(109);
 
   LINE(110);
@@ -719,22 +724,22 @@ cmpvarOPset_version(CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_version ****/
 
 
 /**** BEGIN PROCEDURE date ****/
 
+
 errcode
 cmpvarOPdate(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(113);
 
   LINE(114);
@@ -752,22 +757,22 @@ cmpvarOPdate(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE date ****/
 
 
 /**** BEGIN PROCEDURE set_date ****/
 
+
 errcode
 cmpvarOPset_date(CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(117);
 
   LINE(118);
@@ -782,22 +787,22 @@ cmpvarOPset_date(CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_date ****/
 
 
 /**** BEGIN PROCEDURE stuffs ****/
 
+
 errcode
 cmpvarOPstuffs(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(121);
 
   LINE(122);
@@ -815,22 +820,22 @@ cmpvarOPstuffs(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE stuffs ****/
 
 
 /**** BEGIN PROCEDURE set_stuffs ****/
 
+
 errcode
 cmpvarOPset_stuffs(CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(125);
 
   LINE(126);
@@ -845,22 +850,22 @@ cmpvarOPset_stuffs(CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_stuffs ****/
 
 
 /**** BEGIN PROCEDURE save_c ****/
 
+
 errcode
 cmpvarOPsave_c(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(129);
 
   LINE(130);
@@ -878,22 +883,22 @@ cmpvarOPsave_c(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE save_c ****/
 
 
 /**** BEGIN PROCEDURE set_save_c ****/
 
+
 errcode
 cmpvarOPset_save_c(CLUREF save)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(133);
 
   LINE(134);
@@ -908,22 +913,22 @@ cmpvarOPset_save_c(CLUREF save)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_save_c ****/
 
 
 /**** BEGIN PROCEDURE cc_opt_cmd ****/
 
+
 errcode
 cmpvarOPcc_opt_cmd(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(137);
 
   LINE(138);
@@ -941,22 +946,22 @@ cmpvarOPcc_opt_cmd(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE cc_opt_cmd ****/
 
 
 /**** BEGIN PROCEDURE cc_dbg_cmd ****/
 
+
 errcode
 cmpvarOPcc_dbg_cmd(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(141);
 
   LINE(142);
@@ -974,22 +979,22 @@ cmpvarOPcc_dbg_cmd(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE cc_dbg_cmd ****/
 
 
 /**** BEGIN PROCEDURE set_cc_opt_cmd ****/
 
+
 errcode
 cmpvarOPset_cc_opt_cmd(CLUREF cmd)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(145);
 
   LINE(146);
@@ -1017,22 +1022,22 @@ cmpvarOPset_cc_opt_cmd(CLUREF cmd)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_cc_opt_cmd ****/
 
 
 /**** BEGIN PROCEDURE set_cc_dbg_cmd ****/
 
+
 errcode
 cmpvarOPset_cc_dbg_cmd(CLUREF cmd)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (cmpvar_own_init == 0) {
-            err = cmpvar_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (cmpvar_own_init == 0) {
+        err = cmpvar_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(150);
 
   LINE(151);
@@ -1060,28 +1065,28 @@ cmpvarOPset_cc_dbg_cmd(CLUREF cmd)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_cc_dbg_cmd ****/
 
-static int cmpvarOPinit_base_cmd_own_init = 0;
 
 /**** BEGIN PROCEDURE init_base_cmd ****/
 
+static int cmpvarOPinit_base_cmd_own_init = 0;
+
 errcode
 cmpvarOPinit_base_cmd(CLUREF ty, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF fn;
     CLUREF st;
     CLUREF line;
     CLUREF pos;
-        if (cmpvarOPinit_base_cmd_own_init == 0) {
+    if (cmpvarOPinit_base_cmd_own_init == 0) {
         if (cmpvar_own_init == 0) {
             err = cmpvar_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         cmpvarOPinit_base_cmd_own_init = 1;
     }
     enter_proc(155);
@@ -1210,7 +1215,7 @@ cmpvarOPinit_base_cmd(CLUREF ty, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE init_base_cmd ****/
 
@@ -1221,34 +1226,34 @@ typedef struct{
     struct OP_ENTRY entry[28];
 } cmpvar_OPS;
 
-CLU_proc cmpvar_oe_allow = {{0,0,0,0}, cmpvarOPallow, 0};
-CLU_proc cmpvar_oe_cc_dbg_cmd = {{0,0,0,0}, cmpvarOPcc_dbg_cmd, 0};
-CLU_proc cmpvar_oe_cc_opt_cmd = {{0,0,0,0}, cmpvarOPcc_opt_cmd, 0};
-CLU_proc cmpvar_oe_date = {{0,0,0,0}, cmpvarOPdate, 0};
-CLU_proc cmpvar_oe_dir = {{0,0,0,0}, cmpvarOPdir, 0};
-CLU_proc cmpvar_oe_expunge = {{0,0,0,0}, cmpvarOPexpunge, 0};
-CLU_proc cmpvar_oe_externals = {{0,0,0,0}, cmpvarOPexternals, 0};
-CLU_proc cmpvar_oe_force_ = {{0,0,0,0}, cmpvarOPforce_, 0};
-CLU_proc cmpvar_oe_locals = {{0,0,0,0}, cmpvarOPlocals, 0};
-CLU_proc cmpvar_oe_modules = {{0,0,0,0}, cmpvarOPmodules, 0};
-CLU_proc cmpvar_oe_save_c = {{0,0,0,0}, cmpvarOPsave_c, 0};
-CLU_proc cmpvar_oe_set_allow = {{0,0,0,0}, cmpvarOPset_allow, 0};
-CLU_proc cmpvar_oe_set_cc_dbg_cmd = {{0,0,0,0}, cmpvarOPset_cc_dbg_cmd, 0};
-CLU_proc cmpvar_oe_set_cc_opt_cmd = {{0,0,0,0}, cmpvarOPset_cc_opt_cmd, 0};
-CLU_proc cmpvar_oe_set_date = {{0,0,0,0}, cmpvarOPset_date, 0};
-CLU_proc cmpvar_oe_set_dir = {{0,0,0,0}, cmpvarOPset_dir, 0};
-CLU_proc cmpvar_oe_set_expunge = {{0,0,0,0}, cmpvarOPset_expunge, 0};
-CLU_proc cmpvar_oe_set_externals = {{0,0,0,0}, cmpvarOPset_externals, 0};
-CLU_proc cmpvar_oe_set_force_ = {{0,0,0,0}, cmpvarOPset_force_, 0};
-CLU_proc cmpvar_oe_set_locals = {{0,0,0,0}, cmpvarOPset_locals, 0};
-CLU_proc cmpvar_oe_set_modules = {{0,0,0,0}, cmpvarOPset_modules, 0};
-CLU_proc cmpvar_oe_set_save_c = {{0,0,0,0}, cmpvarOPset_save_c, 0};
-CLU_proc cmpvar_oe_set_stuffs = {{0,0,0,0}, cmpvarOPset_stuffs, 0};
-CLU_proc cmpvar_oe_set_suffix = {{0,0,0,0}, cmpvarOPset_suffix, 0};
-CLU_proc cmpvar_oe_set_version = {{0,0,0,0}, cmpvarOPset_version, 0};
-CLU_proc cmpvar_oe_stuffs = {{0,0,0,0}, cmpvarOPstuffs, 0};
-CLU_proc cmpvar_oe_suffix = {{0,0,0,0}, cmpvarOPsuffix, 0};
-CLU_proc cmpvar_oe_version = {{0,0,0,0}, cmpvarOPversion, 0};
+CLU_proc cmpvar_oe_allow = { .proc = cmpvarOPallow };
+CLU_proc cmpvar_oe_cc_dbg_cmd = { .proc = cmpvarOPcc_dbg_cmd };
+CLU_proc cmpvar_oe_cc_opt_cmd = { .proc = cmpvarOPcc_opt_cmd };
+CLU_proc cmpvar_oe_date = { .proc = cmpvarOPdate };
+CLU_proc cmpvar_oe_dir = { .proc = cmpvarOPdir };
+CLU_proc cmpvar_oe_expunge = { .proc = cmpvarOPexpunge };
+CLU_proc cmpvar_oe_externals = { .proc = cmpvarOPexternals };
+CLU_proc cmpvar_oe_force_ = { .proc = cmpvarOPforce_ };
+CLU_proc cmpvar_oe_locals = { .proc = cmpvarOPlocals };
+CLU_proc cmpvar_oe_modules = { .proc = cmpvarOPmodules };
+CLU_proc cmpvar_oe_save_c = { .proc = cmpvarOPsave_c };
+CLU_proc cmpvar_oe_set_allow = { .proc = cmpvarOPset_allow };
+CLU_proc cmpvar_oe_set_cc_dbg_cmd = { .proc = cmpvarOPset_cc_dbg_cmd };
+CLU_proc cmpvar_oe_set_cc_opt_cmd = { .proc = cmpvarOPset_cc_opt_cmd };
+CLU_proc cmpvar_oe_set_date = { .proc = cmpvarOPset_date };
+CLU_proc cmpvar_oe_set_dir = { .proc = cmpvarOPset_dir };
+CLU_proc cmpvar_oe_set_expunge = { .proc = cmpvarOPset_expunge };
+CLU_proc cmpvar_oe_set_externals = { .proc = cmpvarOPset_externals };
+CLU_proc cmpvar_oe_set_force_ = { .proc = cmpvarOPset_force_ };
+CLU_proc cmpvar_oe_set_locals = { .proc = cmpvarOPset_locals };
+CLU_proc cmpvar_oe_set_modules = { .proc = cmpvarOPset_modules };
+CLU_proc cmpvar_oe_set_save_c = { .proc = cmpvarOPset_save_c };
+CLU_proc cmpvar_oe_set_stuffs = { .proc = cmpvarOPset_stuffs };
+CLU_proc cmpvar_oe_set_suffix = { .proc = cmpvarOPset_suffix };
+CLU_proc cmpvar_oe_set_version = { .proc = cmpvarOPset_version };
+CLU_proc cmpvar_oe_stuffs = { .proc = cmpvarOPstuffs };
+CLU_proc cmpvar_oe_suffix = { .proc = cmpvarOPsuffix };
+CLU_proc cmpvar_oe_version = { .proc = cmpvarOPversion };
 
 cmpvar_OPS cmpvar_ops_actual = {28, (OWNPTR)&cmpvar_own_init, (OWNPTR)&cmpvar_own_init, {
     {&cmpvar_oe_allow, "allow"},

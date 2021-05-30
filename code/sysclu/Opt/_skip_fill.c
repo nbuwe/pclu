@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _skip_fill ****/
+
 extern errcode _bytevecOPindexc();
 extern errcode intOPadd();
 extern errcode intOPequal();
@@ -17,13 +20,10 @@ extern errcode _bytevecOPmove_lr();
 extern errcode _chanOPgetbv();
 extern errcode _bytevecOPsize();
 
-/**** BEGIN PROCEDURE _skip_fill ****/
-
 errcode
 _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF last;
     enter_proc(3);
@@ -225,7 +225,7 @@ _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _skip_fill ****/
 

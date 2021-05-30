@@ -6,13 +6,15 @@
 
 
 
-typedef struct {
-long count;
-} p_clist_of_t_REQS;
+/**** BEGIN PROCEDURE p_clist ****/
 
-p_clist_of_t_REQS p_clist_of_t_reqs_actual = {0};
 
-struct REQS * p_clist_of_t_reqs = (struct REQS *)&p_clist_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} p_clist_of_t_reqs_actual = { 0 };
+
+const struct REQS * const p_clist_of_t_reqs
+    = (const struct REQS *)&p_clist_of_t_reqs_actual;
 
 
 typedef struct {
@@ -33,34 +35,32 @@ extern errcode p_envOPerr();
 extern errcode sequenceOPs2a();
 extern errcode arrayOPaddh();
 extern errcode sequenceOPa2s();
-CLUREF STR__137list;
-CLUREF STR_extra_040comma_040at_040end_040of_040;
+static CLUREF STR__137list;
+static CLUREF STR_extra_040comma_040at_040end_040of_040;
 
 typedef struct {
     long p_clist_own_init;
-    p_clist_of_t_OPS *t_ops;
-    } p_clist_OWN_DEFN;
-OWN_req p_clist_ownreqs = {sizeof(p_clist_OWN_DEFN), 1};
+    const p_clist_of_t_OPS * const t_ops;
+} p_clist_OWN_DEFN;
+const OWN_req p_clist_ownreqs = { sizeof(p_clist_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE p_clist ****/
 
 errcode
 p_clist(CLUREF e, CLUREF p_t, CLUREF what, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     p_clist_OWN_DEFN *op_own_ptr;
     CLUREF list;
     CLUREF i;
     CLUREF buf;
-    op_own_ptr = (p_clist_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->p_clist_own_init == 0) {
-        stringOPcons("_list", CLU_1, CLU_5, &STR__137list);
-        stringOPcons("extra comma at end of ", CLU_1, CLU_22, &STR_extra_040comma_040at_040end_040of_040);
-        }
-        if (op_own_ptr->p_clist_own_init == 0) {
+    op_own_ptr = (p_clist_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->p_clist_own_init == 0) {
+        stringOPcons("_list", CLU_1, CLUREF_make_num(5), &STR__137list);
+        stringOPcons("extra comma at end of ", CLU_1, CLUREF_make_num(22), &STR_extra_040comma_040at_040end_040of_040);
+    }
+    if (op_own_ptr->p_clist_own_init == 0) {
         op_own_ptr->p_clist_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(8);
 
@@ -292,19 +292,21 @@ p_clist(CLUREF e, CLUREF p_t, CLUREF what, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_clist ****/
 
 
 
-typedef struct {
-long count;
-} p_slist_of_t_REQS;
+/**** BEGIN PROCEDURE p_slist ****/
 
-p_slist_of_t_REQS p_slist_of_t_reqs_actual = {0};
 
-struct REQS * p_slist_of_t_reqs = (struct REQS *)&p_slist_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} p_slist_of_t_reqs_actual = { 0 };
+
+const struct REQS * const p_slist_of_t_reqs
+    = (const struct REQS *)&p_slist_of_t_reqs_actual;
 
 
 typedef struct {
@@ -317,23 +319,21 @@ extern errcode p_semi();
 
 typedef struct {
     long p_slist_own_init;
-    p_slist_of_t_OPS *t_ops;
-    } p_slist_OWN_DEFN;
-OWN_req p_slist_ownreqs = {sizeof(p_slist_OWN_DEFN), 1};
+    const p_slist_of_t_OPS * const t_ops;
+} p_slist_OWN_DEFN;
+const OWN_req p_slist_ownreqs = { sizeof(p_slist_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE p_slist ****/
 
 errcode
 p_slist(CLUREF e, CLUREF p_t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     p_slist_OWN_DEFN *op_own_ptr;
     CLUREF list;
-    op_own_ptr = (p_slist_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->p_slist_own_init == 0) {
+    op_own_ptr = (p_slist_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->p_slist_own_init == 0) {
         op_own_ptr->p_slist_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(45);
 
@@ -401,19 +401,21 @@ p_slist(CLUREF e, CLUREF p_t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_slist ****/
 
 
 
-typedef struct {
-long count;
-} p_list_of_t_REQS;
+/**** BEGIN PROCEDURE p_list ****/
 
-p_list_of_t_REQS p_list_of_t_reqs_actual = {0};
 
-struct REQS * p_list_of_t_reqs = (struct REQS *)&p_list_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} p_list_of_t_reqs_actual = { 0 };
+
+const struct REQS * const p_list_of_t_reqs
+    = (const struct REQS *)&p_list_of_t_reqs_actual;
 
 
 typedef struct {
@@ -426,26 +428,24 @@ extern errcode boolOPnot();
 
 typedef struct {
     long p_list_own_init;
-    p_list_of_t_OPS *t_ops;
-    } p_list_OWN_DEFN;
-OWN_req p_list_ownreqs = {sizeof(p_list_OWN_DEFN), 1};
+    const p_list_of_t_OPS * const t_ops;
+} p_list_OWN_DEFN;
+const OWN_req p_list_ownreqs = { sizeof(p_list_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE p_list ****/
 
 errcode
 p_list(CLUREF e, CLUREF p_t, CLUREF emptyok, CLUREF what, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     p_list_OWN_DEFN *op_own_ptr;
     CLUREF list;
-    op_own_ptr = (p_list_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->p_list_own_init == 0) {
-        stringOPcons("_list", CLU_1, CLU_5, &STR__137list);
-        }
-        if (op_own_ptr->p_list_own_init == 0) {
+    op_own_ptr = (p_list_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->p_list_own_init == 0) {
+        stringOPcons("_list", CLU_1, CLUREF_make_num(5), &STR__137list);
+    }
+    if (op_own_ptr->p_list_own_init == 0) {
         op_own_ptr->p_list_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(60);
 
@@ -532,19 +532,21 @@ p_list(CLUREF e, CLUREF p_t, CLUREF emptyok, CLUREF what, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_list ****/
 
 
 
-typedef struct {
-long count;
-} p_blist_of_t_REQS;
+/**** BEGIN PROCEDURE p_blist ****/
 
-p_blist_of_t_REQS p_blist_of_t_reqs_actual = {0};
 
-struct REQS * p_blist_of_t_reqs = (struct REQS *)&p_blist_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} p_blist_of_t_reqs_actual = { 0 };
+
+const struct REQS * const p_blist_of_t_reqs
+    = (const struct REQS *)&p_blist_of_t_reqs_actual;
 
 
 typedef struct {
@@ -554,41 +556,39 @@ typedef struct {
     } p_blist_of_t_OPS;
 
 extern errcode p_clist();
-extern struct REQS *p_clist_of_t_reqs;
-extern OWN_req p_clist_ownreqs;
-CLUREF STR__133;
-CLUREF STR__137list_135;
-CLUREF STR__135_040in_040_133;
+extern const struct REQS * const p_clist_of_t_reqs;
+extern const OWN_req p_clist_ownreqs;
+static CLUREF STR__133;
+static CLUREF STR__137list_135;
+static CLUREF STR__135_040in_040_133;
 
 typedef struct {
     long p_blist_own_init;
-    p_blist_of_t_OPS *t_ops;
+    const p_blist_of_t_OPS * const t_ops;
     struct OPS *p_clist_of_t_table;
     struct OPS *p_clist_of_t_ops;
     OWNPTR p_clist_of_t_owns;
-    } p_blist_OWN_DEFN;
-OWN_req p_blist_ownreqs = {sizeof(p_blist_OWN_DEFN), 1};
+} p_blist_OWN_DEFN;
+const OWN_req p_blist_ownreqs = { sizeof(p_blist_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE p_blist ****/
 
 errcode
 p_blist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF what, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     p_blist_OWN_DEFN *op_own_ptr;
     CLUREF list;
-    op_own_ptr = (p_blist_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->p_blist_own_init == 0) {
-        add_parm_info_type(0, op_own_ptr->t_ops, p_clist_of_t_reqs);
+    op_own_ptr = (p_blist_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->p_blist_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, p_clist_of_t_reqs);
         find_prociter_instance(p_clist, 1, &p_clist_ownreqs, &(op_own_ptr->p_clist_of_t_ops));
-        stringOPcons("[", CLU_1, CLU_1, &STR__133);
-        stringOPcons("_list]", CLU_1, CLU_6, &STR__137list_135);
-        stringOPcons("] in [", CLU_1, CLU_6, &STR__135_040in_040_133);
-        }
-        if (op_own_ptr->p_blist_own_init == 0) {
+        stringOPcons("[", CLU_1, CLUREF_make_num(1), &STR__133);
+        stringOPcons("_list]", CLU_1, CLUREF_make_num(6), &STR__137list_135);
+        stringOPcons("] in [", CLU_1, CLUREF_make_num(6), &STR__135_040in_040_133);
+    }
+    if (op_own_ptr->p_blist_own_init == 0) {
         op_own_ptr->p_blist_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(78);
 
@@ -648,7 +648,7 @@ p_blist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF what, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)op_own_ptr->p_clist_of_t_ops->op_owns;
+        generic_CLU_proc.op_owns = op_own_ptr->p_clist_of_t_ops->op_owns;
         generic_CLU_proc.proc = p_clist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_clist(e, p_t, what, &T_1_1);
@@ -706,19 +706,21 @@ p_blist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF what, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_blist ****/
 
 
 
-typedef struct {
-long count;
-} p_plist_of_t_REQS;
+/**** BEGIN PROCEDURE p_plist ****/
 
-p_plist_of_t_REQS p_plist_of_t_reqs_actual = {0};
 
-struct REQS * p_plist_of_t_reqs = (struct REQS *)&p_plist_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} p_plist_of_t_reqs_actual = { 0 };
+
+const struct REQS * const p_plist_of_t_reqs
+    = (const struct REQS *)&p_plist_of_t_reqs_actual;
 
 
 typedef struct {
@@ -727,39 +729,37 @@ typedef struct {
     OWNPTR op_owns;
     } p_plist_of_t_OPS;
 
-CLUREF STR__050;
-CLUREF STR__137list_051;
-CLUREF STR__051_040in_040_050;
+static CLUREF STR__050;
+static CLUREF STR__137list_051;
+static CLUREF STR__051_040in_040_050;
 
 typedef struct {
     long p_plist_own_init;
-    p_plist_of_t_OPS *t_ops;
+    const p_plist_of_t_OPS * const t_ops;
     struct OPS *p_clist_of_t_table;
     struct OPS *p_clist_of_t_ops;
     OWNPTR p_clist_of_t_owns;
-    } p_plist_OWN_DEFN;
-OWN_req p_plist_ownreqs = {sizeof(p_plist_OWN_DEFN), 1};
+} p_plist_OWN_DEFN;
+const OWN_req p_plist_ownreqs = { sizeof(p_plist_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE p_plist ****/
 
 errcode
 p_plist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF emptyok, CLUREF what, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     p_plist_OWN_DEFN *op_own_ptr;
     CLUREF list;
-    op_own_ptr = (p_plist_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->p_plist_own_init == 0) {
-        add_parm_info_type(0, op_own_ptr->t_ops, p_clist_of_t_reqs);
+    op_own_ptr = (p_plist_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->p_plist_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, p_clist_of_t_reqs);
         find_prociter_instance(p_clist, 1, &p_clist_ownreqs, &(op_own_ptr->p_clist_of_t_ops));
-        stringOPcons("(", CLU_1, CLU_1, &STR__050);
-        stringOPcons("_list)", CLU_1, CLU_6, &STR__137list_051);
-        stringOPcons(") in (", CLU_1, CLU_6, &STR__051_040in_040_050);
-        }
-        if (op_own_ptr->p_plist_own_init == 0) {
+        stringOPcons("(", CLU_1, CLUREF_make_num(1), &STR__050);
+        stringOPcons("_list)", CLU_1, CLUREF_make_num(6), &STR__137list_051);
+        stringOPcons(") in (", CLU_1, CLUREF_make_num(6), &STR__051_040in_040_050);
+    }
+    if (op_own_ptr->p_plist_own_init == 0) {
         op_own_ptr->p_plist_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(100);
 
@@ -857,7 +857,7 @@ p_plist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF emptyok, CLUREF what, CLUREF
     {
         {CLUREF T_1_1;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)op_own_ptr->p_clist_of_t_ops->op_owns;
+        generic_CLU_proc.op_owns = op_own_ptr->p_clist_of_t_ops->op_owns;
         generic_CLU_proc.proc = p_clist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_clist(e, p_t, what, &T_1_1);
@@ -915,7 +915,7 @@ p_plist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF emptyok, CLUREF what, CLUREF
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_plist ****/
 

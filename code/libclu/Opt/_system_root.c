@@ -4,19 +4,19 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode _home_dir();
-CLUREF STR_CLU;
-static int _system_root_own_init = 0;
 
 /**** BEGIN PROCEDURE _system_root ****/
 
+extern errcode _home_dir();
+static CLUREF STR_CLU;
+static int _system_root_own_init = 0;
+
 errcode
 _system_root(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (_system_root_own_init == 0) {
-        stringOPcons("CLU", CLU_1, CLU_3, &STR_CLU);
+    if (_system_root_own_init == 0) {
+        stringOPcons("CLU", CLU_1, CLUREF_make_num(3), &STR_CLU);
         _system_root_own_init = 1;
     }
     enter_proc(2);
@@ -39,7 +39,7 @@ _system_root(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _system_root ****/
 

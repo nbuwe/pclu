@@ -5,6 +5,9 @@
 #include "pclu_sys.h"
 
 
+
+/**** BEGIN PROCEDURE c_expr ****/
+
 extern errcode exprOPget_abs();
 extern errcode c_envOPget_null_type();
 extern errcode c_envOPget_bool_type();
@@ -35,30 +38,27 @@ extern errcode c_anyize();
 extern errcode c_type_of();
 extern errcode c_envOPget_unknown_type();
 extern errcode exprOPset_typespec();
-CLUREF STR_not;
-CLUREF STR_minus;
-CLUREF STR_get_137;
-CLUREF STR_fetch;
-CLUREF STR_cand;
-CLUREF STR_cor;
+static CLUREF STR_not;
+static CLUREF STR_minus;
+static CLUREF STR_get_137;
+static CLUREF STR_fetch;
+static CLUREF STR_cand;
+static CLUREF STR_cor;
 static int c_expr_own_init = 0;
-
-/**** BEGIN PROCEDURE c_expr ****/
 
 errcode
 c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
     CLUREF xa;
-        if (c_expr_own_init == 0) {
-        stringOPcons("not", CLU_1, CLU_3, &STR_not);
-        stringOPcons("minus", CLU_1, CLU_5, &STR_minus);
-        stringOPcons("get_", CLU_1, CLU_4, &STR_get_137);
-        stringOPcons("fetch", CLU_1, CLU_5, &STR_fetch);
-        stringOPcons("cand", CLU_1, CLU_4, &STR_cand);
-        stringOPcons("cor", CLU_1, CLU_3, &STR_cor);
+    if (c_expr_own_init == 0) {
+        stringOPcons("not", CLU_1, CLUREF_make_num(3), &STR_not);
+        stringOPcons("minus", CLU_1, CLUREF_make_num(5), &STR_minus);
+        stringOPcons("get_", CLU_1, CLUREF_make_num(4), &STR_get_137);
+        stringOPcons("fetch", CLU_1, CLUREF_make_num(5), &STR_fetch);
+        stringOPcons("cand", CLU_1, CLUREF_make_num(4), &STR_cand);
+        stringOPcons("cor", CLU_1, CLUREF_make_num(3), &STR_cor);
         c_expr_own_init = 1;
     }
     enter_proc(6);
@@ -479,10 +479,13 @@ c_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_expr ****/
 
+
+
+/**** BEGIN PROCEDURE c_idn ****/
 
 extern errcode idnOPget_kind();
 extern errcode c_envOPtypes_illegal();
@@ -500,31 +503,28 @@ extern errcode sequenceOPnew();
 extern errcode oneofOPmake_20();
 extern errcode c_clusterop1();
 extern errcode c_envOPlookup();
-CLUREF STR_use_040of_040type_040parameter_040_047;
-CLUREF STR__047_040as_040expression;
-CLUREF STR__047;
-CLUREF STR__047_040names_040a_040type;
-CLUREF STR__047_040names_040a_040type_137set;
-CLUREF STR_use_040of_040generator_040_047;
+static CLUREF STR_use_040of_040type_040parameter_040_047;
+static CLUREF STR__047_040as_040expression;
+static CLUREF STR__047;
+static CLUREF STR__047_040names_040a_040type;
+static CLUREF STR__047_040names_040a_040type_137set;
+static CLUREF STR_use_040of_040generator_040_047;
 static int c_idn_own_init = 0;
-
-/**** BEGIN PROCEDURE c_idn ****/
 
 errcode
 c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     CLUREF t;
     CLUREF cop;
-        if (c_idn_own_init == 0) {
-        stringOPcons("use of type parameter \'", CLU_1, CLU_23, &STR_use_040of_040type_040parameter_040_047);
-        stringOPcons("\' as expression", CLU_1, CLU_15, &STR__047_040as_040expression);
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' names a type", CLU_1, CLU_14, &STR__047_040names_040a_040type);
-        stringOPcons("\' names a type_set", CLU_1, CLU_18, &STR__047_040names_040a_040type_137set);
-        stringOPcons("use of generator \'", CLU_1, CLU_18, &STR_use_040of_040generator_040_047);
+    if (c_idn_own_init == 0) {
+        stringOPcons("use of type parameter \'", CLU_1, CLUREF_make_num(23), &STR_use_040of_040type_040parameter_040_047);
+        stringOPcons("\' as expression", CLU_1, CLUREF_make_num(15), &STR__047_040as_040expression);
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' names a type", CLU_1, CLUREF_make_num(14), &STR__047_040names_040a_040type);
+        stringOPcons("\' names a type_set", CLU_1, CLUREF_make_num(18), &STR__047_040names_040a_040type_137set);
+        stringOPcons("use of generator \'", CLU_1, CLUREF_make_num(18), &STR_use_040of_040generator_040_047);
         c_idn_own_init = 1;
     }
     enter_proc(68);
@@ -691,11 +691,11 @@ c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
                 RecordAlloc(3, T_2_1);
                 err = c_envOPget_up_type(e, &T_2_2);
                 if (err != ERR_ok) goto ex_0;
-                T_2_1.vec->data[2]  = T_2_2.num;
-                T_2_1.vec->data[0]  = k.num;
+                T_2_1.vec->data[2] = T_2_2.num;
+                T_2_1.vec->data[0] = k.num;
                 err = sequenceOPnew(&T_2_3);
                 if (err != ERR_ok) goto ex_0;
-                T_2_1.vec->data[1]  = T_2_3.num;
+                T_2_1.vec->data[1] = T_2_3.num;
                 cop.num = T_2_1.num;
                 }
                 }
@@ -796,10 +796,13 @@ c_idn(CLUREF e, CLUREF x, CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_idn ****/
 
+
+
+/**** BEGIN PROCEDURE c_infix ****/
 
 extern errcode recordOPset_2();
 extern errcode exprOPcreate();
@@ -807,16 +810,13 @@ extern errcode recordOPget_3();
 extern errcode recordOPget_4();
 static int c_infix_own_init = 0;
 
-/**** BEGIN PROCEDURE c_infix ****/
-
 errcode
 c_infix(CLUREF e, CLUREF x, CLUREF fix, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF x1;
-        if (c_infix_own_init == 0) {
-        stringOPcons("not", CLU_1, CLU_3, &STR_not);
+    if (c_infix_own_init == 0) {
+        stringOPcons("not", CLU_1, CLUREF_make_num(3), &STR_not);
         c_infix_own_init = 1;
     }
     enter_proc(104);
@@ -829,7 +829,7 @@ c_infix(CLUREF e, CLUREF x, CLUREF fix, CLUREF *ret_1)
 
   LINE(106);
         {
-        fix.vec->data[1]  = false;
+        fix.vec->data[1] = false;
         }
 
   LINE(107);
@@ -891,22 +891,22 @@ c_infix(CLUREF e, CLUREF x, CLUREF fix, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_infix ****/
 
+
+
+/**** BEGIN PROCEDURE c_sugar ****/
 
 extern errcode c_expr();
 extern errcode sequenceOPbottom();
 extern errcode oneofOPmake_16();
 
-/**** BEGIN PROCEDURE c_sugar ****/
-
 errcode
 c_sugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
     CLUREF op;
     CLUREF inv;
@@ -929,11 +929,11 @@ c_sugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         RecordAlloc(3, T_1_1);
-        T_1_1.vec->data[2]  = t.num;
-        T_1_1.vec->data[0]  = n.num;
+        T_1_1.vec->data[2] = t.num;
+        T_1_1.vec->data[0] = n.num;
         err = sequenceOPnew(&T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_2.num;
+        T_1_1.vec->data[1] = T_1_2.num;
         op.num = T_1_1.num;
         }
         }
@@ -950,8 +950,8 @@ c_sugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
         if (err != ERR_ok) goto ex_0;
         err = exprOPcreate(T_1_2, T_1_3, &T_1_4);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_4.num;
-        T_1_1.vec->data[1]  = args.num;
+        T_1_1.vec->data[0] = T_1_4.num;
+        T_1_1.vec->data[1] = args.num;
         inv.num = T_1_1.num;
         }
         }
@@ -982,21 +982,21 @@ c_sugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_sugar ****/
 
 
-extern errcode sequenceOPelements();
-extern errcode e_expr();
 
 /**** BEGIN PROCEDURE c_xsugar ****/
 
+extern errcode sequenceOPelements();
+extern errcode e_expr();
+
 errcode
 c_xsugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
     CLUREF op;
     CLUREF inv;
@@ -1020,11 +1020,11 @@ c_xsugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         RecordAlloc(3, T_1_1);
-        T_1_1.vec->data[2]  = t.num;
-        T_1_1.vec->data[0]  = n.num;
+        T_1_1.vec->data[2] = t.num;
+        T_1_1.vec->data[0] = n.num;
         err = sequenceOPnew(&T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_2.num;
+        T_1_1.vec->data[1] = T_1_2.num;
         op.num = T_1_1.num;
         }
         }
@@ -1041,8 +1041,8 @@ c_xsugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
         if (err != ERR_ok) goto ex_0;
         err = exprOPcreate(T_1_2, T_1_3, &T_1_4);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_4.num;
-        T_1_1.vec->data[1]  = args.num;
+        T_1_1.vec->data[0] = T_1_4.num;
+        T_1_1.vec->data[1] = args.num;
         inv.num = T_1_1.num;
         }
         }
@@ -1142,32 +1142,32 @@ c_xsugar(CLUREF e, CLUREF x, CLUREF n, CLUREF args, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_xsugar ****/
 
+
+
+/**** BEGIN PROCEDURE c_xinvoke ****/
 
 extern errcode c_invoke();
 extern errcode intOPequal();
 extern errcode sequenceOPsize();
 extern errcode get_inv_print();
 extern errcode intOPunparse();
-CLUREF STR__047_040returns_040;
-CLUREF STR__040values_054_0401_040expected;
+static CLUREF STR__047_040returns_040;
+static CLUREF STR__040values_054_0401_040expected;
 static int c_xinvoke_own_init = 0;
-
-/**** BEGIN PROCEDURE c_xinvoke ****/
 
 errcode
 c_xinvoke(CLUREF e, CLUREF inv, CLUREF done_first, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF types;
-        if (c_xinvoke_own_init == 0) {
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' returns ", CLU_1, CLU_10, &STR__047_040returns_040);
-        stringOPcons(" values, 1 expected", CLU_1, CLU_19, &STR__040values_054_0401_040expected);
+    if (c_xinvoke_own_init == 0) {
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' returns ", CLU_1, CLUREF_make_num(10), &STR__047_040returns_040);
+        stringOPcons(" values, 1 expected", CLU_1, CLUREF_make_num(19), &STR__040values_054_0401_040expected);
         c_xinvoke_own_init = 1;
     }
     enter_proc(146);
@@ -1240,30 +1240,30 @@ c_xinvoke(CLUREF e, CLUREF inv, CLUREF done_first, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_xinvoke ****/
 
 
-extern errcode typespecOPmismatch();
-extern errcode c_envOPerrt();
-CLUREF STR_argument_0401_040to_040;
-CLUREF STR__040operator;
-CLUREF STR_argument_0402_040to_040;
-static int c_condop_own_init = 0;
 
 /**** BEGIN PROCEDURE c_condop ****/
 
+extern errcode typespecOPmismatch();
+extern errcode c_envOPerrt();
+static CLUREF STR_argument_0401_040to_040;
+static CLUREF STR__040operator;
+static CLUREF STR_argument_0402_040to_040;
+static int c_condop_own_init = 0;
+
 errcode
 c_condop(CLUREF e, CLUREF cx, CLUREF op, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
-        if (c_condop_own_init == 0) {
-        stringOPcons("argument 1 to ", CLU_1, CLU_14, &STR_argument_0401_040to_040);
-        stringOPcons(" operator", CLU_1, CLU_9, &STR__040operator);
-        stringOPcons("argument 2 to ", CLU_1, CLU_14, &STR_argument_0402_040to_040);
+    if (c_condop_own_init == 0) {
+        stringOPcons("argument 1 to ", CLU_1, CLUREF_make_num(14), &STR_argument_0401_040to_040);
+        stringOPcons(" operator", CLU_1, CLUREF_make_num(9), &STR__040operator);
+        stringOPcons("argument 2 to ", CLU_1, CLUREF_make_num(14), &STR_argument_0402_040to_040);
         c_condop_own_init = 1;
     }
     enter_proc(156);
@@ -1358,10 +1358,13 @@ c_condop(CLUREF e, CLUREF cx, CLUREF op, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_condop ****/
 
+
+
+/**** BEGIN PROCEDURE c_arraycons ****/
 
 extern errcode c_type();
 extern errcode recordOPset_3();
@@ -1375,19 +1378,16 @@ extern errcode oneofOPmake_2();
 extern errcode c_envOPget_any_type();
 extern errcode recordOPset_1();
 extern errcode sequenceOPreplace();
-CLUREF STR_sequence_040constructor_040cannot_040have_040low_040bound;
-CLUREF STR_low_040bound_040of_040array_040constructor;
-CLUREF STR_element_040;
-CLUREF STR__040of_040array_057sequence_040constructor;
+static CLUREF STR_sequence_040constructor_040cannot_040have_040low_040bound;
+static CLUREF STR_low_040bound_040of_040array_040constructor;
+static CLUREF STR_element_040;
+static CLUREF STR__040of_040array_057sequence_040constructor;
 static int c_arraycons_own_init = 0;
-
-/**** BEGIN PROCEDURE c_arraycons ****/
 
 errcode
 c_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF at;
     CLUREF t;
     CLUREF is_array;
@@ -1395,11 +1395,11 @@ c_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     CLUREF elts;
     CLUREF i;
     CLUREF z;
-        if (c_arraycons_own_init == 0) {
-        stringOPcons("sequence constructor cannot have low bound", CLU_1, CLU_42, &STR_sequence_040constructor_040cannot_040have_040low_040bound);
-        stringOPcons("low bound of array constructor", CLU_1, CLU_30, &STR_low_040bound_040of_040array_040constructor);
-        stringOPcons("element ", CLU_1, CLU_8, &STR_element_040);
-        stringOPcons(" of array/sequence constructor", CLU_1, CLU_30, &STR__040of_040array_057sequence_040constructor);
+    if (c_arraycons_own_init == 0) {
+        stringOPcons("sequence constructor cannot have low bound", CLU_1, CLUREF_make_num(42), &STR_sequence_040constructor_040cannot_040have_040low_040bound);
+        stringOPcons("low bound of array constructor", CLU_1, CLUREF_make_num(30), &STR_low_040bound_040of_040array_040constructor);
+        stringOPcons("element ", CLU_1, CLUREF_make_num(8), &STR_element_040);
+        stringOPcons(" of array/sequence constructor", CLU_1, CLUREF_make_num(30), &STR__040of_040array_057sequence_040constructor);
         c_arraycons_own_init = 1;
     }
     enter_proc(169);
@@ -1417,7 +1417,7 @@ c_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
 
   LINE(171);
     {
-    cons.vec->data[2]  = at.num;
+    cons.vec->data[2] = at.num;
     }
 
   LINE(172);
@@ -1592,7 +1592,7 @@ c_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                         T_3_1.num = cons.vec->data[0];
                         err = sequenceOPreplace(T_3_1, i, z, &T_3_2);
                         if (err != ERR_ok) goto ex_0;
-                        cons.vec->data[0]  = T_3_2.num;
+                        cons.vec->data[0] = T_3_2.num;
                         }
                     }
                     else {
@@ -1618,28 +1618,28 @@ c_arraycons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_arraycons ****/
 
+
+
+/**** BEGIN PROCEDURE c_acons_sugar ****/
 
 extern errcode sequenceOPempty();
 extern errcode c_envOPget_seq_();
 extern errcode oneofOPmake_3();
 extern errcode oneofOPmake_1();
-CLUREF STR_create;
-CLUREF STR_new;
-CLUREF STR_cons2;
-CLUREF STR_cons;
+static CLUREF STR_create;
+static CLUREF STR_new;
+static CLUREF STR_cons2;
+static CLUREF STR_cons;
 static int c_acons_sugar_own_init = 0;
-
-/**** BEGIN PROCEDURE c_acons_sugar ****/
 
 errcode
 c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF at;
     CLUREF elts;
     CLUREF op;
@@ -1650,11 +1650,11 @@ c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     CLUREF clut;
     CLUREF cop;
     CLUREF inv;
-        if (c_acons_sugar_own_init == 0) {
-        stringOPcons("create", CLU_1, CLU_6, &STR_create);
-        stringOPcons("new", CLU_1, CLU_3, &STR_new);
-        stringOPcons("cons2", CLU_1, CLU_5, &STR_cons2);
-        stringOPcons("cons", CLU_1, CLU_4, &STR_cons);
+    if (c_acons_sugar_own_init == 0) {
+        stringOPcons("create", CLU_1, CLUREF_make_num(6), &STR_create);
+        stringOPcons("new", CLU_1, CLUREF_make_num(3), &STR_new);
+        stringOPcons("cons2", CLU_1, CLUREF_make_num(5), &STR_cons2);
+        stringOPcons("cons", CLU_1, CLUREF_make_num(4), &STR_cons);
         c_acons_sugar_own_init = 1;
     }
     enter_proc(199);
@@ -1762,10 +1762,10 @@ c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
             RecordAlloc(2, T_2_1);
             err = c_envOPget_seq_(e, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[0]  = T_2_2.num;
+            T_2_1.vec->data[0] = T_2_2.num;
             err = sequenceOPe2s(nx, &T_2_3);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_3.num;
+            T_2_1.vec->data[1] = T_2_3.num;
             clut.num = T_2_1.num;
             }
             }
@@ -1777,7 +1777,7 @@ c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
         CellAlloc(3, clut.num, T_2_1);
         err = c_envOPget_type(e, T_2_1, &T_2_2);
         if (err != ERR_ok) goto ex_0;
-        cons.vec->data[2]  = T_2_2.num;
+        cons.vec->data[2] = T_2_2.num;
         }
 
   LINE(218);
@@ -1822,7 +1822,7 @@ c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 CellAlloc(1, nil, T_3_1);
-                cons.vec->data[1]  = T_3_1.num;
+                cons.vec->data[1] = T_3_1.num;
                 }
                 break;
                 }
@@ -1852,11 +1852,11 @@ c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         RecordAlloc(3, T_1_1);
-        T_1_1.vec->data[2]  = at.num;
-        T_1_1.vec->data[0]  = op.num;
+        T_1_1.vec->data[2] = at.num;
+        T_1_1.vec->data[0] = op.num;
         err = sequenceOPnew(&T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_2.num;
+        T_1_1.vec->data[1] = T_1_2.num;
         cop.num = T_1_1.num;
         }
         }
@@ -1879,8 +1879,8 @@ c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         RecordAlloc(2, T_1_1);
-        T_1_1.vec->data[0]  = nx.num;
-        T_1_1.vec->data[1]  = args.num;
+        T_1_1.vec->data[0] = nx.num;
+        T_1_1.vec->data[1] = args.num;
         inv.num = T_1_1.num;
         }
         }
@@ -1911,32 +1911,32 @@ c_acons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_acons_sugar ****/
 
+
+
+/**** BEGIN PROCEDURE c_element_type ****/
 
 extern errcode typespecOPget_abs();
 extern errcode duOPequal();
 extern errcode c_envOPget_array_();
 extern errcode c_envOPis_hacked();
 extern errcode get_type_print();
-CLUREF STR_constructor_040has_040illegal_040type_137spec_072_040;
+static CLUREF STR_constructor_040has_040illegal_040type_137spec_072_040;
 static int c_element_type_own_init = 0;
-
-/**** BEGIN PROCEDURE c_element_type ****/
 
 errcode
 c_element_type(CLUREF e, CLUREF t, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ta;
     CLUREF is_array;
     CLUREF x;
     CLUREF xa;
-        if (c_element_type_own_init == 0) {
-        stringOPcons("constructor has illegal type_spec: ", CLU_1, CLU_35, &STR_constructor_040has_040illegal_040type_137spec_072_040);
+    if (c_element_type_own_init == 0) {
+        stringOPcons("constructor has illegal type_spec: ", CLU_1, CLUREF_make_num(35), &STR_constructor_040has_040illegal_040type_137spec_072_040);
         c_element_type_own_init = 1;
     }
     enter_proc(239);
@@ -2090,10 +2090,13 @@ c_element_type(CLUREF e, CLUREF t, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_element_type ****/
 
+
+
+/**** BEGIN PROCEDURE c_selectcons ****/
 
 extern errcode c_select_specs();
 extern errcode c_scons_sugar();
@@ -2103,19 +2106,16 @@ extern errcode c_sel();
 extern errcode arrayOPindexes();
 extern errcode arrayOPfetch();
 extern errcode sequenceOPaddh();
-CLUREF STR_value_040of_040_047;
-CLUREF STR__047_040field;
-CLUREF STR_fields_040missing_040in_040record_057struct_040constructor_072_040;
-CLUREF STR__054_040;
+static CLUREF STR_value_040of_040_047;
+static CLUREF STR__047_040field;
+static CLUREF STR_fields_040missing_040in_040record_057struct_040constructor_072_040;
+static CLUREF STR__054_040;
 static int c_selectcons_own_init = 0;
-
-/**** BEGIN PROCEDURE c_selectcons ****/
 
 errcode
 c_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
     CLUREF specs;
     CLUREF used;
@@ -2126,11 +2126,11 @@ c_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     CLUREF q;
     CLUREF sep;
     CLUREF i;
-        if (c_selectcons_own_init == 0) {
-        stringOPcons("value of \'", CLU_1, CLU_10, &STR_value_040of_040_047);
-        stringOPcons("\' field", CLU_1, CLU_7, &STR__047_040field);
-        stringOPcons("fields missing in record/struct constructor: ", CLU_1, CLU_45, &STR_fields_040missing_040in_040record_057struct_040constructor_072_040);
-        stringOPcons(", ", CLU_1, CLU_2, &STR__054_040);
+    if (c_selectcons_own_init == 0) {
+        stringOPcons("value of \'", CLU_1, CLUREF_make_num(10), &STR_value_040of_040_047);
+        stringOPcons("\' field", CLU_1, CLUREF_make_num(7), &STR__047_040field);
+        stringOPcons("fields missing in record/struct constructor: ", CLU_1, CLUREF_make_num(45), &STR_fields_040missing_040in_040record_057struct_040constructor_072_040);
+        stringOPcons(", ", CLU_1, CLUREF_make_num(2), &STR__054_040);
         c_selectcons_own_init = 1;
     }
     enter_proc(263);
@@ -2148,7 +2148,7 @@ c_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
 
   LINE(265);
     {
-    cons.vec->data[1]  = t.num;
+    cons.vec->data[1] = t.num;
     }
 
   LINE(266);
@@ -2273,7 +2273,7 @@ c_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                                 CellAlloc(2, T_4_1.num, T_4_2);
                                 err = exprOPcreate(T_4_2, nt, &T_4_3);
                                 if (err != ERR_ok) goto ex_0;
-                                fld.vec->data[2]  = T_4_3.num;
+                                fld.vec->data[2] = T_4_3.num;
                                 }
                             }
                             else {
@@ -2385,10 +2385,13 @@ c_selectcons(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_selectcons ****/
 
+
+
+/**** BEGIN PROCEDURE c_scons_sugar ****/
 
 extern errcode arrayOPnew();
 extern errcode arrayOPaddh();
@@ -2402,13 +2405,10 @@ extern errcode sequenceOPa2s();
 extern errcode oneofOPmake_7();
 static int c_scons_sugar_own_init = 0;
 
-/**** BEGIN PROCEDURE c_scons_sugar ****/
-
 errcode
 c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF fspecs;
     CLUREF fld;
     CLUREF t;
@@ -2421,8 +2421,8 @@ c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
     CLUREF cop;
     CLUREF nx;
     CLUREF inv;
-        if (c_scons_sugar_own_init == 0) {
-        stringOPcons("create", CLU_1, CLU_6, &STR_create);
+    if (c_scons_sugar_own_init == 0) {
+        stringOPcons("create", CLU_1, CLUREF_make_num(6), &STR_create);
         c_scons_sugar_own_init = 1;
     }
     enter_proc(296);
@@ -2483,8 +2483,8 @@ c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
                     {
                         {CLUREF T_3_1;
                         RecordAlloc(2, T_3_1);
-                        T_3_1.vec->data[0]  = sel.num;
-                        T_3_1.vec->data[1]  = t.num;
+                        T_3_1.vec->data[0] = sel.num;
+                        T_3_1.vec->data[1] = t.num;
                         fs.num = T_3_1.num;
                         }
                         }
@@ -2603,10 +2603,10 @@ c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
         RecordAlloc(2, T_1_1);
         err = c_envOPget_struct_(e, &T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_2.num;
+        T_1_1.vec->data[0] = T_1_2.num;
         err = sequenceOPa2s(fspecs, &T_1_3);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_3.num;
+        T_1_1.vec->data[1] = T_1_3.num;
         selt.num = T_1_1.num;
         }
         }
@@ -2629,18 +2629,18 @@ c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
         CLUREF T_1_3;
         RecordAlloc(3, T_1_1);
         T_1_2.num = cons.vec->data[1];
-        T_1_1.vec->data[2]  = T_1_2.num;
-        T_1_1.vec->data[0]  = STR_create.num;
+        T_1_1.vec->data[2] = T_1_2.num;
+        T_1_1.vec->data[0] = STR_create.num;
         err = sequenceOPnew(&T_1_3);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_3.num;
+        T_1_1.vec->data[1] = T_1_3.num;
         cop.num = T_1_1.num;
         }
         }
 
   LINE(325);
     {
-    cons.vec->data[1]  = st.num;
+    cons.vec->data[1] = st.num;
     }
 
   LINE(326);
@@ -2664,14 +2664,14 @@ c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
         CLUREF T_1_3;
         CLUREF T_1_4;
         RecordAlloc(2, T_1_1);
-        T_1_1.vec->data[0]  = nx.num;
+        T_1_1.vec->data[0] = nx.num;
         err = exprOPget_abs(x, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         err = exprOPcreate(T_1_2, st, &T_1_3);
         if (err != ERR_ok) goto ex_0;
         err = sequenceOPe2s(T_1_3, &T_1_4);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_4.num;
+        T_1_1.vec->data[1] = T_1_4.num;
         inv.num = T_1_1.num;
         }
         }
@@ -2702,26 +2702,26 @@ c_scons_sugar(CLUREF e, CLUREF x, CLUREF cons, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_scons_sugar ****/
 
+
+
+/**** BEGIN PROCEDURE c_select_specs ****/
 
 extern errcode c_envOPget_record_();
 extern errcode c_envOPget_oneof_();
 extern errcode c_envOPget_variant_();
 static int c_select_specs_own_init = 0;
 
-/**** BEGIN PROCEDURE c_select_specs ****/
-
 errcode
 c_select_specs(CLUREF e, CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ta;
-        if (c_select_specs_own_init == 0) {
-        stringOPcons("constructor has illegal type_spec: ", CLU_1, CLU_35, &STR_constructor_040has_040illegal_040type_137spec_072_040);
+    if (c_select_specs_own_init == 0) {
+        stringOPcons("constructor has illegal type_spec: ", CLU_1, CLUREF_make_num(35), &STR_constructor_040has_040illegal_040type_137spec_072_040);
         c_select_specs_own_init = 1;
     }
     enter_proc(333);
@@ -2869,29 +2869,29 @@ c_select_specs(CLUREF e, CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_select_specs ****/
 
 
-extern errcode stringOPequal();
-CLUREF STR_duplicate_040selector_040_047;
-CLUREF STR__047_040not_040a_040legal_040selector;
-static int c_sel_own_init = 0;
 
 /**** BEGIN PROCEDURE c_sel ****/
 
+extern errcode stringOPequal();
+static CLUREF STR_duplicate_040selector_040_047;
+static CLUREF STR__047_040not_040a_040legal_040selector;
+static int c_sel_own_init = 0;
+
 errcode
 c_sel(CLUREF e, CLUREF specs, CLUREF used, CLUREF n, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF spec;
-        if (c_sel_own_init == 0) {
-        stringOPcons("duplicate selector \'", CLU_1, CLU_20, &STR_duplicate_040selector_040_047);
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' not a legal selector", CLU_1, CLU_22, &STR__047_040not_040a_040legal_040selector);
+    if (c_sel_own_init == 0) {
+        stringOPcons("duplicate selector \'", CLU_1, CLUREF_make_num(20), &STR_duplicate_040selector_040_047);
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' not a legal selector", CLU_1, CLUREF_make_num(22), &STR__047_040not_040a_040legal_040selector);
         c_sel_own_init = 1;
     }
     enter_proc(352);
@@ -2921,7 +2921,7 @@ c_sel(CLUREF e, CLUREF specs, CLUREF used, CLUREF n, CLUREF *ret_1)
             CLUREF T_2_2;
             T_2_1.num = spec.vec->data[0];
             T_2_2.num = ((n.str->size != T_2_1.str->size)? false :
-                !(bcmp(n.str->data, T_2_1.str->data, n.str->size)));
+                !(memcmp(n.str->data, T_2_1.str->data, n.str->size)));
             if (T_2_2.num == true) {
 
   LINE(357);
@@ -3011,20 +3011,20 @@ c_sel(CLUREF e, CLUREF specs, CLUREF used, CLUREF n, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_sel ****/
 
 
-extern errcode c_constlist();
 
 /**** BEGIN PROCEDURE c_clusterop ****/
 
+extern errcode c_constlist();
+
 errcode
 c_clusterop(CLUREF e, CLUREF op, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(369);
 
   LINE(370);
@@ -3034,7 +3034,7 @@ c_clusterop(CLUREF e, CLUREF op, CLUREF *ret_1)
     T_1_1.num = op.vec->data[2];
     err = c_type(e, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    op.vec->data[2]  = T_1_2.num;
+    op.vec->data[2] = T_1_2.num;
     }
 
   LINE(371);
@@ -3044,7 +3044,7 @@ c_clusterop(CLUREF e, CLUREF op, CLUREF *ret_1)
     T_1_1.num = op.vec->data[1];
     err = c_constlist(e, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    op.vec->data[1]  = T_1_2.num;
+    op.vec->data[1] = T_1_2.num;
     }
 
   LINE(372);
@@ -3065,10 +3065,13 @@ c_clusterop(CLUREF e, CLUREF op, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_clusterop ****/
 
+
+
+/**** BEGIN PROCEDURE c_clusterop1 ****/
 
 extern errcode c_cluster_op();
 extern errcode c_select_op();
@@ -3077,22 +3080,19 @@ extern errcode c_apply_op();
 extern errcode oneofOPis_3();
 extern errcode oneofOPmake_6();
 extern errcode get_clusterop_print();
-CLUREF STR__047_040does_040not_040exist;
-CLUREF STR_type_040_047any_047_040has_040no_040operations;
+static CLUREF STR__047_040does_040not_040exist;
+static CLUREF STR_type_040_047any_047_040has_040no_040operations;
 static int c_clusterop1_own_init = 0;
-
-/**** BEGIN PROCEDURE c_clusterop1 ****/
 
 errcode
 c_clusterop1(CLUREF e, CLUREF op, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ta;
-        if (c_clusterop1_own_init == 0) {
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' does not exist", CLU_1, CLU_16, &STR__047_040does_040not_040exist);
-        stringOPcons("type \'any\' has no operations", CLU_1, CLU_28, &STR_type_040_047any_047_040has_040no_040operations);
+    if (c_clusterop1_own_init == 0) {
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' does not exist", CLU_1, CLUREF_make_num(16), &STR__047_040does_040not_040exist);
+        stringOPcons("type \'any\' has no operations", CLU_1, CLUREF_make_num(28), &STR_type_040_047any_047_040has_040no_040operations);
         c_clusterop1_own_init = 1;
     }
     enter_proc(375);
@@ -3261,7 +3261,7 @@ c_clusterop1(CLUREF e, CLUREF op, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_clusterop1 ****/
 

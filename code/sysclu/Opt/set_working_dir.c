@@ -4,15 +4,15 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode _working_dir();
 
 /**** BEGIN PROCEDURE set_working_dir ****/
 
+extern errcode _working_dir();
+
 errcode
 set_working_dir(CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(3);
 
   LINE(4);
@@ -35,7 +35,7 @@ set_working_dir(CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_working_dir ****/
 

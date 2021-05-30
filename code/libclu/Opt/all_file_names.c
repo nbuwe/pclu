@@ -4,30 +4,30 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode _all_file_names_();
-extern errcode all_file_names_IB_1();
 
 /**** BEGIN ITERATOR all_file_names ****/
 
+extern errcode _all_file_names_();
+extern errcode all_file_names_IB_1();
+typedef struct {
+    void *user_locals;
+    errcode (*proc)();
+    errcode ecode2;
+    errcode err;
+    bool body_ctrl_req;
+    CLUREF first;
+    CLUREF fn;
+    CLUREF fs;
+} all_file_names_LOCALS_t;
+
 errcode
-all_file_names(CLUREF fs, errcode (*proc)(), char **user_locals, errcode *iecode)
-    {
+all_file_names(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecode)
+{
     errcode ecode;
-    struct {
-        char **user_locals;
-        errcode (*proc)();
-        errcode err;
-        errcode ecode2;
-        bool body_ctrl_req;
-        CLUREF first;
-        CLUREF fn;
-        CLUREF fs;
-        } locals;
+    all_file_names_LOCALS_t locals;
     locals.fs = fs;
     locals.proc = proc;
     locals.user_locals = user_locals;
-    locals.user_locals = user_locals;
-    locals.proc = proc;
     enter_proc(6);
 
   LINE(8);
@@ -86,26 +86,15 @@ all_file_names(CLUREF fs, errcode (*proc)(), char **user_locals, errcode *iecode
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END ITERATOR all_file_names ****/
 
 
 /**** BEGIN ITERATOR BODIES for all_file_names ****/
 
-errcode all_file_names_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    char **user_locals;
-    errcode (*proc)();
-    errcode err;
-    errcode ecode2;
-    bool body_ctrl_req;
-    CLUREF first;
-    CLUREF fn;
-    CLUREF fs;
-    } *locals;
+errcode
+all_file_names_IB_1(CLUREF iv_1, all_file_names_LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
     enter_iter_body_proc(10);
@@ -132,7 +121,7 @@ struct {
             locals->body_ctrl_req = true;
             {signal(ERR_iteriterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end all_file_names_IB_1 */
+}   /* end all_file_names_IB_1 */
 
 /**** END ITERATOR BODIES for all_file_names ****/
 

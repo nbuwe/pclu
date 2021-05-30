@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE f_form ****/
+
 extern errcode intOPlt();
 extern errcode intOPequal();
 extern errcode _unparse_real();
@@ -20,13 +23,10 @@ extern errcode _bytevecOPfetch();
 extern errcode intOPsub();
 extern errcode _cvt();
 
-/**** BEGIN PROCEDURE f_form ****/
-
 errcode
 f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF minus;
     CLUREF digits;
     CLUREF expon;
@@ -426,7 +426,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    T_1_1.num = res.num;
+    T_1_1.num = (long)res.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -439,7 +439,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE f_form ****/
 

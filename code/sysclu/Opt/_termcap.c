@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _termcap ****/
+
 extern errcode stringOPindexs();
 extern errcode intOPequal();
 extern errcode intOPadd();
@@ -23,26 +26,23 @@ extern errcode stringOPac2s();
 extern errcode arrayOPfill();
 extern errcode stringOPappend();
 extern errcode stringOPconcat();
-CLUREF STR_;
-CLUREF STR__072pc_075;
+static CLUREF STR_;
+static CLUREF STR__072pc_075;
 static int _termcap_own_init = 0;
-
-/**** BEGIN PROCEDURE _termcap ****/
 
 errcode
 _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF c;
     CLUREF pad;
     CLUREF cnt;
     CLUREF scale;
     CLUREF s;
-        if (_termcap_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons(":pc=", CLU_1, CLU_4, &STR__072pc_075);
+    if (_termcap_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons(":pc=", CLU_1, CLUREF_make_num(4), &STR__072pc_075);
         _termcap_own_init = 1;
     }
     enter_proc(6);
@@ -437,32 +437,32 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _termcap ****/
 
+
+
+/**** BEGIN PROCEDURE _termcap_decode ****/
 
 extern errcode charOPge();
 extern errcode charOPle();
 extern errcode charOPi2c();
 extern errcode intOPmod();
 extern errcode stringOPindexc();
-CLUREF STR_Enrtbf;
-CLUREF STR__033_012_015_011_010_013;
+static CLUREF STR_Enrtbf;
+static CLUREF STR__033_012_015_011_010_013;
 static int _termcap_decode_own_init = 0;
-
-/**** BEGIN PROCEDURE _termcap_decode ****/
 
 errcode
 _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF c;
     CLUREF j;
-        if (_termcap_decode_own_init == 0) {
-        stringOPcons("Enrtbf", CLU_1, CLU_6, &STR_Enrtbf);
-        stringOPcons("\033\n\r\t\b\v", CLU_1, CLU_6, &STR__033_012_015_011_010_013);
+    if (_termcap_decode_own_init == 0) {
+        stringOPcons("Enrtbf", CLU_1, CLUREF_make_num(6), &STR_Enrtbf);
+        stringOPcons("\033\n\r\t\b\v", CLU_1, CLUREF_make_num(6), &STR__033_012_015_011_010_013);
         _termcap_decode_own_init = 1;
     }
     enter_proc(59);
@@ -808,7 +808,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _termcap_decode ****/
 

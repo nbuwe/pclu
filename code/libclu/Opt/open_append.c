@@ -4,20 +4,20 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode streamOPopen();
-extern errcode file_nameOPparse();
-CLUREF STR_append;
-static int open_append_own_init = 0;
 
 /**** BEGIN PROCEDURE open_append ****/
 
+extern errcode streamOPopen();
+extern errcode file_nameOPparse();
+static CLUREF STR_append;
+static int open_append_own_init = 0;
+
 errcode
 open_append(CLUREF name, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (open_append_own_init == 0) {
-        stringOPcons("append", CLU_1, CLU_6, &STR_append);
+    if (open_append_own_init == 0) {
+        stringOPcons("append", CLU_1, CLUREF_make_num(6), &STR_append);
         open_append_own_init = 1;
     }
     enter_proc(3);
@@ -50,7 +50,7 @@ open_append(CLUREF name, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE open_append ****/
 

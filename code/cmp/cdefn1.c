@@ -5,17 +5,17 @@
 #include "pclu_sys.h"
 
 
+
+/**** BEGIN PROCEDURE c_definition ****/
+
 extern errcode c_envOPequates();
 extern errcode c_applydefn();
 extern errcode c_typedefn();
 
-/**** BEGIN PROCEDURE c_definition ****/
-
 errcode
 c_definition(CLUREF e, CLUREF def)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF d;
     enter_proc(6);
 
@@ -92,10 +92,13 @@ c_definition(CLUREF e, CLUREF def)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_definition ****/
 
+
+
+/**** BEGIN PROCEDURE c_applydefn ****/
 
 extern errcode c_envOPset_line();
 extern errcode recordOPget_7();
@@ -120,13 +123,10 @@ extern errcode fixup_new_module();
 extern errcode oneofOPmake_1();
 extern errcode c_apply_main();
 
-/**** BEGIN PROCEDURE c_applydefn ****/
-
 errcode
 c_applydefn(CLUREF e, CLUREF def)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF want;
     CLUREF mod;
@@ -203,7 +203,7 @@ c_applydefn(CLUREF e, CLUREF def)
     err = idnOPget_str(i, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_3.num = ((T_1_1.str->size != T_1_2.str->size)? false :
-        !(bcmp(T_1_1.str->data, T_1_2.str->data, T_1_1.str->size)));
+        !(memcmp(T_1_1.str->data, T_1_2.str->data, T_1_1.str->size)));
     T_1_4.num = T_1_3.num ^ 1;
     if (T_1_4.num == true) {
 
@@ -223,7 +223,7 @@ c_applydefn(CLUREF e, CLUREF def)
 
   LINE(33);
         {
-        def.vec->data[4]  = i.num;
+        def.vec->data[4] = i.num;
         }
         }
         }/* end if */
@@ -291,10 +291,13 @@ c_applydefn(CLUREF e, CLUREF def)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_applydefn ****/
 
+
+
+/**** BEGIN PROCEDURE fixup_new_module ****/
 
 extern errcode duOPset_mspecs();
 extern errcode oneofOPmake_2();
@@ -307,13 +310,10 @@ extern errcode c_envOPget_type();
 extern errcode oneofOPmake_25();
 extern errcode c_envOPget_type_type();
 
-/**** BEGIN PROCEDURE fixup_new_module ****/
-
 errcode
 fixup_new_module(CLUREF e, CLUREF i, CLUREF mod, CLUREF specs)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF info;
     CLUREF clut;
     CLUREF x;
@@ -362,10 +362,10 @@ fixup_new_module(CLUREF e, CLUREF i, CLUREF mod, CLUREF specs)
                     {CLUREF T_3_1;
                     CLUREF T_3_2;
                     RecordAlloc(2, T_3_1);
-                    T_3_1.vec->data[0]  = mod.num;
+                    T_3_1.vec->data[0] = mod.num;
                     err = sequenceOPnew(&T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    T_3_1.vec->data[1]  = T_3_2.num;
+                    T_3_1.vec->data[1] = T_3_2.num;
                     clut.num = T_3_1.num;
                     }
                     }
@@ -424,10 +424,10 @@ fixup_new_module(CLUREF e, CLUREF i, CLUREF mod, CLUREF specs)
                     {CLUREF T_3_1;
                     CLUREF T_3_2;
                     RecordAlloc(2, T_3_1);
-                    T_3_1.vec->data[0]  = mod.num;
+                    T_3_1.vec->data[0] = mod.num;
                     err = sequenceOPnew(&T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    T_3_1.vec->data[1]  = T_3_2.num;
+                    T_3_1.vec->data[1] = T_3_2.num;
                     clut.num = T_3_1.num;
                     }
                     }
@@ -492,10 +492,13 @@ fixup_new_module(CLUREF e, CLUREF i, CLUREF mod, CLUREF specs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE fixup_new_module ****/
 
+
+
+/**** BEGIN PROCEDURE c_apply_specs ****/
 
 extern errcode recordOPget_9();
 extern errcode recordOPget_13();
@@ -517,13 +520,10 @@ extern errcode recordOPget_4();
 extern errcode recordOPset_10();
 extern errcode c_envOPend_specs();
 
-/**** BEGIN PROCEDURE c_apply_specs ****/
-
 errcode
 c_apply_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF dparms;
     CLUREF dargs;
     CLUREF sigs;
@@ -617,7 +617,7 @@ c_apply_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
 
   LINE(82);
     {
-    def.vec->data[10]  = vals.num;
+    def.vec->data[10] = vals.num;
     }
 
   LINE(83);
@@ -697,10 +697,10 @@ c_apply_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
         CLUREF T_1_2;
         RecordAlloc(4, T_1_1);
         T_1_2.num = def.vec->data[3];
-        T_1_1.vec->data[1]  = T_1_2.num;
-        T_1_1.vec->data[0]  = args.num;
-        T_1_1.vec->data[3]  = vals.num;
-        T_1_1.vec->data[2]  = sigs.num;
+        T_1_1.vec->data[1] = T_1_2.num;
+        T_1_1.vec->data[0] = args.num;
+        T_1_1.vec->data[3] = vals.num;
+        T_1_1.vec->data[2] = sigs.num;
         at.num = T_1_1.num;
         }
         }
@@ -718,7 +718,7 @@ c_apply_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
 
   LINE(98);
     {
-    def.vec->data[9]  = t.num;
+    def.vec->data[9] = t.num;
     }
 
   LINE(99);
@@ -732,8 +732,8 @@ c_apply_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[0]  = nparms.num;
-    T_1_1.vec->data[1]  = t.num;
+    T_1_1.vec->data[0] = nparms.num;
+    T_1_1.vec->data[1] = t.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -746,20 +746,20 @@ c_apply_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_apply_specs ****/
 
 
-extern errcode b_get_idn();
 
 /**** BEGIN PROCEDURE c_parameters ****/
 
+extern errcode b_get_idn();
+
 errcode
 c_parameters(CLUREF e, CLUREF decls, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF nparms;
     CLUREF d;
     CLUREF i;
@@ -828,10 +828,13 @@ c_parameters(CLUREF e, CLUREF decls, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_parameters ****/
 
+
+
+/**** BEGIN PROCEDURE c_apply_main ****/
 
 extern errcode c_envOPbegin_scope();
 extern errcode c_push_parms();
@@ -847,13 +850,10 @@ extern errcode arrayOPtrim();
 extern errcode c_stmt();
 extern errcode c_envOPend_scope();
 
-/**** BEGIN PROCEDURE c_apply_main ****/
-
 errcode
 c_apply_main(CLUREF e, CLUREF def, CLUREF nparms)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF at;
     CLUREF ta;
     CLUREF s;
@@ -899,7 +899,7 @@ c_apply_main(CLUREF e, CLUREF def, CLUREF nparms)
     T_1_1.num = def.vec->data[10];
     err = c_typelist(e, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    def.vec->data[10]  = T_1_2.num;
+    def.vec->data[10] = T_1_2.num;
     }
 
   LINE(120);
@@ -947,7 +947,7 @@ c_apply_main(CLUREF e, CLUREF def, CLUREF nparms)
 
   LINE(125);
     {
-    def.vec->data[9]  = at.num;
+    def.vec->data[9] = at.num;
     }
 
   LINE(126);
@@ -1034,10 +1034,13 @@ c_apply_main(CLUREF e, CLUREF def, CLUREF nparms)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_apply_main ****/
 
+
+
+/**** BEGIN PROCEDURE c_push_parms ****/
 
 extern errcode sequenceOPfetch();
 extern errcode c_envOPpush_parm();
@@ -1045,13 +1048,10 @@ extern errcode c_envOPscopify();
 extern errcode intOPadd();
 extern errcode recordOPset_1();
 
-/**** BEGIN PROCEDURE c_push_parms ****/
-
 errcode
 c_push_parms(CLUREF e, CLUREF decls, CLUREF nparms)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF n;
     CLUREF d;
     CLUREF nidns;
@@ -1143,7 +1143,7 @@ c_push_parms(CLUREF e, CLUREF decls, CLUREF nparms)
 
   LINE(151);
             {
-            d.vec->data[0]  = nidns.num;
+            d.vec->data[0] = nidns.num;
             }
         }
     }
@@ -1156,31 +1156,31 @@ c_push_parms(CLUREF e, CLUREF decls, CLUREF nparms)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_push_parms ****/
 
+
+
+/**** BEGIN PROCEDURE c_initlist ****/
 
 extern errcode c_own_decls();
 extern errcode sequenceOPe2s();
 extern errcode c_declinit();
 extern errcode c_envOPwarn1();
-CLUREF STR_no_040own_040variables_040initialized_077;
+static CLUREF STR_no_040own_040variables_040initialized_077;
 static int c_initlist_own_init = 0;
-
-/**** BEGIN PROCEDURE c_initlist ****/
 
 errcode
 c_initlist(CLUREF e, CLUREF inits)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ok;
     CLUREF i;
     CLUREF d;
     CLUREF di;
-        if (c_initlist_own_init == 0) {
-        stringOPcons("no own variables initialized?", CLU_1, CLU_29, &STR_no_040own_040variables_040initialized_077);
+    if (c_initlist_own_init == 0) {
+        stringOPcons("no own variables initialized?", CLU_1, CLUREF_make_num(29), &STR_no_040own_040variables_040initialized_077);
         c_initlist_own_init = 1;
     }
     enter_proc(155);
@@ -1281,10 +1281,13 @@ c_initlist(CLUREF e, CLUREF inits)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_initlist ****/
 
+
+
+/**** BEGIN PROCEDURE c_restrictlist ****/
 
 extern errcode c_operdecllist();
 extern errcode recordOPset_2();
@@ -1292,24 +1295,21 @@ extern errcode c_idn_set();
 extern errcode c_xtypeset();
 extern errcode b_operdecllist();
 extern errcode c_envOPerr();
-CLUREF STR__047;
-CLUREF STR__047_040not_040a_040type_040parameter;
+static CLUREF STR__047;
+static CLUREF STR__047_040not_040a_040type_040parameter;
 static int c_restrictlist_own_init = 0;
-
-/**** BEGIN PROCEDURE c_restrictlist ****/
 
 errcode
 c_restrictlist(CLUREF e, CLUREF reqs)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF req;
     CLUREF i;
     CLUREF rk;
     CLUREF ts;
-        if (c_restrictlist_own_init == 0) {
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' not a type parameter", CLU_1, CLU_22, &STR__047_040not_040a_040type_040parameter);
+    if (c_restrictlist_own_init == 0) {
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' not a type parameter", CLU_1, CLUREF_make_num(22), &STR__047_040not_040a_040type_040parameter);
         c_restrictlist_own_init = 1;
     }
     enter_proc(171);
@@ -1345,7 +1345,7 @@ c_restrictlist(CLUREF e, CLUREF reqs)
 
   LINE(175);
             {
-            req.vec->data[0]  = i.num;
+            req.vec->data[0] = i.num;
             }
 
   LINE(176);
@@ -1387,7 +1387,7 @@ c_restrictlist(CLUREF e, CLUREF reqs)
                             err = c_idn_set(e, i, rk, &T_4_1);
                             if (err != ERR_ok) goto ex_0;
                             CellAlloc(1, T_4_1.num, T_4_2);
-                            req.vec->data[1]  = T_4_2.num;
+                            req.vec->data[1] = T_4_2.num;
                             }
                             break;
                             }
@@ -1412,7 +1412,7 @@ c_restrictlist(CLUREF e, CLUREF reqs)
                             err = b_operdecllist(e, i, ts, &T_4_1);
                             if (err != ERR_ok) goto ex_0;
                             CellAlloc(1, T_4_1.num, T_4_2);
-                            req.vec->data[1]  = T_4_2.num;
+                            req.vec->data[1] = T_4_2.num;
                             }
                             break;
                             }
@@ -1449,26 +1449,26 @@ c_restrictlist(CLUREF e, CLUREF reqs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_restrictlist ****/
 
 
-extern errcode c_envOPlookup();
-CLUREF STR__047_040does_040not_040name_040a_040type_137set;
-static int c_idn_set_own_init = 0;
 
 /**** BEGIN PROCEDURE c_idn_set ****/
 
+extern errcode c_envOPlookup();
+static CLUREF STR__047_040does_040not_040name_040a_040type_137set;
+static int c_idn_set_own_init = 0;
+
 errcode
 c_idn_set(CLUREF e, CLUREF i, CLUREF set, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
-        if (c_idn_set_own_init == 0) {
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' does not name a type_set", CLU_1, CLU_26, &STR__047_040does_040not_040name_040a_040type_137set);
+    if (c_idn_set_own_init == 0) {
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' does not name a type_set", CLU_1, CLUREF_make_num(26), &STR__047_040does_040not_040name_040a_040type_137set);
         c_idn_set_own_init = 1;
     }
     enter_proc(193);
@@ -1552,21 +1552,21 @@ c_idn_set(CLUREF e, CLUREF i, CLUREF set, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_idn_set ****/
 
 
-extern errcode c_constlist();
-extern errcode recordOPset_3();
 
 /**** BEGIN PROCEDURE c_operdecllist ****/
 
+extern errcode c_constlist();
+extern errcode recordOPset_3();
+
 errcode
 c_operdecllist(CLUREF e, CLUREF opers)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF opd;
     CLUREF ops;
     enter_proc(206);
@@ -1608,7 +1608,7 @@ c_operdecllist(CLUREF e, CLUREF opers)
                     T_3_1.num = ops.vec->data[1];
                     err = c_constlist(e, T_3_1, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    ops.vec->data[1]  = T_3_2.num;
+                    ops.vec->data[1] = T_3_2.num;
                     }
 
   LINE(211);
@@ -1618,7 +1618,7 @@ c_operdecllist(CLUREF e, CLUREF opers)
                     T_3_1.num = ops.vec->data[2];
                     err = c_type(e, T_3_1, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    ops.vec->data[2]  = T_3_2.num;
+                    ops.vec->data[2] = T_3_2.num;
                     }
                 }
             }
@@ -1634,20 +1634,20 @@ c_operdecllist(CLUREF e, CLUREF opers)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_operdecllist ****/
 
 
-extern errcode c_add_opspecs();
 
 /**** BEGIN PROCEDURE c_add_restricts ****/
 
+extern errcode c_add_opspecs();
+
 errcode
 c_add_restricts(CLUREF e, CLUREF reqs)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF rest;
     CLUREF rk;
     enter_proc(216);
@@ -1696,22 +1696,22 @@ c_add_restricts(CLUREF e, CLUREF reqs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_add_restricts ****/
 
+
+
+/**** BEGIN PROCEDURE c_add_opspecs ****/
 
 extern errcode oneofOPmake_6();
 extern errcode c_new_requires();
 extern errcode oneofOPmake_5();
 
-/**** BEGIN PROCEDURE c_add_opspecs ****/
-
 errcode
 c_add_opspecs(CLUREF e, CLUREF i, CLUREF ops)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     enter_proc(226);
 
@@ -1767,7 +1767,7 @@ c_add_opspecs(CLUREF e, CLUREF i, CLUREF ops)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_add_opspecs ****/
 
@@ -1775,11 +1775,11 @@ c_add_opspecs(CLUREF e, CLUREF i, CLUREF ops)
 
 /**** BEGIN PROCEDURE c_new_requires ****/
 
+
 errcode
 c_new_requires(CLUREF specs, CLUREF opers, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF opd;
     CLUREF ops;
     enter_proc(236);
@@ -1835,10 +1835,13 @@ c_new_requires(CLUREF specs, CLUREF opers, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_new_requires ****/
 
+
+
+/**** BEGIN PROCEDURE c_new_module ****/
 
 extern errcode oneofOPis_8();
 extern errcode c_envOPpop_undefined();
@@ -1851,13 +1854,10 @@ extern errcode c_envOPset_mod_gen();
 extern errcode duOPget_mspecs();
 extern errcode oneofOPmake_4();
 
-/**** BEGIN PROCEDURE c_new_module ****/
-
 errcode
 c_new_module(CLUREF e, CLUREF mod, CLUREF want, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF gen;
     CLUREF specs;
     enter_proc(246);
@@ -1969,20 +1969,20 @@ c_new_module(CLUREF e, CLUREF mod, CLUREF want, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_new_module ****/
 
 
-extern errcode exprOPget_abs();
 
 /**** BEGIN PROCEDURE c_module_idn ****/
 
+extern errcode exprOPget_abs();
+
 errcode
 c_module_idn(CLUREF mod, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     CLUREF xa;
     CLUREF ta;
@@ -2110,7 +2110,7 @@ c_module_idn(CLUREF mod, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_module_idn ****/
 

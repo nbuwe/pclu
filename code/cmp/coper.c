@@ -5,6 +5,9 @@
 #include "pclu_sys.h"
 
 
+
+/**** BEGIN PROCEDURE c_cluster_op ****/
+
 extern errcode c_get_duspecs();
 extern errcode recordOPget_1();
 extern errcode c_envOPget_type();
@@ -19,19 +22,16 @@ extern errcode recordOPget_3();
 extern errcode subst_2_parms();
 extern errcode c_envOPerr();
 extern errcode get_clusterop_print();
-CLUREF STR_debug_137print;
-CLUREF STR_bad_040parameters_040to_040_047;
-CLUREF STR__047;
-CLUREF STR__047_040does_040not_040exist_0401;
+static CLUREF STR_debug_137print;
+static CLUREF STR_bad_040parameters_040to_040_047;
+static CLUREF STR__047;
+static CLUREF STR__047_040does_040not_040exist_0401;
 static int c_cluster_op_own_init = 0;
-
-/**** BEGIN PROCEDURE c_cluster_op ****/
 
 errcode
 c_cluster_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF info;
     CLUREF specs;
     CLUREF inf;
@@ -41,11 +41,11 @@ c_cluster_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
     CLUREF op;
     CLUREF pparms;
     CLUREF ainfo;
-        if (c_cluster_op_own_init == 0) {
-        stringOPcons("debug_print", CLU_1, CLU_11, &STR_debug_137print);
-        stringOPcons("bad parameters to \'", CLU_1, CLU_19, &STR_bad_040parameters_040to_040_047);
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' does not exist 1", CLU_1, CLU_18, &STR__047_040does_040not_040exist_0401);
+    if (c_cluster_op_own_init == 0) {
+        stringOPcons("debug_print", CLU_1, CLUREF_make_num(11), &STR_debug_137print);
+        stringOPcons("bad parameters to \'", CLU_1, CLUREF_make_num(19), &STR_bad_040parameters_040to_040_047);
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' does not exist 1", CLU_1, CLUREF_make_num(18), &STR__047_040does_040not_040exist_0401);
         c_cluster_op_own_init = 1;
     }
     enter_proc(6);
@@ -120,7 +120,7 @@ c_cluster_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ((n.str->size != STR_debug_137print.str->size)? false :
-        !(bcmp(n.str->data, STR_debug_137print.str->data, n.str->size)));
+        !(memcmp(n.str->data, STR_debug_137print.str->data, n.str->size)));
     if (T_1_1.num == true) {
         {
         {
@@ -167,7 +167,7 @@ c_cluster_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
             CLUREF T_2_2;
             T_2_1.num = op.vec->data[1];
             T_2_2.num = ((n.str->size != T_2_1.str->size)? false :
-                !(bcmp(n.str->data, T_2_1.str->data, n.str->size)));
+                !(memcmp(n.str->data, T_2_1.str->data, n.str->size)));
             if (T_2_2.num == true) {
 
   LINE(23);
@@ -270,10 +270,13 @@ c_cluster_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_cluster_op ****/
 
+
+
+/**** BEGIN PROCEDURE c_select_op ****/
 
 extern errcode exprOPcreate();
 extern errcode oneofOPmake_25();
@@ -299,23 +302,20 @@ extern errcode oneofOPmake_7();
 extern errcode sequenceOPconcat();
 extern errcode c_envOPget_proc_();
 extern errcode sequenceOPnew();
-CLUREF STR_s2r;
-CLUREF STR_r2s;
-CLUREF STR_o2v;
-CLUREF STR_v2o;
-CLUREF STR_create;
-CLUREF STR_r_137gets_137s;
-CLUREF STR_v_137gets_137o;
-CLUREF STR__047_040does_040not_040exist_0402;
+static CLUREF STR_s2r;
+static CLUREF STR_r2s;
+static CLUREF STR_o2v;
+static CLUREF STR_v2o;
+static CLUREF STR_create;
+static CLUREF STR_r_137gets_137s;
+static CLUREF STR_v_137gets_137o;
+static CLUREF STR__047_040does_040not_040exist_0402;
 static int c_select_op_own_init = 0;
-
-/**** BEGIN PROCEDURE c_select_op ****/
 
 errcode
 c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF info;
     CLUREF specs;
     CLUREF inf;
@@ -336,18 +336,18 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
     CLUREF args;
     CLUREF vals;
     CLUREF apt;
-        if (c_select_op_own_init == 0) {
-        stringOPcons("debug_print", CLU_1, CLU_11, &STR_debug_137print);
-        stringOPcons("bad parameters to \'", CLU_1, CLU_19, &STR_bad_040parameters_040to_040_047);
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("s2r", CLU_1, CLU_3, &STR_s2r);
-        stringOPcons("r2s", CLU_1, CLU_3, &STR_r2s);
-        stringOPcons("o2v", CLU_1, CLU_3, &STR_o2v);
-        stringOPcons("v2o", CLU_1, CLU_3, &STR_v2o);
-        stringOPcons("create", CLU_1, CLU_6, &STR_create);
-        stringOPcons("r_gets_s", CLU_1, CLU_8, &STR_r_137gets_137s);
-        stringOPcons("v_gets_o", CLU_1, CLU_8, &STR_v_137gets_137o);
-        stringOPcons("\' does not exist 2", CLU_1, CLU_18, &STR__047_040does_040not_040exist_0402);
+    if (c_select_op_own_init == 0) {
+        stringOPcons("debug_print", CLU_1, CLUREF_make_num(11), &STR_debug_137print);
+        stringOPcons("bad parameters to \'", CLU_1, CLUREF_make_num(19), &STR_bad_040parameters_040to_040_047);
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("s2r", CLU_1, CLUREF_make_num(3), &STR_s2r);
+        stringOPcons("r2s", CLU_1, CLUREF_make_num(3), &STR_r2s);
+        stringOPcons("o2v", CLU_1, CLUREF_make_num(3), &STR_o2v);
+        stringOPcons("v2o", CLU_1, CLUREF_make_num(3), &STR_v2o);
+        stringOPcons("create", CLU_1, CLUREF_make_num(6), &STR_create);
+        stringOPcons("r_gets_s", CLU_1, CLUREF_make_num(8), &STR_r_137gets_137s);
+        stringOPcons("v_gets_o", CLU_1, CLUREF_make_num(8), &STR_v_137gets_137o);
+        stringOPcons("\' does not exist 2", CLU_1, CLUREF_make_num(18), &STR__047_040does_040not_040exist_0402);
         c_select_op_own_init = 1;
     }
     enter_proc(39);
@@ -422,7 +422,7 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ((n.str->size != STR_debug_137print.str->size)? false :
-        !(bcmp(n.str->data, STR_debug_137print.str->data, n.str->size)));
+        !(memcmp(n.str->data, STR_debug_137print.str->data, n.str->size)));
     if (T_1_1.num == true) {
         {
         {
@@ -491,7 +491,7 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
             CLUREF T_2_8;
             CLUREF T_2_9;
             T_2_2.num = ((n.str->size != opn.str->size)? false :
-                !(bcmp(n.str->data, opn.str->data, n.str->size)));
+                !(memcmp(n.str->data, opn.str->data, n.str->size)));
             T_2_1.num = T_2_2.num;
             if (!T_2_2.num) {
                 err = stringOPindexs(opn, n, &T_2_4);
@@ -529,7 +529,7 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = ((n.str->size != opn.str->size)? false :
-                    !(bcmp(n.str->data, opn.str->data, n.str->size)));
+                    !(memcmp(n.str->data, opn.str->data, n.str->size)));
                 if (T_3_1.num == true) {
 
   LINE(62);
@@ -709,11 +709,11 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
     T_1_5.num = T_1_7.num;
     if (T_1_7.num) {
         T_1_9.num = ((n.str->size != STR_s2r.str->size)? false :
-            !(bcmp(n.str->data, STR_s2r.str->data, n.str->size)));
+            !(memcmp(n.str->data, STR_s2r.str->data, n.str->size)));
         T_1_8.num = T_1_9.num;
         if (!T_1_9.num) {
             T_1_10.num = ((n.str->size != STR_r2s.str->size)? false :
-                !(bcmp(n.str->data, STR_r2s.str->data, n.str->size)));
+                !(memcmp(n.str->data, STR_r2s.str->data, n.str->size)));
             T_1_8.num = T_1_10.num;
         }
         T_1_5.num = T_1_8.num;
@@ -727,11 +727,11 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
         T_1_11.num = T_1_13.num;
         if (T_1_13.num) {
             T_1_15.num = ((n.str->size != STR_o2v.str->size)? false :
-                !(bcmp(n.str->data, STR_o2v.str->data, n.str->size)));
+                !(memcmp(n.str->data, STR_o2v.str->data, n.str->size)));
             T_1_14.num = T_1_15.num;
             if (!T_1_15.num) {
                 T_1_16.num = ((n.str->size != STR_v2o.str->size)? false :
-                    !(bcmp(n.str->data, STR_v2o.str->data, n.str->size)));
+                    !(memcmp(n.str->data, STR_v2o.str->data, n.str->size)));
                 T_1_14.num = T_1_16.num;
             }
             T_1_11.num = T_1_14.num;
@@ -747,11 +747,11 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
         T_1_17.num = T_1_19.num;
         if (T_1_19.num) {
             T_1_21.num = ((n.str->size != STR_create.str->size)? false :
-                !(bcmp(n.str->data, STR_create.str->data, n.str->size)));
+                !(memcmp(n.str->data, STR_create.str->data, n.str->size)));
             T_1_20.num = T_1_21.num;
             if (!T_1_21.num) {
                 T_1_22.num = ((n.str->size != STR_r_137gets_137s.str->size)? false :
-                    !(bcmp(n.str->data, STR_r_137gets_137s.str->data, n.str->size)));
+                    !(memcmp(n.str->data, STR_r_137gets_137s.str->data, n.str->size)));
                 T_1_20.num = T_1_22.num;
             }
             T_1_17.num = T_1_20.num;
@@ -767,7 +767,7 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
         T_1_23.num = T_1_25.num;
         if (T_1_25.num) {
             T_1_26.num = ((n.str->size != STR_v_137gets_137o.str->size)? false :
-                !(bcmp(n.str->data, STR_v_137gets_137o.str->data, n.str->size)));
+                !(memcmp(n.str->data, STR_v_137gets_137o.str->data, n.str->size)));
             T_1_23.num = T_1_26.num;
         }
         T_1_2.num = T_1_23.num;
@@ -775,7 +775,7 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
     T_1_1.num = T_1_2.num;
     if (!T_1_2.num) {
         T_1_28.num = ((n.str->size != STR_create.str->size)? false :
-            !(bcmp(n.str->data, STR_create.str->data, n.str->size)));
+            !(memcmp(n.str->data, STR_create.str->data, n.str->size)));
         T_1_27.num = T_1_28.num;
         if (T_1_28.num) {
             err = c_envOPget_struct_(e, &T_1_32);
@@ -891,8 +891,8 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
         {
             {CLUREF T_2_1;
             RecordAlloc(2, T_2_1);
-            T_2_1.vec->data[0]  = gen.num;
-            T_2_1.vec->data[1]  = fparms.num;
+            T_2_1.vec->data[0] = gen.num;
+            T_2_1.vec->data[1] = fparms.num;
             dut1.num = T_2_1.num;
             }
             }
@@ -934,17 +934,17 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
         CLUREF T_2_4;
         CLUREF T_2_5;
         T_2_3.num = ((n.str->size != STR_r2s.str->size)? false :
-            !(bcmp(n.str->data, STR_r2s.str->data, n.str->size)));
+            !(memcmp(n.str->data, STR_r2s.str->data, n.str->size)));
         T_2_2.num = T_2_3.num;
         if (!T_2_3.num) {
             T_2_4.num = ((n.str->size != STR_v2o.str->size)? false :
-                !(bcmp(n.str->data, STR_v2o.str->data, n.str->size)));
+                !(memcmp(n.str->data, STR_v2o.str->data, n.str->size)));
             T_2_2.num = T_2_4.num;
         }
         T_2_1.num = T_2_2.num;
         if (!T_2_2.num) {
             T_2_5.num = ((n.str->size != STR_create.str->size)? false :
-                !(bcmp(n.str->data, STR_create.str->data, n.str->size)));
+                !(memcmp(n.str->data, STR_create.str->data, n.str->size)));
             T_2_1.num = T_2_5.num;
         }
         if (T_2_1.num == true) {
@@ -962,11 +962,11 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
         CLUREF T_2_7;
         CLUREF T_2_8;
         T_2_7.num = ((n.str->size != STR_r_137gets_137s.str->size)? false :
-            !(bcmp(n.str->data, STR_r_137gets_137s.str->data, n.str->size)));
+            !(memcmp(n.str->data, STR_r_137gets_137s.str->data, n.str->size)));
         T_2_6.num = T_2_7.num;
         if (!T_2_7.num) {
             T_2_8.num = ((n.str->size != STR_v_137gets_137o.str->size)? false :
-                !(bcmp(n.str->data, STR_v_137gets_137o.str->data, n.str->size)));
+                !(memcmp(n.str->data, STR_v_137gets_137o.str->data, n.str->size)));
             T_2_6.num = T_2_8.num;
         }
         if (T_2_6.num == true) {
@@ -996,12 +996,12 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
             RecordAlloc(4, T_2_1);
             err = c_envOPget_proc_(e, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_2.num;
-            T_2_1.vec->data[0]  = args.num;
-            T_2_1.vec->data[3]  = vals.num;
+            T_2_1.vec->data[1] = T_2_2.num;
+            T_2_1.vec->data[0] = args.num;
+            T_2_1.vec->data[3] = vals.num;
             err = sequenceOPnew(&T_2_3);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[2]  = T_2_3.num;
+            T_2_1.vec->data[2] = T_2_3.num;
             apt.num = T_2_1.num;
             }
             }
@@ -1052,26 +1052,26 @@ c_select_op(CLUREF e, CLUREF dut, CLUREF cop, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_select_op ****/
 
 
-extern errcode sequenceOPempty();
-CLUREF STR__047_040not_040a_040legal_040selector;
-static int c_sel_type_own_init = 0;
 
 /**** BEGIN PROCEDURE c_sel_type ****/
 
+extern errcode sequenceOPempty();
+static CLUREF STR__047_040not_040a_040legal_040selector;
+static int c_sel_type_own_init = 0;
+
 errcode
 c_sel_type(CLUREF e, CLUREF sel, CLUREF specs, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF spec;
-        if (c_sel_type_own_init == 0) {
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' not a legal selector", CLU_1, CLU_22, &STR__047_040not_040a_040legal_040selector);
+    if (c_sel_type_own_init == 0) {
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' not a legal selector", CLU_1, CLUREF_make_num(22), &STR__047_040not_040a_040legal_040selector);
         c_sel_type_own_init = 1;
     }
     enter_proc(117);
@@ -1092,7 +1092,7 @@ c_sel_type(CLUREF e, CLUREF sel, CLUREF specs, CLUREF *ret_1)
             CLUREF T_2_2;
             T_2_1.num = spec.vec->data[0];
             T_2_2.num = ((sel.str->size != T_2_1.str->size)? false :
-                !(bcmp(sel.str->data, T_2_1.str->data, sel.str->size)));
+                !(memcmp(sel.str->data, T_2_1.str->data, sel.str->size)));
             if (T_2_2.num == true) {
 
   LINE(120);
@@ -1149,41 +1149,41 @@ c_sel_type(CLUREF e, CLUREF sel, CLUREF specs, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_sel_type ****/
 
 
+
+/**** BEGIN PROCEDURE c_idn_op ****/
+
 extern errcode idnOPget_kind();
 extern errcode sequenceOPsimilar();
 extern errcode c_envOPbuilding_specs();
-extern struct REQS *sequence_of_t_reqs;
+extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *expr_ops;
-extern OWN_req sequence_ownreqs;
+extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
 struct OPS *sequence_of_expr_ops;
 OWNPTR sequence_of_expr_owns;
-CLUREF STR__047_040does_040not_040exist_0403;
+static CLUREF STR__047_040does_040not_040exist_0403;
 static int c_idn_op_own_init = 0;
-
-/**** BEGIN PROCEDURE c_idn_op ****/
 
 errcode
 c_idn_op(CLUREF e, CLUREF i, CLUREF cop, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     CLUREF op;
     CLUREF parms;
     CLUREF spec;
-        if (c_idn_op_own_init == 0) {
-        add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
+    if (c_idn_op_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' does not exist 3", CLU_1, CLU_18, &STR__047_040does_040not_040exist_0403);
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' does not exist 3", CLU_1, CLUREF_make_num(18), &STR__047_040does_040not_040exist_0403);
         c_idn_op_own_init = 1;
     }
     enter_proc(127);
@@ -1235,7 +1235,7 @@ c_idn_op(CLUREF e, CLUREF i, CLUREF cop, CLUREF *ret_1)
                     CLUREF T_3_5;
                     T_3_2.num = spec.vec->data[0];
                     T_3_3.num = ((op.str->size != T_3_2.str->size)? false :
-                        !(bcmp(op.str->data, T_3_2.str->data, op.str->size)));
+                        !(memcmp(op.str->data, T_3_2.str->data, op.str->size)));
                     T_3_1.num = T_3_3.num;
                     if (T_3_3.num) {
                         T_3_4.num = spec.vec->data[1];
@@ -1330,10 +1330,13 @@ c_idn_op(CLUREF e, CLUREF i, CLUREF cop, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_idn_op ****/
 
+
+
+/**** BEGIN PROCEDURE c_apply_op ****/
 
 extern errcode c_envOPget_iter_();
 extern errcode oneofOPvalue_25();
@@ -1341,16 +1344,13 @@ extern errcode exprOPget_abs();
 extern errcode sequenceOPaddl();
 extern errcode recordOPget_4();
 extern errcode c_envOPget_int_type();
-CLUREF STR__047_040does_040not_040exist_0404;
+static CLUREF STR__047_040does_040not_040exist_0404;
 static int c_apply_op_own_init = 0;
-
-/**** BEGIN PROCEDURE c_apply_op ****/
 
 errcode
 c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF info;
     CLUREF specs;
     CLUREF inf;
@@ -1363,12 +1363,12 @@ c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
     CLUREF ok;
     CLUREF pta;
     CLUREF pt;
-        if (c_apply_op_own_init == 0) {
-        stringOPcons("debug_print", CLU_1, CLU_11, &STR_debug_137print);
-        stringOPcons("bad parameters to \'", CLU_1, CLU_19, &STR_bad_040parameters_040to_040_047);
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("create", CLU_1, CLU_6, &STR_create);
-        stringOPcons("\' does not exist 4", CLU_1, CLU_18, &STR__047_040does_040not_040exist_0404);
+    if (c_apply_op_own_init == 0) {
+        stringOPcons("debug_print", CLU_1, CLUREF_make_num(11), &STR_debug_137print);
+        stringOPcons("bad parameters to \'", CLU_1, CLUREF_make_num(19), &STR_bad_040parameters_040to_040_047);
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("create", CLU_1, CLUREF_make_num(6), &STR_create);
+        stringOPcons("\' does not exist 4", CLU_1, CLUREF_make_num(18), &STR__047_040does_040not_040exist_0404);
         c_apply_op_own_init = 1;
     }
     enter_proc(147);
@@ -1443,7 +1443,7 @@ c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ((n.str->size != STR_debug_137print.str->size)? false :
-        !(bcmp(n.str->data, STR_debug_137print.str->data, n.str->size)));
+        !(memcmp(n.str->data, STR_debug_137print.str->data, n.str->size)));
     if (T_1_1.num == true) {
         {
         {
@@ -1490,7 +1490,7 @@ c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
             CLUREF T_2_2;
             T_2_1.num = op.vec->data[1];
             T_2_2.num = ((n.str->size != T_2_1.str->size)? false :
-                !(bcmp(n.str->data, T_2_1.str->data, n.str->size)));
+                !(memcmp(n.str->data, T_2_1.str->data, n.str->size)));
             if (T_2_2.num == true) {
 
   LINE(163);
@@ -1578,7 +1578,7 @@ c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
     CLUREF T_1_10;
     CLUREF T_1_11;
     T_1_3.num = ((n.str->size != STR_create.str->size)? false :
-        !(bcmp(n.str->data, STR_create.str->data, n.str->size)));
+        !(memcmp(n.str->data, STR_create.str->data, n.str->size)));
     T_1_2.num = T_1_3.num;
     if (T_1_3.num) {
         T_1_4.num = at.vec->data[1];
@@ -1691,15 +1691,15 @@ c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
             RecordAlloc(4, T_2_1);
             err = c_envOPget_proc_(e, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_2.num;
+            T_2_1.vec->data[1] = T_2_2.num;
             T_2_3.num = at.vec->data[0];
             err = sequenceOPaddl(T_2_3, t, &T_2_4);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[0]  = T_2_4.num;
+            T_2_1.vec->data[0] = T_2_4.num;
             T_2_5.num = at.vec->data[3];
-            T_2_1.vec->data[3]  = T_2_5.num;
+            T_2_1.vec->data[3] = T_2_5.num;
             T_2_6.num = at.vec->data[2];
-            T_2_1.vec->data[2]  = T_2_6.num;
+            T_2_1.vec->data[2] = T_2_6.num;
             pta.num = T_2_1.num;
             }
             }
@@ -1727,19 +1727,19 @@ c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
         RecordAlloc(4, T_2_1);
         err = c_envOPget_proc_(e, &T_2_2);
         if (err != ERR_ok) goto ex_0;
-        T_2_1.vec->data[1]  = T_2_2.num;
+        T_2_1.vec->data[1] = T_2_2.num;
         sequenceOPnew2(CLU_2, &T_2_3);
         err = c_envOPget_int_type(e, &T_2_4);
         if (err != ERR_ok) goto ex_0;
         T_2_3.vec->data[0] = T_2_4.num;
         T_2_3.vec->data[1] = pt.num;
-        T_2_1.vec->data[0]  = T_2_3.num;
+        T_2_1.vec->data[0] = T_2_3.num;
         sequenceOPnew2(CLU_1, &T_2_5);
         T_2_6.num = cop.vec->data[2];
         T_2_5.vec->data[0] = T_2_6.num;
-        T_2_1.vec->data[3]  = T_2_5.num;
+        T_2_1.vec->data[3] = T_2_5.num;
         sequenceOPnew2(CLU_0, &T_2_7);
-        T_2_1.vec->data[2]  = T_2_7.num;
+        T_2_1.vec->data[2] = T_2_7.num;
         pta.num = T_2_1.num;
         }
 
@@ -1789,23 +1789,23 @@ c_apply_op(CLUREF e, CLUREF at, CLUREF cop, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_apply_op ****/
 
+
+
+/**** BEGIN PROCEDURE c_requires ****/
 
 extern errcode sequenceOPindexes();
 extern errcode idnOPequal();
 extern errcode sequenceOPfetch();
 extern errcode c_restrictions();
 
-/**** BEGIN PROCEDURE c_requires ****/
-
 errcode
 c_requires(CLUREF e, CLUREF vals, CLUREF parms, CLUREF reqs)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF req;
     CLUREF p;
     CLUREF i;
@@ -1878,7 +1878,7 @@ c_requires(CLUREF e, CLUREF vals, CLUREF parms, CLUREF reqs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_requires ****/
 
@@ -1886,11 +1886,11 @@ c_requires(CLUREF e, CLUREF vals, CLUREF parms, CLUREF reqs)
 
 /**** BEGIN PROCEDURE c_select_requires ****/
 
+
 errcode
 c_select_requires(CLUREF e, CLUREF specs, CLUREF reqs)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF req;
     CLUREF spec;
     CLUREF x;
@@ -1975,23 +1975,23 @@ c_select_requires(CLUREF e, CLUREF specs, CLUREF reqs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_select_requires ****/
 
+
+
+/**** BEGIN PROCEDURE subst_parms ****/
 
 extern errcode c_envOPbegin_scope();
 extern errcode c_envOPpush_vals();
 extern errcode b_type();
 extern errcode c_envOPend_scope();
 
-/**** BEGIN PROCEDURE subst_parms ****/
-
 errcode
 subst_parms(CLUREF e, CLUREF vals, CLUREF forms, CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(225);
 
   LINE(227);
@@ -2049,7 +2049,7 @@ subst_parms(CLUREF e, CLUREF vals, CLUREF forms, CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE subst_parms ****/
 
@@ -2057,11 +2057,11 @@ subst_parms(CLUREF e, CLUREF vals, CLUREF forms, CLUREF t, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE subst_2_parms ****/
 
+
 errcode
 subst_2_parms(CLUREF e, CLUREF vals1, CLUREF parms1, CLUREF vals2, CLUREF info, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
     enter_proc(235);
 
@@ -2146,25 +2146,25 @@ subst_2_parms(CLUREF e, CLUREF vals1, CLUREF parms1, CLUREF vals2, CLUREF info, 
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE subst_2_parms ****/
 
 
-extern errcode subst_parms();
-extern errcode c_clusterop();
-extern errcode typespecOPmismatch();
-CLUREF STR_type_137of_050;
-CLUREF STR__051_040does_040not_040match_040restriction;
-static int c_restrictions_own_init = 0;
 
 /**** BEGIN PROCEDURE c_restrictions ****/
 
+extern errcode subst_parms();
+extern errcode c_clusterop();
+extern errcode typespecOPmismatch();
+static CLUREF STR_type_137of_050;
+static CLUREF STR__051_040does_040not_040match_040restriction;
+static int c_restrictions_own_init = 0;
+
 errcode
 c_restrictions(CLUREF e, CLUREF x, CLUREF vals, CLUREF forms, CLUREF specs, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
     CLUREF xa;
     CLUREF ok;
@@ -2172,9 +2172,9 @@ c_restrictions(CLUREF e, CLUREF x, CLUREF vals, CLUREF forms, CLUREF specs, CLUR
     CLUREF opt;
     CLUREF cop;
     CLUREF copt;
-        if (c_restrictions_own_init == 0) {
-        stringOPcons("type_of(", CLU_1, CLU_8, &STR_type_137of_050);
-        stringOPcons(") does not match restriction", CLU_1, CLU_28, &STR__051_040does_040not_040match_040restriction);
+    if (c_restrictions_own_init == 0) {
+        stringOPcons("type_of(", CLU_1, CLUREF_make_num(8), &STR_type_137of_050);
+        stringOPcons(") does not match restriction", CLU_1, CLUREF_make_num(28), &STR__051_040does_040not_040match_040restriction);
         c_restrictions_own_init = 1;
     }
     enter_proc(248);
@@ -2263,11 +2263,11 @@ c_restrictions(CLUREF e, CLUREF x, CLUREF vals, CLUREF forms, CLUREF specs, CLUR
                 CLUREF T_2_2;
                 CLUREF T_2_3;
                 RecordAlloc(3, T_2_1);
-                T_2_1.vec->data[2]  = t.num;
+                T_2_1.vec->data[2] = t.num;
                 T_2_2.num = spec.vec->data[0];
-                T_2_1.vec->data[0]  = T_2_2.num;
+                T_2_1.vec->data[0] = T_2_2.num;
                 T_2_3.num = spec.vec->data[1];
-                T_2_1.vec->data[1]  = T_2_3.num;
+                T_2_1.vec->data[1] = T_2_3.num;
                 cop.num = T_2_1.num;
                 }
                 }
@@ -2327,7 +2327,7 @@ c_restrictions(CLUREF e, CLUREF x, CLUREF vals, CLUREF forms, CLUREF specs, CLUR
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_restrictions ****/
 

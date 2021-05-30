@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE isqrt ****/
+
 extern errcode intOPle();
 extern errcode intOPge();
 extern errcode intOPdiv();
@@ -13,13 +16,10 @@ extern errcode intOPsub();
 extern errcode intOPadd();
 extern errcode intOPmul();
 
-/**** BEGIN PROCEDURE isqrt ****/
-
 errcode
 isqrt(CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF a;
     CLUREF b;
     enter_proc(2);
@@ -153,7 +153,7 @@ isqrt(CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE isqrt ****/
 

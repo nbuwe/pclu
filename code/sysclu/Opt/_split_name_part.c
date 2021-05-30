@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _split_name_part ****/
+
 extern errcode stringOPindexc();
 extern errcode intOPgt();
 extern errcode intOPadd();
@@ -13,22 +16,19 @@ extern errcode intOPequal();
 extern errcode stringOPsubstr();
 extern errcode intOPsub();
 extern errcode stringOPrest();
-CLUREF STR_;
+static CLUREF STR_;
 static int _split_name_part_own_init = 0;
-
-/**** BEGIN PROCEDURE _split_name_part ****/
 
 errcode
 _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF j;
     CLUREF name;
     CLUREF suffix;
-        if (_split_name_part_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (_split_name_part_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         _split_name_part_own_init = 1;
     }
     enter_proc(3);
@@ -282,7 +282,7 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _split_name_part ****/
 

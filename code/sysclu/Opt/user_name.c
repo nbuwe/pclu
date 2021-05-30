@@ -4,21 +4,21 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode _environ();
-CLUREF STR_USER;
-CLUREF STR_;
-static int user_name_own_init = 0;
 
 /**** BEGIN PROCEDURE user_name ****/
 
+extern errcode _environ();
+static CLUREF STR_USER;
+static CLUREF STR_;
+static int user_name_own_init = 0;
+
 errcode
 user_name(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (user_name_own_init == 0) {
-        stringOPcons("USER", CLU_1, CLU_4, &STR_USER);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (user_name_own_init == 0) {
+        stringOPcons("USER", CLU_1, CLUREF_make_num(4), &STR_USER);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         user_name_own_init = 1;
     }
     enter_proc(3);
@@ -56,7 +56,7 @@ user_name(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE user_name ****/
 

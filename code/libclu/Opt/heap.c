@@ -7,13 +7,12 @@
 /**** BEGIN CLUSTER heap ****/
 
 
-typedef struct {
-long count;
-} heap_of_t_REQS;
+static const struct /* REQS */ {
+    long count;
+} heap_of_t_reqs_actual = { 0 };
 
-heap_of_t_REQS heap_of_t_reqs_actual = {0};
-
-struct REQS * heap_of_t_reqs = (struct REQS *)&heap_of_t_reqs_actual;
+const struct REQS * const heap_of_t_reqs
+    = (const struct REQS *)&heap_of_t_reqs_actual;
 
 
 typedef struct {
@@ -53,36 +52,39 @@ typedef struct {
     long insert_own_init;
     long remove_own_init;
     long copy_own_init;
-    heap_of_t_OPS *t_ops;
+    const heap_of_t_OPS * const t_ops;
 } heap_OWN_DEFN;
 
-OWN_req heap_ownreqs = {sizeof(heap_OWN_DEFN), 8};
+const OWN_req heap_ownreqs = { sizeof(heap_OWN_DEFN), 8 };
 
-errcode heap_own_init_proc()
+errcode
+heap_own_init_proc()
 {
-errcode err;
-heap_OWN_DEFN *type_own_ptr = (heap_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
+    errcode err;
+    heap_OWN_DEFN *type_own_ptr;
+    type_own_ptr = (heap_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
-enter_own_init_proc();
+    enter_own_init_proc();
     if (type_own_ptr->heap_own_init == 0) {
-    type_own_ptr->heap_own_init = 1;
-    {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-}
+        type_own_ptr->heap_own_init = 1;
+        /* no own vars to init */
+    }
+    signal(ERR_ok);
 }
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 heapOPcreate(CLUREF p, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     heap_OWN_DEFN *type_own_ptr;
     type_own_ptr = (heap_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->create_own_init == 0) {
+    if (type_own_ptr->create_own_init == 0) {
         type_own_ptr->create_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(45);
 
@@ -94,8 +96,8 @@ heapOPcreate(CLUREF p, CLUREF *ret_1)
     RecordAlloc(2, T_1_1);
     err = arrayOPcreate(CLU_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[0]  = T_1_2.num;
-    T_1_1.vec->data[1]  = p.num;
+    T_1_1.vec->data[0] = T_1_2.num;
+    T_1_1.vec->data[1] = p.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -108,22 +110,23 @@ heapOPcreate(CLUREF p, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
 
 /**** BEGIN PROCEDURE top ****/
 
+
 errcode
 heapOPtop(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     heap_OWN_DEFN *type_own_ptr;
     type_own_ptr = (heap_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->top_own_init == 0) {
+    if (type_own_ptr->top_own_init == 0) {
         type_own_ptr->top_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(49);
 
@@ -159,22 +162,23 @@ heapOPtop(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE top ****/
 
 
 /**** BEGIN PROCEDURE size ****/
 
+
 errcode
 heapOPsize(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     heap_OWN_DEFN *type_own_ptr;
     type_own_ptr = (heap_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->size_own_init == 0) {
+    if (type_own_ptr->size_own_init == 0) {
         type_own_ptr->size_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(54);
 
@@ -197,22 +201,23 @@ heapOPsize(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE size ****/
 
 
 /**** BEGIN PROCEDURE empty ****/
 
+
 errcode
 heapOPempty(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     heap_OWN_DEFN *type_own_ptr;
     type_own_ptr = (heap_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->empty_own_init == 0) {
+    if (type_own_ptr->empty_own_init == 0) {
         type_own_ptr->empty_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(58);
 
@@ -237,26 +242,27 @@ heapOPempty(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE empty ****/
 
 
 /**** BEGIN PROCEDURE insert ****/
 
+
 errcode
 heapOPinsert(CLUREF x, CLUREF v)
-    {
+{
     errcode err;
-    errcode ecode2;
     heap_OWN_DEFN *type_own_ptr;
     CLUREF a;
     CLUREF p;
     CLUREF son;
     CLUREF dad;
     type_own_ptr = (heap_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->insert_own_init == 0) {
+    if (type_own_ptr->insert_own_init == 0) {
         type_own_ptr->insert_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(62);
 
@@ -368,18 +374,18 @@ heapOPinsert(CLUREF x, CLUREF v)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE insert ****/
 
 
 /**** BEGIN PROCEDURE remove ****/
 
+
 errcode
 heapOPremove(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     heap_OWN_DEFN *type_own_ptr;
     CLUREF a;
     CLUREF p;
@@ -392,8 +398,9 @@ heapOPremove(CLUREF x, CLUREF *ret_1)
     CLUREF s;
     CLUREF ns;
     type_own_ptr = (heap_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->remove_own_init == 0) {
+    if (type_own_ptr->remove_own_init == 0) {
         type_own_ptr->remove_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(75);
 
@@ -603,22 +610,23 @@ heapOPremove(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE remove ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 heapOPcopy(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     heap_OWN_DEFN *type_own_ptr;
     type_own_ptr = (heap_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->copy_own_init == 0) {
+    if (type_own_ptr->copy_own_init == 0) {
         type_own_ptr->copy_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(101);
 
@@ -640,7 +648,7 @@ heapOPcopy(CLUREF x, CLUREF *ret_1)
     T_1_1.num = x.vec->data[0];
     err = arrayOPcopy1(T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    x.vec->data[0]  = T_1_2.num;
+    x.vec->data[0] = T_1_2.num;
     }
 
   LINE(104);
@@ -658,7 +666,7 @@ heapOPcopy(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
 
@@ -669,13 +677,13 @@ typedef struct{
     struct OP_ENTRY entry[7];
 } heap_OPS;
 
-CLU_proc heap_oe_copy = {{0,0,0,0}, heapOPcopy, 0};
-CLU_proc heap_oe_create = {{0,0,0,0}, heapOPcreate, 0};
-CLU_proc heap_oe_empty = {{0,0,0,0}, heapOPempty, 0};
-CLU_proc heap_oe_insert = {{0,0,0,0}, heapOPinsert, 0};
-CLU_proc heap_oe_remove = {{0,0,0,0}, heapOPremove, 0};
-CLU_proc heap_oe_size = {{0,0,0,0}, heapOPsize, 0};
-CLU_proc heap_oe_top = {{0,0,0,0}, heapOPtop, 0};
+CLU_proc heap_oe_copy = { .proc = heapOPcopy };
+CLU_proc heap_oe_create = { .proc = heapOPcreate };
+CLU_proc heap_oe_empty = { .proc = heapOPempty };
+CLU_proc heap_oe_insert = { .proc = heapOPinsert };
+CLU_proc heap_oe_remove = { .proc = heapOPremove };
+CLU_proc heap_oe_size = { .proc = heapOPsize };
+CLU_proc heap_oe_top = { .proc = heapOPtop };
 
 heap_OPS heap_ops_actual = {7, (OWNPTR)&heap_own_init, (OWNPTR)&heap_own_init, {
     {&heap_oe_copy, "copy"},

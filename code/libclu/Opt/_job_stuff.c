@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _job_stuff ****/
+
 extern errcode file_name_fill();
 extern errcode file_nameOPunparse();
 extern errcode stringOPempty();
@@ -32,24 +35,21 @@ extern errcode _bytevecOPstore();
 extern errcode _wordvecOPcreate();
 extern errcode _wordvecOPstore();
 extern errcode charOPequal();
-CLUREF STR_;
-CLUREF STR_PATH;
-CLUREF STR__072_057bin_072_057usr_057bin;
-CLUREF STR__056;
-CLUREF STR_no_040such_040executable_040file;
-CLUREF STR__040_011_000;
-CLUREF STR__000;
+static CLUREF STR_;
+static CLUREF STR_PATH;
+static CLUREF STR__072_057bin_072_057usr_057bin;
+static CLUREF STR__056;
+static CLUREF STR_no_040such_040executable_040file;
+static CLUREF STR__040_011_000;
+static CLUREF STR__000;
 static int _job_stuff_own_init = 0;
 CLUREF _job_stuffOPinit;
 CLUREF _job_stuffOPdirs;
 
-/**** BEGIN PROCEDURE _job_stuff ****/
-
 errcode
 _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF fs;
     CLUREF s;
     CLUREF j;
@@ -59,14 +59,14 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     CLUREF chars;
     CLUREF cnt;
     CLUREF v;
-        if (_job_stuff_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("PATH", CLU_1, CLU_4, &STR_PATH);
-        stringOPcons(":/bin:/usr/bin", CLU_1, CLU_14, &STR__072_057bin_072_057usr_057bin);
-        stringOPcons(".", CLU_1, CLU_1, &STR__056);
-        stringOPcons("no such executable file", CLU_1, CLU_23, &STR_no_040such_040executable_040file);
-        stringOPcons(" \t\000", CLU_1, CLU_3, &STR__040_011_000);
-        stringOPcons("\000", CLU_1, CLU_1, &STR__000);
+    if (_job_stuff_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("PATH", CLU_1, CLUREF_make_num(4), &STR_PATH);
+        stringOPcons(":/bin:/usr/bin", CLU_1, CLUREF_make_num(14), &STR__072_057bin_072_057usr_057bin);
+        stringOPcons(".", CLU_1, CLUREF_make_num(1), &STR__056);
+        stringOPcons("no such executable file", CLU_1, CLUREF_make_num(23), &STR_no_040such_040executable_040file);
+        stringOPcons(" \t\000", CLU_1, CLUREF_make_num(3), &STR__040_011_000);
+        stringOPcons("\000", CLU_1, CLUREF_make_num(1), &STR__000);
         _job_stuff_own_init = 1;
         {
             {_job_stuffOPinit.tf = false;
@@ -166,7 +166,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
                 CLUREF T_6_2;
                 CLUREF T_6_3;
                 T_6_1.ch = ':';
-                T_6_2.num = s.num;
+                T_6_2.num = (long)s.num;
                 err = _bytevecOPindexc(T_6_1, T_6_2, i, &T_6_3);
                 if (err != ERR_ok) goto ex_3;
                 j.num = T_6_3.num;
@@ -213,7 +213,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
                 {
                 CLUREF T_6_1;
                 T_6_1.num = ((ws.str->size != STR__056.str->size)? false :
-                    !(bcmp(ws.str->data, STR__056.str->data, ws.str->size)));
+                    !(memcmp(ws.str->data, STR__056.str->data, ws.str->size)));
                 if (T_6_1.num == true) {
 
   LINE(26);
@@ -360,7 +360,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         if (err != ERR_ok) goto ex_0;
         err = stringOPconcat(fs, T_1_2, &T_1_3);
         if (err != ERR_ok) goto ex_0;
-        T_1_4.num = T_1_3.str;
+        T_1_4.num = (long)T_1_3.str;
         b.num = T_1_4.num;
         }
         }
@@ -610,7 +610,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _job_stuff ****/
 

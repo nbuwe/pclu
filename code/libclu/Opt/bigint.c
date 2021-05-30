@@ -62,42 +62,47 @@ extern errcode bigintOPdiv_one();
 extern errcode bigintOPdiv_lt();
 extern errcode bigintOPdiv_sub();
 extern errcode arrayOPremh();
-extern struct REQS *array_of_t_reqs;
+extern const struct REQS * const array_of_t_reqs;
 extern struct OPS *int_ops;
-extern OWN_req array_ownreqs;
+extern const OWN_req array_ownreqs;
 extern struct OPS *array_ops;
 struct OPS *array_of_int_table;
 struct OPS *array_of_int_ops;
 struct OPS *array_of_int_ops;
 OWNPTR array_of_int_owns;
 static int bigint_own_init = 0;
-OWN_req bigint_ownreqs = {0,0};
-errcode bigint_own_init_proc()
+const OWN_req bigint_ownreqs = { 0, 0 };
+
+errcode
+bigint_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (bigint_own_init == 0) {
-        add_parm_info_type(0, int_ops, array_of_t_reqs);
+    if (bigint_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)int_ops, array_of_t_reqs);
         find_type_instance(array_ops, 1, &array_ownreqs, &(array_of_int_ops));
         bigint_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE i2bi ****/
 
+
 errcode
 bigintOPi2bi(CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF first;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(19);
 
   LINE(20);
@@ -222,23 +227,23 @@ bigintOPi2bi(CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE i2bi ****/
 
 
 /**** BEGIN PROCEDURE bi2i ****/
 
+
 errcode
 bigintOPbi2i(CLUREF a, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF at;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(36);
 
   LINE(37);
@@ -335,18 +340,18 @@ bigintOPbi2i(CLUREF a, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE bi2i ****/
 
 
 /**** BEGIN PROCEDURE parse ****/
 
+
 errcode
 bigintOPparse(CLUREF a, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF neg;
     CLUREF i;
     CLUREF psum;
@@ -354,10 +359,10 @@ bigintOPparse(CLUREF a, CLUREF *ret_1)
     CLUREF digit;
     CLUREF j;
     CLUREF nc;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(46);
 
   LINE(51);
@@ -550,18 +555,18 @@ bigintOPparse(CLUREF a, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE parse ****/
 
 
 /**** BEGIN PROCEDURE unparse ****/
 
+
 errcode
 bigintOPunparse(CLUREF r, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF neg;
     CLUREF rnb;
     CLUREF cbsiz;
@@ -569,10 +574,10 @@ bigintOPunparse(CLUREF r, CLUREF *ret_1)
     CLUREF cbuff;
     CLUREF non_zero;
     CLUREF rem;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(70);
 
   LINE(74);
@@ -755,27 +760,27 @@ bigintOPunparse(CLUREF r, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE unparse ****/
 
 
 /**** BEGIN PROCEDURE one_digit_divide ****/
 
+
 errcode
 bigintOPone_digit_divide(CLUREF rnb, CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF non_zero;
     CLUREF rem;
     CLUREF i;
     CLUREF rv;
     CLUREF nrv;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(100);
 
   LINE(101);
@@ -885,22 +890,22 @@ bigintOPone_digit_divide(CLUREF rnb, CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE one_digit_divide ****/
 
 
 /**** BEGIN PROCEDURE add ****/
 
+
 errcode
 bigintOPadd(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(114);
 
   LINE(115);
@@ -921,22 +926,22 @@ bigintOPadd(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE add ****/
 
 
 /**** BEGIN PROCEDURE sub ****/
 
+
 errcode
 bigintOPsub(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(118);
 
   LINE(119);
@@ -957,22 +962,22 @@ bigintOPsub(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE sub ****/
 
 
 /**** BEGIN PROCEDURE minus ****/
 
+
 errcode
 bigintOPminus(CLUREF a, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(122);
 
   LINE(123);
@@ -998,18 +1003,18 @@ bigintOPminus(CLUREF a, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE minus ****/
 
 
 /**** BEGIN PROCEDURE addsub ****/
 
+
 errcode
 bigintOPaddsub(CLUREF a, CLUREF b, CLUREF neg, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF sz;
     CLUREF c;
     CLUREF carry;
@@ -1017,10 +1022,10 @@ bigintOPaddsub(CLUREF a, CLUREF b, CLUREF neg, CLUREF *ret_1)
     CLUREF fb;
     CLUREF psum;
     CLUREF i;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(127);
 
   LINE(128);
@@ -1273,22 +1278,22 @@ bigintOPaddsub(CLUREF a, CLUREF b, CLUREF neg, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE addsub ****/
 
 
 /**** BEGIN PROCEDURE max_size ****/
 
+
 errcode
 bigintOPmax_size(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(163);
 
   LINE(164);
@@ -1313,22 +1318,22 @@ bigintOPmax_size(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE max_size ****/
 
 
 /**** BEGIN PROCEDURE fetch_digit ****/
 
+
 errcode
 bigintOPfetch_digit(CLUREF n, CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(168);
 
   LINE(169);
@@ -1387,22 +1392,22 @@ bigintOPfetch_digit(CLUREF n, CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE fetch_digit ****/
 
 
 /**** BEGIN PROCEDURE gt ****/
 
+
 errcode
 bigintOPgt(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(181);
 
   LINE(182);
@@ -1423,22 +1428,22 @@ bigintOPgt(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE gt ****/
 
 
 /**** BEGIN PROCEDURE ge ****/
 
+
 errcode
 bigintOPge(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(185);
 
   LINE(186);
@@ -1459,22 +1464,22 @@ bigintOPge(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE ge ****/
 
 
 /**** BEGIN PROCEDURE lt ****/
 
+
 errcode
 bigintOPlt(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(189);
 
   LINE(190);
@@ -1495,22 +1500,22 @@ bigintOPlt(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE lt ****/
 
 
 /**** BEGIN PROCEDURE le ****/
 
+
 errcode
 bigintOPle(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(193);
 
   LINE(194);
@@ -1531,23 +1536,23 @@ bigintOPle(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE le ****/
 
 
 /**** BEGIN PROCEDURE equal ****/
 
+
 errcode
 bigintOPequal(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(197);
 
   LINE(198);
@@ -1620,22 +1625,22 @@ bigintOPequal(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
 
 
 /**** BEGIN PROCEDURE max ****/
 
+
 errcode
 bigintOPmax(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(205);
 
   LINE(206);
@@ -1666,22 +1671,22 @@ bigintOPmax(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE max ****/
 
 
 /**** BEGIN PROCEDURE min ****/
 
+
 errcode
 bigintOPmin(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(209);
 
   LINE(210);
@@ -1712,22 +1717,22 @@ bigintOPmin(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE min ****/
 
 
 /**** BEGIN PROCEDURE abs ****/
 
+
 errcode
 bigintOPabs(CLUREF a, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(213);
 
   LINE(214);
@@ -1765,25 +1770,25 @@ bigintOPabs(CLUREF a, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE abs ****/
 
 
 /**** BEGIN PROCEDURE gtge ****/
 
+
 errcode
 bigintOPgtge(CLUREF a, CLUREF b, CLUREF eq, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF fa;
     CLUREF fb;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(218);
 
   LINE(219);
@@ -1915,22 +1920,22 @@ bigintOPgtge(CLUREF a, CLUREF b, CLUREF eq, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE gtge ****/
 
 
 /**** BEGIN PROCEDURE similar ****/
 
+
 errcode
 bigintOPsimilar(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(240);
 
   LINE(241);
@@ -1951,22 +1956,22 @@ bigintOPsimilar(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 bigintOPcopy(CLUREF a, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(244);
 
   LINE(245);
@@ -1984,9 +1989,12 @@ bigintOPcopy(CLUREF a, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
+
+
+/**** BEGIN PROCEDURE encode ****/
 
 struct OPS *array_of_int_table;
 struct OPS *array_of_int_ops;
@@ -1994,18 +2002,15 @@ struct OPS *array_of_int_ops;
 OWNPTR array_of_int_owns;
 static int bigintOPencode_own_init = 0;
 
-/**** BEGIN PROCEDURE encode ****/
-
 errcode
 bigintOPencode(CLUREF v, CLUREF i)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigintOPencode_own_init == 0) {
+    if (bigintOPencode_own_init == 0) {
         if (bigint_own_init == 0) {
             err = bigint_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         bigintOPencode_own_init = 1;
     }
     enter_proc(248);
@@ -2032,9 +2037,12 @@ bigintOPencode(CLUREF v, CLUREF i)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE encode ****/
+
+
+/**** BEGIN PROCEDURE decode ****/
 
 struct OPS *array_of_int_table;
 struct OPS *array_of_int_ops;
@@ -2042,18 +2050,15 @@ struct OPS *array_of_int_ops;
 OWNPTR array_of_int_owns;
 static int bigintOPdecode_own_init = 0;
 
-/**** BEGIN PROCEDURE decode ****/
-
 errcode
 bigintOPdecode(CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bigintOPdecode_own_init == 0) {
+    if (bigintOPdecode_own_init == 0) {
         if (bigint_own_init == 0) {
             err = bigint_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         bigintOPdecode_own_init = 1;
     }
     enter_proc(252);
@@ -2086,18 +2091,18 @@ bigintOPdecode(CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE decode ****/
 
 
 /**** BEGIN PROCEDURE mul ****/
 
+
 errcode
 bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF c;
     CLUREF ia;
     CLUREF digalo;
@@ -2111,10 +2116,10 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
     CLUREF store_at;
     CLUREF newd;
     CLUREF add_in;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(258);
 
   LINE(259);
@@ -2602,25 +2607,25 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE mul ****/
 
 
 /**** BEGIN PROCEDURE mul_sub_in ****/
 
+
 errcode
 bigintOPmul_sub_in(CLUREF c, CLUREF a, CLUREF p)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF carry;
     CLUREF aa;
     CLUREF newc;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(306);
 
   LINE(307);
@@ -2739,24 +2744,24 @@ bigintOPmul_sub_in(CLUREF c, CLUREF a, CLUREF p)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE mul_sub_in ****/
 
 
 /**** BEGIN PROCEDURE clear_leads ****/
 
+
 errcode
 bigintOPclear_leads(CLUREF r)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF fd;
     CLUREF rsz;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(323);
 
   LINE(324);
@@ -2907,27 +2912,27 @@ bigintOPclear_leads(CLUREF r)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE clear_leads ****/
 
 
 /**** BEGIN PROCEDURE power ****/
 
+
 errcode
 bigintOPpower(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF pexp;
     CLUREF sexp;
     CLUREF w;
     CLUREF x;
     CLUREF d;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(339);
 
   LINE(340);
@@ -3063,27 +3068,27 @@ bigintOPpower(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE power ****/
 
 
 /**** BEGIN PROCEDURE div ****/
 
+
 errcode
 bigintOPdiv(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF q;
     CLUREF r;
     CLUREF nega;
     CLUREF negb;
     CLUREF mod0;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(364);
 
   LINE(365);
@@ -3168,27 +3173,27 @@ bigintOPdiv(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE div ****/
 
 
 /**** BEGIN PROCEDURE mod ****/
 
+
 errcode
 bigintOPmod(CLUREF a, CLUREF b, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF q;
     CLUREF r;
     CLUREF nega;
     CLUREF negb;
     CLUREF mod0;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(375);
 
   LINE(376);
@@ -3271,27 +3276,27 @@ bigintOPmod(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE mod ****/
 
 
 /**** BEGIN PROCEDURE divmodhack ****/
 
+
 errcode
 bigintOPdivmodhack(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret_4, CLUREF *ret_5)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF q;
     CLUREF r;
     CLUREF nega;
     CLUREF negb;
     CLUREF mod0;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(386);
 
   LINE(389);
@@ -3450,18 +3455,18 @@ bigintOPdivmodhack(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE divmodhack ****/
 
 
 /**** BEGIN PROCEDURE divmod ****/
 
+
 errcode
 bigintOPdivmod(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF newba;
     CLUREF newbb;
     CLUREF forget_it;
@@ -3469,10 +3474,10 @@ bigintOPdivmod(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2)
     CLUREF rsize;
     CLUREF r;
     CLUREF e;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(412);
 
   LINE(413);
@@ -3659,26 +3664,26 @@ bigintOPdivmod(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE divmod ****/
 
 
 /**** BEGIN PROCEDURE div_one ****/
 
+
 errcode
 bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ssz;
     CLUREF d;
     CLUREF divsofar;
     CLUREF quess;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(434);
 
   LINE(435);
@@ -3903,26 +3908,26 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE div_one ****/
 
 
 /**** BEGIN PROCEDURE div_lt ****/
 
+
 errcode
 bigintOPdiv_lt(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF d;
     CLUREF s;
     CLUREF dd;
     CLUREF ss;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(458);
 
   LINE(459);
@@ -4056,26 +4061,26 @@ bigintOPdiv_lt(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE div_lt ****/
 
 
 /**** BEGIN PROCEDURE div_sub ****/
 
+
 errcode
 bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF borry;
     CLUREF ss;
     CLUREF psum;
     CLUREF newee;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(471);
 
   LINE(472);
@@ -4237,25 +4242,25 @@ bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE div_sub ****/
 
 
 /**** BEGIN PROCEDURE new_base ****/
 
+
 errcode
 bigintOPnew_base(CLUREF a, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF r;
     CLUREF adig;
     CLUREF topa;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(491);
 
   LINE(492);
@@ -4388,18 +4393,18 @@ bigintOPnew_base(CLUREF a, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE new_base ****/
 
 
 /**** BEGIN PROCEDURE old_base ****/
 
+
 errcode
 bigintOPold_base(CLUREF a, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF rsz;
     CLUREF r;
     CLUREF carry;
@@ -4407,10 +4412,10 @@ bigintOPold_base(CLUREF a, CLUREF *ret_1)
     CLUREF ai;
     CLUREF aip1;
     CLUREF nsum;
-        if (bigint_own_init == 0) {
-            err = bigint_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (bigint_own_init == 0) {
+        err = bigint_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(509);
 
   LINE(510);
@@ -4616,7 +4621,7 @@ bigintOPold_base(CLUREF a, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE old_base ****/
 
@@ -4627,29 +4632,29 @@ typedef struct{
     struct OP_ENTRY entry[23];
 } bigint_OPS;
 
-CLU_proc bigint_oe_abs = {{0,0,0,0}, bigintOPabs, 0};
-CLU_proc bigint_oe_add = {{0,0,0,0}, bigintOPadd, 0};
-CLU_proc bigint_oe_bi2i = {{0,0,0,0}, bigintOPbi2i, 0};
-CLU_proc bigint_oe_copy = {{0,0,0,0}, bigintOPcopy, 0};
-CLU_proc bigint_oe_decode = {{0,0,0,0}, bigintOPdecode, 0};
-CLU_proc bigint_oe_div = {{0,0,0,0}, bigintOPdiv, 0};
-CLU_proc bigint_oe_encode = {{0,0,0,0}, bigintOPencode, 0};
-CLU_proc bigint_oe_equal = {{0,0,0,0}, bigintOPequal, 0};
-CLU_proc bigint_oe_ge = {{0,0,0,0}, bigintOPge, 0};
-CLU_proc bigint_oe_gt = {{0,0,0,0}, bigintOPgt, 0};
-CLU_proc bigint_oe_i2bi = {{0,0,0,0}, bigintOPi2bi, 0};
-CLU_proc bigint_oe_le = {{0,0,0,0}, bigintOPle, 0};
-CLU_proc bigint_oe_lt = {{0,0,0,0}, bigintOPlt, 0};
-CLU_proc bigint_oe_max = {{0,0,0,0}, bigintOPmax, 0};
-CLU_proc bigint_oe_min = {{0,0,0,0}, bigintOPmin, 0};
-CLU_proc bigint_oe_minus = {{0,0,0,0}, bigintOPminus, 0};
-CLU_proc bigint_oe_mod = {{0,0,0,0}, bigintOPmod, 0};
-CLU_proc bigint_oe_mul = {{0,0,0,0}, bigintOPmul, 0};
-CLU_proc bigint_oe_parse = {{0,0,0,0}, bigintOPparse, 0};
-CLU_proc bigint_oe_power = {{0,0,0,0}, bigintOPpower, 0};
-CLU_proc bigint_oe_similar = {{0,0,0,0}, bigintOPsimilar, 0};
-CLU_proc bigint_oe_sub = {{0,0,0,0}, bigintOPsub, 0};
-CLU_proc bigint_oe_unparse = {{0,0,0,0}, bigintOPunparse, 0};
+CLU_proc bigint_oe_abs = { .proc = bigintOPabs };
+CLU_proc bigint_oe_add = { .proc = bigintOPadd };
+CLU_proc bigint_oe_bi2i = { .proc = bigintOPbi2i };
+CLU_proc bigint_oe_copy = { .proc = bigintOPcopy };
+CLU_proc bigint_oe_decode = { .proc = bigintOPdecode };
+CLU_proc bigint_oe_div = { .proc = bigintOPdiv };
+CLU_proc bigint_oe_encode = { .proc = bigintOPencode };
+CLU_proc bigint_oe_equal = { .proc = bigintOPequal };
+CLU_proc bigint_oe_ge = { .proc = bigintOPge };
+CLU_proc bigint_oe_gt = { .proc = bigintOPgt };
+CLU_proc bigint_oe_i2bi = { .proc = bigintOPi2bi };
+CLU_proc bigint_oe_le = { .proc = bigintOPle };
+CLU_proc bigint_oe_lt = { .proc = bigintOPlt };
+CLU_proc bigint_oe_max = { .proc = bigintOPmax };
+CLU_proc bigint_oe_min = { .proc = bigintOPmin };
+CLU_proc bigint_oe_minus = { .proc = bigintOPminus };
+CLU_proc bigint_oe_mod = { .proc = bigintOPmod };
+CLU_proc bigint_oe_mul = { .proc = bigintOPmul };
+CLU_proc bigint_oe_parse = { .proc = bigintOPparse };
+CLU_proc bigint_oe_power = { .proc = bigintOPpower };
+CLU_proc bigint_oe_similar = { .proc = bigintOPsimilar };
+CLU_proc bigint_oe_sub = { .proc = bigintOPsub };
+CLU_proc bigint_oe_unparse = { .proc = bigintOPunparse };
 
 bigint_OPS bigint_ops_actual = {23, (OWNPTR)&bigint_own_init, (OWNPTR)&bigint_own_init, {
     {&bigint_oe_abs, "abs"},

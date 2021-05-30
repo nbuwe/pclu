@@ -58,52 +58,57 @@ extern errcode _chanOPabort();
 extern errcode _chanOPclose();
 extern errcode recordOPget_7();
 extern errcode recordOPset_3();
-CLUREF STR__057dev;
-CLUREF STR_null;
-CLUREF STR_write;
-CLUREF STR_;
-CLUREF STR_channel_040is_040closed;
+static CLUREF STR__057dev;
+static CLUREF STR_null;
+static CLUREF STR_write;
+static CLUREF STR_;
+static CLUREF STR_channel_040is_040closed;
 static int data_chan_own_init = 0;
-OWN_req data_chan_ownreqs = {0,0};
+const OWN_req data_chan_ownreqs = { 0, 0 };
 CLUREF data_chanOPisfree;
 CLUREF data_chanOPfree;
-errcode data_chan_own_init_proc()
+
+errcode
+data_chan_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (data_chan_own_init == 0) {
-        stringOPcons("/dev", CLU_1, CLU_4, &STR__057dev);
-        stringOPcons("null", CLU_1, CLU_4, &STR_null);
-        stringOPcons("write", CLU_1, CLU_5, &STR_write);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("channel is closed", CLU_1, CLU_17, &STR_channel_040is_040closed);
+    if (data_chan_own_init == 0) {
+        stringOPcons("/dev", CLU_1, CLUREF_make_num(4), &STR__057dev);
+        stringOPcons("null", CLU_1, CLUREF_make_num(4), &STR_null);
+        stringOPcons("write", CLU_1, CLUREF_make_num(5), &STR_write);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("channel is closed", CLU_1, CLUREF_make_num(17), &STR_channel_040is_040closed);
         data_chan_own_init = 1;
         {
             {data_chanOPisfree.tf = false;
             }
             }
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
-static int data_chanOPopen_own_init = 0;
 
 /**** BEGIN PROCEDURE open ****/
 
+static int data_chanOPopen_own_init = 0;
+
 errcode
 data_chanOPopen(CLUREF fn, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF c;
     CLUREF p;
     CLUREF dc;
-        if (data_chanOPopen_own_init == 0) {
+    if (data_chanOPopen_own_init == 0) {
         if (data_chan_own_init == 0) {
             err = data_chan_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         data_chanOPopen_own_init = 1;
     }
     enter_proc(33);
@@ -118,13 +123,13 @@ data_chanOPopen(CLUREF fn, CLUREF *ret_1, CLUREF *ret_2)
     err = file_nameOPget_dir(fn, &T_2_2);
     if (err != ERR_ok) goto ex_1;
     T_2_3.num = ((T_2_2.str->size != STR__057dev.str->size)? false :
-        !(bcmp(T_2_2.str->data, STR__057dev.str->data, T_2_2.str->size)));
+        !(memcmp(T_2_2.str->data, STR__057dev.str->data, T_2_2.str->size)));
     T_2_1.num = T_2_3.num;
     if (T_2_3.num) {
         err = file_nameOPget_name(fn, &T_2_4);
         if (err != ERR_ok) goto ex_1;
         T_2_5.num = ((T_2_4.str->size != STR_null.str->size)? false :
-            !(bcmp(T_2_4.str->data, STR_null.str->data, T_2_4.str->size)));
+            !(memcmp(T_2_4.str->data, STR_null.str->data, T_2_4.str->size)));
         T_2_1.num = T_2_5.num;
     }
     if (T_2_1.num == true) {
@@ -185,13 +190,13 @@ data_chanOPopen(CLUREF fn, CLUREF *ret_1, CLUREF *ret_2)
     {
         {CLUREF T_1_1;
         RecordAlloc(7, T_1_1);
-        T_1_1.vec->data[1]  = c.num;
-        T_1_1.vec->data[0]  = 28;
-        T_1_1.vec->data[5]  = p.num;
-        T_1_1.vec->data[4]  = 10;
-        T_1_1.vec->data[2]  = false;
-        T_1_1.vec->data[3]  = false;
-        T_1_1.vec->data[6]  = STR_.num;
+        T_1_1.vec->data[1] = c.num;
+        T_1_1.vec->data[0] = 28;
+        T_1_1.vec->data[5] = p.num;
+        T_1_1.vec->data[4] = 10;
+        T_1_1.vec->data[2] = false;
+        T_1_1.vec->data[3] = false;
+        T_1_1.vec->data[6] = STR_.num;
         dc.num = T_1_1.num;
         }
         }
@@ -216,18 +221,18 @@ data_chanOPopen(CLUREF fn, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE open ****/
 
 
 /**** BEGIN PROCEDURE store_str ****/
 
+
 errcode
 data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF v;
     CLUREF z;
     CLUREF p;
@@ -237,10 +242,10 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
     CLUREF i;
     CLUREF cnt;
     CLUREF moved;
-        if (data_chan_own_init == 0) {
-            err = data_chan_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (data_chan_own_init == 0) {
+        err = data_chan_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(55);
 
   LINE(56);
@@ -284,7 +289,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
          (T_1_5.num < 0 && T_1_1.num > 0 && T_1_4.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    dc.vec->data[0]  = T_1_5.num;
+    dc.vec->data[0] = T_1_5.num;
     }
 
   LINE(59);
@@ -336,12 +341,12 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
 
   LINE(65);
                         {
-                        dc.vec->data[3]  = true;
+                        dc.vec->data[3] = true;
                         }
 
   LINE(66);
                         {
-                        dc.vec->data[6]  = why.num;
+                        dc.vec->data[6] = why.num;
                         }
                     }
                     else {
@@ -380,7 +385,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
   LINE(73);
     {
         {CLUREF T_1_1;
-        T_1_1.num = s.num;
+        T_1_1.num = (long)s.num;
         chars.num = T_1_1.num;
         }
         }
@@ -430,12 +435,12 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
 
   LINE(80);
                             {
-                            dc.vec->data[3]  = true;
+                            dc.vec->data[3] = true;
                             }
 
   LINE(81);
                             {
-                            dc.vec->data[6]  = why.num;
+                            dc.vec->data[6] = why.num;
                             }
                         }
                         else {
@@ -628,7 +633,7 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
 
   LINE(106);
     {
-    dc.vec->data[4]  = index.num;
+    dc.vec->data[4] = index.num;
     }
 
   LINE(107);
@@ -646,18 +651,18 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE store_str ****/
 
 
 /**** BEGIN PROCEDURE store_vec ****/
 
+
 errcode
 data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF v;
     CLUREF z;
     CLUREF p;
@@ -666,10 +671,10 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     CLUREF val;
     CLUREF loc;
     CLUREF i;
-        if (data_chan_own_init == 0) {
-            err = data_chan_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (data_chan_own_init == 0) {
+        err = data_chan_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(110);
 
   LINE(111);
@@ -727,7 +732,7 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
          (T_1_4.num < 0 && T_1_1.num > 0 && T_1_3.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    dc.vec->data[0]  = T_1_4.num;
+    dc.vec->data[0] = T_1_4.num;
     }
 
   LINE(116);
@@ -779,12 +784,12 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
 
   LINE(122);
                         {
-                        dc.vec->data[3]  = true;
+                        dc.vec->data[3] = true;
                         }
 
   LINE(123);
                         {
-                        dc.vec->data[6]  = why.num;
+                        dc.vec->data[6] = why.num;
                         }
                     }
                     else {
@@ -861,12 +866,12 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
 
   LINE(135);
                                 {
-                                dc.vec->data[3]  = true;
+                                dc.vec->data[3] = true;
                                 }
 
   LINE(136);
                                 {
-                                dc.vec->data[6]  = why.num;
+                                dc.vec->data[6] = why.num;
                                 }
                             }
                             else {
@@ -931,7 +936,7 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
 
   LINE(149);
     {
-    dc.vec->data[4]  = index.num;
+    dc.vec->data[4] = index.num;
     }
 
   LINE(150);
@@ -949,18 +954,18 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE store_vec ****/
 
 
 /**** BEGIN PROCEDURE store_avec ****/
 
+
 errcode
 data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF v;
     CLUREF z;
     CLUREF p;
@@ -969,10 +974,10 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     CLUREF val;
     CLUREF loc;
     CLUREF i;
-        if (data_chan_own_init == 0) {
-            err = data_chan_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (data_chan_own_init == 0) {
+        err = data_chan_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(153);
 
   LINE(154);
@@ -1029,7 +1034,7 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
          (T_1_4.num < 0 && T_1_1.num > 0 && T_1_3.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    dc.vec->data[0]  = T_1_4.num;
+    dc.vec->data[0] = T_1_4.num;
     }
 
   LINE(159);
@@ -1081,12 +1086,12 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
 
   LINE(165);
                         {
-                        dc.vec->data[3]  = true;
+                        dc.vec->data[3] = true;
                         }
 
   LINE(166);
                         {
-                        dc.vec->data[6]  = why.num;
+                        dc.vec->data[6] = why.num;
                         }
                     }
                     else {
@@ -1167,12 +1172,12 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
 
   LINE(178);
                                 {
-                                dc.vec->data[3]  = true;
+                                dc.vec->data[3] = true;
                                 }
 
   LINE(179);
                                 {
-                                dc.vec->data[6]  = why.num;
+                                dc.vec->data[6] = why.num;
                                 }
                             }
                             else {
@@ -1237,7 +1242,7 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
 
   LINE(192);
     {
-    dc.vec->data[4]  = index.num;
+    dc.vec->data[4] = index.num;
     }
 
   LINE(193);
@@ -1255,28 +1260,28 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE store_avec ****/
 
 
 /**** BEGIN PROCEDURE store_cell ****/
 
+
 errcode
 data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF v;
     CLUREF p;
     CLUREF index;
     CLUREF why;
     CLUREF loc;
     CLUREF i;
-        if (data_chan_own_init == 0) {
-            err = data_chan_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (data_chan_own_init == 0) {
+        err = data_chan_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(196);
 
   LINE(197);
@@ -1299,7 +1304,7 @@ data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
          (T_1_2.num < 0 && T_1_1.num > 0 && 8 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    dc.vec->data[0]  = T_1_2.num;
+    dc.vec->data[0] = T_1_2.num;
     }
 
   LINE(199);
@@ -1352,12 +1357,12 @@ data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
 
   LINE(205);
                         {
-                        dc.vec->data[3]  = true;
+                        dc.vec->data[3] = true;
                         }
 
   LINE(206);
                         {
-                        dc.vec->data[6]  = why.num;
+                        dc.vec->data[6] = why.num;
                         }
                     }
                     else {
@@ -1433,7 +1438,7 @@ data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
 
   LINE(219);
     {
-    dc.vec->data[4]  = index.num;
+    dc.vec->data[4] = index.num;
     }
 
   LINE(220);
@@ -1451,22 +1456,22 @@ data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE store_cell ****/
 
 
 /**** BEGIN PROCEDURE oneof2 ****/
 
+
 errcode
 data_chanOPoneof2(CLUREF dc, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (data_chan_own_init == 0) {
-            err = data_chan_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (data_chan_own_init == 0) {
+        err = data_chan_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(223);
 
   LINE(224);
@@ -1489,19 +1494,19 @@ data_chanOPoneof2(CLUREF dc, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE oneof2 ****/
 
-static int data_chanOPadd_close_own_init = 0;
 
 /**** BEGIN PROCEDURE add_close ****/
 
+static int data_chanOPadd_close_own_init = 0;
+
 errcode
 data_chanOPadd_close(CLUREF dc, CLUREF val, CLUREF cc)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF p;
     CLUREF oc;
     CLUREF cz;
@@ -1509,11 +1514,11 @@ data_chanOPadd_close(CLUREF dc, CLUREF val, CLUREF cc)
     CLUREF loc;
     CLUREF i;
     CLUREF why;
-        if (data_chanOPadd_close_own_init == 0) {
+    if (data_chanOPadd_close_own_init == 0) {
         if (data_chan_own_init == 0) {
             err = data_chan_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         data_chanOPadd_close_own_init = 1;
     }
     enter_proc(227);
@@ -1742,12 +1747,12 @@ data_chanOPadd_close(CLUREF dc, CLUREF val, CLUREF cc)
 
   LINE(261);
                 {
-                dc.vec->data[3]  = true;
+                dc.vec->data[3] = true;
                 }
 
   LINE(262);
                 {
-                dc.vec->data[6]  = why.num;
+                dc.vec->data[6] = why.num;
                 }
             }
             else {
@@ -1791,12 +1796,12 @@ data_chanOPadd_close(CLUREF dc, CLUREF val, CLUREF cc)
 
   LINE(269);
                     {
-                    dc.vec->data[3]  = true;
+                    dc.vec->data[3] = true;
                     }
 
   LINE(270);
                     {
-                    dc.vec->data[6]  = why.num;
+                    dc.vec->data[6] = why.num;
                     }
                     }
                     }/* end if */
@@ -1818,12 +1823,12 @@ data_chanOPadd_close(CLUREF dc, CLUREF val, CLUREF cc)
 
   LINE(275);
     {
-    dc.vec->data[6]  = STR_channel_040is_040closed.num;
+    dc.vec->data[6] = STR_channel_040is_040closed.num;
     }
 
   LINE(276);
     {
-    dc.vec->data[2]  = true;
+    dc.vec->data[2] = true;
     }
 
   LINE(277);
@@ -1851,7 +1856,7 @@ data_chanOPadd_close(CLUREF dc, CLUREF val, CLUREF cc)
 
   LINE(281);
         {
-        dc.vec->data[3]  = true;
+        dc.vec->data[3] = true;
         }
         }}/* end if */
     goto end_0;
@@ -1862,25 +1867,25 @@ data_chanOPadd_close(CLUREF dc, CLUREF val, CLUREF cc)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE add_close ****/
 
-static int data_chanOPclose_own_init = 0;
 
 /**** BEGIN PROCEDURE close ****/
 
+static int data_chanOPclose_own_init = 0;
+
 errcode
 data_chanOPclose(CLUREF dc)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF why;
-        if (data_chanOPclose_own_init == 0) {
+    if (data_chanOPclose_own_init == 0) {
         if (data_chan_own_init == 0) {
             err = data_chan_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         data_chanOPclose_own_init = 1;
     }
     enter_proc(285);
@@ -1936,12 +1941,12 @@ data_chanOPclose(CLUREF dc)
 
   LINE(291);
                     {
-                    dc.vec->data[3]  = true;
+                    dc.vec->data[3] = true;
                     }
 
   LINE(292);
                     {
-                    dc.vec->data[6]  = why.num;
+                    dc.vec->data[6] = why.num;
                     }
                 }
                 else {
@@ -1991,12 +1996,12 @@ data_chanOPclose(CLUREF dc)
 
   LINE(300);
                     {
-                    dc.vec->data[3]  = true;
+                    dc.vec->data[3] = true;
                     }
 
   LINE(301);
                     {
-                    dc.vec->data[6]  = why.num;
+                    dc.vec->data[6] = why.num;
                     }
                     }
                     }/* end if */
@@ -2018,12 +2023,12 @@ data_chanOPclose(CLUREF dc)
 
   LINE(306);
     {
-    dc.vec->data[6]  = STR_channel_040is_040closed.num;
+    dc.vec->data[6] = STR_channel_040is_040closed.num;
     }
 
   LINE(307);
     {
-    dc.vec->data[2]  = true;
+    dc.vec->data[2] = true;
     }
 
   LINE(308);
@@ -2053,7 +2058,7 @@ data_chanOPclose(CLUREF dc)
 
   LINE(312);
         {
-        dc.vec->data[3]  = true;
+        dc.vec->data[3] = true;
         }
         }}/* end if */
     goto end_0;
@@ -2064,7 +2069,7 @@ data_chanOPclose(CLUREF dc)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE close ****/
 
@@ -2075,14 +2080,14 @@ typedef struct{
     struct OP_ENTRY entry[8];
 } data_chan_OPS;
 
-CLU_proc data_chan_oe_add_close = {{0,0,0,0}, data_chanOPadd_close, 0};
-CLU_proc data_chan_oe_close = {{0,0,0,0}, data_chanOPclose, 0};
-CLU_proc data_chan_oe_oneof2 = {{0,0,0,0}, data_chanOPoneof2, 0};
-CLU_proc data_chan_oe_open = {{0,0,0,0}, data_chanOPopen, 0};
-CLU_proc data_chan_oe_store_avec = {{0,0,0,0}, data_chanOPstore_avec, 0};
-CLU_proc data_chan_oe_store_cell = {{0,0,0,0}, data_chanOPstore_cell, 0};
-CLU_proc data_chan_oe_store_str = {{0,0,0,0}, data_chanOPstore_str, 0};
-CLU_proc data_chan_oe_store_vec = {{0,0,0,0}, data_chanOPstore_vec, 0};
+CLU_proc data_chan_oe_add_close = { .proc = data_chanOPadd_close };
+CLU_proc data_chan_oe_close = { .proc = data_chanOPclose };
+CLU_proc data_chan_oe_oneof2 = { .proc = data_chanOPoneof2 };
+CLU_proc data_chan_oe_open = { .proc = data_chanOPopen };
+CLU_proc data_chan_oe_store_avec = { .proc = data_chanOPstore_avec };
+CLU_proc data_chan_oe_store_cell = { .proc = data_chanOPstore_cell };
+CLU_proc data_chan_oe_store_str = { .proc = data_chanOPstore_str };
+CLU_proc data_chan_oe_store_vec = { .proc = data_chanOPstore_vec };
 
 data_chan_OPS data_chan_ops_actual = {8, (OWNPTR)&data_chan_own_init, (OWNPTR)&data_chan_own_init, {
     {&data_chan_oe_add_close, "add_close"},

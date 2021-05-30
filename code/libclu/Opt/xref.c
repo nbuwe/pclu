@@ -42,10 +42,9 @@ extern errcode xrefOPelements();
 extern errcode xrefOPadd_ref();
 extern errcode arrayOPset_low();
 extern errcode arrayOPtrim();
-extern errcode xref_IB_1();
-extern struct REQS *array_of_t_reqs;
+extern const struct REQS * const array_of_t_reqs;
 extern struct OPS *string_ops;
-extern OWN_req array_ownreqs;
+extern const OWN_req array_ownreqs;
 extern struct OPS *array_ops;
 struct OPS *array_of_string_table;
 struct OPS *array_of_string_ops;
@@ -53,55 +52,60 @@ struct OPS *array_of_string_ops;
 OWNPTR array_of_string_owns;
 extern struct OPS *array_of_string_ops;
 struct OPS  *record_key_users_ops;
-extern OWN_req xref_ownreqs;
+extern const OWN_req xref_ownreqs;
 extern struct OPS *xref_ops;
-extern struct REQS *xref_op_find_index_of_etype_reqs;
+extern const struct REQS * const xref_op_find_index_of_etype_reqs;
 extern struct OPS *record_key_users_ops;
-extern OWN_req xref_op_find_index_ownreqs;
+extern const OWN_req xref_op_find_index_ownreqs;
 struct OPS *xref_op_find_index_of_record_key_users_table;
 struct OPS *xref_op_find_index_of_record_key_users_ops;
 OWNPTR xref_op_find_index_of_record_key_users_owns;
 struct OPS *xref_op_find_index_of_string_table;
 struct OPS *xref_op_find_index_of_string_ops;
 OWNPTR xref_op_find_index_of_string_owns;
-CLUREF STR__137_137_137_137_137_137_137_137_137_137;
-CLUREF STR__012_012;
+static CLUREF STR__137_137_137_137_137_137_137_137_137_137;
+static CLUREF STR__012_012;
 static int xref_own_init = 0;
-OWN_req xref_ownreqs = {0,0};
-errcode xref_own_init_proc()
+const OWN_req xref_ownreqs = { 0, 0 };
+
+errcode
+xref_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (xref_own_init == 0) {
-        add_parm_info_type(0, string_ops, array_of_t_reqs);
+    if (xref_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)string_ops, array_of_t_reqs);
         find_type_instance(array_ops, 1, &array_ownreqs, &(array_of_string_ops));
         add_selector_info("key", 0, string_ops);
         add_selector_info("users", 1, array_of_string_ops);
         find_selector_ops("record", 2, &(record_key_users_ops));
-        add_parm_info_type(0, record_key_users_ops, xref_op_find_index_of_etype_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_key_users_ops, xref_op_find_index_of_etype_reqs);
         find_typeop_instance(xref_ops, xrefOPfind_index, 1, 0, &xref_op_find_index_ownreqs, &xref_ownreqs, &(xref_op_find_index_of_record_key_users_ops));
-        add_parm_info_type(0, string_ops, xref_op_find_index_of_etype_reqs);
+        add_parm_info_type(0, (const struct OPS *)string_ops, xref_op_find_index_of_etype_reqs);
         find_typeop_instance(xref_ops, xrefOPfind_index, 1, 0, &xref_op_find_index_ownreqs, &xref_ownreqs, &(xref_op_find_index_of_string_ops));
-        stringOPcons("__________", CLU_1, CLU_10, &STR__137_137_137_137_137_137_137_137_137_137);
-        stringOPcons("\n\n", CLU_1, CLU_2, &STR__012_012);
+        stringOPcons("__________", CLU_1, CLUREF_make_num(10), &STR__137_137_137_137_137_137_137_137_137_137);
+        stringOPcons("\n\n", CLU_1, CLUREF_make_num(2), &STR__012_012);
         xref_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 xrefOPcreate(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (xref_own_init == 0) {
-            err = xref_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (xref_own_init == 0) {
+        err = xref_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(25);
 
   LINE(26);
@@ -122,9 +126,12 @@ xrefOPcreate(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
+
+
+/**** BEGIN PROCEDURE add_ref ****/
 
 struct OPS *array_of_string_table;
 struct OPS *array_of_string_ops;
@@ -139,20 +146,17 @@ struct OPS *xref_op_find_index_of_string_ops;
 OWNPTR xref_op_find_index_of_string_owns;
 static int xrefOPadd_ref_own_init = 0;
 
-/**** BEGIN PROCEDURE add_ref ****/
-
 errcode
 xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF musers;
     CLUREF muser;
-        if (xrefOPadd_ref_own_init == 0) {
+    if (xrefOPadd_ref_own_init == 0) {
         if (xref_own_init == 0) {
             err = xref_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         xrefOPadd_ref_own_init = 1;
     }
     enter_proc(31);
@@ -164,10 +168,10 @@ xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
         CLUREF T_1_3;
         CLUREF T_1_4;
         CLUREF T_1_5;
-        err = proctypeOPnew(CLU_1, &T_1_1.proc);
+        err = proctypeOPnew(CLU_1, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->proc = recordOPget_1;
-        err = proctypeOPnew(CLU_0, &T_1_2.proc);
+        err = proctypeOPnew(CLU_0, &T_1_2);
         if (err!= ERR_ok) goto ex_0;
         T_1_2.proc->proc = xrefOPentry_maker;
         generic_CLU_proc.type_owns = 0;
@@ -203,7 +207,7 @@ xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
             {
             CLUREF T_2_1;
             T_2_1.num = ((user.str->size != muser.str->size)? false :
-                !(bcmp(user.str->data, muser.str->data, user.str->size)));
+                !(memcmp(user.str->data, muser.str->data, user.str->size)));
             if (T_2_1.num == true) {
 
   LINE(35);
@@ -220,10 +224,10 @@ xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-    err = proctypeOPnew(CLU_0, &T_1_1.proc);
+    err = proctypeOPnew(CLU_0, &T_1_1);
     if (err!= ERR_ok) goto ex_0;
     T_1_1.proc->proc = stringOPcopy;
-    err = proctypeOPnew(CLU_0, &T_1_2.proc);
+    err = proctypeOPnew(CLU_0, &T_1_2);
     if (err!= ERR_ok) goto ex_0;
     T_1_2.proc->proc = stringOPcopy;
     generic_CLU_proc.type_owns = 0;
@@ -241,9 +245,12 @@ xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE add_ref ****/
+
+
+/**** BEGIN PROCEDURE add_refs ****/
 
 struct OPS *array_of_string_table;
 struct OPS *array_of_string_ops;
@@ -258,22 +265,19 @@ struct OPS *xref_op_find_index_of_string_ops;
 OWNPTR xref_op_find_index_of_string_owns;
 static int xrefOPadd_refs_own_init = 0;
 
-/**** BEGIN PROCEDURE add_refs ****/
-
 errcode
 xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF musers;
     CLUREF user;
     CLUREF new;
     CLUREF muser;
-        if (xrefOPadd_refs_own_init == 0) {
+    if (xrefOPadd_refs_own_init == 0) {
         if (xref_own_init == 0) {
             err = xref_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         xrefOPadd_refs_own_init = 1;
     }
     enter_proc(42);
@@ -285,10 +289,10 @@ xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
         CLUREF T_1_3;
         CLUREF T_1_4;
         CLUREF T_1_5;
-        err = proctypeOPnew(CLU_1, &T_1_1.proc);
+        err = proctypeOPnew(CLU_1, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->proc = recordOPget_1;
-        err = proctypeOPnew(CLU_0, &T_1_2.proc);
+        err = proctypeOPnew(CLU_0, &T_1_2);
         if (err!= ERR_ok) goto ex_0;
         T_1_2.proc->proc = xrefOPentry_maker;
         generic_CLU_proc.type_owns = 0;
@@ -344,7 +348,7 @@ xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
                     {
                     CLUREF T_3_1;
                     T_3_1.num = ((user.str->size != muser.str->size)? false :
-                        !(bcmp(user.str->data, muser.str->data, user.str->size)));
+                        !(memcmp(user.str->data, muser.str->data, user.str->size)));
                     if (T_3_1.num == true) {
 
   LINE(48);
@@ -369,10 +373,10 @@ xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
                 CLUREF T_3_1;
                 CLUREF T_3_2;
                 CLUREF T_3_3;
-                err = proctypeOPnew(CLU_0, &T_3_1.proc);
+                err = proctypeOPnew(CLU_0, &T_3_1);
                 if (err!= ERR_ok) goto ex_0;
                 T_3_1.proc->proc = stringOPcopy;
-                err = proctypeOPnew(CLU_0, &T_3_2.proc);
+                err = proctypeOPnew(CLU_0, &T_3_2);
                 if (err!= ERR_ok) goto ex_0;
                 T_3_2.proc->proc = stringOPcopy;
                 generic_CLU_proc.type_owns = 0;
@@ -395,9 +399,12 @@ xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE add_refs ****/
+
+
+/**** BEGIN PROCEDURE rem_refs ****/
 
 struct OPS *array_of_string_table;
 struct OPS *array_of_string_ops;
@@ -409,23 +416,20 @@ struct OPS *xref_op_find_index_of_record_key_users_ops;
 OWNPTR xref_op_find_index_of_record_key_users_owns;
 static int xrefOPrem_refs_own_init = 0;
 
-/**** BEGIN PROCEDURE rem_refs ****/
-
 errcode
 xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF users;
     CLUREF ll;
     CLUREF hh;
     CLUREF j;
-        if (xrefOPrem_refs_own_init == 0) {
+    if (xrefOPrem_refs_own_init == 0) {
         if (xref_own_init == 0) {
             err = xref_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         xrefOPrem_refs_own_init = 1;
     }
     enter_proc(59);
@@ -435,10 +439,10 @@ xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        err = proctypeOPnew(CLU_1, &T_1_1.proc);
+        err = proctypeOPnew(CLU_1, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->proc = recordOPget_1;
-        err = proctypeOPnew(CLU_0, &T_1_2.proc);
+        err = proctypeOPnew(CLU_0, &T_1_2);
         if (err!= ERR_ok) goto ex_0;
         T_1_2.proc->proc = xrefOPentry_maker;
         generic_CLU_proc.type_owns = 0;
@@ -608,22 +612,22 @@ xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE rem_refs ****/
 
 
 /**** BEGIN PROCEDURE entry_maker ****/
 
+
 errcode
 xrefOPentry_maker(CLUREF key, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (xref_own_init == 0) {
-            err = xref_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (xref_own_init == 0) {
+        err = xref_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(79);
 
   LINE(80);
@@ -632,10 +636,10 @@ xrefOPentry_maker(CLUREF key, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[0]  = key.num;
+    T_1_1.vec->data[0] = key.num;
     err = arrayOPcreate(CLU_0, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[1]  = T_1_2.num;
+    T_1_1.vec->data[1] = T_1_2.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -648,18 +652,20 @@ xrefOPentry_maker(CLUREF key, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE entry_maker ****/
 
 
-typedef struct {
-long count;
-} xref_op_find_index_of_etype_REQS;
+/**** BEGIN PROCEDURE find_index ****/
 
-xref_op_find_index_of_etype_REQS xref_op_find_index_of_etype_reqs_actual = {0};
 
-struct REQS * xref_op_find_index_of_etype_reqs = (struct REQS *)&xref_op_find_index_of_etype_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} xref_op_find_index_of_etype_reqs_actual = { 0 };
+
+const struct REQS * const xref_op_find_index_of_etype_reqs
+    = (const struct REQS *)&xref_op_find_index_of_etype_reqs_actual;
 
 
 typedef struct {
@@ -671,18 +677,15 @@ typedef struct {
 
 typedef struct {
     long find_index_own_init;
-    xref_op_find_index_of_etype_OPS *etype_ops;
-    } xref_op_find_index_OWN_DEFN;
-OWN_req xref_op_find_index_ownreqs = {sizeof(xref_op_find_index_OWN_DEFN), 1};
+    const xref_op_find_index_of_etype_OPS * const etype_ops;
+} xref_op_find_index_OWN_DEFN;
+const OWN_req xref_op_find_index_ownreqs = { sizeof(xref_op_find_index_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE find_index ****/
 
 errcode
 xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     xref_op_find_index_OWN_DEFN *op_own_ptr;
     CLUREF ll;
     CLUREF hh;
@@ -693,9 +696,10 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
     CLUREF mkey;
     CLUREF ent;
     CLUREF n;
-    op_own_ptr = (xref_op_find_index_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->find_index_own_init == 0) {
+    op_own_ptr = (xref_op_find_index_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->find_index_own_init == 0) {
         op_own_ptr->find_index_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(86);
 
@@ -790,7 +794,7 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
         else {
         CLUREF T_2_2;
         T_2_2.num = ((key.str->size != mkey.str->size)? false :
-            !(bcmp(key.str->data, mkey.str->data, key.str->size)));
+            !(memcmp(key.str->data, mkey.str->data, key.str->size)));
         if (T_2_2.num == true) {
 
   LINE(102);
@@ -975,27 +979,27 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE find_index ****/
 
 
 /**** BEGIN ITERATOR elements ****/
 
+
 errcode
-xrefOPelements(CLUREF tab, errcode (*proc)(), char **user_locals, errcode *iecode)
-    {
+xrefOPelements(CLUREF tab, errcode (*proc)(), void *user_locals, errcode *iecode)
+{
     errcode ecode;
     errcode err;
-    errcode ecode2;
     bool body_ctrl_req;
     CLUREF ent;
     CLUREF key;
     CLUREF user;
-        if (xref_own_init == 0) {
-            err = xref_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (xref_own_init == 0) {
+        err = xref_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(125);
 
   LINE(126);
@@ -1061,25 +1065,25 @@ xrefOPelements(CLUREF tab, errcode (*proc)(), char **user_locals, errcode *iecod
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END ITERATOR elements ****/
 
 
 /**** BEGIN ITERATOR keys ****/
 
+
 errcode
-xrefOPkeys(CLUREF tab, errcode (*proc)(), char **user_locals, errcode *iecode)
-    {
+xrefOPkeys(CLUREF tab, errcode (*proc)(), void *user_locals, errcode *iecode)
+{
     errcode ecode;
     errcode err;
-    errcode ecode2;
     bool body_ctrl_req;
     CLUREF ent;
-        if (xref_own_init == 0) {
-            err = xref_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (xref_own_init == 0) {
+        err = xref_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(136);
 
   LINE(137);
@@ -1120,28 +1124,28 @@ xrefOPkeys(CLUREF tab, errcode (*proc)(), char **user_locals, errcode *iecode)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END ITERATOR keys ****/
 
-static int xrefOPoutput_own_init = 0;
 
 /**** BEGIN PROCEDURE output ****/
 
+static int xrefOPoutput_own_init = 0;
+
 errcode
 xrefOPoutput(CLUREF tab, CLUREF lhead, CLUREF rhead, CLUREF st)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF max;
     CLUREF ent;
     CLUREF n;
     CLUREF i;
-        if (xrefOPoutput_own_init == 0) {
+    if (xrefOPoutput_own_init == 0) {
         if (xref_own_init == 0) {
             err = xref_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         xrefOPoutput_own_init = 1;
     }
     enter_proc(144);
@@ -1299,25 +1303,25 @@ xrefOPoutput(CLUREF tab, CLUREF lhead, CLUREF rhead, CLUREF st)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE output ****/
 
 
 /**** BEGIN PROCEDURE putout ****/
 
+
 errcode
 xrefOPputout(CLUREF st, CLUREF key, CLUREF users, CLUREF max)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF pos;
     CLUREF user;
     CLUREF n;
-        if (xref_own_init == 0) {
-            err = xref_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (xref_own_init == 0) {
+        err = xref_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(169);
 
   LINE(171);
@@ -1449,33 +1453,35 @@ xrefOPputout(CLUREF st, CLUREF key, CLUREF users, CLUREF max)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE putout ****/
 
-extern errcode xrefOPmerge_IB_1();
-static int xrefOPmerge_own_init = 0;
 
 /**** BEGIN PROCEDURE merge ****/
 
+extern errcode xrefOPmerge_IB_1();
+static int xrefOPmerge_own_init = 0;
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF key;
+    CLUREF user;
+    CLUREF tab1;
+    CLUREF tab2;
+} xrefOPmerge_LOCALS_t;
+
 errcode
 xrefOPmerge(CLUREF tab1, CLUREF tab2)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF key;
-        CLUREF user;
-        CLUREF tab1;
-        CLUREF tab2;
-        } locals;
+{
+    xrefOPmerge_LOCALS_t locals;
     locals.tab1 = tab1;
     locals.tab2 = tab2;
-        if (xrefOPmerge_own_init == 0) {
+    if (xrefOPmerge_own_init == 0) {
         if (xref_own_init == 0) {
             locals.err = xref_own_init_proc();
             if (locals.err != ERR_ok) goto ex_0;
-            }
+        }
         xrefOPmerge_own_init = 1;
     }
     enter_proc(191);
@@ -1484,7 +1490,8 @@ xrefOPmerge(CLUREF tab1, CLUREF tab2)
     {
         locals.err = xrefOPelements(locals.tab2, xrefOPmerge_IB_1, &locals, &locals.ecode2);
         if (locals.err == ERR_iterbodyreturn) {
-        signal(ERR_ok);}
+            signal(ERR_ok);
+        }
         if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
         if (locals.err == ERR_break) locals.err = ERR_ok;
         if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -1498,25 +1505,15 @@ xrefOPmerge(CLUREF tab1, CLUREF tab2)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE merge ****/
 
 
 /**** BEGIN ITERATOR BODIES for merge ****/
 
-errcode xrefOPmerge_IB_1(iv_1, iv_2, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-CLUREF iv_2;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF key;
-    CLUREF user;
-    CLUREF tab1;
-    CLUREF tab2;
-    } *locals;
+errcode
+xrefOPmerge_IB_1(CLUREF iv_1, CLUREF iv_2, xrefOPmerge_LOCALS_t *locals, errcode *iecode)
 {
     locals->key.num = iv_1.num;
     locals->user.num = iv_2.num;
@@ -1533,22 +1530,22 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end xrefOPmerge_IB_1 */
+}   /* end xrefOPmerge_IB_1 */
 
 /**** END ITERATOR BODIES for merge ****/
 
 
 /**** BEGIN PROCEDURE flush ****/
 
+
 errcode
 xrefOPflush(CLUREF tab)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (xref_own_init == 0) {
-            err = xref_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (xref_own_init == 0) {
+        err = xref_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(199);
 
   LINE(200);
@@ -1570,7 +1567,7 @@ xrefOPflush(CLUREF tab)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE flush ****/
 
@@ -1581,15 +1578,15 @@ typedef struct{
     struct OP_ENTRY entry[9];
 } xref_OPS;
 
-CLU_proc xref_oe_add_ref = {{0,0,0,0}, xrefOPadd_ref, 0};
-CLU_proc xref_oe_add_refs = {{0,0,0,0}, xrefOPadd_refs, 0};
-CLU_proc xref_oe_create = {{0,0,0,0}, xrefOPcreate, 0};
-CLU_proc xref_oe_elements = {{0,0,0,0}, xrefOPelements, 0};
-CLU_proc xref_oe_flush = {{0,0,0,0}, xrefOPflush, 0};
-CLU_proc xref_oe_keys = {{0,0,0,0}, xrefOPkeys, 0};
-CLU_proc xref_oe_merge = {{0,0,0,0}, xrefOPmerge, 0};
-CLU_proc xref_oe_output = {{0,0,0,0}, xrefOPoutput, 0};
-CLU_proc xref_oe_rem_refs = {{0,0,0,0}, xrefOPrem_refs, 0};
+CLU_proc xref_oe_add_ref = { .proc = xrefOPadd_ref };
+CLU_proc xref_oe_add_refs = { .proc = xrefOPadd_refs };
+CLU_proc xref_oe_create = { .proc = xrefOPcreate };
+CLU_proc xref_oe_elements = { .proc = xrefOPelements };
+CLU_proc xref_oe_flush = { .proc = xrefOPflush };
+CLU_proc xref_oe_keys = { .proc = xrefOPkeys };
+CLU_proc xref_oe_merge = { .proc = xrefOPmerge };
+CLU_proc xref_oe_output = { .proc = xrefOPoutput };
+CLU_proc xref_oe_rem_refs = { .proc = xrefOPrem_refs };
 
 xref_OPS xref_ops_actual = {9, (OWNPTR)&xref_own_init, (OWNPTR)&xref_own_init, {
     {&xref_oe_add_ref, "add_ref"},

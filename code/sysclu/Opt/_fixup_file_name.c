@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _fixup_file_name ****/
+
 extern errcode file_nameOPget_dir();
 extern errcode _dir_ent_size();
 extern errcode boolOPnot();
@@ -32,18 +35,15 @@ extern errcode file_nameOPget_suffix();
 extern errcode file_nameOPget_other();
 extern errcode stringOPappend();
 extern errcode file_nameOPcreate();
-CLUREF STR__057;
-CLUREF STR__056;
-CLUREF STR__056_056;
+static CLUREF STR__057;
+static CLUREF STR__056;
+static CLUREF STR__056_056;
 static int _fixup_file_name_own_init = 0;
-
-/**** BEGIN PROCEDURE _fixup_file_name ****/
 
 errcode
 _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF d;
     CLUREF dez;
     CLUREF i;
@@ -52,10 +52,10 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
     CLUREF n;
     CLUREF s;
     CLUREF o;
-        if (_fixup_file_name_own_init == 0) {
-        stringOPcons("/", CLU_1, CLU_1, &STR__057);
-        stringOPcons(".", CLU_1, CLU_1, &STR__056);
-        stringOPcons("..", CLU_1, CLU_2, &STR__056_056);
+    if (_fixup_file_name_own_init == 0) {
+        stringOPcons("/", CLU_1, CLUREF_make_num(1), &STR__057);
+        stringOPcons(".", CLU_1, CLUREF_make_num(1), &STR__056);
+        stringOPcons("..", CLU_1, CLUREF_make_num(2), &STR__056_056);
         _fixup_file_name_own_init = 1;
     }
     enter_proc(3);
@@ -134,7 +134,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                 CLUREF T_4_3;
                 CLUREF T_4_4;
                 T_4_1.ch = '/';
-                T_4_2.num = d.num;
+                T_4_2.num = (long)d.num;
                 T_4_3.num = i.num + 1;
                  if ((T_4_3.num > 0 && i.num < 0 && 1 < 0) ||
                      (T_4_3.num < 0 && i.num > 0 && 1 > 0)) {
@@ -534,7 +534,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ((n.str->size != STR__056.str->size)? false :
-        !(bcmp(n.str->data, STR__056.str->data, n.str->size)));
+        !(memcmp(n.str->data, STR__056.str->data, n.str->size)));
     if (T_1_1.num == true) {
 
   LINE(64);
@@ -550,7 +550,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
     else {
     CLUREF T_1_2;
     T_1_2.num = ((n.str->size != STR__056_056.str->size)? false :
-        !(bcmp(n.str->data, STR__056_056.str->data, n.str->size)));
+        !(memcmp(n.str->data, STR__056_056.str->data, n.str->size)));
     if (T_1_2.num == true) {
 
   LINE(66);
@@ -757,7 +757,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
     err = file_nameOPget_dir(fn, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_3.num = ((d.str->size != T_1_2.str->size)? false :
-        !(bcmp(d.str->data, T_1_2.str->data, d.str->size)));
+        !(memcmp(d.str->data, T_1_2.str->data, d.str->size)));
     T_1_4.num = T_1_3.num ^ 1;
     if (T_1_4.num == true) {
 
@@ -786,7 +786,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _fixup_file_name ****/
 

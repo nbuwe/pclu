@@ -33,29 +33,31 @@ extern errcode intOPdecode();
 extern errcode structOP_gcd();
 extern struct OPS *int_ops;
 struct OPS  *struct_day_hour_minute_month_second_year_ops;
-CLUREF STR__040;
-CLUREF STR_January;
-CLUREF STR_February;
-CLUREF STR_March;
-CLUREF STR_April;
-CLUREF STR_May;
-CLUREF STR_June;
-CLUREF STR_July;
-CLUREF STR_August;
-CLUREF STR_September;
-CLUREF STR_October;
-CLUREF STR_November;
-CLUREF STR_December;
-CLUREF STR_0;
-CLUREF STR__072;
-CLUREF STR_bad_040format;
+static CLUREF STR__040;
+static CLUREF STR_January;
+static CLUREF STR_February;
+static CLUREF STR_March;
+static CLUREF STR_April;
+static CLUREF STR_May;
+static CLUREF STR_June;
+static CLUREF STR_July;
+static CLUREF STR_August;
+static CLUREF STR_September;
+static CLUREF STR_October;
+static CLUREF STR_November;
+static CLUREF STR_December;
+static CLUREF STR_0;
+static CLUREF STR__072;
+static CLUREF STR_bad_040format;
 static int date_own_init = 0;
-OWN_req date_ownreqs = {0,0};
-errcode date_own_init_proc()
+const OWN_req date_ownreqs = { 0, 0 };
+
+errcode
+date_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (date_own_init == 0) {
+    if (date_own_init == 0) {
         add_selector_info("day", 0, int_ops);
         add_selector_info("hour", 1, int_ops);
         add_selector_info("minute", 2, int_ops);
@@ -63,40 +65,43 @@ errcode date_own_init_proc()
         add_selector_info("second", 4, int_ops);
         add_selector_info("year", 5, int_ops);
         find_selector_ops("struct", 6, &(struct_day_hour_minute_month_second_year_ops));
-        stringOPcons(" ", CLU_1, CLU_1, &STR__040);
-        stringOPcons("January", CLU_1, CLU_7, &STR_January);
-        stringOPcons("February", CLU_1, CLU_8, &STR_February);
-        stringOPcons("March", CLU_1, CLU_5, &STR_March);
-        stringOPcons("April", CLU_1, CLU_5, &STR_April);
-        stringOPcons("May", CLU_1, CLU_3, &STR_May);
-        stringOPcons("June", CLU_1, CLU_4, &STR_June);
-        stringOPcons("July", CLU_1, CLU_4, &STR_July);
-        stringOPcons("August", CLU_1, CLU_6, &STR_August);
-        stringOPcons("September", CLU_1, CLU_9, &STR_September);
-        stringOPcons("October", CLU_1, CLU_7, &STR_October);
-        stringOPcons("November", CLU_1, CLU_8, &STR_November);
-        stringOPcons("December", CLU_1, CLU_8, &STR_December);
-        stringOPcons("0", CLU_1, CLU_1, &STR_0);
-        stringOPcons(":", CLU_1, CLU_1, &STR__072);
-        stringOPcons("bad format", CLU_1, CLU_10, &STR_bad_040format);
+        stringOPcons(" ", CLU_1, CLUREF_make_num(1), &STR__040);
+        stringOPcons("January", CLU_1, CLUREF_make_num(7), &STR_January);
+        stringOPcons("February", CLU_1, CLUREF_make_num(8), &STR_February);
+        stringOPcons("March", CLU_1, CLUREF_make_num(5), &STR_March);
+        stringOPcons("April", CLU_1, CLUREF_make_num(5), &STR_April);
+        stringOPcons("May", CLU_1, CLUREF_make_num(3), &STR_May);
+        stringOPcons("June", CLU_1, CLUREF_make_num(4), &STR_June);
+        stringOPcons("July", CLU_1, CLUREF_make_num(4), &STR_July);
+        stringOPcons("August", CLU_1, CLUREF_make_num(6), &STR_August);
+        stringOPcons("September", CLU_1, CLUREF_make_num(9), &STR_September);
+        stringOPcons("October", CLU_1, CLUREF_make_num(7), &STR_October);
+        stringOPcons("November", CLU_1, CLUREF_make_num(8), &STR_November);
+        stringOPcons("December", CLU_1, CLUREF_make_num(8), &STR_December);
+        stringOPcons("0", CLU_1, CLUREF_make_num(1), &STR_0);
+        stringOPcons(":", CLU_1, CLUREF_make_num(1), &STR__072);
+        stringOPcons("bad format", CLU_1, CLUREF_make_num(10), &STR_bad_040format);
         date_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 dateOPcreate(CLUREF day, CLUREF month, CLUREF year, CLUREF hour, CLUREF minute, CLUREF second, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(28);
 
   LINE(30);
@@ -190,12 +195,12 @@ dateOPcreate(CLUREF day, CLUREF month, CLUREF year, CLUREF hour, CLUREF minute, 
     {
     CLUREF T_1_1;
     RecordAlloc(6, T_1_1);
-    T_1_1.vec->data[0]  = day.num;
-    T_1_1.vec->data[3]  = month.num;
-    T_1_1.vec->data[5]  = year.num;
-    T_1_1.vec->data[1]  = hour.num;
-    T_1_1.vec->data[2]  = minute.num;
-    T_1_1.vec->data[4]  = second.num;
+    T_1_1.vec->data[0] = day.num;
+    T_1_1.vec->data[3] = month.num;
+    T_1_1.vec->data[5] = year.num;
+    T_1_1.vec->data[1] = hour.num;
+    T_1_1.vec->data[2] = minute.num;
+    T_1_1.vec->data[4] = second.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -208,22 +213,22 @@ dateOPcreate(CLUREF day, CLUREF month, CLUREF year, CLUREF hour, CLUREF minute, 
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
 
 /**** BEGIN PROCEDURE get_day ****/
 
+
 errcode
 dateOPget_day(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(41);
 
   LINE(42);
@@ -243,22 +248,22 @@ dateOPget_day(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_day ****/
 
 
 /**** BEGIN PROCEDURE get_month ****/
 
+
 errcode
 dateOPget_month(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(45);
 
   LINE(46);
@@ -278,22 +283,22 @@ dateOPget_month(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_month ****/
 
 
 /**** BEGIN PROCEDURE get_year ****/
 
+
 errcode
 dateOPget_year(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(49);
 
   LINE(50);
@@ -313,22 +318,22 @@ dateOPget_year(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_year ****/
 
 
 /**** BEGIN PROCEDURE get_hour ****/
 
+
 errcode
 dateOPget_hour(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(53);
 
   LINE(54);
@@ -348,22 +353,22 @@ dateOPget_hour(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_hour ****/
 
 
 /**** BEGIN PROCEDURE get_minute ****/
 
+
 errcode
 dateOPget_minute(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(57);
 
   LINE(58);
@@ -383,22 +388,22 @@ dateOPget_minute(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_minute ****/
 
 
 /**** BEGIN PROCEDURE get_second ****/
 
+
 errcode
 dateOPget_second(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(61);
 
   LINE(62);
@@ -418,22 +423,22 @@ dateOPget_second(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_second ****/
 
 
 /**** BEGIN PROCEDURE get_all ****/
 
+
 errcode
 dateOPget_all(CLUREF d, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret_4, CLUREF *ret_5, CLUREF *ret_6)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(65);
 
   LINE(66);
@@ -478,24 +483,24 @@ dateOPget_all(CLUREF d, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_all ****/
 
-static int dateOPunparse_own_init = 0;
 
 /**** BEGIN PROCEDURE unparse ****/
 
+static int dateOPunparse_own_init = 0;
+
 errcode
 dateOPunparse(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (dateOPunparse_own_init == 0) {
+    if (dateOPunparse_own_init == 0) {
         if (date_own_init == 0) {
             err = date_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         dateOPunparse_own_init = 1;
     }
     enter_proc(69);
@@ -527,24 +532,24 @@ dateOPunparse(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE unparse ****/
 
-static int dateOPunparse_date_own_init = 0;
 
 /**** BEGIN PROCEDURE unparse_date ****/
 
+static int dateOPunparse_date_own_init = 0;
+
 errcode
 dateOPunparse_date(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (dateOPunparse_date_own_init == 0) {
+    if (dateOPunparse_date_own_init == 0) {
         if (date_own_init == 0) {
             err = date_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         dateOPunparse_date_own_init = 1;
     }
     enter_proc(73);
@@ -607,27 +612,27 @@ dateOPunparse_date(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE unparse_date ****/
 
-static int dateOPunparse_time_own_init = 0;
 
 /**** BEGIN PROCEDURE unparse_time ****/
 
+static int dateOPunparse_time_own_init = 0;
+
 errcode
 dateOPunparse_time(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF hour;
     CLUREF minute;
     CLUREF second;
-        if (dateOPunparse_time_own_init == 0) {
+    if (dateOPunparse_time_own_init == 0) {
         if (date_own_init == 0) {
             err = date_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         dateOPunparse_time_own_init = 1;
     }
     enter_proc(83);
@@ -746,25 +751,25 @@ dateOPunparse_time(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE unparse_time ****/
+
+
+/**** BEGIN PROCEDURE equal ****/
 
 struct OPS  *struct_day_hour_minute_month_second_year_ops;
 static int dateOPequal_own_init = 0;
 
-/**** BEGIN PROCEDURE equal ****/
-
 errcode
 dateOPequal(CLUREF date1, CLUREF date2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (dateOPequal_own_init == 0) {
+    if (dateOPequal_own_init == 0) {
         if (date_own_init == 0) {
             err = date_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         dateOPequal_own_init = 1;
     }
     enter_proc(96);
@@ -795,25 +800,25 @@ dateOPequal(CLUREF date1, CLUREF date2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
+
+
+/**** BEGIN PROCEDURE similar ****/
 
 struct OPS  *struct_day_hour_minute_month_second_year_ops;
 static int dateOPsimilar_own_init = 0;
 
-/**** BEGIN PROCEDURE similar ****/
-
 errcode
 dateOPsimilar(CLUREF date1, CLUREF date2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (dateOPsimilar_own_init == 0) {
+    if (dateOPsimilar_own_init == 0) {
         if (date_own_init == 0) {
             err = date_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         dateOPsimilar_own_init = 1;
     }
     enter_proc(102);
@@ -840,22 +845,22 @@ dateOPsimilar(CLUREF date1, CLUREF date2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 dateOPcopy(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(106);
 
   LINE(107);
@@ -873,22 +878,22 @@ dateOPcopy(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
 
 
 /**** BEGIN PROCEDURE lt ****/
 
+
 errcode
 dateOPlt(CLUREF d1, CLUREF d2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(110);
 
   LINE(111);
@@ -1047,22 +1052,22 @@ dateOPlt(CLUREF d1, CLUREF d2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE lt ****/
 
 
 /**** BEGIN PROCEDURE le ****/
 
+
 errcode
 dateOPle(CLUREF d1, CLUREF d2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(124);
 
   LINE(125);
@@ -1221,22 +1226,22 @@ dateOPle(CLUREF d1, CLUREF d2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE le ****/
 
 
 /**** BEGIN PROCEDURE gt ****/
 
+
 errcode
 dateOPgt(CLUREF d1, CLUREF d2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(138);
 
   LINE(139);
@@ -1257,22 +1262,22 @@ dateOPgt(CLUREF d1, CLUREF d2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE gt ****/
 
 
 /**** BEGIN PROCEDURE ge ****/
 
+
 errcode
 dateOPge(CLUREF d1, CLUREF d2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(142);
 
   LINE(143);
@@ -1293,22 +1298,22 @@ dateOPge(CLUREF d1, CLUREF d2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE ge ****/
 
 
 /**** BEGIN PROCEDURE print ****/
 
+
 errcode
 dateOPprint(CLUREF d, CLUREF ps)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(146);
 
   LINE(147);
@@ -1328,22 +1333,22 @@ dateOPprint(CLUREF d, CLUREF ps)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE print ****/
 
 
 /**** BEGIN PROCEDURE encode ****/
 
+
 errcode
 dateOPencode(CLUREF d, CLUREF ist)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (date_own_init == 0) {
-            err = date_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (date_own_init == 0) {
+        err = date_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(150);
 
   LINE(151);
@@ -1411,24 +1416,24 @@ dateOPencode(CLUREF d, CLUREF ist)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE encode ****/
 
-static int dateOPdecode_own_init = 0;
 
 /**** BEGIN PROCEDURE decode ****/
 
+static int dateOPdecode_own_init = 0;
+
 errcode
 dateOPdecode(CLUREF ist, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (dateOPdecode_own_init == 0) {
+    if (dateOPdecode_own_init == 0) {
         if (date_own_init == 0) {
             err = date_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         dateOPdecode_own_init = 1;
     }
     enter_proc(161);
@@ -1489,25 +1494,25 @@ dateOPdecode(CLUREF ist, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE decode ****/
+
+
+/**** BEGIN PROCEDURE _gcd ****/
 
 struct OPS  *struct_day_hour_minute_month_second_year_ops;
 static int dateOP_gcd_own_init = 0;
 
-/**** BEGIN PROCEDURE _gcd ****/
-
 errcode
 dateOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (dateOP_gcd_own_init == 0) {
+    if (dateOP_gcd_own_init == 0) {
         if (date_own_init == 0) {
             err = date_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         dateOP_gcd_own_init = 1;
     }
     enter_proc(169);
@@ -1534,7 +1539,7 @@ dateOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _gcd ****/
 
@@ -1545,28 +1550,28 @@ typedef struct{
     struct OP_ENTRY entry[22];
 } date_OPS;
 
-CLU_proc date_oe__gcd = {{0,0,0,0}, dateOP_gcd, 0};
-CLU_proc date_oe_copy = {{0,0,0,0}, dateOPcopy, 0};
-CLU_proc date_oe_create = {{0,0,0,0}, dateOPcreate, 0};
-CLU_proc date_oe_decode = {{0,0,0,0}, dateOPdecode, 0};
-CLU_proc date_oe_encode = {{0,0,0,0}, dateOPencode, 0};
-CLU_proc date_oe_equal = {{0,0,0,0}, dateOPequal, 0};
-CLU_proc date_oe_ge = {{0,0,0,0}, dateOPge, 0};
-CLU_proc date_oe_get_all = {{0,0,0,0}, dateOPget_all, 0};
-CLU_proc date_oe_get_day = {{0,0,0,0}, dateOPget_day, 0};
-CLU_proc date_oe_get_hour = {{0,0,0,0}, dateOPget_hour, 0};
-CLU_proc date_oe_get_minute = {{0,0,0,0}, dateOPget_minute, 0};
-CLU_proc date_oe_get_month = {{0,0,0,0}, dateOPget_month, 0};
-CLU_proc date_oe_get_second = {{0,0,0,0}, dateOPget_second, 0};
-CLU_proc date_oe_get_year = {{0,0,0,0}, dateOPget_year, 0};
-CLU_proc date_oe_gt = {{0,0,0,0}, dateOPgt, 0};
-CLU_proc date_oe_le = {{0,0,0,0}, dateOPle, 0};
-CLU_proc date_oe_lt = {{0,0,0,0}, dateOPlt, 0};
-CLU_proc date_oe_print = {{0,0,0,0}, dateOPprint, 0};
-CLU_proc date_oe_similar = {{0,0,0,0}, dateOPsimilar, 0};
-CLU_proc date_oe_unparse = {{0,0,0,0}, dateOPunparse, 0};
-CLU_proc date_oe_unparse_date = {{0,0,0,0}, dateOPunparse_date, 0};
-CLU_proc date_oe_unparse_time = {{0,0,0,0}, dateOPunparse_time, 0};
+CLU_proc date_oe__gcd = { .proc = dateOP_gcd };
+CLU_proc date_oe_copy = { .proc = dateOPcopy };
+CLU_proc date_oe_create = { .proc = dateOPcreate };
+CLU_proc date_oe_decode = { .proc = dateOPdecode };
+CLU_proc date_oe_encode = { .proc = dateOPencode };
+CLU_proc date_oe_equal = { .proc = dateOPequal };
+CLU_proc date_oe_ge = { .proc = dateOPge };
+CLU_proc date_oe_get_all = { .proc = dateOPget_all };
+CLU_proc date_oe_get_day = { .proc = dateOPget_day };
+CLU_proc date_oe_get_hour = { .proc = dateOPget_hour };
+CLU_proc date_oe_get_minute = { .proc = dateOPget_minute };
+CLU_proc date_oe_get_month = { .proc = dateOPget_month };
+CLU_proc date_oe_get_second = { .proc = dateOPget_second };
+CLU_proc date_oe_get_year = { .proc = dateOPget_year };
+CLU_proc date_oe_gt = { .proc = dateOPgt };
+CLU_proc date_oe_le = { .proc = dateOPle };
+CLU_proc date_oe_lt = { .proc = dateOPlt };
+CLU_proc date_oe_print = { .proc = dateOPprint };
+CLU_proc date_oe_similar = { .proc = dateOPsimilar };
+CLU_proc date_oe_unparse = { .proc = dateOPunparse };
+CLU_proc date_oe_unparse_date = { .proc = dateOPunparse_date };
+CLU_proc date_oe_unparse_time = { .proc = dateOPunparse_time };
 
 date_OPS date_ops_actual = {22, (OWNPTR)&date_own_init, (OWNPTR)&date_own_init, {
     {&date_oe__gcd, "_gcd"},

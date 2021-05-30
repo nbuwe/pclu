@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _unquote ****/
+
 extern errcode _bytevecOPindexc();
 extern errcode _cvt();
 extern errcode intOPadd();
@@ -14,13 +17,10 @@ extern errcode stringOPsubstr();
 extern errcode intOPsub();
 extern errcode stringOPrest();
 
-/**** BEGIN PROCEDURE _unquote ****/
-
 errcode
 _unquote(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     enter_proc(3);
 
@@ -41,7 +41,7 @@ _unquote(CLUREF s, CLUREF *ret_1)
         CLUREF T_2_3;
         CLUREF T_2_4;
         T_2_1.ch = '\\';
-        T_2_2.num = s.num;
+        T_2_2.num = (long)s.num;
         T_2_3.num = i.num + 1;
          if ((T_2_3.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_3.num < 0 && i.num > 0 && 1 > 0)) {
@@ -113,7 +113,7 @@ _unquote(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _unquote ****/
 

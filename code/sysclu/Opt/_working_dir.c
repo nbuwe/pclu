@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _working_dir ****/
+
 extern errcode boolOPnot();
 extern errcode stringOPempty();
 extern errcode charOPequal();
@@ -19,20 +22,17 @@ extern errcode connected_dir();
 extern errcode file_nameOPunparse();
 extern errcode _fixup_file_name();
 extern errcode file_nameOPcreate();
-CLUREF STR_;
+static CLUREF STR_;
 static int _working_dir_own_init = 0;
 CLUREF _working_dirOPwrkdir;
 
-/**** BEGIN PROCEDURE _working_dir ****/
-
 errcode
 _working_dir(CLUREF s, CLUREF update, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF z;
-        if (_working_dir_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (_working_dir_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         _working_dir_own_init = 1;
         {
             {_working_dirOPwrkdir = STR_;
@@ -232,7 +232,7 @@ _working_dir(CLUREF s, CLUREF update, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _working_dir ****/
 

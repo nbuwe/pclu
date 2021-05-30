@@ -7,11 +7,11 @@
 
 /**** BEGIN PROCEDURE _dir_ent_size ****/
 
+
 errcode
 _dir_ent_size(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(3);
 
   LINE(4);
@@ -29,7 +29,7 @@ _dir_ent_size(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _dir_ent_size ****/
 

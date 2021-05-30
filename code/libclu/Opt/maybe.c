@@ -7,18 +7,20 @@
 /**** BEGIN CLUSTER maybe ****/
 
 
-typedef struct {
-long count;
-    char *equal_name;
-    char *similar_name;
-    char *copy_name;
-    char *_gcd_name;
-} maybe_of_t_REQS;
+static const struct /* REQS */ {
+    long count;
+    const struct REQ_ENTRY entry[4];
+} maybe_of_t_reqs_actual = {
+    4, {
+        { "equal" },
+        { "similar" },
+        { "copy" },
+        { "_gcd" },
+    }
+};
 
-maybe_of_t_REQS maybe_of_t_reqs_actual = {4,
-    "equal", "similar", "copy", "_gcd"};
-
-struct REQS * maybe_of_t_reqs = (struct REQS *)&maybe_of_t_reqs_actual;
+const struct REQS * const maybe_of_t_reqs
+    = (const struct REQS *)&maybe_of_t_reqs_actual;
 
 typedef struct {
     long count;
@@ -33,7 +35,7 @@ extern errcode intOPequal();
 extern errcode _cvt();
 extern errcode boolOPnot();
 extern errcode intOP_gcd();
-CLUREF STR_Bad_040value_040for_040maybe_044make_056;
+static CLUREF STR_Bad_040value_040for_040maybe_044make_056;
 
 OWN_ptr maybe_own_init; /* dummy */
 typedef struct {
@@ -46,39 +48,42 @@ typedef struct {
     long similar_own_init;
     long copy_own_init;
     long _gcd_own_init;
-    maybe_of_t_OPS *t_ops;
+    const maybe_of_t_OPS * const t_ops;
 } maybe_OWN_DEFN;
 
-OWN_req maybe_ownreqs = {sizeof(maybe_OWN_DEFN), 9};
+const OWN_req maybe_ownreqs = { sizeof(maybe_OWN_DEFN), 9 };
 
-errcode maybe_own_init_proc()
+errcode
+maybe_own_init_proc()
 {
-errcode err;
-maybe_OWN_DEFN *type_own_ptr = (maybe_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
+    errcode err;
+    maybe_OWN_DEFN *type_own_ptr;
+    type_own_ptr = (maybe_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
-enter_own_init_proc();
+    enter_own_init_proc();
     if (type_own_ptr->maybe_own_init == 0) {
-    stringOPcons("Bad value for maybe$make.", CLU_1, CLU_25, &STR_Bad_040value_040for_040maybe_044make_056);
+        stringOPcons("Bad value for maybe$make.", CLU_1, CLUREF_make_num(25), &STR_Bad_040value_040for_040maybe_044make_056);
     }
     if (type_own_ptr->maybe_own_init == 0) {
-    type_own_ptr->maybe_own_init = 1;
-    {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-}
+        type_own_ptr->maybe_own_init = 1;
+        /* no own vars to init */
+    }
+    signal(ERR_ok);
 }
 
 
 /**** BEGIN PROCEDURE none ****/
 
+
 errcode
 maybeOPnone(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     maybe_OWN_DEFN *type_own_ptr;
     type_own_ptr = (maybe_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->none_own_init == 0) {
+    if (type_own_ptr->none_own_init == 0) {
         type_own_ptr->none_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(20);
 
@@ -97,25 +102,26 @@ maybeOPnone(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE none ****/
 
 
 /**** BEGIN PROCEDURE make ****/
 
+
 errcode
 maybeOPmake(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     maybe_OWN_DEFN *type_own_ptr;
     type_own_ptr = (maybe_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->make_own_init == 0) {
-        stringOPcons("Bad value for maybe$make.", CLU_1, CLU_25, &STR_Bad_040value_040for_040maybe_044make_056);
-        }
-        if (type_own_ptr->make_own_init == 0) {
+    if (type_own_ptr->make_own_init == 0) {
+        stringOPcons("Bad value for maybe$make.", CLU_1, CLUREF_make_num(25), &STR_Bad_040value_040for_040maybe_044make_056);
+    }
+    if (type_own_ptr->make_own_init == 0) {
         type_own_ptr->make_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(26);
 
@@ -124,7 +130,7 @@ maybeOPmake(CLUREF x, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-    T_1_1.num = x.num;
+    T_1_1.num = (long)x.num;
     T_1_2.num = -2147483648;
     T_1_3.num = (T_1_1.num == T_1_2.num)? true : false;
     if (T_1_3.num == true) {
@@ -140,7 +146,7 @@ maybeOPmake(CLUREF x, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    T_1_1.num = x.num;
+    T_1_1.num = (long)x.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -153,22 +159,23 @@ maybeOPmake(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE make ****/
 
 
 /**** BEGIN PROCEDURE exists ****/
 
+
 errcode
 maybeOPexists(CLUREF m, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     maybe_OWN_DEFN *type_own_ptr;
     type_own_ptr = (maybe_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->exists_own_init == 0) {
+    if (type_own_ptr->exists_own_init == 0) {
         type_own_ptr->exists_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(35);
 
@@ -193,22 +200,23 @@ maybeOPexists(CLUREF m, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE exists ****/
 
 
 /**** BEGIN PROCEDURE value ****/
 
+
 errcode
 maybeOPvalue(CLUREF m, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     maybe_OWN_DEFN *type_own_ptr;
     type_own_ptr = (maybe_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->value_own_init == 0) {
+    if (type_own_ptr->value_own_init == 0) {
         type_own_ptr->value_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(40);
 
@@ -230,7 +238,7 @@ maybeOPvalue(CLUREF m, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    T_1_1.num = m.num;
+    T_1_1.num = (long)m.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -243,22 +251,23 @@ maybeOPvalue(CLUREF m, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE value ****/
 
 
 /**** BEGIN PROCEDURE equal ****/
 
+
 errcode
 maybeOPequal(CLUREF m1, CLUREF m2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     maybe_OWN_DEFN *type_own_ptr;
     type_own_ptr = (maybe_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->equal_own_init == 0) {
+    if (type_own_ptr->equal_own_init == 0) {
         type_own_ptr->equal_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(49);
 
@@ -315,8 +324,8 @@ maybeOPequal(CLUREF m1, CLUREF m2, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     CLUREF T_1_4;
-    T_1_1.num = m1.num;
-    T_1_2.num = m2.num;
+    T_1_1.num = (long)m1.num;
+    T_1_2.num = (long)m2.num;
     T_1_4.proc = type_own_ptr->t_ops->equal.fcn;
     CUR_PROC_VAR = T_1_4;
     err = T_1_4.proc->proc(T_1_1, T_1_2, &T_1_3);
@@ -333,22 +342,23 @@ maybeOPequal(CLUREF m1, CLUREF m2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
 
 
 /**** BEGIN PROCEDURE similar ****/
 
+
 errcode
 maybeOPsimilar(CLUREF m1, CLUREF m2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     maybe_OWN_DEFN *type_own_ptr;
     type_own_ptr = (maybe_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->similar_own_init == 0) {
+    if (type_own_ptr->similar_own_init == 0) {
         type_own_ptr->similar_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(61);
 
@@ -405,8 +415,8 @@ maybeOPsimilar(CLUREF m1, CLUREF m2, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     CLUREF T_1_4;
-    T_1_1.num = m1.num;
-    T_1_2.num = m2.num;
+    T_1_1.num = (long)m1.num;
+    T_1_2.num = (long)m2.num;
     T_1_4.proc = type_own_ptr->t_ops->similar.fcn;
     CUR_PROC_VAR = T_1_4;
     err = T_1_4.proc->proc(T_1_1, T_1_2, &T_1_3);
@@ -423,22 +433,23 @@ maybeOPsimilar(CLUREF m1, CLUREF m2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 maybeOPcopy(CLUREF m, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     maybe_OWN_DEFN *type_own_ptr;
     type_own_ptr = (maybe_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->copy_own_init == 0) {
+    if (type_own_ptr->copy_own_init == 0) {
         type_own_ptr->copy_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(73);
 
@@ -464,12 +475,12 @@ maybeOPcopy(CLUREF m, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     CLUREF T_1_4;
-    T_1_1.num = m.num;
+    T_1_1.num = (long)m.num;
     T_1_3.proc = type_own_ptr->t_ops->copy.fcn;
     CUR_PROC_VAR = T_1_3;
     err = T_1_3.proc->proc(T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_4.num = T_1_2.num;
+    T_1_4.num = (long)T_1_2.num;
     ret_1->num = T_1_4.num;
     }
     {signal (ERR_ok);}}
@@ -482,22 +493,23 @@ maybeOPcopy(CLUREF m, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
 
 
 /**** BEGIN PROCEDURE _gcd ****/
 
+
 errcode
 maybeOP_gcd(CLUREF m, CLUREF tab, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     maybe_OWN_DEFN *type_own_ptr;
     type_own_ptr = (maybe_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
-        if (type_own_ptr->_gcd_own_init == 0) {
+    if (type_own_ptr->_gcd_own_init == 0) {
         type_own_ptr->_gcd_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(82);
 
@@ -525,7 +537,7 @@ maybeOP_gcd(CLUREF m, CLUREF tab, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-    T_1_1.num = m.num;
+    T_1_1.num = (long)m.num;
     T_1_3.proc = type_own_ptr->t_ops->_gcd.fcn;
     CUR_PROC_VAR = T_1_3;
     err = T_1_3.proc->proc(T_1_1, tab, &T_1_2);
@@ -542,7 +554,7 @@ maybeOP_gcd(CLUREF m, CLUREF tab, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _gcd ****/
 
@@ -553,14 +565,14 @@ typedef struct{
     struct OP_ENTRY entry[8];
 } maybe_OPS;
 
-CLU_proc maybe_oe__gcd = {{0,0,0,0}, maybeOP_gcd, 0};
-CLU_proc maybe_oe_copy = {{0,0,0,0}, maybeOPcopy, 0};
-CLU_proc maybe_oe_equal = {{0,0,0,0}, maybeOPequal, 0};
-CLU_proc maybe_oe_exists = {{0,0,0,0}, maybeOPexists, 0};
-CLU_proc maybe_oe_make = {{0,0,0,0}, maybeOPmake, 0};
-CLU_proc maybe_oe_none = {{0,0,0,0}, maybeOPnone, 0};
-CLU_proc maybe_oe_similar = {{0,0,0,0}, maybeOPsimilar, 0};
-CLU_proc maybe_oe_value = {{0,0,0,0}, maybeOPvalue, 0};
+CLU_proc maybe_oe__gcd = { .proc = maybeOP_gcd };
+CLU_proc maybe_oe_copy = { .proc = maybeOPcopy };
+CLU_proc maybe_oe_equal = { .proc = maybeOPequal };
+CLU_proc maybe_oe_exists = { .proc = maybeOPexists };
+CLU_proc maybe_oe_make = { .proc = maybeOPmake };
+CLU_proc maybe_oe_none = { .proc = maybeOPnone };
+CLU_proc maybe_oe_similar = { .proc = maybeOPsimilar };
+CLU_proc maybe_oe_value = { .proc = maybeOPvalue };
 
 maybe_OPS maybe_ops_actual = {8, (OWNPTR)&maybe_own_init, (OWNPTR)&maybe_own_init, {
     {&maybe_oe__gcd, "_gcd"},

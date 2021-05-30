@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _termcap_entry ****/
+
 extern errcode _bytevecOPcreate();
 extern errcode _chanOPopen();
 extern errcode file_nameOPparse();
@@ -30,19 +33,16 @@ extern errcode stringOPsubstr();
 extern errcode intOPsub();
 extern errcode _chanOPclose();
 extern errcode stringOPindexs();
-CLUREF STR_;
-CLUREF STR_read;
-CLUREF STR__012;
-CLUREF STR__072tc_075;
+static CLUREF STR_;
+static CLUREF STR_read;
+static CLUREF STR__012;
+static CLUREF STR__072tc_075;
 static int _termcap_entry_own_init = 0;
-
-/**** BEGIN PROCEDURE _termcap_entry ****/
 
 errcode
 _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ent;
     CLUREF c;
     CLUREF b;
@@ -57,11 +57,11 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
     CLUREF more;
     CLUREF z;
     CLUREF i;
-        if (_termcap_entry_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons("\n", CLU_1, CLU_1, &STR__012);
-        stringOPcons(":tc=", CLU_1, CLU_4, &STR__072tc_075);
+    if (_termcap_entry_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons("\n", CLU_1, CLUREF_make_num(1), &STR__012);
+        stringOPcons(":tc=", CLU_1, CLUREF_make_num(4), &STR__072tc_075);
         _termcap_entry_own_init = 1;
     }
     enter_proc(3);
@@ -129,7 +129,7 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
   LINE(12);
         {
             {CLUREF T_3_1;
-            T_3_1.num = term.num;
+            T_3_1.num = (long)term.num;
             bterm.num = T_3_1.num;
             }
             }
@@ -585,7 +585,7 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _termcap_entry ****/
 

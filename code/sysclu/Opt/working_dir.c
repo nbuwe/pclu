@@ -4,19 +4,19 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode _working_dir();
-CLUREF STR_;
-static int working_dir_own_init = 0;
 
 /**** BEGIN PROCEDURE working_dir ****/
 
+extern errcode _working_dir();
+static CLUREF STR_;
+static int working_dir_own_init = 0;
+
 errcode
 working_dir(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (working_dir_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (working_dir_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         working_dir_own_init = 1;
     }
     enter_proc(3);
@@ -39,7 +39,7 @@ working_dir(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE working_dir ****/
 

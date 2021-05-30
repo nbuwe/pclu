@@ -5,6 +5,9 @@
 #include "pclu_sys.h"
 
 
+
+/**** BEGIN PROCEDURE p_definition ****/
+
 extern errcode p_envOPset_clustr();
 extern errcode p_envOPset_applystr();
 extern errcode p_envOPget_peek1();
@@ -22,29 +25,26 @@ extern errcode oneofOPmake_2();
 extern errcode oneofOPmake_4();
 extern errcode p_slist();
 extern errcode p_equate();
-extern struct REQS *p_slist_of_t_reqs;
+extern const struct REQS * const p_slist_of_t_reqs;
 extern struct OPS *equate_ops;
-extern OWN_req p_slist_ownreqs;
+extern const OWN_req p_slist_ownreqs;
 struct OPS *p_slist_of_equate_table;
 struct OPS *p_slist_of_equate_ops;
 struct OPS *p_slist_of_equate_ops;
 OWNPTR p_slist_of_equate_owns;
-CLUREF STR_;
+static CLUREF STR_;
 static int p_definition_own_init = 0;
-
-/**** BEGIN PROCEDURE p_definition ****/
 
 errcode
 p_definition(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF def;
     CLUREF k;
-        if (p_definition_own_init == 0) {
-        add_parm_info_type(0, equate_ops, p_slist_of_t_reqs);
+    if (p_definition_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)equate_ops, p_slist_of_t_reqs);
         find_prociter_instance(p_slist, 1, &p_slist_ownreqs, &(p_slist_of_equate_ops));
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         p_definition_own_init = 1;
     }
     enter_proc(12);
@@ -231,13 +231,13 @@ p_definition(CLUREF e, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         CLUREF T_2_3;
-        err = proctypeOPnew(CLU_0, &T_2_1.proc);
+        err = proctypeOPnew(CLU_0, &T_2_1);
         if (err!= ERR_ok) goto ex_0;
         T_2_1.proc->type_owns = 0;
         T_2_1.proc->op_owns = 0;
         T_2_1.proc->proc = p_equate;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)p_slist_of_equate_ops->op_owns;
+        generic_CLU_proc.op_owns = p_slist_of_equate_ops->op_owns;
         generic_CLU_proc.proc = p_slist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_slist(e, T_2_1, &T_2_2);
@@ -258,10 +258,13 @@ p_definition(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_definition ****/
 
+
+
+/**** BEGIN PROCEDURE p_directive ****/
 
 extern errcode stringOPequal();
 extern errcode idnOPget_str();
@@ -273,29 +276,26 @@ extern errcode oneofOPis_9();
 extern errcode recordOPget_7();
 extern errcode cmpvarOPstuffs();
 extern errcode g_envOPforce_signal();
-CLUREF STR_include;
-CLUREF STR_extend;
-CLUREF STR_normal;
-CLUREF STR_unrecognized_040directive;
-CLUREF STR_missing_040directive_040after_040_043;
+static CLUREF STR_include;
+static CLUREF STR_extend;
+static CLUREF STR_normal;
+static CLUREF STR_unrecognized_040directive;
+static CLUREF STR_missing_040directive_040after_040_043;
 static int p_directive_own_init = 0;
-
-/**** BEGIN PROCEDURE p_directive ****/
 
 errcode
 p_directive(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF dir;
     CLUREF k;
     CLUREF ge;
-        if (p_directive_own_init == 0) {
-        stringOPcons("include", CLU_1, CLU_7, &STR_include);
-        stringOPcons("extend", CLU_1, CLU_6, &STR_extend);
-        stringOPcons("normal", CLU_1, CLU_6, &STR_normal);
-        stringOPcons("unrecognized directive", CLU_1, CLU_22, &STR_unrecognized_040directive);
-        stringOPcons("missing directive after #", CLU_1, CLU_25, &STR_missing_040directive_040after_040_043);
+    if (p_directive_own_init == 0) {
+        stringOPcons("include", CLU_1, CLUREF_make_num(7), &STR_include);
+        stringOPcons("extend", CLU_1, CLUREF_make_num(6), &STR_extend);
+        stringOPcons("normal", CLU_1, CLUREF_make_num(6), &STR_normal);
+        stringOPcons("unrecognized directive", CLU_1, CLUREF_make_num(22), &STR_unrecognized_040directive);
+        stringOPcons("missing directive after #", CLU_1, CLUREF_make_num(25), &STR_missing_040directive_040after_040_043);
         p_directive_own_init = 1;
     }
     enter_proc(44);
@@ -318,7 +318,7 @@ p_directive(CLUREF e, CLUREF *ret_1)
             err = idnOPget_str(dir, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             T_3_2.num = ((T_3_1.str->size != STR_include.str->size)? false :
-                !(bcmp(T_3_1.str->data, STR_include.str->data, T_3_1.str->size)));
+                !(memcmp(T_3_1.str->data, STR_include.str->data, T_3_1.str->size)));
             if (T_3_2.num == true) {
 
   LINE(48);
@@ -344,7 +344,7 @@ p_directive(CLUREF e, CLUREF *ret_1)
             err = idnOPget_str(dir, &T_3_3);
             if (err != ERR_ok) goto ex_1;
             T_3_4.num = ((T_3_3.str->size != STR_extend.str->size)? false :
-                !(bcmp(T_3_3.str->data, STR_extend.str->data, T_3_3.str->size)));
+                !(memcmp(T_3_3.str->data, STR_extend.str->data, T_3_3.str->size)));
             if (T_3_4.num == true) {
 
   LINE(51);
@@ -359,7 +359,7 @@ p_directive(CLUREF e, CLUREF *ret_1)
             err = idnOPget_str(dir, &T_3_5);
             if (err != ERR_ok) goto ex_1;
             T_3_6.num = ((T_3_5.str->size != STR_normal.str->size)? false :
-                !(bcmp(T_3_5.str->data, STR_normal.str->data, T_3_5.str->size)));
+                !(memcmp(T_3_5.str->data, STR_normal.str->data, T_3_5.str->size)));
             if (T_3_6.num == true) {
 
   LINE(53);
@@ -474,10 +474,13 @@ p_directive(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_directive ****/
 
+
+
+/**** BEGIN PROCEDURE p_include ****/
 
 extern errcode oneofOPvalue_24();
 extern errcode oneofOPvalue_13();
@@ -504,20 +507,17 @@ struct OPS *p_slist_of_equate_table;
 struct OPS *p_slist_of_equate_ops;
 struct OPS *p_slist_of_equate_ops;
 OWNPTR p_slist_of_equate_owns;
-CLUREF STR_read;
-CLUREF STR_more_040than_040equates_040in_040include_040file;
-CLUREF STR_file_040name_040has_040bad_040format;
-CLUREF STR_cannot_040open_040include_040file_072_040;
-CLUREF STR_missing_040file_040name_040string_040after_040_043_040include;
+static CLUREF STR_read;
+static CLUREF STR_more_040than_040equates_040in_040include_040file;
+static CLUREF STR_file_040name_040has_040bad_040format;
+static CLUREF STR_cannot_040open_040include_040file_072_040;
+static CLUREF STR_missing_040file_040name_040string_040after_040_043_040include;
 static int p_include_own_init = 0;
-
-/**** BEGIN PROCEDURE p_include ****/
 
 errcode
 p_include(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF s;
     CLUREF x;
     CLUREF ost;
@@ -526,14 +526,14 @@ p_include(CLUREF e, CLUREF *ret_1)
     CLUREF e1;
     CLUREF def;
     CLUREF xx;
-        if (p_include_own_init == 0) {
-        add_parm_info_type(0, equate_ops, p_slist_of_t_reqs);
+    if (p_include_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)equate_ops, p_slist_of_t_reqs);
         find_prociter_instance(p_slist, 1, &p_slist_ownreqs, &(p_slist_of_equate_ops));
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons("more than equates in include file", CLU_1, CLU_33, &STR_more_040than_040equates_040in_040include_040file);
-        stringOPcons("file name has bad format", CLU_1, CLU_24, &STR_file_040name_040has_040bad_040format);
-        stringOPcons("cannot open include file: ", CLU_1, CLU_26, &STR_cannot_040open_040include_040file_072_040);
-        stringOPcons("missing file name string after # include", CLU_1, CLU_40, &STR_missing_040file_040name_040string_040after_040_043_040include);
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons("more than equates in include file", CLU_1, CLUREF_make_num(33), &STR_more_040than_040equates_040in_040include_040file);
+        stringOPcons("file name has bad format", CLU_1, CLUREF_make_num(24), &STR_file_040name_040has_040bad_040format);
+        stringOPcons("cannot open include file: ", CLU_1, CLUREF_make_num(26), &STR_cannot_040open_040include_040file_072_040);
+        stringOPcons("missing file name string after # include", CLU_1, CLUREF_make_num(40), &STR_missing_040file_040name_040string_040after_040_043_040include);
         p_include_own_init = 1;
     }
     enter_proc(72);
@@ -649,7 +649,7 @@ p_include(CLUREF e, CLUREF *ret_1)
 
   LINE(84);
         {
-        x.vec->data[7]  = inst.num;
+        x.vec->data[7] = inst.num;
         }
 
   LINE(85);
@@ -666,13 +666,13 @@ p_include(CLUREF e, CLUREF *ret_1)
             {CLUREF T_3_1;
             CLUREF T_3_2;
             CLUREF T_3_3;
-            err = proctypeOPnew(CLU_0, &T_3_1.proc);
+            err = proctypeOPnew(CLU_0, &T_3_1);
             if (err!= ERR_ok) goto ex_1;
             T_3_1.proc->type_owns = 0;
             T_3_1.proc->op_owns = 0;
             T_3_1.proc->proc = p_equate;
             generic_CLU_proc.type_owns = 0;
-            generic_CLU_proc.op_owns = (long)p_slist_of_equate_ops->op_owns;
+            generic_CLU_proc.op_owns = p_slist_of_equate_ops->op_owns;
             generic_CLU_proc.proc = p_slist;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
             err = p_slist(e1, T_3_1, &T_3_2);
@@ -711,7 +711,7 @@ p_include(CLUREF e, CLUREF *ret_1)
 
   LINE(93);
         {
-        x.vec->data[7]  = ost.num;
+        x.vec->data[7] = ost.num;
         }
 
   LINE(94);
@@ -778,10 +778,13 @@ p_include(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_include ****/
 
+
+
+/**** BEGIN PROCEDURE p_applydefn ****/
 
 extern errcode p_idn();
 extern errcode p_envOPget_line();
@@ -802,9 +805,9 @@ extern errcode p_envOPend_body();
 extern errcode p_defn_end();
 extern errcode p_envOPget_unknown_type();
 extern errcode arrayOPpredict();
-extern struct REQS *sequence_of_t_reqs;
+extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *idn_ops;
-extern OWN_req sequence_ownreqs;
+extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
 struct OPS *sequence_of_idn_table;
 struct OPS *sequence_of_idn_ops;
@@ -813,15 +816,15 @@ OWNPTR sequence_of_idn_owns;
 extern struct OPS *sequence_of_idn_ops;
 extern struct OPS *typespec_ops;
 struct OPS  *record_idns_type__ops;
-extern struct REQS *p_blist_of_t_reqs;
+extern const struct REQS * const p_blist_of_t_reqs;
 extern struct OPS *record_idns_type__ops;
-extern OWN_req p_blist_ownreqs;
+extern const OWN_req p_blist_ownreqs;
 struct OPS *p_blist_of_record_idns_type__table;
 struct OPS *p_blist_of_record_idns_type__ops;
 struct OPS *p_blist_of_record_idns_type__ops;
 OWNPTR p_blist_of_record_idns_type__owns;
-extern struct REQS *p_plist_of_t_reqs;
-extern OWN_req p_plist_ownreqs;
+extern const struct REQS * const p_plist_of_t_reqs;
+extern const OWN_req p_plist_ownreqs;
 struct OPS *p_plist_of_record_idns_type__table;
 struct OPS *p_plist_of_record_idns_type__ops;
 struct OPS *p_plist_of_record_idns_type__ops;
@@ -852,17 +855,14 @@ struct OPS *p_slist_of_stmt_table;
 struct OPS *p_slist_of_stmt_ops;
 struct OPS *p_slist_of_stmt_ops;
 OWNPTR p_slist_of_stmt_owns;
-CLUREF STR_parameter;
-CLUREF STR_argument;
+static CLUREF STR_parameter;
+static CLUREF STR_argument;
 static int p_applydefn_own_init = 0;
-
-/**** BEGIN PROCEDURE p_applydefn ****/
 
 errcode
 p_applydefn(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF id;
     CLUREF line;
     CLUREF gen;
@@ -876,19 +876,19 @@ p_applydefn(CLUREF e, CLUREF *ret_1)
     CLUREF eqs;
     CLUREF inits;
     CLUREF bod;
-        if (p_applydefn_own_init == 0) {
-        add_parm_info_type(0, idn_ops, sequence_of_t_reqs);
+    if (p_applydefn_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)idn_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_idn_ops));
         add_selector_info("idns", 0, sequence_of_idn_ops);
         add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_idns_type__ops));
-        add_parm_info_type(0, record_idns_type__ops, p_blist_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_idns_type__ops, p_blist_of_t_reqs);
         find_prociter_instance(p_blist, 1, &p_blist_ownreqs, &(p_blist_of_record_idns_type__ops));
-        add_parm_info_type(0, record_idns_type__ops, p_plist_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_idns_type__ops, p_plist_of_t_reqs);
         find_prociter_instance(p_plist, 1, &p_plist_ownreqs, &(p_plist_of_record_idns_type__ops));
-        add_parm_info_type(0, equate_ops, p_slist_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)equate_ops, p_slist_of_t_reqs);
         find_prociter_instance(p_slist, 1, &p_slist_ownreqs, &(p_slist_of_equate_ops));
-        add_parm_info_type(0, record_idns_type__ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_idns_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_idns_type__ops));
         add_selector_info("anys", 0, sequence_of_record_idns_type__ops);
         add_selector_info("decls", 1, sequence_of_record_idns_type__ops);
@@ -900,12 +900,12 @@ p_applydefn(CLUREF e, CLUREF *ret_1)
         add_selector_info("line", 0, int_ops);
         add_selector_info("stmt", 1, oneof_decl_init_ops);
         find_selector_ops("record", 2, &(record_line_stmt_ops));
-        add_parm_info_type(0, record_line_stmt_ops, p_slist_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_line_stmt_ops, p_slist_of_t_reqs);
         find_prociter_instance(p_slist, 1, &p_slist_ownreqs, &(p_slist_of_record_line_stmt_ops));
-        add_parm_info_type(0, stmt_ops, p_slist_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)stmt_ops, p_slist_of_t_reqs);
         find_prociter_instance(p_slist, 1, &p_slist_ownreqs, &(p_slist_of_stmt_ops));
-        stringOPcons("parameter", CLU_1, CLU_9, &STR_parameter);
-        stringOPcons("argument", CLU_1, CLU_8, &STR_argument);
+        stringOPcons("parameter", CLU_1, CLUREF_make_num(9), &STR_parameter);
+        stringOPcons("argument", CLU_1, CLUREF_make_num(8), &STR_argument);
         p_applydefn_own_init = 1;
     }
     enter_proc(111);
@@ -985,13 +985,13 @@ p_applydefn(CLUREF e, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        err = proctypeOPnew(CLU_0, &T_1_1.proc);
+        err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->type_owns = 0;
         T_1_1.proc->op_owns = 0;
         T_1_1.proc->proc = p_decl;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)p_blist_of_record_idns_type__ops->op_owns;
+        generic_CLU_proc.op_owns = p_blist_of_record_idns_type__ops->op_owns;
         generic_CLU_proc.proc = p_blist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_blist(e, T_1_1, CLU_1, STR_parameter, &T_1_2);
@@ -1004,13 +1004,13 @@ p_applydefn(CLUREF e, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        err = proctypeOPnew(CLU_0, &T_1_1.proc);
+        err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->type_owns = 0;
         T_1_1.proc->op_owns = 0;
         T_1_1.proc->proc = p_decl;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)p_plist_of_record_idns_type__ops->op_owns;
+        generic_CLU_proc.op_owns = p_plist_of_record_idns_type__ops->op_owns;
         generic_CLU_proc.proc = p_plist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_plist(e, T_1_1, CLU_0, CLU_1, STR_argument, &T_1_2);
@@ -1082,13 +1082,13 @@ p_applydefn(CLUREF e, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        err = proctypeOPnew(CLU_0, &T_1_1.proc);
+        err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->type_owns = 0;
         T_1_1.proc->op_owns = 0;
         T_1_1.proc->proc = p_equate;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)p_slist_of_equate_ops->op_owns;
+        generic_CLU_proc.op_owns = p_slist_of_equate_ops->op_owns;
         generic_CLU_proc.proc = p_slist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_slist(e, T_1_1, &T_1_2);
@@ -1101,13 +1101,13 @@ p_applydefn(CLUREF e, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        err = proctypeOPnew(CLU_0, &T_1_1.proc);
+        err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->type_owns = 0;
         T_1_1.proc->op_owns = 0;
         T_1_1.proc->proc = p_init;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)p_slist_of_record_line_stmt_ops->op_owns;
+        generic_CLU_proc.op_owns = p_slist_of_record_line_stmt_ops->op_owns;
         generic_CLU_proc.proc = p_slist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_slist(e, T_1_1, &T_1_2);
@@ -1120,13 +1120,13 @@ p_applydefn(CLUREF e, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        err = proctypeOPnew(CLU_0, &T_1_1.proc);
+        err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->type_owns = 0;
         T_1_1.proc->op_owns = 0;
         T_1_1.proc->proc = p_stmt;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)p_slist_of_stmt_ops->op_owns;
+        generic_CLU_proc.op_owns = p_slist_of_stmt_ops->op_owns;
         generic_CLU_proc.proc = p_slist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_slist(e, T_1_1, &T_1_2);
@@ -1157,23 +1157,23 @@ p_applydefn(CLUREF e, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     RecordAlloc(13, T_1_1);
-    T_1_1.vec->data[4]  = id.num;
-    T_1_1.vec->data[3]  = gen.num;
+    T_1_1.vec->data[4] = id.num;
+    T_1_1.vec->data[3] = gen.num;
     err = p_envOPget_unknown_type(e, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[9]  = T_1_2.num;
-    T_1_1.vec->data[7]  = parms.num;
-    T_1_1.vec->data[0]  = args.num;
-    T_1_1.vec->data[10]  = vals.num;
-    T_1_1.vec->data[8]  = sigs.num;
-    T_1_1.vec->data[12]  = wher.num;
-    T_1_1.vec->data[2]  = eqs.num;
-    T_1_1.vec->data[5]  = inits.num;
+    T_1_1.vec->data[9] = T_1_2.num;
+    T_1_1.vec->data[7] = parms.num;
+    T_1_1.vec->data[0] = args.num;
+    T_1_1.vec->data[10] = vals.num;
+    T_1_1.vec->data[8] = sigs.num;
+    T_1_1.vec->data[12] = wher.num;
+    T_1_1.vec->data[2] = eqs.num;
+    T_1_1.vec->data[5] = inits.num;
     err = arrayOPpredict(CLU_1, CLU_10, &T_1_3);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[11]  = T_1_3.num;
-    T_1_1.vec->data[1]  = bod.num;
-    T_1_1.vec->data[6]  = line.num;
+    T_1_1.vec->data[11] = T_1_3.num;
+    T_1_1.vec->data[1] = bod.num;
+    T_1_1.vec->data[6] = line.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -1186,10 +1186,13 @@ p_applydefn(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_applydefn ****/
 
+
+
+/**** BEGIN PROCEDURE p_typedefn ****/
 
 extern errcode p_order();
 extern errcode p_idn1();
@@ -1221,8 +1224,8 @@ struct OPS *p_blist_of_record_idns_type__table;
 struct OPS *p_blist_of_record_idns_type__ops;
 struct OPS *p_blist_of_record_idns_type__ops;
 OWNPTR p_blist_of_record_idns_type__owns;
-extern struct REQS *p_order_of_t_reqs;
-extern OWN_req p_order_ownreqs;
+extern const struct REQS * const p_order_of_t_reqs;
+extern const OWN_req p_order_ownreqs;
 struct OPS *p_order_of_idn_table;
 struct OPS *p_order_of_idn_ops;
 struct OPS *p_order_of_idn_ops;
@@ -1266,8 +1269,8 @@ struct OPS *sequence_of_record_name_types_table;
 struct OPS *sequence_of_record_name_types_ops;
 struct OPS *sequence_of_record_name_types_ops;
 OWNPTR sequence_of_record_name_types_owns;
-extern struct REQS *array_of_t_reqs;
-extern OWN_req array_ownreqs;
+extern const struct REQS * const array_of_t_reqs;
+extern const OWN_req array_ownreqs;
 extern struct OPS *array_ops;
 struct OPS *array_of_idn_table;
 struct OPS *array_of_idn_ops;
@@ -1310,34 +1313,31 @@ extern struct OPS *sequence_of_record_name_types_ops;
 extern struct OPS *array_of_idn_ops;
 extern struct OPS *sequence_of_record_idn_kind_line_ops;
 struct OPS  *record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops;
-extern struct REQS *p_list_of_t_reqs;
+extern const struct REQS * const p_list_of_t_reqs;
 extern struct OPS *record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops;
-extern OWN_req p_list_ownreqs;
+extern const OWN_req p_list_ownreqs;
 struct OPS *p_list_of_record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__table;
 struct OPS *p_list_of_record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops;
 struct OPS *p_list_of_record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops;
 OWNPTR p_list_of_record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__owns;
-CLUREF STR_idn;
-CLUREF STR_IS_040idn_137list_040in_040module_040header;
-CLUREF STR_operation;
-CLUREF STR_print;
-CLUREF STR_pstream;
-CLUREF STR_where_040;
-CLUREF STR__040has_040print_072_040proctype_050;
-CLUREF STR__054_040pstream_051_012;
-CLUREF STR_debug_137print_040_075_040proc_050_137rep_072_040cvt_054_040ps_072_040pstream_051_012;
-CLUREF STR__040print_050up_050_137rep_051_054_040ps_051_012;
-CLUREF STR__040end_040debug_137print_012;
-CLUREF STR_debug_137print_040_075_040proc_050_137rep_072_040cvt_054_040ps_072_040pstream_051_012_040rep_044debug_137print_050_137rep_054_040ps_051_012_040end_040debug_137print_012;
+static CLUREF STR_idn;
+static CLUREF STR_IS_040idn_137list_040in_040module_040header;
+static CLUREF STR_operation;
+static CLUREF STR_print;
+static CLUREF STR_pstream;
+static CLUREF STR_where_040;
+static CLUREF STR__040has_040print_072_040proctype_050;
+static CLUREF STR__054_040pstream_051_012;
+static CLUREF STR_debug_137print_040_075_040proc_050_137rep_072_040cvt_054_040ps_072_040pstream_051_012;
+static CLUREF STR__040print_050up_050_137rep_051_054_040ps_051_012;
+static CLUREF STR__040end_040debug_137print_012;
+static CLUREF STR_debug_137print_040_075_040proc_050_137rep_072_040cvt_054_040ps_072_040pstream_051_012_040rep_044debug_137print_050_137rep_054_040ps_051_012_040end_040debug_137print_012;
 static int p_typedefn_own_init = 0;
-
-/**** BEGIN PROCEDURE p_typedefn ****/
 
 errcode
 p_typedefn(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF id;
     CLUREF line;
     CLUREF parms;
@@ -1359,19 +1359,19 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
     CLUREF each_r;
     CLUREF newst;
     CLUREF new;
-        if (p_typedefn_own_init == 0) {
-        add_parm_info_type(0, idn_ops, sequence_of_t_reqs);
+    if (p_typedefn_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)idn_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_idn_ops));
         add_selector_info("idns", 0, sequence_of_idn_ops);
         add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_idns_type__ops));
-        add_parm_info_type(0, record_idns_type__ops, p_blist_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_idns_type__ops, p_blist_of_t_reqs);
         find_prociter_instance(p_blist, 1, &p_blist_ownreqs, &(p_blist_of_record_idns_type__ops));
-        add_parm_info_type(0, idn_ops, p_order_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)idn_ops, p_order_of_t_reqs);
         find_prociter_instance(p_order, 1, &p_order_ownreqs, &(p_order_of_idn_ops));
-        add_parm_info_type(0, equate_ops, p_slist_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)equate_ops, p_slist_of_t_reqs);
         find_prociter_instance(p_slist, 1, &p_slist_ownreqs, &(p_slist_of_equate_ops));
-        add_parm_info_type(0, record_idns_type__ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_idns_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_idns_type__ops));
         add_selector_info("anys", 0, sequence_of_record_idns_type__ops);
         add_selector_info("decls", 1, sequence_of_record_idns_type__ops);
@@ -1383,35 +1383,35 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
         add_selector_info("line", 0, int_ops);
         add_selector_info("stmt", 1, oneof_decl_init_ops);
         find_selector_ops("record", 2, &(record_line_stmt_ops));
-        add_parm_info_type(0, record_line_stmt_ops, p_slist_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_line_stmt_ops, p_slist_of_t_reqs);
         find_prociter_instance(p_slist, 1, &p_slist_ownreqs, &(p_slist_of_record_line_stmt_ops));
-        add_parm_info_type(0, stmt_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)stmt_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_stmt_ops));
-        add_parm_info_type(0, equate_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)equate_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_equate_ops));
-        add_parm_info_type(0, record_line_stmt_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_line_stmt_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_line_stmt_ops));
-        add_parm_info_type(0, typespec_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)typespec_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_typespec_ops));
         add_selector_info("name", 0, string_ops);
         add_selector_info("types", 1, sequence_of_typespec_ops);
         find_selector_ops("record", 2, &(record_name_types_ops));
-        add_parm_info_type(0, record_name_types_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_name_types_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_name_types_ops));
-        add_parm_info_type(0, idn_ops, array_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)idn_ops, array_of_t_reqs);
         find_type_instance(array_ops, 1, &array_ownreqs, &(array_of_idn_ops));
-        add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
         add_selector_info("name", 0, string_ops);
         add_selector_info("parms", 1, sequence_of_expr_ops);
         add_selector_info("type_", 2, typespec_ops);
         find_selector_ops("record", 3, &(record_name_parms_type__ops));
-        add_parm_info_type(0, record_name_parms_type__ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_name_parms_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_name_parms_type__ops));
         add_selector_info("line", 0, int_ops);
         add_selector_info("opers", 1, sequence_of_record_name_parms_type__ops);
         find_selector_ops("record", 2, &(record_line_opers_ops));
-        add_parm_info_type(0, record_line_opers_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_line_opers_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_line_opers_ops));
         add_selector_info("equates", 0, sequence_of_equate_ops);
         add_selector_info("idn", 1, idn_ops);
@@ -1425,7 +1425,7 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
         add_selector_info("kind", 1, oneof_has__idn_set_ops);
         add_selector_info("line", 2, int_ops);
         find_selector_ops("record", 3, &(record_idn_kind_line_ops));
-        add_parm_info_type(0, record_idn_kind_line_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_idn_kind_line_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_idn_kind_line_ops));
         add_selector_info("args", 0, sequence_of_record_idns_type__ops);
         add_selector_info("body", 1, sequence_of_stmt_ops);
@@ -1441,23 +1441,22 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
         add_selector_info("vars", 11, array_of_idn_ops);
         add_selector_info("where_", 12, sequence_of_record_idn_kind_line_ops);
         find_selector_ops("record", 13, &(record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops));
-        add_parm_info_type(0, record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops, p_list_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops, p_list_of_t_reqs);
         find_prociter_instance(p_list, 1, &p_list_ownreqs, &(p_list_of_record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops));
-        stringOPcons("parameter", CLU_1, CLU_9, &STR_parameter);
-        stringOPcons("idn", CLU_1, CLU_3, &STR_idn);
-        stringOPcons("IS idn_list in module header", CLU_1, CLU_28, &STR_IS_040idn_137list_040in_040module_040header);
-        stringOPcons("operation", CLU_1, CLU_9, &STR_operation);
-        stringOPcons("print", CLU_1, CLU_5, &STR_print);
-        stringOPcons("pstream", CLU_1, CLU_7, &STR_pstream);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("where ", CLU_1, CLU_6, &STR_where_040);
-        stringOPcons(" has print: proctype(", CLU_1, CLU_21, &STR__040has_040print_072_040proctype_050);
-        stringOPcons(", pstream)\n", CLU_1, CLU_11, &STR__054_040pstream_051_012);
-        stringOPcons("debug_print = proc(_rep: cvt, ps: pstream)\n", CLU_1, CLU_43, &STR_debug_137print_040_075_040proc_050_137rep_072_040cvt_054_040ps_072_040pstream_051_012);
-        stringOPcons(" print(up(_rep), ps)\n", CLU_1, CLU_21, &STR__040print_050up_050_137rep_051_054_040ps_051_012);
-        stringOPcons(" end debug_print\n", CLU_1, CLU_17, &STR__040end_040debug_137print_012);
-        CLU_string_size.num = 87;
-        stringOPcons("debug_print = proc(_rep: cvt, ps: pstream)\n rep$debug_print(_rep, ps)\n end debug_print\n", CLU_1, CLU_string_size, &STR_debug_137print_040_075_040proc_050_137rep_072_040cvt_054_040ps_072_040pstream_051_012_040rep_044debug_137print_050_137rep_054_040ps_051_012_040end_040debug_137print_012);
+        stringOPcons("parameter", CLU_1, CLUREF_make_num(9), &STR_parameter);
+        stringOPcons("idn", CLU_1, CLUREF_make_num(3), &STR_idn);
+        stringOPcons("IS idn_list in module header", CLU_1, CLUREF_make_num(28), &STR_IS_040idn_137list_040in_040module_040header);
+        stringOPcons("operation", CLU_1, CLUREF_make_num(9), &STR_operation);
+        stringOPcons("print", CLU_1, CLUREF_make_num(5), &STR_print);
+        stringOPcons("pstream", CLU_1, CLUREF_make_num(7), &STR_pstream);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("where ", CLU_1, CLUREF_make_num(6), &STR_where_040);
+        stringOPcons(" has print: proctype(", CLU_1, CLUREF_make_num(21), &STR__040has_040print_072_040proctype_050);
+        stringOPcons(", pstream)\n", CLU_1, CLUREF_make_num(11), &STR__054_040pstream_051_012);
+        stringOPcons("debug_print = proc(_rep: cvt, ps: pstream)\n", CLU_1, CLUREF_make_num(43), &STR_debug_137print_040_075_040proc_050_137rep_072_040cvt_054_040ps_072_040pstream_051_012);
+        stringOPcons(" print(up(_rep), ps)\n", CLU_1, CLUREF_make_num(21), &STR__040print_050up_050_137rep_051_054_040ps_051_012);
+        stringOPcons(" end debug_print\n", CLU_1, CLUREF_make_num(17), &STR__040end_040debug_137print_012);
+        stringOPcons("debug_print = proc(_rep: cvt, ps: pstream)\n rep$debug_print(_rep, ps)\n end debug_print\n", CLU_1, CLUREF_make_num(87), &STR_debug_137print_040_075_040proc_050_137rep_072_040cvt_054_040ps_072_040pstream_051_012_040rep_044debug_137print_050_137rep_054_040ps_051_012_040end_040debug_137print_012);
         p_typedefn_own_init = 1;
     }
     enter_proc(160);
@@ -1498,13 +1497,13 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        err = proctypeOPnew(CLU_0, &T_1_1.proc);
+        err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->type_owns = 0;
         T_1_1.proc->op_owns = 0;
         T_1_1.proc->proc = p_decl;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)p_blist_of_record_idns_type__ops->op_owns;
+        generic_CLU_proc.op_owns = p_blist_of_record_idns_type__ops->op_owns;
         generic_CLU_proc.proc = p_blist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_blist(e, T_1_1, CLU_1, STR_parameter, &T_1_2);
@@ -1534,16 +1533,16 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
             CLUREF T_2_1;
             CLUREF T_2_2;
             CLUREF T_2_3;
-            err = proctypeOPnew(CLU_0, &T_2_1.proc);
+            err = proctypeOPnew(CLU_0, &T_2_1);
             if (err!= ERR_ok) goto ex_0;
             T_2_1.proc->type_owns = 0;
             T_2_1.proc->op_owns = 0;
             T_2_1.proc->proc = p_idn1;
-            err = proctypeOPnew(CLU_0, &T_2_2.proc);
+            err = proctypeOPnew(CLU_0, &T_2_2);
             if (err!= ERR_ok) goto ex_0;
             T_2_2.proc->proc = idnOPget_str;
             generic_CLU_proc.type_owns = 0;
-            generic_CLU_proc.op_owns = (long)p_order_of_idn_ops->op_owns;
+            generic_CLU_proc.op_owns = p_order_of_idn_ops->op_owns;
             generic_CLU_proc.proc = p_order;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
             err = p_order(e, T_2_1, T_2_2, STR_idn, &T_2_3);
@@ -1599,13 +1598,13 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        err = proctypeOPnew(CLU_0, &T_1_1.proc);
+        err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->type_owns = 0;
         T_1_1.proc->op_owns = 0;
         T_1_1.proc->proc = p_equate;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)p_slist_of_equate_ops->op_owns;
+        generic_CLU_proc.op_owns = p_slist_of_equate_ops->op_owns;
         generic_CLU_proc.proc = p_slist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_slist(e, T_1_1, &T_1_2);
@@ -1618,13 +1617,13 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        err = proctypeOPnew(CLU_0, &T_1_1.proc);
+        err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->type_owns = 0;
         T_1_1.proc->op_owns = 0;
         T_1_1.proc->proc = p_init;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)p_slist_of_record_line_stmt_ops->op_owns;
+        generic_CLU_proc.op_owns = p_slist_of_record_line_stmt_ops->op_owns;
         generic_CLU_proc.proc = p_slist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_slist(e, T_1_1, &T_1_2);
@@ -1637,13 +1636,13 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        err = proctypeOPnew(CLU_0, &T_1_1.proc);
+        err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->type_owns = 0;
         T_1_1.proc->op_owns = 0;
         T_1_1.proc->proc = p_operdefn;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)p_list_of_record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops->op_owns;
+        generic_CLU_proc.op_owns = p_list_of_record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops->op_owns;
         generic_CLU_proc.proc = p_list;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_list(e, T_1_1, CLU_0, STR_operation, &T_1_2);
@@ -1686,7 +1685,7 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
             err = idnOPget_str(T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
             T_2_3.num = ((T_2_2.str->size != STR_print.str->size)? false :
-                !(bcmp(T_2_2.str->data, STR_print.str->data, T_2_2.str->size)));
+                !(memcmp(T_2_2.str->data, STR_print.str->data, T_2_2.str->size)));
             if (T_2_3.num == true) {
 
   LINE(192);
@@ -1797,7 +1796,7 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
                                 err = idnOPget_str(i, &T_6_1);
                                 if (err != ERR_ok) goto ex_0;
                                 T_6_2.num = ((T_6_1.str->size != STR_pstream.str->size)? false :
-                                    !(bcmp(T_6_1.str->data, STR_pstream.str->data, T_6_1.str->size)));
+                                    !(memcmp(T_6_1.str->data, STR_pstream.str->data, T_6_1.str->size)));
                                 T_6_3.num = T_6_2.num ^ 1;
                                 if (T_6_3.num == true) {
                                     goto end_inline_for_1;
@@ -1836,7 +1835,7 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
                                 err = idnOPget_str(id, &T_6_2);
                                 if (err != ERR_ok) goto ex_0;
                                 T_6_3.num = ((T_6_1.str->size != T_6_2.str->size)? false :
-                                    !(bcmp(T_6_1.str->data, T_6_2.str->data, T_6_1.str->size)));
+                                    !(memcmp(T_6_1.str->data, T_6_2.str->data, T_6_1.str->size)));
                                 if (T_6_3.num == true) {
 
   LINE(209);
@@ -1888,7 +1887,7 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
                                 err = idnOPget_str(id, &T_6_3);
                                 if (err != ERR_ok) goto ex_0;
                                 T_6_4.num = ((T_6_2.str->size != T_6_3.str->size)? false :
-                                    !(bcmp(T_6_2.str->data, T_6_3.str->data, T_6_2.str->size)));
+                                    !(memcmp(T_6_2.str->data, T_6_3.str->data, T_6_2.str->size)));
                                 if (T_6_4.num == true) {
 
   LINE(216);
@@ -2033,13 +2032,13 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        err = proctypeOPnew(CLU_0, &T_1_1.proc);
+        err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
         T_1_1.proc->type_owns = 0;
         T_1_1.proc->op_owns = 0;
         T_1_1.proc->proc = p_operdefn;
         generic_CLU_proc.type_owns = 0;
-        generic_CLU_proc.op_owns = (long)p_list_of_record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops->op_owns;
+        generic_CLU_proc.op_owns = p_list_of_record_args_body_equates_gen_idn_init_line_parms_sigs_type__vals_vars_where__ops->op_owns;
         generic_CLU_proc.proc = p_list;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = p_list(e, T_1_1, CLU_0, STR_operation, &T_1_2);
@@ -2080,20 +2079,20 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     RecordAlloc(10, T_1_1);
-    T_1_1.vec->data[3]  = id.num;
-    T_1_1.vec->data[7]  = parms.num;
+    T_1_1.vec->data[3] = id.num;
+    T_1_1.vec->data[7] = parms.num;
     err = p_envOPget_unknown_type(e, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[8]  = T_1_2.num;
+    T_1_1.vec->data[8] = T_1_2.num;
     err = p_envOPget_unknown_type(e, &T_1_3);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[1]  = T_1_3.num;
-    T_1_1.vec->data[6]  = ops.num;
-    T_1_1.vec->data[9]  = wher.num;
-    T_1_1.vec->data[2]  = equates.num;
-    T_1_1.vec->data[4]  = inits.num;
-    T_1_1.vec->data[0]  = bod.num;
-    T_1_1.vec->data[5]  = line.num;
+    T_1_1.vec->data[1] = T_1_3.num;
+    T_1_1.vec->data[6] = ops.num;
+    T_1_1.vec->data[9] = wher.num;
+    T_1_1.vec->data[2] = equates.num;
+    T_1_1.vec->data[4] = inits.num;
+    T_1_1.vec->data[0] = bod.num;
+    T_1_1.vec->data[5] = line.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -2106,36 +2105,36 @@ p_typedefn(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_typedefn ****/
 
+
+
+/**** BEGIN PROCEDURE p_equate ****/
 
 extern errcode p_typeset();
 extern errcode p_pathname();
 extern errcode p_expr();
 extern errcode p_envOPget_bad_expr();
 extern errcode equateOPcreate();
-CLUREF STR_pathname;
-CLUREF STR_right_040side_040of_040equate;
+static CLUREF STR_pathname;
+static CLUREF STR_right_040side_040of_040equate;
 static int p_equate_own_init = 0;
-
-/**** BEGIN PROCEDURE p_equate ****/
 
 errcode
 p_equate(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF id;
     CLUREF k;
     CLUREF i;
     CLUREF line;
     CLUREF val;
     CLUREF tk;
-        if (p_equate_own_init == 0) {
-        stringOPcons("pathname", CLU_1, CLU_8, &STR_pathname);
-        stringOPcons("right side of equate", CLU_1, CLU_20, &STR_right_040side_040of_040equate);
+    if (p_equate_own_init == 0) {
+        stringOPcons("pathname", CLU_1, CLUREF_make_num(8), &STR_pathname);
+        stringOPcons("right side of equate", CLU_1, CLUREF_make_num(20), &STR_right_040side_040of_040equate);
         p_equate_own_init = 1;
     }
     enter_proc(278);
@@ -2298,7 +2297,7 @@ p_equate(CLUREF e, CLUREF *ret_1)
             err = idnOPget_str(tk, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             T_3_2.num = ((STR_pathname.str->size != T_3_1.str->size)? false :
-                !(bcmp(STR_pathname.str->data, T_3_1.str->data, STR_pathname.str->size)));
+                !(memcmp(STR_pathname.str->data, T_3_1.str->data, STR_pathname.str->size)));
             if (T_3_2.num == true) {
 
   LINE(312);
@@ -2401,20 +2400,20 @@ p_equate(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_equate ****/
 
 
-extern errcode p_owninit();
 
 /**** BEGIN PROCEDURE p_init ****/
 
+extern errcode p_owninit();
+
 errcode
 p_init(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     CLUREF line;
     CLUREF di;
@@ -2487,8 +2486,8 @@ p_init(CLUREF e, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[1]  = di.num;
-    T_1_1.vec->data[0]  = line.num;
+    T_1_1.vec->data[1] = di.num;
+    T_1_1.vec->data[0] = line.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -2501,30 +2500,30 @@ p_init(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_init ****/
 
+
+
+/**** BEGIN PROCEDURE p_operdefn ****/
 
 struct OPS *p_slist_of_equate_table;
 struct OPS *p_slist_of_equate_ops;
 struct OPS *p_slist_of_equate_ops;
 OWNPTR p_slist_of_equate_owns;
-CLUREF STR_equates_040legal_040only_040at_040start_040of_040cluster;
+static CLUREF STR_equates_040legal_040only_040at_040start_040of_040cluster;
 static int p_operdefn_own_init = 0;
-
-/**** BEGIN PROCEDURE p_operdefn ****/
 
 errcode
 p_operdefn(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
-        if (p_operdefn_own_init == 0) {
-        add_parm_info_type(0, equate_ops, p_slist_of_t_reqs);
+    if (p_operdefn_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)equate_ops, p_slist_of_t_reqs);
         find_prociter_instance(p_slist, 1, &p_slist_ownreqs, &(p_slist_of_equate_ops));
-        stringOPcons("equates legal only at start of cluster", CLU_1, CLU_38, &STR_equates_040legal_040only_040at_040start_040of_040cluster);
+        stringOPcons("equates legal only at start of cluster", CLU_1, CLUREF_make_num(38), &STR_equates_040legal_040only_040at_040start_040of_040cluster);
         p_operdefn_own_init = 1;
     }
     enter_proc(344);
@@ -2600,13 +2599,13 @@ p_operdefn(CLUREF e, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
-            err = proctypeOPnew(CLU_0, &T_3_1.proc);
+            err = proctypeOPnew(CLU_0, &T_3_1);
             if (err!= ERR_ok) goto ex_0;
             T_3_1.proc->type_owns = 0;
             T_3_1.proc->op_owns = 0;
             T_3_1.proc->proc = p_equate;
             generic_CLU_proc.type_owns = 0;
-            generic_CLU_proc.op_owns = (long)p_slist_of_equate_ops->op_owns;
+            generic_CLU_proc.op_owns = p_slist_of_equate_ops->op_owns;
             generic_CLU_proc.proc = p_slist;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
             err = p_slist(e, T_3_1, &T_3_2);
@@ -2630,7 +2629,7 @@ p_operdefn(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE p_operdefn ****/
 

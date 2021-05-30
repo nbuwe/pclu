@@ -4,15 +4,15 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode _host_address();
 
 /**** BEGIN PROCEDURE host_address ****/
 
+extern errcode _host_address();
+
 errcode
 host_address(CLUREF host, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF l;
     CLUREF r;
     enter_proc(3);
@@ -53,7 +53,7 @@ host_address(CLUREF host, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE host_address ****/
 

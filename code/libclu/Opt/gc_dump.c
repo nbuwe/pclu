@@ -5,15 +5,20 @@
 #include "pclu_sys.h"
 
 
-typedef struct {
-long count;
-    char *_gcd_name;
-} gc_dump_of_t_REQS;
+/**** BEGIN PROCEDURE gc_dump ****/
 
-gc_dump_of_t_REQS gc_dump_of_t_reqs_actual = {1,
-    "_gcd"};
 
-struct REQS * gc_dump_of_t_reqs = (struct REQS *)&gc_dump_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+    const struct REQ_ENTRY entry[1];
+} gc_dump_of_t_reqs_actual = {
+    1, {
+        { "_gcd" },
+    }
+};
+
+const struct REQS * const gc_dump_of_t_reqs
+    = (const struct REQS *)&gc_dump_of_t_reqs_actual;
 
 typedef struct {
     long count;
@@ -22,36 +27,34 @@ typedef struct {
     struct OP_ENTRY _gcd;
 } gc_dump_of_t_OPS;
 extern errcode gcd_tabOPgrind();
-extern OWN_req gcd_tab_ownreqs;
+extern const OWN_req gcd_tab_ownreqs;
 extern struct OPS *gcd_tab_ops;
-extern struct REQS *gcd_tab_op_grind_of_t_reqs;
-extern OWN_req gcd_tab_op_grind_ownreqs;
+extern const struct REQS * const gcd_tab_op_grind_of_t_reqs;
+extern const OWN_req gcd_tab_op_grind_ownreqs;
 
 typedef struct {
     long gc_dump_own_init;
-    gc_dump_of_t_OPS *t_ops;
+    const gc_dump_of_t_OPS * const t_ops;
     struct OPS *gcd_tab_op_grind_of_t_table;
     struct OPS *gcd_tab_op_grind_of_t_ops;
     OWNPTR gcd_tab_op_grind_of_t_owns;
-    } gc_dump_OWN_DEFN;
-OWN_req gc_dump_ownreqs = {sizeof(gc_dump_OWN_DEFN), 1};
+} gc_dump_OWN_DEFN;
+const OWN_req gc_dump_ownreqs = { sizeof(gc_dump_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE gc_dump ****/
 
 errcode
 gc_dump(CLUREF x, CLUREF fn, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     gc_dump_OWN_DEFN *op_own_ptr;
-    op_own_ptr = (gc_dump_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->gc_dump_own_init == 0) {
-        add_parm_info_type(0, op_own_ptr->t_ops, gcd_tab_op_grind_of_t_reqs);
+    op_own_ptr = (gc_dump_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->gc_dump_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, gcd_tab_op_grind_of_t_reqs);
         find_typeop_instance(gcd_tab_ops, gcd_tabOPgrind, 1, 0, &gcd_tab_op_grind_ownreqs, &gcd_tab_ownreqs, &(op_own_ptr->gcd_tab_op_grind_of_t_ops));
-        }
-        if (op_own_ptr->gc_dump_own_init == 0) {
+    }
+    if (op_own_ptr->gc_dump_own_init == 0) {
         op_own_ptr->gc_dump_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(8);
 
@@ -83,7 +86,7 @@ gc_dump(CLUREF x, CLUREF fn, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE gc_dump ****/
 

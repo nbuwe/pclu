@@ -5,6 +5,9 @@
 #include "pclu_sys.h"
 
 
+
+/**** BEGIN PROCEDURE c_parm_type ****/
+
 extern errcode c_type();
 extern errcode typespecOPequal();
 extern errcode c_envOPget_type_type();
@@ -27,23 +30,20 @@ extern errcode oneofOPmake_10();
 extern errcode oneofOPmake_13();
 extern errcode oneofOPmake_1();
 extern errcode exprOPcreate();
-CLUREF STR_parameter_040_047;
-CLUREF STR__047_040declared_040with_040illegal_040type;
+static CLUREF STR_parameter_040_047;
+static CLUREF STR__047_040declared_040with_040illegal_040type;
 static int c_parm_type_own_init = 0;
-
-/**** BEGIN PROCEDURE c_parm_type ****/
 
 errcode
 c_parm_type(CLUREF e, CLUREF i, CLUREF t, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF xa;
     CLUREF ni;
     CLUREF nt;
-        if (c_parm_type_own_init == 0) {
-        stringOPcons("parameter \'", CLU_1, CLU_11, &STR_parameter_040_047);
-        stringOPcons("\' declared with illegal type", CLU_1, CLU_28, &STR__047_040declared_040with_040illegal_040type);
+    if (c_parm_type_own_init == 0) {
+        stringOPcons("parameter \'", CLU_1, CLUREF_make_num(11), &STR_parameter_040_047);
+        stringOPcons("\' declared with illegal type", CLU_1, CLUREF_make_num(28), &STR__047_040declared_040with_040illegal_040type);
         c_parm_type_own_init = 1;
     }
     enter_proc(6);
@@ -231,23 +231,23 @@ c_parm_type(CLUREF e, CLUREF i, CLUREF t, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_parm_type ****/
 
+
+
+/**** BEGIN PROCEDURE c_equateval ****/
 
 extern errcode c_equate_expr();
 extern errcode oneofOPmake_7();
 extern errcode c_xtypeset();
 extern errcode c_pathname();
 
-/**** BEGIN PROCEDURE c_equateval ****/
-
 errcode
 c_equateval(CLUREF e, CLUREF val, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF x;
     CLUREF set;
     CLUREF d;
@@ -317,10 +317,13 @@ c_equateval(CLUREF e, CLUREF val, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_equateval ****/
 
+
+
+/**** BEGIN PROCEDURE c_equate_expr ****/
 
 extern errcode exprOPget_abs();
 extern errcode idnOPget_kind();
@@ -330,13 +333,10 @@ extern errcode exprOPset_abs();
 extern errcode exprOPset_typespec();
 extern errcode exprOPget_typespec();
 
-/**** BEGIN PROCEDURE c_equate_expr ****/
-
 errcode
 c_equate_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF xa;
     CLUREF k;
     CLUREF nx;
@@ -436,10 +436,13 @@ c_equate_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_equate_expr ****/
 
+
+
+/**** BEGIN PROCEDURE c_xtypeset ****/
 
 extern errcode recordOPget_2();
 extern errcode recordOPget_1();
@@ -461,13 +464,10 @@ extern errcode c_envOPend_scope();
 extern errcode sequenceOPelements();
 extern errcode sequenceOPaddh();
 
-/**** BEGIN PROCEDURE c_xtypeset ****/
-
 errcode
 c_xtypeset(CLUREF e, CLUREF set, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF eqs;
     CLUREF ops;
@@ -576,7 +576,7 @@ c_xtypeset(CLUREF e, CLUREF set, CLUREF *ret_1)
 
   LINE(63);
         {
-        set.vec->data[1]  = i.num;
+        set.vec->data[1] = i.num;
         }
 
   LINE(64);
@@ -707,8 +707,8 @@ c_xtypeset(CLUREF e, CLUREF set, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[1]  = i.num;
-    T_1_1.vec->data[0]  = nops.num;
+    T_1_1.vec->data[1] = i.num;
+    T_1_1.vec->data[0] = nops.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -721,23 +721,23 @@ c_xtypeset(CLUREF e, CLUREF set, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_xtypeset ****/
 
+
+
+/**** BEGIN PROCEDURE c_pathname ****/
 
 extern errcode c_envOPget_du();
 extern errcode xlibOPlookup();
 extern errcode xlibOPget_du();
 extern errcode c_get_idnkind();
 
-/**** BEGIN PROCEDURE c_pathname ****/
-
 errcode
 c_pathname(CLUREF e, CLUREF path, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF gen;
     enter_proc(87);
 
@@ -800,10 +800,13 @@ c_pathname(CLUREF e, CLUREF path, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_pathname ****/
 
+
+
+/**** BEGIN PROCEDURE c_get_idnkind ****/
 
 extern errcode oneofOPmake_2();
 extern errcode c_get_duspecs();
@@ -811,13 +814,10 @@ extern errcode sequenceOPempty();
 extern errcode oneofOPmake_3();
 extern errcode intOPequal();
 
-/**** BEGIN PROCEDURE c_get_idnkind ****/
-
 errcode
 c_get_idnkind(CLUREF e, CLUREF gen, CLUREF want, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     CLUREF clut;
     CLUREF xa;
@@ -841,10 +841,10 @@ c_get_idnkind(CLUREF e, CLUREF gen, CLUREF want, CLUREF *ret_1)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         RecordAlloc(2, T_1_1);
-        T_1_1.vec->data[0]  = gen.num;
+        T_1_1.vec->data[0] = gen.num;
         err = sequenceOPnew(&T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_2.num;
+        T_1_1.vec->data[1] = T_1_2.num;
         clut.num = T_1_1.num;
         }
         }
@@ -1056,10 +1056,13 @@ c_get_idnkind(CLUREF e, CLUREF gen, CLUREF want, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_get_idnkind ****/
 
+
+
+/**** BEGIN PROCEDURE c_constlist ****/
 
 extern errcode c_envOPbegin_type_scope();
 extern errcode sequenceOPindexes();
@@ -1069,13 +1072,10 @@ extern errcode exprOPequal();
 extern errcode sequenceOPreplace();
 extern errcode c_envOPend_type_scope();
 
-/**** BEGIN PROCEDURE c_constlist ****/
-
 errcode
 c_constlist(CLUREF e, CLUREF exprs, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF ox;
     CLUREF nx;
@@ -1158,21 +1158,21 @@ c_constlist(CLUREF e, CLUREF exprs, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_constlist ****/
 
 
-extern errcode oneofOPis_6();
-extern errcode typespecOPget_abs();
 
 /**** BEGIN PROCEDURE c_const ****/
 
+extern errcode oneofOPis_6();
+extern errcode typespecOPget_abs();
+
 errcode
 c_const(CLUREF e, CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF xa;
     CLUREF ta;
     enter_proc(143);
@@ -1261,10 +1261,13 @@ c_const(CLUREF e, CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_const ****/
 
+
+
+/**** BEGIN PROCEDURE c_type ****/
 
 extern errcode typespecOPget_id();
 extern errcode c_envOPerr1();
@@ -1282,25 +1285,22 @@ extern errcode c_idn_gen();
 extern errcode c_xsel_type();
 extern errcode c_envOPfix_type();
 extern errcode c_gen_parms();
-CLUREF STR_illegal_040use_040of_040_047cvt_047;
-CLUREF STR_illegal_040use_040of_040type_040_047type_047;
+static CLUREF STR_illegal_040use_040of_040_047cvt_047;
+static CLUREF STR_illegal_040use_040of_040type_040_047type_047;
 static int c_type_own_init = 0;
-
-/**** BEGIN PROCEDURE c_type ****/
 
 errcode
 c_type(CLUREF e, CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF abs;
     CLUREF ta;
     CLUREF spec;
     CLUREF i;
     CLUREF old;
-        if (c_type_own_init == 0) {
-        stringOPcons("illegal use of \'cvt\'", CLU_1, CLU_20, &STR_illegal_040use_040of_040_047cvt_047);
-        stringOPcons("illegal use of type \'type\'", CLU_1, CLU_26, &STR_illegal_040use_040of_040type_040_047type_047);
+    if (c_type_own_init == 0) {
+        stringOPcons("illegal use of \'cvt\'", CLU_1, CLUREF_make_num(20), &STR_illegal_040use_040of_040_047cvt_047);
+        stringOPcons("illegal use of type \'type\'", CLU_1, CLUREF_make_num(26), &STR_illegal_040use_040of_040type_040_047type_047);
         c_type_own_init = 1;
     }
     enter_proc(157);
@@ -1412,7 +1412,7 @@ c_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             T_2_1.num = ta.vec->data[1];
             err = c_constlist(e, T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            ta.vec->data[1]  = T_2_2.num;
+            ta.vec->data[1] = T_2_2.num;
             }
             break;
             }
@@ -1440,7 +1440,7 @@ c_type(CLUREF e, CLUREF t, CLUREF *ret_1)
                     T_3_1.num = spec.vec->data[1];
                     err = c_type(e, T_3_1, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    spec.vec->data[1]  = T_3_2.num;
+                    spec.vec->data[1] = T_3_2.num;
                     }
                 }
             }
@@ -1459,7 +1459,7 @@ c_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             T_2_1.num = ta.vec->data[0];
             err = c_typelist(e, T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            ta.vec->data[0]  = T_2_2.num;
+            ta.vec->data[0] = T_2_2.num;
             }
 
   LINE(183);
@@ -1469,7 +1469,7 @@ c_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             T_2_1.num = ta.vec->data[3];
             err = c_typelist(e, T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            ta.vec->data[3]  = T_2_2.num;
+            ta.vec->data[3] = T_2_2.num;
             }
 
   LINE(184);
@@ -1518,7 +1518,7 @@ c_type(CLUREF e, CLUREF t, CLUREF *ret_1)
                 T_3_1.num = ta.vec->data[1];
                 err = c_constlist(e, T_3_1, &T_3_2);
                 if (err != ERR_ok) goto ex_0;
-                ta.vec->data[1]  = T_3_2.num;
+                ta.vec->data[1] = T_3_2.num;
                 }
 
   LINE(190);
@@ -1567,7 +1567,7 @@ c_type(CLUREF e, CLUREF t, CLUREF *ret_1)
                     T_3_1.num = spec.vec->data[1];
                     err = c_type(e, T_3_1, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    spec.vec->data[1]  = T_3_2.num;
+                    spec.vec->data[1] = T_3_2.num;
                     }
                 }
             }
@@ -1652,7 +1652,7 @@ c_type(CLUREF e, CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_type ****/
 
@@ -1660,11 +1660,11 @@ c_type(CLUREF e, CLUREF t, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE c_type1 ****/
 
+
 errcode
 c_type1(CLUREF e, CLUREF t)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ta;
     CLUREF x;
     CLUREF xa;
@@ -1868,7 +1868,7 @@ c_type1(CLUREF e, CLUREF t)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_type1 ****/
 
@@ -1876,11 +1876,11 @@ c_type1(CLUREF e, CLUREF t)
 
 /**** BEGIN PROCEDURE c_typelist ****/
 
+
 errcode
 c_typelist(CLUREF e, CLUREF types, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ntypes;
     CLUREF t;
     enter_proc(245);
@@ -1933,27 +1933,27 @@ c_typelist(CLUREF e, CLUREF types, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_typelist ****/
 
 
-extern errcode stringOPequal();
-CLUREF STR_failure;
-CLUREF STR__047failure_047_040listed_040in_040signals_040clause;
-static int c_exceptionlist_own_init = 0;
 
 /**** BEGIN PROCEDURE c_exceptionlist ****/
 
+extern errcode stringOPequal();
+static CLUREF STR_failure;
+static CLUREF STR__047failure_047_040listed_040in_040signals_040clause;
+static int c_exceptionlist_own_init = 0;
+
 errcode
 c_exceptionlist(CLUREF e, CLUREF sigs)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF sig;
-        if (c_exceptionlist_own_init == 0) {
-        stringOPcons("failure", CLU_1, CLU_7, &STR_failure);
-        stringOPcons("\'failure\' listed in signals clause", CLU_1, CLU_34, &STR__047failure_047_040listed_040in_040signals_040clause);
+    if (c_exceptionlist_own_init == 0) {
+        stringOPcons("failure", CLU_1, CLUREF_make_num(7), &STR_failure);
+        stringOPcons("\'failure\' listed in signals clause", CLU_1, CLUREF_make_num(34), &STR__047failure_047_040listed_040in_040signals_040clause);
         c_exceptionlist_own_init = 1;
     }
     enter_proc(253);
@@ -1975,7 +1975,7 @@ c_exceptionlist(CLUREF e, CLUREF sigs)
             T_2_1.num = sig.vec->data[1];
             err = c_typelist(e, T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            sig.vec->data[1]  = T_2_2.num;
+            sig.vec->data[1] = T_2_2.num;
             }
 
   LINE(256);
@@ -1984,7 +1984,7 @@ c_exceptionlist(CLUREF e, CLUREF sigs)
             CLUREF T_2_2;
             T_2_1.num = sig.vec->data[0];
             T_2_2.num = ((T_2_1.str->size != STR_failure.str->size)? false :
-                !(bcmp(T_2_1.str->data, STR_failure.str->data, T_2_1.str->size)));
+                !(memcmp(T_2_1.str->data, STR_failure.str->data, T_2_1.str->size)));
             if (T_2_2.num == true) {
 
   LINE(257);
@@ -2005,32 +2005,32 @@ c_exceptionlist(CLUREF e, CLUREF sigs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_exceptionlist ****/
 
 
-extern errcode c_envOPlookup();
-extern errcode oneofOPmake_9();
-CLUREF STR__047;
-CLUREF STR__047_040does_040not_040name_040a_040type_040generator;
-static int c_idn_gen_own_init = 0;
 
 /**** BEGIN PROCEDURE c_idn_gen ****/
 
+extern errcode c_envOPlookup();
+extern errcode oneofOPmake_9();
+static CLUREF STR__047;
+static CLUREF STR__047_040does_040not_040name_040a_040type_040generator;
+static int c_idn_gen_own_init = 0;
+
 errcode
 c_idn_gen(CLUREF e, CLUREF xt, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF parms;
     CLUREF k;
     CLUREF dut;
     CLUREF t;
-        if (c_idn_gen_own_init == 0) {
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' does not name a type generator", CLU_1, CLU_32, &STR__047_040does_040not_040name_040a_040type_040generator);
+    if (c_idn_gen_own_init == 0) {
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' does not name a type generator", CLU_1, CLUREF_make_num(32), &STR__047_040does_040not_040name_040a_040type_040generator);
         c_idn_gen_own_init = 1;
     }
     enter_proc(261);
@@ -2066,8 +2066,8 @@ c_idn_gen(CLUREF e, CLUREF xt, CLUREF *ret_1)
             {
                 {CLUREF T_2_1;
                 RecordAlloc(2, T_2_1);
-                T_2_1.vec->data[0]  = k.num;
-                T_2_1.vec->data[1]  = parms.num;
+                T_2_1.vec->data[0] = k.num;
+                T_2_1.vec->data[1] = parms.num;
                 dut.num = T_2_1.num;
                 }
                 }
@@ -2173,34 +2173,34 @@ c_idn_gen(CLUREF e, CLUREF xt, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_idn_gen ****/
 
 
-CLUREF STR__047_040does_040not_040name_040a_040type;
-CLUREF STR_use_040of_040variable_040_047;
-CLUREF STR__047_040as_040a_040type_040constant;
-CLUREF STR_use_040of_040generator_040_047;
-CLUREF STR__047_040as_040a_040type;
-static int c_idn_type_own_init = 0;
 
 /**** BEGIN PROCEDURE c_idn_type ****/
 
+static CLUREF STR__047_040does_040not_040name_040a_040type;
+static CLUREF STR_use_040of_040variable_040_047;
+static CLUREF STR__047_040as_040a_040type_040constant;
+static CLUREF STR_use_040of_040generator_040_047;
+static CLUREF STR__047_040as_040a_040type;
+static int c_idn_type_own_init = 0;
+
 errcode
 c_idn_type(CLUREF e, CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     CLUREF xa;
-        if (c_idn_type_own_init == 0) {
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' does not name a type", CLU_1, CLU_22, &STR__047_040does_040not_040name_040a_040type);
-        stringOPcons("use of variable \'", CLU_1, CLU_17, &STR_use_040of_040variable_040_047);
-        stringOPcons("\' as a type constant", CLU_1, CLU_20, &STR__047_040as_040a_040type_040constant);
-        stringOPcons("use of generator \'", CLU_1, CLU_18, &STR_use_040of_040generator_040_047);
-        stringOPcons("\' as a type", CLU_1, CLU_11, &STR__047_040as_040a_040type);
+    if (c_idn_type_own_init == 0) {
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' does not name a type", CLU_1, CLUREF_make_num(22), &STR__047_040does_040not_040name_040a_040type);
+        stringOPcons("use of variable \'", CLU_1, CLUREF_make_num(17), &STR_use_040of_040variable_040_047);
+        stringOPcons("\' as a type constant", CLU_1, CLUREF_make_num(20), &STR__047_040as_040a_040type_040constant);
+        stringOPcons("use of generator \'", CLU_1, CLUREF_make_num(18), &STR_use_040of_040generator_040_047);
+        stringOPcons("\' as a type", CLU_1, CLUREF_make_num(11), &STR__047_040as_040a_040type);
         c_idn_type_own_init = 1;
     }
     enter_proc(284);
@@ -2409,27 +2409,27 @@ c_idn_type(CLUREF e, CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_idn_type ****/
 
 
-CLUREF STR__047_040does_040not_040name_040a_040selector_040type_040generator;
-static int c_xsel_type_own_init = 0;
 
 /**** BEGIN PROCEDURE c_xsel_type ****/
 
+static CLUREF STR__047_040does_040not_040name_040a_040selector_040type_040generator;
+static int c_xsel_type_own_init = 0;
+
 errcode
 c_xsel_type(CLUREF e, CLUREF xsel, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF k;
     CLUREF specs;
-        if (c_xsel_type_own_init == 0) {
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("\' does not name a selector type generator", CLU_1, CLU_41, &STR__047_040does_040not_040name_040a_040selector_040type_040generator);
+    if (c_xsel_type_own_init == 0) {
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("\' does not name a selector type generator", CLU_1, CLUREF_make_num(41), &STR__047_040does_040not_040name_040a_040selector_040type_040generator);
         c_xsel_type_own_init = 1;
     }
     enter_proc(313);
@@ -2476,9 +2476,9 @@ c_xsel_type(CLUREF e, CLUREF xsel, CLUREF *ret_1)
                     CLUREF T_3_2;
                     CLUREF T_3_3;
                     RecordAlloc(2, T_3_1);
-                    T_3_1.vec->data[0]  = k.num;
+                    T_3_1.vec->data[0] = k.num;
                     T_3_2.num = xsel.vec->data[1];
-                    T_3_1.vec->data[1]  = T_3_2.num;
+                    T_3_1.vec->data[1] = T_3_2.num;
                     CellAlloc(7, T_3_1.num, T_3_3);
                     ret_1->num = T_3_3.num;
                     }
@@ -2547,7 +2547,7 @@ c_xsel_type(CLUREF e, CLUREF xsel, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_xsel_type ****/
 

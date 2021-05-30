@@ -4,81 +4,81 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode sequenceOPfetch();
-CLUREF STR_hangup;
-CLUREF STR_interrupt;
-CLUREF STR_quit;
-CLUREF STR_illegal_040instruction;
-CLUREF STR_trace_040trap_057BPT;
-CLUREF STR_IOT_040instruction;
-CLUREF STR_EMT_040instruction;
-CLUREF STR_floating_040point_040exception;
-CLUREF STR_killed;
-CLUREF STR_bus_040error;
-CLUREF STR_segmentation_040violation;
-CLUREF STR_bad_040argument_040to_040system_040call;
-CLUREF STR_broken_040pipe;
-CLUREF STR_alarm_040clock;
-CLUREF STR_software_040termination;
-CLUREF STR_urgent_040condition;
-CLUREF STR_stop;
-CLUREF STR_stop_040_050tty_051;
-CLUREF STR_continue;
-CLUREF STR_child_040termination;
-CLUREF STR_stop_040_050tty_040input_051;
-CLUREF STR_stop_040_050tty_040output_051;
-CLUREF STR_i_057o_040possible;
-CLUREF STR_cpu_040time_040limit;
-CLUREF STR_file_040size_040limit;
-CLUREF STR_virtual_040time_040alarm;
-CLUREF STR_profiling_040timer_040alarm;
-CLUREF STR_signal_04028;
-CLUREF STR_signal_04029;
-CLUREF STR_signal_04030;
-CLUREF STR_signal_04031;
-CLUREF STR_signal_04032;
-static int _signal_type_own_init = 0;
 
 /**** BEGIN PROCEDURE _signal_type ****/
 
+extern errcode sequenceOPfetch();
+static CLUREF STR_hangup;
+static CLUREF STR_interrupt;
+static CLUREF STR_quit;
+static CLUREF STR_illegal_040instruction;
+static CLUREF STR_trace_040trap_057BPT;
+static CLUREF STR_IOT_040instruction;
+static CLUREF STR_EMT_040instruction;
+static CLUREF STR_floating_040point_040exception;
+static CLUREF STR_killed;
+static CLUREF STR_bus_040error;
+static CLUREF STR_segmentation_040violation;
+static CLUREF STR_bad_040argument_040to_040system_040call;
+static CLUREF STR_broken_040pipe;
+static CLUREF STR_alarm_040clock;
+static CLUREF STR_software_040termination;
+static CLUREF STR_urgent_040condition;
+static CLUREF STR_stop;
+static CLUREF STR_stop_040_050tty_051;
+static CLUREF STR_continue;
+static CLUREF STR_child_040termination;
+static CLUREF STR_stop_040_050tty_040input_051;
+static CLUREF STR_stop_040_050tty_040output_051;
+static CLUREF STR_i_057o_040possible;
+static CLUREF STR_cpu_040time_040limit;
+static CLUREF STR_file_040size_040limit;
+static CLUREF STR_virtual_040time_040alarm;
+static CLUREF STR_profiling_040timer_040alarm;
+static CLUREF STR_signal_04028;
+static CLUREF STR_signal_04029;
+static CLUREF STR_signal_04030;
+static CLUREF STR_signal_04031;
+static CLUREF STR_signal_04032;
+static int _signal_type_own_init = 0;
+
 errcode
 _signal_type(CLUREF sig, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (_signal_type_own_init == 0) {
-        stringOPcons("hangup", CLU_1, CLU_6, &STR_hangup);
-        stringOPcons("interrupt", CLU_1, CLU_9, &STR_interrupt);
-        stringOPcons("quit", CLU_1, CLU_4, &STR_quit);
-        stringOPcons("illegal instruction", CLU_1, CLU_19, &STR_illegal_040instruction);
-        stringOPcons("trace trap/BPT", CLU_1, CLU_14, &STR_trace_040trap_057BPT);
-        stringOPcons("IOT instruction", CLU_1, CLU_15, &STR_IOT_040instruction);
-        stringOPcons("EMT instruction", CLU_1, CLU_15, &STR_EMT_040instruction);
-        stringOPcons("floating point exception", CLU_1, CLU_24, &STR_floating_040point_040exception);
-        stringOPcons("killed", CLU_1, CLU_6, &STR_killed);
-        stringOPcons("bus error", CLU_1, CLU_9, &STR_bus_040error);
-        stringOPcons("segmentation violation", CLU_1, CLU_22, &STR_segmentation_040violation);
-        stringOPcons("bad argument to system call", CLU_1, CLU_27, &STR_bad_040argument_040to_040system_040call);
-        stringOPcons("broken pipe", CLU_1, CLU_11, &STR_broken_040pipe);
-        stringOPcons("alarm clock", CLU_1, CLU_11, &STR_alarm_040clock);
-        stringOPcons("software termination", CLU_1, CLU_20, &STR_software_040termination);
-        stringOPcons("urgent condition", CLU_1, CLU_16, &STR_urgent_040condition);
-        stringOPcons("stop", CLU_1, CLU_4, &STR_stop);
-        stringOPcons("stop (tty)", CLU_1, CLU_10, &STR_stop_040_050tty_051);
-        stringOPcons("continue", CLU_1, CLU_8, &STR_continue);
-        stringOPcons("child termination", CLU_1, CLU_17, &STR_child_040termination);
-        stringOPcons("stop (tty input)", CLU_1, CLU_16, &STR_stop_040_050tty_040input_051);
-        stringOPcons("stop (tty output)", CLU_1, CLU_17, &STR_stop_040_050tty_040output_051);
-        stringOPcons("i/o possible", CLU_1, CLU_12, &STR_i_057o_040possible);
-        stringOPcons("cpu time limit", CLU_1, CLU_14, &STR_cpu_040time_040limit);
-        stringOPcons("file size limit", CLU_1, CLU_15, &STR_file_040size_040limit);
-        stringOPcons("virtual time alarm", CLU_1, CLU_18, &STR_virtual_040time_040alarm);
-        stringOPcons("profiling timer alarm", CLU_1, CLU_21, &STR_profiling_040timer_040alarm);
-        stringOPcons("signal 28", CLU_1, CLU_9, &STR_signal_04028);
-        stringOPcons("signal 29", CLU_1, CLU_9, &STR_signal_04029);
-        stringOPcons("signal 30", CLU_1, CLU_9, &STR_signal_04030);
-        stringOPcons("signal 31", CLU_1, CLU_9, &STR_signal_04031);
-        stringOPcons("signal 32", CLU_1, CLU_9, &STR_signal_04032);
+    if (_signal_type_own_init == 0) {
+        stringOPcons("hangup", CLU_1, CLUREF_make_num(6), &STR_hangup);
+        stringOPcons("interrupt", CLU_1, CLUREF_make_num(9), &STR_interrupt);
+        stringOPcons("quit", CLU_1, CLUREF_make_num(4), &STR_quit);
+        stringOPcons("illegal instruction", CLU_1, CLUREF_make_num(19), &STR_illegal_040instruction);
+        stringOPcons("trace trap/BPT", CLU_1, CLUREF_make_num(14), &STR_trace_040trap_057BPT);
+        stringOPcons("IOT instruction", CLU_1, CLUREF_make_num(15), &STR_IOT_040instruction);
+        stringOPcons("EMT instruction", CLU_1, CLUREF_make_num(15), &STR_EMT_040instruction);
+        stringOPcons("floating point exception", CLU_1, CLUREF_make_num(24), &STR_floating_040point_040exception);
+        stringOPcons("killed", CLU_1, CLUREF_make_num(6), &STR_killed);
+        stringOPcons("bus error", CLU_1, CLUREF_make_num(9), &STR_bus_040error);
+        stringOPcons("segmentation violation", CLU_1, CLUREF_make_num(22), &STR_segmentation_040violation);
+        stringOPcons("bad argument to system call", CLU_1, CLUREF_make_num(27), &STR_bad_040argument_040to_040system_040call);
+        stringOPcons("broken pipe", CLU_1, CLUREF_make_num(11), &STR_broken_040pipe);
+        stringOPcons("alarm clock", CLU_1, CLUREF_make_num(11), &STR_alarm_040clock);
+        stringOPcons("software termination", CLU_1, CLUREF_make_num(20), &STR_software_040termination);
+        stringOPcons("urgent condition", CLU_1, CLUREF_make_num(16), &STR_urgent_040condition);
+        stringOPcons("stop", CLU_1, CLUREF_make_num(4), &STR_stop);
+        stringOPcons("stop (tty)", CLU_1, CLUREF_make_num(10), &STR_stop_040_050tty_051);
+        stringOPcons("continue", CLU_1, CLUREF_make_num(8), &STR_continue);
+        stringOPcons("child termination", CLU_1, CLUREF_make_num(17), &STR_child_040termination);
+        stringOPcons("stop (tty input)", CLU_1, CLUREF_make_num(16), &STR_stop_040_050tty_040input_051);
+        stringOPcons("stop (tty output)", CLU_1, CLUREF_make_num(17), &STR_stop_040_050tty_040output_051);
+        stringOPcons("i/o possible", CLU_1, CLUREF_make_num(12), &STR_i_057o_040possible);
+        stringOPcons("cpu time limit", CLU_1, CLUREF_make_num(14), &STR_cpu_040time_040limit);
+        stringOPcons("file size limit", CLU_1, CLUREF_make_num(15), &STR_file_040size_040limit);
+        stringOPcons("virtual time alarm", CLU_1, CLUREF_make_num(18), &STR_virtual_040time_040alarm);
+        stringOPcons("profiling timer alarm", CLU_1, CLUREF_make_num(21), &STR_profiling_040timer_040alarm);
+        stringOPcons("signal 28", CLU_1, CLUREF_make_num(9), &STR_signal_04028);
+        stringOPcons("signal 29", CLU_1, CLUREF_make_num(9), &STR_signal_04029);
+        stringOPcons("signal 30", CLU_1, CLUREF_make_num(9), &STR_signal_04030);
+        stringOPcons("signal 31", CLU_1, CLUREF_make_num(9), &STR_signal_04031);
+        stringOPcons("signal 32", CLU_1, CLUREF_make_num(9), &STR_signal_04032);
         _signal_type_own_init = 1;
     }
     enter_proc(36);
@@ -149,7 +149,7 @@ _signal_type(CLUREF sig, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _signal_type ****/
 

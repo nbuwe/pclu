@@ -4,15 +4,15 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode padlc();
 
 /**** BEGIN PROCEDURE padl ****/
 
+extern errcode padlc();
+
 errcode
 padl(CLUREF s, CLUREF w, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(20);
 
   LINE(21);
@@ -35,20 +35,20 @@ padl(CLUREF s, CLUREF w, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE padl ****/
 
 
-extern errcode padrc();
 
 /**** BEGIN PROCEDURE padr ****/
 
+extern errcode padrc();
+
 errcode
 padr(CLUREF s, CLUREF w, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(24);
 
   LINE(25);
@@ -71,23 +71,23 @@ padr(CLUREF s, CLUREF w, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE padr ****/
 
+
+
+/**** BEGIN PROCEDURE padlc ****/
 
 extern errcode stringOPc2s();
 extern errcode intOPlt();
 extern errcode stringOPsize();
 extern errcode stringOPconcat();
 
-/**** BEGIN PROCEDURE padlc ****/
-
 errcode
 padlc(CLUREF s, CLUREF w, CLUREF c, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF cs;
     enter_proc(28);
 
@@ -134,20 +134,20 @@ padlc(CLUREF s, CLUREF w, CLUREF c, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE padlc ****/
 
 
-extern errcode stringOPappend();
 
 /**** BEGIN PROCEDURE padrc ****/
 
+extern errcode stringOPappend();
+
 errcode
 padrc(CLUREF s, CLUREF w, CLUREF c, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(36);
 
   LINE(37);
@@ -184,10 +184,13 @@ padrc(CLUREF s, CLUREF w, CLUREF c, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE padrc ****/
 
+
+
+/**** BEGIN PROCEDURE upper ****/
 
 extern errcode charOPge();
 extern errcode charOPle();
@@ -195,13 +198,10 @@ extern errcode charOPi2c();
 extern errcode intOPsub();
 extern errcode charOPc2i();
 
-/**** BEGIN PROCEDURE upper ****/
-
 errcode
 upper(CLUREF c, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(43);
 
   LINE(44);
@@ -257,20 +257,20 @@ upper(CLUREF c, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE upper ****/
 
 
-extern errcode intOPadd();
 
 /**** BEGIN PROCEDURE lower ****/
 
+extern errcode intOPadd();
+
 errcode
 lower(CLUREF c, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(49);
 
   LINE(50);
@@ -326,10 +326,13 @@ lower(CLUREF c, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE lower ****/
 
+
+
+/**** BEGIN PROCEDURE supper ****/
 
 extern errcode stringOPs2ac();
 extern errcode arrayOPindexes();
@@ -338,13 +341,10 @@ extern errcode upper();
 extern errcode arrayOPfetch();
 extern errcode stringOPac2s();
 
-/**** BEGIN PROCEDURE supper ****/
-
 errcode
 supper(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF a;
     CLUREF i;
     enter_proc(55);
@@ -405,20 +405,20 @@ supper(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE supper ****/
 
 
-extern errcode lower();
 
 /**** BEGIN PROCEDURE slower ****/
 
+extern errcode lower();
+
 errcode
 slower(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF a;
     CLUREF i;
     enter_proc(64);
@@ -479,28 +479,30 @@ slower(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE slower ****/
 
+
+
+/**** BEGIN PROCEDURE verify ****/
 
 extern errcode stringOPchars();
 extern errcode intOPequal();
 extern errcode stringOPindexc();
 extern errcode verify_IB_1();
-
-/**** BEGIN PROCEDURE verify ****/
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF c;
+    CLUREF s;
+    CLUREF chars;
+} verify_LOCALS_t;
 
 errcode
 verify(CLUREF s, CLUREF chars, CLUREF *ret_1)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF c;
-        CLUREF s;
-        CLUREF chars;
-        } locals;
+{
+    verify_LOCALS_t locals;
     locals.s = s;
     locals.chars = chars;
     enter_proc(73);
@@ -509,8 +511,9 @@ verify(CLUREF s, CLUREF chars, CLUREF *ret_1)
     {
         locals.err = stringOPchars(locals.s, verify_IB_1, &locals, &locals.ecode2);
         if (locals.err == ERR_iterbodyreturn) {
-        ret_1->num = elist[0].num;
-        signal(ERR_ok);}
+            ret_1->num = elist[0].num;
+            signal(ERR_ok);
+        }
         if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
         if (locals.err == ERR_break) locals.err = ERR_ok;
         if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -532,23 +535,15 @@ verify(CLUREF s, CLUREF chars, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE verify ****/
 
 
 /**** BEGIN ITERATOR BODIES for verify ****/
 
-errcode verify_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF c;
-    CLUREF s;
-    CLUREF chars;
-    } *locals;
+errcode
+verify_IB_1(CLUREF iv_1, verify_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
     enter_iter_body_proc(75);
@@ -576,23 +571,23 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end verify_IB_1 */
+}   /* end verify_IB_1 */
 
 /**** END ITERATOR BODIES for verify ****/
 
+
+
+/**** BEGIN PROCEDURE remblank ****/
 
 extern errcode intOPle();
 extern errcode charOPequal();
 extern errcode stringOPfetch();
 extern errcode stringOPrest();
 
-/**** BEGIN PROCEDURE remblank ****/
-
 errcode
 remblank(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF hi;
     enter_proc(80);
@@ -659,7 +654,7 @@ remblank(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE remblank ****/
 

@@ -86,13 +86,9 @@ extern errcode tableOPget_pair();
 extern errcode recordOPset_2();
 extern errcode xlibOPget_du();
 extern errcode duOPget_unique();
-extern errcode ce_IB_1();
-extern errcode ce_IB_2();
-extern errcode ce_IB_3();
-extern errcode ce_IB_4();
-extern struct REQS *sequence_of_t_reqs;
+extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *expr_ops;
-extern OWN_req sequence_ownreqs;
+extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -117,10 +113,10 @@ struct OPS  *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_
 extern struct OPS *int_ops;
 extern struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
 struct OPS  *record_code_kind_ops;
-extern struct REQS *table_of_key_reqs;
-extern struct REQS *table_of_val_reqs;
+extern const struct REQS * const table_of_key_reqs;
+extern const struct REQS * const table_of_val_reqs;
 extern struct OPS *record_code_kind_ops;
-extern OWN_req table_ownreqs;
+extern const OWN_req table_ownreqs;
 extern struct OPS *table_ops;
 struct OPS *table_of_string_table;
 struct OPS *table_of_record_code_kind_table;
@@ -171,8 +167,8 @@ struct OPS *table_of_bool_table;
 struct OPS *table_of_du_bool_ops;
 struct OPS *table_of_du_bool_ops;
 OWNPTR table_of_du_bool_owns;
-extern struct REQS *table_op_pcond_flush_of_u_reqs;
-extern OWN_req table_op_pcond_flush_ownreqs;
+extern const struct REQS * const table_op_pcond_flush_of_u_reqs;
+extern const OWN_req table_op_pcond_flush_ownreqs;
 struct OPS *table_of_string_table;
 struct OPS *table_of_record_code_kind_table;
 struct OPS *table_op_pcond_flush_of_bool_table;
@@ -185,35 +181,37 @@ struct OPS *table_op_pcond_flush_of_int_table;
 struct OPS *table_op_pcond_flush_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_int_ops;
 struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops;
 OWNPTR table_op_pcond_flush_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_int_owns;
-CLUREF STR_null;
-CLUREF STR_bool;
-CLUREF STR_int;
-CLUREF STR_real;
-CLUREF STR_char;
-CLUREF STR_string;
-CLUREF STR_type;
-CLUREF STR_array;
-CLUREF STR_record;
-CLUREF STR_oneof;
-CLUREF STR_sequence;
-CLUREF STR_struct;
-CLUREF STR_variant;
-CLUREF STR_proctype;
-CLUREF STR_itertype;
+static CLUREF STR_null;
+static CLUREF STR_bool;
+static CLUREF STR_int;
+static CLUREF STR_real;
+static CLUREF STR_char;
+static CLUREF STR_string;
+static CLUREF STR_type;
+static CLUREF STR_array;
+static CLUREF STR_record;
+static CLUREF STR_oneof;
+static CLUREF STR_sequence;
+static CLUREF STR_struct;
+static CLUREF STR_variant;
+static CLUREF STR_proctype;
+static CLUREF STR_itertype;
 static int ce_own_init = 0;
-OWN_req ce_ownreqs = {0,0};
-errcode ce_own_init_proc()
+const OWN_req ce_ownreqs = { 0, 0 };
+
+errcode
+ce_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (ce_own_init == 0) {
-        add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
+    if (ce_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
         add_selector_info("name", 0, string_ops);
         add_selector_info("parms", 1, sequence_of_expr_ops);
         add_selector_info("type_", 2, typespec_ops);
         find_selector_ops("record", 3, &(record_name_parms_type__ops));
-        add_parm_info_type(0, record_name_parms_type__ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_name_parms_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_name_parms_type__ops));
         add_selector_info("opers", 0, sequence_of_record_name_parms_type__ops);
         add_selector_info("parm", 1, idn_ops);
@@ -232,15 +230,15 @@ errcode ce_own_init_proc()
         add_selector_info("code", 0, int_ops);
         add_selector_info("kind", 1, oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops);
         find_selector_ops("record", 2, &(record_code_kind_ops));
-        add_parm_info_type(0, string_ops, table_of_key_reqs);
-        add_parm_info_type(1, record_code_kind_ops, table_of_val_reqs);
+        add_parm_info_type(0, (const struct OPS *)string_ops, table_of_key_reqs);
+        add_parm_info_type(1, (const struct OPS *)record_code_kind_ops, table_of_val_reqs);
         find_type_instance(table_ops, 2, &table_ownreqs, &(table_of_string_record_code_kind_ops));
-        add_parm_info_type(0, typespec_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)typespec_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_typespec_ops));
         add_selector_info("name", 0, string_ops);
         add_selector_info("types", 1, sequence_of_typespec_ops);
         find_selector_ops("record", 2, &(record_name_types_ops));
-        add_parm_info_type(0, record_name_types_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_name_types_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_name_types_ops));
         add_selector_info("args", 0, sequence_of_typespec_ops);
         add_selector_info("gen", 1, du_ops);
@@ -257,7 +255,7 @@ errcode ce_own_init_proc()
         add_selector_info("sel", 0, string_ops);
         add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_sel_type__ops));
-        add_parm_info_type(0, record_sel_type__ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_sel_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_sel_type__ops));
         add_selector_info("gen", 0, du_ops);
         add_selector_info("parms", 1, sequence_of_record_sel_type__ops);
@@ -280,42 +278,48 @@ errcode ce_own_init_proc()
         add_selector_info("xclu", 9, record_idn_parms_ops);
         add_selector_info("xsel", 10, record_idn_parms_1_ops);
         find_selector_ops("oneof", 11, &(oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops));
-        add_parm_info_type(0, oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops, table_of_key_reqs);
-        add_parm_info_type(1, typespec_ops, table_of_val_reqs);
+        add_parm_info_type(0, (const struct OPS *)oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops, table_of_key_reqs);
+        add_parm_info_type(1, (const struct OPS *)typespec_ops, table_of_val_reqs);
         find_type_instance(table_ops, 2, &table_ownreqs, &(table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops));
-        add_parm_info_type(0, du_ops, table_of_key_reqs);
-        add_parm_info_type(1, bool_ops, table_of_val_reqs);
+        add_parm_info_type(0, (const struct OPS *)du_ops, table_of_key_reqs);
+        add_parm_info_type(1, (const struct OPS *)bool_ops, table_of_val_reqs);
         find_type_instance(table_ops, 2, &table_ownreqs, &(table_of_du_bool_ops));
-        add_parm_info_type(0, string_ops, table_of_key_reqs);
-        add_parm_info_type(1, record_code_kind_ops, table_of_val_reqs);
-        add_parm_info_type(2, bool_ops, table_op_pcond_flush_of_u_reqs);
+        add_parm_info_type(0, (const struct OPS *)string_ops, table_of_key_reqs);
+        add_parm_info_type(1, (const struct OPS *)record_code_kind_ops, table_of_val_reqs);
+        add_parm_info_type(2, (const struct OPS *)bool_ops, table_op_pcond_flush_of_u_reqs);
         find_type_instance(table_ops, 2, &table_ownreqs, &(table_of_string_record_code_kind_ops));
         find_typeop_instance(table_ops, tableOPpcond_flush, 3, 2, &table_op_pcond_flush_ownreqs, &table_ownreqs, &(table_op_pcond_flush_of_string_record_code_kind_bool_ops));
-        add_parm_info_type(0, oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops, table_of_key_reqs);
-        add_parm_info_type(1, typespec_ops, table_of_val_reqs);
-        add_parm_info_type(2, int_ops, table_op_pcond_flush_of_u_reqs);
+        add_parm_info_type(0, (const struct OPS *)oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops, table_of_key_reqs);
+        add_parm_info_type(1, (const struct OPS *)typespec_ops, table_of_val_reqs);
+        add_parm_info_type(2, (const struct OPS *)int_ops, table_op_pcond_flush_of_u_reqs);
         find_type_instance(table_ops, 2, &table_ownreqs, &(table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops));
         find_typeop_instance(table_ops, tableOPpcond_flush, 3, 2, &table_op_pcond_flush_ownreqs, &table_ownreqs, &(table_op_pcond_flush_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_int_ops));
-        stringOPcons("null", CLU_1, CLU_4, &STR_null);
-        stringOPcons("bool", CLU_1, CLU_4, &STR_bool);
-        stringOPcons("int", CLU_1, CLU_3, &STR_int);
-        stringOPcons("real", CLU_1, CLU_4, &STR_real);
-        stringOPcons("char", CLU_1, CLU_4, &STR_char);
-        stringOPcons("string", CLU_1, CLU_6, &STR_string);
-        stringOPcons("type", CLU_1, CLU_4, &STR_type);
-        stringOPcons("array", CLU_1, CLU_5, &STR_array);
-        stringOPcons("record", CLU_1, CLU_6, &STR_record);
-        stringOPcons("oneof", CLU_1, CLU_5, &STR_oneof);
-        stringOPcons("sequence", CLU_1, CLU_8, &STR_sequence);
-        stringOPcons("struct", CLU_1, CLU_6, &STR_struct);
-        stringOPcons("variant", CLU_1, CLU_7, &STR_variant);
-        stringOPcons("proctype", CLU_1, CLU_8, &STR_proctype);
-        stringOPcons("itertype", CLU_1, CLU_8, &STR_itertype);
+        stringOPcons("null", CLU_1, CLUREF_make_num(4), &STR_null);
+        stringOPcons("bool", CLU_1, CLUREF_make_num(4), &STR_bool);
+        stringOPcons("int", CLU_1, CLUREF_make_num(3), &STR_int);
+        stringOPcons("real", CLU_1, CLUREF_make_num(4), &STR_real);
+        stringOPcons("char", CLU_1, CLUREF_make_num(4), &STR_char);
+        stringOPcons("string", CLU_1, CLUREF_make_num(6), &STR_string);
+        stringOPcons("type", CLU_1, CLUREF_make_num(4), &STR_type);
+        stringOPcons("array", CLU_1, CLUREF_make_num(5), &STR_array);
+        stringOPcons("record", CLU_1, CLUREF_make_num(6), &STR_record);
+        stringOPcons("oneof", CLU_1, CLUREF_make_num(5), &STR_oneof);
+        stringOPcons("sequence", CLU_1, CLUREF_make_num(8), &STR_sequence);
+        stringOPcons("struct", CLU_1, CLUREF_make_num(6), &STR_struct);
+        stringOPcons("variant", CLU_1, CLUREF_make_num(7), &STR_variant);
+        stringOPcons("proctype", CLU_1, CLUREF_make_num(8), &STR_proctype);
+        stringOPcons("itertype", CLU_1, CLUREF_make_num(8), &STR_itertype);
         ce_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
+
+
+/**** BEGIN PROCEDURE create ****/
 
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -367,13 +371,10 @@ struct OPS *table_of_du_bool_ops;
 OWNPTR table_of_du_bool_owns;
 static int ceOPcreate_own_init = 0;
 
-/**** BEGIN PROCEDURE create ****/
-
 errcode
 ceOPcreate(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF parms;
     CLUREF nullt;
     CLUREF boolt;
@@ -384,11 +385,11 @@ ceOPcreate(CLUREF *ret_1)
     CLUREF typet;
     CLUREF e;
     CLUREF ne;
-        if (ceOPcreate_own_init == 0) {
+    if (ceOPcreate_own_init == 0) {
         if (ce_own_init == 0) {
             err = ce_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPcreate_own_init = 1;
     }
     enter_proc(87);
@@ -409,8 +410,8 @@ ceOPcreate(CLUREF *ret_1)
         RecordAlloc(2, T_1_1);
         err = xlibOPlookup(STR_null, &T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_2.num;
-        T_1_1.vec->data[1]  = parms.num;
+        T_1_1.vec->data[0] = T_1_2.num;
+        T_1_1.vec->data[1] = parms.num;
         nullt.num = T_1_1.num;
         }
         }
@@ -422,8 +423,8 @@ ceOPcreate(CLUREF *ret_1)
         RecordAlloc(2, T_1_1);
         err = xlibOPlookup(STR_bool, &T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_2.num;
-        T_1_1.vec->data[1]  = parms.num;
+        T_1_1.vec->data[0] = T_1_2.num;
+        T_1_1.vec->data[1] = parms.num;
         boolt.num = T_1_1.num;
         }
         }
@@ -435,8 +436,8 @@ ceOPcreate(CLUREF *ret_1)
         RecordAlloc(2, T_1_1);
         err = xlibOPlookup(STR_int, &T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_2.num;
-        T_1_1.vec->data[1]  = parms.num;
+        T_1_1.vec->data[0] = T_1_2.num;
+        T_1_1.vec->data[1] = parms.num;
         intt.num = T_1_1.num;
         }
         }
@@ -448,8 +449,8 @@ ceOPcreate(CLUREF *ret_1)
         RecordAlloc(2, T_1_1);
         err = xlibOPlookup(STR_real, &T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_2.num;
-        T_1_1.vec->data[1]  = parms.num;
+        T_1_1.vec->data[0] = T_1_2.num;
+        T_1_1.vec->data[1] = parms.num;
         realt.num = T_1_1.num;
         }
         }
@@ -461,8 +462,8 @@ ceOPcreate(CLUREF *ret_1)
         RecordAlloc(2, T_1_1);
         err = xlibOPlookup(STR_char, &T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_2.num;
-        T_1_1.vec->data[1]  = parms.num;
+        T_1_1.vec->data[0] = T_1_2.num;
+        T_1_1.vec->data[1] = parms.num;
         chart.num = T_1_1.num;
         }
         }
@@ -474,8 +475,8 @@ ceOPcreate(CLUREF *ret_1)
         RecordAlloc(2, T_1_1);
         err = xlibOPlookup(STR_string, &T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_2.num;
-        T_1_1.vec->data[1]  = parms.num;
+        T_1_1.vec->data[0] = T_1_2.num;
+        T_1_1.vec->data[1] = parms.num;
         strt.num = T_1_1.num;
         }
         }
@@ -487,8 +488,8 @@ ceOPcreate(CLUREF *ret_1)
         RecordAlloc(2, T_1_1);
         err = xlibOPlookup(STR_type, &T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_2.num;
-        T_1_1.vec->data[1]  = parms.num;
+        T_1_1.vec->data[0] = T_1_2.num;
+        T_1_1.vec->data[1] = parms.num;
         typet.num = T_1_1.num;
         }
         }
@@ -542,12 +543,12 @@ ceOPcreate(CLUREF *ret_1)
         CLUREF T_1_45;
         RecordAlloc(25, T_1_1);
         T_1_2.num = 300;
-        err = proctypeOPnew(CLU_0, &T_1_3.proc);
+        err = proctypeOPnew(CLU_0, &T_1_3);
         if (err!= ERR_ok) goto ex_0;
         T_1_3.proc->type_owns = 0;
         T_1_3.proc->op_owns = 0;
         T_1_3.proc->proc = hash;
-        err = proctypeOPnew(CLU_0, &T_1_4.proc);
+        err = proctypeOPnew(CLU_0, &T_1_4);
         if (err!= ERR_ok) goto ex_0;
         T_1_4.proc->proc = stringOPequal;
         generic_CLU_proc.type_owns = table_of_string_record_code_kind_ops->type_owns;
@@ -555,24 +556,24 @@ ceOPcreate(CLUREF *ret_1)
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = tableOPcreate(T_1_2, T_1_3, T_1_4, &T_1_5);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[6]  = T_1_5.num;
+        T_1_1.vec->data[6] = T_1_5.num;
         RecordAlloc(2, T_1_6);
         CellAlloc(8, nil, T_1_7);
-        T_1_6.vec->data[1]  = T_1_7.num;
-        T_1_6.vec->data[0]  = 0;
-        T_1_1.vec->data[9]  = T_1_6.num;
+        T_1_6.vec->data[1] = T_1_7.num;
+        T_1_6.vec->data[0] = 0;
+        T_1_1.vec->data[9] = T_1_6.num;
         RecordAlloc(2, T_1_8);
         CellAlloc(8, nil, T_1_9);
-        T_1_8.vec->data[1]  = T_1_9.num;
-        T_1_8.vec->data[0]  = 1;
-        T_1_1.vec->data[24]  = T_1_8.num;
+        T_1_8.vec->data[1] = T_1_9.num;
+        T_1_8.vec->data[0] = 1;
+        T_1_1.vec->data[24] = T_1_8.num;
         T_1_10.num = 300;
-        err = proctypeOPnew(CLU_0, &T_1_11.proc);
+        err = proctypeOPnew(CLU_0, &T_1_11);
         if (err!= ERR_ok) goto ex_0;
         T_1_11.proc->type_owns = 0;
         T_1_11.proc->op_owns = 0;
         T_1_11.proc->proc = hash_typeabs;
-        err = proctypeOPnew(CLU_1, &T_1_12.proc);
+        err = proctypeOPnew(CLU_1, &T_1_12);
         if (err!= ERR_ok) goto ex_0;
         T_1_12.proc->op_owns = oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops->entry[1].fcn->op_owns;
         T_1_12.proc->proc = oneofOPsimilar;
@@ -581,16 +582,16 @@ ceOPcreate(CLUREF *ret_1)
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = tableOPcreate(T_1_10, T_1_11, T_1_12, &T_1_13);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[21]  = T_1_13.num;
-        T_1_1.vec->data[20]  = 1;
-        T_1_1.vec->data[19]  = 0;
+        T_1_1.vec->data[21] = T_1_13.num;
+        T_1_1.vec->data[20] = 1;
+        T_1_1.vec->data[19] = 0;
         T_1_14.num = 300;
-        err = proctypeOPnew(CLU_0, &T_1_15.proc);
+        err = proctypeOPnew(CLU_0, &T_1_15);
         if (err!= ERR_ok) goto ex_0;
         T_1_15.proc->type_owns = 0;
         T_1_15.proc->op_owns = 0;
         T_1_15.proc->proc = hash_du;
-        err = proctypeOPnew(CLU_0, &T_1_16.proc);
+        err = proctypeOPnew(CLU_0, &T_1_16);
         if (err!= ERR_ok) goto ex_0;
         T_1_16.proc->proc = duOPsimilar;
         generic_CLU_proc.type_owns = table_of_du_bool_ops->type_owns;
@@ -598,71 +599,71 @@ ceOPcreate(CLUREF *ret_1)
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = tableOPcreate(T_1_14, T_1_15, T_1_16, &T_1_17);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[5]  = T_1_17.num;
+        T_1_1.vec->data[5] = T_1_17.num;
         err = xlibOPlookup(STR_array, &T_1_18);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_18.num;
+        T_1_1.vec->data[1] = T_1_18.num;
         err = xlibOPlookup(STR_record, &T_1_19);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[14]  = T_1_19.num;
+        T_1_1.vec->data[14] = T_1_19.num;
         err = xlibOPlookup(STR_oneof, &T_1_20);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[11]  = T_1_20.num;
+        T_1_1.vec->data[11] = T_1_20.num;
         err = xlibOPlookup(STR_sequence, &T_1_21);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[15]  = T_1_21.num;
+        T_1_1.vec->data[15] = T_1_21.num;
         err = xlibOPlookup(STR_struct, &T_1_22);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[17]  = T_1_22.num;
+        T_1_1.vec->data[17] = T_1_22.num;
         err = xlibOPlookup(STR_variant, &T_1_23);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[23]  = T_1_23.num;
+        T_1_1.vec->data[23] = T_1_23.num;
         err = xlibOPlookup(STR_proctype, &T_1_24);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[12]  = T_1_24.num;
+        T_1_1.vec->data[12] = T_1_24.num;
         err = xlibOPlookup(STR_itertype, &T_1_25);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[8]  = T_1_25.num;
+        T_1_1.vec->data[8] = T_1_25.num;
         CellAlloc(9, nil, T_1_26);
         err = typespecOPcreate(T_1_26, CLU_0, &T_1_27);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[22]  = T_1_27.num;
+        T_1_1.vec->data[22] = T_1_27.num;
         CellAlloc(3, nullt.num, T_1_28);
         err = typespecOPcreate(T_1_28, CLU_0, &T_1_29);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[10]  = T_1_29.num;
+        T_1_1.vec->data[10] = T_1_29.num;
         CellAlloc(3, boolt.num, T_1_30);
         err = typespecOPcreate(T_1_30, CLU_0, &T_1_31);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[2]  = T_1_31.num;
+        T_1_1.vec->data[2] = T_1_31.num;
         CellAlloc(3, intt.num, T_1_32);
         err = typespecOPcreate(T_1_32, CLU_0, &T_1_33);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[7]  = T_1_33.num;
+        T_1_1.vec->data[7] = T_1_33.num;
         CellAlloc(3, realt.num, T_1_34);
         err = typespecOPcreate(T_1_34, CLU_0, &T_1_35);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[13]  = T_1_35.num;
+        T_1_1.vec->data[13] = T_1_35.num;
         CellAlloc(3, chart.num, T_1_36);
         err = typespecOPcreate(T_1_36, CLU_0, &T_1_37);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[3]  = T_1_37.num;
+        T_1_1.vec->data[3] = T_1_37.num;
         CellAlloc(3, strt.num, T_1_38);
         err = typespecOPcreate(T_1_38, CLU_0, &T_1_39);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[16]  = T_1_39.num;
+        T_1_1.vec->data[16] = T_1_39.num;
         CellAlloc(8, typet.num, T_1_40);
         err = typespecOPcreate(T_1_40, CLU_0, &T_1_41);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[18]  = T_1_41.num;
+        T_1_1.vec->data[18] = T_1_41.num;
         CellAlloc(4, nil, T_1_42);
         err = typespecOPcreate(T_1_42, CLU_0, &T_1_43);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[4]  = T_1_43.num;
+        T_1_1.vec->data[4] = T_1_43.num;
         CellAlloc(1, nil, T_1_44);
         err = typespecOPcreate(T_1_44, CLU_0, &T_1_45);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_45.num;
+        T_1_1.vec->data[0] = T_1_45.num;
         e.num = T_1_1.num;
         }
         }
@@ -846,9 +847,12 @@ ceOPcreate(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
+
+
+/**** BEGIN PROCEDURE reset_entries ****/
 
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -875,18 +879,15 @@ struct OPS *table_of_string_record_code_kind_ops;
 OWNPTR table_op_pcond_flush_of_string_record_code_kind_bool_owns;
 static int ceOPreset_entries_own_init = 0;
 
-/**** BEGIN PROCEDURE reset_entries ****/
-
 errcode
 ceOPreset_entries(CLUREF e, CLUREF lasting)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ceOPreset_entries_own_init == 0) {
+    if (ceOPreset_entries_own_init == 0) {
         if (ce_own_init == 0) {
             err = ce_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPreset_entries_own_init = 1;
     }
     enter_proc(153);
@@ -896,7 +897,7 @@ ceOPreset_entries(CLUREF e, CLUREF lasting)
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[6];
-    err = proctypeOPnew(CLU_0, &T_1_2.proc);
+    err = proctypeOPnew(CLU_0, &T_1_2);
     if (err!= ERR_ok) goto ex_0;
     T_1_2.proc->proc = ceOPpflush_id;
     generic_CLU_proc.type_owns = table_of_string_record_code_kind_ops->type_owns;
@@ -914,9 +915,12 @@ ceOPreset_entries(CLUREF e, CLUREF lasting)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE reset_entries ****/
+
+
+/**** BEGIN PROCEDURE flush_entries ****/
 
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -937,18 +941,15 @@ struct OPS *table_of_string_record_code_kind_ops;
 OWNPTR table_of_string_record_code_kind_owns;
 static int ceOPflush_entries_own_init = 0;
 
-/**** BEGIN PROCEDURE flush_entries ****/
-
 errcode
 ceOPflush_entries(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ceOPflush_entries_own_init == 0) {
+    if (ceOPflush_entries_own_init == 0) {
         if (ce_own_init == 0) {
             err = ce_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPflush_entries_own_init = 1;
     }
     enter_proc(157);
@@ -971,23 +972,23 @@ ceOPflush_entries(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE flush_entries ****/
 
 
 /**** BEGIN PROCEDURE pflush_id ****/
 
+
 errcode
 ceOPpflush_id(CLUREF ent, CLUREF lasting, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF code;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(161);
 
   LINE(162);
@@ -1015,7 +1016,7 @@ ceOPpflush_id(CLUREF ent, CLUREF lasting, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = -2;
-        ent.vec->data[0]  = T_2_1.num;
+        ent.vec->data[0] = T_2_1.num;
         }
         }
     else {
@@ -1043,7 +1044,7 @@ ceOPpflush_id(CLUREF ent, CLUREF lasting, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = -4;
-        ent.vec->data[0]  = T_2_1.num;
+        ent.vec->data[0] = T_2_1.num;
         }
         }
         }}}/* end if */
@@ -1063,9 +1064,12 @@ ceOPpflush_id(CLUREF ent, CLUREF lasting, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE pflush_id ****/
+
+
+/**** BEGIN PROCEDURE reset_types ****/
 
 struct OPS *sequence_of_typespec_table;
 struct OPS *sequence_of_typespec_ops;
@@ -1100,19 +1104,16 @@ struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unkno
 OWNPTR table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_owns;
 static int ceOPreset_types_own_init = 0;
 
-/**** BEGIN PROCEDURE reset_types ****/
-
 errcode
 ceOPreset_types(CLUREF e, CLUREF types)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
-        if (ceOPreset_types_own_init == 0) {
+    if (ceOPreset_types_own_init == 0) {
         if (ce_own_init == 0) {
             err = ce_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPreset_types_own_init = 1;
     }
     enter_proc(172);
@@ -1174,9 +1175,12 @@ ceOPreset_types(CLUREF e, CLUREF types)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE reset_types ****/
+
+
+/**** BEGIN PROCEDURE reset ****/
 
 extern errcode ceOPreset_IB_1();
 struct OPS *sequence_of_expr_table;
@@ -1234,26 +1238,25 @@ struct OPS *table_of_du_bool_ops;
 struct OPS *table_of_du_bool_ops;
 OWNPTR table_of_du_bool_owns;
 static int ceOPreset_own_init = 0;
-
-/**** BEGIN PROCEDURE reset ****/
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF ms;
+    CLUREF d;
+    CLUREF flush;
+    CLUREF e;
+} ceOPreset_LOCALS_t;
 
 errcode
 ceOPreset(CLUREF e)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF ms;
-        CLUREF d;
-        CLUREF flush;
-        CLUREF e;
-        } locals;
+{
+    ceOPreset_LOCALS_t locals;
     locals.e = e;
-        if (ceOPreset_own_init == 0) {
+    if (ceOPreset_own_init == 0) {
         if (ce_own_init == 0) {
             locals.err = ce_own_init_proc();
             if (locals.err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPreset_own_init = 1;
     }
     enter_proc(181);
@@ -1263,7 +1266,7 @@ ceOPreset(CLUREF e)
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = locals.e.vec->data[6];
-    locals.err = proctypeOPnew(CLU_0, &T_1_2.proc);
+    locals.err = proctypeOPnew(CLU_0, &T_1_2);
     if (locals.err!= ERR_ok) goto ex_0;
     T_1_2.proc->proc = ceOPflush_id;
     generic_CLU_proc.type_owns = table_of_string_record_code_kind_ops->type_owns;
@@ -1279,7 +1282,7 @@ ceOPreset(CLUREF e)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_1.num = locals.e.vec->data[21];
-    locals.err = proctypeOPnew(CLU_0, &T_1_2.proc);
+    locals.err = proctypeOPnew(CLU_0, &T_1_2);
     if (locals.err!= ERR_ok) goto ex_0;
     T_1_2.proc->proc = ceOPpflush_type;
     T_1_3.num = locals.e.vec->data[19];
@@ -1308,7 +1311,8 @@ ceOPreset(CLUREF e)
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         locals.err = tableOPelements(T_1_1, ceOPreset_IB_1, &locals, &locals.ecode2);
         if (locals.err == ERR_iterbodyreturn) {
-        signal(ERR_ok);}
+            signal(ERR_ok);
+        }
         if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
         if (locals.err == ERR_break) locals.err = ERR_ok;
         if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -1320,7 +1324,7 @@ ceOPreset(CLUREF e)
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = locals.e.vec->data[5];
-    locals.err = proctypeOPnew(CLU_0, &T_1_2.proc);
+    locals.err = proctypeOPnew(CLU_0, &T_1_2);
     if (locals.err!= ERR_ok) goto ex_0;
     T_1_2.proc->proc = boolOPcopy;
     generic_CLU_proc.type_owns = table_of_du_bool_ops->type_owns;
@@ -1340,7 +1344,7 @@ ceOPreset(CLUREF e)
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         locals.err = ERR_overflow;
         goto ex_0;}
-    locals.e.vec->data[20]  = T_1_2.num;
+    locals.e.vec->data[20] = T_1_2.num;
     }
     goto end_0;
     ex_0:
@@ -1350,25 +1354,15 @@ ceOPreset(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE reset ****/
 
 
 /**** BEGIN ITERATOR BODIES for reset ****/
 
-errcode ceOPreset_IB_1(iv_1, iv_2, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-CLUREF iv_2;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF ms;
-    CLUREF d;
-    CLUREF flush;
-    CLUREF e;
-    } *locals;
+errcode
+ceOPreset_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPreset_LOCALS_t *locals, errcode *iecode)
 {
     locals->d.num = iv_1.num;
     locals->flush.num = iv_2.num;
@@ -1385,9 +1379,12 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end ceOPreset_IB_1 */
+}   /* end ceOPreset_IB_1 */
 
 /**** END ITERATOR BODIES for reset ****/
+
+
+/**** BEGIN PROCEDURE reset1 ****/
 
 extern errcode ceOPreset1_IB_1();
 struct OPS *sequence_of_expr_table;
@@ -1445,26 +1442,25 @@ struct OPS *table_of_du_bool_ops;
 struct OPS *table_of_du_bool_ops;
 OWNPTR table_of_du_bool_owns;
 static int ceOPreset1_own_init = 0;
-
-/**** BEGIN PROCEDURE reset1 ****/
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF ms;
+    CLUREF d;
+    CLUREF flush;
+    CLUREF e;
+} ceOPreset1_LOCALS_t;
 
 errcode
 ceOPreset1(CLUREF e)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF ms;
-        CLUREF d;
-        CLUREF flush;
-        CLUREF e;
-        } locals;
+{
+    ceOPreset1_LOCALS_t locals;
     locals.e = e;
-        if (ceOPreset1_own_init == 0) {
+    if (ceOPreset1_own_init == 0) {
         if (ce_own_init == 0) {
             locals.err = ce_own_init_proc();
             if (locals.err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPreset1_own_init = 1;
     }
     enter_proc(192);
@@ -1474,7 +1470,7 @@ ceOPreset1(CLUREF e)
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = locals.e.vec->data[6];
-    locals.err = proctypeOPnew(CLU_0, &T_1_2.proc);
+    locals.err = proctypeOPnew(CLU_0, &T_1_2);
     if (locals.err!= ERR_ok) goto ex_0;
     T_1_2.proc->proc = ceOPflush_id;
     generic_CLU_proc.type_owns = table_of_string_record_code_kind_ops->type_owns;
@@ -1490,7 +1486,7 @@ ceOPreset1(CLUREF e)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_1.num = locals.e.vec->data[21];
-    locals.err = proctypeOPnew(CLU_0, &T_1_2.proc);
+    locals.err = proctypeOPnew(CLU_0, &T_1_2);
     if (locals.err!= ERR_ok) goto ex_0;
     T_1_2.proc->proc = ceOPpflush_type;
     T_1_3.num = locals.e.vec->data[19];
@@ -1519,7 +1515,8 @@ ceOPreset1(CLUREF e)
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         locals.err = tableOPelements(T_1_1, ceOPreset1_IB_1, &locals, &locals.ecode2);
         if (locals.err == ERR_iterbodyreturn) {
-        signal(ERR_ok);}
+            signal(ERR_ok);
+        }
         if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
         if (locals.err == ERR_break) locals.err = ERR_ok;
         if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -1536,7 +1533,7 @@ ceOPreset1(CLUREF e)
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         locals.err = ERR_overflow;
         goto ex_0;}
-    locals.e.vec->data[20]  = T_1_2.num;
+    locals.e.vec->data[20] = T_1_2.num;
     }
     goto end_0;
     ex_0:
@@ -1546,25 +1543,15 @@ ceOPreset1(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE reset1 ****/
 
 
 /**** BEGIN ITERATOR BODIES for reset1 ****/
 
-errcode ceOPreset1_IB_1(iv_1, iv_2, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-CLUREF iv_2;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF ms;
-    CLUREF d;
-    CLUREF flush;
-    CLUREF e;
-    } *locals;
+errcode
+ceOPreset1_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPreset1_LOCALS_t *locals, errcode *iecode)
 {
     locals->d.num = iv_1.num;
     locals->flush.num = iv_2.num;
@@ -1581,22 +1568,22 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end ceOPreset1_IB_1 */
+}   /* end ceOPreset1_IB_1 */
 
 /**** END ITERATOR BODIES for reset1 ****/
 
 
 /**** BEGIN PROCEDURE flush_id ****/
 
+
 errcode
 ceOPflush_id(CLUREF ent, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(202);
 
   LINE(203);
@@ -1620,7 +1607,7 @@ ceOPflush_id(CLUREF ent, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = -4;
-        ent.vec->data[0]  = T_2_1.num;
+        ent.vec->data[0] = T_2_1.num;
         }
 
   LINE(206);
@@ -1639,22 +1626,22 @@ ceOPflush_id(CLUREF ent, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE flush_id ****/
 
 
 /**** BEGIN PROCEDURE pflush_type ****/
 
+
 errcode
 ceOPpflush_type(CLUREF t, CLUREF max, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(210);
 
   LINE(211);
@@ -1697,9 +1684,12 @@ ceOPpflush_type(CLUREF t, CLUREF max, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE pflush_type ****/
+
+
+/**** BEGIN PROCEDURE keep ****/
 
 extern errcode ceOPkeep_IB_1();
 struct OPS *table_of_du_table;
@@ -1708,26 +1698,25 @@ struct OPS *table_of_du_bool_ops;
 struct OPS *table_of_du_bool_ops;
 OWNPTR table_of_du_bool_owns;
 static int ceOPkeep_own_init = 0;
-
-/**** BEGIN PROCEDURE keep ****/
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF tab;
+    CLUREF d;
+    CLUREF flush;
+    CLUREF e;
+} ceOPkeep_LOCALS_t;
 
 errcode
 ceOPkeep(CLUREF e)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF tab;
-        CLUREF d;
-        CLUREF flush;
-        CLUREF e;
-        } locals;
+{
+    ceOPkeep_LOCALS_t locals;
     locals.e = e;
-        if (ceOPkeep_own_init == 0) {
+    if (ceOPkeep_own_init == 0) {
         if (ce_own_init == 0) {
             locals.err = ce_own_init_proc();
             if (locals.err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPkeep_own_init = 1;
     }
     enter_proc(218);
@@ -1747,7 +1736,8 @@ ceOPkeep(CLUREF e)
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         locals.err = tableOPelements(locals.tab, ceOPkeep_IB_1, &locals, &locals.ecode2);
         if (locals.err == ERR_iterbodyreturn) {
-        signal(ERR_ok);}
+            signal(ERR_ok);
+        }
         if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
         if (locals.err == ERR_break) locals.err = ERR_ok;
         if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -1764,7 +1754,7 @@ ceOPkeep(CLUREF e)
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         locals.err = ERR_overflow;
         goto ex_0;}
-    locals.e.vec->data[19]  = T_1_2.num;
+    locals.e.vec->data[19] = T_1_2.num;
     }
     goto end_0;
     ex_0:
@@ -1774,25 +1764,15 @@ ceOPkeep(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE keep ****/
 
 
 /**** BEGIN ITERATOR BODIES for keep ****/
 
-errcode ceOPkeep_IB_1(iv_1, iv_2, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-CLUREF iv_2;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF tab;
-    CLUREF d;
-    CLUREF flush;
-    CLUREF e;
-    } *locals;
+errcode
+ceOPkeep_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPkeep_LOCALS_t *locals, errcode *iecode)
 {
     locals->d.num = iv_1.num;
     locals->flush.num = iv_2.num;
@@ -1818,9 +1798,12 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end ceOPkeep_IB_1 */
+}   /* end ceOPkeep_IB_1 */
 
 /**** END ITERATOR BODIES for keep ****/
+
+
+/**** BEGIN PROCEDURE lookup ****/
 
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -1841,21 +1824,18 @@ struct OPS *table_of_string_record_code_kind_ops;
 OWNPTR table_of_string_record_code_kind_owns;
 static int ceOPlookup_own_init = 0;
 
-/**** BEGIN PROCEDURE lookup ****/
-
 errcode
 ceOPlookup(CLUREF e, CLUREF s, CLUREF line, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF xent;
     CLUREF ent;
     CLUREF code;
-        if (ceOPlookup_own_init == 0) {
+    if (ceOPlookup_own_init == 0) {
         if (ce_own_init == 0) {
             err = ce_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPlookup_own_init = 1;
     }
     enter_proc(227);
@@ -1896,7 +1876,7 @@ ceOPlookup(CLUREF e, CLUREF s, CLUREF line, CLUREF *ret_1)
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = recordOPcopy1(xent, &T_2_1);
         if (err != ERR_ok) goto ex_0;
-        e.vec->data[24]  = T_2_1.num;
+        e.vec->data[24] = T_2_1.num;
         }
 
   LINE(232);
@@ -1907,7 +1887,7 @@ ceOPlookup(CLUREF e, CLUREF s, CLUREF line, CLUREF *ret_1)
 
   LINE(233);
             {
-            xent.vec->data[0]  = line.num;
+            xent.vec->data[0] = line.num;
             }
             }
             }/* end if */
@@ -1952,7 +1932,7 @@ ceOPlookup(CLUREF e, CLUREF s, CLUREF line, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = -3;
-            ent.vec->data[0]  = T_3_1.num;
+            ent.vec->data[0] = T_3_1.num;
             }
             }
             }}/* end if */
@@ -1975,9 +1955,12 @@ ceOPlookup(CLUREF e, CLUREF s, CLUREF line, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE lookup ****/
+
+
+/**** BEGIN PROCEDURE local ****/
 
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -1998,20 +1981,17 @@ struct OPS *table_of_string_record_code_kind_ops;
 OWNPTR table_of_string_record_code_kind_owns;
 static int ceOPlocal_own_init = 0;
 
-/**** BEGIN PROCEDURE local ****/
-
 errcode
 ceOPlocal(CLUREF e, CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ent;
     CLUREF code;
-        if (ceOPlocal_own_init == 0) {
+    if (ceOPlocal_own_init == 0) {
         if (ce_own_init == 0) {
             err = ce_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPlocal_own_init = 1;
     }
     enter_proc(243);
@@ -2064,7 +2044,7 @@ ceOPlocal(CLUREF e, CLUREF s, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = -1;
-        ent.vec->data[0]  = T_2_1.num;
+        ent.vec->data[0] = T_2_1.num;
         }
         }
         }}/* end if */
@@ -2084,9 +2064,12 @@ ceOPlocal(CLUREF e, CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE local ****/
+
+
+/**** BEGIN PROCEDURE add_entry ****/
 
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -2107,18 +2090,15 @@ struct OPS *table_of_string_record_code_kind_ops;
 OWNPTR table_of_string_record_code_kind_owns;
 static int ceOPadd_entry_own_init = 0;
 
-/**** BEGIN PROCEDURE add_entry ****/
-
 errcode
 ceOPadd_entry(CLUREF e, CLUREF i)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ceOPadd_entry_own_init == 0) {
+    if (ceOPadd_entry_own_init == 0) {
         if (ce_own_init == 0) {
             err = ce_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPadd_entry_own_init = 1;
     }
     enter_proc(253);
@@ -2135,8 +2115,8 @@ ceOPadd_entry(CLUREF e, CLUREF i)
     RecordAlloc(2, T_2_3);
     err = idnOPget_kind(i, &T_2_4);
     if (err != ERR_ok) goto ex_1;
-    T_2_3.vec->data[1]  = T_2_4.num;
-    T_2_3.vec->data[0]  = -4;
+    T_2_3.vec->data[1] = T_2_4.num;
+    T_2_3.vec->data[0] = -4;
     generic_CLU_proc.type_owns = table_of_string_record_code_kind_ops->type_owns;
     generic_CLU_proc.proc = tableOPbind;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -2157,22 +2137,22 @@ ceOPadd_entry(CLUREF e, CLUREF i)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE add_entry ****/
 
 
 /**** BEGIN PROCEDURE get_unknown_type ****/
 
+
 errcode
 ceOPget_unknown_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(259);
 
   LINE(260);
@@ -2192,22 +2172,22 @@ ceOPget_unknown_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_unknown_type ****/
 
 
 /**** BEGIN PROCEDURE get_null_type ****/
 
+
 errcode
 ceOPget_null_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(263);
 
   LINE(264);
@@ -2227,22 +2207,22 @@ ceOPget_null_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_null_type ****/
 
 
 /**** BEGIN PROCEDURE get_bool_type ****/
 
+
 errcode
 ceOPget_bool_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(267);
 
   LINE(268);
@@ -2262,22 +2242,22 @@ ceOPget_bool_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_bool_type ****/
 
 
 /**** BEGIN PROCEDURE get_int_type ****/
 
+
 errcode
 ceOPget_int_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(271);
 
   LINE(272);
@@ -2297,22 +2277,22 @@ ceOPget_int_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_int_type ****/
 
 
 /**** BEGIN PROCEDURE get_real_type ****/
 
+
 errcode
 ceOPget_real_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(275);
 
   LINE(276);
@@ -2332,22 +2312,22 @@ ceOPget_real_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_real_type ****/
 
 
 /**** BEGIN PROCEDURE get_char_type ****/
 
+
 errcode
 ceOPget_char_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(279);
 
   LINE(280);
@@ -2367,22 +2347,22 @@ ceOPget_char_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_char_type ****/
 
 
 /**** BEGIN PROCEDURE get_str_type ****/
 
+
 errcode
 ceOPget_str_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(283);
 
   LINE(284);
@@ -2402,22 +2382,22 @@ ceOPget_str_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_str_type ****/
 
 
 /**** BEGIN PROCEDURE get_type_type ****/
 
+
 errcode
 ceOPget_type_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(287);
 
   LINE(288);
@@ -2437,22 +2417,22 @@ ceOPget_type_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_type_type ****/
 
 
 /**** BEGIN PROCEDURE get_cvt_type ****/
 
+
 errcode
 ceOPget_cvt_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(291);
 
   LINE(292);
@@ -2472,22 +2452,22 @@ ceOPget_cvt_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_cvt_type ****/
 
 
 /**** BEGIN PROCEDURE get_any_type ****/
 
+
 errcode
 ceOPget_any_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(295);
 
   LINE(296);
@@ -2507,22 +2487,22 @@ ceOPget_any_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_any_type ****/
 
 
 /**** BEGIN PROCEDURE get_array_ ****/
 
+
 errcode
 ceOPget_array_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(299);
 
   LINE(300);
@@ -2542,22 +2522,22 @@ ceOPget_array_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_array_ ****/
 
 
 /**** BEGIN PROCEDURE get_record_ ****/
 
+
 errcode
 ceOPget_record_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(303);
 
   LINE(304);
@@ -2577,22 +2557,22 @@ ceOPget_record_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_record_ ****/
 
 
 /**** BEGIN PROCEDURE get_oneof_ ****/
 
+
 errcode
 ceOPget_oneof_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(307);
 
   LINE(308);
@@ -2612,22 +2592,22 @@ ceOPget_oneof_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_oneof_ ****/
 
 
 /**** BEGIN PROCEDURE get_seq_ ****/
 
+
 errcode
 ceOPget_seq_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(311);
 
   LINE(312);
@@ -2647,22 +2627,22 @@ ceOPget_seq_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_seq_ ****/
 
 
 /**** BEGIN PROCEDURE get_struct_ ****/
 
+
 errcode
 ceOPget_struct_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(315);
 
   LINE(316);
@@ -2682,22 +2662,22 @@ ceOPget_struct_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_struct_ ****/
 
 
 /**** BEGIN PROCEDURE get_variant_ ****/
 
+
 errcode
 ceOPget_variant_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(319);
 
   LINE(320);
@@ -2717,22 +2697,22 @@ ceOPget_variant_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_variant_ ****/
 
 
 /**** BEGIN PROCEDURE get_proc_ ****/
 
+
 errcode
 ceOPget_proc_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(323);
 
   LINE(324);
@@ -2752,22 +2732,22 @@ ceOPget_proc_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_proc_ ****/
 
 
 /**** BEGIN PROCEDURE get_iter_ ****/
 
+
 errcode
 ceOPget_iter_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (ce_own_init == 0) {
-            err = ce_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (ce_own_init == 0) {
+        err = ce_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(327);
 
   LINE(328);
@@ -2787,9 +2767,12 @@ ceOPget_iter_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_iter_ ****/
+
+
+/**** BEGIN PROCEDURE get_type ****/
 
 struct OPS *sequence_of_typespec_table;
 struct OPS *sequence_of_typespec_ops;
@@ -2824,20 +2807,17 @@ struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unkno
 OWNPTR table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_owns;
 static int ceOPget_type_own_init = 0;
 
-/**** BEGIN PROCEDURE get_type ****/
-
 errcode
 ceOPget_type(CLUREF e, CLUREF ta, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF nta;
     CLUREF t;
-        if (ceOPget_type_own_init == 0) {
+    if (ceOPget_type_own_init == 0) {
         if (ce_own_init == 0) {
             err = ce_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPget_type_own_init = 1;
     }
     enter_proc(333);
@@ -2913,9 +2893,12 @@ ceOPget_type(CLUREF e, CLUREF ta, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_type ****/
+
+
+/**** BEGIN PROCEDURE fixup ****/
 
 struct OPS *sequence_of_typespec_table;
 struct OPS *sequence_of_typespec_ops;
@@ -2950,22 +2933,19 @@ struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unkno
 OWNPTR table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_owns;
 static int ceOPfixup_own_init = 0;
 
-/**** BEGIN PROCEDURE fixup ****/
-
 errcode
 ceOPfixup(CLUREF e, CLUREF t)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF clut;
     CLUREF selt;
     CLUREF apt;
     CLUREF ot;
-        if (ceOPfixup_own_init == 0) {
+    if (ceOPfixup_own_init == 0) {
         if (ce_own_init == 0) {
             err = ce_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPfixup_own_init = 1;
     }
     enter_proc(343);
@@ -3002,7 +2982,7 @@ ceOPfixup(CLUREF e, CLUREF t)
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    e.vec->data[20]  = T_1_2.num;
+    e.vec->data[20] = T_1_2.num;
     }
 
   LINE(347);
@@ -3024,7 +3004,7 @@ ceOPfixup(CLUREF e, CLUREF t)
             T_2_1.num = clut.vec->data[0];
             err = ceOPadd_du(e, T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            clut.vec->data[0]  = T_2_2.num;
+            clut.vec->data[0] = T_2_2.num;
             }
             break;
             }
@@ -3040,7 +3020,7 @@ ceOPfixup(CLUREF e, CLUREF t)
             T_2_1.num = selt.vec->data[0];
             err = ceOPadd_du(e, T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            selt.vec->data[0]  = T_2_2.num;
+            selt.vec->data[0] = T_2_2.num;
             }
             break;
             }
@@ -3056,7 +3036,7 @@ ceOPfixup(CLUREF e, CLUREF t)
             T_2_1.num = apt.vec->data[1];
             err = ceOPadd_du(e, T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            apt.vec->data[1]  = T_2_2.num;
+            apt.vec->data[1] = T_2_2.num;
             }
             break;
             }
@@ -3080,7 +3060,7 @@ ceOPfixup(CLUREF e, CLUREF t)
                     T_3_1.num = clut.vec->data[0];
                     err = ceOPadd_du(e, T_3_1, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    clut.vec->data[0]  = T_3_2.num;
+                    clut.vec->data[0] = T_3_2.num;
                     }
                     break;
                     }
@@ -3102,9 +3082,12 @@ ceOPfixup(CLUREF e, CLUREF t)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE fixup ****/
+
+
+/**** BEGIN PROCEDURE add_du ****/
 
 struct OPS *table_of_du_table;
 struct OPS *table_of_bool_table;
@@ -3113,20 +3096,17 @@ struct OPS *table_of_du_bool_ops;
 OWNPTR table_of_du_bool_owns;
 static int ceOPadd_du_own_init = 0;
 
-/**** BEGIN PROCEDURE add_du ****/
-
 errcode
 ceOPadd_du(CLUREF e, CLUREF mod, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF d;
     CLUREF flush;
-        if (ceOPadd_du_own_init == 0) {
+    if (ceOPadd_du_own_init == 0) {
         if (ce_own_init == 0) {
             err = ce_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPadd_du_own_init = 1;
     }
     enter_proc(364);
@@ -3204,9 +3184,12 @@ ceOPadd_du(CLUREF e, CLUREF mod, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE add_du ****/
+
+
+/**** BEGIN ITERATOR all_dus ****/
 
 extern errcode ceOPall_dus_IB_1();
 struct OPS *table_of_du_table;
@@ -3215,33 +3198,30 @@ struct OPS *table_of_du_bool_ops;
 struct OPS *table_of_du_bool_ops;
 OWNPTR table_of_du_bool_owns;
 static int ceOPall_dus_own_init = 0;
-
-/**** BEGIN ITERATOR all_dus ****/
+typedef struct {
+    void *user_locals;
+    errcode (*proc)();
+    errcode ecode2;
+    errcode err;
+    bool body_ctrl_req;
+    CLUREF d;
+    CLUREF flush;
+    CLUREF e;
+} ceOPall_dus_LOCALS_t;
 
 errcode
-ceOPall_dus(CLUREF e, errcode (*proc)(), char **user_locals, errcode *iecode)
-    {
+ceOPall_dus(CLUREF e, errcode (*proc)(), void *user_locals, errcode *iecode)
+{
     errcode ecode;
-    struct {
-        char **user_locals;
-        errcode (*proc)();
-        errcode err;
-        errcode ecode2;
-        bool body_ctrl_req;
-        CLUREF d;
-        CLUREF flush;
-        CLUREF e;
-        } locals;
+    ceOPall_dus_LOCALS_t locals;
     locals.e = e;
     locals.proc = proc;
     locals.user_locals = user_locals;
-    locals.user_locals = user_locals;
-    locals.proc = proc;
-        if (ceOPall_dus_own_init == 0) {
+    if (ceOPall_dus_own_init == 0) {
         if (ce_own_init == 0) {
             locals.err = ce_own_init_proc();
             if (locals.err != ERR_ok) goto ex_0;
-            }
+        }
         ceOPall_dus_own_init = 1;
     }
     enter_proc(376);
@@ -3284,27 +3264,15 @@ ceOPall_dus(CLUREF e, errcode (*proc)(), char **user_locals, errcode *iecode)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END ITERATOR all_dus ****/
 
 
 /**** BEGIN ITERATOR BODIES for all_dus ****/
 
-errcode ceOPall_dus_IB_1(iv_1, iv_2, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-CLUREF iv_2;
-struct {
-    char **user_locals;
-    errcode (*proc)();
-    errcode err;
-    errcode ecode2;
-    bool body_ctrl_req;
-    CLUREF d;
-    CLUREF flush;
-    CLUREF e;
-    } *locals;
+errcode
+ceOPall_dus_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPall_dus_LOCALS_t *locals, errcode *iecode)
 {
     locals->d.num = iv_1.num;
     locals->flush.num = iv_2.num;
@@ -3327,7 +3295,7 @@ struct {
             locals->body_ctrl_req = true;
             {signal(ERR_iteriterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end ceOPall_dus_IB_1 */
+}   /* end ceOPall_dus_IB_1 */
 
 /**** END ITERATOR BODIES for all_dus ****/
 
@@ -3338,37 +3306,37 @@ typedef struct{
     struct OP_ENTRY entry[31];
 } ce_OPS;
 
-CLU_proc ce_oe_add_du = {{0,0,0,0}, ceOPadd_du, 0};
-CLU_proc ce_oe_add_entry = {{0,0,0,0}, ceOPadd_entry, 0};
-CLU_proc ce_oe_all_dus = {{0,0,0,0}, ceOPall_dus, 0};
-CLU_proc ce_oe_create = {{0,0,0,0}, ceOPcreate, 0};
-CLU_proc ce_oe_flush_entries = {{0,0,0,0}, ceOPflush_entries, 0};
-CLU_proc ce_oe_get_any_type = {{0,0,0,0}, ceOPget_any_type, 0};
-CLU_proc ce_oe_get_array_ = {{0,0,0,0}, ceOPget_array_, 0};
-CLU_proc ce_oe_get_bool_type = {{0,0,0,0}, ceOPget_bool_type, 0};
-CLU_proc ce_oe_get_char_type = {{0,0,0,0}, ceOPget_char_type, 0};
-CLU_proc ce_oe_get_cvt_type = {{0,0,0,0}, ceOPget_cvt_type, 0};
-CLU_proc ce_oe_get_int_type = {{0,0,0,0}, ceOPget_int_type, 0};
-CLU_proc ce_oe_get_iter_ = {{0,0,0,0}, ceOPget_iter_, 0};
-CLU_proc ce_oe_get_null_type = {{0,0,0,0}, ceOPget_null_type, 0};
-CLU_proc ce_oe_get_oneof_ = {{0,0,0,0}, ceOPget_oneof_, 0};
-CLU_proc ce_oe_get_proc_ = {{0,0,0,0}, ceOPget_proc_, 0};
-CLU_proc ce_oe_get_real_type = {{0,0,0,0}, ceOPget_real_type, 0};
-CLU_proc ce_oe_get_record_ = {{0,0,0,0}, ceOPget_record_, 0};
-CLU_proc ce_oe_get_seq_ = {{0,0,0,0}, ceOPget_seq_, 0};
-CLU_proc ce_oe_get_str_type = {{0,0,0,0}, ceOPget_str_type, 0};
-CLU_proc ce_oe_get_struct_ = {{0,0,0,0}, ceOPget_struct_, 0};
-CLU_proc ce_oe_get_type = {{0,0,0,0}, ceOPget_type, 0};
-CLU_proc ce_oe_get_type_type = {{0,0,0,0}, ceOPget_type_type, 0};
-CLU_proc ce_oe_get_unknown_type = {{0,0,0,0}, ceOPget_unknown_type, 0};
-CLU_proc ce_oe_get_variant_ = {{0,0,0,0}, ceOPget_variant_, 0};
-CLU_proc ce_oe_keep = {{0,0,0,0}, ceOPkeep, 0};
-CLU_proc ce_oe_local = {{0,0,0,0}, ceOPlocal, 0};
-CLU_proc ce_oe_lookup = {{0,0,0,0}, ceOPlookup, 0};
-CLU_proc ce_oe_reset = {{0,0,0,0}, ceOPreset, 0};
-CLU_proc ce_oe_reset1 = {{0,0,0,0}, ceOPreset1, 0};
-CLU_proc ce_oe_reset_entries = {{0,0,0,0}, ceOPreset_entries, 0};
-CLU_proc ce_oe_reset_types = {{0,0,0,0}, ceOPreset_types, 0};
+CLU_proc ce_oe_add_du = { .proc = ceOPadd_du };
+CLU_proc ce_oe_add_entry = { .proc = ceOPadd_entry };
+CLU_proc ce_oe_all_dus = { .proc = ceOPall_dus };
+CLU_proc ce_oe_create = { .proc = ceOPcreate };
+CLU_proc ce_oe_flush_entries = { .proc = ceOPflush_entries };
+CLU_proc ce_oe_get_any_type = { .proc = ceOPget_any_type };
+CLU_proc ce_oe_get_array_ = { .proc = ceOPget_array_ };
+CLU_proc ce_oe_get_bool_type = { .proc = ceOPget_bool_type };
+CLU_proc ce_oe_get_char_type = { .proc = ceOPget_char_type };
+CLU_proc ce_oe_get_cvt_type = { .proc = ceOPget_cvt_type };
+CLU_proc ce_oe_get_int_type = { .proc = ceOPget_int_type };
+CLU_proc ce_oe_get_iter_ = { .proc = ceOPget_iter_ };
+CLU_proc ce_oe_get_null_type = { .proc = ceOPget_null_type };
+CLU_proc ce_oe_get_oneof_ = { .proc = ceOPget_oneof_ };
+CLU_proc ce_oe_get_proc_ = { .proc = ceOPget_proc_ };
+CLU_proc ce_oe_get_real_type = { .proc = ceOPget_real_type };
+CLU_proc ce_oe_get_record_ = { .proc = ceOPget_record_ };
+CLU_proc ce_oe_get_seq_ = { .proc = ceOPget_seq_ };
+CLU_proc ce_oe_get_str_type = { .proc = ceOPget_str_type };
+CLU_proc ce_oe_get_struct_ = { .proc = ceOPget_struct_ };
+CLU_proc ce_oe_get_type = { .proc = ceOPget_type };
+CLU_proc ce_oe_get_type_type = { .proc = ceOPget_type_type };
+CLU_proc ce_oe_get_unknown_type = { .proc = ceOPget_unknown_type };
+CLU_proc ce_oe_get_variant_ = { .proc = ceOPget_variant_ };
+CLU_proc ce_oe_keep = { .proc = ceOPkeep };
+CLU_proc ce_oe_local = { .proc = ceOPlocal };
+CLU_proc ce_oe_lookup = { .proc = ceOPlookup };
+CLU_proc ce_oe_reset = { .proc = ceOPreset };
+CLU_proc ce_oe_reset1 = { .proc = ceOPreset1 };
+CLU_proc ce_oe_reset_entries = { .proc = ceOPreset_entries };
+CLU_proc ce_oe_reset_types = { .proc = ceOPreset_types };
 
 ce_OPS ce_ops_actual = {31, (OWNPTR)&ce_own_init, (OWNPTR)&ce_own_init, {
     {&ce_oe_add_du, "add_du"},
@@ -3407,17 +3375,17 @@ struct OPS *ce_ops = (struct OPS *)&ce_ops_actual;
 
 /**** END CLUSTER ce ****/
 
+
+/**** BEGIN PROCEDURE hash_exprs ****/
+
 extern errcode sequenceOPelements();
 extern errcode exprOPget_abs();
 extern errcode intOPmod();
 
-/**** BEGIN PROCEDURE hash_exprs ****/
-
 errcode
 hash_exprs(CLUREF exprs, CLUREF z, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF index;
     CLUREF x;
     CLUREF add;
@@ -3525,26 +3493,26 @@ hash_exprs(CLUREF exprs, CLUREF z, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE hash_exprs ****/
 
+
+
+/**** BEGIN PROCEDURE hash_typeabs ****/
 
 extern errcode hash_exprs();
 extern errcode intOPmul();
 extern errcode stringOPsize();
 extern errcode sequenceOPindexes();
 extern errcode sequenceOPfetch();
-CLUREF STR_illegal_137typespec;
+static CLUREF STR_illegal_137typespec;
 static int hash_typeabs_own_init = 0;
-
-/**** BEGIN PROCEDURE hash_typeabs ****/
 
 errcode
 hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF x;
     CLUREF index;
     CLUREF fs;
@@ -3552,8 +3520,8 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
     CLUREF vals;
     CLUREF i;
     CLUREF xx;
-        if (hash_typeabs_own_init == 0) {
-        stringOPcons("illegal_typespec", CLU_1, CLU_16, &STR_illegal_137typespec);
+    if (hash_typeabs_own_init == 0) {
+        stringOPcons("illegal_typespec", CLU_1, CLUREF_make_num(16), &STR_illegal_137typespec);
         hash_typeabs_own_init = 1;
     }
     enter_proc(403);
@@ -3978,7 +3946,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE hash_typeabs ****/
 
@@ -3986,11 +3954,11 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE hash_du ****/
 
+
 errcode
 hash_du(CLUREF d, CLUREF size, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(450);
 
   LINE(451);
@@ -4014,7 +3982,7 @@ hash_du(CLUREF d, CLUREF size, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE hash_du ****/
 

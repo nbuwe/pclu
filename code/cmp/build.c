@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE b_duspecs ****/
+
 extern errcode sequenceOPempty();
 extern errcode recordOPget_1();
 extern errcode recordOPcopy1();
@@ -14,13 +17,10 @@ extern errcode b_typeinfo();
 extern errcode oneofOPmake_5();
 extern errcode oneofOPmake_2();
 
-/**** BEGIN PROCEDURE b_duspecs ****/
-
 errcode
 b_duspecs(CLUREF e, CLUREF specs, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF inf;
     enter_proc(6);
 
@@ -147,10 +147,13 @@ b_duspecs(CLUREF e, CLUREF specs, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_duspecs ****/
 
+
+
+/**** BEGIN PROCEDURE b_typeinfo ****/
 
 extern errcode recordOPget_2();
 extern errcode b_parameters();
@@ -165,13 +168,10 @@ extern errcode recordOPget_3();
 extern errcode sequenceOPaddh();
 extern errcode c_envOPend_scope();
 
-/**** BEGIN PROCEDURE b_typeinfo ****/
-
 errcode
 b_typeinfo(CLUREF e, CLUREF info, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF parms;
     CLUREF nparms;
     CLUREF empty;
@@ -281,7 +281,7 @@ b_typeinfo(CLUREF e, CLUREF info, CLUREF *ret_1)
                 CUR_PROC_VAR.proc = &generic_CLU_proc;
                 err = recordOPcopy1(T_3_1, &T_3_2);
                 if (err != ERR_ok) goto ex_0;
-                inf.vec->data[0]  = T_3_2.num;
+                inf.vec->data[0] = T_3_2.num;
                 }
                 }
             else {
@@ -296,15 +296,15 @@ b_typeinfo(CLUREF e, CLUREF info, CLUREF *ret_1)
                 CLUREF T_3_6;
                 RecordAlloc(3, T_3_1);
                 T_3_2.num = inf.vec->data[1];
-                T_3_1.vec->data[1]  = T_3_2.num;
+                T_3_1.vec->data[1] = T_3_2.num;
                 T_3_3.num = inf.vec->data[2];
                 err = b_typesetlist(e, T_3_3, &T_3_4);
                 if (err != ERR_ok) goto ex_0;
-                T_3_1.vec->data[2]  = T_3_4.num;
+                T_3_1.vec->data[2] = T_3_4.num;
                 T_3_5.num = inf.vec->data[0];
                 err = b_applyinfo(e, T_3_5, &T_3_6);
                 if (err != ERR_ok) goto ex_0;
-                T_3_1.vec->data[0]  = T_3_6.num;
+                T_3_1.vec->data[0] = T_3_6.num;
                 inf.num = T_3_1.num;
                 }
                 }}/* end if */
@@ -331,8 +331,8 @@ b_typeinfo(CLUREF e, CLUREF info, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[1]  = nparms.num;
-    T_1_1.vec->data[0]  = nopers.num;
+    T_1_1.vec->data[1] = nparms.num;
+    T_1_1.vec->data[0] = nopers.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -345,21 +345,21 @@ b_typeinfo(CLUREF e, CLUREF info, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_typeinfo ****/
 
 
-extern errcode b_get_idn();
-extern errcode b_opspeclist();
 
 /**** BEGIN PROCEDURE b_typesetlist ****/
 
+extern errcode b_get_idn();
+extern errcode b_opspeclist();
+
 errcode
 b_typesetlist(CLUREF e, CLUREF reqs, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF nreqs;
     CLUREF req;
     enter_proc(48);
@@ -395,11 +395,11 @@ b_typesetlist(CLUREF e, CLUREF reqs, CLUREF *ret_1)
             T_2_2.num = req.vec->data[1];
             err = b_get_idn(e, T_2_2, &T_2_3);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_3.num;
+            T_2_1.vec->data[1] = T_2_3.num;
             T_2_4.num = req.vec->data[0];
             err = b_opspeclist(e, T_2_4, &T_2_5);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[0]  = T_2_5.num;
+            T_2_1.vec->data[0] = T_2_5.num;
             err = sequenceOPaddh(nreqs, T_2_1, &T_2_6);
             if (err != ERR_ok) goto ex_0;
             nreqs.num = T_2_6.num;
@@ -423,22 +423,22 @@ b_typesetlist(CLUREF e, CLUREF reqs, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_typesetlist ****/
 
+
+
+/**** BEGIN PROCEDURE b_get_idn ****/
 
 extern errcode idnOPget_kind();
 extern errcode exprOPget_abs();
 extern errcode typespecOPget_abs();
 
-/**** BEGIN PROCEDURE b_get_idn ****/
-
 errcode
 b_get_idn(CLUREF e, CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     CLUREF xa;
     CLUREF ta;
@@ -530,20 +530,20 @@ b_get_idn(CLUREF e, CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_get_idn ****/
 
 
-extern errcode b_type();
 
 /**** BEGIN PROCEDURE b_applyinfo ****/
 
+extern errcode b_type();
+
 errcode
 b_applyinfo(CLUREF e, CLUREF info, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF parms;
     CLUREF nparms;
     CLUREF t;
@@ -606,8 +606,8 @@ b_applyinfo(CLUREF e, CLUREF info, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[0]  = nparms.num;
-    T_1_1.vec->data[1]  = t.num;
+    T_1_1.vec->data[0] = nparms.num;
+    T_1_1.vec->data[1] = t.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -620,20 +620,20 @@ b_applyinfo(CLUREF e, CLUREF info, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_applyinfo ****/
 
 
-extern errcode c_envOPpush_parm();
 
 /**** BEGIN PROCEDURE b_operdecllist ****/
 
+extern errcode c_envOPpush_parm();
+
 errcode
 b_operdecllist(CLUREF e, CLUREF i, CLUREF set, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF opers;
     enter_proc(89);
 
@@ -675,8 +675,8 @@ b_operdecllist(CLUREF e, CLUREF i, CLUREF set, CLUREF *ret_1)
     CLUREF T_1_2;
     sequenceOPnew2(CLU_1, &T_1_1);
     RecordAlloc(2, T_1_2);
-    T_1_2.vec->data[1]  = opers.num;
-    T_1_2.vec->data[0]  = 0;
+    T_1_2.vec->data[1] = opers.num;
+    T_1_2.vec->data[0] = 0;
     T_1_1.vec->data[0] = T_1_2.num;
     ret_1->num = T_1_1.num;
     }
@@ -690,21 +690,21 @@ b_operdecllist(CLUREF e, CLUREF i, CLUREF set, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_operdecllist ****/
 
 
-extern errcode idnOPcreate();
-extern errcode idnOPget_str();
 
 /**** BEGIN PROCEDURE b_parameters ****/
 
+extern errcode idnOPcreate();
+extern errcode idnOPget_str();
+
 errcode
 b_parameters(CLUREF e, CLUREF parms, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF nparms;
     CLUREF i;
     enter_proc(98);
@@ -763,22 +763,22 @@ b_parameters(CLUREF e, CLUREF parms, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_parameters ****/
 
+
+
+/**** BEGIN PROCEDURE b_idnkinds ****/
 
 extern errcode idnOPset_kind();
 extern errcode oneofOPmake_6();
 extern errcode oneofOPmake_10();
 
-/**** BEGIN PROCEDURE b_idnkinds ****/
-
 errcode
 b_idnkinds(CLUREF e, CLUREF parms)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF k;
     enter_proc(106);
@@ -865,20 +865,20 @@ b_idnkinds(CLUREF e, CLUREF parms)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE b_idnkinds ****/
 
 
-extern errcode b_exprlist();
 
 /**** BEGIN PROCEDURE b_opspeclist ****/
 
+extern errcode b_exprlist();
+
 errcode
 b_opspeclist(CLUREF e, CLUREF ops, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF nops;
     CLUREF op;
     enter_proc(120);
@@ -913,15 +913,15 @@ b_opspeclist(CLUREF e, CLUREF ops, CLUREF *ret_1)
             CLUREF T_2_7;
             RecordAlloc(3, T_2_1);
             T_2_2.num = op.vec->data[0];
-            T_2_1.vec->data[0]  = T_2_2.num;
+            T_2_1.vec->data[0] = T_2_2.num;
             T_2_3.num = op.vec->data[1];
             err = b_exprlist(e, T_2_3, &T_2_4);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_4.num;
+            T_2_1.vec->data[1] = T_2_4.num;
             T_2_5.num = op.vec->data[2];
             err = b_type(e, T_2_5, &T_2_6);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[2]  = T_2_6.num;
+            T_2_1.vec->data[2] = T_2_6.num;
             err = sequenceOPaddh(nops, T_2_1, &T_2_7);
             if (err != ERR_ok) goto ex_0;
             nops.num = T_2_7.num;
@@ -945,10 +945,13 @@ b_opspeclist(CLUREF e, CLUREF ops, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_opspeclist ****/
 
+
+
+/**** BEGIN PROCEDURE b_type ****/
 
 extern errcode oneofOPmake_7();
 extern errcode b_typelist();
@@ -956,13 +959,10 @@ extern errcode recordOPget_4();
 extern errcode c_envOPget_unknown_type();
 extern errcode c_envOPget_type();
 
-/**** BEGIN PROCEDURE b_type ****/
-
 errcode
 b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF nta;
     CLUREF dut;
     CLUREF st;
@@ -998,11 +998,11 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             CLUREF T_2_5;
             RecordAlloc(2, T_2_1);
             T_2_2.num = dut.vec->data[0];
-            T_2_1.vec->data[0]  = T_2_2.num;
+            T_2_1.vec->data[0] = T_2_2.num;
             T_2_3.num = dut.vec->data[1];
             err = b_exprlist(e, T_2_3, &T_2_4);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_4.num;
+            T_2_1.vec->data[1] = T_2_4.num;
             CellAlloc(3, T_2_1.num, T_2_5);
             nta.num = T_2_5.num;
             }
@@ -1043,11 +1043,11 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
                     CLUREF T_3_5;
                     RecordAlloc(2, T_3_1);
                     T_3_2.num = parm.vec->data[0];
-                    T_3_1.vec->data[0]  = T_3_2.num;
+                    T_3_1.vec->data[0] = T_3_2.num;
                     T_3_3.num = parm.vec->data[1];
                     err = b_type(e, T_3_3, &T_3_4);
                     if (err != ERR_ok) goto ex_0;
-                    T_3_1.vec->data[1]  = T_3_4.num;
+                    T_3_1.vec->data[1] = T_3_4.num;
                     err = sequenceOPaddh(parms, T_3_1, &T_3_5);
                     if (err != ERR_ok) goto ex_0;
                     parms.num = T_3_5.num;
@@ -1063,8 +1063,8 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             CLUREF T_2_3;
             RecordAlloc(2, T_2_1);
             T_2_2.num = st.vec->data[0];
-            T_2_1.vec->data[0]  = T_2_2.num;
-            T_2_1.vec->data[1]  = parms.num;
+            T_2_1.vec->data[0] = T_2_2.num;
+            T_2_1.vec->data[1] = parms.num;
             CellAlloc(7, T_2_1.num, T_2_3);
             nta.num = T_2_3.num;
             }
@@ -1105,11 +1105,11 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
                     CLUREF T_3_5;
                     RecordAlloc(2, T_3_1);
                     T_3_2.num = sig.vec->data[0];
-                    T_3_1.vec->data[0]  = T_3_2.num;
+                    T_3_1.vec->data[0] = T_3_2.num;
                     T_3_3.num = sig.vec->data[1];
                     err = b_typelist(e, T_3_3, &T_3_4);
                     if (err != ERR_ok) goto ex_0;
-                    T_3_1.vec->data[1]  = T_3_4.num;
+                    T_3_1.vec->data[1] = T_3_4.num;
                     err = sequenceOPaddh(sigs, T_3_1, &T_3_5);
                     if (err != ERR_ok) goto ex_0;
                     sigs.num = T_3_5.num;
@@ -1129,16 +1129,16 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
             CLUREF T_2_7;
             RecordAlloc(4, T_2_1);
             T_2_2.num = at.vec->data[1];
-            T_2_1.vec->data[1]  = T_2_2.num;
+            T_2_1.vec->data[1] = T_2_2.num;
             T_2_3.num = at.vec->data[0];
             err = b_typelist(e, T_2_3, &T_2_4);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[0]  = T_2_4.num;
+            T_2_1.vec->data[0] = T_2_4.num;
             T_2_5.num = at.vec->data[3];
             err = b_typelist(e, T_2_5, &T_2_6);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[3]  = T_2_6.num;
-            T_2_1.vec->data[2]  = sigs.num;
+            T_2_1.vec->data[3] = T_2_6.num;
+            T_2_1.vec->data[2] = sigs.num;
             CellAlloc(2, T_2_1.num, T_2_7);
             nta.num = T_2_7.num;
             }
@@ -1234,11 +1234,11 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
                     CLUREF T_3_5;
                     RecordAlloc(2, T_3_1);
                     T_3_2.num = dut.vec->data[0];
-                    T_3_1.vec->data[0]  = T_3_2.num;
+                    T_3_1.vec->data[0] = T_3_2.num;
                     T_3_3.num = dut.vec->data[1];
                     err = b_exprlist(e, T_3_3, &T_3_4);
                     if (err != ERR_ok) goto ex_0;
-                    T_3_1.vec->data[1]  = T_3_4.num;
+                    T_3_1.vec->data[1] = T_3_4.num;
                     CellAlloc(1, T_3_1.num, T_3_5);
                     ot.num = T_3_5.num;
                     }
@@ -1262,13 +1262,13 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
                     T_3_2.num = cop.vec->data[2];
                     err = b_type(e, T_3_2, &T_3_3);
                     if (err != ERR_ok) goto ex_0;
-                    T_3_1.vec->data[2]  = T_3_3.num;
+                    T_3_1.vec->data[2] = T_3_3.num;
                     T_3_4.num = cop.vec->data[0];
-                    T_3_1.vec->data[0]  = T_3_4.num;
+                    T_3_1.vec->data[0] = T_3_4.num;
                     T_3_5.num = cop.vec->data[1];
                     err = b_exprlist(e, T_3_5, &T_3_6);
                     if (err != ERR_ok) goto ex_0;
-                    T_3_1.vec->data[1]  = T_3_6.num;
+                    T_3_1.vec->data[1] = T_3_6.num;
                     CellAlloc(2, T_3_1.num, T_3_7);
                     ot.num = T_3_7.num;
                     }
@@ -1331,7 +1331,7 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_type ****/
 
@@ -1339,11 +1339,11 @@ b_type(CLUREF e, CLUREF t, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE b_typelist ****/
 
+
 errcode
 b_typelist(CLUREF e, CLUREF types, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ntypes;
     CLUREF t;
     enter_proc(193);
@@ -1396,10 +1396,13 @@ b_typelist(CLUREF e, CLUREF types, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_typelist ****/
 
+
+
+/**** BEGIN PROCEDURE b_expr ****/
 
 extern errcode exprOPset_typespec();
 extern errcode exprOPget_typespec();
@@ -1411,13 +1414,10 @@ extern errcode oneofOPmake_20();
 extern errcode oneofOPmake_11();
 extern errcode exprOPcreate();
 
-/**** BEGIN PROCEDURE b_expr ****/
-
 errcode
 b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF nxa;
     CLUREF xa;
     CLUREF k;
@@ -1514,11 +1514,11 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             T_2_2.num = inv.vec->data[0];
             err = b_expr(e, T_2_2, &T_2_3);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[0]  = T_2_3.num;
+            T_2_1.vec->data[0] = T_2_3.num;
             T_2_4.num = inv.vec->data[1];
             err = b_exprlist(e, T_2_4, &T_2_5);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_5.num;
+            T_2_1.vec->data[1] = T_2_5.num;
             CellAlloc(16, T_2_1.num, T_2_6);
             nxa.num = T_2_6.num;
             }
@@ -1541,11 +1541,11 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             T_2_2.num = dut.vec->data[0];
             err = c_envOPget_du(e, T_2_2, &T_2_3);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[0]  = T_2_3.num;
+            T_2_1.vec->data[0] = T_2_3.num;
             T_2_4.num = dut.vec->data[1];
             err = b_exprlist(e, T_2_4, &T_2_5);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_5.num;
+            T_2_1.vec->data[1] = T_2_5.num;
             CellAlloc(3, T_2_1.num, T_2_6);
             nxa.num = T_2_6.num;
             }
@@ -1569,13 +1569,13 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
             T_2_2.num = cop.vec->data[2];
             err = b_type(e, T_2_2, &T_2_3);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[2]  = T_2_3.num;
+            T_2_1.vec->data[2] = T_2_3.num;
             T_2_4.num = cop.vec->data[0];
-            T_2_1.vec->data[0]  = T_2_4.num;
+            T_2_1.vec->data[0] = T_2_4.num;
             T_2_5.num = cop.vec->data[1];
             err = b_exprlist(e, T_2_5, &T_2_6);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_6.num;
+            T_2_1.vec->data[1] = T_2_6.num;
             CellAlloc(20, T_2_1.num, T_2_7);
             nxa.num = T_2_7.num;
             }
@@ -1633,7 +1633,7 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_expr ****/
 
@@ -1641,11 +1641,11 @@ b_expr(CLUREF e, CLUREF x, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE b_exprlist ****/
 
+
 errcode
 b_exprlist(CLUREF e, CLUREF exprs, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF nexprs;
     CLUREF x;
     enter_proc(235);
@@ -1698,7 +1698,7 @@ b_exprlist(CLUREF e, CLUREF exprs, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE b_exprlist ****/
 

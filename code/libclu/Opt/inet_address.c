@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE inet_address ****/
+
 extern errcode _cvt();
 extern errcode _bytevecOPindexc();
 extern errcode intOPequal();
@@ -16,13 +19,10 @@ extern errcode intOPmod();
 extern errcode intOPdiv();
 extern errcode intOPmul();
 
-/**** BEGIN PROCEDURE inet_address ****/
-
 errcode
 inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF bv;
     CLUREF a;
     CLUREF b;
@@ -38,7 +38,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
   LINE(4);
         {
             {CLUREF T_3_1;
-            T_3_1.num = spec.num;
+            T_3_1.num = (long)spec.num;
             bv.num = T_3_1.num;
             }
             }
@@ -338,7 +338,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE inet_address ****/
 

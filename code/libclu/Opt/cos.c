@@ -4,16 +4,16 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode sin();
-extern errcode realOPadd();
 
 /**** BEGIN PROCEDURE cos ****/
 
+extern errcode sin();
+extern errcode realOPadd();
+
 errcode
 cos(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(7);
 
   LINE(9);
@@ -39,7 +39,7 @@ cos(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE cos ****/
 

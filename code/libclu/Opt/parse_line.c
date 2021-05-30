@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE parse_line ****/
+
 extern errcode arrayOPnew();
 extern errcode intOPfrom_to();
 extern errcode intOPadd();
@@ -18,17 +21,14 @@ extern errcode arrayOPtrim();
 static int parse_line_own_init = 0;
 CLUREF parse_lineOPaccum;
 
-/**** BEGIN PROCEDURE parse_line ****/
-
 errcode
 parse_line(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF parts;
     CLUREF pos;
     CLUREF c;
-        if (parse_line_own_init == 0) {
+    if (parse_line_own_init == 0) {
         parse_line_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -180,7 +180,7 @@ parse_line(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE parse_line ****/
 

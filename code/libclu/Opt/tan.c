@@ -4,17 +4,17 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE tan ****/
+
 extern errcode realOPdiv();
 extern errcode sin();
 extern errcode cos();
 
-/**** BEGIN PROCEDURE tan ****/
-
 errcode
 tan(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(3);
 
   LINE(5);
@@ -60,7 +60,7 @@ tan(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE tan ****/
 

@@ -5,18 +5,18 @@
 #include "pclu_sys.h"
 
 
-CLUREF STR_PCLU;
-static int op_sys_name_own_init = 0;
 
 /**** BEGIN PROCEDURE op_sys_name ****/
 
+static CLUREF STR_PCLU;
+static int op_sys_name_own_init = 0;
+
 errcode
 op_sys_name(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (op_sys_name_own_init == 0) {
-        stringOPcons("PCLU", CLU_1, CLU_4, &STR_PCLU);
+    if (op_sys_name_own_init == 0) {
+        stringOPcons("PCLU", CLU_1, CLUREF_make_num(4), &STR_PCLU);
         op_sys_name_own_init = 1;
     }
     enter_proc(11);
@@ -36,32 +36,32 @@ op_sys_name(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE op_sys_name ****/
 
 
-extern errcode file_nameOPcreate();
-extern errcode stringOPconcat();
-extern errcode _system_root();
-CLUREF STR__057cmp;
-CLUREF STR_basic;
-CLUREF STR_types;
-CLUREF STR_;
-static int basic_name_own_init = 0;
 
 /**** BEGIN PROCEDURE basic_name ****/
 
+extern errcode file_nameOPcreate();
+extern errcode stringOPconcat();
+extern errcode _system_root();
+static CLUREF STR__057cmp;
+static CLUREF STR_basic;
+static CLUREF STR_types;
+static CLUREF STR_;
+static int basic_name_own_init = 0;
+
 errcode
 basic_name(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (basic_name_own_init == 0) {
-        stringOPcons("/cmp", CLU_1, CLU_4, &STR__057cmp);
-        stringOPcons("basic", CLU_1, CLU_5, &STR_basic);
-        stringOPcons("types", CLU_1, CLU_5, &STR_types);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (basic_name_own_init == 0) {
+        stringOPcons("/cmp", CLU_1, CLUREF_make_num(4), &STR__057cmp);
+        stringOPcons("basic", CLU_1, CLUREF_make_num(5), &STR_basic);
+        stringOPcons("types", CLU_1, CLUREF_make_num(5), &STR_types);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         basic_name_own_init = 1;
     }
     enter_proc(16);
@@ -90,23 +90,23 @@ basic_name(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE basic_name ****/
 
 
-CLUREF STR__057dev_057null;
-static int nul_dev_own_init = 0;
 
 /**** BEGIN PROCEDURE nul_dev ****/
 
+static CLUREF STR__057dev_057null;
+static int nul_dev_own_init = 0;
+
 errcode
 nul_dev(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (nul_dev_own_init == 0) {
-        stringOPcons("/dev/null", CLU_1, CLU_9, &STR__057dev_057null);
+    if (nul_dev_own_init == 0) {
+        stringOPcons("/dev/null", CLU_1, CLUREF_make_num(9), &STR__057dev_057null);
         nul_dev_own_init = 1;
     }
     enter_proc(20);
@@ -126,22 +126,22 @@ nul_dev(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE nul_dev ****/
 
 
-static int dsuffix_own_init = 0;
 
 /**** BEGIN PROCEDURE dsuffix ****/
 
+static int dsuffix_own_init = 0;
+
 errcode
 dsuffix(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (dsuffix_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (dsuffix_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         dsuffix_own_init = 1;
     }
     enter_proc(24);
@@ -161,23 +161,23 @@ dsuffix(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE dsuffix ****/
 
 
-CLUREF STR_c;
-static int binary_suffix_own_init = 0;
 
 /**** BEGIN PROCEDURE binary_suffix ****/
 
+static CLUREF STR_c;
+static int binary_suffix_own_init = 0;
+
 errcode
 binary_suffix(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (binary_suffix_own_init == 0) {
-        stringOPcons("c", CLU_1, CLU_1, &STR_c);
+    if (binary_suffix_own_init == 0) {
+        stringOPcons("c", CLU_1, CLUREF_make_num(1), &STR_c);
         binary_suffix_own_init = 1;
     }
     enter_proc(32);
@@ -197,23 +197,23 @@ binary_suffix(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE binary_suffix ****/
 
 
-CLUREF STR_equ;
-static int equate_suffix_own_init = 0;
 
 /**** BEGIN PROCEDURE equate_suffix ****/
 
+static CLUREF STR_equ;
+static int equate_suffix_own_init = 0;
+
 errcode
 equate_suffix(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (equate_suffix_own_init == 0) {
-        stringOPcons("equ", CLU_1, CLU_3, &STR_equ);
+    if (equate_suffix_own_init == 0) {
+        stringOPcons("equ", CLU_1, CLUREF_make_num(3), &STR_equ);
         equate_suffix_own_init = 1;
     }
     enter_proc(36);
@@ -233,23 +233,23 @@ equate_suffix(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equate_suffix ****/
 
 
-CLUREF STR__137c_137;
-static int code_temp_own_init = 0;
 
 /**** BEGIN PROCEDURE code_temp ****/
 
+static CLUREF STR__137c_137;
+static int code_temp_own_init = 0;
+
 errcode
 code_temp(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (code_temp_own_init == 0) {
-        stringOPcons("_c_", CLU_1, CLU_3, &STR__137c_137);
+    if (code_temp_own_init == 0) {
+        stringOPcons("_c_", CLU_1, CLUREF_make_num(3), &STR__137c_137);
         code_temp_own_init = 1;
     }
     enter_proc(40);
@@ -269,23 +269,23 @@ code_temp(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE code_temp ****/
 
 
-CLUREF STR__137b_137;
-static int bin_temp_own_init = 0;
 
 /**** BEGIN PROCEDURE bin_temp ****/
 
+static CLUREF STR__137b_137;
+static int bin_temp_own_init = 0;
+
 errcode
 bin_temp(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (bin_temp_own_init == 0) {
-        stringOPcons("_b_", CLU_1, CLU_3, &STR__137b_137);
+    if (bin_temp_own_init == 0) {
+        stringOPcons("_b_", CLU_1, CLUREF_make_num(3), &STR__137b_137);
         bin_temp_own_init = 1;
     }
     enter_proc(44);
@@ -305,28 +305,28 @@ bin_temp(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE bin_temp ****/
 
 
-CLUREF STR__057include;
-CLUREF STR_pclu_137err;
-CLUREF STR_h;
-static int err_name_own_init = 0;
 
 /**** BEGIN PROCEDURE err_name ****/
 
+static CLUREF STR__057include;
+static CLUREF STR_pclu_137err;
+static CLUREF STR_h;
+static int err_name_own_init = 0;
+
 errcode
 err_name(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (err_name_own_init == 0) {
-        stringOPcons("/include", CLU_1, CLU_8, &STR__057include);
-        stringOPcons("pclu_err", CLU_1, CLU_8, &STR_pclu_137err);
-        stringOPcons("h", CLU_1, CLU_1, &STR_h);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (err_name_own_init == 0) {
+        stringOPcons("/include", CLU_1, CLUREF_make_num(8), &STR__057include);
+        stringOPcons("pclu_err", CLU_1, CLUREF_make_num(8), &STR_pclu_137err);
+        stringOPcons("h", CLU_1, CLUREF_make_num(1), &STR_h);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         err_name_own_init = 1;
     }
     enter_proc(48);
@@ -355,26 +355,26 @@ err_name(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE err_name ****/
 
 
-CLUREF STR_system;
-CLUREF STR_names;
-static int safety_name_own_init = 0;
 
 /**** BEGIN PROCEDURE safety_name ****/
 
+static CLUREF STR_system;
+static CLUREF STR_names;
+static int safety_name_own_init = 0;
+
 errcode
 safety_name(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (safety_name_own_init == 0) {
-        stringOPcons("system", CLU_1, CLU_6, &STR_system);
-        stringOPcons("names", CLU_1, CLU_5, &STR_names);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (safety_name_own_init == 0) {
+        stringOPcons("system", CLU_1, CLUREF_make_num(6), &STR_system);
+        stringOPcons("names", CLU_1, CLUREF_make_num(5), &STR_names);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         safety_name_own_init = 1;
     }
     enter_proc(52);
@@ -400,26 +400,26 @@ safety_name(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE safety_name ****/
 
 
-CLUREF STR_clu;
-CLUREF STR_order;
-static int help_name_own_init = 0;
 
 /**** BEGIN PROCEDURE help_name ****/
 
+static CLUREF STR_clu;
+static CLUREF STR_order;
+static int help_name_own_init = 0;
+
 errcode
 help_name(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (help_name_own_init == 0) {
-        stringOPcons("clu", CLU_1, CLU_3, &STR_clu);
-        stringOPcons("order", CLU_1, CLU_5, &STR_order);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (help_name_own_init == 0) {
+        stringOPcons("clu", CLU_1, CLUREF_make_num(3), &STR_clu);
+        stringOPcons("order", CLU_1, CLUREF_make_num(5), &STR_order);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         help_name_own_init = 1;
     }
     enter_proc(56);
@@ -445,25 +445,25 @@ help_name(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE help_name ****/
 
 
-CLUREF STR_junk;
-static int junk_name_own_init = 0;
 
 /**** BEGIN PROCEDURE junk_name ****/
 
+static CLUREF STR_junk;
+static int junk_name_own_init = 0;
+
 errcode
 junk_name(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (junk_name_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("clu", CLU_1, CLU_3, &STR_clu);
-        stringOPcons("junk", CLU_1, CLU_4, &STR_junk);
+    if (junk_name_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("clu", CLU_1, CLUREF_make_num(3), &STR_clu);
+        stringOPcons("junk", CLU_1, CLUREF_make_num(4), &STR_junk);
         junk_name_own_init = 1;
     }
     enter_proc(60);
@@ -486,21 +486,21 @@ junk_name(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE junk_name ****/
 
 
-extern errcode intOPunparse();
-extern errcode _get_version();
 
 /**** BEGIN PROCEDURE get_compiler_version ****/
 
+extern errcode intOPunparse();
+extern errcode _get_version();
+
 errcode
 get_compiler_version(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(64);
 
   LINE(65);
@@ -524,24 +524,24 @@ get_compiler_version(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_compiler_version ****/
 
 
-extern errcode _restore_state();
-CLUREF STR__057cmp_057state_056;
-static int restore_compiler_own_init = 0;
 
 /**** BEGIN PROCEDURE restore_compiler ****/
 
+extern errcode _restore_state();
+static CLUREF STR__057cmp_057state_056;
+static int restore_compiler_own_init = 0;
+
 errcode
 restore_compiler()
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (restore_compiler_own_init == 0) {
-        stringOPcons("/cmp/state.", CLU_1, CLU_11, &STR__057cmp_057state_056);
+    if (restore_compiler_own_init == 0) {
+        stringOPcons("/cmp/state.", CLU_1, CLUREF_make_num(11), &STR__057cmp_057state_056);
         restore_compiler_own_init = 1;
     }
     enter_proc(68);
@@ -575,28 +575,28 @@ restore_compiler()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE restore_compiler ****/
 
+
+
+/**** BEGIN PROCEDURE dump_compiler ****/
 
 extern errcode boolOPnot();
 extern errcode stringOPequal();
 extern errcode _gcOPgc();
 extern errcode _save_state();
-CLUREF STR_0;
+static CLUREF STR_0;
 static int dump_compiler_own_init = 0;
-
-/**** BEGIN PROCEDURE dump_compiler ****/
 
 errcode
 dump_compiler(CLUREF vers)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (dump_compiler_own_init == 0) {
-        stringOPcons("0", CLU_1, CLU_1, &STR_0);
-        stringOPcons("/cmp/state.", CLU_1, CLU_11, &STR__057cmp_057state_056);
+    if (dump_compiler_own_init == 0) {
+        stringOPcons("0", CLU_1, CLUREF_make_num(1), &STR_0);
+        stringOPcons("/cmp/state.", CLU_1, CLUREF_make_num(11), &STR__057cmp_057state_056);
         dump_compiler_own_init = 1;
     }
     enter_proc(73);
@@ -606,7 +606,7 @@ dump_compiler(CLUREF vers)
     CLUREF T_1_1;
     CLUREF T_1_2;
     T_1_1.num = ((vers.str->size != STR_0.str->size)? false :
-        !(bcmp(vers.str->data, STR_0.str->data, vers.str->size)));
+        !(memcmp(vers.str->data, STR_0.str->data, vers.str->size)));
     T_1_2.num = T_1_1.num ^ 1;
     if (T_1_2.num == true) {
 
@@ -642,7 +642,7 @@ dump_compiler(CLUREF vers)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE dump_compiler ****/
 

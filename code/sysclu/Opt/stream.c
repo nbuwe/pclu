@@ -181,120 +181,119 @@ extern errcode streamOPget_name();
 extern errcode arrayOPelements();
 extern errcode streamOPclose();
 extern errcode streamOPabort();
-extern errcode stream_IB_1();
-extern errcode stream_IB_2();
-extern errcode stream_IB_3();
-extern errcode stream_IB_4();
-extern errcode stream_IB_5();
-extern errcode stream_IB_6();
-CLUREF STR_read;
-CLUREF STR_write;
-CLUREF STR_append;
-CLUREF STR_bad_040access_040mode;
-CLUREF STR__057dev;
-CLUREF STR_p;
-CLUREF STR_e;
-CLUREF STR_cannot_040read_040from_040this_040stream;
-CLUREF STR_null;
-CLUREF STR_tty;
-CLUREF STR_modify;
-CLUREF STR_;
-CLUREF STR__072co_043;
-CLUREF STR__072li_043;
-CLUREF STR__072hc_072;
-CLUREF STR__072bs_072;
-CLUREF STR__010;
-CLUREF STR__072bc_075;
-CLUREF STR__072kb_075;
-CLUREF STR__072ce_075;
-CLUREF STR__072os_072;
-CLUREF STR__072eo_072;
-CLUREF STR__072cl_075;
-CLUREF STR__012;
-CLUREF STR_cannot_040write_040to_040this_040stream;
-CLUREF STR_no_040line_040numbers;
-CLUREF STR_cannot_040get_040date;
-CLUREF STR_cannot_040set_040date;
-CLUREF STR_no_040name_040for_040string_040stream;
-CLUREF STR_not_040a_040string_040output_040stream;
-CLUREF STR__136_077;
-CLUREF STR_not_040a_040terminal_040stream;
-CLUREF STR_cannot_040rescan_040on_040this_040stream;
-CLUREF STR_input_040is_040always_040buffered;
-CLUREF STR_output_040is_040always_040buffered;
-CLUREF STR_cannot_040disable_040eof_040on_040this_040stream;
-CLUREF STR_cannot_040enable_040eof_040on_040this_040stream;
-CLUREF STR_stream_133;
-CLUREF STR__050internal_051;
-CLUREF STR_does_040not_040contain_040a_040_137chan;
+static CLUREF STR_read;
+static CLUREF STR_write;
+static CLUREF STR_append;
+static CLUREF STR_bad_040access_040mode;
+static CLUREF STR__057dev;
+static CLUREF STR_p;
+static CLUREF STR_e;
+static CLUREF STR_cannot_040read_040from_040this_040stream;
+static CLUREF STR_null;
+static CLUREF STR_tty;
+static CLUREF STR_modify;
+static CLUREF STR_;
+static CLUREF STR__072co_043;
+static CLUREF STR__072li_043;
+static CLUREF STR__072hc_072;
+static CLUREF STR__072bs_072;
+static CLUREF STR__010;
+static CLUREF STR__072bc_075;
+static CLUREF STR__072kb_075;
+static CLUREF STR__072ce_075;
+static CLUREF STR__072os_072;
+static CLUREF STR__072eo_072;
+static CLUREF STR__072cl_075;
+static CLUREF STR__012;
+static CLUREF STR_cannot_040write_040to_040this_040stream;
+static CLUREF STR_no_040line_040numbers;
+static CLUREF STR_cannot_040get_040date;
+static CLUREF STR_cannot_040set_040date;
+static CLUREF STR_no_040name_040for_040string_040stream;
+static CLUREF STR_not_040a_040string_040output_040stream;
+static CLUREF STR__136_077;
+static CLUREF STR_not_040a_040terminal_040stream;
+static CLUREF STR_cannot_040rescan_040on_040this_040stream;
+static CLUREF STR_input_040is_040always_040buffered;
+static CLUREF STR_output_040is_040always_040buffered;
+static CLUREF STR_cannot_040disable_040eof_040on_040this_040stream;
+static CLUREF STR_cannot_040enable_040eof_040on_040this_040stream;
+static CLUREF STR_stream_133;
+static CLUREF STR__050internal_051;
+static CLUREF STR_does_040not_040contain_040a_040_137chan;
 static int stream_own_init = 0;
-OWN_req stream_ownreqs = {0,0};
+const OWN_req stream_ownreqs = { 0, 0 };
 CLUREF streamOPfree;
 CLUREF streamOPfreebuf;
-errcode stream_own_init_proc()
+
+errcode
+stream_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (stream_own_init == 0) {
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons("write", CLU_1, CLU_5, &STR_write);
-        stringOPcons("append", CLU_1, CLU_6, &STR_append);
-        stringOPcons("bad access mode", CLU_1, CLU_15, &STR_bad_040access_040mode);
-        stringOPcons("/dev", CLU_1, CLU_4, &STR__057dev);
-        stringOPcons("p", CLU_1, CLU_1, &STR_p);
-        stringOPcons("e", CLU_1, CLU_1, &STR_e);
-        stringOPcons("cannot read from this stream", CLU_1, CLU_28, &STR_cannot_040read_040from_040this_040stream);
-        stringOPcons("null", CLU_1, CLU_4, &STR_null);
-        stringOPcons("tty", CLU_1, CLU_3, &STR_tty);
-        stringOPcons("modify", CLU_1, CLU_6, &STR_modify);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons(":co#", CLU_1, CLU_4, &STR__072co_043);
-        stringOPcons(":li#", CLU_1, CLU_4, &STR__072li_043);
-        stringOPcons(":hc:", CLU_1, CLU_4, &STR__072hc_072);
-        stringOPcons(":bs:", CLU_1, CLU_4, &STR__072bs_072);
-        stringOPcons("\b", CLU_1, CLU_1, &STR__010);
-        stringOPcons(":bc=", CLU_1, CLU_4, &STR__072bc_075);
-        stringOPcons(":kb=", CLU_1, CLU_4, &STR__072kb_075);
-        stringOPcons(":ce=", CLU_1, CLU_4, &STR__072ce_075);
-        stringOPcons(":os:", CLU_1, CLU_4, &STR__072os_072);
-        stringOPcons(":eo:", CLU_1, CLU_4, &STR__072eo_072);
-        stringOPcons(":cl=", CLU_1, CLU_4, &STR__072cl_075);
-        stringOPcons("\n", CLU_1, CLU_1, &STR__012);
-        stringOPcons("cannot write to this stream", CLU_1, CLU_27, &STR_cannot_040write_040to_040this_040stream);
-        stringOPcons("no line numbers", CLU_1, CLU_15, &STR_no_040line_040numbers);
-        stringOPcons("cannot get date", CLU_1, CLU_15, &STR_cannot_040get_040date);
-        stringOPcons("cannot set date", CLU_1, CLU_15, &STR_cannot_040set_040date);
-        stringOPcons("no name for string stream", CLU_1, CLU_25, &STR_no_040name_040for_040string_040stream);
-        stringOPcons("not a string output stream", CLU_1, CLU_26, &STR_not_040a_040string_040output_040stream);
-        stringOPcons("^?", CLU_1, CLU_2, &STR__136_077);
-        stringOPcons("not a terminal stream", CLU_1, CLU_21, &STR_not_040a_040terminal_040stream);
-        stringOPcons("cannot rescan on this stream", CLU_1, CLU_28, &STR_cannot_040rescan_040on_040this_040stream);
-        stringOPcons("input is always buffered", CLU_1, CLU_24, &STR_input_040is_040always_040buffered);
-        stringOPcons("output is always buffered", CLU_1, CLU_25, &STR_output_040is_040always_040buffered);
-        stringOPcons("cannot disable eof on this stream", CLU_1, CLU_33, &STR_cannot_040disable_040eof_040on_040this_040stream);
-        stringOPcons("cannot enable eof on this stream", CLU_1, CLU_32, &STR_cannot_040enable_040eof_040on_040this_040stream);
-        stringOPcons("stream[", CLU_1, CLU_7, &STR_stream_133);
-        stringOPcons("(internal)", CLU_1, CLU_10, &STR__050internal_051);
-        stringOPcons("does not contain a _chan", CLU_1, CLU_24, &STR_does_040not_040contain_040a_040_137chan);
+    if (stream_own_init == 0) {
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons("write", CLU_1, CLUREF_make_num(5), &STR_write);
+        stringOPcons("append", CLU_1, CLUREF_make_num(6), &STR_append);
+        stringOPcons("bad access mode", CLU_1, CLUREF_make_num(15), &STR_bad_040access_040mode);
+        stringOPcons("/dev", CLU_1, CLUREF_make_num(4), &STR__057dev);
+        stringOPcons("p", CLU_1, CLUREF_make_num(1), &STR_p);
+        stringOPcons("e", CLU_1, CLUREF_make_num(1), &STR_e);
+        stringOPcons("cannot read from this stream", CLU_1, CLUREF_make_num(28), &STR_cannot_040read_040from_040this_040stream);
+        stringOPcons("null", CLU_1, CLUREF_make_num(4), &STR_null);
+        stringOPcons("tty", CLU_1, CLUREF_make_num(3), &STR_tty);
+        stringOPcons("modify", CLU_1, CLUREF_make_num(6), &STR_modify);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons(":co#", CLU_1, CLUREF_make_num(4), &STR__072co_043);
+        stringOPcons(":li#", CLU_1, CLUREF_make_num(4), &STR__072li_043);
+        stringOPcons(":hc:", CLU_1, CLUREF_make_num(4), &STR__072hc_072);
+        stringOPcons(":bs:", CLU_1, CLUREF_make_num(4), &STR__072bs_072);
+        stringOPcons("\b", CLU_1, CLUREF_make_num(1), &STR__010);
+        stringOPcons(":bc=", CLU_1, CLUREF_make_num(4), &STR__072bc_075);
+        stringOPcons(":kb=", CLU_1, CLUREF_make_num(4), &STR__072kb_075);
+        stringOPcons(":ce=", CLU_1, CLUREF_make_num(4), &STR__072ce_075);
+        stringOPcons(":os:", CLU_1, CLUREF_make_num(4), &STR__072os_072);
+        stringOPcons(":eo:", CLU_1, CLUREF_make_num(4), &STR__072eo_072);
+        stringOPcons(":cl=", CLU_1, CLUREF_make_num(4), &STR__072cl_075);
+        stringOPcons("\n", CLU_1, CLUREF_make_num(1), &STR__012);
+        stringOPcons("cannot write to this stream", CLU_1, CLUREF_make_num(27), &STR_cannot_040write_040to_040this_040stream);
+        stringOPcons("no line numbers", CLU_1, CLUREF_make_num(15), &STR_no_040line_040numbers);
+        stringOPcons("cannot get date", CLU_1, CLUREF_make_num(15), &STR_cannot_040get_040date);
+        stringOPcons("cannot set date", CLU_1, CLUREF_make_num(15), &STR_cannot_040set_040date);
+        stringOPcons("no name for string stream", CLU_1, CLUREF_make_num(25), &STR_no_040name_040for_040string_040stream);
+        stringOPcons("not a string output stream", CLU_1, CLUREF_make_num(26), &STR_not_040a_040string_040output_040stream);
+        stringOPcons("^?", CLU_1, CLUREF_make_num(2), &STR__136_077);
+        stringOPcons("not a terminal stream", CLU_1, CLUREF_make_num(21), &STR_not_040a_040terminal_040stream);
+        stringOPcons("cannot rescan on this stream", CLU_1, CLUREF_make_num(28), &STR_cannot_040rescan_040on_040this_040stream);
+        stringOPcons("input is always buffered", CLU_1, CLUREF_make_num(24), &STR_input_040is_040always_040buffered);
+        stringOPcons("output is always buffered", CLU_1, CLUREF_make_num(25), &STR_output_040is_040always_040buffered);
+        stringOPcons("cannot disable eof on this stream", CLU_1, CLUREF_make_num(33), &STR_cannot_040disable_040eof_040on_040this_040stream);
+        stringOPcons("cannot enable eof on this stream", CLU_1, CLUREF_make_num(32), &STR_cannot_040enable_040eof_040on_040this_040stream);
+        stringOPcons("stream[", CLU_1, CLUREF_make_num(7), &STR_stream_133);
+        stringOPcons("(internal)", CLU_1, CLUREF_make_num(10), &STR__050internal_051);
+        stringOPcons("does not contain a _chan", CLU_1, CLUREF_make_num(24), &STR_does_040not_040contain_040a_040_137chan);
         stream_own_init = 1;
         {
             {streamOPfree.tf = false;
             }
             }
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
-static int streamOPopen_own_init = 0;
 
 /**** BEGIN PROCEDURE open ****/
 
+static int streamOPopen_own_init = 0;
+
 errcode
 streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF _can_read;
     CLUREF _can_write;
     CLUREF st;
@@ -304,11 +303,11 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
     CLUREF istty;
     CLUREF nch;
     CLUREF tb;
-        if (streamOPopen_own_init == 0) {
+    if (streamOPopen_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPopen_own_init = 1;
     }
     enter_proc(84);
@@ -317,7 +316,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         T_1_1.num = ((mode.str->size != STR_read.str->size)? false :
-            !(bcmp(mode.str->data, STR_read.str->data, mode.str->size)));
+            !(memcmp(mode.str->data, STR_read.str->data, mode.str->size)));
         _can_read.num = T_1_1.num;
         }
         }
@@ -328,11 +327,11 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         CLUREF T_1_2;
         CLUREF T_1_3;
         T_1_2.num = ((mode.str->size != STR_write.str->size)? false :
-            !(bcmp(mode.str->data, STR_write.str->data, mode.str->size)));
+            !(memcmp(mode.str->data, STR_write.str->data, mode.str->size)));
         T_1_1.num = T_1_2.num;
         if (!T_1_2.num) {
             T_1_3.num = ((mode.str->size != STR_append.str->size)? false :
-                !(bcmp(mode.str->data, STR_append.str->data, mode.str->size)));
+                !(memcmp(mode.str->data, STR_append.str->data, mode.str->size)));
             T_1_1.num = T_1_3.num;
         }
         _can_write.num = T_1_1.num;
@@ -370,7 +369,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
     err = file_nameOPget_dir(fn, &T_1_3);
     if (err != ERR_ok) goto ex_0;
     T_1_4.num = ((T_1_3.str->size != STR__057dev.str->size)? false :
-        !(bcmp(T_1_3.str->data, STR__057dev.str->data, T_1_3.str->size)));
+        !(memcmp(T_1_3.str->data, STR__057dev.str->data, T_1_3.str->size)));
     T_1_2.num = T_1_4.num;
     if (T_1_4.num) {
         err = file_nameOPget_suffix(fn, &T_1_5);
@@ -396,7 +395,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         err = file_nameOPget_name(fn, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = ((T_2_1.str->size != STR_p.str->size)? false :
-            !(bcmp(T_2_1.str->data, STR_p.str->data, T_2_1.str->size)));
+            !(memcmp(T_2_1.str->data, STR_p.str->data, T_2_1.str->size)));
         if (T_2_2.num == true) {
 
   LINE(93);
@@ -432,7 +431,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         err = file_nameOPget_name(fn, &T_2_3);
         if (err != ERR_ok) goto ex_0;
         T_2_4.num = ((T_2_3.str->size != STR_e.str->size)? false :
-            !(bcmp(T_2_3.str->data, STR_e.str->data, T_2_3.str->size)));
+            !(memcmp(T_2_3.str->data, STR_e.str->data, T_2_3.str->size)));
         if (T_2_4.num == true) {
 
   LINE(98);
@@ -462,7 +461,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         err = file_nameOPget_name(fn, &T_2_5);
         if (err != ERR_ok) goto ex_0;
         T_2_6.num = ((T_2_5.str->size != STR_null.str->size)? false :
-            !(bcmp(T_2_5.str->data, STR_null.str->data, T_2_5.str->size)));
+            !(memcmp(T_2_5.str->data, STR_null.str->data, T_2_5.str->size)));
         if (T_2_6.num == true) {
 
   LINE(102);
@@ -471,13 +470,13 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
                 CLUREF T_3_2;
                 CLUREF T_3_3;
                 RecordAlloc(4, T_3_1);
-                T_3_1.vec->data[1]  = fn.num;
+                T_3_1.vec->data[1] = fn.num;
                 err = sequenceOPnew(&T_3_2);
                 if (err != ERR_ok) goto ex_0;
-                T_3_1.vec->data[3]  = T_3_2.num;
-                T_3_1.vec->data[2]  = false;
+                T_3_1.vec->data[3] = T_3_2.num;
+                T_3_1.vec->data[2] = false;
                 CellAlloc(3, nil, T_3_3);
-                T_3_1.vec->data[0]  = T_3_3.num;
+                T_3_1.vec->data[0] = T_3_3.num;
                 st.num = T_3_1.num;
                 }
                 }
@@ -510,7 +509,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         err = file_nameOPget_name(fn, &T_2_7);
         if (err != ERR_ok) goto ex_0;
         T_2_8.num = ((T_2_7.str->size != STR_tty.str->size)? false :
-            !(bcmp(T_2_7.str->data, STR_tty.str->data, T_2_7.str->size)));
+            !(memcmp(T_2_7.str->data, STR_tty.str->data, T_2_7.str->size)));
         if (T_2_8.num == true) {
 
   LINE(109);
@@ -581,7 +580,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
     T_2_1.num = istty.num;
     if (istty.num) {
         T_2_2.num = ((mode.str->size != STR_modify.str->size)? false :
-            !(bcmp(mode.str->data, STR_modify.str->data, mode.str->size)));
+            !(memcmp(mode.str->data, STR_modify.str->data, mode.str->size)));
         T_2_3.num = T_2_2.num ^ 1;
         T_2_1.num = T_2_3.num;
     }
@@ -631,27 +630,27 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
             {CLUREF T_2_1;
             CLUREF T_2_2;
             RecordAlloc(19, T_2_1);
-            T_2_1.vec->data[1]  = bvec.num;
-            T_2_1.vec->data[4]  = 1;
-            T_2_1.vec->data[11]  = 0;
-            T_2_1.vec->data[9]  = true;
-            T_2_1.vec->data[15]  = true;
-            T_2_1.vec->data[10]  = false;
-            T_2_1.vec->data[2]  = ch.num;
+            T_2_1.vec->data[1] = bvec.num;
+            T_2_1.vec->data[4] = 1;
+            T_2_1.vec->data[11] = 0;
+            T_2_1.vec->data[9] = true;
+            T_2_1.vec->data[15] = true;
+            T_2_1.vec->data[10] = false;
+            T_2_1.vec->data[2] = ch.num;
             err = arrayOPnew(&T_2_2);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[18]  = T_2_2.num;
-            T_2_1.vec->data[5]  = false;
-            T_2_1.vec->data[7]  = false;
-            T_2_1.vec->data[8]  = true;
-            T_2_1.vec->data[13]  = 1;
-            T_2_1.vec->data[17]  = STR_.num;
-            T_2_1.vec->data[6]  = false;
-            T_2_1.vec->data[14]  = 0;
-            T_2_1.vec->data[16]  = 0;
-            T_2_1.vec->data[0]  = STR_.num;
-            T_2_1.vec->data[12]  = STR_.num;
-            T_2_1.vec->data[3]  = STR_.num;
+            T_2_1.vec->data[18] = T_2_2.num;
+            T_2_1.vec->data[5] = false;
+            T_2_1.vec->data[7] = false;
+            T_2_1.vec->data[8] = true;
+            T_2_1.vec->data[13] = 1;
+            T_2_1.vec->data[17] = STR_.num;
+            T_2_1.vec->data[6] = false;
+            T_2_1.vec->data[14] = 0;
+            T_2_1.vec->data[16] = 0;
+            T_2_1.vec->data[0] = STR_.num;
+            T_2_1.vec->data[12] = STR_.num;
+            T_2_1.vec->data[3] = STR_.num;
             tb.num = T_2_1.num;
             }
             }
@@ -667,7 +666,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = ((mode.str->size != STR_modify.str->size)? false :
-            !(bcmp(mode.str->data, STR_modify.str->data, mode.str->size)));
+            !(memcmp(mode.str->data, STR_modify.str->data, mode.str->size)));
         if (T_2_1.num == true) {
 
   LINE(148);
@@ -686,11 +685,11 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         RecordAlloc(5, T_2_1);
-        T_2_1.vec->data[0]  = bvec.num;
-        T_2_1.vec->data[2]  = 1;
-        T_2_1.vec->data[4]  = 0;
-        T_2_1.vec->data[3]  = 1;
-        T_2_1.vec->data[1]  = ch.num;
+        T_2_1.vec->data[0] = bvec.num;
+        T_2_1.vec->data[2] = 1;
+        T_2_1.vec->data[4] = 0;
+        T_2_1.vec->data[3] = 1;
+        T_2_1.vec->data[1] = ch.num;
         CellAlloc(5, T_2_1.num, T_2_2);
         b.num = T_2_2.num;
         }
@@ -702,10 +701,10 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         RecordAlloc(4, T_2_1);
-        T_2_1.vec->data[0]  = bvec.num;
-        T_2_1.vec->data[2]  = 0;
-        T_2_1.vec->data[3]  = true;
-        T_2_1.vec->data[1]  = ch.num;
+        T_2_1.vec->data[0] = bvec.num;
+        T_2_1.vec->data[2] = 0;
+        T_2_1.vec->data[3] = true;
+        T_2_1.vec->data[1] = ch.num;
         CellAlloc(7, T_2_1.num, T_2_2);
         b.num = T_2_2.num;
         }
@@ -719,12 +718,12 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         RecordAlloc(4, T_1_1);
         err = _chanOPget_name(ch, &T_1_2);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[1]  = T_1_2.num;
+        T_1_1.vec->data[1] = T_1_2.num;
         err = sequenceOPnew(&T_1_3);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[3]  = T_1_3.num;
-        T_1_1.vec->data[2]  = false;
-        T_1_1.vec->data[0]  = b.num;
+        T_1_1.vec->data[3] = T_1_3.num;
+        T_1_1.vec->data[2] = false;
+        T_1_1.vec->data[0] = b.num;
         st.num = T_1_1.num;
         }
         }
@@ -759,25 +758,25 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE open ****/
+
+
+/**** BEGIN PROCEDURE open_streams ****/
 
 static int streamOPopen_streams_own_init = 0;
 CLUREF streamOPopen_streamsOPlist;
 
-/**** BEGIN PROCEDURE open_streams ****/
-
 errcode
 streamOPopen_streams(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (streamOPopen_streams_own_init == 0) {
+    if (streamOPopen_streams_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPopen_streams_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -804,26 +803,26 @@ streamOPopen_streams(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE open_streams ****/
+
+
+/**** BEGIN PROCEDURE primary_input ****/
 
 static int streamOPprimary_input_own_init = 0;
 CLUREF streamOPprimary_inputOPpri;
 CLUREF streamOPprimary_inputOPpro;
 
-/**** BEGIN PROCEDURE primary_input ****/
-
 errcode
 streamOPprimary_input(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (streamOPprimary_input_own_init == 0) {
+    if (streamOPprimary_input_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPprimary_input_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -852,26 +851,26 @@ streamOPprimary_input(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE primary_input ****/
+
+
+/**** BEGIN PROCEDURE primary_output ****/
 
 static int streamOPprimary_output_own_init = 0;
 CLUREF streamOPprimary_outputOPpri;
 CLUREF streamOPprimary_outputOPpro;
 
-/**** BEGIN PROCEDURE primary_output ****/
-
 errcode
 streamOPprimary_output(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (streamOPprimary_output_own_init == 0) {
+    if (streamOPprimary_output_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPprimary_output_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -900,28 +899,28 @@ streamOPprimary_output(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE primary_output ****/
+
+
+/**** BEGIN PROCEDURE error_output ****/
 
 static int streamOPerror_output_own_init = 0;
 CLUREF streamOPerror_outputOPinit;
 CLUREF streamOPerror_outputOPero;
 
-/**** BEGIN PROCEDURE error_output ****/
-
 errcode
 streamOPerror_output(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ch;
     CLUREF b;
-        if (streamOPerror_output_own_init == 0) {
+    if (streamOPerror_output_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPerror_output_own_init = 1;
         {
             {streamOPerror_outputOPinit.tf = false;
@@ -955,10 +954,10 @@ streamOPerror_output(CLUREF *ret_1)
             T_2_2.num = 2048;
             err = _bytevecOPcreate(T_2_2, &T_2_3);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[0]  = T_2_3.num;
-            T_2_1.vec->data[2]  = 0;
-            T_2_1.vec->data[3]  = false;
-            T_2_1.vec->data[1]  = ch.num;
+            T_2_1.vec->data[0] = T_2_3.num;
+            T_2_1.vec->data[2] = 0;
+            T_2_1.vec->data[3] = false;
+            T_2_1.vec->data[1] = ch.num;
             CellAlloc(7, T_2_1.num, T_2_4);
             b.num = T_2_4.num;
             }
@@ -972,12 +971,12 @@ streamOPerror_output(CLUREF *ret_1)
         RecordAlloc(4, T_2_1);
         err = _chanOPget_name(ch, &T_2_2);
         if (err != ERR_ok) goto ex_0;
-        T_2_1.vec->data[1]  = T_2_2.num;
+        T_2_1.vec->data[1] = T_2_2.num;
         err = sequenceOPnew(&T_2_3);
         if (err != ERR_ok) goto ex_0;
-        T_2_1.vec->data[3]  = T_2_3.num;
-        T_2_1.vec->data[2]  = false;
-        T_2_1.vec->data[0]  = b.num;
+        T_2_1.vec->data[3] = T_2_3.num;
+        T_2_1.vec->data[2] = false;
+        T_2_1.vec->data[0] = b.num;
         streamOPerror_outputOPero.num = T_2_1.num;
         }
 
@@ -1018,32 +1017,32 @@ streamOPerror_output(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE error_output ****/
+
+
+/**** BEGIN PROCEDURE get_prims ****/
 
 static int streamOPget_prims_own_init = 0;
 CLUREF streamOPget_primsOPinit;
 CLUREF streamOPget_primsOPpri;
 CLUREF streamOPget_primsOPpro;
 
-/**** BEGIN PROCEDURE get_prims ****/
-
 errcode
 streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF chi;
     CLUREF cho;
     CLUREF opens;
     CLUREF tb;
     CLUREF b;
-        if (streamOPget_prims_own_init == 0) {
+    if (streamOPget_prims_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPget_prims_own_init = 1;
         {
             {streamOPget_primsOPinit.tf = false;
@@ -1112,27 +1111,27 @@ streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
             T_2_2.num = 1024;
             err = _bytevecOPcreate(T_2_2, &T_2_3);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_3.num;
-            T_2_1.vec->data[4]  = 1;
-            T_2_1.vec->data[11]  = 0;
-            T_2_1.vec->data[9]  = true;
-            T_2_1.vec->data[15]  = true;
-            T_2_1.vec->data[10]  = false;
-            T_2_1.vec->data[2]  = chi.num;
+            T_2_1.vec->data[1] = T_2_3.num;
+            T_2_1.vec->data[4] = 1;
+            T_2_1.vec->data[11] = 0;
+            T_2_1.vec->data[9] = true;
+            T_2_1.vec->data[15] = true;
+            T_2_1.vec->data[10] = false;
+            T_2_1.vec->data[2] = chi.num;
             err = arrayOPnew(&T_2_4);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[18]  = T_2_4.num;
-            T_2_1.vec->data[5]  = false;
-            T_2_1.vec->data[7]  = false;
-            T_2_1.vec->data[8]  = true;
-            T_2_1.vec->data[13]  = 1;
-            T_2_1.vec->data[17]  = STR_.num;
-            T_2_1.vec->data[6]  = false;
-            T_2_1.vec->data[14]  = 0;
-            T_2_1.vec->data[16]  = 0;
-            T_2_1.vec->data[0]  = STR_.num;
-            T_2_1.vec->data[12]  = STR_.num;
-            T_2_1.vec->data[3]  = STR_.num;
+            T_2_1.vec->data[18] = T_2_4.num;
+            T_2_1.vec->data[5] = false;
+            T_2_1.vec->data[7] = false;
+            T_2_1.vec->data[8] = true;
+            T_2_1.vec->data[13] = 1;
+            T_2_1.vec->data[17] = STR_.num;
+            T_2_1.vec->data[6] = false;
+            T_2_1.vec->data[14] = 0;
+            T_2_1.vec->data[16] = 0;
+            T_2_1.vec->data[0] = STR_.num;
+            T_2_1.vec->data[12] = STR_.num;
+            T_2_1.vec->data[3] = STR_.num;
             tb.num = T_2_1.num;
             }
             }
@@ -1146,13 +1145,13 @@ streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
         RecordAlloc(4, T_2_1);
         err = _chanOPget_name(chi, &T_2_2);
         if (err != ERR_ok) goto ex_0;
-        T_2_1.vec->data[1]  = T_2_2.num;
+        T_2_1.vec->data[1] = T_2_2.num;
         err = sequenceOPnew(&T_2_3);
         if (err != ERR_ok) goto ex_0;
-        T_2_1.vec->data[3]  = T_2_3.num;
-        T_2_1.vec->data[2]  = false;
+        T_2_1.vec->data[3] = T_2_3.num;
+        T_2_1.vec->data[2] = false;
         CellAlloc(6, tb.num, T_2_4);
-        T_2_1.vec->data[0]  = T_2_4.num;
+        T_2_1.vec->data[0] = T_2_4.num;
         streamOPget_primsOPpro.num = T_2_1.num;
         }
 
@@ -1206,11 +1205,11 @@ streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
         T_1_2.num = 2048;
         err = _bytevecOPcreate(T_1_2, &T_1_3);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[0]  = T_1_3.num;
-        T_1_1.vec->data[2]  = 1;
-        T_1_1.vec->data[4]  = 0;
-        T_1_1.vec->data[3]  = 1;
-        T_1_1.vec->data[1]  = chi.num;
+        T_1_1.vec->data[0] = T_1_3.num;
+        T_1_1.vec->data[2] = 1;
+        T_1_1.vec->data[4] = 0;
+        T_1_1.vec->data[3] = 1;
+        T_1_1.vec->data[1] = chi.num;
         CellAlloc(5, T_1_1.num, T_1_4);
         b.num = T_1_4.num;
         }
@@ -1224,12 +1223,12 @@ streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
     RecordAlloc(4, T_1_1);
     err = _chanOPget_name(chi, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[1]  = T_1_2.num;
+    T_1_1.vec->data[1] = T_1_2.num;
     err = sequenceOPnew(&T_1_3);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[3]  = T_1_3.num;
-    T_1_1.vec->data[2]  = false;
-    T_1_1.vec->data[0]  = b.num;
+    T_1_1.vec->data[3] = T_1_3.num;
+    T_1_1.vec->data[2] = false;
+    T_1_1.vec->data[0] = b.num;
     streamOPget_primsOPpri.num = T_1_1.num;
     }
 
@@ -1243,10 +1242,10 @@ streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
     T_1_2.num = 2048;
     err = _bytevecOPcreate(T_1_2, &T_1_3);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[0]  = T_1_3.num;
-    T_1_1.vec->data[2]  = 0;
-    T_1_1.vec->data[3]  = true;
-    T_1_1.vec->data[1]  = cho.num;
+    T_1_1.vec->data[0] = T_1_3.num;
+    T_1_1.vec->data[2] = 0;
+    T_1_1.vec->data[3] = true;
+    T_1_1.vec->data[1] = cho.num;
     CellAlloc(7, T_1_1.num, T_1_4);
     b.num = T_1_4.num;
     }
@@ -1259,12 +1258,12 @@ streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
     RecordAlloc(4, T_1_1);
     err = _chanOPget_name(cho, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[1]  = T_1_2.num;
+    T_1_1.vec->data[1] = T_1_2.num;
     err = sequenceOPnew(&T_1_3);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[3]  = T_1_3.num;
-    T_1_1.vec->data[2]  = false;
-    T_1_1.vec->data[0]  = b.num;
+    T_1_1.vec->data[3] = T_1_3.num;
+    T_1_1.vec->data[2] = false;
+    T_1_1.vec->data[0] = b.num;
     streamOPget_primsOPpro.num = T_1_1.num;
     }
 
@@ -1315,26 +1314,26 @@ streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_prims ****/
 
-static int streamOPtermcap_own_init = 0;
 
 /**** BEGIN PROCEDURE termcap ****/
 
+static int streamOPtermcap_own_init = 0;
+
 errcode
 streamOPtermcap(CLUREF b, CLUREF term)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ibaud;
     CLUREF obaud;
-        if (streamOPtermcap_own_init == 0) {
+    if (streamOPtermcap_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPtermcap_own_init = 1;
     }
     enter_proc(264);
@@ -1376,7 +1375,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
     if (err != ERR_ok) goto ex_2;
     err = intOPparse(T_2_1, &T_2_2);
     if (err != ERR_ok) goto ex_2;
-    b.vec->data[14]  = T_2_2.num;
+    b.vec->data[14] = T_2_2.num;
     }
         goto end_2;
         ex_2:
@@ -1386,7 +1385,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
 
   LINE(270);
                 {
-                b.vec->data[14]  = 0;
+                b.vec->data[14] = 0;
                 }
             }
             else {
@@ -1402,7 +1401,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
     if (err != ERR_ok) goto ex_3;
     err = intOPparse(T_2_1, &T_2_2);
     if (err != ERR_ok) goto ex_3;
-    b.vec->data[16]  = T_2_2.num;
+    b.vec->data[16] = T_2_2.num;
     }
         goto end_3;
         ex_3:
@@ -1412,7 +1411,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
 
   LINE(272);
                 {
-                b.vec->data[14]  = 0;
+                b.vec->data[14] = 0;
                 }
             }
             else {
@@ -1472,7 +1471,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
 
   LINE(278);
         {
-        b.vec->data[0]  = STR__010.num;
+        b.vec->data[0] = STR__010.num;
         }
         }
     else {
@@ -1482,7 +1481,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
         CLUREF T_4_1;
         err = _termcap(term, STR__072bc_075, CLU_0, CLU_0, &T_4_1);
         if (err != ERR_ok) goto ex_6;
-        b.vec->data[0]  = T_4_1.num;
+        b.vec->data[0] = T_4_1.num;
         }
         }}/* end if */
         goto end_6;
@@ -1494,7 +1493,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
                 CLUREF T_3_1;
                 err = _termcap(term, STR__072kb_075, CLU_0, CLU_0, &T_3_1);
                 if (err != ERR_ok) goto ex_5;
-                b.vec->data[0]  = T_3_1.num;
+                b.vec->data[0] = T_3_1.num;
                 }
             }
             else {
@@ -1515,7 +1514,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
     CLUREF T_2_1;
     err = _termcap(term, STR__072ce_075, CLU_1, obaud, &T_2_1);
     if (err != ERR_ok) goto ex_7;
-    b.vec->data[12]  = T_2_1.num;
+    b.vec->data[12] = T_2_1.num;
     }
         goto end_7;
         ex_7:
@@ -1566,7 +1565,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
                     T_3_4.num = b.vec->data[0];
                     err = stringOPconcat(T_3_3, T_3_4, &T_3_5);
                     if (err != ERR_ok) goto ex_0;
-                    b.vec->data[0]  = T_3_5.num;
+                    b.vec->data[0] = T_3_5.num;
                     }
                     }
                     }/* end if */
@@ -1583,7 +1582,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
     T_2_1.num = b.vec->data[16];
     err = _termcap(term, STR__072cl_075, T_2_1, obaud, &T_2_2);
     if (err != ERR_ok) goto ex_8;
-    b.vec->data[3]  = T_2_2.num;
+    b.vec->data[3] = T_2_2.num;
     }
         goto end_8;
         ex_8:
@@ -1625,19 +1624,19 @@ streamOPtermcap(CLUREF b, CLUREF term)
 
   LINE(296);
         {
-        b.vec->data[12]  = STR__012.num;
+        b.vec->data[12] = STR__012.num;
         }
 
   LINE(297);
         {
-        b.vec->data[3]  = STR__012.num;
+        b.vec->data[3] = STR__012.num;
         }
         }
     else {
 
   LINE(298);
         {
-        b.vec->data[6]  = true;
+        b.vec->data[6] = true;
         }
         }}/* end if */
     goto end_0;
@@ -1648,31 +1647,33 @@ streamOPtermcap(CLUREF b, CLUREF term)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE termcap ****/
 
-extern errcode streamOPadd_script_IB_1();
-extern errcode streamOPadd_script_IB_2();
 
 /**** BEGIN PROCEDURE add_script ****/
 
+extern errcode streamOPadd_script_IB_1();
+extern errcode streamOPadd_script_IB_2();
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF scr;
+    CLUREF st1;
+    CLUREF st2;
+} streamOPadd_script_LOCALS_t;
+
 errcode
 streamOPadd_script(CLUREF st1, CLUREF st2)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF scr;
-        CLUREF st1;
-        CLUREF st2;
-        } locals;
+{
+    streamOPadd_script_LOCALS_t locals;
     locals.st1 = st1;
     locals.st2 = st2;
-        if (stream_own_init == 0) {
-            locals.err = stream_own_init_proc();
-            if (locals.err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        locals.err = stream_own_init_proc();
+        if (locals.err != ERR_ok) goto ex_0;
+    }
     enter_proc(302);
 
   LINE(303);
@@ -1696,7 +1697,8 @@ streamOPadd_script(CLUREF st1, CLUREF st2)
         {
             locals.err = streamOPall_scripts(locals.st2, streamOPadd_script_IB_1, &locals, &locals.ecode2);
             if (locals.err == ERR_iterbodyreturn) {
-            signal(ERR_ok);}
+                signal(ERR_ok);
+            }
             if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
             if (locals.err == ERR_break) locals.err = ERR_ok;
             if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -1707,7 +1709,8 @@ streamOPadd_script(CLUREF st1, CLUREF st2)
         {
             locals.err = streamOPall_scripts(locals.st1, streamOPadd_script_IB_2, &locals, &locals.ecode2);
             if (locals.err == ERR_iterbodyreturn) {
-            signal(ERR_ok);}
+                signal(ERR_ok);
+            }
             if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
             if (locals.err == ERR_break) locals.err = ERR_ok;
             if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -1721,12 +1724,12 @@ streamOPadd_script(CLUREF st1, CLUREF st2)
         T_2_1.num = locals.st1.vec->data[3];
         locals.err = sequenceOPaddh(T_2_1, locals.st2, &T_2_2);
         if (locals.err != ERR_ok) goto ex_0;
-        locals.st1.vec->data[3]  = T_2_2.num;
+        locals.st1.vec->data[3] = T_2_2.num;
         }
 
   LINE(316);
         {
-        locals.st1.vec->data[2]  = true;
+        locals.st1.vec->data[2] = true;
         }
     }
     }
@@ -1739,23 +1742,15 @@ streamOPadd_script(CLUREF st1, CLUREF st2)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE add_script ****/
 
 
 /**** BEGIN ITERATOR BODIES for add_script ****/
 
-errcode streamOPadd_script_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF scr;
-    CLUREF st1;
-    CLUREF st2;
-    } *locals;
+errcode
+streamOPadd_script_IB_1(CLUREF iv_1, streamOPadd_script_LOCALS_t *locals, errcode *iecode)
 {
     locals->scr.num = iv_1.num;
     enter_iter_body_proc(308);
@@ -1779,17 +1774,10 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end streamOPadd_script_IB_1 */
-errcode streamOPadd_script_IB_2(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF scr;
-    CLUREF st1;
-    CLUREF st2;
-    } *locals;
+}   /* end streamOPadd_script_IB_1 */
+
+errcode
+streamOPadd_script_IB_2(CLUREF iv_1, streamOPadd_script_LOCALS_t *locals, errcode *iecode)
 {
     locals->scr.num = iv_1.num;
     enter_iter_body_proc(312);
@@ -1813,37 +1801,37 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end streamOPadd_script_IB_2 */
+}   /* end streamOPadd_script_IB_2 */
 
 /**** END ITERATOR BODIES for add_script ****/
 
-extern errcode streamOPall_scripts_IB_1();
 
 /**** BEGIN ITERATOR all_scripts ****/
 
+extern errcode streamOPall_scripts_IB_1();
+typedef struct {
+    void *user_locals;
+    errcode (*proc)();
+    errcode ecode2;
+    errcode err;
+    bool body_ctrl_req;
+    CLUREF scr1;
+    CLUREF scr2;
+    CLUREF st;
+} streamOPall_scripts_LOCALS_t;
+
 errcode
-streamOPall_scripts(CLUREF st, errcode (*proc)(), char **user_locals, errcode *iecode)
-    {
+streamOPall_scripts(CLUREF st, errcode (*proc)(), void *user_locals, errcode *iecode)
+{
     errcode ecode;
-    struct {
-        char **user_locals;
-        errcode (*proc)();
-        errcode err;
-        errcode ecode2;
-        bool body_ctrl_req;
-        CLUREF scr1;
-        CLUREF scr2;
-        CLUREF st;
-        } locals;
+    streamOPall_scripts_LOCALS_t locals;
     locals.st = st;
     locals.proc = proc;
     locals.user_locals = user_locals;
-    locals.user_locals = user_locals;
-    locals.proc = proc;
-        if (stream_own_init == 0) {
-            locals.err = stream_own_init_proc();
-            if (locals.err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        locals.err = stream_own_init_proc();
+        if (locals.err != ERR_ok) goto ex_0;
+    }
     enter_proc(320);
 
   LINE(321);
@@ -1906,26 +1894,15 @@ streamOPall_scripts(CLUREF st, errcode (*proc)(), char **user_locals, errcode *i
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END ITERATOR all_scripts ****/
 
 
 /**** BEGIN ITERATOR BODIES for all_scripts ****/
 
-errcode streamOPall_scripts_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    char **user_locals;
-    errcode (*proc)();
-    errcode err;
-    errcode ecode2;
-    bool body_ctrl_req;
-    CLUREF scr1;
-    CLUREF scr2;
-    CLUREF st;
-    } *locals;
+errcode
+streamOPall_scripts_IB_1(CLUREF iv_1, streamOPall_scripts_LOCALS_t *locals, errcode *iecode)
 {
     locals->scr2.num = iv_1.num;
     enter_iter_body_proc(324);
@@ -1947,25 +1924,25 @@ struct {
             locals->body_ctrl_req = true;
             {signal(ERR_iteriterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end streamOPall_scripts_IB_1 */
+}   /* end streamOPall_scripts_IB_1 */
 
 /**** END ITERATOR BODIES for all_scripts ****/
 
 
 /**** BEGIN ITERATOR scripts ****/
 
+
 errcode
-streamOPscripts(CLUREF st, errcode (*proc)(), char **user_locals, errcode *iecode)
-    {
+streamOPscripts(CLUREF st, errcode (*proc)(), void *user_locals, errcode *iecode)
+{
     errcode ecode;
     errcode err;
-    errcode ecode2;
     bool body_ctrl_req;
     CLUREF scr;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(329);
 
   LINE(330);
@@ -2002,24 +1979,24 @@ streamOPscripts(CLUREF st, errcode (*proc)(), char **user_locals, errcode *iecod
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END ITERATOR scripts ****/
 
 
 /**** BEGIN PROCEDURE rem_script ****/
 
+
 errcode
 streamOPrem_script(CLUREF st1, CLUREF st2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF scrs;
     CLUREF i;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(335);
 
   LINE(336);
@@ -2075,7 +2052,7 @@ streamOPrem_script(CLUREF st1, CLUREF st2)
                 if (err != ERR_ok) goto ex_0;
                 err = sequenceOPconcat(T_3_2, T_3_5, &T_3_6);
                 if (err != ERR_ok) goto ex_0;
-                st1.vec->data[3]  = T_3_6.num;
+                st1.vec->data[3] = T_3_6.num;
                 }
 
   LINE(341);
@@ -2087,7 +2064,7 @@ streamOPrem_script(CLUREF st1, CLUREF st2)
                 err = sequenceOPempty(T_3_1, &T_3_2);
                 if (err != ERR_ok) goto ex_0;
                 T_3_3.num = T_3_2.num ^ 1;
-                st1.vec->data[2]  = T_3_3.num;
+                st1.vec->data[2] = T_3_3.num;
                 }
 
   LINE(342);
@@ -2106,22 +2083,22 @@ streamOPrem_script(CLUREF st1, CLUREF st2)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE rem_script ****/
 
 
 /**** BEGIN PROCEDURE unscript ****/
 
+
 errcode
 streamOPunscript(CLUREF st)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(347);
 
   LINE(348);
@@ -2129,12 +2106,12 @@ streamOPunscript(CLUREF st)
     CLUREF T_1_1;
     err = sequenceOPnew(&T_1_1);
     if (err != ERR_ok) goto ex_0;
-    st.vec->data[3]  = T_1_1.num;
+    st.vec->data[3] = T_1_1.num;
     }
 
   LINE(349);
     {
-    st.vec->data[2]  = false;
+    st.vec->data[2] = false;
     }
     goto end_0;
     ex_0:
@@ -2144,22 +2121,22 @@ streamOPunscript(CLUREF st)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE unscript ****/
 
 
 /**** BEGIN PROCEDURE can_read ****/
 
+
 errcode
 streamOPcan_read(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(352);
 
   LINE(353);
@@ -2200,22 +2177,22 @@ streamOPcan_read(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE can_read ****/
 
 
 /**** BEGIN PROCEDURE can_write ****/
 
+
 errcode
 streamOPcan_write(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(361);
 
   LINE(362);
@@ -2256,29 +2233,29 @@ streamOPcan_write(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE can_write ****/
 
-static int streamOPgetc_own_init = 0;
 
 /**** BEGIN PROCEDURE getc ****/
 
+static int streamOPgetc_own_init = 0;
+
 errcode
 streamOPgetc(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF c;
     CLUREF rb;
     CLUREF index;
     CLUREF tb;
     CLUREF sb;
-        if (streamOPgetc_own_init == 0) {
+    if (streamOPgetc_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPgetc_own_init = 1;
     }
     enter_proc(370);
@@ -2318,7 +2295,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
                 T_4_2.num = rb.vec->data[0];
                 err = _chanOPgetb(T_4_1, T_4_2, &T_4_3);
                 if (err != ERR_ok) goto ex_1;
-                rb.vec->data[4]  = T_4_3.num;
+                rb.vec->data[4] = T_4_3.num;
                 }
 
   LINE(378);
@@ -2358,7 +2335,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
                      (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
-                rb.vec->data[3]  = T_4_2.num;
+                rb.vec->data[3] = T_4_2.num;
                 }
                 }
                 }/* end if */
@@ -2371,7 +2348,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
                  (T_3_1.num < 0 && index.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
-            rb.vec->data[2]  = T_3_1.num;
+            rb.vec->data[2] = T_3_1.num;
             }
             break;
             }
@@ -2446,7 +2423,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
                         {
                         CLUREF T_4_1;
                         T_4_1.ch = ' ';
-                        sb.vec->data[3]  = T_4_1.num;
+                        sb.vec->data[3] = T_4_1.num;
                         }
                     }
                     else {
@@ -2464,7 +2441,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
-            sb.vec->data[1]  = T_3_2.num;
+            sb.vec->data[1] = T_3_2.num;
             }
 
   LINE(397);
@@ -2485,7 +2462,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
                      (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
-                sb.vec->data[2]  = T_4_2.num;
+                sb.vec->data[2] = T_4_2.num;
                 }
                 }
                 }/* end if */
@@ -2552,29 +2529,29 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE getc ****/
 
-static int streamOPgetc_image_own_init = 0;
 
 /**** BEGIN PROCEDURE getc_image ****/
 
+static int streamOPgetc_image_own_init = 0;
+
 errcode
 streamOPgetc_image(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF c;
     CLUREF rb;
     CLUREF index;
     CLUREF tb;
     CLUREF sb;
-        if (streamOPgetc_image_own_init == 0) {
+    if (streamOPgetc_image_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPgetc_image_own_init = 1;
     }
     enter_proc(409);
@@ -2614,7 +2591,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
                 T_4_2.num = rb.vec->data[0];
                 err = _chanOPgetb(T_4_1, T_4_2, &T_4_3);
                 if (err != ERR_ok) goto ex_1;
-                rb.vec->data[4]  = T_4_3.num;
+                rb.vec->data[4] = T_4_3.num;
                 }
 
   LINE(417);
@@ -2654,7 +2631,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
                      (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
-                rb.vec->data[3]  = T_4_2.num;
+                rb.vec->data[3] = T_4_2.num;
                 }
                 }
                 }/* end if */
@@ -2667,7 +2644,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
                  (T_3_1.num < 0 && index.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
-            rb.vec->data[2]  = T_3_1.num;
+            rb.vec->data[2] = T_3_1.num;
             }
             break;
             }
@@ -2736,7 +2713,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
                         {
                         CLUREF T_4_1;
                         T_4_1.ch = ' ';
-                        sb.vec->data[3]  = T_4_1.num;
+                        sb.vec->data[3] = T_4_1.num;
                         }
                     }
                     else {
@@ -2754,7 +2731,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
-            sb.vec->data[1]  = T_3_2.num;
+            sb.vec->data[1] = T_3_2.num;
             }
 
   LINE(435);
@@ -2775,7 +2752,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
                      (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
-                sb.vec->data[2]  = T_4_2.num;
+                sb.vec->data[2] = T_4_2.num;
                 }
                 }
                 }/* end if */
@@ -2842,29 +2819,29 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE getc_image ****/
 
-static int streamOPpeekc_own_init = 0;
 
 /**** BEGIN PROCEDURE peekc ****/
 
+static int streamOPpeekc_own_init = 0;
+
 errcode
 streamOPpeekc(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF rb;
     CLUREF index;
     CLUREF tb;
     CLUREF c;
     CLUREF sb;
-        if (streamOPpeekc_own_init == 0) {
+    if (streamOPpeekc_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPpeekc_own_init = 1;
     }
     enter_proc(447);
@@ -2904,12 +2881,12 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
                 T_4_2.num = rb.vec->data[0];
                 err = _chanOPgetb(T_4_1, T_4_2, &T_4_3);
                 if (err != ERR_ok) goto ex_1;
-                rb.vec->data[4]  = T_4_3.num;
+                rb.vec->data[4] = T_4_3.num;
                 }
 
   LINE(454);
                 {
-                rb.vec->data[2]  = 1;
+                rb.vec->data[2] = 1;
                 }
 
   LINE(455);
@@ -3000,7 +2977,7 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
 
   LINE(465);
                     {
-                    tb.vec->data[7]  = true;
+                    tb.vec->data[7] = true;
                     }
 
   LINE(466);
@@ -3025,7 +3002,7 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
 
   LINE(469);
                 {
-                tb.vec->data[5]  = true;
+                tb.vec->data[5] = true;
                 }
                 }
                 }/* end if */
@@ -3133,23 +3110,23 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE peekc ****/
 
 
 /**** BEGIN PROCEDURE pending ****/
 
+
 errcode
 streamOPpending(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(486);
 
   LINE(487);
@@ -3233,27 +3210,27 @@ streamOPpending(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE pending ****/
 
-static int streamOPempty_own_init = 0;
 
 /**** BEGIN PROCEDURE empty ****/
 
+static int streamOPempty_own_init = 0;
+
 errcode
 streamOPempty(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF rb;
     CLUREF tb;
     CLUREF sb;
-        if (streamOPempty_own_init == 0) {
+    if (streamOPempty_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPempty_own_init = 1;
     }
     enter_proc(497);
@@ -3287,12 +3264,12 @@ streamOPempty(CLUREF st, CLUREF *ret_1)
                 T_5_2.num = rb.vec->data[0];
                 err = _chanOPgetb(T_5_1, T_5_2, &T_5_3);
                 if (err != ERR_ok) goto ex_2;
-                rb.vec->data[4]  = T_5_3.num;
+                rb.vec->data[4] = T_5_3.num;
                 }
 
   LINE(502);
                 {
-                rb.vec->data[2]  = 1;
+                rb.vec->data[2] = 1;
                 }
                 }
                 }/* end if */
@@ -3429,29 +3406,29 @@ streamOPempty(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE empty ****/
 
-static int streamOPputc_own_init = 0;
 
 /**** BEGIN PROCEDURE putc ****/
 
+static int streamOPputc_own_init = 0;
+
 errcode
 streamOPputc(CLUREF st, CLUREF c)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF wb;
     CLUREF low;
     CLUREF index;
     CLUREF tb;
     CLUREF chars;
-        if (streamOPputc_own_init == 0) {
+    if (streamOPputc_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPputc_own_init = 1;
     }
     enter_proc(520);
@@ -3494,7 +3471,7 @@ streamOPputc(CLUREF st, CLUREF c)
 
   LINE(527);
                 {
-                wb.vec->data[2]  = index.num;
+                wb.vec->data[2] = index.num;
                 }
                 }
             else {
@@ -3590,29 +3567,29 @@ streamOPputc(CLUREF st, CLUREF c)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE putc ****/
 
-static int streamOPputc_image_own_init = 0;
 
 /**** BEGIN PROCEDURE putc_image ****/
 
+static int streamOPputc_image_own_init = 0;
+
 errcode
 streamOPputc_image(CLUREF st, CLUREF c)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF wb;
     CLUREF low;
     CLUREF index;
     CLUREF tb;
     CLUREF chars;
-        if (streamOPputc_image_own_init == 0) {
+    if (streamOPputc_image_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPputc_image_own_init = 1;
     }
     enter_proc(542);
@@ -3655,7 +3632,7 @@ streamOPputc_image(CLUREF st, CLUREF c)
 
   LINE(549);
                 {
-                wb.vec->data[2]  = index.num;
+                wb.vec->data[2] = index.num;
                 }
                 }
             else {
@@ -3751,27 +3728,27 @@ streamOPputc_image(CLUREF st, CLUREF c)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE putc_image ****/
 
-static int streamOPget_lineno_own_init = 0;
 
 /**** BEGIN PROCEDURE get_lineno ****/
 
+static int streamOPget_lineno_own_init = 0;
+
 errcode
 streamOPget_lineno(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF rb;
     CLUREF tb;
     CLUREF sb;
-        if (streamOPget_lineno_own_init == 0) {
+    if (streamOPget_lineno_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPget_lineno_own_init = 1;
     }
     enter_proc(564);
@@ -3844,22 +3821,22 @@ streamOPget_lineno(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_lineno ****/
 
 
 /**** BEGIN PROCEDURE set_lineno ****/
 
+
 errcode
 streamOPset_lineno(CLUREF st, CLUREF ln)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(577);
     goto end_0;
     ex_0:
@@ -3869,27 +3846,27 @@ streamOPset_lineno(CLUREF st, CLUREF ln)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_lineno ****/
 
 
 /**** BEGIN PROCEDURE reset ****/
 
+
 errcode
 streamOPreset(CLUREF st)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF rb;
     CLUREF wb;
     CLUREF tb;
     CLUREF sb;
     CLUREF chars;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(580);
 
   LINE(581);
@@ -3912,7 +3889,7 @@ streamOPreset(CLUREF st)
 
   LINE(584);
             {
-            rb.vec->data[3]  = 1;
+            rb.vec->data[3] = 1;
             }
 
   LINE(585);
@@ -3925,7 +3902,7 @@ streamOPreset(CLUREF st)
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
-            rb.vec->data[2]  = T_3_2.num;
+            rb.vec->data[2] = T_3_2.num;
             }
             break;
             }
@@ -3944,7 +3921,7 @@ streamOPreset(CLUREF st)
 
   LINE(588);
             {
-            wb.vec->data[2]  = 0;
+            wb.vec->data[2] = 0;
             }
             break;
             }
@@ -3998,12 +3975,12 @@ streamOPreset(CLUREF st)
 
   LINE(595);
             {
-            tb.vec->data[4]  = 1;
+            tb.vec->data[4] = 1;
             }
 
   LINE(596);
             {
-            tb.vec->data[11]  = 0;
+            tb.vec->data[11] = 0;
             }
 
   LINE(597);
@@ -4024,17 +4001,17 @@ streamOPreset(CLUREF st)
 
   LINE(599);
             {
-            tb.vec->data[5]  = false;
+            tb.vec->data[5] = false;
             }
 
   LINE(600);
             {
-            tb.vec->data[7]  = false;
+            tb.vec->data[7] = false;
             }
 
   LINE(601);
             {
-            tb.vec->data[13]  = 1;
+            tb.vec->data[13] = 1;
             }
             break;
             }
@@ -4045,19 +4022,19 @@ streamOPreset(CLUREF st)
 
   LINE(603);
             {
-            sb.vec->data[1]  = 1;
+            sb.vec->data[1] = 1;
             }
 
   LINE(604);
             {
-            sb.vec->data[2]  = 1;
+            sb.vec->data[2] = 1;
             }
 
   LINE(605);
             {
             CLUREF T_3_1;
             T_3_1.ch = ' ';
-            sb.vec->data[3]  = T_3_1.num;
+            sb.vec->data[3] = T_3_1.num;
             }
 
   LINE(606);
@@ -4084,7 +4061,7 @@ streamOPreset(CLUREF st)
                 {
                 CLUREF T_5_1;
                 T_5_1.ch = '\n';
-                sb.vec->data[3]  = T_5_1.num;
+                sb.vec->data[3] = T_5_1.num;
                 }
                 }
                 }/* end if */
@@ -4131,25 +4108,25 @@ streamOPreset(CLUREF st)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE reset ****/
 
 
 /**** BEGIN PROCEDURE flush ****/
 
+
 errcode
 streamOPflush(CLUREF st)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF wb;
     CLUREF tb;
     CLUREF scr;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(615);
 
   LINE(616);
@@ -4176,7 +4153,7 @@ streamOPflush(CLUREF st)
 
   LINE(619);
             {
-            wb.vec->data[2]  = 0;
+            wb.vec->data[2] = 0;
             }
             break;
             }
@@ -4211,12 +4188,12 @@ streamOPflush(CLUREF st)
                  (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
-            tb.vec->data[4]  = T_3_2.num;
+            tb.vec->data[4] = T_3_2.num;
             }
 
   LINE(623);
             {
-            tb.vec->data[10]  = false;
+            tb.vec->data[10] = false;
             }
             break;
             }
@@ -4286,23 +4263,23 @@ streamOPflush(CLUREF st)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE flush ****/
 
 
 /**** BEGIN PROCEDURE get_line_length ****/
 
+
 errcode
 streamOPget_line_length(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(635);
 
   LINE(636);
@@ -4352,23 +4329,23 @@ streamOPget_line_length(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_line_length ****/
 
 
 /**** BEGIN PROCEDURE get_page_length ****/
 
+
 errcode
 streamOPget_page_length(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(645);
 
   LINE(646);
@@ -4418,26 +4395,26 @@ streamOPget_page_length(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_page_length ****/
 
-static int streamOPget_date_own_init = 0;
 
 /**** BEGIN PROCEDURE get_date ****/
 
+static int streamOPget_date_own_init = 0;
+
 errcode
 streamOPget_date(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF rb;
     CLUREF wb;
-        if (streamOPget_date_own_init == 0) {
+    if (streamOPget_date_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPget_date_own_init = 1;
     }
     enter_proc(655);
@@ -4507,24 +4484,24 @@ streamOPget_date(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_date ****/
 
-static int streamOPset_date_own_init = 0;
 
 /**** BEGIN PROCEDURE set_date ****/
 
+static int streamOPset_date_own_init = 0;
+
 errcode
 streamOPset_date(CLUREF st, CLUREF ndate)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (streamOPset_date_own_init == 0) {
+    if (streamOPset_date_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPset_date_own_init = 1;
     }
     enter_proc(666);
@@ -4541,24 +4518,24 @@ streamOPset_date(CLUREF st, CLUREF ndate)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_date ****/
 
-static int streamOPget_name_own_init = 0;
 
 /**** BEGIN PROCEDURE get_name ****/
 
+static int streamOPget_name_own_init = 0;
+
 errcode
 streamOPget_name(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (streamOPget_name_own_init == 0) {
+    if (streamOPget_name_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPget_name_own_init = 1;
     }
     enter_proc(670);
@@ -4600,27 +4577,27 @@ streamOPget_name(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_name ****/
 
 
 /**** BEGIN PROCEDURE close ****/
 
+
 errcode
 streamOPclose(CLUREF st)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF rb;
     CLUREF wb;
     CLUREF tb;
     CLUREF opens;
     CLUREF i;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(679);
 
   LINE(680);
@@ -4757,7 +4734,7 @@ streamOPclose(CLUREF st)
     {
     CLUREF T_1_1;
     CellAlloc(1, nil, T_1_1);
-    st.vec->data[0]  = T_1_1.num;
+    st.vec->data[0] = T_1_1.num;
     }
 
   LINE(701);
@@ -4765,12 +4742,12 @@ streamOPclose(CLUREF st)
     CLUREF T_1_1;
     err = sequenceOPnew(&T_1_1);
     if (err != ERR_ok) goto ex_0;
-    st.vec->data[3]  = T_1_1.num;
+    st.vec->data[3] = T_1_1.num;
     }
 
   LINE(702);
     {
-    st.vec->data[2]  = false;
+    st.vec->data[2] = false;
     }
 
   LINE(703);
@@ -4838,27 +4815,27 @@ streamOPclose(CLUREF st)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE close ****/
 
 
 /**** BEGIN PROCEDURE abort ****/
 
+
 errcode
 streamOPabort(CLUREF st)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF rb;
     CLUREF wb;
     CLUREF tb;
     CLUREF opens;
     CLUREF i;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(713);
 
   LINE(714);
@@ -4978,7 +4955,7 @@ streamOPabort(CLUREF st)
     {
     CLUREF T_1_1;
     CellAlloc(1, nil, T_1_1);
-    st.vec->data[0]  = T_1_1.num;
+    st.vec->data[0] = T_1_1.num;
     }
 
   LINE(732);
@@ -4986,12 +4963,12 @@ streamOPabort(CLUREF st)
     CLUREF T_1_1;
     err = sequenceOPnew(&T_1_1);
     if (err != ERR_ok) goto ex_0;
-    st.vec->data[3]  = T_1_1.num;
+    st.vec->data[3] = T_1_1.num;
     }
 
   LINE(733);
     {
-    st.vec->data[2]  = false;
+    st.vec->data[2] = false;
     }
 
   LINE(734);
@@ -5059,22 +5036,22 @@ streamOPabort(CLUREF st)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE abort ****/
 
 
 /**** BEGIN PROCEDURE is_closed ****/
 
+
 errcode
 streamOPis_closed(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(744);
 
   LINE(745);
@@ -5096,22 +5073,22 @@ streamOPis_closed(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE is_closed ****/
 
 
 /**** BEGIN PROCEDURE is_terminal ****/
 
+
 errcode
 streamOPis_terminal(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(748);
 
   LINE(749);
@@ -5133,29 +5110,29 @@ streamOPis_terminal(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE is_terminal ****/
 
-static int streamOPgetl_own_init = 0;
 
 /**** BEGIN PROCEDURE getl ****/
 
+static int streamOPgetl_own_init = 0;
+
 errcode
 streamOPgetl(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF line;
     CLUREF rb;
     CLUREF index;
     CLUREF tb;
     CLUREF sb;
-        if (streamOPgetl_own_init == 0) {
+    if (streamOPgetl_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPgetl_own_init = 1;
     }
     enter_proc(752);
@@ -5221,7 +5198,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
                  (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
-            rb.vec->data[3]  = T_2_2.num;
+            rb.vec->data[3] = T_2_2.num;
             }
 
   LINE(762);
@@ -5232,7 +5209,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
                  (T_2_1.num < 0 && index.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
-            rb.vec->data[2]  = T_2_1.num;
+            rb.vec->data[2] = T_2_1.num;
             }
             break;
             }
@@ -5273,7 +5250,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
 
   LINE(767);
                 {
-                tb.vec->data[5]  = false;
+                tb.vec->data[5] = false;
                 }
 
   LINE(768);
@@ -5298,12 +5275,12 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
 
   LINE(770);
             {
-            tb.vec->data[11]  = 0;
+            tb.vec->data[11] = 0;
             }
 
   LINE(771);
             {
-            tb.vec->data[4]  = 1;
+            tb.vec->data[4] = 1;
             }
             break;
             }
@@ -5335,7 +5312,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 T_3_1.ch = ' ';
-                sb.vec->data[3]  = T_3_1.num;
+                sb.vec->data[3] = T_3_1.num;
                 }
 
   LINE(776);
@@ -5355,7 +5332,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
                  (T_2_1.num < 0 && index.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
-            sb.vec->data[1]  = T_2_1.num;
+            sb.vec->data[1] = T_2_1.num;
             }
 
   LINE(779);
@@ -5368,7 +5345,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
                  (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
-            sb.vec->data[2]  = T_2_2.num;
+            sb.vec->data[2] = T_2_2.num;
             }
             break;
             }
@@ -5406,22 +5383,22 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE getl ****/
 
 
 /**** BEGIN PROCEDURE putl ****/
 
+
 errcode
 streamOPputl(CLUREF st, CLUREF line)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(787);
 
   LINE(788);
@@ -5455,19 +5432,19 @@ streamOPputl(CLUREF st, CLUREF line)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE putl ****/
 
-static int streamOPgets_own_init = 0;
 
 /**** BEGIN PROCEDURE gets ****/
 
+static int streamOPgets_own_init = 0;
+
 errcode
 streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF s;
     CLUREF rb;
     CLUREF index;
@@ -5475,11 +5452,11 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
     CLUREF i;
     CLUREF tb;
     CLUREF sb;
-        if (streamOPgets_own_init == 0) {
+    if (streamOPgets_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPgets_own_init = 1;
     }
     enter_proc(794);
@@ -5516,12 +5493,12 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
 
   LINE(802);
             {
-            rb.vec->data[2]  = index.num;
+            rb.vec->data[2] = index.num;
             }
 
   LINE(803);
             {
-            rb.vec->data[4]  = max.num;
+            rb.vec->data[4] = max.num;
             }
 
   LINE(804);
@@ -5565,7 +5542,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
                          (T_5_3.num < 0 && T_5_1.num > 0 && T_5_2.num > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
-                    rb.vec->data[3]  = T_5_3.num;
+                    rb.vec->data[3] = T_5_3.num;
                     }
                     }
                     }/* end if */
@@ -5714,19 +5691,19 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE gets ****/
 
-static int streamOPgets_image_own_init = 0;
 
 /**** BEGIN PROCEDURE gets_image ****/
 
+static int streamOPgets_image_own_init = 0;
+
 errcode
 streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF s;
     CLUREF rb;
     CLUREF index;
@@ -5734,11 +5711,11 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
     CLUREF i;
     CLUREF tb;
     CLUREF sb;
-        if (streamOPgets_image_own_init == 0) {
+    if (streamOPgets_image_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPgets_image_own_init = 1;
     }
     enter_proc(829);
@@ -5775,12 +5752,12 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
 
   LINE(837);
             {
-            rb.vec->data[2]  = index.num;
+            rb.vec->data[2] = index.num;
             }
 
   LINE(838);
             {
-            rb.vec->data[4]  = max.num;
+            rb.vec->data[4] = max.num;
             }
 
   LINE(839);
@@ -5824,7 +5801,7 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
                          (T_5_3.num < 0 && T_5_1.num > 0 && T_5_2.num > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
-                    rb.vec->data[3]  = T_5_3.num;
+                    rb.vec->data[3] = T_5_3.num;
                     }
                     }
                     }/* end if */
@@ -5924,23 +5901,23 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE gets_image ****/
 
 
 /**** BEGIN PROCEDURE tty_get1 ****/
 
+
 errcode
 streamOPtty_get1(CLUREF tb, CLUREF image, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF c;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(859);
 
   LINE(861);
@@ -6007,7 +5984,7 @@ streamOPtty_get1(CLUREF tb, CLUREF image, CLUREF *ret_1)
 
   LINE(868);
         {
-        tb.vec->data[5]  = false;
+        tb.vec->data[5] = false;
         }
         }
     else {
@@ -6034,7 +6011,7 @@ streamOPtty_get1(CLUREF tb, CLUREF image, CLUREF *ret_1)
 
   LINE(873);
                 {
-                tb.vec->data[7]  = true;
+                tb.vec->data[7] = true;
                 }
 
   LINE(874);
@@ -6064,7 +6041,7 @@ streamOPtty_get1(CLUREF tb, CLUREF image, CLUREF *ret_1)
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        tb.vec->data[13]  = T_2_2.num;
+        tb.vec->data[13] = T_2_2.num;
         }
 
   LINE(878);
@@ -6101,7 +6078,7 @@ streamOPtty_get1(CLUREF tb, CLUREF image, CLUREF *ret_1)
 
   LINE(881);
     {
-    tb.vec->data[7]  = true;
+    tb.vec->data[7] = true;
     }
 
   LINE(882);
@@ -6116,30 +6093,30 @@ streamOPtty_get1(CLUREF tb, CLUREF image, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE tty_get1 ****/
+
+
+/**** BEGIN PROCEDURE tty_get ****/
 
 static int streamOPtty_get_own_init = 0;
 CLUREF streamOPtty_getOPtmp;
 CLUREF streamOPtty_getOPinuse;
 
-/**** BEGIN PROCEDURE tty_get ****/
-
 errcode
 streamOPtty_get(CLUREF tb, CLUREF term, CLUREF image, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF temp;
     CLUREF used;
     CLUREF c;
     CLUREF s;
-        if (streamOPtty_get_own_init == 0) {
+    if (streamOPtty_get_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPtty_get_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -6322,28 +6299,28 @@ streamOPtty_get(CLUREF tb, CLUREF term, CLUREF image, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE tty_get ****/
 
-static int streamOPstr_get_own_init = 0;
 
 /**** BEGIN PROCEDURE str_get ****/
 
+static int streamOPstr_get_own_init = 0;
+
 errcode
 streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF first;
     CLUREF chars;
     CLUREF last;
     CLUREF s;
-        if (streamOPstr_get_own_init == 0) {
+    if (streamOPstr_get_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPstr_get_own_init = 1;
     }
     enter_proc(918);
@@ -6388,7 +6365,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
 
   LINE(924);
             {
-            sb.vec->data[1]  = last.num;
+            sb.vec->data[1] = last.num;
             }
 
   LINE(925);
@@ -6427,7 +6404,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
                  (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
-            sb.vec->data[2]  = T_4_2.num;
+            sb.vec->data[2] = T_4_2.num;
             }
             }
             }}/* end if */
@@ -6499,7 +6476,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.ch = ' ';
-        sb.vec->data[3]  = T_2_1.num;
+        sb.vec->data[3] = T_2_1.num;
         }
 
   LINE(937);
@@ -6512,7 +6489,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        sb.vec->data[2]  = T_2_2.num;
+        sb.vec->data[2] = T_2_2.num;
         }
 
   LINE(938);
@@ -6526,7 +6503,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
 
   LINE(940);
     {
-    sb.vec->data[1]  = last.num;
+    sb.vec->data[1] = last.num;
     }
 
   LINE(941);
@@ -6553,7 +6530,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.ch = ' ';
-        sb.vec->data[3]  = T_2_1.num;
+        sb.vec->data[3] = T_2_1.num;
         }
 
   LINE(944);
@@ -6566,7 +6543,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        sb.vec->data[2]  = T_2_2.num;
+        sb.vec->data[2] = T_2_2.num;
         }
 
   LINE(945);
@@ -6596,37 +6573,39 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE str_get ****/
 
-extern errcode streamOPputs_IB_1();
-static int streamOPputs_own_init = 0;
 
 /**** BEGIN PROCEDURE puts ****/
 
+extern errcode streamOPputs_IB_1();
+static int streamOPputs_own_init = 0;
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF wb;
+    CLUREF low;
+    CLUREF index;
+    CLUREF tb;
+    CLUREF chars;
+    CLUREF c;
+    CLUREF st;
+    CLUREF s;
+} streamOPputs_LOCALS_t;
+
 errcode
 streamOPputs(CLUREF st, CLUREF s)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF wb;
-        CLUREF low;
-        CLUREF index;
-        CLUREF tb;
-        CLUREF chars;
-        CLUREF c;
-        CLUREF st;
-        CLUREF s;
-        } locals;
+{
+    streamOPputs_LOCALS_t locals;
     locals.st = st;
     locals.s = s;
-        if (streamOPputs_own_init == 0) {
+    if (streamOPputs_own_init == 0) {
         if (stream_own_init == 0) {
             locals.err = stream_own_init_proc();
             if (locals.err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPputs_own_init = 1;
     }
     enter_proc(950);
@@ -6685,7 +6664,7 @@ streamOPputs(CLUREF st, CLUREF s)
 
   LINE(959);
             {
-            locals.wb.vec->data[2]  = locals.index.num;
+            locals.wb.vec->data[2] = locals.index.num;
             }
             break;
             }
@@ -6710,7 +6689,8 @@ streamOPputs(CLUREF st, CLUREF s)
             {
                 locals.err = stringOPchars(locals.s, streamOPputs_IB_1, &locals, &locals.ecode2);
                 if (locals.err == ERR_iterbodyreturn) {
-                signal(ERR_ok);}
+                    signal(ERR_ok);
+                }
                 if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
                 if (locals.err == ERR_break) locals.err = ERR_ok;
                 if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -6763,28 +6743,15 @@ streamOPputs(CLUREF st, CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE puts ****/
 
 
 /**** BEGIN ITERATOR BODIES for puts ****/
 
-errcode streamOPputs_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF wb;
-    CLUREF low;
-    CLUREF index;
-    CLUREF tb;
-    CLUREF chars;
-    CLUREF c;
-    CLUREF st;
-    CLUREF s;
-    } *locals;
+errcode
+streamOPputs_IB_1(CLUREF iv_1, streamOPputs_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
     enter_iter_body_proc(964);
@@ -6806,37 +6773,39 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end streamOPputs_IB_1 */
+}   /* end streamOPputs_IB_1 */
 
 /**** END ITERATOR BODIES for puts ****/
 
-extern errcode streamOPputs_image_IB_1();
-static int streamOPputs_image_own_init = 0;
 
 /**** BEGIN PROCEDURE puts_image ****/
 
+extern errcode streamOPputs_image_IB_1();
+static int streamOPputs_image_own_init = 0;
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF wb;
+    CLUREF low;
+    CLUREF index;
+    CLUREF tb;
+    CLUREF chars;
+    CLUREF c;
+    CLUREF st;
+    CLUREF s;
+} streamOPputs_image_LOCALS_t;
+
 errcode
 streamOPputs_image(CLUREF st, CLUREF s)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF wb;
-        CLUREF low;
-        CLUREF index;
-        CLUREF tb;
-        CLUREF chars;
-        CLUREF c;
-        CLUREF st;
-        CLUREF s;
-        } locals;
+{
+    streamOPputs_image_LOCALS_t locals;
     locals.st = st;
     locals.s = s;
-        if (streamOPputs_image_own_init == 0) {
+    if (streamOPputs_image_own_init == 0) {
         if (stream_own_init == 0) {
             locals.err = stream_own_init_proc();
             if (locals.err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPputs_image_own_init = 1;
     }
     enter_proc(974);
@@ -6876,7 +6845,7 @@ streamOPputs_image(CLUREF st, CLUREF s)
 
   LINE(980);
                 {
-                locals.wb.vec->data[2]  = locals.index.num;
+                locals.wb.vec->data[2] = locals.index.num;
                 }
                 }
             else {
@@ -6912,7 +6881,8 @@ streamOPputs_image(CLUREF st, CLUREF s)
             {
                 locals.err = stringOPchars(locals.s, streamOPputs_image_IB_1, &locals, &locals.ecode2);
                 if (locals.err == ERR_iterbodyreturn) {
-                signal(ERR_ok);}
+                    signal(ERR_ok);
+                }
                 if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
                 if (locals.err == ERR_break) locals.err = ERR_ok;
                 if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -6965,28 +6935,15 @@ streamOPputs_image(CLUREF st, CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE puts_image ****/
 
 
 /**** BEGIN ITERATOR BODIES for puts_image ****/
 
-errcode streamOPputs_image_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF wb;
-    CLUREF low;
-    CLUREF index;
-    CLUREF tb;
-    CLUREF chars;
-    CLUREF c;
-    CLUREF st;
-    CLUREF s;
-    } *locals;
+errcode
+streamOPputs_image_IB_1(CLUREF iv_1, streamOPputs_image_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
     enter_iter_body_proc(987);
@@ -7008,22 +6965,22 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end streamOPputs_image_IB_1 */
+}   /* end streamOPputs_image_IB_1 */
 
 /**** END ITERATOR BODIES for puts_image ****/
 
 
 /**** BEGIN PROCEDURE tty_put1 ****/
 
+
 errcode
 streamOPtty_put1(CLUREF tb, CLUREF c)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(997);
 
   LINE(998);
@@ -7036,12 +6993,12 @@ streamOPtty_put1(CLUREF tb, CLUREF c)
 
   LINE(999);
         {
-        tb.vec->data[11]  = 0;
+        tb.vec->data[11] = 0;
         }
 
   LINE(1000);
         {
-        tb.vec->data[4]  = 1;
+        tb.vec->data[4] = 1;
         }
         }
     else {
@@ -7056,7 +7013,7 @@ streamOPtty_put1(CLUREF tb, CLUREF c)
              (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
-        tb.vec->data[11]  = T_3_2.num;
+        tb.vec->data[11] = T_3_2.num;
         }
 
   LINE(1002);
@@ -7079,7 +7036,7 @@ streamOPtty_put1(CLUREF tb, CLUREF c)
              (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_1;}
-        tb.vec->data[4]  = T_3_2.num;
+        tb.vec->data[4] = T_3_2.num;
         }
         }}/* end if */
         goto end_1;
@@ -7096,7 +7053,7 @@ streamOPtty_put1(CLUREF tb, CLUREF c)
                      (T_2_2.num <= 0 && T_2_1.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
-                tb.vec->data[11]  = T_2_2.num;
+                tb.vec->data[11] = T_2_2.num;
                 }
             }
             else {
@@ -7111,24 +7068,24 @@ streamOPtty_put1(CLUREF tb, CLUREF c)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE tty_put1 ****/
 
 
 /**** BEGIN PROCEDURE tty_put ****/
 
+
 errcode
 streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF disp;
     CLUREF index;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1007);
 
   LINE(1009);
@@ -7167,12 +7124,12 @@ streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        tb.vec->data[4]  = T_2_2.num;
+        tb.vec->data[4] = T_2_2.num;
         }
 
   LINE(1012);
         {
-        tb.vec->data[10]  = image.num;
+        tb.vec->data[10] = image.num;
         }
         }
         }/* end if */
@@ -7204,7 +7161,7 @@ streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
 
   LINE(1017);
     {
-    tb.vec->data[11]  = index.num;
+    tb.vec->data[11] = index.num;
     }
 
   LINE(1018);
@@ -7240,7 +7197,7 @@ streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
 
   LINE(1022);
     {
-    tb.vec->data[4]  = disp.num;
+    tb.vec->data[4] = disp.num;
     }
     goto end_0;
     ex_0:
@@ -7250,34 +7207,36 @@ streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE tty_put ****/
 
-extern errcode streamOPputzero_IB_1();
 
 /**** BEGIN PROCEDURE putzero ****/
 
+extern errcode streamOPputzero_IB_1();
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF not_inserted;
+    CLUREF diff;
+    CLUREF c;
+    CLUREF st;
+    CLUREF s;
+    CLUREF size;
+} streamOPputzero_LOCALS_t;
+
 errcode
 streamOPputzero(CLUREF st, CLUREF s, CLUREF size)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF not_inserted;
-        CLUREF diff;
-        CLUREF c;
-        CLUREF st;
-        CLUREF s;
-        CLUREF size;
-        } locals;
+{
+    streamOPputzero_LOCALS_t locals;
     locals.st = st;
     locals.s = s;
     locals.size = size;
-        if (stream_own_init == 0) {
-            locals.err = stream_own_init_proc();
-            if (locals.err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        locals.err = stream_own_init_proc();
+        if (locals.err != ERR_ok) goto ex_0;
+    }
     enter_proc(1025);
 
   LINE(1027);
@@ -7317,7 +7276,8 @@ streamOPputzero(CLUREF st, CLUREF s, CLUREF size)
     {
         locals.err = stringOPchars(locals.s, streamOPputzero_IB_1, &locals, &locals.ecode2);
         if (locals.err == ERR_iterbodyreturn) {
-        signal(ERR_ok);}
+            signal(ERR_ok);
+        }
         if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
         if (locals.err == ERR_break) locals.err = ERR_ok;
         if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -7376,26 +7336,15 @@ streamOPputzero(CLUREF st, CLUREF s, CLUREF size)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE putzero ****/
 
 
 /**** BEGIN ITERATOR BODIES for putzero ****/
 
-errcode streamOPputzero_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF not_inserted;
-    CLUREF diff;
-    CLUREF c;
-    CLUREF st;
-    CLUREF s;
-    CLUREF size;
-    } *locals;
+errcode
+streamOPputzero_IB_1(CLUREF iv_1, streamOPputzero_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
     enter_iter_body_proc(1032);
@@ -7478,23 +7427,23 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end streamOPputzero_IB_1 */
+}   /* end streamOPputzero_IB_1 */
 
 /**** END ITERATOR BODIES for putzero ****/
 
 
 /**** BEGIN PROCEDURE putleft ****/
 
+
 errcode
 streamOPputleft(CLUREF st, CLUREF s, CLUREF size)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF diff;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1052);
 
   LINE(1054);
@@ -7561,23 +7510,23 @@ streamOPputleft(CLUREF st, CLUREF s, CLUREF size)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE putleft ****/
 
 
 /**** BEGIN PROCEDURE putright ****/
 
+
 errcode
 streamOPputright(CLUREF st, CLUREF s, CLUREF size)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF diff;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1064);
 
   LINE(1066);
@@ -7644,22 +7593,22 @@ streamOPputright(CLUREF st, CLUREF s, CLUREF size)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE putright ****/
 
 
 /**** BEGIN PROCEDURE putspace ****/
 
+
 errcode
 streamOPputspace(CLUREF st, CLUREF len)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1076);
 
   LINE(1078);
@@ -7714,25 +7663,25 @@ streamOPputspace(CLUREF st, CLUREF len)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE putspace ****/
 
-static int streamOPcreate_input_own_init = 0;
 
 /**** BEGIN PROCEDURE create_input ****/
 
+static int streamOPcreate_input_own_init = 0;
+
 errcode
 streamOPcreate_input(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF newln;
-        if (streamOPcreate_input_own_init == 0) {
+    if (streamOPcreate_input_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPcreate_input_own_init = 1;
     }
     enter_proc(1087);
@@ -7789,18 +7738,18 @@ streamOPcreate_input(CLUREF s, CLUREF *ret_1)
     RecordAlloc(4, T_1_1);
     err = file_nameOPparse(STR_, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[1]  = T_1_2.num;
+    T_1_1.vec->data[1] = T_1_2.num;
     err = sequenceOPnew(&T_1_3);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[3]  = T_1_3.num;
-    T_1_1.vec->data[2]  = false;
+    T_1_1.vec->data[3] = T_1_3.num;
+    T_1_1.vec->data[2] = false;
     RecordAlloc(4, T_1_4);
-    T_1_4.vec->data[0]  = s.num;
-    T_1_4.vec->data[1]  = 1;
-    T_1_4.vec->data[2]  = 1;
-    T_1_4.vec->data[3]  = newln.num;
+    T_1_4.vec->data[0] = s.num;
+    T_1_4.vec->data[1] = 1;
+    T_1_4.vec->data[2] = 1;
+    T_1_4.vec->data[3] = newln.num;
     CellAlloc(2, T_1_4.num, T_1_5);
-    T_1_1.vec->data[0]  = T_1_5.num;
+    T_1_1.vec->data[0] = T_1_5.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -7813,24 +7762,24 @@ streamOPcreate_input(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create_input ****/
 
-static int streamOPcreate_output_own_init = 0;
 
 /**** BEGIN PROCEDURE create_output ****/
 
+static int streamOPcreate_output_own_init = 0;
+
 errcode
 streamOPcreate_output(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (streamOPcreate_output_own_init == 0) {
+    if (streamOPcreate_output_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPcreate_output_own_init = 1;
     }
     enter_proc(1101);
@@ -7846,15 +7795,15 @@ streamOPcreate_output(CLUREF *ret_1)
     RecordAlloc(4, T_1_1);
     err = file_nameOPparse(STR_, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[1]  = T_1_2.num;
+    T_1_1.vec->data[1] = T_1_2.num;
     err = sequenceOPnew(&T_1_3);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[3]  = T_1_3.num;
-    T_1_1.vec->data[2]  = false;
+    T_1_1.vec->data[3] = T_1_3.num;
+    T_1_1.vec->data[2] = false;
     err = arrayOPnew(&T_1_4);
     if (err != ERR_ok) goto ex_0;
     CellAlloc(4, T_1_4.num, T_1_5);
-    T_1_1.vec->data[0]  = T_1_5.num;
+    T_1_1.vec->data[0] = T_1_5.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -7867,25 +7816,25 @@ streamOPcreate_output(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create_output ****/
 
-static int streamOPget_contents_own_init = 0;
 
 /**** BEGIN PROCEDURE get_contents ****/
 
+static int streamOPget_contents_own_init = 0;
+
 errcode
 streamOPget_contents(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF chars;
-        if (streamOPget_contents_own_init == 0) {
+    if (streamOPget_contents_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPget_contents_own_init = 1;
     }
     enter_proc(1108);
@@ -7929,19 +7878,19 @@ streamOPget_contents(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_contents ****/
 
-static int streamOPgetbuf_own_init = 0;
 
 /**** BEGIN PROCEDURE getbuf ****/
 
+static int streamOPgetbuf_own_init = 0;
+
 errcode
 streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF s;
     CLUREF rb;
     CLUREF index;
@@ -7949,11 +7898,11 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
     CLUREF i;
     CLUREF tb;
     CLUREF sb;
-        if (streamOPgetbuf_own_init == 0) {
+    if (streamOPgetbuf_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPgetbuf_own_init = 1;
     }
     enter_proc(1117);
@@ -7990,12 +7939,12 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
 
   LINE(1125);
             {
-            rb.vec->data[2]  = index.num;
+            rb.vec->data[2] = index.num;
             }
 
   LINE(1126);
             {
-            rb.vec->data[4]  = max.num;
+            rb.vec->data[4] = max.num;
             }
 
   LINE(1127);
@@ -8039,7 +7988,7 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
                          (T_5_3.num < 0 && T_5_1.num > 0 && T_5_2.num > 0)) {
                         err = ERR_overflow;
                         goto ex_1;}
-                    rb.vec->data[3]  = T_5_3.num;
+                    rb.vec->data[3] = T_5_3.num;
                     }
                     }
                     }/* end if */
@@ -8171,23 +8120,23 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE getbuf ****/
 
 
 /**** BEGIN PROCEDURE lines ****/
 
+
 errcode
 streamOPlines(CLUREF s, CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF cnt;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1149);
 
   LINE(1150);
@@ -8220,7 +8169,7 @@ streamOPlines(CLUREF s, CLUREF i, CLUREF *ret_1)
         CLUREF T_2_3;
         CLUREF T_2_4;
         T_2_1.ch = '\n';
-        T_2_2.num = s.num;
+        T_2_2.num = (long)s.num;
         T_2_3.num = i.num + 1;
          if ((T_2_3.num > 0 && i.num < 0 && 1 < 0) ||
              (T_2_3.num < 0 && i.num > 0 && 1 > 0)) {
@@ -8248,23 +8197,23 @@ streamOPlines(CLUREF s, CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE lines ****/
 
 
 /**** BEGIN PROCEDURE script ****/
 
+
 errcode
 streamOPscript(CLUREF st, CLUREF s, CLUREF image)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF scr;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1158);
 
   LINE(1159);
@@ -8316,19 +8265,19 @@ streamOPscript(CLUREF st, CLUREF s, CLUREF image)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE script ****/
 
-static int streamOPedit_own_init = 0;
 
 /**** BEGIN PROCEDURE edit ****/
 
+static int streamOPedit_own_init = 0;
+
 errcode
 streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ch;
     CLUREF bvec;
     CLUREF redisp;
@@ -8339,11 +8288,11 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
     CLUREF lag;
     CLUREF max;
     CLUREF i;
-        if (streamOPedit_own_init == 0) {
+    if (streamOPedit_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPedit_own_init = 1;
     }
     enter_proc(1167);
@@ -8411,7 +8360,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
         T_2_1.num = tb.vec->data[17];
         err = stringOPsize(T_2_1, &T_2_2);
         if (err != ERR_ok) goto ex_0;
-        tb.vec->data[11]  = T_2_2.num;
+        tb.vec->data[11] = T_2_2.num;
         }
 
   LINE(1177);
@@ -8420,7 +8369,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
         CLUREF T_2_2;
         CLUREF T_2_3;
         T_2_1.num = tb.vec->data[17];
-        T_2_2.num = T_2_1.str;
+        T_2_2.num = (long)T_2_1.str;
         T_2_3.num = tb.vec->data[11];
         err = _bytevecOPmove_lr(T_2_2, CLU_1, bvec, CLU_1, T_2_3);
         if (err != ERR_ok) goto ex_0;
@@ -8453,7 +8402,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = tb.vec->data[11];
-    tb.vec->data[4]  = T_1_1.num;
+    tb.vec->data[4] = T_1_1.num;
     }
 
   LINE(1185);
@@ -8637,7 +8586,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
 
   LINE(1210);
             {
-            tb.vec->data[5]  = false;
+            tb.vec->data[5] = false;
             }
             }
         else {
@@ -8674,7 +8623,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                  (T_5_2.num < 0 && T_5_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
-            tb.vec->data[13]  = T_5_2.num;
+            tb.vec->data[13] = T_5_2.num;
             }
             }
             }/* end if */
@@ -8690,7 +8639,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
 
   LINE(1217);
             {
-            tb.vec->data[5]  = doecho.num;
+            tb.vec->data[5] = doecho.num;
             }
 
   LINE(1218);
@@ -8762,7 +8711,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
             {
             CLUREF T_5_1;
             T_5_1.num = tb.vec->data[11];
-            tb.vec->data[4]  = T_5_1.num;
+            tb.vec->data[4] = T_5_1.num;
             }
 
   LINE(1230);
@@ -8892,7 +8841,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                  (T_5_2.num < 0 && T_5_1.num > 0 && 1 > 0)) {
                 err = ERR_overflow;
                 goto ex_2;}
-            tb.vec->data[4]  = T_5_2.num;
+            tb.vec->data[4] = T_5_2.num;
             }
 
   LINE(1251);
@@ -8917,7 +8866,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
 
   LINE(1256);
                 {
-                tb.vec->data[7]  = true;
+                tb.vec->data[7] = true;
                 }
 
   LINE(1257);
@@ -8940,7 +8889,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                          (T_3_2.num < 0 && T_3_1.num > 0 && 1 > 0)) {
                         err = ERR_overflow;
                         goto ex_0;}
-                    tb.vec->data[4]  = T_3_2.num;
+                    tb.vec->data[4] = T_3_2.num;
                     }
 
   LINE(1259);
@@ -9034,7 +8983,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                 CLUREF T_3_2;
                 CLUREF T_3_3;
                 CLUREF T_3_4;
-                T_3_1.num = bvec.num;
+                T_3_1.num = (long)bvec.num;
                 T_3_2.num = i.num - lag.num;
                  if ((T_3_2.num >= 0 && i.num < 0 && (-lag.num) < 0) ||
                      (T_3_2.num <= 0 && i.num > 0 && (-lag.num) > 0)) {
@@ -9108,7 +9057,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
              (T_2_1.num <= 0 && max.num > 0 && (-nl.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        tb.vec->data[11]  = T_2_1.num;
+        tb.vec->data[11] = T_2_1.num;
         }
 
   LINE(1280);
@@ -9129,7 +9078,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        tb.vec->data[4]  = T_2_2.num;
+        tb.vec->data[4] = T_2_2.num;
         }
         }
     else {
@@ -9138,12 +9087,12 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = tb.vec->data[4];
-        tb.vec->data[11]  = T_2_1.num;
+        tb.vec->data[11] = T_2_1.num;
         }
 
   LINE(1283);
         {
-        tb.vec->data[4]  = max.num;
+        tb.vec->data[4] = max.num;
         }
         }}/* end if */
 
@@ -9168,24 +9117,24 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE edit ****/
 
-static int streamOPecho_own_init = 0;
 
 /**** BEGIN PROCEDURE echo ****/
 
+static int streamOPecho_own_init = 0;
+
 errcode
 streamOPecho(CLUREF ch, CLUREF c)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (streamOPecho_own_init == 0) {
+    if (streamOPecho_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPecho_own_init = 1;
     }
     enter_proc(1289);
@@ -9361,25 +9310,25 @@ streamOPecho(CLUREF ch, CLUREF c)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE echo ****/
 
 
 /**** BEGIN PROCEDURE rubout ****/
 
+
 errcode
 streamOPrubout(CLUREF tb, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF c;
     CLUREF cnt;
     CLUREF i;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1307);
 
   LINE(1308);
@@ -9426,7 +9375,7 @@ streamOPrubout(CLUREF tb, CLUREF *ret_1)
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    tb.vec->data[4]  = T_1_2.num;
+    tb.vec->data[4] = T_1_2.num;
     }
 
   LINE(1312);
@@ -9627,28 +9576,28 @@ streamOPrubout(CLUREF tb, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE rubout ****/
 
 
 /**** BEGIN PROCEDURE erase ****/
 
+
 errcode
 streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF redisp;
     CLUREF pre;
     CLUREF post;
     CLUREF c;
     CLUREF wchar;
     CLUREF i;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1336);
 
   LINE(1337);
@@ -9766,7 +9715,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
             {
             CLUREF T_3_1;
             T_3_1.num = tb.vec->data[11];
-            tb.vec->data[4]  = T_3_1.num;
+            tb.vec->data[4] = T_3_1.num;
             }
 
   LINE(1350);
@@ -9782,7 +9731,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = tb.vec->data[11];
-        tb.vec->data[4]  = T_2_1.num;
+        tb.vec->data[4] = T_2_1.num;
         }
 
   LINE(1353);
@@ -9843,7 +9792,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
                      (T_4_2.num <= 0 && T_4_1.num > 0 && (-1) > 0)) {
                     err = ERR_overflow;
                     goto ex_0;}
-                tb.vec->data[4]  = T_4_2.num;
+                tb.vec->data[4] = T_4_2.num;
                 }
 
   LINE(1359);
@@ -9964,7 +9913,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
                  (T_3_2.num <= 0 && T_3_1.num > 0 && (-1) > 0)) {
                 err = ERR_overflow;
                 goto ex_0;}
-            tb.vec->data[4]  = T_3_2.num;
+            tb.vec->data[4] = T_3_2.num;
             }
             }
             end_while_1:;
@@ -10073,25 +10022,25 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE erase ****/
 
 
 /**** BEGIN PROCEDURE calc_pos ****/
 
+
 errcode
 streamOPcalc_pos(CLUREF tb, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF pos;
     CLUREF i;
     CLUREF c;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1388);
 
   LINE(1389);
@@ -10233,25 +10182,25 @@ streamOPcalc_pos(CLUREF tb, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE calc_pos ****/
 
-static int streamOPdisplay_own_init = 0;
 
 /**** BEGIN PROCEDURE display ****/
 
+static int streamOPdisplay_own_init = 0;
+
 errcode
 streamOPdisplay(CLUREF st, CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
-        if (streamOPdisplay_own_init == 0) {
+    if (streamOPdisplay_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPdisplay_own_init = 1;
     }
     enter_proc(1403);
@@ -10324,25 +10273,25 @@ streamOPdisplay(CLUREF st, CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE display ****/
 
-static int streamOPmodify_display_own_init = 0;
 
 /**** BEGIN PROCEDURE modify_display ****/
 
+static int streamOPmodify_display_own_init = 0;
+
 errcode
 streamOPmodify_display(CLUREF st, CLUREF term)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
-        if (streamOPmodify_display_own_init == 0) {
+    if (streamOPmodify_display_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPmodify_display_own_init = 1;
     }
     enter_proc(1416);
@@ -10359,22 +10308,22 @@ streamOPmodify_display(CLUREF st, CLUREF term)
 
   LINE(1419);
             {
-            tb.vec->data[6]  = false;
+            tb.vec->data[6] = false;
             }
 
   LINE(1420);
             {
-            tb.vec->data[0]  = STR_.num;
+            tb.vec->data[0] = STR_.num;
             }
 
   LINE(1421);
             {
-            tb.vec->data[12]  = STR_.num;
+            tb.vec->data[12] = STR_.num;
             }
 
   LINE(1422);
             {
-            tb.vec->data[3]  = STR_.num;
+            tb.vec->data[3] = STR_.num;
             }
 
   LINE(1423);
@@ -10401,26 +10350,26 @@ streamOPmodify_display(CLUREF st, CLUREF term)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE modify_display ****/
 
 
 /**** BEGIN PROCEDURE ttydsp ****/
 
+
 errcode
 streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ch;
     CLUREF i;
     CLUREF max;
     CLUREF c;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1429);
 
   LINE(1430);
@@ -10631,25 +10580,25 @@ streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE ttydsp ****/
 
-static int streamOPget_prompt_own_init = 0;
 
 /**** BEGIN PROCEDURE get_prompt ****/
 
+static int streamOPget_prompt_own_init = 0;
+
 errcode
 streamOPget_prompt(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
-        if (streamOPget_prompt_own_init == 0) {
+    if (streamOPget_prompt_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPget_prompt_own_init = 1;
     }
     enter_proc(1457);
@@ -10694,23 +10643,23 @@ streamOPget_prompt(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_prompt ****/
 
 
 /**** BEGIN PROCEDURE set_prompt ****/
 
+
 errcode
 streamOPset_prompt(CLUREF st, CLUREF prompt)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1466);
 
   LINE(1467);
@@ -10725,7 +10674,7 @@ streamOPset_prompt(CLUREF st, CLUREF prompt)
 
   LINE(1469);
             {
-            tb.vec->data[17]  = prompt.num;
+            tb.vec->data[17] = prompt.num;
             }
             break;
             }
@@ -10741,26 +10690,26 @@ streamOPset_prompt(CLUREF st, CLUREF prompt)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_prompt ****/
 
-static int streamOPget_rescan_own_init = 0;
 
 /**** BEGIN PROCEDURE get_rescan ****/
 
+static int streamOPget_rescan_own_init = 0;
+
 errcode
 streamOPget_rescan(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
     CLUREF s;
-        if (streamOPget_rescan_own_init == 0) {
+    if (streamOPget_rescan_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPget_rescan_own_init = 1;
     }
     enter_proc(1474);
@@ -10830,26 +10779,26 @@ streamOPget_rescan(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_rescan ****/
 
-static int streamOPset_rescan_own_init = 0;
 
 /**** BEGIN PROCEDURE set_rescan ****/
 
+static int streamOPset_rescan_own_init = 0;
+
 errcode
 streamOPset_rescan(CLUREF st, CLUREF s)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
     CLUREF scan;
-        if (streamOPset_rescan_own_init == 0) {
+    if (streamOPset_rescan_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPset_rescan_own_init = 1;
     }
     enter_proc(1486);
@@ -10894,7 +10843,7 @@ streamOPset_rescan(CLUREF st, CLUREF s)
 
   LINE(1492);
             {
-            tb.vec->data[18]  = scan.num;
+            tb.vec->data[18] = scan.num;
             }
             break;
             }
@@ -10915,23 +10864,23 @@ streamOPset_rescan(CLUREF st, CLUREF s)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_rescan ****/
 
 
 /**** BEGIN PROCEDURE get_input_buffered ****/
 
+
 errcode
 streamOPget_input_buffered(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1498);
 
   LINE(1499);
@@ -10991,25 +10940,25 @@ streamOPget_input_buffered(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_input_buffered ****/
 
-static int streamOPset_input_buffered_own_init = 0;
 
 /**** BEGIN PROCEDURE set_input_buffered ****/
 
+static int streamOPset_input_buffered_own_init = 0;
+
 errcode
 streamOPset_input_buffered(CLUREF st, CLUREF flag)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
-        if (streamOPset_input_buffered_own_init == 0) {
+    if (streamOPset_input_buffered_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPset_input_buffered_own_init = 1;
     }
     enter_proc(1509);
@@ -11045,7 +10994,7 @@ streamOPset_input_buffered(CLUREF st, CLUREF flag)
 
   LINE(1515);
             {
-            tb.vec->data[9]  = flag.num;
+            tb.vec->data[9] = flag.num;
             }
             break;
             }
@@ -11070,24 +11019,24 @@ streamOPset_input_buffered(CLUREF st, CLUREF flag)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_input_buffered ****/
 
 
 /**** BEGIN PROCEDURE get_output_buffered ****/
 
+
 errcode
 streamOPget_output_buffered(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF wb;
     CLUREF tb;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1521);
 
   LINE(1522);
@@ -11161,26 +11110,26 @@ streamOPget_output_buffered(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_output_buffered ****/
 
-static int streamOPset_output_buffered_own_init = 0;
 
 /**** BEGIN PROCEDURE set_output_buffered ****/
 
+static int streamOPset_output_buffered_own_init = 0;
+
 errcode
 streamOPset_output_buffered(CLUREF st, CLUREF flag)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF wb;
     CLUREF tb;
-        if (streamOPset_output_buffered_own_init == 0) {
+    if (streamOPset_output_buffered_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPset_output_buffered_own_init = 1;
     }
     enter_proc(1534);
@@ -11218,7 +11167,7 @@ streamOPset_output_buffered(CLUREF st, CLUREF flag)
 
   LINE(1539);
             {
-            wb.vec->data[3]  = flag.num;
+            wb.vec->data[3] = flag.num;
             }
             break;
             }
@@ -11250,7 +11199,7 @@ streamOPset_output_buffered(CLUREF st, CLUREF flag)
 
   LINE(1543);
             {
-            tb.vec->data[15]  = flag.num;
+            tb.vec->data[15] = flag.num;
             }
             break;
             }
@@ -11291,23 +11240,23 @@ streamOPset_output_buffered(CLUREF st, CLUREF flag)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_output_buffered ****/
 
 
 /**** BEGIN PROCEDURE get_eof_flag ****/
 
+
 errcode
 streamOPget_eof_flag(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1551);
 
   LINE(1552);
@@ -11363,25 +11312,25 @@ streamOPget_eof_flag(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_eof_flag ****/
 
-static int streamOPset_eof_flag_own_init = 0;
 
 /**** BEGIN PROCEDURE set_eof_flag ****/
 
+static int streamOPset_eof_flag_own_init = 0;
+
 errcode
 streamOPset_eof_flag(CLUREF st, CLUREF eofok)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF tb;
-        if (streamOPset_eof_flag_own_init == 0) {
+    if (streamOPset_eof_flag_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPset_eof_flag_own_init = 1;
     }
     enter_proc(1562);
@@ -11398,7 +11347,7 @@ streamOPset_eof_flag(CLUREF st, CLUREF eofok)
 
   LINE(1565);
             {
-            tb.vec->data[8]  = eofok.num;
+            tb.vec->data[8] = eofok.num;
             }
             break;
             }
@@ -11444,22 +11393,22 @@ streamOPset_eof_flag(CLUREF st, CLUREF eofok)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_eof_flag ****/
 
 
 /**** BEGIN PROCEDURE equal ****/
 
+
 errcode
 streamOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1577);
 
   LINE(1578);
@@ -11479,22 +11428,22 @@ streamOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
 
 
 /**** BEGIN PROCEDURE similar ****/
 
+
 errcode
 streamOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1581);
 
   LINE(1582);
@@ -11514,22 +11463,22 @@ streamOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 streamOPcopy(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1585);
 
   LINE(1586);
@@ -11547,24 +11496,24 @@ streamOPcopy(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
 
-static int streamOPprint_own_init = 0;
 
 /**** BEGIN PROCEDURE print ****/
 
+static int streamOPprint_own_init = 0;
+
 errcode
 streamOPprint(CLUREF x, CLUREF ps)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (streamOPprint_own_init == 0) {
+    if (streamOPprint_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPprint_own_init = 1;
     }
     enter_proc(1589);
@@ -11679,27 +11628,27 @@ streamOPprint(CLUREF x, CLUREF ps)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE print ****/
 
-static int streamOPget_chan_own_init = 0;
 
 /**** BEGIN PROCEDURE get_chan ****/
 
+static int streamOPget_chan_own_init = 0;
+
 errcode
 streamOPget_chan(CLUREF st, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF rb;
     CLUREF wb;
     CLUREF tb;
-        if (streamOPget_chan_own_init == 0) {
+    if (streamOPget_chan_own_init == 0) {
         if (stream_own_init == 0) {
             err = stream_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         streamOPget_chan_own_init = 1;
     }
     enter_proc(1603);
@@ -11772,25 +11721,25 @@ streamOPget_chan(CLUREF st, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_chan ****/
 
 
 /**** BEGIN ITERATOR _open_streams ****/
 
+
 errcode
-streamOP_open_streams(errcode (*proc)(), char **user_locals, errcode *iecode)
-    {
+streamOP_open_streams(errcode (*proc)(), void *user_locals, errcode *iecode)
+{
     errcode ecode;
     errcode err;
-    errcode ecode2;
     bool body_ctrl_req;
     CLUREF s;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1616);
 
   LINE(1617);
@@ -11840,25 +11789,25 @@ streamOP_open_streams(errcode (*proc)(), char **user_locals, errcode *iecode)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END ITERATOR _open_streams ****/
 
 
 /**** BEGIN PROCEDURE _close_all ****/
 
+
 errcode
 streamOP_close_all()
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF opens;
     CLUREF st;
     CLUREF i;
-        if (stream_own_init == 0) {
-            err = stream_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stream_own_init == 0) {
+        err = stream_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(1622);
 
   LINE(1623);
@@ -11920,12 +11869,12 @@ streamOP_close_all()
             CLUREF T_2_1;
             err = sequenceOPnew(&T_2_1);
             if (err != ERR_ok) goto ex_0;
-            st.vec->data[3]  = T_2_1.num;
+            st.vec->data[3] = T_2_1.num;
             }
 
   LINE(1630);
             {
-            st.vec->data[2]  = false;
+            st.vec->data[2] = false;
             }
         }
     }
@@ -12014,7 +11963,7 @@ streamOP_close_all()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE _close_all ****/
 
@@ -12025,68 +11974,68 @@ typedef struct{
     struct OP_ENTRY entry[62];
 } stream_OPS;
 
-CLU_proc stream_oe__close_all = {{0,0,0,0}, streamOP_close_all, 0};
-CLU_proc stream_oe__open_streams = {{0,0,0,0}, streamOP_open_streams, 0};
-CLU_proc stream_oe_abort = {{0,0,0,0}, streamOPabort, 0};
-CLU_proc stream_oe_add_script = {{0,0,0,0}, streamOPadd_script, 0};
-CLU_proc stream_oe_can_read = {{0,0,0,0}, streamOPcan_read, 0};
-CLU_proc stream_oe_can_write = {{0,0,0,0}, streamOPcan_write, 0};
-CLU_proc stream_oe_close = {{0,0,0,0}, streamOPclose, 0};
-CLU_proc stream_oe_copy = {{0,0,0,0}, streamOPcopy, 0};
-CLU_proc stream_oe_create_input = {{0,0,0,0}, streamOPcreate_input, 0};
-CLU_proc stream_oe_create_output = {{0,0,0,0}, streamOPcreate_output, 0};
-CLU_proc stream_oe_display = {{0,0,0,0}, streamOPdisplay, 0};
-CLU_proc stream_oe_empty = {{0,0,0,0}, streamOPempty, 0};
-CLU_proc stream_oe_equal = {{0,0,0,0}, streamOPequal, 0};
-CLU_proc stream_oe_error_output = {{0,0,0,0}, streamOPerror_output, 0};
-CLU_proc stream_oe_flush = {{0,0,0,0}, streamOPflush, 0};
-CLU_proc stream_oe_get_contents = {{0,0,0,0}, streamOPget_contents, 0};
-CLU_proc stream_oe_get_date = {{0,0,0,0}, streamOPget_date, 0};
-CLU_proc stream_oe_get_eof_flag = {{0,0,0,0}, streamOPget_eof_flag, 0};
-CLU_proc stream_oe_get_input_buffered = {{0,0,0,0}, streamOPget_input_buffered, 0};
-CLU_proc stream_oe_get_line_length = {{0,0,0,0}, streamOPget_line_length, 0};
-CLU_proc stream_oe_get_lineno = {{0,0,0,0}, streamOPget_lineno, 0};
-CLU_proc stream_oe_get_name = {{0,0,0,0}, streamOPget_name, 0};
-CLU_proc stream_oe_get_output_buffered = {{0,0,0,0}, streamOPget_output_buffered, 0};
-CLU_proc stream_oe_get_page_length = {{0,0,0,0}, streamOPget_page_length, 0};
-CLU_proc stream_oe_get_prompt = {{0,0,0,0}, streamOPget_prompt, 0};
-CLU_proc stream_oe_get_rescan = {{0,0,0,0}, streamOPget_rescan, 0};
-CLU_proc stream_oe_getbuf = {{0,0,0,0}, streamOPgetbuf, 0};
-CLU_proc stream_oe_getc = {{0,0,0,0}, streamOPgetc, 0};
-CLU_proc stream_oe_getc_image = {{0,0,0,0}, streamOPgetc_image, 0};
-CLU_proc stream_oe_getl = {{0,0,0,0}, streamOPgetl, 0};
-CLU_proc stream_oe_gets = {{0,0,0,0}, streamOPgets, 0};
-CLU_proc stream_oe_gets_image = {{0,0,0,0}, streamOPgets_image, 0};
-CLU_proc stream_oe_is_closed = {{0,0,0,0}, streamOPis_closed, 0};
-CLU_proc stream_oe_is_terminal = {{0,0,0,0}, streamOPis_terminal, 0};
-CLU_proc stream_oe_modify_display = {{0,0,0,0}, streamOPmodify_display, 0};
-CLU_proc stream_oe_open = {{0,0,0,0}, streamOPopen, 0};
-CLU_proc stream_oe_peekc = {{0,0,0,0}, streamOPpeekc, 0};
-CLU_proc stream_oe_pending = {{0,0,0,0}, streamOPpending, 0};
-CLU_proc stream_oe_primary_input = {{0,0,0,0}, streamOPprimary_input, 0};
-CLU_proc stream_oe_primary_output = {{0,0,0,0}, streamOPprimary_output, 0};
-CLU_proc stream_oe_print = {{0,0,0,0}, streamOPprint, 0};
-CLU_proc stream_oe_putc = {{0,0,0,0}, streamOPputc, 0};
-CLU_proc stream_oe_putc_image = {{0,0,0,0}, streamOPputc_image, 0};
-CLU_proc stream_oe_putl = {{0,0,0,0}, streamOPputl, 0};
-CLU_proc stream_oe_putleft = {{0,0,0,0}, streamOPputleft, 0};
-CLU_proc stream_oe_putright = {{0,0,0,0}, streamOPputright, 0};
-CLU_proc stream_oe_puts = {{0,0,0,0}, streamOPputs, 0};
-CLU_proc stream_oe_puts_image = {{0,0,0,0}, streamOPputs_image, 0};
-CLU_proc stream_oe_putspace = {{0,0,0,0}, streamOPputspace, 0};
-CLU_proc stream_oe_putzero = {{0,0,0,0}, streamOPputzero, 0};
-CLU_proc stream_oe_rem_script = {{0,0,0,0}, streamOPrem_script, 0};
-CLU_proc stream_oe_reset = {{0,0,0,0}, streamOPreset, 0};
-CLU_proc stream_oe_scripts = {{0,0,0,0}, streamOPscripts, 0};
-CLU_proc stream_oe_set_date = {{0,0,0,0}, streamOPset_date, 0};
-CLU_proc stream_oe_set_eof_flag = {{0,0,0,0}, streamOPset_eof_flag, 0};
-CLU_proc stream_oe_set_input_buffered = {{0,0,0,0}, streamOPset_input_buffered, 0};
-CLU_proc stream_oe_set_lineno = {{0,0,0,0}, streamOPset_lineno, 0};
-CLU_proc stream_oe_set_output_buffered = {{0,0,0,0}, streamOPset_output_buffered, 0};
-CLU_proc stream_oe_set_prompt = {{0,0,0,0}, streamOPset_prompt, 0};
-CLU_proc stream_oe_set_rescan = {{0,0,0,0}, streamOPset_rescan, 0};
-CLU_proc stream_oe_similar = {{0,0,0,0}, streamOPsimilar, 0};
-CLU_proc stream_oe_unscript = {{0,0,0,0}, streamOPunscript, 0};
+CLU_proc stream_oe__close_all = { .proc = streamOP_close_all };
+CLU_proc stream_oe__open_streams = { .proc = streamOP_open_streams };
+CLU_proc stream_oe_abort = { .proc = streamOPabort };
+CLU_proc stream_oe_add_script = { .proc = streamOPadd_script };
+CLU_proc stream_oe_can_read = { .proc = streamOPcan_read };
+CLU_proc stream_oe_can_write = { .proc = streamOPcan_write };
+CLU_proc stream_oe_close = { .proc = streamOPclose };
+CLU_proc stream_oe_copy = { .proc = streamOPcopy };
+CLU_proc stream_oe_create_input = { .proc = streamOPcreate_input };
+CLU_proc stream_oe_create_output = { .proc = streamOPcreate_output };
+CLU_proc stream_oe_display = { .proc = streamOPdisplay };
+CLU_proc stream_oe_empty = { .proc = streamOPempty };
+CLU_proc stream_oe_equal = { .proc = streamOPequal };
+CLU_proc stream_oe_error_output = { .proc = streamOPerror_output };
+CLU_proc stream_oe_flush = { .proc = streamOPflush };
+CLU_proc stream_oe_get_contents = { .proc = streamOPget_contents };
+CLU_proc stream_oe_get_date = { .proc = streamOPget_date };
+CLU_proc stream_oe_get_eof_flag = { .proc = streamOPget_eof_flag };
+CLU_proc stream_oe_get_input_buffered = { .proc = streamOPget_input_buffered };
+CLU_proc stream_oe_get_line_length = { .proc = streamOPget_line_length };
+CLU_proc stream_oe_get_lineno = { .proc = streamOPget_lineno };
+CLU_proc stream_oe_get_name = { .proc = streamOPget_name };
+CLU_proc stream_oe_get_output_buffered = { .proc = streamOPget_output_buffered };
+CLU_proc stream_oe_get_page_length = { .proc = streamOPget_page_length };
+CLU_proc stream_oe_get_prompt = { .proc = streamOPget_prompt };
+CLU_proc stream_oe_get_rescan = { .proc = streamOPget_rescan };
+CLU_proc stream_oe_getbuf = { .proc = streamOPgetbuf };
+CLU_proc stream_oe_getc = { .proc = streamOPgetc };
+CLU_proc stream_oe_getc_image = { .proc = streamOPgetc_image };
+CLU_proc stream_oe_getl = { .proc = streamOPgetl };
+CLU_proc stream_oe_gets = { .proc = streamOPgets };
+CLU_proc stream_oe_gets_image = { .proc = streamOPgets_image };
+CLU_proc stream_oe_is_closed = { .proc = streamOPis_closed };
+CLU_proc stream_oe_is_terminal = { .proc = streamOPis_terminal };
+CLU_proc stream_oe_modify_display = { .proc = streamOPmodify_display };
+CLU_proc stream_oe_open = { .proc = streamOPopen };
+CLU_proc stream_oe_peekc = { .proc = streamOPpeekc };
+CLU_proc stream_oe_pending = { .proc = streamOPpending };
+CLU_proc stream_oe_primary_input = { .proc = streamOPprimary_input };
+CLU_proc stream_oe_primary_output = { .proc = streamOPprimary_output };
+CLU_proc stream_oe_print = { .proc = streamOPprint };
+CLU_proc stream_oe_putc = { .proc = streamOPputc };
+CLU_proc stream_oe_putc_image = { .proc = streamOPputc_image };
+CLU_proc stream_oe_putl = { .proc = streamOPputl };
+CLU_proc stream_oe_putleft = { .proc = streamOPputleft };
+CLU_proc stream_oe_putright = { .proc = streamOPputright };
+CLU_proc stream_oe_puts = { .proc = streamOPputs };
+CLU_proc stream_oe_puts_image = { .proc = streamOPputs_image };
+CLU_proc stream_oe_putspace = { .proc = streamOPputspace };
+CLU_proc stream_oe_putzero = { .proc = streamOPputzero };
+CLU_proc stream_oe_rem_script = { .proc = streamOPrem_script };
+CLU_proc stream_oe_reset = { .proc = streamOPreset };
+CLU_proc stream_oe_scripts = { .proc = streamOPscripts };
+CLU_proc stream_oe_set_date = { .proc = streamOPset_date };
+CLU_proc stream_oe_set_eof_flag = { .proc = streamOPset_eof_flag };
+CLU_proc stream_oe_set_input_buffered = { .proc = streamOPset_input_buffered };
+CLU_proc stream_oe_set_lineno = { .proc = streamOPset_lineno };
+CLU_proc stream_oe_set_output_buffered = { .proc = streamOPset_output_buffered };
+CLU_proc stream_oe_set_prompt = { .proc = streamOPset_prompt };
+CLU_proc stream_oe_set_rescan = { .proc = streamOPset_rescan };
+CLU_proc stream_oe_similar = { .proc = streamOPsimilar };
+CLU_proc stream_oe_unscript = { .proc = streamOPunscript };
 
 stream_OPS stream_ops_actual = {62, (OWNPTR)&stream_own_init, (OWNPTR)&stream_own_init, {
     {&stream_oe__close_all, "_close_all"},

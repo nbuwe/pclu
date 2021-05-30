@@ -5,6 +5,9 @@
 #include "pclu_sys.h"
 
 
+
+/**** BEGIN PROCEDURE c_get_duspecs ****/
+
 extern errcode duOPget_mspecs();
 extern errcode duOPread_specs();
 extern errcode oneofOPis_4();
@@ -13,13 +16,10 @@ extern errcode f_duspecs();
 extern errcode duOPset_mspecs();
 extern errcode oneofOPmake_2();
 
-/**** BEGIN PROCEDURE c_get_duspecs ****/
-
 errcode
 c_get_duspecs(CLUREF e, CLUREF gen, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ms;
     CLUREF specs;
     CLUREF fixdus;
@@ -104,7 +104,7 @@ c_get_duspecs(CLUREF e, CLUREF gen, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_get_duspecs ****/
 
@@ -112,11 +112,11 @@ c_get_duspecs(CLUREF e, CLUREF gen, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE c_duspecs ****/
 
+
 errcode
 c_duspecs(CLUREF e, CLUREF specs)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(21);
     goto end_0;
     ex_0:
@@ -126,10 +126,13 @@ c_duspecs(CLUREF e, CLUREF specs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_duspecs ****/
 
+
+
+/**** BEGIN PROCEDURE types_mismatch ****/
 
 extern errcode boolOPnot();
 extern errcode intOPequal();
@@ -138,13 +141,10 @@ extern errcode sequenceOPindexes();
 extern errcode typespecOPmismatch2();
 extern errcode sequenceOPfetch();
 
-/**** BEGIN PROCEDURE types_mismatch ****/
-
 errcode
 types_mismatch(CLUREF types1, CLUREF types2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     enter_proc(24);
 
@@ -221,10 +221,13 @@ types_mismatch(CLUREF types1, CLUREF types2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE types_mismatch ****/
 
+
+
+/**** BEGIN PROCEDURE f_duspecs ****/
 
 extern errcode f_idnkinds();
 extern errcode recordOPget_1();
@@ -235,13 +238,10 @@ extern errcode sequenceOPelements();
 extern errcode recordOPget_3();
 extern errcode f_opspeclist();
 
-/**** BEGIN PROCEDURE f_duspecs ****/
-
 errcode
 f_duspecs(CLUREF e, CLUREF specs, CLUREF fixdus)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF info;
     CLUREF inf;
     CLUREF req;
@@ -271,7 +271,7 @@ f_duspecs(CLUREF e, CLUREF specs, CLUREF fixdus)
             T_2_1.num = info.vec->data[1];
             err = f_type(e, T_2_1, fixdus, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            info.vec->data[1]  = T_2_2.num;
+            info.vec->data[1] = T_2_2.num;
             }
             break;
             }
@@ -348,7 +348,7 @@ f_duspecs(CLUREF e, CLUREF specs, CLUREF fixdus)
                     T_3_1.num = infinf.vec->data[1];
                     err = f_type(e, T_3_1, fixdus, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    infinf.vec->data[1]  = T_3_2.num;
+                    infinf.vec->data[1] = T_3_2.num;
                     }
                 }
             }
@@ -367,23 +367,23 @@ f_duspecs(CLUREF e, CLUREF specs, CLUREF fixdus)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE f_duspecs ****/
 
+
+
+/**** BEGIN PROCEDURE f_idnkinds ****/
 
 extern errcode idnOPget_kind();
 extern errcode typespecOPget_id();
 extern errcode idnOPset_kind();
 extern errcode oneofOPmake_10();
 
-/**** BEGIN PROCEDURE f_idnkinds ****/
-
 errcode
 f_idnkinds(CLUREF e, CLUREF parms, CLUREF fixdus)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF k;
     enter_proc(53);
@@ -478,21 +478,21 @@ f_idnkinds(CLUREF e, CLUREF parms, CLUREF fixdus)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE f_idnkinds ****/
 
 
-extern errcode f_exprlist();
-extern errcode recordOPset_3();
 
 /**** BEGIN PROCEDURE f_opspeclist ****/
 
+extern errcode f_exprlist();
+extern errcode recordOPset_3();
+
 errcode
 f_opspeclist(CLUREF e, CLUREF ops, CLUREF fixdus)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF op;
     enter_proc(70);
 
@@ -521,7 +521,7 @@ f_opspeclist(CLUREF e, CLUREF ops, CLUREF fixdus)
             T_2_1.num = op.vec->data[2];
             err = f_type(e, T_2_1, fixdus, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            op.vec->data[2]  = T_2_2.num;
+            op.vec->data[2] = T_2_2.num;
             }
         }
     }
@@ -534,10 +534,13 @@ f_opspeclist(CLUREF e, CLUREF ops, CLUREF fixdus)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE f_opspeclist ****/
 
+
+
+/**** BEGIN PROCEDURE f_type ****/
 
 extern errcode typespecOPget_abs();
 extern errcode recordOPset_1();
@@ -548,13 +551,10 @@ extern errcode oneofOPmake_3();
 extern errcode oneofOPmake_6();
 extern errcode c_envOPget_type();
 
-/**** BEGIN PROCEDURE f_type ****/
-
 errcode
 f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF abs;
     CLUREF clut;
     CLUREF selt;
@@ -641,7 +641,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
                     T_3_1.num = fspec.vec->data[1];
                     err = f_type(e, T_3_1, fixdus, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    fspec.vec->data[1]  = T_3_2.num;
+                    fspec.vec->data[1] = T_3_2.num;
                     }
                 }
             }
@@ -660,7 +660,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
             T_2_1.num = at.vec->data[0];
             err = f_typelist(e, T_2_1, fixdus, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            at.vec->data[0]  = T_2_2.num;
+            at.vec->data[0] = T_2_2.num;
             }
 
   LINE(90);
@@ -670,7 +670,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
             T_2_1.num = at.vec->data[3];
             err = f_typelist(e, T_2_1, fixdus, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            at.vec->data[3]  = T_2_2.num;
+            at.vec->data[3] = T_2_2.num;
             }
 
   LINE(91);
@@ -692,7 +692,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
                     T_3_1.num = sig.vec->data[1];
                     err = f_typelist(e, T_3_1, fixdus, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    sig.vec->data[1]  = T_3_2.num;
+                    sig.vec->data[1] = T_3_2.num;
                     }
                 }
             }
@@ -733,7 +733,7 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
                     T_3_1.num = cop.vec->data[2];
                     err = f_type(e, T_3_1, fixdus, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    cop.vec->data[2]  = T_3_2.num;
+                    cop.vec->data[2] = T_3_2.num;
                     }
 
   LINE(100);
@@ -795,20 +795,20 @@ f_type(CLUREF e, CLUREF t, CLUREF fixdus, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE f_type ****/
 
 
-extern errcode sequenceOPreplace();
 
 /**** BEGIN PROCEDURE f_typelist ****/
 
+extern errcode sequenceOPreplace();
+
 errcode
 f_typelist(CLUREF e, CLUREF types, CLUREF fixdus, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF t;
     enter_proc(110);
@@ -877,10 +877,13 @@ f_typelist(CLUREF e, CLUREF types, CLUREF fixdus, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE f_typelist ****/
 
+
+
+/**** BEGIN PROCEDURE f_expr ****/
 
 extern errcode exprOPset_typespec();
 extern errcode exprOPget_typespec();
@@ -891,13 +894,10 @@ extern errcode f_expr();
 extern errcode c_envOPget_du();
 extern errcode oneofOPmake_11();
 
-/**** BEGIN PROCEDURE f_expr ****/
-
 errcode
 f_expr(CLUREF e, CLUREF x, CLUREF fixdus)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
     CLUREF inv;
     CLUREF clut;
@@ -989,7 +989,7 @@ f_expr(CLUREF e, CLUREF x, CLUREF fixdus)
             T_2_1.num = clut.vec->data[0];
             err = c_envOPget_du(e, T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            clut.vec->data[0]  = T_2_2.num;
+            clut.vec->data[0] = T_2_2.num;
             }
 
   LINE(132);
@@ -1013,7 +1013,7 @@ f_expr(CLUREF e, CLUREF x, CLUREF fixdus)
             T_2_1.num = cop.vec->data[2];
             err = f_type(e, T_2_1, fixdus, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            cop.vec->data[2]  = T_2_2.num;
+            cop.vec->data[2] = T_2_2.num;
             }
 
   LINE(135);
@@ -1054,7 +1054,7 @@ f_expr(CLUREF e, CLUREF x, CLUREF fixdus)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE f_expr ****/
 
@@ -1062,11 +1062,11 @@ f_expr(CLUREF e, CLUREF x, CLUREF fixdus)
 
 /**** BEGIN PROCEDURE f_exprlist ****/
 
+
 errcode
 f_exprlist(CLUREF e, CLUREF exprs, CLUREF fixdus)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF x;
     enter_proc(142);
 
@@ -1096,7 +1096,7 @@ f_exprlist(CLUREF e, CLUREF exprs, CLUREF fixdus)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE f_exprlist ****/
 

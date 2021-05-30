@@ -4,18 +4,18 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _last_indexc ****/
+
 extern errcode intOPfrom_to_by();
 extern errcode stringOPsize();
 extern errcode charOPequal();
 extern errcode stringOPfetch();
 
-/**** BEGIN PROCEDURE _last_indexc ****/
-
 errcode
 _last_indexc(CLUREF c, CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     enter_proc(3);
 
@@ -68,7 +68,7 @@ _last_indexc(CLUREF c, CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _last_indexc ****/
 

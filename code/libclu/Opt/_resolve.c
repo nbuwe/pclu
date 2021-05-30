@@ -53,22 +53,22 @@ extern errcode _chanOPsendto();
 extern errcode _chanOPread_wait();
 extern errcode _chanOPrecvfrom();
 extern errcode intOPmod();
-CLUREF STR__057usr_057local_057lib_057resolv_056conf;
-CLUREF STR__057etc_057nameserver_057resolv_056conf;
-CLUREF STR__057usr_057lib_057resolv_056conf;
-CLUREF STR__057usr_057local_057ns_057resolv_056conf;
-CLUREF STR__057etc_057resolv_056conf;
-CLUREF STR__057etc_057athena_057nameserver_057resolv_056conf;
-CLUREF STR_read;
-CLUREF STR_;
-CLUREF STR_domain;
-CLUREF STR__040;
-CLUREF STR__011;
-CLUREF STR__056;
-CLUREF STR_nameserver;
-CLUREF STR__056ARPA;
+static CLUREF STR__057usr_057local_057lib_057resolv_056conf;
+static CLUREF STR__057etc_057nameserver_057resolv_056conf;
+static CLUREF STR__057usr_057lib_057resolv_056conf;
+static CLUREF STR__057usr_057local_057ns_057resolv_056conf;
+static CLUREF STR__057etc_057resolv_056conf;
+static CLUREF STR__057etc_057athena_057nameserver_057resolv_056conf;
+static CLUREF STR_read;
+static CLUREF STR_;
+static CLUREF STR_domain;
+static CLUREF STR__040;
+static CLUREF STR__011;
+static CLUREF STR__056;
+static CLUREF STR_nameserver;
+static CLUREF STR__056ARPA;
 static int _resolve_own_init = 0;
-OWN_req _resolve_ownreqs = {0,0};
+const OWN_req _resolve_ownreqs = { 0, 0 };
 CLUREF _resolveOPpkid;
 CLUREF _resolveOPbuf;
 CLUREF _resolveOPans;
@@ -77,25 +77,27 @@ CLUREF _resolveOPfromaddr;
 CLUREF _resolveOPretries;
 CLUREF _resolveOPtimeout;
 CLUREF _resolveOPdefaultdomain;
-errcode _resolve_own_init_proc()
+
+errcode
+_resolve_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (_resolve_own_init == 0) {
-        stringOPcons("/usr/local/lib/resolv.conf", CLU_1, CLU_26, &STR__057usr_057local_057lib_057resolv_056conf);
-        stringOPcons("/etc/nameserver/resolv.conf", CLU_1, CLU_27, &STR__057etc_057nameserver_057resolv_056conf);
-        stringOPcons("/usr/lib/resolv.conf", CLU_1, CLU_20, &STR__057usr_057lib_057resolv_056conf);
-        stringOPcons("/usr/local/ns/resolv.conf", CLU_1, CLU_25, &STR__057usr_057local_057ns_057resolv_056conf);
-        stringOPcons("/etc/resolv.conf", CLU_1, CLU_16, &STR__057etc_057resolv_056conf);
-        stringOPcons("/etc/athena/nameserver/resolv.conf", CLU_1, CLU_34, &STR__057etc_057athena_057nameserver_057resolv_056conf);
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("domain", CLU_1, CLU_6, &STR_domain);
-        stringOPcons(" ", CLU_1, CLU_1, &STR__040);
-        stringOPcons("\t", CLU_1, CLU_1, &STR__011);
-        stringOPcons(".", CLU_1, CLU_1, &STR__056);
-        stringOPcons("nameserver", CLU_1, CLU_10, &STR_nameserver);
-        stringOPcons(".ARPA", CLU_1, CLU_5, &STR__056ARPA);
+    if (_resolve_own_init == 0) {
+        stringOPcons("/usr/local/lib/resolv.conf", CLU_1, CLUREF_make_num(26), &STR__057usr_057local_057lib_057resolv_056conf);
+        stringOPcons("/etc/nameserver/resolv.conf", CLU_1, CLUREF_make_num(27), &STR__057etc_057nameserver_057resolv_056conf);
+        stringOPcons("/usr/lib/resolv.conf", CLU_1, CLUREF_make_num(20), &STR__057usr_057lib_057resolv_056conf);
+        stringOPcons("/usr/local/ns/resolv.conf", CLU_1, CLUREF_make_num(25), &STR__057usr_057local_057ns_057resolv_056conf);
+        stringOPcons("/etc/resolv.conf", CLU_1, CLUREF_make_num(16), &STR__057etc_057resolv_056conf);
+        stringOPcons("/etc/athena/nameserver/resolv.conf", CLU_1, CLUREF_make_num(34), &STR__057etc_057athena_057nameserver_057resolv_056conf);
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("domain", CLU_1, CLUREF_make_num(6), &STR_domain);
+        stringOPcons(" ", CLU_1, CLUREF_make_num(1), &STR__040);
+        stringOPcons("\t", CLU_1, CLUREF_make_num(1), &STR__011);
+        stringOPcons(".", CLU_1, CLUREF_make_num(1), &STR__056);
+        stringOPcons("nameserver", CLU_1, CLUREF_make_num(10), &STR_nameserver);
+        stringOPcons(".ARPA", CLU_1, CLUREF_make_num(5), &STR__056ARPA);
         _resolve_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -104,20 +106,23 @@ errcode _resolve_own_init_proc()
             _resolveOPdefaultdomain.num = T_0_1.num;
             }
             }
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
-static int _resolveOPinit_own_init = 0;
 
 /**** BEGIN PROCEDURE init ****/
 
+static int _resolveOPinit_own_init = 0;
+
 errcode
 _resolveOPinit(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF c;
     CLUREF cf;
     CLUREF len;
@@ -128,11 +133,11 @@ _resolveOPinit(CLUREF *ret_1)
     CLUREF j;
     CLUREF l;
     CLUREF r;
-        if (_resolveOPinit_own_init == 0) {
+    if (_resolveOPinit_own_init == 0) {
         if (_resolve_own_init == 0) {
             err = _resolve_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         _resolveOPinit_own_init = 1;
     }
     enter_proc(56);
@@ -307,7 +312,7 @@ _resolveOPinit(CLUREF *ret_1)
         CLUREF T_2_2;
         CLUREF T_2_3;
         T_2_1.ch = '\n';
-        T_2_2.num = _resolveOPbuf.num;
+        T_2_2.num = (long)_resolveOPbuf.num;
         err = _bytevecOPindexc(T_2_1, T_2_2, beg, &T_2_3);
         if (err != ERR_ok) goto ex_0;
         i.num = T_2_3.num;
@@ -333,7 +338,7 @@ _resolveOPinit(CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         CLUREF T_2_3;
-        T_2_1.num = _resolveOPbuf.num;
+        T_2_1.num = (long)_resolveOPbuf.num;
         T_2_2.num = i.num - beg.num;
          if ((T_2_2.num >= 0 && i.num < 0 && (-beg.num) < 0) ||
              (T_2_2.num <= 0 && i.num > 0 && (-beg.num) > 0)) {
@@ -481,7 +486,7 @@ _resolveOPinit(CLUREF *ret_1)
         CLUREF T_2_2;
         CLUREF T_2_3;
         T_2_1.ch = '\n';
-        T_2_2.num = _resolveOPbuf.num;
+        T_2_2.num = (long)_resolveOPbuf.num;
         err = _bytevecOPindexc(T_2_1, T_2_2, i, &T_2_3);
         if (err != ERR_ok) goto ex_0;
         j.num = T_2_3.num;
@@ -493,7 +498,7 @@ _resolveOPinit(CLUREF *ret_1)
         CLUREF T_2_2;
         CLUREF T_2_3;
         CLUREF T_2_4;
-        T_2_1.num = _resolveOPbuf.num;
+        T_2_1.num = (long)_resolveOPbuf.num;
         if (i.num < 1 || i.num > T_2_1.str->size ) {
             err = ERR_bounds;
             goto ex_0;}
@@ -531,7 +536,7 @@ _resolveOPinit(CLUREF *ret_1)
         CLUREF T_3_1;
         CLUREF T_3_2;
         CLUREF T_3_3;
-        T_3_1.num = _resolveOPbuf.num;
+        T_3_1.num = (long)_resolveOPbuf.num;
         T_3_2.num = j.num - i.num;
          if ((T_3_2.num >= 0 && j.num < 0 && (-i.num) < 0) ||
              (T_3_2.num <= 0 && j.num > 0 && (-i.num) > 0)) {
@@ -659,26 +664,26 @@ _resolveOPinit(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE init ****/
 
-static int _resolveOPn2a_own_init = 0;
 
 /**** BEGIN PROCEDURE n2a ****/
 
+static int _resolveOPn2a_own_init = 0;
+
 errcode
 _resolveOPn2a(CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF l;
     CLUREF r;
-        if (_resolveOPn2a_own_init == 0) {
+    if (_resolveOPn2a_own_init == 0) {
         if (_resolve_own_init == 0) {
             err = _resolve_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         _resolveOPn2a_own_init = 1;
     }
     enter_proc(134);
@@ -729,7 +734,7 @@ _resolveOPn2a(CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
                 T_2_1.num = T_2_4.num;
                 if (!T_2_4.num) {
                     T_2_5.num = ((_resolveOPdefaultdomain.str->size != STR__056ARPA.str->size)? false :
-                        !(bcmp(_resolveOPdefaultdomain.str->data, STR__056ARPA.str->data, _resolveOPdefaultdomain.str->size)));
+                        !(memcmp(_resolveOPdefaultdomain.str->data, STR__056ARPA.str->data, _resolveOPdefaultdomain.str->size)));
                     T_2_1.num = T_2_5.num;
                 }
                 if (T_2_1.num == true) {
@@ -780,27 +785,27 @@ _resolveOPn2a(CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE n2a ****/
 
 
 /**** BEGIN PROCEDURE qry ****/
 
+
 errcode
 _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF idx;
     CLUREF ancount;
     CLUREF tp;
     CLUREF cl;
     CLUREF n;
-        if (_resolve_own_init == 0) {
-            err = _resolve_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (_resolve_own_init == 0) {
+        err = _resolve_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(150);
 
   LINE(152);
@@ -1306,27 +1311,27 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE qry ****/
 
 
 /**** BEGIN PROCEDURE nstore ****/
 
+
 errcode
 _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF z;
     CLUREF i;
     CLUREF zidx;
     CLUREF c;
     CLUREF tot;
-        if (_resolve_own_init == 0) {
-            err = _resolve_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (_resolve_own_init == 0) {
+        err = _resolve_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(199);
 
   LINE(200);
@@ -1576,23 +1581,23 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE nstore ****/
 
 
 /**** BEGIN PROCEDURE nskip ****/
 
+
 errcode
 _resolveOPnskip(CLUREF idx, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF n;
-        if (_resolve_own_init == 0) {
-            err = _resolve_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (_resolve_own_init == 0) {
+        err = _resolve_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(235);
 
   LINE(236);
@@ -1685,26 +1690,26 @@ _resolveOPnskip(CLUREF idx, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE nskip ****/
 
 
 /**** BEGIN PROCEDURE send ****/
 
+
 errcode
 _resolveOPsend(CLUREF len, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF c;
     CLUREF i;
     CLUREF anslen;
     CLUREF frmlen;
-        if (_resolve_own_init == 0) {
-            err = _resolve_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (_resolve_own_init == 0) {
+        err = _resolve_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(251);
 
   LINE(252);
@@ -1840,7 +1845,7 @@ _resolveOPsend(CLUREF len, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE send ****/
 
@@ -1851,7 +1856,7 @@ typedef struct{
     struct OP_ENTRY entry[1];
 } _resolve_OPS;
 
-CLU_proc _resolve_oe_n2a = {{0,0,0,0}, _resolveOPn2a, 0};
+CLU_proc _resolve_oe_n2a = { .proc = _resolveOPn2a };
 
 _resolve_OPS _resolve_ops_actual = {1, (OWNPTR)&_resolve_own_init, (OWNPTR)&_resolve_own_init, {
     {&_resolve_oe_n2a, "n2a"}}};

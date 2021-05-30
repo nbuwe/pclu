@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE i_oparse ****/
+
 extern errcode stringOPfetch();
 extern errcode charOPequal();
 extern errcode charOPlt();
@@ -14,13 +17,10 @@ extern errcode charOPc2i();
 extern errcode intOPadd();
 extern errcode intOPminus();
 
-/**** BEGIN PROCEDURE i_oparse ****/
-
 errcode
 i_oparse(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF num;
     CLUREF i;
     CLUREF sign;
@@ -238,10 +238,13 @@ i_oparse(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE i_oparse ****/
 
+
+
+/**** BEGIN PROCEDURE i_ounparse ****/
 
 extern errcode intOPlt();
 extern errcode intOPmod();
@@ -250,25 +253,22 @@ extern errcode intOPequal();
 extern errcode stringOPconcat();
 extern errcode stringOPc2s();
 extern errcode charOPi2c();
-CLUREF STR_;
-CLUREF STR__055;
-CLUREF STR_0;
+static CLUREF STR_;
+static CLUREF STR__055;
+static CLUREF STR_0;
 static int i_ounparse_own_init = 0;
-
-/**** BEGIN PROCEDURE i_ounparse ****/
 
 errcode
 i_ounparse(CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF sign;
     CLUREF s;
     CLUREF j;
-        if (i_ounparse_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("-", CLU_1, CLU_1, &STR__055);
-        stringOPcons("0", CLU_1, CLU_1, &STR_0);
+    if (i_ounparse_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("-", CLU_1, CLUREF_make_num(1), &STR__055);
+        stringOPcons("0", CLU_1, CLUREF_make_num(1), &STR_0);
         i_ounparse_own_init = 1;
     }
     enter_proc(30);
@@ -406,7 +406,7 @@ i_ounparse(CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE i_ounparse ****/
 

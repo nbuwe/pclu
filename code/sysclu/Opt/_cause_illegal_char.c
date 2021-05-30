@@ -7,11 +7,11 @@
 
 /**** BEGIN PROCEDURE _cause_illegal_char ****/
 
+
 errcode
 _cause_illegal_char()
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(3);
 
   LINE(4);
@@ -25,7 +25,7 @@ _cause_illegal_char()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE _cause_illegal_char ****/
 

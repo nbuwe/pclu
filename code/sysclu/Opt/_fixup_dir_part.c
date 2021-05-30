@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _fixup_dir_part ****/
+
 extern errcode stringOPindexs();
 extern errcode intOPequal();
 extern errcode stringOPconcat();
@@ -15,19 +18,16 @@ extern errcode intOPgt();
 extern errcode charOPequal();
 extern errcode stringOPfetch();
 extern errcode intOPsub();
-CLUREF STR__057_057;
+static CLUREF STR__057_057;
 static int _fixup_dir_part_own_init = 0;
-
-/**** BEGIN PROCEDURE _fixup_dir_part ****/
 
 errcode
 _fixup_dir_part(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
-        if (_fixup_dir_part_own_init == 0) {
-        stringOPcons("//", CLU_1, CLU_2, &STR__057_057);
+    if (_fixup_dir_part_own_init == 0) {
+        stringOPcons("//", CLU_1, CLUREF_make_num(2), &STR__057_057);
         _fixup_dir_part_own_init = 1;
     }
     enter_proc(3);
@@ -136,7 +136,7 @@ _fixup_dir_part(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _fixup_dir_part ****/
 

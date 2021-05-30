@@ -5,6 +5,9 @@
 #include "pclu_sys.h"
 
 
+
+/**** BEGIN PROCEDURE e_strop ****/
+
 extern errcode stringOPequal();
 extern errcode sequenceOPfetch();
 extern errcode e_s2e();
@@ -43,80 +46,79 @@ extern errcode stringOPle();
 extern errcode stringOPge();
 extern errcode stringOPgt();
 extern errcode e_strop_IB_1();
-CLUREF STR_s2ac;
-CLUREF STR_ac2s;
-CLUREF STR_chars;
-CLUREF STR_c2s;
-CLUREF STR_indexc;
-CLUREF STR_copy;
-CLUREF STR_sc2s;
-CLUREF STR_;
-CLUREF STR_size;
-CLUREF STR_empty;
-CLUREF STR_s2sc;
-CLUREF STR_fetch;
-CLUREF STR_indexs;
-CLUREF STR_append;
-CLUREF STR_rest;
-CLUREF STR_substr;
-CLUREF STR_concat;
-CLUREF STR_lt;
-CLUREF STR_le;
-CLUREF STR_ge;
-CLUREF STR_gt;
+static CLUREF STR_s2ac;
+static CLUREF STR_ac2s;
+static CLUREF STR_chars;
+static CLUREF STR_c2s;
+static CLUREF STR_indexc;
+static CLUREF STR_copy;
+static CLUREF STR_sc2s;
+static CLUREF STR_;
+static CLUREF STR_size;
+static CLUREF STR_empty;
+static CLUREF STR_s2sc;
+static CLUREF STR_fetch;
+static CLUREF STR_indexs;
+static CLUREF STR_append;
+static CLUREF STR_rest;
+static CLUREF STR_substr;
+static CLUREF STR_concat;
+static CLUREF STR_lt;
+static CLUREF STR_le;
+static CLUREF STR_ge;
+static CLUREF STR_gt;
 static int e_strop_own_init = 0;
-
-/**** BEGIN PROCEDURE e_strop ****/
+typedef struct {
+    errcode ecode2;
+    errcode err;
+    CLUREF a1;
+    CLUREF s;
+    CLUREF cx;
+    CLUREF s1;
+    CLUREF elts;
+    CLUREF c;
+    CLUREF x;
+    CLUREF clut;
+    CLUREF t;
+    CLUREF cons;
+    CLUREF a2;
+    CLUREF b;
+    CLUREF s2;
+    CLUREF err_UNIQ;
+    CLUREF e;
+    CLUREF op;
+    CLUREF args;
+} e_strop_LOCALS_t;
 
 errcode
 e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
-    {
-    struct {
-        errcode err;
-        errcode ecode2;
-        CLUREF a1;
-        CLUREF s;
-        CLUREF cx;
-        CLUREF s1;
-        CLUREF elts;
-        CLUREF c;
-        CLUREF x;
-        CLUREF clut;
-        CLUREF t;
-        CLUREF cons;
-        CLUREF a2;
-        CLUREF b;
-        CLUREF s2;
-        CLUREF err_UNIQ;
-        CLUREF e;
-        CLUREF op;
-        CLUREF args;
-        } locals;
+{
+    e_strop_LOCALS_t locals;
     locals.e = e;
     locals.op = op;
     locals.args = args;
-        if (e_strop_own_init == 0) {
-        stringOPcons("s2ac", CLU_1, CLU_4, &STR_s2ac);
-        stringOPcons("ac2s", CLU_1, CLU_4, &STR_ac2s);
-        stringOPcons("chars", CLU_1, CLU_5, &STR_chars);
-        stringOPcons("c2s", CLU_1, CLU_3, &STR_c2s);
-        stringOPcons("indexc", CLU_1, CLU_6, &STR_indexc);
-        stringOPcons("copy", CLU_1, CLU_4, &STR_copy);
-        stringOPcons("sc2s", CLU_1, CLU_4, &STR_sc2s);
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("size", CLU_1, CLU_4, &STR_size);
-        stringOPcons("empty", CLU_1, CLU_5, &STR_empty);
-        stringOPcons("s2sc", CLU_1, CLU_4, &STR_s2sc);
-        stringOPcons("fetch", CLU_1, CLU_5, &STR_fetch);
-        stringOPcons("indexs", CLU_1, CLU_6, &STR_indexs);
-        stringOPcons("append", CLU_1, CLU_6, &STR_append);
-        stringOPcons("rest", CLU_1, CLU_4, &STR_rest);
-        stringOPcons("substr", CLU_1, CLU_6, &STR_substr);
-        stringOPcons("concat", CLU_1, CLU_6, &STR_concat);
-        stringOPcons("lt", CLU_1, CLU_2, &STR_lt);
-        stringOPcons("le", CLU_1, CLU_2, &STR_le);
-        stringOPcons("ge", CLU_1, CLU_2, &STR_ge);
-        stringOPcons("gt", CLU_1, CLU_2, &STR_gt);
+    if (e_strop_own_init == 0) {
+        stringOPcons("s2ac", CLU_1, CLUREF_make_num(4), &STR_s2ac);
+        stringOPcons("ac2s", CLU_1, CLUREF_make_num(4), &STR_ac2s);
+        stringOPcons("chars", CLU_1, CLUREF_make_num(5), &STR_chars);
+        stringOPcons("c2s", CLU_1, CLUREF_make_num(3), &STR_c2s);
+        stringOPcons("indexc", CLU_1, CLUREF_make_num(6), &STR_indexc);
+        stringOPcons("copy", CLU_1, CLUREF_make_num(4), &STR_copy);
+        stringOPcons("sc2s", CLU_1, CLUREF_make_num(4), &STR_sc2s);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("size", CLU_1, CLUREF_make_num(4), &STR_size);
+        stringOPcons("empty", CLU_1, CLUREF_make_num(5), &STR_empty);
+        stringOPcons("s2sc", CLU_1, CLUREF_make_num(4), &STR_s2sc);
+        stringOPcons("fetch", CLU_1, CLUREF_make_num(5), &STR_fetch);
+        stringOPcons("indexs", CLU_1, CLUREF_make_num(6), &STR_indexs);
+        stringOPcons("append", CLU_1, CLUREF_make_num(6), &STR_append);
+        stringOPcons("rest", CLU_1, CLUREF_make_num(4), &STR_rest);
+        stringOPcons("substr", CLU_1, CLUREF_make_num(6), &STR_substr);
+        stringOPcons("concat", CLU_1, CLUREF_make_num(6), &STR_concat);
+        stringOPcons("lt", CLU_1, CLUREF_make_num(2), &STR_lt);
+        stringOPcons("le", CLU_1, CLUREF_make_num(2), &STR_le);
+        stringOPcons("ge", CLU_1, CLUREF_make_num(2), &STR_ge);
+        stringOPcons("gt", CLU_1, CLUREF_make_num(2), &STR_gt);
         e_strop_own_init = 1;
     }
     enter_proc(6);
@@ -132,17 +134,17 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         CLUREF T_3_4;
         CLUREF T_3_5;
         T_3_3.num = ((locals.op.str->size != STR_s2ac.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_s2ac.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_s2ac.str->data, locals.op.str->size)));
         T_3_2.num = T_3_3.num;
         if (!T_3_3.num) {
             T_3_4.num = ((locals.op.str->size != STR_ac2s.str->size)? false :
-                !(bcmp(locals.op.str->data, STR_ac2s.str->data, locals.op.str->size)));
+                !(memcmp(locals.op.str->data, STR_ac2s.str->data, locals.op.str->size)));
             T_3_2.num = T_3_4.num;
         }
         T_3_1.num = T_3_2.num;
         if (!T_3_2.num) {
             T_3_5.num = ((locals.op.str->size != STR_chars.str->size)? false :
-                !(bcmp(locals.op.str->data, STR_chars.str->data, locals.op.str->size)));
+                !(memcmp(locals.op.str->data, STR_chars.str->data, locals.op.str->size)));
             T_3_1.num = T_3_5.num;
         }
         if (T_3_1.num == true) {
@@ -168,7 +170,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = ((locals.op.str->size != STR_c2s.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_c2s.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_c2s.str->data, locals.op.str->size)));
         if (T_3_1.num == true) {
 
   LINE(13);
@@ -190,7 +192,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_2;
         T_3_2.num = ((locals.op.str->size != STR_indexc.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_indexc.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_indexc.str->data, locals.op.str->size)));
         if (T_3_2.num == true) {
 
   LINE(15);
@@ -220,7 +222,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_3;
         T_3_3.num = ((locals.op.str->size != STR_copy.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_copy.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_copy.str->data, locals.op.str->size)));
         if (T_3_3.num == true) {
 
   LINE(17);
@@ -233,7 +235,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_4;
         T_3_4.num = ((locals.op.str->size != STR_sc2s.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_sc2s.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_sc2s.str->data, locals.op.str->size)));
         if (T_3_4.num == true) {
 
   LINE(19);
@@ -296,7 +298,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = ((locals.op.str->size != STR_size.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_size.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_size.str->data, locals.op.str->size)));
         if (T_3_1.num == true) {
 
   LINE(27);
@@ -315,7 +317,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_2;
         T_3_2.num = ((locals.op.str->size != STR_empty.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_empty.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_empty.str->data, locals.op.str->size)));
         if (T_3_2.num == true) {
 
   LINE(29);
@@ -334,7 +336,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_3;
         T_3_3.num = ((locals.op.str->size != STR_s2sc.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_s2sc.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_s2sc.str->data, locals.op.str->size)));
         if (T_3_3.num == true) {
 
   LINE(31);
@@ -350,8 +352,9 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
             {
                 locals.err = stringOPchars(locals.s1, e_strop_IB_1, &locals, &locals.ecode2);
                 if (locals.err == ERR_iterbodyreturn) {
-                ret_1->num = elist[0].num;
-                signal(ERR_ok);}
+                    ret_1->num = elist[0].num;
+                    signal(ERR_ok);
+                }
                 if (locals.err == ERR_iterbodysignal) {signal(locals.ecode2);}
                 if (locals.err == ERR_break) locals.err = ERR_ok;
                 if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
@@ -383,10 +386,10 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
                 RecordAlloc(2, T_4_1);
                 locals.err = c_envOPget_seq_(locals.e, &T_4_2);
                 if (locals.err != ERR_ok) goto ex_1;
-                T_4_1.vec->data[0]  = T_4_2.num;
+                T_4_1.vec->data[0] = T_4_2.num;
                 sequenceOPnew2(CLU_1, &T_4_3);
                 T_4_3.vec->data[0] = locals.x.num;
-                T_4_1.vec->data[1]  = T_4_3.num;
+                T_4_1.vec->data[1] = T_4_3.num;
                 locals.clut.num = T_4_1.num;
                 }
                 }
@@ -407,10 +410,10 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
                 {CLUREF T_4_1;
                 CLUREF T_4_2;
                 RecordAlloc(3, T_4_1);
-                T_4_1.vec->data[2]  = locals.t.num;
+                T_4_1.vec->data[2] = locals.t.num;
                 CellAlloc(1, nil, T_4_2);
-                T_4_1.vec->data[1]  = T_4_2.num;
-                T_4_1.vec->data[0]  = locals.elts.num;
+                T_4_1.vec->data[1] = T_4_2.num;
+                T_4_1.vec->data[0] = locals.elts.num;
                 locals.cons.num = T_4_1.num;
                 }
                 }
@@ -444,7 +447,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = ((locals.op.str->size != STR_fetch.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_fetch.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_fetch.str->data, locals.op.str->size)));
         if (T_3_1.num == true) {
 
   LINE(47);
@@ -466,7 +469,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_2;
         T_3_2.num = ((locals.op.str->size != STR_indexs.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_indexs.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_indexs.str->data, locals.op.str->size)));
         if (T_3_2.num == true) {
 
   LINE(49);
@@ -488,7 +491,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_3;
         T_3_3.num = ((locals.op.str->size != STR_append.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_append.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_append.str->data, locals.op.str->size)));
         if (T_3_3.num == true) {
 
   LINE(51);
@@ -505,7 +508,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_4;
         T_3_4.num = ((locals.op.str->size != STR_rest.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_rest.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_rest.str->data, locals.op.str->size)));
         if (T_3_4.num == true) {
 
   LINE(53);
@@ -522,7 +525,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_5;
         T_3_5.num = ((locals.op.str->size != STR_substr.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_substr.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_substr.str->data, locals.op.str->size)));
         if (T_3_5.num == true) {
 
   LINE(55);
@@ -547,7 +550,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_6;
         T_3_6.num = ((locals.op.str->size != STR_concat.str->size)? false :
-            !(bcmp(locals.op.str->data, STR_concat.str->data, locals.op.str->size)));
+            !(memcmp(locals.op.str->data, STR_concat.str->data, locals.op.str->size)));
         if (T_3_6.num == true) {
 
   LINE(57);
@@ -576,7 +579,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = ((locals.op.str->size != STR_lt.str->size)? false :
-                !(bcmp(locals.op.str->data, STR_lt.str->data, locals.op.str->size)));
+                !(memcmp(locals.op.str->data, STR_lt.str->data, locals.op.str->size)));
             if (T_4_1.num == true) {
 
   LINE(61);
@@ -590,7 +593,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
             else {
             CLUREF T_4_2;
             T_4_2.num = ((locals.op.str->size != STR_le.str->size)? false :
-                !(bcmp(locals.op.str->data, STR_le.str->data, locals.op.str->size)));
+                !(memcmp(locals.op.str->data, STR_le.str->data, locals.op.str->size)));
             if (T_4_2.num == true) {
 
   LINE(63);
@@ -604,7 +607,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
             else {
             CLUREF T_4_3;
             T_4_3.num = ((locals.op.str->size != STR_ge.str->size)? false :
-                !(bcmp(locals.op.str->data, STR_ge.str->data, locals.op.str->size)));
+                !(memcmp(locals.op.str->data, STR_ge.str->data, locals.op.str->size)));
             if (T_4_3.num == true) {
 
   LINE(65);
@@ -618,7 +621,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
             else {
             CLUREF T_4_4;
             T_4_4.num = ((locals.op.str->size != STR_gt.str->size)? false :
-                !(bcmp(locals.op.str->data, STR_gt.str->data, locals.op.str->size)));
+                !(memcmp(locals.op.str->data, STR_gt.str->data, locals.op.str->size)));
             if (T_4_4.num == true) {
 
   LINE(67);
@@ -635,7 +638,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
                 {
                 CLUREF T_5_1;
                 T_5_1.num = ((locals.s1.str->size != locals.s2.str->size)? false :
-                    !(bcmp(locals.s1.str->data, locals.s2.str->data, locals.s1.str->size)));
+                    !(memcmp(locals.s1.str->data, locals.s2.str->data, locals.s1.str->size)));
                 locals.b.num = T_5_1.num;
                 }
                 }}}}}/* end if */
@@ -688,37 +691,15 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_strop ****/
 
 
 /**** BEGIN ITERATOR BODIES for e_strop ****/
 
-errcode e_strop_IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    errcode err;
-    errcode ecode2;
-    CLUREF a1;
-    CLUREF s;
-    CLUREF cx;
-    CLUREF s1;
-    CLUREF elts;
-    CLUREF c;
-    CLUREF x;
-    CLUREF clut;
-    CLUREF t;
-    CLUREF cons;
-    CLUREF a2;
-    CLUREF b;
-    CLUREF s2;
-    CLUREF err_UNIQ;
-    CLUREF e;
-    CLUREF op;
-    CLUREF args;
-    } *locals;
+errcode
+e_strop_IB_1(CLUREF iv_1, e_strop_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
     enter_iter_body_proc(33);
@@ -739,34 +720,34 @@ struct {
             *iecode = locals->err;
             {signal(ERR_iterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end e_strop_IB_1 */
+}   /* end e_strop_IB_1 */
 
 /**** END ITERATOR BODIES for e_strop ****/
 
 
-extern errcode charOPequal();
-extern errcode e_e2o();
-extern errcode exprOPsimilar();
-CLUREF STR_o2v;
-CLUREF STR_v2o;
-CLUREF STR_wrong_137tag;
-static int e_oneofop_own_init = 0;
 
 /**** BEGIN PROCEDURE e_oneofop ****/
 
+extern errcode charOPequal();
+extern errcode e_e2o();
+extern errcode exprOPsimilar();
+static CLUREF STR_o2v;
+static CLUREF STR_v2o;
+static CLUREF STR_wrong_137tag;
+static int e_oneofop_own_init = 0;
+
 errcode
 e_oneofop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF op;
     CLUREF a1;
     CLUREF h;
     CLUREF sel;
-        if (e_oneofop_own_init == 0) {
-        stringOPcons("o2v", CLU_1, CLU_3, &STR_o2v);
-        stringOPcons("v2o", CLU_1, CLU_3, &STR_v2o);
-        stringOPcons("wrong_tag", CLU_1, CLU_9, &STR_wrong_137tag);
+    if (e_oneofop_own_init == 0) {
+        stringOPcons("o2v", CLU_1, CLUREF_make_num(3), &STR_o2v);
+        stringOPcons("v2o", CLU_1, CLUREF_make_num(3), &STR_v2o);
+        stringOPcons("wrong_tag", CLU_1, CLUREF_make_num(9), &STR_wrong_137tag);
         e_oneofop_own_init = 1;
     }
     enter_proc(77);
@@ -785,11 +766,11 @@ e_oneofop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_2.num = ((op.str->size != STR_o2v.str->size)? false :
-        !(bcmp(op.str->data, STR_o2v.str->data, op.str->size)));
+        !(memcmp(op.str->data, STR_o2v.str->data, op.str->size)));
     T_1_1.num = T_1_2.num;
     if (!T_1_2.num) {
         T_1_3.num = ((op.str->size != STR_v2o.str->size)? false :
-            !(bcmp(op.str->data, STR_v2o.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_v2o.str->data, op.str->size)));
         T_1_1.num = T_1_3.num;
     }
     if (T_1_1.num == true) {
@@ -881,7 +862,7 @@ e_oneofop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
             err = stringOPrest(op, CLU_4, &T_4_1);
             if (err != ERR_ok) goto ex_1;
             T_4_2.num = ((sel.str->size != T_4_1.str->size)? false :
-                !(bcmp(sel.str->data, T_4_1.str->data, sel.str->size)));
+                !(memcmp(sel.str->data, T_4_1.str->data, sel.str->size)));
             err = e_b2e(e, T_4_2, &T_4_3);
             if (err != ERR_ok) goto ex_1;
             ret_1->num = T_4_3.num;
@@ -902,7 +883,7 @@ e_oneofop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
             err = stringOPrest(op, CLU_7, &T_4_1);
             if (err != ERR_ok) goto ex_1;
             T_4_2.num = ((sel.str->size != T_4_1.str->size)? false :
-                !(bcmp(sel.str->data, T_4_1.str->data, sel.str->size)));
+                !(memcmp(sel.str->data, T_4_1.str->data, sel.str->size)));
             if (T_4_2.num == true) {
 
   LINE(95);
@@ -956,10 +937,13 @@ e_oneofop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_oneofop ****/
 
+
+
+/**** BEGIN PROCEDURE e_structop ****/
 
 extern errcode e_e2sc();
 extern errcode recordOPget_2();
@@ -974,17 +958,14 @@ extern errcode intOPsub();
 extern errcode intOPadd();
 extern errcode oneofOPmake_23();
 extern errcode exprOPget_typespec();
-CLUREF STR_s2r;
-CLUREF STR_r2s;
+static CLUREF STR_s2r;
+static CLUREF STR_r2s;
 static int e_structop_own_init = 0;
-
-/**** BEGIN PROCEDURE e_structop ****/
 
 errcode
 e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF op;
     CLUREF a1;
     CLUREF h;
@@ -998,9 +979,9 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
     CLUREF sels;
     CLUREF i;
     CLUREF iz;
-        if (e_structop_own_init == 0) {
-        stringOPcons("s2r", CLU_1, CLU_3, &STR_s2r);
-        stringOPcons("r2s", CLU_1, CLU_3, &STR_r2s);
+    if (e_structop_own_init == 0) {
+        stringOPcons("s2r", CLU_1, CLUREF_make_num(3), &STR_s2r);
+        stringOPcons("r2s", CLU_1, CLUREF_make_num(3), &STR_r2s);
         e_structop_own_init = 1;
     }
     enter_proc(102);
@@ -1019,11 +1000,11 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_2.num = ((op.str->size != STR_s2r.str->size)? false :
-        !(bcmp(op.str->data, STR_s2r.str->data, op.str->size)));
+        !(memcmp(op.str->data, STR_s2r.str->data, op.str->size)));
     T_1_1.num = T_1_2.num;
     if (!T_1_2.num) {
         T_1_3.num = ((op.str->size != STR_r2s.str->size)? false :
-            !(bcmp(op.str->data, STR_r2s.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_r2s.str->data, op.str->size)));
         T_1_1.num = T_1_3.num;
     }
     if (T_1_1.num == true) {
@@ -1119,7 +1100,7 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                             {
                             CLUREF T_6_1;
                             T_6_1.num = ((sel.str->size != xsel.str->size)? false :
-                                !(bcmp(sel.str->data, xsel.str->data, sel.str->size)));
+                                !(memcmp(sel.str->data, xsel.str->data, sel.str->size)));
                             if (T_6_1.num == true) {
 
   LINE(117);
@@ -1222,7 +1203,7 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                                 goto ex_1;}
                             T_6_1.num = sels.vec->data[i.num - 1];
                             T_6_2.num = ((sel.str->size != T_6_1.str->size)? false :
-                                !(bcmp(sel.str->data, T_6_1.str->data, sel.str->size)));
+                                !(memcmp(sel.str->data, T_6_1.str->data, sel.str->size)));
                             if (T_6_2.num == true) {
 
   LINE(130);
@@ -1273,7 +1254,7 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                                 if (err != ERR_ok) goto ex_1;
                                 err = sequenceOPconcat(T_7_2, T_7_4, &T_7_5);
                                 if (err != ERR_ok) goto ex_1;
-                                f.vec->data[1]  = T_7_5.num;
+                                f.vec->data[1] = T_7_5.num;
                                 }
 
   LINE(134);
@@ -1318,13 +1299,13 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                                 RecordAlloc(3, T_7_1);
                                 sequenceOPnew2(CLU_1, &T_7_2);
                                 T_7_2.vec->data[0] = sel.num;
-                                T_7_1.vec->data[1]  = T_7_2.num;
+                                T_7_1.vec->data[1] = T_7_2.num;
                                 if (2 < 1 || 2 > args.vec->size ) {
                                     err = ERR_bounds;
                                     goto ex_1;}
                                 T_7_3.num = args.vec->data[2 - 1];
-                                T_7_1.vec->data[2]  = T_7_3.num;
-                                T_7_1.vec->data[0]  = 0;
+                                T_7_1.vec->data[2] = T_7_3.num;
+                                T_7_1.vec->data[0] = 0;
                                 f.num = T_7_1.num;
                                 }
 
@@ -1342,8 +1323,8 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                                 CLUREF T_7_2;
                                 RecordAlloc(2, T_7_1);
                                 T_7_2.num = cons.vec->data[1];
-                                T_7_1.vec->data[1]  = T_7_2.num;
-                                T_7_1.vec->data[0]  = fields.num;
+                                T_7_1.vec->data[1] = T_7_2.num;
+                                T_7_1.vec->data[0] = fields.num;
                                 cons.num = T_7_1.num;
                                 }
 
@@ -1410,10 +1391,13 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_structop ****/
 
+
+
+/**** BEGIN PROCEDURE e_seqop ****/
 
 extern errcode sequenceOPfill();
 extern errcode sequenceOPempty();
@@ -1423,62 +1407,59 @@ extern errcode sequenceOPremh();
 extern errcode sequenceOPreml();
 extern errcode sequenceOPaddl();
 extern errcode sequenceOPreplace();
-CLUREF STR_a2s;
-CLUREF STR_s2a;
-CLUREF STR_elements;
-CLUREF STR_indexes;
-CLUREF STR_new;
-CLUREF STR_e2s;
-CLUREF STR_fill;
-CLUREF STR_fill_137copy;
-CLUREF STR_equal;
-CLUREF STR_similar;
-CLUREF STR_bottom;
-CLUREF STR_top;
-CLUREF STR_remh;
-CLUREF STR_reml;
-CLUREF STR_addh;
-CLUREF STR_addl;
-CLUREF STR_replace;
+static CLUREF STR_a2s;
+static CLUREF STR_s2a;
+static CLUREF STR_elements;
+static CLUREF STR_indexes;
+static CLUREF STR_new;
+static CLUREF STR_e2s;
+static CLUREF STR_fill;
+static CLUREF STR_fill_137copy;
+static CLUREF STR_equal;
+static CLUREF STR_similar;
+static CLUREF STR_bottom;
+static CLUREF STR_top;
+static CLUREF STR_remh;
+static CLUREF STR_reml;
+static CLUREF STR_addh;
+static CLUREF STR_addl;
+static CLUREF STR_replace;
 static int e_seqop_own_init = 0;
-
-/**** BEGIN PROCEDURE e_seqop ****/
 
 errcode
 e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF op;
     CLUREF a1;
     CLUREF cons;
     CLUREF elts;
     CLUREF a2;
     CLUREF err_UNIQ;
-        if (e_seqop_own_init == 0) {
-        stringOPcons("a2s", CLU_1, CLU_3, &STR_a2s);
-        stringOPcons("s2a", CLU_1, CLU_3, &STR_s2a);
-        stringOPcons("elements", CLU_1, CLU_8, &STR_elements);
-        stringOPcons("indexes", CLU_1, CLU_7, &STR_indexes);
-        stringOPcons("new", CLU_1, CLU_3, &STR_new);
-        stringOPcons("copy", CLU_1, CLU_4, &STR_copy);
-        stringOPcons("e2s", CLU_1, CLU_3, &STR_e2s);
-        stringOPcons("fill", CLU_1, CLU_4, &STR_fill);
-        stringOPcons("fill_copy", CLU_1, CLU_9, &STR_fill_137copy);
-        stringOPcons("equal", CLU_1, CLU_5, &STR_equal);
-        stringOPcons("similar", CLU_1, CLU_7, &STR_similar);
-        stringOPcons("size", CLU_1, CLU_4, &STR_size);
-        stringOPcons("empty", CLU_1, CLU_5, &STR_empty);
-        stringOPcons("bottom", CLU_1, CLU_6, &STR_bottom);
-        stringOPcons("top", CLU_1, CLU_3, &STR_top);
-        stringOPcons("remh", CLU_1, CLU_4, &STR_remh);
-        stringOPcons("reml", CLU_1, CLU_4, &STR_reml);
-        stringOPcons("fetch", CLU_1, CLU_5, &STR_fetch);
-        stringOPcons("rest", CLU_1, CLU_4, &STR_rest);
-        stringOPcons("addh", CLU_1, CLU_4, &STR_addh);
-        stringOPcons("addl", CLU_1, CLU_4, &STR_addl);
-        stringOPcons("replace", CLU_1, CLU_7, &STR_replace);
-        stringOPcons("concat", CLU_1, CLU_6, &STR_concat);
+    if (e_seqop_own_init == 0) {
+        stringOPcons("a2s", CLU_1, CLUREF_make_num(3), &STR_a2s);
+        stringOPcons("s2a", CLU_1, CLUREF_make_num(3), &STR_s2a);
+        stringOPcons("elements", CLU_1, CLUREF_make_num(8), &STR_elements);
+        stringOPcons("indexes", CLU_1, CLUREF_make_num(7), &STR_indexes);
+        stringOPcons("new", CLU_1, CLUREF_make_num(3), &STR_new);
+        stringOPcons("copy", CLU_1, CLUREF_make_num(4), &STR_copy);
+        stringOPcons("e2s", CLU_1, CLUREF_make_num(3), &STR_e2s);
+        stringOPcons("fill", CLU_1, CLUREF_make_num(4), &STR_fill);
+        stringOPcons("fill_copy", CLU_1, CLUREF_make_num(9), &STR_fill_137copy);
+        stringOPcons("equal", CLU_1, CLUREF_make_num(5), &STR_equal);
+        stringOPcons("similar", CLU_1, CLUREF_make_num(7), &STR_similar);
+        stringOPcons("size", CLU_1, CLUREF_make_num(4), &STR_size);
+        stringOPcons("empty", CLU_1, CLUREF_make_num(5), &STR_empty);
+        stringOPcons("bottom", CLU_1, CLUREF_make_num(6), &STR_bottom);
+        stringOPcons("top", CLU_1, CLUREF_make_num(3), &STR_top);
+        stringOPcons("remh", CLU_1, CLUREF_make_num(4), &STR_remh);
+        stringOPcons("reml", CLU_1, CLUREF_make_num(4), &STR_reml);
+        stringOPcons("fetch", CLU_1, CLUREF_make_num(5), &STR_fetch);
+        stringOPcons("rest", CLU_1, CLUREF_make_num(4), &STR_rest);
+        stringOPcons("addh", CLU_1, CLUREF_make_num(4), &STR_addh);
+        stringOPcons("addl", CLU_1, CLUREF_make_num(4), &STR_addl);
+        stringOPcons("replace", CLU_1, CLUREF_make_num(7), &STR_replace);
+        stringOPcons("concat", CLU_1, CLUREF_make_num(6), &STR_concat);
         e_seqop_own_init = 1;
     }
     enter_proc(153);
@@ -1501,23 +1482,23 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
     CLUREF T_1_6;
     CLUREF T_1_7;
     T_1_4.num = ((op.str->size != STR_a2s.str->size)? false :
-        !(bcmp(op.str->data, STR_a2s.str->data, op.str->size)));
+        !(memcmp(op.str->data, STR_a2s.str->data, op.str->size)));
     T_1_3.num = T_1_4.num;
     if (!T_1_4.num) {
         T_1_5.num = ((op.str->size != STR_s2a.str->size)? false :
-            !(bcmp(op.str->data, STR_s2a.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_s2a.str->data, op.str->size)));
         T_1_3.num = T_1_5.num;
     }
     T_1_2.num = T_1_3.num;
     if (!T_1_3.num) {
         T_1_6.num = ((op.str->size != STR_elements.str->size)? false :
-            !(bcmp(op.str->data, STR_elements.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_elements.str->data, op.str->size)));
         T_1_2.num = T_1_6.num;
     }
     T_1_1.num = T_1_2.num;
     if (!T_1_2.num) {
         T_1_7.num = ((op.str->size != STR_indexes.str->size)? false :
-            !(bcmp(op.str->data, STR_indexes.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_indexes.str->data, op.str->size)));
         T_1_1.num = T_1_7.num;
     }
     if (T_1_1.num == true) {
@@ -1535,7 +1516,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = ((op.str->size != STR_new.str->size)? false :
-            !(bcmp(op.str->data, STR_new.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_new.str->data, op.str->size)));
         if (T_3_1.num == true) {
 
   LINE(161);
@@ -1565,7 +1546,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = ((op.str->size != STR_copy.str->size)? false :
-            !(bcmp(op.str->data, STR_copy.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_copy.str->data, op.str->size)));
         if (T_3_1.num == true) {
 
   LINE(164);
@@ -1578,7 +1559,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_2;
         T_3_2.num = ((op.str->size != STR_e2s.str->size)? false :
-            !(bcmp(op.str->data, STR_e2s.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_e2s.str->data, op.str->size)));
         if (T_3_2.num == true) {
 
   LINE(166);
@@ -1596,11 +1577,11 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         CLUREF T_3_4;
         CLUREF T_3_5;
         T_3_4.num = ((op.str->size != STR_fill.str->size)? false :
-            !(bcmp(op.str->data, STR_fill.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_fill.str->data, op.str->size)));
         T_3_3.num = T_3_4.num;
         if (!T_3_4.num) {
             T_3_5.num = ((op.str->size != STR_fill_137copy.str->size)? false :
-                !(bcmp(op.str->data, STR_fill_137copy.str->data, op.str->size)));
+                !(memcmp(op.str->data, STR_fill_137copy.str->data, op.str->size)));
             T_3_3.num = T_3_5.num;
         }
         if (T_3_3.num == true) {
@@ -1628,11 +1609,11 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         CLUREF T_3_7;
         CLUREF T_3_8;
         T_3_7.num = ((op.str->size != STR_equal.str->size)? false :
-            !(bcmp(op.str->data, STR_equal.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_equal.str->data, op.str->size)));
         T_3_6.num = T_3_7.num;
         if (!T_3_7.num) {
             T_3_8.num = ((op.str->size != STR_similar.str->size)? false :
-                !(bcmp(op.str->data, STR_similar.str->data, op.str->size)));
+                !(memcmp(op.str->data, STR_similar.str->data, op.str->size)));
             T_3_6.num = T_3_8.num;
         }
         if (T_3_6.num == true) {
@@ -1678,7 +1659,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = ((op.str->size != STR_size.str->size)? false :
-            !(bcmp(op.str->data, STR_size.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_size.str->data, op.str->size)));
         if (T_3_1.num == true) {
 
   LINE(174);
@@ -1696,7 +1677,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_2;
         T_3_2.num = ((op.str->size != STR_empty.str->size)? false :
-            !(bcmp(op.str->data, STR_empty.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_empty.str->data, op.str->size)));
         if (T_3_2.num == true) {
 
   LINE(176);
@@ -1715,7 +1696,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_3;
         T_3_3.num = ((op.str->size != STR_bottom.str->size)? false :
-            !(bcmp(op.str->data, STR_bottom.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_bottom.str->data, op.str->size)));
         if (T_3_3.num == true) {
 
   LINE(178);
@@ -1731,7 +1712,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_4;
         T_3_4.num = ((op.str->size != STR_top.str->size)? false :
-            !(bcmp(op.str->data, STR_top.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_top.str->data, op.str->size)));
         if (T_3_4.num == true) {
 
   LINE(180);
@@ -1747,7 +1728,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_5;
         T_3_5.num = ((op.str->size != STR_remh.str->size)? false :
-            !(bcmp(op.str->data, STR_remh.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_remh.str->data, op.str->size)));
         if (T_3_5.num == true) {
 
   LINE(182);
@@ -1763,7 +1744,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_6;
         T_3_6.num = ((op.str->size != STR_reml.str->size)? false :
-            !(bcmp(op.str->data, STR_reml.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_reml.str->data, op.str->size)));
         if (T_3_6.num == true) {
 
   LINE(184);
@@ -1793,7 +1774,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         T_3_1.num = ((op.str->size != STR_fetch.str->size)? false :
-            !(bcmp(op.str->data, STR_fetch.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_fetch.str->data, op.str->size)));
         if (T_3_1.num == true) {
 
   LINE(187);
@@ -1814,7 +1795,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_2;
         T_3_2.num = ((op.str->size != STR_rest.str->size)? false :
-            !(bcmp(op.str->data, STR_rest.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_rest.str->data, op.str->size)));
         if (T_3_2.num == true) {
 
   LINE(189);
@@ -1835,7 +1816,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_3;
         T_3_3.num = ((op.str->size != STR_addh.str->size)? false :
-            !(bcmp(op.str->data, STR_addh.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_addh.str->data, op.str->size)));
         if (T_3_3.num == true) {
 
   LINE(191);
@@ -1851,7 +1832,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_4;
         T_3_4.num = ((op.str->size != STR_addl.str->size)? false :
-            !(bcmp(op.str->data, STR_addl.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_addl.str->data, op.str->size)));
         if (T_3_4.num == true) {
 
   LINE(193);
@@ -1867,7 +1848,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_5;
         T_3_5.num = ((op.str->size != STR_replace.str->size)? false :
-            !(bcmp(op.str->data, STR_replace.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_replace.str->data, op.str->size)));
         if (T_3_5.num == true) {
 
   LINE(195);
@@ -1891,7 +1872,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         else {
         CLUREF T_3_6;
         T_3_6.num = ((op.str->size != STR_concat.str->size)? false :
-            !(bcmp(op.str->data, STR_concat.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_concat.str->data, op.str->size)));
         if (T_3_6.num == true) {
 
   LINE(197);
@@ -1952,10 +1933,10 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                     CLUREF T_2_3;
                     RecordAlloc(3, T_2_1);
                     T_2_2.num = cop.vec->data[2];
-                    T_2_1.vec->data[2]  = T_2_2.num;
+                    T_2_1.vec->data[2] = T_2_2.num;
                     CellAlloc(1, nil, T_2_3);
-                    T_2_1.vec->data[1]  = T_2_3.num;
-                    T_2_1.vec->data[0]  = elts.num;
+                    T_2_1.vec->data[1] = T_2_3.num;
+                    T_2_1.vec->data[0] = elts.num;
                     cons.num = T_2_1.num;
                     }
                     }
@@ -1993,21 +1974,21 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_seqop ****/
 
 
-extern errcode oneofOPvalue_19();
-extern errcode exprOPget_abs();
 
 /**** BEGIN PROCEDURE e_e2n ****/
 
+extern errcode oneofOPvalue_19();
+extern errcode exprOPget_abs();
+
 errcode
 e_e2n(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(211);
 
   LINE(212);
@@ -2043,20 +2024,20 @@ e_e2n(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_e2n ****/
 
 
-extern errcode oneofOPvalue_5();
 
 /**** BEGIN PROCEDURE e_e2b ****/
 
+extern errcode oneofOPvalue_5();
+
 errcode
 e_e2b(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(216);
 
   LINE(217);
@@ -2092,20 +2073,20 @@ e_e2b(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_e2b ****/
 
 
-extern errcode oneofOPvalue_15();
 
 /**** BEGIN PROCEDURE e_e2i ****/
 
+extern errcode oneofOPvalue_15();
+
 errcode
 e_e2i(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(221);
 
   LINE(222);
@@ -2141,20 +2122,20 @@ e_e2i(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_e2i ****/
 
 
-extern errcode oneofOPvalue_21();
 
 /**** BEGIN PROCEDURE e_e2r ****/
 
+extern errcode oneofOPvalue_21();
+
 errcode
 e_e2r(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(226);
 
   LINE(227);
@@ -2190,20 +2171,20 @@ e_e2r(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_e2r ****/
 
 
-extern errcode oneofOPvalue_7();
 
 /**** BEGIN PROCEDURE e_e2h ****/
 
+extern errcode oneofOPvalue_7();
+
 errcode
 e_e2h(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(231);
 
   LINE(232);
@@ -2239,20 +2220,20 @@ e_e2h(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_e2h ****/
 
 
-extern errcode oneofOPvalue_24();
 
 /**** BEGIN PROCEDURE e_e2s ****/
 
+extern errcode oneofOPvalue_24();
+
 errcode
 e_e2s(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(236);
 
   LINE(237);
@@ -2288,26 +2269,26 @@ e_e2s(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_e2s ****/
 
 
-extern errcode intOPequal();
-CLUREF STR_make_137;
-static int e_e2o_own_init = 0;
 
 /**** BEGIN PROCEDURE e_e2o ****/
 
+extern errcode intOPequal();
+static CLUREF STR_make_137;
+static int e_e2o_own_init = 0;
+
 errcode
 e_e2o(CLUREF x, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF xa;
     CLUREF opa;
-        if (e_e2o_own_init == 0) {
-        stringOPcons("make_", CLU_1, CLU_5, &STR_make_137);
+    if (e_e2o_own_init == 0) {
+        stringOPcons("make_", CLU_1, CLUREF_make_num(5), &STR_make_137);
         e_e2o_own_init = 1;
     }
     enter_proc(241);
@@ -2393,20 +2374,20 @@ e_e2o(CLUREF x, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_e2o ****/
 
 
-extern errcode oneofOPvalue_23();
 
 /**** BEGIN PROCEDURE e_e2sc ****/
 
+extern errcode oneofOPvalue_23();
+
 errcode
 e_e2sc(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(257);
 
   LINE(258);
@@ -2442,20 +2423,20 @@ e_e2sc(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_e2sc ****/
 
 
-extern errcode oneofOPvalue_1();
 
 /**** BEGIN PROCEDURE e_e2qc ****/
 
+extern errcode oneofOPvalue_1();
+
 errcode
 e_e2qc(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(262);
 
   LINE(263);
@@ -2491,7 +2472,7 @@ e_e2qc(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE e_e2qc ****/
 

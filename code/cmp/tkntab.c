@@ -75,9 +75,9 @@ extern struct OPS *bool_ops;
 extern struct OPS *string_ops;
 extern struct OPS *int_ops;
 struct OPS  *struct_neg_op_prec_ops;
-extern struct REQS *sequence_of_t_reqs;
+extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *expr_ops;
-extern OWN_req sequence_ownreqs;
+extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -133,86 +133,88 @@ extern struct OPS *oneof_down__force__type_of__up__ops;
 extern struct OPS *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
 extern struct OPS *oneof_applytype__cluster__rep__selector__ops;
 struct OPS  *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-extern struct REQS *table_of_key_reqs;
-extern struct REQS *table_of_val_reqs;
+extern const struct REQS * const table_of_key_reqs;
+extern const struct REQS * const table_of_val_reqs;
 extern struct OPS *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-extern OWN_req table_ownreqs;
+extern const OWN_req table_ownreqs;
 extern struct OPS *table_ops;
 struct OPS *table_of_string_table;
 struct OPS *table_of_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__table;
 struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
 struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
 OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
-CLUREF STR_begin;
-CLUREF STR_break;
-CLUREF STR_cand;
-CLUREF STR_cluster;
-CLUREF STR_continue;
-CLUREF STR_cor;
-CLUREF STR_do;
-CLUREF STR_down;
-CLUREF STR_else;
-CLUREF STR_elseif;
-CLUREF STR_end;
-CLUREF STR_except;
-CLUREF STR_exit;
-CLUREF STR_false;
-CLUREF STR_for;
-CLUREF STR_force;
-CLUREF STR_has;
-CLUREF STR_if;
-CLUREF STR_in;
-CLUREF STR_is;
-CLUREF STR_nil;
-CLUREF STR_others;
-CLUREF STR_own;
-CLUREF STR_resignal;
-CLUREF STR_return;
-CLUREF STR_returns;
-CLUREF STR_signal;
-CLUREF STR_signals;
-CLUREF STR_tag;
-CLUREF STR_tagcase;
-CLUREF STR_then;
-CLUREF STR_true;
-CLUREF STR_up;
-CLUREF STR_when;
-CLUREF STR_where;
-CLUREF STR_while;
-CLUREF STR_yield;
-CLUREF STR_yields;
-CLUREF STR_any;
-CLUREF STR_array;
-CLUREF STR_bool;
-CLUREF STR_char;
-CLUREF STR_cvt;
-CLUREF STR_int;
-CLUREF STR_iter;
-CLUREF STR_itertype;
-CLUREF STR_null;
-CLUREF STR_oneof;
-CLUREF STR_proc;
-CLUREF STR_proctype;
-CLUREF STR_real;
-CLUREF STR_record;
-CLUREF STR_rep;
-CLUREF STR_REP;
-CLUREF STR_sequence;
-CLUREF STR_string;
-CLUREF STR_struct;
-CLUREF STR_type;
-CLUREF STR_variant;
-CLUREF STR_applytype;
-CLUREF STR_selector;
-CLUREF STR_type_137of;
-CLUREF STR_monitor;
+static CLUREF STR_begin;
+static CLUREF STR_break;
+static CLUREF STR_cand;
+static CLUREF STR_cluster;
+static CLUREF STR_continue;
+static CLUREF STR_cor;
+static CLUREF STR_do;
+static CLUREF STR_down;
+static CLUREF STR_else;
+static CLUREF STR_elseif;
+static CLUREF STR_end;
+static CLUREF STR_except;
+static CLUREF STR_exit;
+static CLUREF STR_false;
+static CLUREF STR_for;
+static CLUREF STR_force;
+static CLUREF STR_has;
+static CLUREF STR_if;
+static CLUREF STR_in;
+static CLUREF STR_is;
+static CLUREF STR_nil;
+static CLUREF STR_others;
+static CLUREF STR_own;
+static CLUREF STR_resignal;
+static CLUREF STR_return;
+static CLUREF STR_returns;
+static CLUREF STR_signal;
+static CLUREF STR_signals;
+static CLUREF STR_tag;
+static CLUREF STR_tagcase;
+static CLUREF STR_then;
+static CLUREF STR_true;
+static CLUREF STR_up;
+static CLUREF STR_when;
+static CLUREF STR_where;
+static CLUREF STR_while;
+static CLUREF STR_yield;
+static CLUREF STR_yields;
+static CLUREF STR_any;
+static CLUREF STR_array;
+static CLUREF STR_bool;
+static CLUREF STR_char;
+static CLUREF STR_cvt;
+static CLUREF STR_int;
+static CLUREF STR_iter;
+static CLUREF STR_itertype;
+static CLUREF STR_null;
+static CLUREF STR_oneof;
+static CLUREF STR_proc;
+static CLUREF STR_proctype;
+static CLUREF STR_real;
+static CLUREF STR_record;
+static CLUREF STR_rep;
+static CLUREF STR_REP;
+static CLUREF STR_sequence;
+static CLUREF STR_string;
+static CLUREF STR_struct;
+static CLUREF STR_type;
+static CLUREF STR_variant;
+static CLUREF STR_applytype;
+static CLUREF STR_selector;
+static CLUREF STR_type_137of;
+static CLUREF STR_monitor;
 static int tokentab_own_init = 0;
-OWN_req tokentab_ownreqs = {0,0};
-errcode tokentab_own_init_proc()
+const OWN_req tokentab_ownreqs = { 0, 0 };
+
+errcode
+tokentab_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (tokentab_own_init == 0) {
+    if (tokentab_own_init == 0) {
         add_selector_info("applytype_", 0, null_ops);
         add_selector_info("cluster_", 1, null_ops);
         add_selector_info("iter_", 2, du_ops);
@@ -223,7 +225,7 @@ errcode tokentab_own_init_proc()
         add_selector_info("op", 1, string_ops);
         add_selector_info("prec", 2, int_ops);
         find_selector_ops("struct", 3, &(struct_neg_op_prec_ops));
-        add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
         add_selector_info("none", 0, null_ops);
         add_selector_info("one", 1, expr_ops);
@@ -259,13 +261,13 @@ errcode tokentab_own_init_proc()
         add_selector_info("idn", 0, idn_ops);
         add_selector_info("parms", 1, sequence_of_expr_ops);
         find_selector_ops("record", 2, &(record_idn_parms_ops));
-        add_parm_info_type(0, string_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)string_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_string_ops));
         add_selector_info("line", 0, int_ops);
         add_selector_info("sels", 1, sequence_of_string_ops);
         add_selector_info("val", 2, expr_ops);
         find_selector_ops("record", 3, &(record_line_sels_val_ops));
-        add_parm_info_type(0, record_line_sels_val_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_line_sels_val_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_line_sels_val_ops));
         add_selector_info("fields", 0, sequence_of_record_line_sels_val_ops);
         add_selector_info("type_", 1, typespec_ops);
@@ -363,77 +365,83 @@ errcode tokentab_own_init_proc()
         add_selector_info("where_", 39, null_ops);
         add_selector_info("yields_", 40, null_ops);
         find_selector_ops("oneof", 41, &(oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops));
-        add_parm_info_type(0, string_ops, table_of_key_reqs);
-        add_parm_info_type(1, oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops, table_of_val_reqs);
+        add_parm_info_type(0, (const struct OPS *)string_ops, table_of_key_reqs);
+        add_parm_info_type(1, (const struct OPS *)oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops, table_of_val_reqs);
         find_type_instance(table_ops, 2, &table_ownreqs, &(table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops));
-        stringOPcons("begin", CLU_1, CLU_5, &STR_begin);
-        stringOPcons("break", CLU_1, CLU_5, &STR_break);
-        stringOPcons("cand", CLU_1, CLU_4, &STR_cand);
-        stringOPcons("cluster", CLU_1, CLU_7, &STR_cluster);
-        stringOPcons("continue", CLU_1, CLU_8, &STR_continue);
-        stringOPcons("cor", CLU_1, CLU_3, &STR_cor);
-        stringOPcons("do", CLU_1, CLU_2, &STR_do);
-        stringOPcons("down", CLU_1, CLU_4, &STR_down);
-        stringOPcons("else", CLU_1, CLU_4, &STR_else);
-        stringOPcons("elseif", CLU_1, CLU_6, &STR_elseif);
-        stringOPcons("end", CLU_1, CLU_3, &STR_end);
-        stringOPcons("except", CLU_1, CLU_6, &STR_except);
-        stringOPcons("exit", CLU_1, CLU_4, &STR_exit);
-        stringOPcons("false", CLU_1, CLU_5, &STR_false);
-        stringOPcons("for", CLU_1, CLU_3, &STR_for);
-        stringOPcons("force", CLU_1, CLU_5, &STR_force);
-        stringOPcons("has", CLU_1, CLU_3, &STR_has);
-        stringOPcons("if", CLU_1, CLU_2, &STR_if);
-        stringOPcons("in", CLU_1, CLU_2, &STR_in);
-        stringOPcons("is", CLU_1, CLU_2, &STR_is);
-        stringOPcons("nil", CLU_1, CLU_3, &STR_nil);
-        stringOPcons("others", CLU_1, CLU_6, &STR_others);
-        stringOPcons("own", CLU_1, CLU_3, &STR_own);
-        stringOPcons("resignal", CLU_1, CLU_8, &STR_resignal);
-        stringOPcons("return", CLU_1, CLU_6, &STR_return);
-        stringOPcons("returns", CLU_1, CLU_7, &STR_returns);
-        stringOPcons("signal", CLU_1, CLU_6, &STR_signal);
-        stringOPcons("signals", CLU_1, CLU_7, &STR_signals);
-        stringOPcons("tag", CLU_1, CLU_3, &STR_tag);
-        stringOPcons("tagcase", CLU_1, CLU_7, &STR_tagcase);
-        stringOPcons("then", CLU_1, CLU_4, &STR_then);
-        stringOPcons("true", CLU_1, CLU_4, &STR_true);
-        stringOPcons("up", CLU_1, CLU_2, &STR_up);
-        stringOPcons("when", CLU_1, CLU_4, &STR_when);
-        stringOPcons("where", CLU_1, CLU_5, &STR_where);
-        stringOPcons("while", CLU_1, CLU_5, &STR_while);
-        stringOPcons("yield", CLU_1, CLU_5, &STR_yield);
-        stringOPcons("yields", CLU_1, CLU_6, &STR_yields);
-        stringOPcons("any", CLU_1, CLU_3, &STR_any);
-        stringOPcons("array", CLU_1, CLU_5, &STR_array);
-        stringOPcons("bool", CLU_1, CLU_4, &STR_bool);
-        stringOPcons("char", CLU_1, CLU_4, &STR_char);
-        stringOPcons("cvt", CLU_1, CLU_3, &STR_cvt);
-        stringOPcons("int", CLU_1, CLU_3, &STR_int);
-        stringOPcons("iter", CLU_1, CLU_4, &STR_iter);
-        stringOPcons("itertype", CLU_1, CLU_8, &STR_itertype);
-        stringOPcons("null", CLU_1, CLU_4, &STR_null);
-        stringOPcons("oneof", CLU_1, CLU_5, &STR_oneof);
-        stringOPcons("proc", CLU_1, CLU_4, &STR_proc);
-        stringOPcons("proctype", CLU_1, CLU_8, &STR_proctype);
-        stringOPcons("real", CLU_1, CLU_4, &STR_real);
-        stringOPcons("record", CLU_1, CLU_6, &STR_record);
-        stringOPcons("rep", CLU_1, CLU_3, &STR_rep);
-        stringOPcons("REP", CLU_1, CLU_3, &STR_REP);
-        stringOPcons("sequence", CLU_1, CLU_8, &STR_sequence);
-        stringOPcons("string", CLU_1, CLU_6, &STR_string);
-        stringOPcons("struct", CLU_1, CLU_6, &STR_struct);
-        stringOPcons("type", CLU_1, CLU_4, &STR_type);
-        stringOPcons("variant", CLU_1, CLU_7, &STR_variant);
-        stringOPcons("applytype", CLU_1, CLU_9, &STR_applytype);
-        stringOPcons("selector", CLU_1, CLU_8, &STR_selector);
-        stringOPcons("type_of", CLU_1, CLU_7, &STR_type_137of);
-        stringOPcons("monitor", CLU_1, CLU_7, &STR_monitor);
+        stringOPcons("begin", CLU_1, CLUREF_make_num(5), &STR_begin);
+        stringOPcons("break", CLU_1, CLUREF_make_num(5), &STR_break);
+        stringOPcons("cand", CLU_1, CLUREF_make_num(4), &STR_cand);
+        stringOPcons("cluster", CLU_1, CLUREF_make_num(7), &STR_cluster);
+        stringOPcons("continue", CLU_1, CLUREF_make_num(8), &STR_continue);
+        stringOPcons("cor", CLU_1, CLUREF_make_num(3), &STR_cor);
+        stringOPcons("do", CLU_1, CLUREF_make_num(2), &STR_do);
+        stringOPcons("down", CLU_1, CLUREF_make_num(4), &STR_down);
+        stringOPcons("else", CLU_1, CLUREF_make_num(4), &STR_else);
+        stringOPcons("elseif", CLU_1, CLUREF_make_num(6), &STR_elseif);
+        stringOPcons("end", CLU_1, CLUREF_make_num(3), &STR_end);
+        stringOPcons("except", CLU_1, CLUREF_make_num(6), &STR_except);
+        stringOPcons("exit", CLU_1, CLUREF_make_num(4), &STR_exit);
+        stringOPcons("false", CLU_1, CLUREF_make_num(5), &STR_false);
+        stringOPcons("for", CLU_1, CLUREF_make_num(3), &STR_for);
+        stringOPcons("force", CLU_1, CLUREF_make_num(5), &STR_force);
+        stringOPcons("has", CLU_1, CLUREF_make_num(3), &STR_has);
+        stringOPcons("if", CLU_1, CLUREF_make_num(2), &STR_if);
+        stringOPcons("in", CLU_1, CLUREF_make_num(2), &STR_in);
+        stringOPcons("is", CLU_1, CLUREF_make_num(2), &STR_is);
+        stringOPcons("nil", CLU_1, CLUREF_make_num(3), &STR_nil);
+        stringOPcons("others", CLU_1, CLUREF_make_num(6), &STR_others);
+        stringOPcons("own", CLU_1, CLUREF_make_num(3), &STR_own);
+        stringOPcons("resignal", CLU_1, CLUREF_make_num(8), &STR_resignal);
+        stringOPcons("return", CLU_1, CLUREF_make_num(6), &STR_return);
+        stringOPcons("returns", CLU_1, CLUREF_make_num(7), &STR_returns);
+        stringOPcons("signal", CLU_1, CLUREF_make_num(6), &STR_signal);
+        stringOPcons("signals", CLU_1, CLUREF_make_num(7), &STR_signals);
+        stringOPcons("tag", CLU_1, CLUREF_make_num(3), &STR_tag);
+        stringOPcons("tagcase", CLU_1, CLUREF_make_num(7), &STR_tagcase);
+        stringOPcons("then", CLU_1, CLUREF_make_num(4), &STR_then);
+        stringOPcons("true", CLU_1, CLUREF_make_num(4), &STR_true);
+        stringOPcons("up", CLU_1, CLUREF_make_num(2), &STR_up);
+        stringOPcons("when", CLU_1, CLUREF_make_num(4), &STR_when);
+        stringOPcons("where", CLU_1, CLUREF_make_num(5), &STR_where);
+        stringOPcons("while", CLU_1, CLUREF_make_num(5), &STR_while);
+        stringOPcons("yield", CLU_1, CLUREF_make_num(5), &STR_yield);
+        stringOPcons("yields", CLU_1, CLUREF_make_num(6), &STR_yields);
+        stringOPcons("any", CLU_1, CLUREF_make_num(3), &STR_any);
+        stringOPcons("array", CLU_1, CLUREF_make_num(5), &STR_array);
+        stringOPcons("bool", CLU_1, CLUREF_make_num(4), &STR_bool);
+        stringOPcons("char", CLU_1, CLUREF_make_num(4), &STR_char);
+        stringOPcons("cvt", CLU_1, CLUREF_make_num(3), &STR_cvt);
+        stringOPcons("int", CLU_1, CLUREF_make_num(3), &STR_int);
+        stringOPcons("iter", CLU_1, CLUREF_make_num(4), &STR_iter);
+        stringOPcons("itertype", CLU_1, CLUREF_make_num(8), &STR_itertype);
+        stringOPcons("null", CLU_1, CLUREF_make_num(4), &STR_null);
+        stringOPcons("oneof", CLU_1, CLUREF_make_num(5), &STR_oneof);
+        stringOPcons("proc", CLU_1, CLUREF_make_num(4), &STR_proc);
+        stringOPcons("proctype", CLU_1, CLUREF_make_num(8), &STR_proctype);
+        stringOPcons("real", CLU_1, CLUREF_make_num(4), &STR_real);
+        stringOPcons("record", CLU_1, CLUREF_make_num(6), &STR_record);
+        stringOPcons("rep", CLU_1, CLUREF_make_num(3), &STR_rep);
+        stringOPcons("REP", CLU_1, CLUREF_make_num(3), &STR_REP);
+        stringOPcons("sequence", CLU_1, CLUREF_make_num(8), &STR_sequence);
+        stringOPcons("string", CLU_1, CLUREF_make_num(6), &STR_string);
+        stringOPcons("struct", CLU_1, CLUREF_make_num(6), &STR_struct);
+        stringOPcons("type", CLU_1, CLUREF_make_num(4), &STR_type);
+        stringOPcons("variant", CLU_1, CLUREF_make_num(7), &STR_variant);
+        stringOPcons("applytype", CLU_1, CLUREF_make_num(9), &STR_applytype);
+        stringOPcons("selector", CLU_1, CLUREF_make_num(8), &STR_selector);
+        stringOPcons("type_of", CLU_1, CLUREF_make_num(7), &STR_type_137of);
+        stringOPcons("monitor", CLU_1, CLUREF_make_num(7), &STR_monitor);
         tokentab_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
+
+
+/**** BEGIN PROCEDURE create ****/
 
 struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
 struct OPS  *struct_neg_op_prec_ops;
@@ -473,19 +481,16 @@ struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__else
 OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPcreate_own_init = 0;
 
-/**** BEGIN PROCEDURE create ****/
-
 errcode
 tokentabOPcreate(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
-        if (tokentabOPcreate_own_init == 0) {
+    if (tokentabOPcreate_own_init == 0) {
         if (tokentab_own_init == 0) {
             err = tokentab_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         tokentabOPcreate_own_init = 1;
     }
     enter_proc(26);
@@ -497,12 +502,12 @@ tokentabOPcreate(CLUREF e, CLUREF *ret_1)
         CLUREF T_1_3;
         CLUREF T_1_4;
         T_1_1.num = 500;
-        err = proctypeOPnew(CLU_0, &T_1_2.proc);
+        err = proctypeOPnew(CLU_0, &T_1_2);
         if (err!= ERR_ok) goto ex_0;
         T_1_2.proc->type_owns = 0;
         T_1_2.proc->op_owns = 0;
         T_1_2.proc->proc = hash;
-        err = proctypeOPnew(CLU_0, &T_1_3.proc);
+        err = proctypeOPnew(CLU_0, &T_1_3);
         if (err!= ERR_ok) goto ex_0;
         T_1_3.proc->proc = stringOPequal;
         generic_CLU_proc.type_owns = table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops->type_owns;
@@ -545,9 +550,9 @@ tokentabOPcreate(CLUREF e, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     RecordAlloc(3, T_1_1);
-    T_1_1.vec->data[2]  = 2;
-    T_1_1.vec->data[1]  = STR_cand.num;
-    T_1_1.vec->data[0]  = false;
+    T_1_1.vec->data[2] = 2;
+    T_1_1.vec->data[1] = STR_cand.num;
+    T_1_1.vec->data[0] = false;
     CellAlloc(23, T_1_1.num, T_1_2);
     generic_CLU_proc.type_owns = table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops->type_owns;
     generic_CLU_proc.proc = tableOPalter;
@@ -587,9 +592,9 @@ tokentabOPcreate(CLUREF e, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     RecordAlloc(3, T_1_1);
-    T_1_1.vec->data[2]  = 1;
-    T_1_1.vec->data[1]  = STR_cor.num;
-    T_1_1.vec->data[0]  = false;
+    T_1_1.vec->data[2] = 1;
+    T_1_1.vec->data[1] = STR_cor.num;
+    T_1_1.vec->data[0] = false;
     CellAlloc(23, T_1_1.num, T_1_2);
     generic_CLU_proc.type_owns = table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops->type_owns;
     generic_CLU_proc.proc = tableOPalter;
@@ -1001,9 +1006,12 @@ tokentabOPcreate(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
+
+
+/**** BEGIN PROCEDURE reset ****/
 
 struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
 struct OPS  *struct_neg_op_prec_ops;
@@ -1043,18 +1051,15 @@ struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__else
 OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPreset_own_init = 0;
 
-/**** BEGIN PROCEDURE reset ****/
-
 errcode
 tokentabOPreset(CLUREF t, CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (tokentabOPreset_own_init == 0) {
+    if (tokentabOPreset_own_init == 0) {
         if (tokentab_own_init == 0) {
             err = tokentab_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         tokentabOPreset_own_init = 1;
     }
     enter_proc(74);
@@ -1068,7 +1073,7 @@ tokentabOPreset(CLUREF t, CLUREF e)
   LINE(76);
     {
     CLUREF T_1_1;
-    err = proctypeOPnew(CLU_1, &T_1_1.proc);
+    err = proctypeOPnew(CLU_1, &T_1_1);
     if (err!= ERR_ok) goto ex_0;
     T_1_1.proc->proc = oneofOPis_16;
     generic_CLU_proc.type_owns = table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops->type_owns;
@@ -1387,9 +1392,12 @@ tokentabOPreset(CLUREF t, CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE reset ****/
+
+
+/**** BEGIN PROCEDURE hack ****/
 
 struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
 struct OPS  *struct_neg_op_prec_ops;
@@ -1429,18 +1437,15 @@ struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__else
 OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPhack_own_init = 0;
 
-/**** BEGIN PROCEDURE hack ****/
-
 errcode
 tokentabOPhack(CLUREF t)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (tokentabOPhack_own_init == 0) {
+    if (tokentabOPhack_own_init == 0) {
         if (tokentab_own_init == 0) {
             err = tokentab_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         tokentabOPhack_own_init = 1;
     }
     enter_proc(99);
@@ -1504,24 +1509,24 @@ tokentabOPhack(CLUREF t)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE hack ****/
 
-static int tokentabOPunhack_own_init = 0;
 
 /**** BEGIN PROCEDURE unhack ****/
 
+static int tokentabOPunhack_own_init = 0;
+
 errcode
 tokentabOPunhack(CLUREF t)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (tokentabOPunhack_own_init == 0) {
+    if (tokentabOPunhack_own_init == 0) {
         if (tokentab_own_init == 0) {
             err = tokentab_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         tokentabOPunhack_own_init = 1;
     }
     enter_proc(106);
@@ -1561,9 +1566,12 @@ tokentabOPunhack(CLUREF t)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE unhack ****/
+
+
+/**** BEGIN PROCEDURE ident ****/
 
 struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
 struct OPS  *struct_neg_op_prec_ops;
@@ -1603,19 +1611,16 @@ struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__else
 OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPident_own_init = 0;
 
-/**** BEGIN PROCEDURE ident ****/
-
 errcode
 tokentabOPident(CLUREF t, CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF id;
-        if (tokentabOPident_own_init == 0) {
+    if (tokentabOPident_own_init == 0) {
         if (tokentab_own_init == 0) {
             err = tokentab_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         tokentabOPident_own_init = 1;
     }
     enter_proc(113);
@@ -1657,9 +1662,12 @@ tokentabOPident(CLUREF t, CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE ident ****/
+
+
+/**** BEGIN PROCEDURE get_token ****/
 
 struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
 struct OPS  *struct_neg_op_prec_ops;
@@ -1699,19 +1707,16 @@ struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__else
 OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPget_token_own_init = 0;
 
-/**** BEGIN PROCEDURE get_token ****/
-
 errcode
 tokentabOPget_token(CLUREF t, CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
-        if (tokentabOPget_token_own_init == 0) {
+    if (tokentabOPget_token_own_init == 0) {
         if (tokentab_own_init == 0) {
             err = tokentab_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         tokentabOPget_token_own_init = 1;
     }
     enter_proc(119);
@@ -1774,9 +1779,12 @@ tokentabOPget_token(CLUREF t, CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_token ****/
+
+
+/**** BEGIN PROCEDURE add_token ****/
 
 struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
 struct OPS  *struct_neg_op_prec_ops;
@@ -1816,18 +1824,15 @@ struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__else
 OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPadd_token_own_init = 0;
 
-/**** BEGIN PROCEDURE add_token ****/
-
 errcode
 tokentabOPadd_token(CLUREF t, CLUREF s, CLUREF k)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (tokentabOPadd_token_own_init == 0) {
+    if (tokentabOPadd_token_own_init == 0) {
         if (tokentab_own_init == 0) {
             err = tokentab_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         tokentabOPadd_token_own_init = 1;
     }
     enter_proc(127);
@@ -1848,7 +1853,7 @@ tokentabOPadd_token(CLUREF t, CLUREF s, CLUREF k)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE add_token ****/
 
@@ -1859,12 +1864,12 @@ typedef struct{
     struct OP_ENTRY entry[6];
 } tokentab_OPS;
 
-CLU_proc tokentab_oe_add_token = {{0,0,0,0}, tokentabOPadd_token, 0};
-CLU_proc tokentab_oe_create = {{0,0,0,0}, tokentabOPcreate, 0};
-CLU_proc tokentab_oe_get_token = {{0,0,0,0}, tokentabOPget_token, 0};
-CLU_proc tokentab_oe_hack = {{0,0,0,0}, tokentabOPhack, 0};
-CLU_proc tokentab_oe_reset = {{0,0,0,0}, tokentabOPreset, 0};
-CLU_proc tokentab_oe_unhack = {{0,0,0,0}, tokentabOPunhack, 0};
+CLU_proc tokentab_oe_add_token = { .proc = tokentabOPadd_token };
+CLU_proc tokentab_oe_create = { .proc = tokentabOPcreate };
+CLU_proc tokentab_oe_get_token = { .proc = tokentabOPget_token };
+CLU_proc tokentab_oe_hack = { .proc = tokentabOPhack };
+CLU_proc tokentab_oe_reset = { .proc = tokentabOPreset };
+CLU_proc tokentab_oe_unhack = { .proc = tokentabOPunhack };
 
 tokentab_OPS tokentab_ops_actual = {6, (OWNPTR)&tokentab_own_init, (OWNPTR)&tokentab_own_init, {
     {&tokentab_oe_add_token, "add_token"},

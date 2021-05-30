@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE file_name_fill ****/
+
 extern errcode file_nameOPget_dir();
 extern errcode file_nameOPget_suffix();
 extern errcode stringOPempty();
@@ -25,13 +28,10 @@ extern errcode file_nameOPcreate();
 extern errcode file_nameOPget_name();
 extern errcode file_nameOPget_other();
 
-/**** BEGIN PROCEDURE file_name_fill ****/
-
 errcode
 file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF dir;
     CLUREF suffix;
     CLUREF change;
@@ -169,7 +169,7 @@ file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1)
         err = file_nameOPget_dir(fn, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = ((dir.str->size != T_2_1.str->size)? false :
-            !(bcmp(dir.str->data, T_2_1.str->data, dir.str->size)));
+            !(memcmp(dir.str->data, T_2_1.str->data, dir.str->size)));
         T_2_3.num = T_2_2.num ^ 1;
         change.num = T_2_3.num;
         }
@@ -205,7 +205,7 @@ file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1)
         err = file_nameOPget_dir(fn, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = ((dir.str->size != T_2_1.str->size)? false :
-            !(bcmp(dir.str->data, T_2_1.str->data, dir.str->size)));
+            !(memcmp(dir.str->data, T_2_1.str->data, dir.str->size)));
         T_2_3.num = T_2_2.num ^ 1;
         change.num = T_2_3.num;
         }
@@ -284,7 +284,7 @@ file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE file_name_fill ****/
 

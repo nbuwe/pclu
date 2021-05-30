@@ -4,29 +4,29 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _get_termcap ****/
+
 extern errcode _environ();
 extern errcode stringOPempty();
 extern errcode boolOPnot();
 extern errcode charOPequal();
 extern errcode stringOPfetch();
 extern errcode _termcap_entry();
-CLUREF STR_TERMCAP;
-CLUREF STR__057etc_057termcap;
-CLUREF STR_TERM;
+static CLUREF STR_TERMCAP;
+static CLUREF STR__057etc_057termcap;
+static CLUREF STR_TERM;
 static int _get_termcap_own_init = 0;
-
-/**** BEGIN PROCEDURE _get_termcap ****/
 
 errcode
 _get_termcap(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF s;
-        if (_get_termcap_own_init == 0) {
-        stringOPcons("TERMCAP", CLU_1, CLU_7, &STR_TERMCAP);
-        stringOPcons("/etc/termcap", CLU_1, CLU_12, &STR__057etc_057termcap);
-        stringOPcons("TERM", CLU_1, CLU_4, &STR_TERM);
+    if (_get_termcap_own_init == 0) {
+        stringOPcons("TERMCAP", CLU_1, CLUREF_make_num(7), &STR_TERMCAP);
+        stringOPcons("/etc/termcap", CLU_1, CLUREF_make_num(12), &STR__057etc_057termcap);
+        stringOPcons("TERM", CLU_1, CLUREF_make_num(4), &STR_TERM);
         _get_termcap_own_init = 1;
     }
     enter_proc(3);
@@ -113,7 +113,7 @@ _get_termcap(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _get_termcap ****/
 

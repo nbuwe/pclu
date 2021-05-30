@@ -5,13 +5,15 @@
 #include "pclu_sys.h"
 
 
-typedef struct {
-long count;
-} array_replace_of_t_REQS;
+/**** BEGIN PROCEDURE array_replace ****/
 
-array_replace_of_t_REQS array_replace_of_t_reqs_actual = {0};
 
-struct REQS * array_replace_of_t_reqs = (struct REQS *)&array_replace_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} array_replace_of_t_reqs_actual = { 0 };
+
+const struct REQS * const array_replace_of_t_reqs
+    = (const struct REQS *)&array_replace_of_t_reqs_actual;
 
 
 typedef struct {
@@ -41,27 +43,24 @@ extern errcode _vecOPcreate();
 extern errcode _vecOPsize();
 extern errcode _advOPset_vector();
 extern errcode _vecOPmove_rl();
-extern struct REQS *_adv_of_t_reqs;
-extern OWN_req _adv_ownreqs;
+extern const struct REQS * const _adv_of_t_reqs;
+extern const OWN_req _adv_ownreqs;
 extern struct OPS *_adv_ops;
 
 typedef struct {
     long array_replace_own_init;
-    array_replace_of_t_OPS *t_ops;
+    const array_replace_of_t_OPS * const t_ops;
     struct OPS *_adv_of_t_table;
     struct OPS *_adv_of_t_ops;
     OWNPTR _adv_of_t_owns;
-    } array_replace_OWN_DEFN;
-OWN_req array_replace_ownreqs = {sizeof(array_replace_OWN_DEFN), 1};
+} array_replace_OWN_DEFN;
+const OWN_req array_replace_ownreqs = { sizeof(array_replace_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE array_replace ****/
 
 errcode
 array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
-    {
+{
     errcode err;
-    errcode ecode2;
     array_replace_OWN_DEFN *op_own_ptr;
     CLUREF f1;
     CLUREF r1;
@@ -78,13 +77,14 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
     CLUREF v3;
     CLUREF df;
     CLUREF s0;
-    op_own_ptr = (array_replace_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->array_replace_own_init == 0) {
-        add_parm_info_type(0, op_own_ptr->t_ops, _adv_of_t_reqs);
+    op_own_ptr = (array_replace_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->array_replace_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, _adv_of_t_reqs);
         find_type_instance(_adv_ops, 1, &_adv_ownreqs, &(op_own_ptr->_adv_of_t_ops));
-        }
-        if (op_own_ptr->array_replace_own_init == 0) {
+    }
+    if (op_own_ptr->array_replace_own_init == 0) {
         op_own_ptr->array_replace_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(3);
 
@@ -206,7 +206,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        T_1_1.num = a1.num;
+        T_1_1.num = (long)a1.num;
         generic_CLU_proc.type_owns = op_own_ptr->_adv_of_t_ops->type_owns;
         generic_CLU_proc.proc = _advOPget_vector;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -271,7 +271,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
             {CLUREF T_2_1;
             CLUREF T_2_2;
             CLUREF T_2_3;
-            T_2_1.num = a1.num;
+            T_2_1.num = (long)a1.num;
             generic_CLU_proc.type_owns = op_own_ptr->_adv_of_t_ops->type_owns;
             generic_CLU_proc.proc = _advOPget_start;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -296,7 +296,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
-            T_3_1.num = a1.num;
+            T_3_1.num = (long)a1.num;
             T_3_2.num = s1.num + w1.num;
              if ((T_3_2.num > 0 && s1.num < 0 && w1.num < 0) ||
                  (T_3_2.num < 0 && s1.num > 0 && w1.num > 0)) {
@@ -342,7 +342,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
             CLUREF T_3_1;
             CLUREF T_3_2;
             CLUREF T_3_3;
-            T_3_1.num = a1.num;
+            T_3_1.num = (long)a1.num;
             T_3_2.num = a1.array->ext_size;
             T_3_3.num = T_3_2.num - w1.num;
              if ((T_3_3.num >= 0 && T_3_2.num < 0 && (-w1.num) < 0) ||
@@ -373,7 +373,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        T_1_1.num = a2.num;
+        T_1_1.num = (long)a2.num;
         generic_CLU_proc.type_owns = op_own_ptr->_adv_of_t_ops->type_owns;
         generic_CLU_proc.proc = _advOPget_vector;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -417,7 +417,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        T_1_1.num = a1.num;
+        T_1_1.num = (long)a1.num;
         generic_CLU_proc.type_owns = op_own_ptr->_adv_of_t_ops->type_owns;
         generic_CLU_proc.proc = _advOPget_start;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -432,7 +432,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = a2.num;
+        T_1_1.num = (long)a2.num;
         generic_CLU_proc.type_owns = op_own_ptr->_adv_of_t_ops->type_owns;
         generic_CLU_proc.proc = _advOPget_start;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -544,7 +544,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
   LINE(53);
             {
             CLUREF T_3_1;
-            T_3_1.num = a1.num;
+            T_3_1.num = (long)a1.num;
             generic_CLU_proc.type_owns = op_own_ptr->_adv_of_t_ops->type_owns;
             generic_CLU_proc.proc = _advOPset_size;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -623,7 +623,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
   LINE(63);
         {
         CLUREF T_2_1;
-        T_2_1.num = a1.num;
+        T_2_1.num = (long)a1.num;
         generic_CLU_proc.type_owns = op_own_ptr->_adv_of_t_ops->type_owns;
         generic_CLU_proc.proc = _advOPset_vector;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -710,7 +710,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
   LINE(76);
         {
         CLUREF T_2_1;
-        T_2_1.num = a1.num;
+        T_2_1.num = (long)a1.num;
         generic_CLU_proc.type_owns = op_own_ptr->_adv_of_t_ops->type_owns;
         generic_CLU_proc.proc = _advOPset_start;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -767,7 +767,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
   LINE(80);
         {
         CLUREF T_2_1;
-        T_2_1.num = a1.num;
+        T_2_1.num = (long)a1.num;
         generic_CLU_proc.type_owns = op_own_ptr->_adv_of_t_ops->type_owns;
         generic_CLU_proc.proc = _advOPset_size;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -804,7 +804,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
   LINE(83);
         {
         CLUREF T_2_1;
-        T_2_1.num = a1.num;
+        T_2_1.num = (long)a1.num;
         generic_CLU_proc.type_owns = op_own_ptr->_adv_of_t_ops->type_owns;
         generic_CLU_proc.proc = _advOPset_vector;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -851,7 +851,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
   LINE(87);
         {
         CLUREF T_2_1;
-        T_2_1.num = a1.num;
+        T_2_1.num = (long)a1.num;
         generic_CLU_proc.type_owns = op_own_ptr->_adv_of_t_ops->type_owns;
         generic_CLU_proc.proc = _advOPset_size;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -873,7 +873,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE array_replace ****/
 

@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE trim_head ****/
+
 extern errcode stringOPsize();
 extern errcode intOPequal();
 extern errcode stringOPfetch();
@@ -12,21 +15,18 @@ extern errcode charOPequal();
 extern errcode stringOPrest();
 extern errcode intOPadd();
 extern errcode intOPgt();
-CLUREF STR_;
+static CLUREF STR_;
 static int trim_head_own_init = 0;
-
-/**** BEGIN PROCEDURE trim_head ****/
 
 errcode
 trim_head(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF len;
     CLUREF idx;
     CLUREF c;
-        if (trim_head_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (trim_head_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         trim_head_own_init = 1;
     }
     enter_proc(4);
@@ -147,27 +147,27 @@ trim_head(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE trim_head ****/
 
+
+
+/**** BEGIN PROCEDURE trim_tail ****/
 
 extern errcode stringOPsubstr();
 extern errcode intOPsub();
 static int trim_tail_own_init = 0;
 
-/**** BEGIN PROCEDURE trim_tail ****/
-
 errcode
 trim_tail(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF len;
     CLUREF idx;
     CLUREF c;
-        if (trim_tail_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (trim_tail_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         trim_tail_own_init = 1;
     }
     enter_proc(19);
@@ -288,25 +288,25 @@ trim_tail(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE trim_tail ****/
 
 
-static int trim_both_own_init = 0;
 
 /**** BEGIN PROCEDURE trim_both ****/
 
+static int trim_both_own_init = 0;
+
 errcode
 trim_both(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF len;
     CLUREF idx;
     CLUREF c;
-        if (trim_both_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
+    if (trim_both_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         trim_both_own_init = 1;
     }
     enter_proc(34);
@@ -489,7 +489,7 @@ trim_both(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE trim_both ****/
 

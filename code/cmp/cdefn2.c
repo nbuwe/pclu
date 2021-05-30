@@ -5,6 +5,9 @@
 #include "pclu_sys.h"
 
 
+
+/**** BEGIN PROCEDURE c_typedefn ****/
+
 extern errcode c_envOPset_line();
 extern errcode recordOPget_6();
 extern errcode recordOPget_4();
@@ -33,13 +36,10 @@ extern errcode recordOPset_1();
 extern errcode sequenceOPsubseq();
 extern errcode recordOPget_1();
 
-/**** BEGIN PROCEDURE c_typedefn ****/
-
 errcode
 c_typedefn(CLUREF e, CLUREF def, CLUREF kind)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF want;
     CLUREF mod;
@@ -110,7 +110,7 @@ c_typedefn(CLUREF e, CLUREF def, CLUREF kind)
     err = idnOPget_str(i, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_3.num = ((T_1_1.str->size != T_1_2.str->size)? false :
-        !(bcmp(T_1_1.str->data, T_1_2.str->data, T_1_1.str->size)));
+        !(memcmp(T_1_1.str->data, T_1_2.str->data, T_1_1.str->size)));
     T_1_4.num = T_1_3.num ^ 1;
     if (T_1_4.num == true) {
 
@@ -130,7 +130,7 @@ c_typedefn(CLUREF e, CLUREF def, CLUREF kind)
 
   LINE(17);
         {
-        def.vec->data[3]  = i.num;
+        def.vec->data[3] = i.num;
         }
         }
         }/* end if */
@@ -227,7 +227,7 @@ c_typedefn(CLUREF e, CLUREF def, CLUREF kind)
     T_1_1.num = ninfo.vec->data[0];
     err = sequenceOPsubseq(T_1_1, CLU_1, extsize, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    ninfo.vec->data[0]  = T_1_2.num;
+    ninfo.vec->data[0] = T_1_2.num;
     }
     goto end_0;
     ex_0:
@@ -237,10 +237,13 @@ c_typedefn(CLUREF e, CLUREF def, CLUREF kind)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_typedefn ****/
 
+
+
+/**** BEGIN PROCEDURE c_setup_opers ****/
 
 extern errcode recordOPget_7();
 extern errcode oneofOPmake_8();
@@ -253,31 +256,28 @@ extern errcode idnOPset_kind();
 extern errcode c_envOPerr();
 extern errcode stringOPconcat();
 extern errcode recordOPset_5();
-CLUREF STR_redeclaration_040of_040_047;
-CLUREF STR__047;
-CLUREF STR__045;
-CLUREF STR_operation_040_047;
-CLUREF STR__047_040not_040defined;
+static CLUREF STR_redeclaration_040of_040_047;
+static CLUREF STR__047;
+static CLUREF STR__045;
+static CLUREF STR_operation_040_047;
+static CLUREF STR__047_040not_040defined;
 static int c_setup_opers_own_init = 0;
-
-/**** BEGIN PROCEDURE c_setup_opers ****/
 
 errcode
 c_setup_opers(CLUREF e, CLUREF def)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF extops;
     CLUREF uk;
     CLUREF i;
     CLUREF op;
     CLUREF n;
-        if (c_setup_opers_own_init == 0) {
-        stringOPcons("redeclaration of \'", CLU_1, CLU_18, &STR_redeclaration_040of_040_047);
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("%", CLU_1, CLU_1, &STR__045);
-        stringOPcons("operation \'", CLU_1, CLU_11, &STR_operation_040_047);
-        stringOPcons("\' not defined", CLU_1, CLU_13, &STR__047_040not_040defined);
+    if (c_setup_opers_own_init == 0) {
+        stringOPcons("redeclaration of \'", CLU_1, CLUREF_make_num(18), &STR_redeclaration_040of_040_047);
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("%", CLU_1, CLUREF_make_num(1), &STR__045);
+        stringOPcons("operation \'", CLU_1, CLUREF_make_num(11), &STR_operation_040_047);
+        stringOPcons("\' not defined", CLU_1, CLUREF_make_num(13), &STR__047_040not_040defined);
         c_setup_opers_own_init = 1;
     }
     enter_proc(35);
@@ -418,7 +418,7 @@ c_setup_opers(CLUREF e, CLUREF def)
                 CLUREF T_3_1;
                 err = idnOPcreate(n, uk, &T_3_1);
                 if (err != ERR_ok) goto ex_0;
-                op.vec->data[4]  = T_3_1.num;
+                op.vec->data[4] = T_3_1.num;
                 }
                 }}/* end if */
         }
@@ -489,22 +489,22 @@ c_setup_opers(CLUREF e, CLUREF def)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_setup_opers ****/
 
+
+
+/**** BEGIN PROCEDURE c_fixup_opname ****/
 
 extern errcode charOPequal();
 extern errcode stringOPfetch();
 extern errcode stringOPrest();
 
-/**** BEGIN PROCEDURE c_fixup_opname ****/
-
 errcode
 c_fixup_opname(CLUREF nm, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(68);
 
   LINE(69);
@@ -541,20 +541,20 @@ c_fixup_opname(CLUREF nm, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_fixup_opname ****/
 
 
-extern errcode idnOPequal();
 
 /**** BEGIN PROCEDURE c_member ****/
 
+extern errcode idnOPequal();
+
 errcode
 c_member(CLUREF i, CLUREF idns, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF id;
     enter_proc(74);
 
@@ -600,10 +600,13 @@ c_member(CLUREF i, CLUREF idns, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_member ****/
 
+
+
+/**** BEGIN PROCEDURE c_type_specs ****/
 
 extern errcode recordOPget_10();
 extern errcode recordOPget_3();
@@ -628,13 +631,10 @@ extern errcode c_envOPend_specs();
 extern errcode sequenceOPconcat();
 extern errcode sequenceOPsize();
 
-/**** BEGIN PROCEDURE c_type_specs ****/
-
 errcode
 c_type_specs(CLUREF e, CLUREF def, CLUREF mod, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF dparms;
     CLUREF reqs;
     CLUREF equates;
@@ -704,7 +704,7 @@ c_type_specs(CLUREF e, CLUREF def, CLUREF mod, CLUREF *ret_1, CLUREF *ret_2)
     CLUREF T_1_1;
     err = c_up_type(e, mod, nparms, &T_1_1);
     if (err != ERR_ok) goto ex_0;
-    def.vec->data[8]  = T_1_1.num;
+    def.vec->data[8] = T_1_1.num;
     }
 
   LINE(90);
@@ -726,7 +726,7 @@ c_type_specs(CLUREF e, CLUREF def, CLUREF mod, CLUREF *ret_1, CLUREF *ret_2)
     CLUREF T_1_1;
     err = c_down_type(e, equates, &T_1_1);
     if (err != ERR_ok) goto ex_0;
-    def.vec->data[1]  = T_1_1.num;
+    def.vec->data[1] = T_1_1.num;
     }
 
   LINE(93);
@@ -833,10 +833,10 @@ c_type_specs(CLUREF e, CLUREF def, CLUREF mod, CLUREF *ret_1, CLUREF *ret_2)
     CLUREF T_1_1;
     CLUREF T_1_2;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[1]  = nparms.num;
+    T_1_1.vec->data[1] = nparms.num;
     err = sequenceOPconcat(extinfo, intinfo, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[0]  = T_1_2.num;
+    T_1_1.vec->data[0] = T_1_2.num;
     ret_1->num = T_1_1.num;
     }
     {
@@ -854,10 +854,13 @@ c_type_specs(CLUREF e, CLUREF def, CLUREF mod, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_type_specs ****/
 
+
+
+/**** BEGIN PROCEDURE c_type_main ****/
 
 extern errcode c_push_parms();
 extern errcode c_envOPbegin_recheck();
@@ -866,13 +869,10 @@ extern errcode c_envOPend_recheck();
 extern errcode c_initlist();
 extern errcode c_oper_main();
 
-/**** BEGIN PROCEDURE c_type_main ****/
-
 errcode
 c_type_main(CLUREF e, CLUREF def, CLUREF info)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF opers;
     CLUREF op;
     enter_proc(111);
@@ -993,10 +993,13 @@ c_type_main(CLUREF e, CLUREF def, CLUREF info)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_type_main ****/
 
+
+
+/**** BEGIN PROCEDURE c_up_type ****/
 
 extern errcode c_envOPget_type_type();
 extern errcode oneofOPmake_25();
@@ -1004,13 +1007,10 @@ extern errcode c_envOPget_type();
 extern errcode exprOPcreate();
 extern errcode oneofOPmake_13();
 
-/**** BEGIN PROCEDURE c_up_type ****/
-
 errcode
 c_up_type(CLUREF e, CLUREF gen, CLUREF parms, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF exprs;
     CLUREF tt;
     CLUREF i;
@@ -1121,8 +1121,8 @@ c_up_type(CLUREF e, CLUREF gen, CLUREF parms, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[0]  = gen.num;
-    T_1_1.vec->data[1]  = exprs.num;
+    T_1_1.vec->data[0] = gen.num;
+    T_1_1.vec->data[1] = exprs.num;
     CellAlloc(3, T_1_1.num, T_1_2);
     err = c_envOPget_type(e, T_1_2, &T_1_3);
     if (err != ERR_ok) goto ex_0;
@@ -1138,10 +1138,13 @@ c_up_type(CLUREF e, CLUREF gen, CLUREF parms, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_up_type ****/
 
+
+
+/**** BEGIN PROCEDURE c_down_type ****/
 
 extern errcode equateOPis_rep();
 extern errcode equateOPget_line();
@@ -1154,25 +1157,22 @@ extern errcode exprOPset_abs();
 extern errcode exprOPset_typespec();
 extern errcode c_envOPerr1();
 extern errcode c_envOPget_unknown_type();
-CLUREF STR_REP_040not_040equated_040to_040a_040type;
-CLUREF STR_REP_040undefined;
+static CLUREF STR_REP_040not_040equated_040to_040a_040type;
+static CLUREF STR_REP_040undefined;
 static int c_down_type_own_init = 0;
-
-/**** BEGIN PROCEDURE c_down_type ****/
 
 errcode
 c_down_type(CLUREF e, CLUREF eqs, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF eq;
     CLUREF k;
     CLUREF xa;
     CLUREF ta;
     CLUREF t;
-        if (c_down_type_own_init == 0) {
-        stringOPcons("REP not equated to a type", CLU_1, CLU_25, &STR_REP_040not_040equated_040to_040a_040type);
-        stringOPcons("REP undefined", CLU_1, CLU_13, &STR_REP_040undefined);
+    if (c_down_type_own_init == 0) {
+        stringOPcons("REP not equated to a type", CLU_1, CLUREF_make_num(25), &STR_REP_040not_040equated_040to_040a_040type);
+        stringOPcons("REP undefined", CLU_1, CLUREF_make_num(13), &STR_REP_040undefined);
         c_down_type_own_init = 1;
     }
     enter_proc(146);
@@ -1353,10 +1353,13 @@ c_down_type(CLUREF e, CLUREF eqs, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_down_type ****/
 
+
+
+/**** BEGIN PROCEDURE c_oper_specs ****/
 
 extern errcode c_envOPset_varlist();
 extern errcode recordOPget_12();
@@ -1369,13 +1372,10 @@ extern errcode c_exceptionlist1();
 extern errcode c_oper_requires();
 extern errcode recordOPset_10();
 
-/**** BEGIN PROCEDURE c_oper_specs ****/
-
 errcode
 c_oper_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF dparms;
     CLUREF reqs;
     CLUREF nparms;
@@ -1476,7 +1476,7 @@ c_oper_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
 
   LINE(186);
     {
-    def.vec->data[10]  = ivals.num;
+    def.vec->data[10] = ivals.num;
     }
 
   LINE(187);
@@ -1508,10 +1508,10 @@ c_oper_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
         CLUREF T_1_2;
         RecordAlloc(4, T_1_1);
         T_1_2.num = def.vec->data[3];
-        T_1_1.vec->data[1]  = T_1_2.num;
-        T_1_1.vec->data[0]  = args.num;
-        T_1_1.vec->data[3]  = vals.num;
-        T_1_1.vec->data[2]  = sigs.num;
+        T_1_1.vec->data[1] = T_1_2.num;
+        T_1_1.vec->data[0] = args.num;
+        T_1_1.vec->data[3] = vals.num;
+        T_1_1.vec->data[2] = sigs.num;
         at.num = T_1_1.num;
         }
         }
@@ -1540,7 +1540,7 @@ c_oper_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
 
   LINE(196);
     {
-    def.vec->data[9]  = t.num;
+    def.vec->data[9] = t.num;
     }
 
   LINE(197);
@@ -1560,12 +1560,12 @@ c_oper_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     RecordAlloc(3, T_1_1);
-    T_1_1.vec->data[1]  = n.num;
-    T_1_1.vec->data[2]  = xreqs.num;
+    T_1_1.vec->data[1] = n.num;
+    T_1_1.vec->data[2] = xreqs.num;
     RecordAlloc(2, T_1_2);
-    T_1_2.vec->data[0]  = nparms.num;
-    T_1_2.vec->data[1]  = t.num;
-    T_1_1.vec->data[0]  = T_1_2.num;
+    T_1_2.vec->data[0] = nparms.num;
+    T_1_2.vec->data[1] = t.num;
+    T_1_1.vec->data[0] = T_1_2.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -1578,22 +1578,22 @@ c_oper_specs(CLUREF e, CLUREF def, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_oper_specs ****/
 
+
+
+/**** BEGIN PROCEDURE c_oper_main ****/
 
 extern errcode c_add_requires();
 extern errcode c_apply_main1();
 extern errcode c_rem_requires();
 
-/**** BEGIN PROCEDURE c_oper_main ****/
-
 errcode
 c_oper_main(CLUREF e, CLUREF def, CLUREF infos)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF n;
     CLUREF info;
     CLUREF reqs;
@@ -1626,7 +1626,7 @@ c_oper_main(CLUREF e, CLUREF def, CLUREF infos)
             CLUREF T_2_2;
             T_2_1.num = info.vec->data[1];
             T_2_2.num = ((n.str->size != T_2_1.str->size)? false :
-                !(bcmp(n.str->data, T_2_1.str->data, n.str->size)));
+                !(memcmp(n.str->data, T_2_1.str->data, n.str->size)));
             if (T_2_2.num == true) {
 
   LINE(208);
@@ -1675,23 +1675,23 @@ c_oper_main(CLUREF e, CLUREF def, CLUREF infos)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_oper_main ****/
 
+
+
+/**** BEGIN PROCEDURE c_apply_main1 ****/
 
 extern errcode c_type();
 extern errcode c_envOPnew_apply();
 extern errcode arrayOPtrim();
 extern errcode c_stmt();
 
-/**** BEGIN PROCEDURE c_apply_main1 ****/
-
 errcode
 c_apply_main1(CLUREF e, CLUREF def, CLUREF nparms)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF args;
     CLUREF vals;
     CLUREF ivals;
@@ -1766,7 +1766,7 @@ c_apply_main1(CLUREF e, CLUREF def, CLUREF nparms)
 
   LINE(225);
     {
-    def.vec->data[10]  = ivals.num;
+    def.vec->data[10] = ivals.num;
     }
 
   LINE(226);
@@ -1811,7 +1811,7 @@ c_apply_main1(CLUREF e, CLUREF def, CLUREF nparms)
     T_1_1.num = def.vec->data[9];
     err = c_type(e, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    def.vec->data[9]  = T_1_2.num;
+    def.vec->data[9] = T_1_2.num;
     }
 
   LINE(231);
@@ -1820,10 +1820,10 @@ c_apply_main1(CLUREF e, CLUREF def, CLUREF nparms)
     CLUREF T_1_2;
     RecordAlloc(4, T_1_1);
     T_1_2.num = def.vec->data[3];
-    T_1_1.vec->data[1]  = T_1_2.num;
-    T_1_1.vec->data[0]  = args.num;
-    T_1_1.vec->data[3]  = vals.num;
-    T_1_1.vec->data[2]  = sigs.num;
+    T_1_1.vec->data[1] = T_1_2.num;
+    T_1_1.vec->data[0] = args.num;
+    T_1_1.vec->data[3] = vals.num;
+    T_1_1.vec->data[2] = sigs.num;
     err = c_envOPnew_apply(e, T_1_1);
     if (err != ERR_ok) goto ex_0;
     }
@@ -1889,20 +1889,20 @@ c_apply_main1(CLUREF e, CLUREF def, CLUREF nparms)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_apply_main1 ****/
 
 
-extern errcode oneofOPmake_6();
 
 /**** BEGIN PROCEDURE c_add_requires ****/
 
+extern errcode oneofOPmake_6();
+
 errcode
 c_add_requires(CLUREF e, CLUREF reqs)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF req;
     CLUREF k;
     enter_proc(244);
@@ -1961,20 +1961,20 @@ c_add_requires(CLUREF e, CLUREF reqs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_add_requires ****/
 
 
-extern errcode intOPsub();
 
 /**** BEGIN PROCEDURE c_rem_requires ****/
 
+extern errcode intOPsub();
+
 errcode
 c_rem_requires(CLUREF e, CLUREF reqs)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF req;
     CLUREF k;
     enter_proc(254);
@@ -2048,10 +2048,13 @@ c_rem_requires(CLUREF e, CLUREF reqs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE c_rem_requires ****/
 
+
+
+/**** BEGIN PROCEDURE c_decllist1 ****/
 
 extern errcode c_envOPget_cvt_type();
 extern errcode c_envOPget_down_type();
@@ -2060,13 +2063,10 @@ extern errcode c_envOPget_up_type();
 extern errcode typespecOPequal();
 extern errcode c_envOPadd_var();
 
-/**** BEGIN PROCEDURE c_decllist1 ****/
-
 errcode
 c_decllist1(CLUREF e, CLUREF decls, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF types;
     CLUREF cvt_;
     CLUREF down_;
@@ -2174,7 +2174,7 @@ c_decllist1(CLUREF e, CLUREF decls, CLUREF *ret_1)
 
   LINE(282);
                 {
-                d.vec->data[1]  = dt.num;
+                d.vec->data[1] = dt.num;
                 }
 
   LINE(283);
@@ -2230,21 +2230,21 @@ c_decllist1(CLUREF e, CLUREF decls, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_decllist1 ****/
 
 
-extern errcode sequenceOPindexes();
-extern errcode sequenceOPfetch();
 
 /**** BEGIN PROCEDURE c_typelist1 ****/
 
+extern errcode sequenceOPindexes();
+extern errcode sequenceOPfetch();
+
 errcode
 c_typelist1(CLUREF e, CLUREF types, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF cvt_;
     CLUREF nt;
     CLUREF xtypes;
@@ -2388,7 +2388,7 @@ c_typelist1(CLUREF e, CLUREF types, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_typelist1 ****/
 
@@ -2396,11 +2396,11 @@ c_typelist1(CLUREF e, CLUREF types, CLUREF *ret_1, CLUREF *ret_2)
 
 /**** BEGIN PROCEDURE c_exceptionlist1 ****/
 
+
 errcode
 c_exceptionlist1(CLUREF e, CLUREF sigs, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF nsigs;
     CLUREF sig;
     CLUREF types;
@@ -2441,7 +2441,7 @@ c_exceptionlist1(CLUREF e, CLUREF sigs, CLUREF *ret_1)
 
   LINE(320);
             {
-            sig.vec->data[1]  = itypes.num;
+            sig.vec->data[1] = itypes.num;
             }
 
   LINE(321);
@@ -2451,8 +2451,8 @@ c_exceptionlist1(CLUREF e, CLUREF sigs, CLUREF *ret_1)
             CLUREF T_2_3;
             RecordAlloc(2, T_2_1);
             T_2_2.num = sig.vec->data[0];
-            T_2_1.vec->data[0]  = T_2_2.num;
-            T_2_1.vec->data[1]  = types.num;
+            T_2_1.vec->data[0] = T_2_2.num;
+            T_2_1.vec->data[1] = types.num;
             err = sequenceOPaddh(nsigs, T_2_1, &T_2_3);
             if (err != ERR_ok) goto ex_0;
             nsigs.num = T_2_3.num;
@@ -2476,21 +2476,21 @@ c_exceptionlist1(CLUREF e, CLUREF sigs, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_exceptionlist1 ****/
 
 
-extern errcode c_add_opspecs();
-extern errcode c_new_requires();
 
 /**** BEGIN PROCEDURE c_oper_requires ****/
 
+extern errcode c_add_opspecs();
+extern errcode c_new_requires();
+
 errcode
 c_oper_requires(CLUREF e, CLUREF reqs, CLUREF parms, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF xreqs;
     CLUREF req;
     CLUREF i;
@@ -2567,8 +2567,8 @@ c_oper_requires(CLUREF e, CLUREF reqs, CLUREF parms, CLUREF *ret_1)
                         CLUREF T_4_1;
                         CLUREF T_4_2;
                         RecordAlloc(2, T_4_1);
-                        T_4_1.vec->data[1]  = i.num;
-                        T_4_1.vec->data[0]  = opers.num;
+                        T_4_1.vec->data[1] = i.num;
+                        T_4_1.vec->data[0] = opers.num;
                         err = sequenceOPaddh(xreqs, T_4_1, &T_4_2);
                         if (err != ERR_ok) goto ex_0;
                         xreqs.num = T_4_2.num;
@@ -2599,7 +2599,7 @@ c_oper_requires(CLUREF e, CLUREF reqs, CLUREF parms, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE c_oper_requires ****/
 

@@ -37,43 +37,48 @@ extern errcode stringOPdecode();
 extern errcode recordOP_gcd();
 extern struct OPS *string_ops;
 struct OPS  *record_dir_name_other_suffix_ops;
-CLUREF STR_;
-CLUREF STR__057;
-CLUREF STR_bad_040format;
+static CLUREF STR_;
+static CLUREF STR__057;
+static CLUREF STR_bad_040format;
 static int file_spec_own_init = 0;
-OWN_req file_spec_ownreqs = {0,0};
-errcode file_spec_own_init_proc()
+const OWN_req file_spec_ownreqs = { 0, 0 };
+
+errcode
+file_spec_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (file_spec_own_init == 0) {
+    if (file_spec_own_init == 0) {
         add_selector_info("dir", 0, string_ops);
         add_selector_info("name", 1, string_ops);
         add_selector_info("other", 2, string_ops);
         add_selector_info("suffix", 3, string_ops);
         find_selector_ops("record", 4, &(record_dir_name_other_suffix_ops));
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("/", CLU_1, CLU_1, &STR__057);
-        stringOPcons("bad format", CLU_1, CLU_10, &STR_bad_040format);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("/", CLU_1, CLUREF_make_num(1), &STR__057);
+        stringOPcons("bad format", CLU_1, CLUREF_make_num(10), &STR_bad_040format);
         file_spec_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 file_specOPcreate(CLUREF dir, CLUREF name, CLUREF suffix, CLUREF other, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
-        if (file_spec_own_init == 0) {
-            err = file_spec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (file_spec_own_init == 0) {
+        err = file_spec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(26);
 
   LINE(28);
@@ -262,10 +267,10 @@ file_specOPcreate(CLUREF dir, CLUREF name, CLUREF suffix, CLUREF other, CLUREF *
     RecordAlloc(4, T_1_1);
     err = _fixup_dir_part(dir, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[0]  = T_1_2.num;
-    T_1_1.vec->data[1]  = name.num;
-    T_1_1.vec->data[3]  = suffix.num;
-    T_1_1.vec->data[2]  = other.num;
+    T_1_1.vec->data[0] = T_1_2.num;
+    T_1_1.vec->data[1] = name.num;
+    T_1_1.vec->data[3] = suffix.num;
+    T_1_1.vec->data[2] = other.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -278,28 +283,28 @@ file_specOPcreate(CLUREF dir, CLUREF name, CLUREF suffix, CLUREF other, CLUREF *
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
-static int file_specOPparse_own_init = 0;
 
 /**** BEGIN PROCEDURE parse ****/
 
+static int file_specOPparse_own_init = 0;
+
 errcode
 file_specOPparse(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF dir;
     CLUREF name;
     CLUREF suffix;
-        if (file_specOPparse_own_init == 0) {
+    if (file_specOPparse_own_init == 0) {
         if (file_spec_own_init == 0) {
             err = file_spec_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         file_specOPparse_own_init = 1;
     }
     enter_proc(64);
@@ -391,10 +396,10 @@ file_specOPparse(CLUREF s, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(4, T_1_1);
-    T_1_1.vec->data[0]  = dir.num;
-    T_1_1.vec->data[1]  = name.num;
-    T_1_1.vec->data[3]  = suffix.num;
-    T_1_1.vec->data[2]  = s.num;
+    T_1_1.vec->data[0] = dir.num;
+    T_1_1.vec->data[1] = name.num;
+    T_1_1.vec->data[3] = suffix.num;
+    T_1_1.vec->data[2] = s.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -407,25 +412,25 @@ file_specOPparse(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE parse ****/
 
-static int file_specOPunparse_own_init = 0;
 
 /**** BEGIN PROCEDURE unparse ****/
 
+static int file_specOPunparse_own_init = 0;
+
 errcode
 file_specOPunparse(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF s;
-        if (file_specOPunparse_own_init == 0) {
+    if (file_specOPunparse_own_init == 0) {
         if (file_spec_own_init == 0) {
             err = file_spec_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         file_specOPunparse_own_init = 1;
     }
     enter_proc(82);
@@ -451,7 +456,7 @@ file_specOPunparse(CLUREF x, CLUREF *ret_1)
     T_1_1.num = T_1_3.num;
     if (T_1_3.num) {
         T_1_4.num = ((s.str->size != STR__057.str->size)? false :
-            !(bcmp(s.str->data, STR__057.str->data, s.str->size)));
+            !(memcmp(s.str->data, STR__057.str->data, s.str->size)));
         T_1_5.num = T_1_4.num ^ 1;
         T_1_1.num = T_1_5.num;
     }
@@ -562,22 +567,22 @@ file_specOPunparse(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE unparse ****/
 
 
 /**** BEGIN PROCEDURE get_dir ****/
 
+
 errcode
 file_specOPget_dir(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (file_spec_own_init == 0) {
-            err = file_spec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (file_spec_own_init == 0) {
+        err = file_spec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(94);
 
   LINE(95);
@@ -597,22 +602,22 @@ file_specOPget_dir(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_dir ****/
 
 
 /**** BEGIN PROCEDURE get_name ****/
 
+
 errcode
 file_specOPget_name(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (file_spec_own_init == 0) {
-            err = file_spec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (file_spec_own_init == 0) {
+        err = file_spec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(98);
 
   LINE(99);
@@ -632,22 +637,22 @@ file_specOPget_name(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_name ****/
 
 
 /**** BEGIN PROCEDURE get_suffix ****/
 
+
 errcode
 file_specOPget_suffix(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (file_spec_own_init == 0) {
-            err = file_spec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (file_spec_own_init == 0) {
+        err = file_spec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(102);
 
   LINE(103);
@@ -667,22 +672,22 @@ file_specOPget_suffix(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_suffix ****/
 
 
 /**** BEGIN PROCEDURE get_other ****/
 
+
 errcode
 file_specOPget_other(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (file_spec_own_init == 0) {
-            err = file_spec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (file_spec_own_init == 0) {
+        err = file_spec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(106);
 
   LINE(107);
@@ -702,25 +707,25 @@ file_specOPget_other(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_other ****/
+
+
+/**** BEGIN PROCEDURE equal ****/
 
 struct OPS  *record_dir_name_other_suffix_ops;
 static int file_specOPequal_own_init = 0;
 
-/**** BEGIN PROCEDURE equal ****/
-
 errcode
 file_specOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (file_specOPequal_own_init == 0) {
+    if (file_specOPequal_own_init == 0) {
         if (file_spec_own_init == 0) {
             err = file_spec_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         file_specOPequal_own_init = 1;
     }
     enter_proc(110);
@@ -747,25 +752,25 @@ file_specOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
+
+
+/**** BEGIN PROCEDURE similar ****/
 
 struct OPS  *record_dir_name_other_suffix_ops;
 static int file_specOPsimilar_own_init = 0;
 
-/**** BEGIN PROCEDURE similar ****/
-
 errcode
 file_specOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (file_specOPsimilar_own_init == 0) {
+    if (file_specOPsimilar_own_init == 0) {
         if (file_spec_own_init == 0) {
             err = file_spec_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         file_specOPsimilar_own_init = 1;
     }
     enter_proc(114);
@@ -792,22 +797,22 @@ file_specOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 file_specOPcopy(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (file_spec_own_init == 0) {
-            err = file_spec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (file_spec_own_init == 0) {
+        err = file_spec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(118);
 
   LINE(119);
@@ -825,24 +830,24 @@ file_specOPcopy(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
 
-static int file_specOPprint_own_init = 0;
 
 /**** BEGIN PROCEDURE print ****/
 
+static int file_specOPprint_own_init = 0;
+
 errcode
 file_specOPprint(CLUREF x, CLUREF ps)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (file_specOPprint_own_init == 0) {
+    if (file_specOPprint_own_init == 0) {
         if (file_spec_own_init == 0) {
             err = file_spec_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         file_specOPprint_own_init = 1;
     }
     enter_proc(122);
@@ -873,7 +878,7 @@ file_specOPprint(CLUREF x, CLUREF ps)
     if (T_1_4.num) {
         T_1_5.num = x.vec->data[0];
         T_1_6.num = ((T_1_5.str->size != STR__057.str->size)? false :
-            !(bcmp(T_1_5.str->data, STR__057.str->data, T_1_5.str->size)));
+            !(memcmp(T_1_5.str->data, STR__057.str->data, T_1_5.str->size)));
         T_1_7.num = T_1_6.num ^ 1;
         T_1_1.num = T_1_7.num;
     }
@@ -980,22 +985,22 @@ file_specOPprint(CLUREF x, CLUREF ps)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE print ****/
 
 
 /**** BEGIN PROCEDURE encode ****/
 
+
 errcode
 file_specOPencode(CLUREF fs, CLUREF ist)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (file_spec_own_init == 0) {
-            err = file_spec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (file_spec_own_init == 0) {
+        err = file_spec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(137);
 
   LINE(138);
@@ -1020,24 +1025,24 @@ file_specOPencode(CLUREF fs, CLUREF ist)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE encode ****/
 
-static int file_specOPdecode_own_init = 0;
 
 /**** BEGIN PROCEDURE decode ****/
 
+static int file_specOPdecode_own_init = 0;
+
 errcode
 file_specOPdecode(CLUREF ist, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (file_specOPdecode_own_init == 0) {
+    if (file_specOPdecode_own_init == 0) {
         if (file_spec_own_init == 0) {
             err = file_spec_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         file_specOPdecode_own_init = 1;
     }
     enter_proc(142);
@@ -1083,25 +1088,25 @@ file_specOPdecode(CLUREF ist, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE decode ****/
+
+
+/**** BEGIN PROCEDURE _gcd ****/
 
 struct OPS  *record_dir_name_other_suffix_ops;
 static int file_specOP_gcd_own_init = 0;
 
-/**** BEGIN PROCEDURE _gcd ****/
-
 errcode
 file_specOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (file_specOP_gcd_own_init == 0) {
+    if (file_specOP_gcd_own_init == 0) {
         if (file_spec_own_init == 0) {
             err = file_spec_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         file_specOP_gcd_own_init = 1;
     }
     enter_proc(149);
@@ -1128,7 +1133,7 @@ file_specOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _gcd ****/
 
@@ -1139,20 +1144,20 @@ typedef struct{
     struct OP_ENTRY entry[14];
 } file_spec_OPS;
 
-CLU_proc file_spec_oe__gcd = {{0,0,0,0}, file_specOP_gcd, 0};
-CLU_proc file_spec_oe_copy = {{0,0,0,0}, file_specOPcopy, 0};
-CLU_proc file_spec_oe_create = {{0,0,0,0}, file_specOPcreate, 0};
-CLU_proc file_spec_oe_decode = {{0,0,0,0}, file_specOPdecode, 0};
-CLU_proc file_spec_oe_encode = {{0,0,0,0}, file_specOPencode, 0};
-CLU_proc file_spec_oe_equal = {{0,0,0,0}, file_specOPequal, 0};
-CLU_proc file_spec_oe_get_dir = {{0,0,0,0}, file_specOPget_dir, 0};
-CLU_proc file_spec_oe_get_name = {{0,0,0,0}, file_specOPget_name, 0};
-CLU_proc file_spec_oe_get_other = {{0,0,0,0}, file_specOPget_other, 0};
-CLU_proc file_spec_oe_get_suffix = {{0,0,0,0}, file_specOPget_suffix, 0};
-CLU_proc file_spec_oe_parse = {{0,0,0,0}, file_specOPparse, 0};
-CLU_proc file_spec_oe_print = {{0,0,0,0}, file_specOPprint, 0};
-CLU_proc file_spec_oe_similar = {{0,0,0,0}, file_specOPsimilar, 0};
-CLU_proc file_spec_oe_unparse = {{0,0,0,0}, file_specOPunparse, 0};
+CLU_proc file_spec_oe__gcd = { .proc = file_specOP_gcd };
+CLU_proc file_spec_oe_copy = { .proc = file_specOPcopy };
+CLU_proc file_spec_oe_create = { .proc = file_specOPcreate };
+CLU_proc file_spec_oe_decode = { .proc = file_specOPdecode };
+CLU_proc file_spec_oe_encode = { .proc = file_specOPencode };
+CLU_proc file_spec_oe_equal = { .proc = file_specOPequal };
+CLU_proc file_spec_oe_get_dir = { .proc = file_specOPget_dir };
+CLU_proc file_spec_oe_get_name = { .proc = file_specOPget_name };
+CLU_proc file_spec_oe_get_other = { .proc = file_specOPget_other };
+CLU_proc file_spec_oe_get_suffix = { .proc = file_specOPget_suffix };
+CLU_proc file_spec_oe_parse = { .proc = file_specOPparse };
+CLU_proc file_spec_oe_print = { .proc = file_specOPprint };
+CLU_proc file_spec_oe_similar = { .proc = file_specOPsimilar };
+CLU_proc file_spec_oe_unparse = { .proc = file_specOPunparse };
 
 file_spec_OPS file_spec_ops_actual = {14, (OWNPTR)&file_spec_own_init, (OWNPTR)&file_spec_own_init, {
     {&file_spec_oe__gcd, "_gcd"},

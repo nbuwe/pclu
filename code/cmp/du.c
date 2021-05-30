@@ -34,16 +34,18 @@ extern struct OPS *int_ops;
 extern struct OPS *string_ops;
 struct OPS  *record_index_name_ops;
 static int du_own_init = 0;
-OWN_req du_ownreqs = {0,0};
+const OWN_req du_ownreqs = { 0, 0 };
 CLUREF duOPstore;
 CLUREF duOPfixups;
 CLUREF duOPcache;
 CLUREF duOPkeepmax;
-errcode du_own_init_proc()
+
+errcode
+du_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (du_own_init == 0) {
+    if (du_own_init == 0) {
         add_selector_info("index", 0, int_ops);
         add_selector_info("name", 1, string_ops);
         find_selector_ops("record", 2, &(record_index_name_ops));
@@ -79,23 +81,26 @@ errcode du_own_init_proc()
             {duOPkeepmax.num = 0;
             }
             }
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 duOPcreate(CLUREF common, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(34);
 
   LINE(35);
@@ -144,9 +149,9 @@ duOPcreate(CLUREF common, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[1]  = common.num;
+    T_1_1.vec->data[1] = common.num;
     T_1_2.num = duOPstore.array->ext_size;
-    T_1_1.vec->data[0]  = T_1_2.num;
+    T_1_1.vec->data[0] = T_1_2.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -159,22 +164,22 @@ duOPcreate(CLUREF common, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
 
 /**** BEGIN PROCEDURE get_unique ****/
 
+
 errcode
 duOPget_unique(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(42);
 
   LINE(43);
@@ -194,22 +199,22 @@ duOPget_unique(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_unique ****/
 
 
 /**** BEGIN PROCEDURE get_common ****/
 
+
 errcode
 duOPget_common(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(46);
 
   LINE(47);
@@ -229,23 +234,23 @@ duOPget_common(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_common ****/
 
 
 /**** BEGIN PROCEDURE read_specs ****/
 
+
 errcode
 duOPread_specs(CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF fixdus;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(50);
 
   LINE(51);
@@ -304,22 +309,22 @@ duOPread_specs(CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE read_specs ****/
 
 
 /**** BEGIN PROCEDURE add_specs ****/
 
+
 errcode
 duOPadd_specs(CLUREF d, CLUREF specs)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(57);
 
   LINE(58);
@@ -366,22 +371,22 @@ duOPadd_specs(CLUREF d, CLUREF specs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE add_specs ****/
 
 
 /**** BEGIN PROCEDURE get_mspecs ****/
 
+
 errcode
 duOPget_mspecs(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(67);
 
   LINE(68);
@@ -406,22 +411,22 @@ duOPget_mspecs(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_mspecs ****/
 
 
 /**** BEGIN PROCEDURE set_mspecs ****/
 
+
 errcode
 duOPset_mspecs(CLUREF d, CLUREF specs)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(71);
 
   LINE(72);
@@ -443,22 +448,22 @@ duOPset_mspecs(CLUREF d, CLUREF specs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_mspecs ****/
 
 
 /**** BEGIN PROCEDURE get_dump_info ****/
 
+
 errcode
 duOPget_dump_info(CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(75);
 
   LINE(76);
@@ -490,22 +495,22 @@ duOPget_dump_info(CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_dump_info ****/
 
 
 /**** BEGIN PROCEDURE update_specs ****/
 
+
 errcode
 duOPupdate_specs(CLUREF d, CLUREF specs)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(79);
 
   LINE(80);
@@ -579,22 +584,22 @@ duOPupdate_specs(CLUREF d, CLUREF specs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE update_specs ****/
 
 
 /**** BEGIN PROCEDURE forget_specs ****/
 
+
 errcode
 duOPforget_specs(CLUREF d)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(92);
 
   LINE(93);
@@ -654,22 +659,22 @@ duOPforget_specs(CLUREF d)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE forget_specs ****/
 
 
 /**** BEGIN PROCEDURE keep ****/
 
+
 errcode
 duOPkeep()
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(100);
 
   LINE(101);
@@ -717,23 +722,23 @@ duOPkeep()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE keep ****/
 
 
 /**** BEGIN PROCEDURE reset ****/
 
+
 errcode
 duOPreset()
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(107);
 
   LINE(108);
@@ -796,22 +801,22 @@ duOPreset()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE reset ****/
 
 
 /**** BEGIN PROCEDURE equal ****/
 
+
 errcode
 duOPequal(CLUREF d1, CLUREF d2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(115);
 
   LINE(116);
@@ -831,22 +836,22 @@ duOPequal(CLUREF d1, CLUREF d2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
 
 
 /**** BEGIN PROCEDURE similar ****/
 
+
 errcode
 duOPsimilar(CLUREF d1, CLUREF d2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(119);
 
   LINE(120);
@@ -858,7 +863,7 @@ duOPsimilar(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     T_1_1.num = d1.vec->data[1];
     T_1_2.num = d2.vec->data[1];
     T_1_3.num = ((T_1_1.str->size != T_1_2.str->size)? false :
-        !(bcmp(T_1_1.str->data, T_1_2.str->data, T_1_1.str->size)));
+        !(memcmp(T_1_1.str->data, T_1_2.str->data, T_1_1.str->size)));
     ret_1->num = T_1_3.num;
     }
     {signal (ERR_ok);}}
@@ -871,22 +876,22 @@ duOPsimilar(CLUREF d1, CLUREF d2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 duOPcopy(CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (du_own_init == 0) {
-            err = du_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (du_own_init == 0) {
+        err = du_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(123);
 
   LINE(124);
@@ -904,25 +909,25 @@ duOPcopy(CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
+
+
+/**** BEGIN PROCEDURE _gcd ****/
 
 struct OPS  *record_index_name_ops;
 static int duOP_gcd_own_init = 0;
 
-/**** BEGIN PROCEDURE _gcd ****/
-
 errcode
 duOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (duOP_gcd_own_init == 0) {
+    if (duOP_gcd_own_init == 0) {
         if (du_own_init == 0) {
             err = du_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         duOP_gcd_own_init = 1;
     }
     enter_proc(127);
@@ -949,7 +954,7 @@ duOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _gcd ****/
 
@@ -960,22 +965,22 @@ typedef struct{
     struct OP_ENTRY entry[16];
 } du_OPS;
 
-CLU_proc du_oe__gcd = {{0,0,0,0}, duOP_gcd, 0};
-CLU_proc du_oe_add_specs = {{0,0,0,0}, duOPadd_specs, 0};
-CLU_proc du_oe_copy = {{0,0,0,0}, duOPcopy, 0};
-CLU_proc du_oe_create = {{0,0,0,0}, duOPcreate, 0};
-CLU_proc du_oe_equal = {{0,0,0,0}, duOPequal, 0};
-CLU_proc du_oe_forget_specs = {{0,0,0,0}, duOPforget_specs, 0};
-CLU_proc du_oe_get_common = {{0,0,0,0}, duOPget_common, 0};
-CLU_proc du_oe_get_dump_info = {{0,0,0,0}, duOPget_dump_info, 0};
-CLU_proc du_oe_get_mspecs = {{0,0,0,0}, duOPget_mspecs, 0};
-CLU_proc du_oe_get_unique = {{0,0,0,0}, duOPget_unique, 0};
-CLU_proc du_oe_keep = {{0,0,0,0}, duOPkeep, 0};
-CLU_proc du_oe_read_specs = {{0,0,0,0}, duOPread_specs, 0};
-CLU_proc du_oe_reset = {{0,0,0,0}, duOPreset, 0};
-CLU_proc du_oe_set_mspecs = {{0,0,0,0}, duOPset_mspecs, 0};
-CLU_proc du_oe_similar = {{0,0,0,0}, duOPsimilar, 0};
-CLU_proc du_oe_update_specs = {{0,0,0,0}, duOPupdate_specs, 0};
+CLU_proc du_oe__gcd = { .proc = duOP_gcd };
+CLU_proc du_oe_add_specs = { .proc = duOPadd_specs };
+CLU_proc du_oe_copy = { .proc = duOPcopy };
+CLU_proc du_oe_create = { .proc = duOPcreate };
+CLU_proc du_oe_equal = { .proc = duOPequal };
+CLU_proc du_oe_forget_specs = { .proc = duOPforget_specs };
+CLU_proc du_oe_get_common = { .proc = duOPget_common };
+CLU_proc du_oe_get_dump_info = { .proc = duOPget_dump_info };
+CLU_proc du_oe_get_mspecs = { .proc = duOPget_mspecs };
+CLU_proc du_oe_get_unique = { .proc = duOPget_unique };
+CLU_proc du_oe_keep = { .proc = duOPkeep };
+CLU_proc du_oe_read_specs = { .proc = duOPread_specs };
+CLU_proc du_oe_reset = { .proc = duOPreset };
+CLU_proc du_oe_set_mspecs = { .proc = duOPset_mspecs };
+CLU_proc du_oe_similar = { .proc = duOPsimilar };
+CLU_proc du_oe_update_specs = { .proc = duOPupdate_specs };
 
 du_OPS du_ops_actual = {16, (OWNPTR)&du_own_init, (OWNPTR)&du_own_init, {
     {&du_oe__gcd, "_gcd"},

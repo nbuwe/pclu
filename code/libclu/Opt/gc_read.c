@@ -5,13 +5,15 @@
 #include "pclu_sys.h"
 
 
-typedef struct {
-long count;
-} gc_read_of_t_REQS;
+/**** BEGIN PROCEDURE gc_read ****/
 
-gc_read_of_t_REQS gc_read_of_t_reqs_actual = {0};
 
-struct REQS * gc_read_of_t_reqs = (struct REQS *)&gc_read_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} gc_read_of_t_reqs_actual = { 0 };
+
+const struct REQS * const gc_read_of_t_reqs
+    = (const struct REQS *)&gc_read_of_t_reqs_actual;
 
 
 typedef struct {
@@ -36,36 +38,34 @@ extern errcode _chanOPclose();
 extern errcode gcrOPpass2();
 extern errcode gcoOPget_obj();
 extern errcode gcoOPreset();
-CLUREF STR_read;
-CLUREF STR_bad_040file_040format;
+static CLUREF STR_read;
+static CLUREF STR_bad_040file_040format;
 
 typedef struct {
     long gc_read_own_init;
-    gc_read_of_t_OPS *t_ops;
-    } gc_read_OWN_DEFN;
-OWN_req gc_read_ownreqs = {sizeof(gc_read_OWN_DEFN), 1};
+    const gc_read_of_t_OPS * const t_ops;
+} gc_read_OWN_DEFN;
+const OWN_req gc_read_ownreqs = { sizeof(gc_read_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE gc_read ****/
 
 errcode
 gc_read(CLUREF fn, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     gc_read_OWN_DEFN *op_own_ptr;
     CLUREF ch;
     CLUREF why;
     CLUREF bv8;
     CLUREF wv2;
     CLUREF result;
-    op_own_ptr = (gc_read_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->gc_read_own_init == 0) {
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons("bad file format", CLU_1, CLU_15, &STR_bad_040file_040format);
-        }
-        if (op_own_ptr->gc_read_own_init == 0) {
+    op_own_ptr = (gc_read_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->gc_read_own_init == 0) {
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons("bad file format", CLU_1, CLUREF_make_num(15), &STR_bad_040file_040format);
+    }
+    if (op_own_ptr->gc_read_own_init == 0) {
         op_own_ptr->gc_read_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(3);
 
@@ -119,7 +119,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
   LINE(19);
         {
             {CLUREF T_3_1;
-            T_3_1.num = bv8.num;
+            T_3_1.num = (long)bv8.num;
             wv2.num = T_3_1.num;
             }
             }
@@ -228,7 +228,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
                 err = ERR_bounds;
                 goto ex_1;}
             T_4_1.num = wv2.vec->data[2 - 1];
-            T_4_2.num = T_4_1.num;
+            T_4_2.num = (long)T_4_1.num;
             ret_1->num = T_4_2.num;
             }
             {signal (ERR_ok);}}
@@ -345,7 +345,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
             CLUREF T_3_2;
             err = gcoOPget_obj(CLU_0, &T_3_1);
             if (err != ERR_ok) goto ex_1;
-            T_3_2.num = T_3_1.num;
+            T_3_2.num = (long)T_3_1.num;
             result.num = T_3_2.num;
             }
             }
@@ -388,7 +388,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE gc_read ****/
 
@@ -424,56 +424,61 @@ extern errcode intOPsub();
 extern errcode _advOPset_vector();
 extern errcode _advOPset_start();
 extern errcode _advOPset_size();
-extern struct REQS *_tagcell_of_t_reqs;
+extern const struct REQS * const _tagcell_of_t_reqs;
 extern struct OPS *_obj_ops;
-extern OWN_req _tagcell_ownreqs;
+extern const OWN_req _tagcell_ownreqs;
 extern struct OPS *_tagcell_ops;
 struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
 struct OPS *_tagcell_of__obj_ops;
 OWNPTR _tagcell_of__obj_owns;
-extern struct REQS *_adv_of_t_reqs;
-extern OWN_req _adv_ownreqs;
+extern const struct REQS * const _adv_of_t_reqs;
+extern const OWN_req _adv_ownreqs;
 extern struct OPS *_adv_ops;
 struct OPS *_adv_of__obj_table;
 struct OPS *_adv_of__obj_ops;
 struct OPS *_adv_of__obj_ops;
 OWNPTR _adv_of__obj_owns;
 static int gcr_own_init = 0;
-OWN_req gcr_ownreqs = {0,0};
-errcode gcr_own_init_proc()
+const OWN_req gcr_ownreqs = { 0, 0 };
+
+errcode
+gcr_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (gcr_own_init == 0) {
-        add_parm_info_type(0, _obj_ops, _tagcell_of_t_reqs);
+    if (gcr_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, _tagcell_of_t_reqs);
         find_type_instance(_tagcell_ops, 1, &_tagcell_ownreqs, &(_tagcell_of__obj_ops));
-        add_parm_info_type(0, _obj_ops, _adv_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, _adv_of_t_reqs);
         find_type_instance(_adv_ops, 1, &_adv_ownreqs, &(_adv_of__obj_ops));
-        stringOPcons("bad file format", CLU_1, CLU_15, &STR_bad_040file_040format);
+        stringOPcons("bad file format", CLU_1, CLUREF_make_num(15), &STR_bad_040file_040format);
         gcr_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
-static int gcrOPpass1_own_init = 0;
 
 /**** BEGIN PROCEDURE pass1 ****/
 
+static int gcrOPpass1_own_init = 0;
+
 errcode
 gcrOPpass1(CLUREF ch)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF hdr;
     CLUREF id;
     CLUREF o;
-        if (gcrOPpass1_own_init == 0) {
+    if (gcrOPpass1_own_init == 0) {
         if (gcr_own_init == 0) {
             err = gcr_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         gcrOPpass1_own_init = 1;
     }
     enter_proc(93);
@@ -619,26 +624,26 @@ gcrOPpass1(CLUREF ch)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE pass1 ****/
 
 
 /**** BEGIN PROCEDURE make_bvec1 ****/
 
+
 errcode
 gcrOPmake_bvec1(CLUREF ch, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF size;
     CLUREF bv;
     CLUREF i;
     CLUREF why;
-        if (gcr_own_init == 0) {
-            err = gcr_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcr_own_init == 0) {
+        err = gcr_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(135);
 
   LINE(136);
@@ -696,7 +701,7 @@ gcrOPmake_bvec1(CLUREF ch, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    T_1_1.num = bv.num;
+    T_1_1.num = (long)bv.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -709,24 +714,24 @@ gcrOPmake_bvec1(CLUREF ch, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE make_bvec1 ****/
 
 
 /**** BEGIN PROCEDURE make_vec1 ****/
 
+
 errcode
 gcrOPmake_vec1(CLUREF ch, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF size;
     CLUREF v;
-        if (gcr_own_init == 0) {
-            err = gcr_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcr_own_init == 0) {
+        err = gcr_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(153);
 
   LINE(154);
@@ -757,7 +762,7 @@ gcrOPmake_vec1(CLUREF ch, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    T_1_1.num = v.num;
+    T_1_1.num = (long)v.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -770,9 +775,12 @@ gcrOPmake_vec1(CLUREF ch, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE make_vec1 ****/
+
+
+/**** BEGIN PROCEDURE make_cell1 ****/
 
 struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
@@ -780,19 +788,16 @@ struct OPS *_tagcell_of__obj_ops;
 OWNPTR _tagcell_of__obj_owns;
 static int gcrOPmake_cell1_own_init = 0;
 
-/**** BEGIN PROCEDURE make_cell1 ****/
-
 errcode
 gcrOPmake_cell1(CLUREF ch, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
-        if (gcrOPmake_cell1_own_init == 0) {
+    if (gcrOPmake_cell1_own_init == 0) {
         if (gcr_own_init == 0) {
             err = gcr_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         gcrOPmake_cell1_own_init = 1;
     }
     enter_proc(160);
@@ -801,7 +806,7 @@ gcrOPmake_cell1(CLUREF ch, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        T_1_1.num = 0;
+        T_1_1.num = (long)0;
         generic_CLU_proc.type_owns = _tagcell_of__obj_ops->type_owns;
         generic_CLU_proc.proc = _tagcellOPcreate;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -828,7 +833,7 @@ gcrOPmake_cell1(CLUREF ch, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    T_1_1.num = t.num;
+    T_1_1.num = (long)t.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -841,28 +846,28 @@ gcrOPmake_cell1(CLUREF ch, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE make_cell1 ****/
 
 
 /**** BEGIN PROCEDURE make_adv1 ****/
 
+
 errcode
 gcrOPmake_adv1(CLUREF ch, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF size;
     CLUREF ext_size;
     CLUREF ext_low;
     CLUREF int_low;
     CLUREF int_size;
     CLUREF a;
-        if (gcr_own_init == 0) {
-            err = gcr_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcr_own_init == 0) {
+        err = gcr_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(167);
 
   LINE(168);
@@ -908,7 +913,7 @@ gcrOPmake_adv1(CLUREF ch, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    T_1_1.num = a.num;
+    T_1_1.num = (long)a.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -921,27 +926,27 @@ gcrOPmake_adv1(CLUREF ch, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE make_adv1 ****/
 
-static int gcrOPpass2_own_init = 0;
 
 /**** BEGIN PROCEDURE pass2 ****/
 
+static int gcrOPpass2_own_init = 0;
+
 errcode
 gcrOPpass2(CLUREF ch)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF hdr;
     CLUREF id;
     CLUREF o;
-        if (gcrOPpass2_own_init == 0) {
+    if (gcrOPpass2_own_init == 0) {
         if (gcr_own_init == 0) {
             err = gcr_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         gcrOPpass2_own_init = 1;
     }
     enter_proc(175);
@@ -1052,23 +1057,23 @@ gcrOPpass2(CLUREF ch)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE pass2 ****/
 
 
 /**** BEGIN PROCEDURE make_bvec2 ****/
 
+
 errcode
 gcrOPmake_bvec2(CLUREF ch, CLUREF o)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF size;
-        if (gcr_own_init == 0) {
-            err = gcr_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcr_own_init == 0) {
+        err = gcr_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(202);
 
   LINE(203);
@@ -1102,25 +1107,25 @@ gcrOPmake_bvec2(CLUREF ch, CLUREF o)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE make_bvec2 ****/
 
 
 /**** BEGIN PROCEDURE make_vec2 ****/
 
+
 errcode
 gcrOPmake_vec2(CLUREF ch, CLUREF o)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF size;
     CLUREF v;
     CLUREF i;
-        if (gcr_own_init == 0) {
-            err = gcr_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcr_own_init == 0) {
+        err = gcr_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(207);
 
   LINE(208);
@@ -1135,7 +1140,7 @@ gcrOPmake_vec2(CLUREF ch, CLUREF o)
   LINE(209);
     {
         {CLUREF T_1_1;
-        T_1_1.num = o.num;
+        T_1_1.num = (long)o.num;
         v.num = T_1_1.num;
         }
         }
@@ -1167,9 +1172,12 @@ gcrOPmake_vec2(CLUREF ch, CLUREF o)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE make_vec2 ****/
+
+
+/**** BEGIN PROCEDURE make_cell2 ****/
 
 struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
@@ -1177,20 +1185,17 @@ struct OPS *_tagcell_of__obj_ops;
 OWNPTR _tagcell_of__obj_owns;
 static int gcrOPmake_cell2_own_init = 0;
 
-/**** BEGIN PROCEDURE make_cell2 ****/
-
 errcode
 gcrOPmake_cell2(CLUREF ch, CLUREF o)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
     CLUREF tg;
-        if (gcrOPmake_cell2_own_init == 0) {
+    if (gcrOPmake_cell2_own_init == 0) {
         if (gcr_own_init == 0) {
             err = gcr_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         gcrOPmake_cell2_own_init = 1;
     }
     enter_proc(215);
@@ -1198,7 +1203,7 @@ gcrOPmake_cell2(CLUREF ch, CLUREF o)
   LINE(216);
     {
         {CLUREF T_1_1;
-        T_1_1.num = o.num;
+        T_1_1.num = (long)o.num;
         t.num = T_1_1.num;
         }
         }
@@ -1231,9 +1236,12 @@ gcrOPmake_cell2(CLUREF ch, CLUREF o)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE make_cell2 ****/
+
+
+/**** BEGIN PROCEDURE make_adv2 ****/
 
 struct OPS *_adv_of__obj_table;
 struct OPS *_adv_of__obj_ops;
@@ -1241,13 +1249,10 @@ struct OPS *_adv_of__obj_ops;
 OWNPTR _adv_of__obj_owns;
 static int gcrOPmake_adv2_own_init = 0;
 
-/**** BEGIN PROCEDURE make_adv2 ****/
-
 errcode
 gcrOPmake_adv2(CLUREF ch, CLUREF o)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF size;
     CLUREF a;
     CLUREF j1;
@@ -1255,11 +1260,11 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
     CLUREF j3;
     CLUREF j4;
     CLUREF v;
-        if (gcrOPmake_adv2_own_init == 0) {
+    if (gcrOPmake_adv2_own_init == 0) {
         if (gcr_own_init == 0) {
             err = gcr_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         gcrOPmake_adv2_own_init = 1;
     }
     enter_proc(221);
@@ -1282,7 +1287,7 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
   LINE(224);
     {
         {CLUREF T_1_1;
-        T_1_1.num = o.num;
+        T_1_1.num = (long)o.num;
         a.num = T_1_1.num;
         }
         }
@@ -1308,7 +1313,7 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
         CLUREF T_1_2;
         err = gcbOPget_next_obj(ch, &T_1_1);
         if (err != ERR_ok) goto ex_0;
-        T_1_2.num = T_1_1.num;
+        T_1_2.num = (long)T_1_1.num;
         v.num = T_1_2.num;
         }
         }
@@ -1347,7 +1352,7 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE make_adv2 ****/
 
@@ -1358,8 +1363,8 @@ typedef struct{
     struct OP_ENTRY entry[2];
 } gcr_OPS;
 
-CLU_proc gcr_oe_pass1 = {{0,0,0,0}, gcrOPpass1, 0};
-CLU_proc gcr_oe_pass2 = {{0,0,0,0}, gcrOPpass2, 0};
+CLU_proc gcr_oe_pass1 = { .proc = gcrOPpass1 };
+CLU_proc gcr_oe_pass2 = { .proc = gcrOPpass2 };
 
 gcr_OPS gcr_ops_actual = {2, (OWNPTR)&gcr_own_init, (OWNPTR)&gcr_own_init, {
     {&gcr_oe_pass1, "pass1"},
@@ -1378,21 +1383,23 @@ extern errcode intOPmul();
 extern errcode intOPlt();
 extern errcode intOPmin();
 extern errcode _wordvecOPmove_w2b();
-CLUREF STR_bad_040format_040file;
+static CLUREF STR_bad_040format_040file;
 static int gcb_own_init = 0;
-OWN_req gcb_ownreqs = {0,0};
+const OWN_req gcb_ownreqs = { 0, 0 };
 CLUREF gcbOPlookahead;
 CLUREF gcbOPlook_index;
 CLUREF gcbOPlook_count;
 CLUREF gcbOPscratch;
 CLUREF gcbOPobj_addr;
 CLUREF gcbOPwv1;
-errcode gcb_own_init_proc()
+
+errcode
+gcb_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (gcb_own_init == 0) {
-        stringOPcons("bad format file", CLU_1, CLU_15, &STR_bad_040format_040file);
+    if (gcb_own_init == 0) {
+        stringOPcons("bad format file", CLU_1, CLUREF_make_num(15), &STR_bad_040format_040file);
         gcb_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -1431,23 +1438,26 @@ errcode gcb_own_init_proc()
             gcbOPwv1.num = T_0_5.num;
             }
             }
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE init ****/
 
+
 errcode
 gcbOPinit()
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (gcb_own_init == 0) {
-            err = gcb_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcb_own_init == 0) {
+        err = gcb_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(253);
 
   LINE(254);
@@ -1472,24 +1482,24 @@ gcbOPinit()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE init ****/
 
 
 /**** BEGIN PROCEDURE get_next_hdr ****/
 
+
 errcode
 gcbOPget_next_hdr(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF this_addr;
     CLUREF hdr;
-        if (gcb_own_init == 0) {
-            err = gcb_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcb_own_init == 0) {
+        err = gcb_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(259);
 
   LINE(261);
@@ -1537,23 +1547,23 @@ gcbOPget_next_hdr(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_next_hdr ****/
 
 
 /**** BEGIN PROCEDURE get_size ****/
 
+
 errcode
 gcbOPget_size(CLUREF ch, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF size;
-        if (gcb_own_init == 0) {
-            err = gcb_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcb_own_init == 0) {
+        err = gcb_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(267);
 
   LINE(268);
@@ -1580,26 +1590,26 @@ gcbOPget_size(CLUREF ch, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_size ****/
 
 
 /**** BEGIN PROCEDURE get_array_info ****/
 
+
 errcode
 gcbOPget_array_info(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret_4)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF size;
     CLUREF low;
     CLUREF start;
     CLUREF predict;
-        if (gcb_own_init == 0) {
-            err = gcb_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcb_own_init == 0) {
+        err = gcb_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(272);
 
   LINE(273);
@@ -1662,26 +1672,26 @@ gcbOPget_array_info(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUR
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_array_info ****/
 
-static int gcbOPget_next_obj_own_init = 0;
 
 /**** BEGIN PROCEDURE get_next_obj ****/
 
+static int gcbOPget_next_obj_own_init = 0;
+
 errcode
 gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ty;
     CLUREF val;
-        if (gcbOPget_next_obj_own_init == 0) {
+    if (gcbOPget_next_obj_own_init == 0) {
         if (gcb_own_init == 0) {
             err = gcb_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         gcbOPget_next_obj_own_init = 1;
     }
     enter_proc(280);
@@ -1741,7 +1751,7 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
             {
             {
             CLUREF T_3_1;
-            T_3_1.num = val.num;
+            T_3_1.num = (long)val.num;
             ret_1->num = T_3_1.num;
             }
             {signal (ERR_ok);}}
@@ -1779,27 +1789,27 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_next_obj ****/
 
-static int gcbOPskip_obj_own_init = 0;
 
 /**** BEGIN PROCEDURE skip_obj ****/
 
+static int gcbOPskip_obj_own_init = 0;
+
 errcode
 gcbOPskip_obj(CLUREF ch, CLUREF count)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF ty;
     CLUREF val;
-        if (gcbOPskip_obj_own_init == 0) {
+    if (gcbOPskip_obj_own_init == 0) {
         if (gcb_own_init == 0) {
             err = gcb_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         gcbOPskip_obj_own_init = 1;
     }
     enter_proc(301);
@@ -1899,23 +1909,23 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE skip_obj ****/
 
 
 /**** BEGIN PROCEDURE geti ****/
 
+
 errcode
 gcbOPgeti(CLUREF ch, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ans;
-        if (gcb_own_init == 0) {
-            err = gcb_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcb_own_init == 0) {
+        err = gcb_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(316);
 
   LINE(318);
@@ -2004,27 +2014,27 @@ gcbOPgeti(CLUREF ch, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE geti ****/
 
 
 /**** BEGIN PROCEDURE getb ****/
 
+
 errcode
 gcbOPgetb(CLUREF ch, CLUREF b)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF copied;
     CLUREF data_count;
     CLUREF pad_count;
     CLUREF b_index;
     CLUREF count;
-        if (gcb_own_init == 0) {
-            err = gcb_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcb_own_init == 0) {
+        err = gcb_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(330);
 
   LINE(332);
@@ -2277,25 +2287,25 @@ gcbOPgetb(CLUREF ch, CLUREF b)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE getb ****/
 
 
 /**** BEGIN PROCEDURE skip ****/
 
+
 errcode
 gcbOPskip(CLUREF ch, CLUREF i)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i4;
     CLUREF skipped;
     CLUREF count;
-        if (gcb_own_init == 0) {
-            err = gcb_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (gcb_own_init == 0) {
+        err = gcb_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(359);
 
   LINE(361);
@@ -2417,7 +2427,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE skip ****/
 
@@ -2428,15 +2438,15 @@ typedef struct{
     struct OP_ENTRY entry[9];
 } gcb_OPS;
 
-CLU_proc gcb_oe_get_array_info = {{0,0,0,0}, gcbOPget_array_info, 0};
-CLU_proc gcb_oe_get_next_hdr = {{0,0,0,0}, gcbOPget_next_hdr, 0};
-CLU_proc gcb_oe_get_next_obj = {{0,0,0,0}, gcbOPget_next_obj, 0};
-CLU_proc gcb_oe_get_size = {{0,0,0,0}, gcbOPget_size, 0};
-CLU_proc gcb_oe_getb = {{0,0,0,0}, gcbOPgetb, 0};
-CLU_proc gcb_oe_geti = {{0,0,0,0}, gcbOPgeti, 0};
-CLU_proc gcb_oe_init = {{0,0,0,0}, gcbOPinit, 0};
-CLU_proc gcb_oe_skip = {{0,0,0,0}, gcbOPskip, 0};
-CLU_proc gcb_oe_skip_obj = {{0,0,0,0}, gcbOPskip_obj, 0};
+CLU_proc gcb_oe_get_array_info = { .proc = gcbOPget_array_info };
+CLU_proc gcb_oe_get_next_hdr = { .proc = gcbOPget_next_hdr };
+CLU_proc gcb_oe_get_next_obj = { .proc = gcbOPget_next_obj };
+CLU_proc gcb_oe_get_size = { .proc = gcbOPget_size };
+CLU_proc gcb_oe_getb = { .proc = gcbOPgetb };
+CLU_proc gcb_oe_geti = { .proc = gcbOPgeti };
+CLU_proc gcb_oe_init = { .proc = gcbOPinit };
+CLU_proc gcb_oe_skip = { .proc = gcbOPskip };
+CLU_proc gcb_oe_skip_obj = { .proc = gcbOPskip_obj };
 
 gcb_OPS gcb_ops_actual = {9, (OWNPTR)&gcb_own_init, (OWNPTR)&gcb_own_init, {
     {&gcb_oe_get_array_info, "get_array_info"},
@@ -2465,23 +2475,23 @@ extern errcode recordOPget_3();
 extern errcode arrayOPstore();
 extern errcode arrayOPnew();
 static int gco_own_init = 1;
-OWN_req gco_ownreqs = {0,0};
+const OWN_req gco_ownreqs = { 0, 0 };
 CLUREF gcoOPobj_store;
 
 /**** BEGIN PROCEDURE init ****/
 
+
 errcode
 gcoOPinit()
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF no_bucket;
     enter_proc(390);
 
   LINE(391);
     {
         {CLUREF T_1_1;
-        T_1_1.num = nil;
+        T_1_1.num = (long)nil;
         no_bucket.num = T_1_1.num;
         }
         }
@@ -2503,18 +2513,18 @@ gcoOPinit()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE init ****/
 
 
 /**** BEGIN PROCEDURE get_obj ****/
 
+
 errcode
 gcoOPget_obj(CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     CLUREF this_buck;
     enter_proc(395);
@@ -2557,8 +2567,8 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
         CLUREF T_1_6;
         CLUREF T_1_7;
         CLUREF T_1_8;
-        T_1_2.num = this_buck.num;
-        T_1_3.num = nil;
+        T_1_2.num = (long)this_buck.num;
+        T_1_3.num = (long)nil;
         T_1_4.num = (T_1_2.num == T_1_3.num)? true : false;
         T_1_5.num = T_1_4.num ^ 1;
         T_1_1.num = T_1_5.num;
@@ -2575,7 +2585,7 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = this_buck.vec->data[1];
-        T_2_2.num = T_2_1.num;
+        T_2_2.num = (long)T_2_1.num;
         this_buck.num = T_2_2.num;
         }
         }
@@ -2586,8 +2596,8 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-    T_1_1.num = this_buck.num;
-    T_1_2.num = nil;
+    T_1_1.num = (long)this_buck.num;
+    T_1_2.num = (long)nil;
     T_1_3.num = (T_1_1.num == T_1_2.num)? true : false;
     if (T_1_3.num == true) {
         {
@@ -2612,18 +2622,18 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_obj ****/
 
 
 /**** BEGIN PROCEDURE save_new_obj ****/
 
+
 errcode
 gcoOPsave_new_obj(CLUREF i, CLUREF o)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     CLUREF this_buck;
     enter_proc(406);
@@ -2661,10 +2671,10 @@ gcoOPsave_new_obj(CLUREF i, CLUREF o)
     CLUREF T_1_1;
     CLUREF T_1_2;
     RecordAlloc(3, T_1_1);
-    T_1_1.vec->data[0]  = i.num;
-    T_1_1.vec->data[2]  = o.num;
-    T_1_2.num = this_buck.num;
-    T_1_1.vec->data[1]  = T_1_2.num;
+    T_1_1.vec->data[0] = i.num;
+    T_1_1.vec->data[2] = o.num;
+    T_1_2.num = (long)this_buck.num;
+    T_1_1.vec->data[1] = T_1_2.num;
     {
     if (k.num < gcoOPobj_store.array->ext_low || k.num > gcoOPobj_store.array->ext_high) {
         err = ERR_bounds;
@@ -2680,18 +2690,18 @@ gcoOPsave_new_obj(CLUREF i, CLUREF o)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE save_new_obj ****/
 
 
 /**** BEGIN PROCEDURE reset ****/
 
+
 errcode
 gcoOPreset()
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(412);
 
   LINE(413);
@@ -2709,7 +2719,7 @@ gcoOPreset()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE reset ****/
 
@@ -2720,10 +2730,10 @@ typedef struct{
     struct OP_ENTRY entry[4];
 } gco_OPS;
 
-CLU_proc gco_oe_get_obj = {{0,0,0,0}, gcoOPget_obj, 0};
-CLU_proc gco_oe_init = {{0,0,0,0}, gcoOPinit, 0};
-CLU_proc gco_oe_reset = {{0,0,0,0}, gcoOPreset, 0};
-CLU_proc gco_oe_save_new_obj = {{0,0,0,0}, gcoOPsave_new_obj, 0};
+CLU_proc gco_oe_get_obj = { .proc = gcoOPget_obj };
+CLU_proc gco_oe_init = { .proc = gcoOPinit };
+CLU_proc gco_oe_reset = { .proc = gcoOPreset };
+CLU_proc gco_oe_save_new_obj = { .proc = gcoOPsave_new_obj };
 
 gco_OPS gco_ops_actual = {4, (OWNPTR)&gco_own_init, (OWNPTR)&gco_own_init, {
     {&gco_oe_get_obj, "get_obj"},
@@ -2735,35 +2745,35 @@ struct OPS *gco_ops = (struct OPS *)&gco_ops_actual;
 
 /**** END CLUSTER gco ****/
 
+
+/**** BEGIN PROCEDURE log_bytevec ****/
+
 extern errcode logit();
 extern errcode stringOPconcat();
 extern errcode intOPunparse();
 extern errcode charOPc2i();
 extern errcode charOPle();
 extern errcode stringOPc2s();
-CLUREF STR_gc_137read_072_040next_040_137bytevec;
-CLUREF STR__040_040;
-CLUREF STR__072_040;
-CLUREF STR__054_040_047;
-CLUREF STR__047;
+static CLUREF STR_gc_137read_072_040next_040_137bytevec;
+static CLUREF STR__040_040;
+static CLUREF STR__072_040;
+static CLUREF STR__054_040_047;
+static CLUREF STR__047;
 static int log_bytevec_own_init = 0;
-
-/**** BEGIN PROCEDURE log_bytevec ****/
 
 errcode
 log_bytevec(CLUREF bv)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF c;
     CLUREF s;
-        if (log_bytevec_own_init == 0) {
-        stringOPcons("gc_read: next _bytevec", CLU_1, CLU_22, &STR_gc_137read_072_040next_040_137bytevec);
-        stringOPcons("  ", CLU_1, CLU_2, &STR__040_040);
-        stringOPcons(": ", CLU_1, CLU_2, &STR__072_040);
-        stringOPcons(", \'", CLU_1, CLU_3, &STR__054_040_047);
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
+    if (log_bytevec_own_init == 0) {
+        stringOPcons("gc_read: next _bytevec", CLU_1, CLUREF_make_num(22), &STR_gc_137read_072_040next_040_137bytevec);
+        stringOPcons("  ", CLU_1, CLUREF_make_num(2), &STR__040_040);
+        stringOPcons(": ", CLU_1, CLUREF_make_num(2), &STR__072_040);
+        stringOPcons(", \'", CLU_1, CLUREF_make_num(3), &STR__054_040_047);
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
         log_bytevec_own_init = 1;
     }
     enter_proc(468);
@@ -2871,7 +2881,7 @@ log_bytevec(CLUREF bv)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE log_bytevec ****/
 

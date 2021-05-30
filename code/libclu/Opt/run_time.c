@@ -4,16 +4,16 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode _get_runtime();
-extern errcode timeOPcreate();
 
 /**** BEGIN PROCEDURE run_time ****/
 
+extern errcode _get_runtime();
+extern errcode timeOPcreate();
+
 errcode
 run_time(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF sec;
     CLUREF msec;
     CLUREF usec;
@@ -50,7 +50,7 @@ run_time(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE run_time ****/
 

@@ -24,9 +24,9 @@ extern errcode recordOPsimilar();
 extern errcode oneofOPis_8();
 extern errcode typespecOPmismatch();
 extern errcode recordOP_gcd();
-extern struct REQS *sequence_of_t_reqs;
+extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *typespec_ops;
-extern OWN_req sequence_ownreqs;
+extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
 struct OPS *sequence_of_typespec_table;
 struct OPS *sequence_of_typespec_ops;
@@ -76,25 +76,27 @@ extern struct OPS *int_ops;
 extern struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops;
 struct OPS  *record_id_type__ops;
 static int typespec_own_init = 0;
-OWN_req typespec_ownreqs = {0,0};
-errcode typespec_own_init_proc()
+const OWN_req typespec_ownreqs = { 0, 0 };
+
+errcode
+typespec_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (typespec_own_init == 0) {
-        add_parm_info_type(0, typespec_ops, sequence_of_t_reqs);
+    if (typespec_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)typespec_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_typespec_ops));
         add_selector_info("name", 0, string_ops);
         add_selector_info("types", 1, sequence_of_typespec_ops);
         find_selector_ops("record", 2, &(record_name_types_ops));
-        add_parm_info_type(0, record_name_types_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_name_types_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_name_types_ops));
         add_selector_info("args", 0, sequence_of_typespec_ops);
         add_selector_info("gen", 1, du_ops);
         add_selector_info("sigs", 2, sequence_of_record_name_types_ops);
         add_selector_info("vals", 3, sequence_of_typespec_ops);
         find_selector_ops("record", 4, &(record_args_gen_sigs_vals_ops));
-        add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
         add_selector_info("gen", 0, du_ops);
         add_selector_info("parms", 1, sequence_of_expr_ops);
@@ -110,7 +112,7 @@ errcode typespec_own_init_proc()
         add_selector_info("sel", 0, string_ops);
         add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_sel_type__ops));
-        add_parm_info_type(0, record_sel_type__ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_sel_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_sel_type__ops));
         add_selector_info("gen", 0, du_ops);
         add_selector_info("parms", 1, sequence_of_record_sel_type__ops);
@@ -137,23 +139,26 @@ errcode typespec_own_init_proc()
         add_selector_info("type_", 1, oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops);
         find_selector_ops("record", 2, &(record_id_type__ops));
         typespec_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 typespecOPcreate(CLUREF ta, CLUREF id, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (typespec_own_init == 0) {
-            err = typespec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (typespec_own_init == 0) {
+        err = typespec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(32);
 
   LINE(33);
@@ -161,8 +166,8 @@ typespecOPcreate(CLUREF ta, CLUREF id, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[1]  = ta.num;
-    T_1_1.vec->data[0]  = id.num;
+    T_1_1.vec->data[1] = ta.num;
+    T_1_1.vec->data[0] = id.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -175,22 +180,22 @@ typespecOPcreate(CLUREF ta, CLUREF id, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
 
 /**** BEGIN PROCEDURE is_unknown ****/
 
+
 errcode
 typespecOPis_unknown(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (typespec_own_init == 0) {
-            err = typespec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (typespec_own_init == 0) {
+        err = typespec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(37);
 
   LINE(38);
@@ -212,22 +217,22 @@ typespecOPis_unknown(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE is_unknown ****/
 
 
 /**** BEGIN PROCEDURE get_abs ****/
 
+
 errcode
 typespecOPget_abs(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (typespec_own_init == 0) {
-            err = typespec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (typespec_own_init == 0) {
+        err = typespec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(41);
 
   LINE(42);
@@ -247,27 +252,27 @@ typespecOPget_abs(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_abs ****/
 
 
 /**** BEGIN PROCEDURE set_abs ****/
 
+
 errcode
 typespecOPset_abs(CLUREF t, CLUREF abs)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (typespec_own_init == 0) {
-            err = typespec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (typespec_own_init == 0) {
+        err = typespec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(45);
 
   LINE(46);
     {
-    t.vec->data[1]  = abs.num;
+    t.vec->data[1] = abs.num;
     }
     goto end_0;
     ex_0:
@@ -277,22 +282,22 @@ typespecOPset_abs(CLUREF t, CLUREF abs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_abs ****/
 
 
 /**** BEGIN PROCEDURE get_id ****/
 
+
 errcode
 typespecOPget_id(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (typespec_own_init == 0) {
-            err = typespec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (typespec_own_init == 0) {
+        err = typespec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(49);
 
   LINE(50);
@@ -312,27 +317,27 @@ typespecOPget_id(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_id ****/
 
 
 /**** BEGIN PROCEDURE set_id ****/
 
+
 errcode
 typespecOPset_id(CLUREF t, CLUREF id)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (typespec_own_init == 0) {
-            err = typespec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (typespec_own_init == 0) {
+        err = typespec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(53);
 
   LINE(54);
     {
-    t.vec->data[0]  = id.num;
+    t.vec->data[0] = id.num;
     }
     goto end_0;
     ex_0:
@@ -342,22 +347,22 @@ typespecOPset_id(CLUREF t, CLUREF id)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_id ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 typespecOPcopy(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (typespec_own_init == 0) {
-            err = typespec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (typespec_own_init == 0) {
+        err = typespec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(57);
 
   LINE(58);
@@ -375,22 +380,22 @@ typespecOPcopy(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
 
 
 /**** BEGIN PROCEDURE equal ****/
 
+
 errcode
 typespecOPequal(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (typespec_own_init == 0) {
-            err = typespec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (typespec_own_init == 0) {
+        err = typespec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(61);
 
   LINE(62);
@@ -414,22 +419,22 @@ typespecOPequal(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
 
 
 /**** BEGIN PROCEDURE similar ****/
 
+
 errcode
 typespecOPsimilar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (typespec_own_init == 0) {
-            err = typespec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (typespec_own_init == 0) {
+        err = typespec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(65);
 
   LINE(66);
@@ -453,9 +458,12 @@ typespecOPsimilar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
+
+
+/**** BEGIN PROCEDURE mismatch ****/
 
 struct OPS *sequence_of_typespec_table;
 struct OPS *sequence_of_typespec_ops;
@@ -464,24 +472,21 @@ OWNPTR sequence_of_typespec_owns;
 struct OPS  *record_name_types_ops;
 static int typespecOPmismatch_own_init = 0;
 
-/**** BEGIN PROCEDURE mismatch ****/
-
 errcode
 typespecOPmismatch(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ta2;
     CLUREF ot;
     CLUREF xa1;
     CLUREF xa2;
     CLUREF x;
     CLUREF y;
-        if (typespecOPmismatch_own_init == 0) {
+    if (typespecOPmismatch_own_init == 0) {
         if (typespec_own_init == 0) {
             err = typespec_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         typespecOPmismatch_own_init = 1;
     }
     enter_proc(75);
@@ -729,7 +734,7 @@ typespecOPmismatch(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
   LINE(115);
                                             {
-                                                err = "ERR_ok_UNIQ";
+                                                err = (long)"ERR_ok_UNIQ";
                                                 goto ex_1;
                                                 }
                                             }
@@ -878,22 +883,22 @@ typespecOPmismatch(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE mismatch ****/
 
 
 /**** BEGIN PROCEDURE mismatch2 ****/
 
+
 errcode
 typespecOPmismatch2(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (typespec_own_init == 0) {
-            err = typespec_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (typespec_own_init == 0) {
+        err = typespec_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(142);
 
   LINE(143);
@@ -937,9 +942,12 @@ typespecOPmismatch2(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE mismatch2 ****/
+
+
+/**** BEGIN PROCEDURE _gcd ****/
 
 struct OPS *sequence_of_typespec_table;
 struct OPS *sequence_of_typespec_ops;
@@ -970,18 +978,15 @@ struct OPS  *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_
 struct OPS  *record_id_type__ops;
 static int typespecOP_gcd_own_init = 0;
 
-/**** BEGIN PROCEDURE _gcd ****/
-
 errcode
 typespecOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (typespecOP_gcd_own_init == 0) {
+    if (typespecOP_gcd_own_init == 0) {
         if (typespec_own_init == 0) {
             err = typespec_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         typespecOP_gcd_own_init = 1;
     }
     enter_proc(147);
@@ -1008,7 +1013,7 @@ typespecOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _gcd ****/
 
@@ -1019,18 +1024,18 @@ typedef struct{
     struct OP_ENTRY entry[12];
 } typespec_OPS;
 
-CLU_proc typespec_oe__gcd = {{0,0,0,0}, typespecOP_gcd, 0};
-CLU_proc typespec_oe_copy = {{0,0,0,0}, typespecOPcopy, 0};
-CLU_proc typespec_oe_create = {{0,0,0,0}, typespecOPcreate, 0};
-CLU_proc typespec_oe_equal = {{0,0,0,0}, typespecOPequal, 0};
-CLU_proc typespec_oe_get_abs = {{0,0,0,0}, typespecOPget_abs, 0};
-CLU_proc typespec_oe_get_id = {{0,0,0,0}, typespecOPget_id, 0};
-CLU_proc typespec_oe_is_unknown = {{0,0,0,0}, typespecOPis_unknown, 0};
-CLU_proc typespec_oe_mismatch = {{0,0,0,0}, typespecOPmismatch, 0};
-CLU_proc typespec_oe_mismatch2 = {{0,0,0,0}, typespecOPmismatch2, 0};
-CLU_proc typespec_oe_set_abs = {{0,0,0,0}, typespecOPset_abs, 0};
-CLU_proc typespec_oe_set_id = {{0,0,0,0}, typespecOPset_id, 0};
-CLU_proc typespec_oe_similar = {{0,0,0,0}, typespecOPsimilar, 0};
+CLU_proc typespec_oe__gcd = { .proc = typespecOP_gcd };
+CLU_proc typespec_oe_copy = { .proc = typespecOPcopy };
+CLU_proc typespec_oe_create = { .proc = typespecOPcreate };
+CLU_proc typespec_oe_equal = { .proc = typespecOPequal };
+CLU_proc typespec_oe_get_abs = { .proc = typespecOPget_abs };
+CLU_proc typespec_oe_get_id = { .proc = typespecOPget_id };
+CLU_proc typespec_oe_is_unknown = { .proc = typespecOPis_unknown };
+CLU_proc typespec_oe_mismatch = { .proc = typespecOPmismatch };
+CLU_proc typespec_oe_mismatch2 = { .proc = typespecOPmismatch2 };
+CLU_proc typespec_oe_set_abs = { .proc = typespecOPset_abs };
+CLU_proc typespec_oe_set_id = { .proc = typespecOPset_id };
+CLU_proc typespec_oe_similar = { .proc = typespecOPsimilar };
 
 typespec_OPS typespec_ops_actual = {12, (OWNPTR)&typespec_own_init, (OWNPTR)&typespec_own_init, {
     {&typespec_oe__gcd, "_gcd"},
@@ -1085,28 +1090,30 @@ extern struct OPS *record_equates_idn_ops_ops;
 struct OPS  *oneof_du_expr_typeset_ops;
 extern struct OPS *oneof_du_expr_typeset_ops;
 struct OPS  *record_idn_line_val_ops;
-CLUREF STR_REP;
+static CLUREF STR_REP;
 static int equate_own_init = 0;
-OWN_req equate_ownreqs = {0,0};
-errcode equate_own_init_proc()
+const OWN_req equate_ownreqs = { 0, 0 };
+
+errcode
+equate_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (equate_own_init == 0) {
-        add_parm_info_type(0, equate_ops, sequence_of_t_reqs);
+    if (equate_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)equate_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_equate_ops));
-        add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
         add_selector_info("name", 0, string_ops);
         add_selector_info("parms", 1, sequence_of_expr_ops);
         add_selector_info("type_", 2, typespec_ops);
         find_selector_ops("record", 3, &(record_name_parms_type__ops));
-        add_parm_info_type(0, record_name_parms_type__ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_name_parms_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_name_parms_type__ops));
         add_selector_info("line", 0, int_ops);
         add_selector_info("opers", 1, sequence_of_record_name_parms_type__ops);
         find_selector_ops("record", 2, &(record_line_opers_ops));
-        add_parm_info_type(0, record_line_opers_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_line_opers_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_line_opers_ops));
         add_selector_info("equates", 0, sequence_of_equate_ops);
         add_selector_info("idn", 1, idn_ops);
@@ -1120,25 +1127,28 @@ errcode equate_own_init_proc()
         add_selector_info("line", 1, int_ops);
         add_selector_info("val", 2, oneof_du_expr_typeset_ops);
         find_selector_ops("record", 3, &(record_idn_line_val_ops));
-        stringOPcons("REP", CLU_1, CLU_3, &STR_REP);
+        stringOPcons("REP", CLU_1, CLUREF_make_num(3), &STR_REP);
         equate_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 equateOPcreate(CLUREF id, CLUREF val, CLUREF line, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (equate_own_init == 0) {
-            err = equate_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (equate_own_init == 0) {
+        err = equate_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(169);
 
   LINE(170);
@@ -1146,9 +1156,9 @@ equateOPcreate(CLUREF id, CLUREF val, CLUREF line, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(3, T_1_1);
-    T_1_1.vec->data[0]  = id.num;
-    T_1_1.vec->data[2]  = val.num;
-    T_1_1.vec->data[1]  = line.num;
+    T_1_1.vec->data[0] = id.num;
+    T_1_1.vec->data[2] = val.num;
+    T_1_1.vec->data[1] = line.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -1161,24 +1171,24 @@ equateOPcreate(CLUREF id, CLUREF val, CLUREF line, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
-static int equateOPis_rep_own_init = 0;
 
 /**** BEGIN PROCEDURE is_rep ****/
 
+static int equateOPis_rep_own_init = 0;
+
 errcode
 equateOPis_rep(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (equateOPis_rep_own_init == 0) {
+    if (equateOPis_rep_own_init == 0) {
         if (equate_own_init == 0) {
             err = equate_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         equateOPis_rep_own_init = 1;
     }
     enter_proc(175);
@@ -1193,7 +1203,7 @@ equateOPis_rep(CLUREF e, CLUREF *ret_1)
     err = idnOPget_str(T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_3.num = ((STR_REP.str->size != T_1_2.str->size)? false :
-        !(bcmp(STR_REP.str->data, T_1_2.str->data, STR_REP.str->size)));
+        !(memcmp(STR_REP.str->data, T_1_2.str->data, STR_REP.str->size)));
     ret_1->num = T_1_3.num;
     }
     {signal (ERR_ok);}}
@@ -1206,22 +1216,22 @@ equateOPis_rep(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE is_rep ****/
 
 
 /**** BEGIN PROCEDURE get_idn ****/
 
+
 errcode
 equateOPget_idn(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (equate_own_init == 0) {
-            err = equate_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (equate_own_init == 0) {
+        err = equate_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(179);
 
   LINE(180);
@@ -1241,22 +1251,22 @@ equateOPget_idn(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_idn ****/
 
 
 /**** BEGIN PROCEDURE get_val ****/
 
+
 errcode
 equateOPget_val(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (equate_own_init == 0) {
-            err = equate_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (equate_own_init == 0) {
+        err = equate_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(183);
 
   LINE(184);
@@ -1276,22 +1286,22 @@ equateOPget_val(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_val ****/
 
 
 /**** BEGIN PROCEDURE get_line ****/
 
+
 errcode
 equateOPget_line(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (equate_own_init == 0) {
-            err = equate_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (equate_own_init == 0) {
+        err = equate_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(187);
 
   LINE(188);
@@ -1311,22 +1321,22 @@ equateOPget_line(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_line ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 equateOPcopy(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (equate_own_init == 0) {
-            err = equate_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (equate_own_init == 0) {
+        err = equate_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(191);
 
   LINE(192);
@@ -1344,22 +1354,22 @@ equateOPcopy(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
 
 
 /**** BEGIN PROCEDURE equal ****/
 
+
 errcode
 equateOPequal(CLUREF e1, CLUREF e2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (equate_own_init == 0) {
-            err = equate_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (equate_own_init == 0) {
+        err = equate_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(195);
 
   LINE(196);
@@ -1379,9 +1389,12 @@ equateOPequal(CLUREF e1, CLUREF e2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
+
+
+/**** BEGIN PROCEDURE similar ****/
 
 struct OPS *sequence_of_equate_table;
 struct OPS *sequence_of_equate_ops;
@@ -1405,18 +1418,15 @@ struct OPS  *record_equates_idn_ops_ops;
 struct OPS  *oneof_du_expr_typeset_ops;
 static int equateOPsimilar_own_init = 0;
 
-/**** BEGIN PROCEDURE similar ****/
-
 errcode
 equateOPsimilar(CLUREF e1, CLUREF e2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (equateOPsimilar_own_init == 0) {
+    if (equateOPsimilar_own_init == 0) {
         if (equate_own_init == 0) {
             err = equate_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         equateOPsimilar_own_init = 1;
     }
     enter_proc(199);
@@ -1468,9 +1478,12 @@ equateOPsimilar(CLUREF e1, CLUREF e2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
+
+
+/**** BEGIN PROCEDURE _gcd ****/
 
 struct OPS *sequence_of_equate_table;
 struct OPS *sequence_of_equate_ops;
@@ -1495,18 +1508,15 @@ struct OPS  *oneof_du_expr_typeset_ops;
 struct OPS  *record_idn_line_val_ops;
 static int equateOP_gcd_own_init = 0;
 
-/**** BEGIN PROCEDURE _gcd ****/
-
 errcode
 equateOP_gcd(CLUREF e, CLUREF tab, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (equateOP_gcd_own_init == 0) {
+    if (equateOP_gcd_own_init == 0) {
         if (equate_own_init == 0) {
             err = equate_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         equateOP_gcd_own_init = 1;
     }
     enter_proc(206);
@@ -1533,7 +1543,7 @@ equateOP_gcd(CLUREF e, CLUREF tab, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _gcd ****/
 
@@ -1544,15 +1554,15 @@ typedef struct{
     struct OP_ENTRY entry[9];
 } equate_OPS;
 
-CLU_proc equate_oe__gcd = {{0,0,0,0}, equateOP_gcd, 0};
-CLU_proc equate_oe_copy = {{0,0,0,0}, equateOPcopy, 0};
-CLU_proc equate_oe_create = {{0,0,0,0}, equateOPcreate, 0};
-CLU_proc equate_oe_equal = {{0,0,0,0}, equateOPequal, 0};
-CLU_proc equate_oe_get_idn = {{0,0,0,0}, equateOPget_idn, 0};
-CLU_proc equate_oe_get_line = {{0,0,0,0}, equateOPget_line, 0};
-CLU_proc equate_oe_get_val = {{0,0,0,0}, equateOPget_val, 0};
-CLU_proc equate_oe_is_rep = {{0,0,0,0}, equateOPis_rep, 0};
-CLU_proc equate_oe_similar = {{0,0,0,0}, equateOPsimilar, 0};
+CLU_proc equate_oe__gcd = { .proc = equateOP_gcd };
+CLU_proc equate_oe_copy = { .proc = equateOPcopy };
+CLU_proc equate_oe_create = { .proc = equateOPcreate };
+CLU_proc equate_oe_equal = { .proc = equateOPequal };
+CLU_proc equate_oe_get_idn = { .proc = equateOPget_idn };
+CLU_proc equate_oe_get_line = { .proc = equateOPget_line };
+CLU_proc equate_oe_get_val = { .proc = equateOPget_val };
+CLU_proc equate_oe_is_rep = { .proc = equateOPis_rep };
+CLU_proc equate_oe_similar = { .proc = equateOPsimilar };
 
 equate_OPS equate_ops_actual = {9, (OWNPTR)&equate_own_init, (OWNPTR)&equate_own_init, {
     {&equate_oe__gcd, "_gcd"},
@@ -1686,28 +1696,30 @@ struct OPS  *oneof_assn_bad_body_break__continue__decl_declinit_except__exit__fo
 extern struct OPS *oneof_assn_bad_body_break__continue__decl_declinit_except__exit__for__force__if__invoke_resignal__return__signal__sugarassn_tag__while__yield__ops;
 struct OPS  *record_line_stmt_1_ops;
 static int stmt_own_init = 0;
-OWN_req stmt_ownreqs = {0,0};
-errcode stmt_own_init_proc()
+const OWN_req stmt_ownreqs = { 0, 0 };
+
+errcode
+stmt_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (stmt_own_init == 0) {
-        add_parm_info_type(0, idn_ops, sequence_of_t_reqs);
+    if (stmt_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)idn_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_idn_ops));
         add_selector_info("idns", 0, sequence_of_idn_ops);
         add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_idns_type__ops));
-        add_parm_info_type(0, record_idns_type__ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_idns_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_idns_type__ops));
-        add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
         add_selector_info("anys", 0, sequence_of_record_idns_type__ops);
         add_selector_info("left", 1, sequence_of_idn_ops);
         add_selector_info("right", 2, sequence_of_expr_ops);
         find_selector_ops("record", 3, &(record_anys_left_right_ops));
-        add_parm_info_type(0, equate_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)equate_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_equate_ops));
-        add_parm_info_type(0, stmt_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)stmt_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_stmt_ops));
         add_selector_info("equates", 0, sequence_of_equate_ops);
         add_selector_info("stmts", 1, sequence_of_stmt_ops);
@@ -1716,7 +1728,7 @@ errcode stmt_own_init_proc()
         add_selector_info("decls", 1, sequence_of_record_idns_type__ops);
         add_selector_info("expr", 2, expr_ops);
         find_selector_ops("record", 3, &(record_anys_decls_expr_ops));
-        add_parm_info_type(0, string_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)string_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_string_ops));
         add_selector_info("decls", 0, sequence_of_record_idns_type__ops);
         add_selector_info("none", 1, null_ops);
@@ -1727,7 +1739,7 @@ errcode stmt_own_init_proc()
         add_selector_info("names", 2, sequence_of_string_ops);
         add_selector_info("vars", 3, oneof_decls_none_star_ops);
         find_selector_ops("record", 4, &(record_body_line_names_vars_ops));
-        add_parm_info_type(0, record_body_line_names_vars_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_body_line_names_vars_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_body_line_names_vars_ops));
         add_selector_info("decl", 0, record_idns_type__ops);
         add_selector_info("none", 1, null_ops);
@@ -1762,12 +1774,12 @@ errcode stmt_own_init_proc()
         add_selector_info("parms", 1, sequence_of_expr_ops);
         add_selector_info("type_", 2, typespec_ops);
         find_selector_ops("record", 3, &(record_name_parms_type__ops));
-        add_parm_info_type(0, record_name_parms_type__ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_name_parms_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_name_parms_type__ops));
         add_selector_info("line", 0, int_ops);
         add_selector_info("opers", 1, sequence_of_record_name_parms_type__ops);
         find_selector_ops("record", 2, &(record_line_opers_ops));
-        add_parm_info_type(0, record_line_opers_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_line_opers_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_line_opers_ops));
         add_selector_info("equates", 0, sequence_of_equate_ops);
         add_selector_info("idn", 1, idn_ops);
@@ -1781,7 +1793,7 @@ errcode stmt_own_init_proc()
         add_selector_info("kind", 1, oneof_has__idn_set_ops);
         add_selector_info("line", 2, int_ops);
         find_selector_ops("record", 3, &(record_idn_kind_line_ops));
-        add_parm_info_type(0, record_idn_kind_line_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_idn_kind_line_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_idn_kind_line_ops));
         add_selector_info("expr", 0, expr_ops);
         add_selector_info("type_", 1, idn_ops);
@@ -1792,7 +1804,7 @@ errcode stmt_own_init_proc()
         add_selector_info("line", 1, int_ops);
         add_selector_info("test", 2, expr_ops);
         find_selector_ops("record", 3, &(record_body_line_test_ops));
-        add_parm_info_type(0, record_body_line_test_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_body_line_test_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_body_line_test_ops));
         add_selector_info("body", 0, record_equates_stmts_ops);
         add_selector_info("none", 1, null_ops);
@@ -1811,7 +1823,7 @@ errcode stmt_own_init_proc()
         add_selector_info("tags", 2, sequence_of_string_ops);
         add_selector_info("var", 3, oneof_decl_none_ops);
         find_selector_ops("record", 4, &(record_body_line_tags_var_ops));
-        add_parm_info_type(0, record_body_line_tags_var_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_body_line_tags_var_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_body_line_tags_var_ops));
         add_selector_info("arms", 0, sequence_of_record_body_line_tags_var_ops);
         add_selector_info("obj", 1, expr_ops);
@@ -1845,23 +1857,26 @@ errcode stmt_own_init_proc()
         add_selector_info("stmt", 1, oneof_assn_bad_body_break__continue__decl_declinit_except__exit__for__force__if__invoke_resignal__return__signal__sugarassn_tag__while__yield__ops);
         find_selector_ops("record", 2, &(record_line_stmt_1_ops));
         stmt_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 stmtOPcreate(CLUREF s, CLUREF l, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stmt_own_init == 0) {
-            err = stmt_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stmt_own_init == 0) {
+        err = stmt_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(226);
 
   LINE(227);
@@ -1869,8 +1884,8 @@ stmtOPcreate(CLUREF s, CLUREF l, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[1]  = s.num;
-    T_1_1.vec->data[0]  = l.num;
+    T_1_1.vec->data[1] = s.num;
+    T_1_1.vec->data[0] = l.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -1883,22 +1898,22 @@ stmtOPcreate(CLUREF s, CLUREF l, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
 
 /**** BEGIN PROCEDURE get_abs ****/
 
+
 errcode
 stmtOPget_abs(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stmt_own_init == 0) {
-            err = stmt_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stmt_own_init == 0) {
+        err = stmt_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(231);
 
   LINE(232);
@@ -1918,27 +1933,27 @@ stmtOPget_abs(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_abs ****/
 
 
 /**** BEGIN PROCEDURE set_abs ****/
 
+
 errcode
 stmtOPset_abs(CLUREF s, CLUREF a)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stmt_own_init == 0) {
-            err = stmt_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stmt_own_init == 0) {
+        err = stmt_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(235);
 
   LINE(236);
     {
-    s.vec->data[1]  = a.num;
+    s.vec->data[1] = a.num;
     }
     goto end_0;
     ex_0:
@@ -1948,22 +1963,22 @@ stmtOPset_abs(CLUREF s, CLUREF a)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_abs ****/
 
 
 /**** BEGIN PROCEDURE get_line ****/
 
+
 errcode
 stmtOPget_line(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stmt_own_init == 0) {
-            err = stmt_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stmt_own_init == 0) {
+        err = stmt_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(239);
 
   LINE(240);
@@ -1983,22 +1998,22 @@ stmtOPget_line(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_line ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 stmtOPcopy(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stmt_own_init == 0) {
-            err = stmt_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stmt_own_init == 0) {
+        err = stmt_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(243);
 
   LINE(244);
@@ -2016,22 +2031,22 @@ stmtOPcopy(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
 
 
 /**** BEGIN PROCEDURE equal ****/
 
+
 errcode
 stmtOPequal(CLUREF s1, CLUREF s2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stmt_own_init == 0) {
-            err = stmt_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (stmt_own_init == 0) {
+        err = stmt_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(247);
 
   LINE(248);
@@ -2051,9 +2066,12 @@ stmtOPequal(CLUREF s1, CLUREF s2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
+
+
+/**** BEGIN PROCEDURE similar ****/
 
 struct OPS *sequence_of_idn_table;
 struct OPS *sequence_of_idn_ops;
@@ -2134,18 +2152,15 @@ struct OPS  *record_body_test_ops;
 struct OPS  *oneof_assn_bad_body_break__continue__decl_declinit_except__exit__for__force__if__invoke_resignal__return__signal__sugarassn_tag__while__yield__ops;
 static int stmtOPsimilar_own_init = 0;
 
-/**** BEGIN PROCEDURE similar ****/
-
 errcode
 stmtOPsimilar(CLUREF s1, CLUREF s2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stmtOPsimilar_own_init == 0) {
+    if (stmtOPsimilar_own_init == 0) {
         if (stmt_own_init == 0) {
             err = stmt_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         stmtOPsimilar_own_init = 1;
     }
     enter_proc(251);
@@ -2176,9 +2191,12 @@ stmtOPsimilar(CLUREF s1, CLUREF s2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
+
+
+/**** BEGIN PROCEDURE _gcd ****/
 
 struct OPS *sequence_of_idn_table;
 struct OPS *sequence_of_idn_ops;
@@ -2260,18 +2278,15 @@ struct OPS  *oneof_assn_bad_body_break__continue__decl_declinit_except__exit__fo
 struct OPS  *record_line_stmt_1_ops;
 static int stmtOP_gcd_own_init = 0;
 
-/**** BEGIN PROCEDURE _gcd ****/
-
 errcode
 stmtOP_gcd(CLUREF s, CLUREF tab, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (stmtOP_gcd_own_init == 0) {
+    if (stmtOP_gcd_own_init == 0) {
         if (stmt_own_init == 0) {
             err = stmt_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         stmtOP_gcd_own_init = 1;
     }
     enter_proc(255);
@@ -2298,7 +2313,7 @@ stmtOP_gcd(CLUREF s, CLUREF tab, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _gcd ****/
 
@@ -2309,14 +2324,14 @@ typedef struct{
     struct OP_ENTRY entry[8];
 } stmt_OPS;
 
-CLU_proc stmt_oe__gcd = {{0,0,0,0}, stmtOP_gcd, 0};
-CLU_proc stmt_oe_copy = {{0,0,0,0}, stmtOPcopy, 0};
-CLU_proc stmt_oe_create = {{0,0,0,0}, stmtOPcreate, 0};
-CLU_proc stmt_oe_equal = {{0,0,0,0}, stmtOPequal, 0};
-CLU_proc stmt_oe_get_abs = {{0,0,0,0}, stmtOPget_abs, 0};
-CLU_proc stmt_oe_get_line = {{0,0,0,0}, stmtOPget_line, 0};
-CLU_proc stmt_oe_set_abs = {{0,0,0,0}, stmtOPset_abs, 0};
-CLU_proc stmt_oe_similar = {{0,0,0,0}, stmtOPsimilar, 0};
+CLU_proc stmt_oe__gcd = { .proc = stmtOP_gcd };
+CLU_proc stmt_oe_copy = { .proc = stmtOPcopy };
+CLU_proc stmt_oe_create = { .proc = stmtOPcreate };
+CLU_proc stmt_oe_equal = { .proc = stmtOPequal };
+CLU_proc stmt_oe_get_abs = { .proc = stmtOPget_abs };
+CLU_proc stmt_oe_get_line = { .proc = stmtOPget_line };
+CLU_proc stmt_oe_set_abs = { .proc = stmtOPset_abs };
+CLU_proc stmt_oe_similar = { .proc = stmtOPsimilar };
 
 stmt_OPS stmt_ops_actual = {8, (OWNPTR)&stmt_own_init, (OWNPTR)&stmt_own_init, {
     {&stmt_oe__gcd, "_gcd"},
@@ -2373,13 +2388,15 @@ struct OPS  *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_forc
 extern struct OPS *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
 struct OPS  *record_expr_type__ops;
 static int expr_own_init = 0;
-OWN_req expr_ownreqs = {0,0};
-errcode expr_own_init_proc()
+const OWN_req expr_ownreqs = { 0, 0 };
+
+errcode
+expr_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (expr_own_init == 0) {
-        add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
+    if (expr_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
         add_selector_info("none", 0, null_ops);
         add_selector_info("one", 1, expr_ops);
@@ -2415,13 +2432,13 @@ errcode expr_own_init_proc()
         add_selector_info("idn", 0, idn_ops);
         add_selector_info("parms", 1, sequence_of_expr_ops);
         find_selector_ops("record", 2, &(record_idn_parms_ops));
-        add_parm_info_type(0, string_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)string_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_string_ops));
         add_selector_info("line", 0, int_ops);
         add_selector_info("sels", 1, sequence_of_string_ops);
         add_selector_info("val", 2, expr_ops);
         find_selector_ops("record", 3, &(record_line_sels_val_ops));
-        add_parm_info_type(0, record_line_sels_val_ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_line_sels_val_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_line_sels_val_ops));
         add_selector_info("fields", 0, sequence_of_record_line_sels_val_ops);
         add_selector_info("type_", 1, typespec_ops);
@@ -2458,23 +2475,26 @@ errcode expr_own_init_proc()
         add_selector_info("type_", 1, typespec_ops);
         find_selector_ops("record", 2, &(record_expr_type__ops));
         expr_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 exprOPcreate(CLUREF x, CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (expr_own_init == 0) {
-            err = expr_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (expr_own_init == 0) {
+        err = expr_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(276);
 
   LINE(277);
@@ -2482,8 +2502,8 @@ exprOPcreate(CLUREF x, CLUREF t, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[0]  = x.num;
-    T_1_1.vec->data[1]  = t.num;
+    T_1_1.vec->data[0] = x.num;
+    T_1_1.vec->data[1] = t.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -2496,22 +2516,22 @@ exprOPcreate(CLUREF x, CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
 
 /**** BEGIN PROCEDURE get_abs ****/
 
+
 errcode
 exprOPget_abs(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (expr_own_init == 0) {
-            err = expr_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (expr_own_init == 0) {
+        err = expr_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(281);
 
   LINE(282);
@@ -2531,27 +2551,27 @@ exprOPget_abs(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_abs ****/
 
 
 /**** BEGIN PROCEDURE set_abs ****/
 
+
 errcode
 exprOPset_abs(CLUREF x, CLUREF a)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (expr_own_init == 0) {
-            err = expr_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (expr_own_init == 0) {
+        err = expr_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(285);
 
   LINE(286);
     {
-    x.vec->data[0]  = a.num;
+    x.vec->data[0] = a.num;
     }
     goto end_0;
     ex_0:
@@ -2561,22 +2581,22 @@ exprOPset_abs(CLUREF x, CLUREF a)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_abs ****/
 
 
 /**** BEGIN PROCEDURE get_typespec ****/
 
+
 errcode
 exprOPget_typespec(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (expr_own_init == 0) {
-            err = expr_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (expr_own_init == 0) {
+        err = expr_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(289);
 
   LINE(290);
@@ -2596,27 +2616,27 @@ exprOPget_typespec(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_typespec ****/
 
 
 /**** BEGIN PROCEDURE set_typespec ****/
 
+
 errcode
 exprOPset_typespec(CLUREF x, CLUREF t)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (expr_own_init == 0) {
-            err = expr_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (expr_own_init == 0) {
+        err = expr_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(293);
 
   LINE(294);
     {
-    x.vec->data[1]  = t.num;
+    x.vec->data[1] = t.num;
     }
     goto end_0;
     ex_0:
@@ -2626,9 +2646,12 @@ exprOPset_typespec(CLUREF x, CLUREF t)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_typespec ****/
+
+
+/**** BEGIN PROCEDURE copy ****/
 
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -2658,18 +2681,15 @@ struct OPS  *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_forc
 struct OPS  *record_expr_type__ops;
 static int exprOPcopy_own_init = 0;
 
-/**** BEGIN PROCEDURE copy ****/
-
 errcode
 exprOPcopy(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (exprOPcopy_own_init == 0) {
+    if (exprOPcopy_own_init == 0) {
         if (expr_own_init == 0) {
             err = expr_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         exprOPcopy_own_init = 1;
     }
     enter_proc(297);
@@ -2696,22 +2716,22 @@ exprOPcopy(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
 
 
 /**** BEGIN PROCEDURE equal ****/
 
+
 errcode
 exprOPequal(CLUREF x1, CLUREF x2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (expr_own_init == 0) {
-            err = expr_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (expr_own_init == 0) {
+        err = expr_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(301);
 
   LINE(302);
@@ -2731,9 +2751,12 @@ exprOPequal(CLUREF x1, CLUREF x2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
+
+
+/**** BEGIN PROCEDURE similar ****/
 
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -2762,18 +2785,15 @@ struct OPS  *record_fields_type__ops;
 struct OPS  *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
 static int exprOPsimilar_own_init = 0;
 
-/**** BEGIN PROCEDURE similar ****/
-
 errcode
 exprOPsimilar(CLUREF x1, CLUREF x2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (exprOPsimilar_own_init == 0) {
+    if (exprOPsimilar_own_init == 0) {
         if (expr_own_init == 0) {
             err = expr_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         exprOPsimilar_own_init = 1;
     }
     enter_proc(305);
@@ -2804,9 +2824,12 @@ exprOPsimilar(CLUREF x1, CLUREF x2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
+
+
+/**** BEGIN PROCEDURE _gcd ****/
 
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -2836,18 +2859,15 @@ struct OPS  *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_forc
 struct OPS  *record_expr_type__ops;
 static int exprOP_gcd_own_init = 0;
 
-/**** BEGIN PROCEDURE _gcd ****/
-
 errcode
 exprOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (exprOP_gcd_own_init == 0) {
+    if (exprOP_gcd_own_init == 0) {
         if (expr_own_init == 0) {
             err = expr_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         exprOP_gcd_own_init = 1;
     }
     enter_proc(309);
@@ -2874,7 +2894,7 @@ exprOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _gcd ****/
 
@@ -2885,15 +2905,15 @@ typedef struct{
     struct OP_ENTRY entry[9];
 } expr_OPS;
 
-CLU_proc expr_oe__gcd = {{0,0,0,0}, exprOP_gcd, 0};
-CLU_proc expr_oe_copy = {{0,0,0,0}, exprOPcopy, 0};
-CLU_proc expr_oe_create = {{0,0,0,0}, exprOPcreate, 0};
-CLU_proc expr_oe_equal = {{0,0,0,0}, exprOPequal, 0};
-CLU_proc expr_oe_get_abs = {{0,0,0,0}, exprOPget_abs, 0};
-CLU_proc expr_oe_get_typespec = {{0,0,0,0}, exprOPget_typespec, 0};
-CLU_proc expr_oe_set_abs = {{0,0,0,0}, exprOPset_abs, 0};
-CLU_proc expr_oe_set_typespec = {{0,0,0,0}, exprOPset_typespec, 0};
-CLU_proc expr_oe_similar = {{0,0,0,0}, exprOPsimilar, 0};
+CLU_proc expr_oe__gcd = { .proc = exprOP_gcd };
+CLU_proc expr_oe_copy = { .proc = exprOPcopy };
+CLU_proc expr_oe_create = { .proc = exprOPcreate };
+CLU_proc expr_oe_equal = { .proc = exprOPequal };
+CLU_proc expr_oe_get_abs = { .proc = exprOPget_abs };
+CLU_proc expr_oe_get_typespec = { .proc = exprOPget_typespec };
+CLU_proc expr_oe_set_abs = { .proc = exprOPset_abs };
+CLU_proc expr_oe_set_typespec = { .proc = exprOPset_typespec };
+CLU_proc expr_oe_similar = { .proc = exprOPsimilar };
 
 expr_OPS expr_ops_actual = {9, (OWNPTR)&expr_own_init, (OWNPTR)&expr_own_init, {
     {&expr_oe__gcd, "_gcd"},

@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE date_parse ****/
+
 extern errcode arrayOPnew();
 extern errcode stringOPfetch();
 extern errcode charOPequal();
@@ -38,21 +41,18 @@ extern errcode intOPgt();
 extern errcode arrayOPlow();
 extern errcode arrayOPset_low();
 extern errcode dateOPcreate();
-CLUREF STR_;
-CLUREF STR__072;
-CLUREF STR_jan_040feb_040mar_040apr_040may_040jun_040jul_040aug_040sep_040oct_040nov_040dec_040;
-CLUREF STR__054;
-CLUREF STR__057;
-CLUREF STR__055;
+static CLUREF STR_;
+static CLUREF STR__072;
+static CLUREF STR_jan_040feb_040mar_040apr_040may_040jun_040jul_040aug_040sep_040oct_040nov_040dec_040;
+static CLUREF STR__054;
+static CLUREF STR__057;
+static CLUREF STR__055;
 static int date_parse_own_init = 0;
-
-/**** BEGIN PROCEDURE date_parse ****/
 
 errcode
 date_parse(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF as;
     CLUREF pos;
     CLUREF c;
@@ -67,13 +67,13 @@ date_parse(CLUREF s, CLUREF *ret_1)
     CLUREF hr;
     CLUREF min;
     CLUREF sec;
-        if (date_parse_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons(":", CLU_1, CLU_1, &STR__072);
-        stringOPcons("jan feb mar apr may jun jul aug sep oct nov dec ", CLU_1, CLU_48, &STR_jan_040feb_040mar_040apr_040may_040jun_040jul_040aug_040sep_040oct_040nov_040dec_040);
-        stringOPcons(",", CLU_1, CLU_1, &STR__054);
-        stringOPcons("/", CLU_1, CLU_1, &STR__057);
-        stringOPcons("-", CLU_1, CLU_1, &STR__055);
+    if (date_parse_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons(":", CLU_1, CLUREF_make_num(1), &STR__072);
+        stringOPcons("jan feb mar apr may jun jul aug sep oct nov dec ", CLU_1, CLUREF_make_num(48), &STR_jan_040feb_040mar_040apr_040may_040jun_040jul_040aug_040sep_040oct_040nov_040dec_040);
+        stringOPcons(",", CLU_1, CLUREF_make_num(1), &STR__054);
+        stringOPcons("/", CLU_1, CLUREF_make_num(1), &STR__057);
+        stringOPcons("-", CLU_1, CLUREF_make_num(1), &STR__055);
         date_parse_own_init = 1;
     }
     enter_proc(17);
@@ -397,7 +397,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
         goto ex_4;}
     T_2_1.num = as.array->store->data[2 - as.array->ext_low + as.array->int_low];
     T_2_2.num = ((T_2_1.str->size != STR__072.str->size)? false :
-        !(bcmp(T_2_1.str->data, STR__072.str->data, T_2_1.str->size)));
+        !(memcmp(T_2_1.str->data, STR__072.str->data, T_2_1.str->size)));
     if (T_2_2.num == true) {
 
   LINE(60);
@@ -525,7 +525,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
         err = arrayOPbottom(as, &T_3_2);
         if (err != ERR_ok) goto ex_4;
         T_3_3.num = ((T_3_2.str->size != STR__057.str->size)? false :
-            !(bcmp(T_3_2.str->data, STR__057.str->data, T_3_2.str->size)));
+            !(memcmp(T_3_2.str->data, STR__057.str->data, T_3_2.str->size)));
         if (T_3_3.num == true) {
 
   LINE(79);
@@ -565,7 +565,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
             err = arrayOPbottom(as, &T_4_1);
             if (err != ERR_ok) goto ex_4;
             T_4_2.num = ((T_4_1.str->size != STR__055.str->size)? false :
-                !(bcmp(T_4_1.str->data, STR__055.str->data, T_4_1.str->size)));
+                !(memcmp(T_4_1.str->data, STR__055.str->data, T_4_1.str->size)));
             if (T_4_2.num == true) {
 
   LINE(85);
@@ -655,7 +655,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
         err = arrayOPbottom(as, &T_3_2);
         if (err != ERR_ok) goto ex_4;
         T_3_3.num = ((T_3_2.str->size != expect.str->size)? false :
-            !(bcmp(T_3_2.str->data, expect.str->data, T_3_2.str->size)));
+            !(memcmp(T_3_2.str->data, expect.str->data, T_3_2.str->size)));
         if (T_3_3.num == true) {
 
   LINE(98);
@@ -679,7 +679,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
         else {
         CLUREF T_3_4;
         T_3_4.num = ((expect.str->size != STR__054.str->size)? false :
-            !(bcmp(expect.str->data, STR__054.str->data, expect.str->size)));
+            !(memcmp(expect.str->data, STR__054.str->data, expect.str->size)));
         if (T_3_4.num == true) {
 
   LINE(102);
@@ -856,7 +856,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
         err = arrayOPreml(as, &T_3_1);
         if (err != ERR_ok) goto ex_6;
         T_3_2.num = ((T_3_1.str->size != STR__072.str->size)? false :
-            !(bcmp(T_3_1.str->data, STR__072.str->data, T_3_1.str->size)));
+            !(memcmp(T_3_1.str->data, STR__072.str->data, T_3_1.str->size)));
         T_3_3.num = T_3_2.num ^ 1;
         if (T_3_3.num == true) {
             {
@@ -891,7 +891,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
             err = arrayOPreml(as, &T_4_1);
             if (err != ERR_ok) goto ex_6;
             T_4_2.num = ((T_4_1.str->size != STR__072.str->size)? false :
-                !(bcmp(T_4_1.str->data, STR__072.str->data, T_4_1.str->size)));
+                !(memcmp(T_4_1.str->data, STR__072.str->data, T_4_1.str->size)));
             T_4_3.num = T_4_2.num ^ 1;
             if (T_4_3.num == true) {
                 {
@@ -958,22 +958,22 @@ date_parse(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE date_parse ****/
 
+
+
+/**** BEGIN PROCEDURE date_sub ****/
 
 extern errcode dateOPget_all();
 extern errcode intOPsub();
 extern errcode intOPmod();
 
-/**** BEGIN PROCEDURE date_sub ****/
-
 errcode
 date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF m2d;
     CLUREF lm2d;
     CLUREF adj;
@@ -1379,21 +1379,21 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE date_sub ****/
 
 
-extern errcode dateOPunparse();
-extern errcode date_sub();
 
 /**** BEGIN PROCEDURE ago ****/
 
+extern errcode dateOPunparse();
+extern errcode date_sub();
+
 errcode
 ago(CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(186);
 
   LINE(187);
@@ -1420,7 +1420,7 @@ ago(CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE ago ****/
 

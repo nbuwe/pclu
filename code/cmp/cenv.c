@@ -144,71 +144,76 @@ extern errcode stringOPequal();
 extern errcode c_when_assn();
 extern errcode oneofOPis_1();
 extern errcode c_resig_catch();
-CLUREF STR_failure;
-CLUREF STR__040of_040wrong_040type;
-CLUREF STR__011expected_040type_072_040;
-CLUREF STR__011actual_040type_072_040;
-CLUREF STR__044;
-CLUREF STR__040invocation_040evaluates_040to_040_047;
-CLUREF STR__047_040exception;
-CLUREF STR_redeclaration_040of_040_047;
-CLUREF STR__047;
-CLUREF STR_declaration_040of_040external_040_047;
-CLUREF STR__047_040used_040on_040line_040;
-CLUREF STR_recursive_040use_040of_040identifier_040_047;
-CLUREF STR__047_040declared_040in_040line_040;
-CLUREF STR_use_040of_040_047;
-CLUREF STR__047_040outside_040scope_040of_040declaration;
-CLUREF STR_exit_040_047;
-CLUREF STR__047_040caught_040by_040OTHERS_040arm;
-CLUREF STR__047_040not_040caught;
+static CLUREF STR_failure;
+static CLUREF STR__040of_040wrong_040type;
+static CLUREF STR__011expected_040type_072_040;
+static CLUREF STR__011actual_040type_072_040;
+static CLUREF STR__044;
+static CLUREF STR__040invocation_040evaluates_040to_040_047;
+static CLUREF STR__047_040exception;
+static CLUREF STR_redeclaration_040of_040_047;
+static CLUREF STR__047;
+static CLUREF STR_declaration_040of_040external_040_047;
+static CLUREF STR__047_040used_040on_040line_040;
+static CLUREF STR_recursive_040use_040of_040identifier_040_047;
+static CLUREF STR__047_040declared_040in_040line_040;
+static CLUREF STR_use_040of_040_047;
+static CLUREF STR__047_040outside_040scope_040of_040declaration;
+static CLUREF STR_exit_040_047;
+static CLUREF STR__047_040caught_040by_040OTHERS_040arm;
+static CLUREF STR__047_040not_040caught;
 static int c_env_own_init = 0;
-OWN_req c_env_ownreqs = {0,0};
-errcode c_env_own_init_proc()
+const OWN_req c_env_ownreqs = { 0, 0 };
+
+errcode
+c_env_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (c_env_own_init == 0) {
-        stringOPcons("failure", CLU_1, CLU_7, &STR_failure);
-        stringOPcons(" of wrong type", CLU_1, CLU_14, &STR__040of_040wrong_040type);
-        stringOPcons("\texpected type: ", CLU_1, CLU_16, &STR__011expected_040type_072_040);
-        stringOPcons("\tactual type: ", CLU_1, CLU_14, &STR__011actual_040type_072_040);
-        stringOPcons("$", CLU_1, CLU_1, &STR__044);
-        stringOPcons(" invocation evaluates to \'", CLU_1, CLU_26, &STR__040invocation_040evaluates_040to_040_047);
-        stringOPcons("\' exception", CLU_1, CLU_11, &STR__047_040exception);
-        stringOPcons("redeclaration of \'", CLU_1, CLU_18, &STR_redeclaration_040of_040_047);
-        stringOPcons("\'", CLU_1, CLU_1, &STR__047);
-        stringOPcons("declaration of external \'", CLU_1, CLU_25, &STR_declaration_040of_040external_040_047);
-        stringOPcons("\' used on line ", CLU_1, CLU_15, &STR__047_040used_040on_040line_040);
-        stringOPcons("recursive use of identifier \'", CLU_1, CLU_29, &STR_recursive_040use_040of_040identifier_040_047);
-        stringOPcons("\' declared in line ", CLU_1, CLU_19, &STR__047_040declared_040in_040line_040);
-        stringOPcons("use of \'", CLU_1, CLU_8, &STR_use_040of_040_047);
-        stringOPcons("\' outside scope of declaration", CLU_1, CLU_30, &STR__047_040outside_040scope_040of_040declaration);
-        stringOPcons("exit \'", CLU_1, CLU_6, &STR_exit_040_047);
-        stringOPcons("\' caught by OTHERS arm", CLU_1, CLU_22, &STR__047_040caught_040by_040OTHERS_040arm);
-        stringOPcons("\' not caught", CLU_1, CLU_12, &STR__047_040not_040caught);
+    if (c_env_own_init == 0) {
+        stringOPcons("failure", CLU_1, CLUREF_make_num(7), &STR_failure);
+        stringOPcons(" of wrong type", CLU_1, CLUREF_make_num(14), &STR__040of_040wrong_040type);
+        stringOPcons("\texpected type: ", CLU_1, CLUREF_make_num(16), &STR__011expected_040type_072_040);
+        stringOPcons("\tactual type: ", CLU_1, CLUREF_make_num(14), &STR__011actual_040type_072_040);
+        stringOPcons("$", CLU_1, CLUREF_make_num(1), &STR__044);
+        stringOPcons(" invocation evaluates to \'", CLU_1, CLUREF_make_num(26), &STR__040invocation_040evaluates_040to_040_047);
+        stringOPcons("\' exception", CLU_1, CLUREF_make_num(11), &STR__047_040exception);
+        stringOPcons("redeclaration of \'", CLU_1, CLUREF_make_num(18), &STR_redeclaration_040of_040_047);
+        stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
+        stringOPcons("declaration of external \'", CLU_1, CLUREF_make_num(25), &STR_declaration_040of_040external_040_047);
+        stringOPcons("\' used on line ", CLU_1, CLUREF_make_num(15), &STR__047_040used_040on_040line_040);
+        stringOPcons("recursive use of identifier \'", CLU_1, CLUREF_make_num(29), &STR_recursive_040use_040of_040identifier_040_047);
+        stringOPcons("\' declared in line ", CLU_1, CLUREF_make_num(19), &STR__047_040declared_040in_040line_040);
+        stringOPcons("use of \'", CLU_1, CLUREF_make_num(8), &STR_use_040of_040_047);
+        stringOPcons("\' outside scope of declaration", CLU_1, CLUREF_make_num(30), &STR__047_040outside_040scope_040of_040declaration);
+        stringOPcons("exit \'", CLU_1, CLUREF_make_num(6), &STR_exit_040_047);
+        stringOPcons("\' caught by OTHERS arm", CLU_1, CLUREF_make_num(22), &STR__047_040caught_040by_040OTHERS_040arm);
+        stringOPcons("\' not caught", CLU_1, CLUREF_make_num(12), &STR__047_040not_040caught);
         c_env_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
-static int c_envOPcreate_own_init = 0;
 
 /**** BEGIN PROCEDURE create ****/
 
+static int c_envOPcreate_own_init = 0;
+
 errcode
 c_envOPcreate(CLUREF comp, CLUREF errst, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ut;
     CLUREF gen;
-        if (c_envOPcreate_own_init == 0) {
+    if (c_envOPcreate_own_init == 0) {
         if (c_env_own_init == 0) {
             err = c_env_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         c_envOPcreate_own_init = 1;
     }
     enter_proc(144);
@@ -254,66 +259,66 @@ c_envOPcreate(CLUREF comp, CLUREF errst, CLUREF *ret_1)
     CLUREF T_1_18;
     CLUREF T_1_19;
     RecordAlloc(23, T_1_1);
-    T_1_1.vec->data[1]  = comp.num;
-    T_1_1.vec->data[11]  = false;
-    T_1_1.vec->data[13]  = 0;
+    T_1_1.vec->data[1] = comp.num;
+    T_1_1.vec->data[11] = false;
+    T_1_1.vec->data[13] = 0;
     err = arrayOPpredict(CLU_1, CLU_20, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[16]  = T_1_2.num;
+    T_1_1.vec->data[16] = T_1_2.num;
     T_1_3.num = 300;
     err = arrayOPpredict(CLU_1, T_1_3, &T_1_4);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[12]  = T_1_4.num;
+    T_1_1.vec->data[12] = T_1_4.num;
     err = arrayOPnew(&T_1_5);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[22]  = T_1_5.num;
+    T_1_1.vec->data[22] = T_1_5.num;
     err = arrayOPpredict(CLU_1, CLU_10, &T_1_6);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[9]  = T_1_6.num;
+    T_1_1.vec->data[9] = T_1_6.num;
     err = arrayOPpredict(CLU_1, CLU_10, &T_1_7);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[20]  = T_1_7.num;
-    T_1_1.vec->data[21]  = ut.num;
-    T_1_1.vec->data[4]  = ut.num;
+    T_1_1.vec->data[20] = T_1_7.num;
+    T_1_1.vec->data[21] = ut.num;
+    T_1_1.vec->data[4] = ut.num;
     RecordAlloc(4, T_1_8);
-    T_1_8.vec->data[1]  = gen.num;
+    T_1_8.vec->data[1] = gen.num;
     err = sequenceOPnew(&T_1_9);
     if (err != ERR_ok) goto ex_0;
-    T_1_8.vec->data[0]  = T_1_9.num;
+    T_1_8.vec->data[0] = T_1_9.num;
     err = sequenceOPnew(&T_1_10);
     if (err != ERR_ok) goto ex_0;
-    T_1_8.vec->data[3]  = T_1_10.num;
+    T_1_8.vec->data[3] = T_1_10.num;
     err = sequenceOPnew(&T_1_11);
     if (err != ERR_ok) goto ex_0;
-    T_1_8.vec->data[2]  = T_1_11.num;
-    T_1_1.vec->data[0]  = T_1_8.num;
-    T_1_1.vec->data[15]  = gen.num;
+    T_1_8.vec->data[2] = T_1_11.num;
+    T_1_1.vec->data[0] = T_1_8.num;
+    T_1_1.vec->data[15] = gen.num;
     err = arrayOPpredict(CLU_1, CLU_5, &T_1_12);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[14]  = T_1_12.num;
-    T_1_1.vec->data[19]  = 0;
-    T_1_1.vec->data[7]  = 0;
-    T_1_1.vec->data[8]  = errst.num;
-    T_1_1.vec->data[17]  = 2;
-    T_1_1.vec->data[3]  = 0;
-    T_1_1.vec->data[18]  = 0;
+    T_1_1.vec->data[14] = T_1_12.num;
+    T_1_1.vec->data[19] = 0;
+    T_1_1.vec->data[7] = 0;
+    T_1_1.vec->data[8] = errst.num;
+    T_1_1.vec->data[17] = 2;
+    T_1_1.vec->data[3] = 0;
+    T_1_1.vec->data[18] = 0;
     T_1_13.num = 200;
     err = arrayOPpredict(CLU_1, T_1_13, &T_1_14);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[5]  = T_1_14.num;
-    T_1_1.vec->data[6]  = false;
+    T_1_1.vec->data[5] = T_1_14.num;
+    T_1_1.vec->data[6] = false;
     T_1_15.num = -5;
     err = arrayOPpredict(CLU_1, T_1_15, &T_1_16);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[2]  = T_1_16.num;
+    T_1_1.vec->data[2] = T_1_16.num;
     RecordAlloc(2, T_1_17);
-    T_1_17.vec->data[0]  = STR_failure.num;
+    T_1_17.vec->data[0] = STR_failure.num;
     sequenceOPnew2(CLU_1, &T_1_18);
     err = ceOPget_str_type(comp, &T_1_19);
     if (err != ERR_ok) goto ex_0;
     T_1_18.vec->data[0] = T_1_19.num;
-    T_1_17.vec->data[1]  = T_1_18.num;
-    T_1_1.vec->data[10]  = T_1_17.num;
+    T_1_17.vec->data[1] = T_1_18.num;
+    T_1_1.vec->data[10] = T_1_17.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -326,32 +331,32 @@ c_envOPcreate(CLUREF comp, CLUREF errst, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
 
 /**** BEGIN PROCEDURE reset ****/
 
+
 errcode
 c_envOPreset(CLUREF e, CLUREF comp, CLUREF errst)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(176);
 
   LINE(177);
     {
-    e.vec->data[1]  = comp.num;
+    e.vec->data[1] = comp.num;
     }
 
   LINE(178);
     {
-    e.vec->data[13]  = 0;
+    e.vec->data[13] = 0;
     }
 
   LINE(179);
@@ -404,37 +409,37 @@ c_envOPreset(CLUREF e, CLUREF comp, CLUREF errst)
 
   LINE(185);
     {
-    e.vec->data[19]  = 0;
+    e.vec->data[19] = 0;
     }
 
   LINE(186);
     {
-    e.vec->data[11]  = false;
+    e.vec->data[11] = false;
     }
 
   LINE(187);
     {
-    e.vec->data[8]  = errst.num;
+    e.vec->data[8] = errst.num;
     }
 
   LINE(188);
     {
-    e.vec->data[7]  = 0;
+    e.vec->data[7] = 0;
     }
 
   LINE(189);
     {
-    e.vec->data[17]  = 2;
+    e.vec->data[17] = 2;
     }
 
   LINE(190);
     {
-    e.vec->data[3]  = 0;
+    e.vec->data[3] = 0;
     }
 
   LINE(191);
     {
-    e.vec->data[18]  = 0;
+    e.vec->data[18] = 0;
     }
 
   LINE(192);
@@ -447,7 +452,7 @@ c_envOPreset(CLUREF e, CLUREF comp, CLUREF errst)
 
   LINE(193);
     {
-    e.vec->data[6]  = false;
+    e.vec->data[6] = false;
     }
 
   LINE(194);
@@ -463,14 +468,14 @@ c_envOPreset(CLUREF e, CLUREF comp, CLUREF errst)
     CLUREF T_1_1;
     err = ceOPget_unknown_type(comp, &T_1_1);
     if (err != ERR_ok) goto ex_0;
-    e.vec->data[21]  = T_1_1.num;
+    e.vec->data[21] = T_1_1.num;
     }
 
   LINE(196);
     {
     CLUREF T_1_1;
     T_1_1.num = e.vec->data[21];
-    e.vec->data[4]  = T_1_1.num;
+    e.vec->data[4] = T_1_1.num;
     }
     goto end_0;
     ex_0:
@@ -480,32 +485,32 @@ c_envOPreset(CLUREF e, CLUREF comp, CLUREF errst)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE reset ****/
 
 
 /**** BEGIN PROCEDURE hack ****/
 
+
 errcode
 c_envOPhack(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(199);
 
   LINE(200);
     {
-    e.vec->data[11]  = true;
+    e.vec->data[11] = true;
     }
 
   LINE(201);
     {
-    e.vec->data[19]  = 1;
+    e.vec->data[19] = 1;
     }
     goto end_0;
     ex_0:
@@ -515,32 +520,32 @@ c_envOPhack(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE hack ****/
 
 
 /**** BEGIN PROCEDURE unhack ****/
 
+
 errcode
 c_envOPunhack(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(204);
 
   LINE(205);
     {
-    e.vec->data[11]  = false;
+    e.vec->data[11] = false;
     }
 
   LINE(206);
     {
-    e.vec->data[19]  = 0;
+    e.vec->data[19] = 0;
     }
     goto end_0;
     ex_0:
@@ -550,22 +555,22 @@ c_envOPunhack(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE unhack ****/
 
 
 /**** BEGIN PROCEDURE is_hacked ****/
 
+
 errcode
 c_envOPis_hacked(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(209);
 
   LINE(210);
@@ -585,27 +590,27 @@ c_envOPis_hacked(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE is_hacked ****/
 
 
 /**** BEGIN PROCEDURE set_line ****/
 
+
 errcode
 c_envOPset_line(CLUREF e, CLUREF line)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(213);
 
   LINE(214);
     {
-    e.vec->data[13]  = line.num;
+    e.vec->data[13] = line.num;
     }
     goto end_0;
     ex_0:
@@ -615,27 +620,27 @@ c_envOPset_line(CLUREF e, CLUREF line)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_line ****/
 
 
 /**** BEGIN PROCEDURE new_apply ****/
 
+
 errcode
 c_envOPnew_apply(CLUREF e, CLUREF at)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(217);
 
   LINE(218);
     {
-    e.vec->data[0]  = at.num;
+    e.vec->data[0] = at.num;
     }
     goto end_0;
     ex_0:
@@ -645,27 +650,27 @@ c_envOPnew_apply(CLUREF e, CLUREF at)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE new_apply ****/
 
 
 /**** BEGIN PROCEDURE begin_specs ****/
 
+
 errcode
 c_envOPbegin_specs(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(221);
 
   LINE(222);
     {
-    e.vec->data[17]  = 0;
+    e.vec->data[17] = 0;
     }
 
   LINE(223);
@@ -678,7 +683,7 @@ c_envOPbegin_specs(CLUREF e)
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    e.vec->data[3]  = T_1_2.num;
+    e.vec->data[3] = T_1_2.num;
     }
 
   LINE(224);
@@ -694,22 +699,22 @@ c_envOPbegin_specs(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE begin_specs ****/
 
 
 /**** BEGIN PROCEDURE end_specs ****/
 
+
 errcode
 c_envOPend_specs(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(227);
 
   LINE(228);
@@ -722,7 +727,7 @@ c_envOPend_specs(CLUREF e)
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    e.vec->data[3]  = T_1_2.num;
+    e.vec->data[3] = T_1_2.num;
     }
 
   LINE(229);
@@ -733,7 +738,7 @@ c_envOPend_specs(CLUREF e)
     T_1_2.num = (T_1_1.num == 0)? true : false;
     if (T_1_2.num == true) {
         {
-        e.vec->data[17]  = 2;
+        e.vec->data[17] = 2;
         }
         }
         }/* end if */
@@ -751,22 +756,22 @@ c_envOPend_specs(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE end_specs ****/
 
 
 /**** BEGIN PROCEDURE begin_recheck ****/
 
+
 errcode
 c_envOPbegin_recheck(CLUREF e, CLUREF types)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(233);
 
   LINE(234);
@@ -783,14 +788,14 @@ c_envOPbegin_recheck(CLUREF e, CLUREF types)
              (T_2_2.num < 0 && T_2_1.num > 0 && 1 > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        e.vec->data[18]  = T_2_2.num;
+        e.vec->data[18] = T_2_2.num;
         }
         }
         }/* end if */
 
   LINE(236);
     {
-    e.vec->data[17]  = 1;
+    e.vec->data[17] = 1;
     }
 
   LINE(237);
@@ -803,7 +808,7 @@ c_envOPbegin_recheck(CLUREF e, CLUREF types)
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    e.vec->data[3]  = T_1_2.num;
+    e.vec->data[3] = T_1_2.num;
     }
     goto end_0;
     ex_0:
@@ -813,22 +818,22 @@ c_envOPbegin_recheck(CLUREF e, CLUREF types)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE begin_recheck ****/
 
 
 /**** BEGIN PROCEDURE end_recheck ****/
 
+
 errcode
 c_envOPend_recheck(CLUREF e, CLUREF types)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(240);
 
   LINE(241);
@@ -845,7 +850,7 @@ c_envOPend_recheck(CLUREF e, CLUREF types)
              (T_2_2.num <= 0 && T_2_1.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        e.vec->data[18]  = T_2_2.num;
+        e.vec->data[18] = T_2_2.num;
         }
         }
         }/* end if */
@@ -860,7 +865,7 @@ c_envOPend_recheck(CLUREF e, CLUREF types)
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    e.vec->data[3]  = T_1_2.num;
+    e.vec->data[3] = T_1_2.num;
     }
 
   LINE(244);
@@ -871,7 +876,7 @@ c_envOPend_recheck(CLUREF e, CLUREF types)
     T_1_2.num = (T_1_1.num == 0)? true : false;
     if (T_1_2.num == true) {
         {
-        e.vec->data[17]  = 2;
+        e.vec->data[17] = 2;
         }
         }
         }/* end if */
@@ -883,22 +888,22 @@ c_envOPend_recheck(CLUREF e, CLUREF types)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE end_recheck ****/
 
 
 /**** BEGIN PROCEDURE begin_scope ****/
 
+
 errcode
 c_envOPbegin_scope(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(247);
 
   LINE(248);
@@ -926,26 +931,26 @@ c_envOPbegin_scope(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE begin_scope ****/
 
 
 /**** BEGIN PROCEDURE end_scope ****/
 
+
 errcode
 c_envOPend_scope(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF stack;
     CLUREF j;
     CLUREF ent;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(251);
 
   LINE(252);
@@ -1022,22 +1027,22 @@ c_envOPend_scope(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE end_scope ****/
 
 
 /**** BEGIN PROCEDURE begin_while ****/
 
+
 errcode
 c_envOPbegin_while(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(261);
 
   LINE(262);
@@ -1061,22 +1066,22 @@ c_envOPbegin_while(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE begin_while ****/
 
 
 /**** BEGIN PROCEDURE begin_for ****/
 
+
 errcode
 c_envOPbegin_for(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(265);
 
   LINE(266);
@@ -1100,22 +1105,22 @@ c_envOPbegin_for(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE begin_for ****/
 
 
 /**** BEGIN PROCEDURE end_loop ****/
 
+
 errcode
 c_envOPend_loop(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(269);
 
   LINE(270);
@@ -1140,22 +1145,22 @@ c_envOPend_loop(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE end_loop ****/
 
 
 /**** BEGIN PROCEDURE begin_type_scope ****/
 
+
 errcode
 c_envOPbegin_type_scope(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(273);
 
   LINE(274);
@@ -1168,7 +1173,7 @@ c_envOPbegin_type_scope(CLUREF e)
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    e.vec->data[19]  = T_1_2.num;
+    e.vec->data[19] = T_1_2.num;
     }
     goto end_0;
     ex_0:
@@ -1178,22 +1183,22 @@ c_envOPbegin_type_scope(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE begin_type_scope ****/
 
 
 /**** BEGIN PROCEDURE end_type_scope ****/
 
+
 errcode
 c_envOPend_type_scope(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(277);
 
   LINE(278);
@@ -1206,7 +1211,7 @@ c_envOPend_type_scope(CLUREF e)
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    e.vec->data[19]  = T_1_2.num;
+    e.vec->data[19] = T_1_2.num;
     }
     goto end_0;
     ex_0:
@@ -1216,23 +1221,23 @@ c_envOPend_type_scope(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE end_type_scope ****/
 
 
 /**** BEGIN PROCEDURE equates ****/
 
+
 errcode
 c_envOPequates(CLUREF e, CLUREF list)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF size;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(281);
 
   LINE(282);
@@ -1264,18 +1269,18 @@ c_envOPequates(CLUREF e, CLUREF list)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE equates ****/
 
 
 /**** BEGIN PROCEDURE eval_parms ****/
 
+
 errcode
 c_envOPeval_parms(CLUREF e, CLUREF parms, CLUREF list)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF idns;
     CLUREF stack;
     CLUREF line;
@@ -1283,10 +1288,10 @@ c_envOPeval_parms(CLUREF e, CLUREF parms, CLUREF list)
     CLUREF d;
     CLUREF eq;
     CLUREF i;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(287);
 
   LINE(288);
@@ -1363,10 +1368,10 @@ c_envOPeval_parms(CLUREF e, CLUREF parms, CLUREF list)
                     {
                     CLUREF T_3_1;
                     RecordAlloc(4, T_3_1);
-                    T_3_1.vec->data[2]  = i.num;
-                    T_3_1.vec->data[0]  = 0;
-                    T_3_1.vec->data[3]  = line.num;
-                    T_3_1.vec->data[1]  = eq.num;
+                    T_3_1.vec->data[2] = i.num;
+                    T_3_1.vec->data[0] = 0;
+                    T_3_1.vec->data[3] = line.num;
+                    T_3_1.vec->data[1] = eq.num;
                     {
                     if ((stack.array->int_low + stack.array->ext_size + 1) < stack.array->int_size) {
                         stack.array->store->data[stack.array->int_low + stack.array->ext_size] = T_3_1.num;
@@ -1382,10 +1387,10 @@ c_envOPeval_parms(CLUREF e, CLUREF parms, CLUREF list)
                     CLUREF T_3_1;
                     CLUREF T_3_2;
                     RecordAlloc(2, T_3_1);
-                    T_3_1.vec->data[0]  = i.num;
+                    T_3_1.vec->data[0] = i.num;
                     err = idnOPget_kind(i, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
-                    T_3_1.vec->data[1]  = T_3_2.num;
+                    T_3_1.vec->data[1] = T_3_2.num;
                     {
                     if ((idns.array->int_low + idns.array->ext_size + 1) < idns.array->int_size) {
                         idns.array->store->data[idns.array->int_low + idns.array->ext_size] = T_3_1.num;
@@ -1415,22 +1420,22 @@ c_envOPeval_parms(CLUREF e, CLUREF parms, CLUREF list)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE eval_parms ****/
 
 
 /**** BEGIN PROCEDURE eval_equates ****/
 
+
 errcode
 c_envOPeval_equates(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(307);
 
   LINE(308);
@@ -1446,26 +1451,26 @@ c_envOPeval_equates(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE eval_equates ****/
 
 
 /**** BEGIN PROCEDURE push_equates ****/
 
+
 errcode
 c_envOPpush_equates(CLUREF e, CLUREF list)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF idns;
     CLUREF stack;
     CLUREF eq;
     CLUREF i;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(311);
 
   LINE(312);
@@ -1510,15 +1515,15 @@ c_envOPpush_equates(CLUREF e, CLUREF list)
             CLUREF T_2_3;
             CLUREF T_2_4;
             RecordAlloc(4, T_2_1);
-            T_2_1.vec->data[2]  = i.num;
-            T_2_1.vec->data[0]  = 0;
+            T_2_1.vec->data[2] = i.num;
+            T_2_1.vec->data[0] = 0;
             err = equateOPget_line(eq, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[3]  = T_2_2.num;
+            T_2_1.vec->data[3] = T_2_2.num;
             err = equateOPget_val(eq, &T_2_3);
             if (err != ERR_ok) goto ex_0;
             CellAlloc(1, T_2_3.num, T_2_4);
-            T_2_1.vec->data[1]  = T_2_4.num;
+            T_2_1.vec->data[1] = T_2_4.num;
             {
             if ((stack.array->int_low + stack.array->ext_size + 1) < stack.array->int_size) {
                 stack.array->store->data[stack.array->int_low + stack.array->ext_size] = T_2_1.num;
@@ -1534,10 +1539,10 @@ c_envOPpush_equates(CLUREF e, CLUREF list)
             CLUREF T_2_1;
             CLUREF T_2_2;
             RecordAlloc(2, T_2_1);
-            T_2_1.vec->data[0]  = i.num;
+            T_2_1.vec->data[0] = i.num;
             err = idnOPget_kind(i, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_2.num;
+            T_2_1.vec->data[1] = T_2_2.num;
             {
             if ((idns.array->int_low + idns.array->ext_size + 1) < idns.array->int_size) {
                 idns.array->store->data[idns.array->int_low + idns.array->ext_size] = T_2_1.num;
@@ -1558,30 +1563,30 @@ c_envOPpush_equates(CLUREF e, CLUREF list)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE push_equates ****/
 
 
 /**** BEGIN PROCEDURE process ****/
 
+
 errcode
 c_envOPprocess(CLUREF e, CLUREF size)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF stack;
     CLUREF i;
     CLUREF ent;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(325);
 
   LINE(326);
     {
-    e.vec->data[6]  = true;
+    e.vec->data[6] = true;
     }
 
   LINE(327);
@@ -1594,7 +1599,7 @@ c_envOPprocess(CLUREF e, CLUREF size)
          (T_1_2.num < 0 && T_1_1.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    e.vec->data[19]  = T_1_2.num;
+    e.vec->data[19] = T_1_2.num;
     }
 
   LINE(328);
@@ -1646,7 +1651,7 @@ c_envOPprocess(CLUREF e, CLUREF size)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = ent.vec->data[3];
-                e.vec->data[13]  = T_3_1.num;
+                e.vec->data[13] = T_3_1.num;
                 }
 
   LINE(333);
@@ -1670,7 +1675,7 @@ c_envOPprocess(CLUREF e, CLUREF size)
     {
     CLUREF T_1_1;
     T_1_1.num = (size.num > 0)? true : false;
-    e.vec->data[6]  = T_1_1.num;
+    e.vec->data[6] = T_1_1.num;
     }
 
   LINE(338);
@@ -1683,7 +1688,7 @@ c_envOPprocess(CLUREF e, CLUREF size)
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    e.vec->data[19]  = T_1_2.num;
+    e.vec->data[19] = T_1_2.num;
     }
     goto end_0;
     ex_0:
@@ -1693,24 +1698,24 @@ c_envOPprocess(CLUREF e, CLUREF size)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE process ****/
 
 
 /**** BEGIN PROCEDURE get_type ****/
 
+
 errcode
 c_envOPget_type(CLUREF e, CLUREF ta, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
     CLUREF old;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(341);
 
   LINE(342);
@@ -1741,24 +1746,24 @@ c_envOPget_type(CLUREF e, CLUREF ta, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_type ****/
 
 
 /**** BEGIN PROCEDURE fix_type ****/
 
+
 errcode
 c_envOPfix_type(CLUREF e, CLUREF ta, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
     CLUREF old;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(346);
 
   LINE(347);
@@ -1792,22 +1797,22 @@ c_envOPfix_type(CLUREF e, CLUREF ta, CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE fix_type ****/
 
 
 /**** BEGIN PROCEDURE get_unknown_type ****/
 
+
 errcode
 c_envOPget_unknown_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(351);
 
   LINE(352);
@@ -1830,22 +1835,22 @@ c_envOPget_unknown_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_unknown_type ****/
 
 
 /**** BEGIN PROCEDURE get_null_type ****/
 
+
 errcode
 c_envOPget_null_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(355);
 
   LINE(356);
@@ -1868,22 +1873,22 @@ c_envOPget_null_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_null_type ****/
 
 
 /**** BEGIN PROCEDURE get_bool_type ****/
 
+
 errcode
 c_envOPget_bool_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(359);
 
   LINE(360);
@@ -1906,22 +1911,22 @@ c_envOPget_bool_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_bool_type ****/
 
 
 /**** BEGIN PROCEDURE get_int_type ****/
 
+
 errcode
 c_envOPget_int_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(363);
 
   LINE(364);
@@ -1944,22 +1949,22 @@ c_envOPget_int_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_int_type ****/
 
 
 /**** BEGIN PROCEDURE get_real_type ****/
 
+
 errcode
 c_envOPget_real_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(367);
 
   LINE(368);
@@ -1982,22 +1987,22 @@ c_envOPget_real_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_real_type ****/
 
 
 /**** BEGIN PROCEDURE get_char_type ****/
 
+
 errcode
 c_envOPget_char_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(371);
 
   LINE(372);
@@ -2020,22 +2025,22 @@ c_envOPget_char_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_char_type ****/
 
 
 /**** BEGIN PROCEDURE get_str_type ****/
 
+
 errcode
 c_envOPget_str_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(375);
 
   LINE(376);
@@ -2058,22 +2063,22 @@ c_envOPget_str_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_str_type ****/
 
 
 /**** BEGIN PROCEDURE get_type_type ****/
 
+
 errcode
 c_envOPget_type_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(379);
 
   LINE(380);
@@ -2096,22 +2101,22 @@ c_envOPget_type_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_type_type ****/
 
 
 /**** BEGIN PROCEDURE get_any_type ****/
 
+
 errcode
 c_envOPget_any_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(383);
 
   LINE(384);
@@ -2134,22 +2139,22 @@ c_envOPget_any_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_any_type ****/
 
 
 /**** BEGIN PROCEDURE get_cvt_type ****/
 
+
 errcode
 c_envOPget_cvt_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(387);
 
   LINE(388);
@@ -2172,22 +2177,22 @@ c_envOPget_cvt_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_cvt_type ****/
 
 
 /**** BEGIN PROCEDURE get_up_type ****/
 
+
 errcode
 c_envOPget_up_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(391);
 
   LINE(392);
@@ -2207,27 +2212,27 @@ c_envOPget_up_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_up_type ****/
 
 
 /**** BEGIN PROCEDURE set_up_type ****/
 
+
 errcode
 c_envOPset_up_type(CLUREF e, CLUREF t)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(395);
 
   LINE(396);
     {
-    e.vec->data[21]  = t.num;
+    e.vec->data[21] = t.num;
     }
     goto end_0;
     ex_0:
@@ -2237,22 +2242,22 @@ c_envOPset_up_type(CLUREF e, CLUREF t)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_up_type ****/
 
 
 /**** BEGIN PROCEDURE get_down_type ****/
 
+
 errcode
 c_envOPget_down_type(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(399);
 
   LINE(400);
@@ -2272,27 +2277,27 @@ c_envOPget_down_type(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_down_type ****/
 
 
 /**** BEGIN PROCEDURE set_down_type ****/
 
+
 errcode
 c_envOPset_down_type(CLUREF e, CLUREF t)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(403);
 
   LINE(404);
     {
-    e.vec->data[4]  = t.num;
+    e.vec->data[4] = t.num;
     }
     goto end_0;
     ex_0:
@@ -2302,22 +2307,22 @@ c_envOPset_down_type(CLUREF e, CLUREF t)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_down_type ****/
 
 
 /**** BEGIN PROCEDURE get_array_ ****/
 
+
 errcode
 c_envOPget_array_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(407);
 
   LINE(408);
@@ -2340,22 +2345,22 @@ c_envOPget_array_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_array_ ****/
 
 
 /**** BEGIN PROCEDURE get_record_ ****/
 
+
 errcode
 c_envOPget_record_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(411);
 
   LINE(412);
@@ -2378,22 +2383,22 @@ c_envOPget_record_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_record_ ****/
 
 
 /**** BEGIN PROCEDURE get_oneof_ ****/
 
+
 errcode
 c_envOPget_oneof_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(415);
 
   LINE(416);
@@ -2416,22 +2421,22 @@ c_envOPget_oneof_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_oneof_ ****/
 
 
 /**** BEGIN PROCEDURE get_seq_ ****/
 
+
 errcode
 c_envOPget_seq_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(419);
 
   LINE(420);
@@ -2454,22 +2459,22 @@ c_envOPget_seq_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_seq_ ****/
 
 
 /**** BEGIN PROCEDURE get_struct_ ****/
 
+
 errcode
 c_envOPget_struct_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(423);
 
   LINE(424);
@@ -2492,22 +2497,22 @@ c_envOPget_struct_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_struct_ ****/
 
 
 /**** BEGIN PROCEDURE get_variant_ ****/
 
+
 errcode
 c_envOPget_variant_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(427);
 
   LINE(428);
@@ -2530,22 +2535,22 @@ c_envOPget_variant_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_variant_ ****/
 
 
 /**** BEGIN PROCEDURE get_proc_ ****/
 
+
 errcode
 c_envOPget_proc_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(431);
 
   LINE(432);
@@ -2568,22 +2573,22 @@ c_envOPget_proc_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_proc_ ****/
 
 
 /**** BEGIN PROCEDURE get_iter_ ****/
 
+
 errcode
 c_envOPget_iter_(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(435);
 
   LINE(436);
@@ -2606,22 +2611,22 @@ c_envOPget_iter_(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_iter_ ****/
 
 
 /**** BEGIN PROCEDURE get_du ****/
 
+
 errcode
 c_envOPget_du(CLUREF e, CLUREF d, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(439);
 
   LINE(440);
@@ -2644,22 +2649,22 @@ c_envOPget_du(CLUREF e, CLUREF d, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_du ****/
 
 
 /**** BEGIN PROCEDURE get_mod_gen ****/
 
+
 errcode
 c_envOPget_mod_gen(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(443);
 
   LINE(444);
@@ -2679,27 +2684,27 @@ c_envOPget_mod_gen(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_mod_gen ****/
 
 
 /**** BEGIN PROCEDURE set_mod_gen ****/
 
+
 errcode
 c_envOPset_mod_gen(CLUREF e, CLUREF gen)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(447);
 
   LINE(448);
     {
-    e.vec->data[15]  = gen.num;
+    e.vec->data[15] = gen.num;
     }
 
   LINE(449);
@@ -2731,22 +2736,22 @@ c_envOPset_mod_gen(CLUREF e, CLUREF gen)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_mod_gen ****/
 
 
 /**** BEGIN PROCEDURE get_module_name ****/
 
+
 errcode
 c_envOPget_module_name(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(452);
 
   LINE(453);
@@ -2769,27 +2774,27 @@ c_envOPget_module_name(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_module_name ****/
 
 
 /**** BEGIN PROCEDURE set_varlist ****/
 
+
 errcode
 c_envOPset_varlist(CLUREF e, CLUREF vars)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(456);
 
   LINE(457);
     {
-    e.vec->data[22]  = vars.num;
+    e.vec->data[22] = vars.num;
     }
     goto end_0;
     ex_0:
@@ -2799,23 +2804,23 @@ c_envOPset_varlist(CLUREF e, CLUREF vars)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_varlist ****/
 
 
 /**** BEGIN PROCEDURE pop_externals ****/
 
+
 errcode
 c_envOPpop_externals(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF exts;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(460);
 
   LINE(461);
@@ -2852,22 +2857,22 @@ c_envOPpop_externals(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE pop_externals ****/
 
 
 /**** BEGIN PROCEDURE add_undefined ****/
 
+
 errcode
 c_envOPadd_undefined(CLUREF e, CLUREF d)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(466);
 
   LINE(467);
@@ -2891,23 +2896,23 @@ c_envOPadd_undefined(CLUREF e, CLUREF d)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE add_undefined ****/
 
 
 /**** BEGIN PROCEDURE pop_undefined ****/
 
+
 errcode
 c_envOPpop_undefined(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF undefs;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(470);
 
   LINE(471);
@@ -2944,22 +2949,22 @@ c_envOPpop_undefined(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE pop_undefined ****/
 
 
 /**** BEGIN PROCEDURE in_cluster ****/
 
+
 errcode
 c_envOPin_cluster(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(476);
 
   LINE(477);
@@ -2989,22 +2994,22 @@ c_envOPin_cluster(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE in_cluster ****/
 
 
 /**** BEGIN PROCEDURE in_proc ****/
 
+
 errcode
 c_envOPin_proc(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(480);
 
   LINE(481);
@@ -3036,24 +3041,24 @@ c_envOPin_proc(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE in_proc ****/
 
 
 /**** BEGIN PROCEDURE break_illegal ****/
 
+
 errcode
 c_envOPbreak_illegal(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF loops;
     CLUREF i;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(484);
 
   LINE(485);
@@ -3153,22 +3158,22 @@ c_envOPbreak_illegal(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE break_illegal ****/
 
 
 /**** BEGIN PROCEDURE continue_illegal ****/
 
+
 errcode
 c_envOPcontinue_illegal(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(499);
 
   LINE(500);
@@ -3190,22 +3195,22 @@ c_envOPcontinue_illegal(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE continue_illegal ****/
 
 
 /**** BEGIN PROCEDURE types_illegal ****/
 
+
 errcode
 c_envOPtypes_illegal(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(503);
 
   LINE(504);
@@ -3227,22 +3232,22 @@ c_envOPtypes_illegal(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE types_illegal ****/
 
 
 /**** BEGIN PROCEDURE building_specs ****/
 
+
 errcode
 c_envOPbuilding_specs(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(507);
 
   LINE(508);
@@ -3264,22 +3269,22 @@ c_envOPbuilding_specs(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE building_specs ****/
 
 
 /**** BEGIN PROCEDURE checking_specs ****/
 
+
 errcode
 c_envOPchecking_specs(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(511);
 
   LINE(512);
@@ -3301,22 +3306,22 @@ c_envOPchecking_specs(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE checking_specs ****/
 
 
 /**** BEGIN PROCEDURE rechecking_types ****/
 
+
 errcode
 c_envOPrechecking_types(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(515);
 
   LINE(516);
@@ -3338,27 +3343,27 @@ c_envOPrechecking_types(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE rechecking_types ****/
 
 
 /**** BEGIN PROCEDURE err ****/
 
+
 errcode
 c_envOPerr(CLUREF e, CLUREF msg)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(519);
 
   LINE(520);
     {
-    e.vec->data[7]  = 2;
+    e.vec->data[7] = 2;
     }
 
   LINE(521);
@@ -3374,27 +3379,27 @@ c_envOPerr(CLUREF e, CLUREF msg)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE err ****/
 
 
 /**** BEGIN PROCEDURE err1 ****/
 
+
 errcode
 c_envOPerr1(CLUREF e, CLUREF msg)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(524);
 
   LINE(525);
     {
-    e.vec->data[7]  = 2;
+    e.vec->data[7] = 2;
     }
 
   LINE(526);
@@ -3410,32 +3415,32 @@ c_envOPerr1(CLUREF e, CLUREF msg)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE err1 ****/
 
-static int c_envOPerrt_own_init = 0;
 
 /**** BEGIN PROCEDURE errt ****/
 
+static int c_envOPerrt_own_init = 0;
+
 errcode
 c_envOPerrt(CLUREF e, CLUREF msg, CLUREF t1, CLUREF t2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF st;
-        if (c_envOPerrt_own_init == 0) {
+    if (c_envOPerrt_own_init == 0) {
         if (c_env_own_init == 0) {
             err = c_env_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         c_envOPerrt_own_init = 1;
     }
     enter_proc(529);
 
   LINE(530);
     {
-    e.vec->data[7]  = 2;
+    e.vec->data[7] = 2;
     }
 
   LINE(531);
@@ -3501,22 +3506,22 @@ c_envOPerrt(CLUREF e, CLUREF msg, CLUREF t1, CLUREF t2)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE errt ****/
 
 
 /**** BEGIN PROCEDURE warn ****/
 
+
 errcode
 c_envOPwarn(CLUREF e, CLUREF msg)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(541);
 
   LINE(542);
@@ -3527,7 +3532,7 @@ c_envOPwarn(CLUREF e, CLUREF msg)
     T_1_2.num = (T_1_1.num == 0)? true : false;
     if (T_1_2.num == true) {
         {
-        e.vec->data[7]  = 1;
+        e.vec->data[7] = 1;
         }
         }
         }/* end if */
@@ -3545,22 +3550,22 @@ c_envOPwarn(CLUREF e, CLUREF msg)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE warn ****/
 
 
 /**** BEGIN PROCEDURE warn1 ****/
 
+
 errcode
 c_envOPwarn1(CLUREF e, CLUREF msg)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(546);
 
   LINE(547);
@@ -3571,7 +3576,7 @@ c_envOPwarn1(CLUREF e, CLUREF msg)
     T_1_2.num = (T_1_1.num == 0)? true : false;
     if (T_1_2.num == true) {
         {
-        e.vec->data[7]  = 1;
+        e.vec->data[7] = 1;
         }
         }
         }/* end if */
@@ -3589,31 +3594,31 @@ c_envOPwarn1(CLUREF e, CLUREF msg)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE warn1 ****/
 
-static int c_envOPeval_err_own_init = 0;
 
 /**** BEGIN PROCEDURE eval_err ****/
 
+static int c_envOPeval_err_own_init = 0;
+
 errcode
 c_envOPeval_err(CLUREF e, CLUREF type_, CLUREF op, CLUREF sig)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_envOPeval_err_own_init == 0) {
+    if (c_envOPeval_err_own_init == 0) {
         if (c_env_own_init == 0) {
             err = c_env_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         c_envOPeval_err_own_init = 1;
     }
     enter_proc(551);
 
   LINE(552);
     {
-    e.vec->data[7]  = 2;
+    e.vec->data[7] = 2;
     }
 
   LINE(553);
@@ -3637,25 +3642,25 @@ c_envOPeval_err(CLUREF e, CLUREF type_, CLUREF op, CLUREF sig)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE eval_err ****/
 
 
 /**** BEGIN PROCEDURE output ****/
 
+
 errcode
 c_envOPoutput(CLUREF e, CLUREF msg)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF st;
     CLUREF l;
     CLUREF s;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(557);
 
   LINE(558);
@@ -3752,24 +3757,24 @@ c_envOPoutput(CLUREF e, CLUREF msg)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE output ****/
 
 
 /**** BEGIN PROCEDURE output1 ****/
 
+
 errcode
 c_envOPoutput1(CLUREF e, CLUREF msg)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF st;
     CLUREF l;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(573);
 
   LINE(574);
@@ -3845,22 +3850,22 @@ c_envOPoutput1(CLUREF e, CLUREF msg)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE output1 ****/
 
 
 /**** BEGIN PROCEDURE get_err ****/
 
+
 errcode
 c_envOPget_err(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(586);
 
   LINE(587);
@@ -3880,27 +3885,27 @@ c_envOPget_err(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_err ****/
 
 
 /**** BEGIN PROCEDURE end_reset ****/
 
+
 errcode
 c_envOPend_reset(CLUREF e, CLUREF lasting)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(590);
 
   LINE(591);
     {
-    e.vec->data[7]  = 0;
+    e.vec->data[7] = 0;
     }
 
   LINE(592);
@@ -3918,22 +3923,22 @@ c_envOPend_reset(CLUREF e, CLUREF lasting)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE end_reset ****/
 
 
 /**** BEGIN PROCEDURE get_xsignals ****/
 
+
 errcode
 c_envOPget_xsignals(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(595);
 
   LINE(596);
@@ -3955,22 +3960,22 @@ c_envOPget_xsignals(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_xsignals ****/
 
 
 /**** BEGIN PROCEDURE get_values ****/
 
+
 errcode
 c_envOPget_values(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(599);
 
   LINE(600);
@@ -3992,22 +3997,22 @@ c_envOPget_values(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_values ****/
 
 
 /**** BEGIN PROCEDURE get_bad_expr ****/
 
+
 errcode
 c_envOPget_bad_expr(CLUREF e, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(603);
 
   LINE(604);
@@ -4035,25 +4040,25 @@ c_envOPget_bad_expr(CLUREF e, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_bad_expr ****/
 
 
 /**** BEGIN PROCEDURE push_vals ****/
 
+
 errcode
 c_envOPpush_vals(CLUREF e, CLUREF idns, CLUREF vals)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF stack;
     CLUREF n;
     CLUREF i;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(607);
 
   LINE(608);
@@ -4088,10 +4093,10 @@ c_envOPpush_vals(CLUREF e, CLUREF idns, CLUREF vals)
             CLUREF T_2_1;
             CLUREF T_2_2;
             RecordAlloc(2, T_2_1);
-            T_2_1.vec->data[0]  = i.num;
+            T_2_1.vec->data[0] = i.num;
             err = idnOPget_kind(i, &T_2_2);
             if (err != ERR_ok) goto ex_0;
-            T_2_1.vec->data[1]  = T_2_2.num;
+            T_2_1.vec->data[1] = T_2_2.num;
             {
             if ((stack.array->int_low + stack.array->ext_size + 1) < stack.array->int_size) {
                 stack.array->store->data[stack.array->int_low + stack.array->ext_size] = T_2_1.num;
@@ -4125,23 +4130,23 @@ c_envOPpush_vals(CLUREF e, CLUREF idns, CLUREF vals)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE push_vals ****/
 
 
 /**** BEGIN PROCEDURE push_parms ****/
 
+
 errcode
 c_envOPpush_parms(CLUREF e, CLUREF parms, CLUREF nparms)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(617);
 
   LINE(618);
@@ -4178,27 +4183,27 @@ c_envOPpush_parms(CLUREF e, CLUREF parms, CLUREF nparms)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE push_parms ****/
 
 
 /**** BEGIN PROCEDURE push_parm ****/
 
+
 errcode
 c_envOPpush_parm(CLUREF e, CLUREF parm, CLUREF nparm)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF stack;
     CLUREF tt;
     CLUREF x;
     CLUREF t;
     CLUREF k;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(623);
 
   LINE(624);
@@ -4225,10 +4230,10 @@ c_envOPpush_parm(CLUREF e, CLUREF parm, CLUREF nparm)
     CLUREF T_1_1;
     CLUREF T_1_2;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[0]  = parm.num;
+    T_1_1.vec->data[0] = parm.num;
     err = idnOPget_kind(parm, &T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[1]  = T_1_2.num;
+    T_1_1.vec->data[1] = T_1_2.num;
     {
     if ((stack.array->int_low + stack.array->ext_size + 1) < stack.array->int_size) {
         stack.array->store->data[stack.array->int_low + stack.array->ext_size] = T_1_1.num;
@@ -4314,26 +4319,26 @@ c_envOPpush_parm(CLUREF e, CLUREF parm, CLUREF nparm)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE push_parm ****/
 
-static int c_envOPdeclare_own_init = 0;
 
 /**** BEGIN PROCEDURE declare ****/
 
+static int c_envOPdeclare_own_init = 0;
+
 errcode
 c_envOPdeclare(CLUREF e, CLUREF i, CLUREF nk)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     CLUREF line;
-        if (c_envOPdeclare_own_init == 0) {
+    if (c_envOPdeclare_own_init == 0) {
         if (c_env_own_init == 0) {
             err = c_env_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         c_envOPdeclare_own_init = 1;
     }
     enter_proc(641);
@@ -4418,8 +4423,8 @@ c_envOPdeclare(CLUREF e, CLUREF i, CLUREF nk)
     CLUREF T_1_2;
     T_1_1.num = e.vec->data[12];
     RecordAlloc(2, T_1_2);
-    T_1_2.vec->data[0]  = i.num;
-    T_1_2.vec->data[1]  = k.num;
+    T_1_2.vec->data[0] = i.num;
+    T_1_2.vec->data[1] = k.num;
     {
     if ((T_1_1.array->int_low + T_1_1.array->ext_size + 1) < T_1_1.array->int_size) {
         T_1_1.array->store->data[T_1_1.array->int_low + T_1_1.array->ext_size] = T_1_2.num;
@@ -4443,24 +4448,24 @@ c_envOPdeclare(CLUREF e, CLUREF i, CLUREF nk)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE declare ****/
 
 
 /**** BEGIN PROCEDURE add_var ****/
 
+
 errcode
 c_envOPadd_var(CLUREF e, CLUREF i, CLUREF t)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF vars;
     CLUREF i1;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(656);
 
   LINE(657);
@@ -4526,22 +4531,22 @@ c_envOPadd_var(CLUREF e, CLUREF i, CLUREF t)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE add_var ****/
 
 
 /**** BEGIN PROCEDURE add_ownvar ****/
 
+
 errcode
 c_envOPadd_ownvar(CLUREF e, CLUREF i, CLUREF t)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(665);
 
   LINE(666);
@@ -4559,22 +4564,22 @@ c_envOPadd_ownvar(CLUREF e, CLUREF i, CLUREF t)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE add_ownvar ****/
 
 
 /**** BEGIN PROCEDURE scopify ****/
 
+
 errcode
 c_envOPscopify(CLUREF e, CLUREF i)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(669);
 
   LINE(670);
@@ -4584,9 +4589,9 @@ c_envOPscopify(CLUREF e, CLUREF i)
     CLUREF T_1_3;
     T_1_1.num = e.vec->data[12];
     RecordAlloc(2, T_1_2);
-    T_1_2.vec->data[0]  = i.num;
+    T_1_2.vec->data[0] = i.num;
     CellAlloc(8, nil, T_1_3);
-    T_1_2.vec->data[1]  = T_1_3.num;
+    T_1_2.vec->data[1] = T_1_3.num;
     {
     if ((T_1_1.array->int_low + T_1_1.array->ext_size + 1) < T_1_1.array->int_size) {
         T_1_1.array->store->data[T_1_1.array->int_low + T_1_1.array->ext_size] = T_1_2.num;
@@ -4604,25 +4609,25 @@ c_envOPscopify(CLUREF e, CLUREF i)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE scopify ****/
 
-static int c_envOPlookup_own_init = 0;
 
 /**** BEGIN PROCEDURE lookup ****/
 
+static int c_envOPlookup_own_init = 0;
+
 errcode
 c_envOPlookup(CLUREF e, CLUREF i, CLUREF want)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ent;
-        if (c_envOPlookup_own_init == 0) {
+    if (c_envOPlookup_own_init == 0) {
         if (c_env_own_init == 0) {
             err = c_env_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         c_envOPlookup_own_init = 1;
     }
     enter_proc(674);
@@ -4690,7 +4695,7 @@ c_envOPlookup(CLUREF e, CLUREF i, CLUREF want)
 
   LINE(683);
                     {
-                    ent.vec->data[0]  = 2;
+                    ent.vec->data[0] = 2;
                     }
 
   LINE(684);
@@ -4747,36 +4752,36 @@ c_envOPlookup(CLUREF e, CLUREF i, CLUREF want)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE lookup ****/
 
-static int c_envOPdo_entry_own_init = 0;
 
 /**** BEGIN PROCEDURE do_entry ****/
 
+static int c_envOPdo_entry_own_init = 0;
+
 errcode
 c_envOPdo_entry(CLUREF e, CLUREF ent)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF oline;
     CLUREF i;
     CLUREF k;
     CLUREF eq;
     CLUREF line;
-        if (c_envOPdo_entry_own_init == 0) {
+    if (c_envOPdo_entry_own_init == 0) {
         if (c_env_own_init == 0) {
             err = c_env_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         c_envOPdo_entry_own_init = 1;
     }
     enter_proc(695);
 
   LINE(696);
     {
-    ent.vec->data[0]  = 1;
+    ent.vec->data[0] = 1;
     }
 
   LINE(697);
@@ -4791,7 +4796,7 @@ c_envOPdo_entry(CLUREF e, CLUREF ent)
     {
     CLUREF T_1_1;
     T_1_1.num = ent.vec->data[3];
-    e.vec->data[13]  = T_1_1.num;
+    e.vec->data[13] = T_1_1.num;
     }
 
   LINE(699);
@@ -4840,7 +4845,7 @@ c_envOPdo_entry(CLUREF e, CLUREF ent)
             {
             CLUREF T_2_1;
             CellAlloc(2, eq.num, T_2_1);
-            ent.vec->data[1]  = T_2_1.num;
+            ent.vec->data[1] = T_2_1.num;
             }
             break;
             }
@@ -4923,12 +4928,12 @@ c_envOPdo_entry(CLUREF e, CLUREF ent)
 
   LINE(717);
     {
-    e.vec->data[13]  = oline.num;
+    e.vec->data[13] = oline.num;
     }
 
   LINE(718);
     {
-    ent.vec->data[0]  = 2;
+    ent.vec->data[0] = 2;
     }
     goto end_0;
     ex_0:
@@ -4938,27 +4943,27 @@ c_envOPdo_entry(CLUREF e, CLUREF ent)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE do_entry ****/
 
-static int c_envOPlookup2_own_init = 0;
 
 /**** BEGIN PROCEDURE lookup2 ****/
 
+static int c_envOPlookup2_own_init = 0;
+
 errcode
 c_envOPlookup2(CLUREF e, CLUREF i, CLUREF want)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF k;
     CLUREF gen;
     CLUREF specs;
-        if (c_envOPlookup2_own_init == 0) {
+    if (c_envOPlookup2_own_init == 0) {
         if (c_env_own_init == 0) {
             err = c_env_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         c_envOPlookup2_own_init = 1;
     }
     enter_proc(721);
@@ -5105,24 +5110,24 @@ c_envOPlookup2(CLUREF e, CLUREF i, CLUREF want)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE lookup2 ****/
 
 
 /**** BEGIN PROCEDURE push_handlers ****/
 
+
 errcode
 c_envOPpush_handlers(CLUREF e, CLUREF xs)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF loops;
     CLUREF i;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(745);
 
   LINE(746);
@@ -5193,22 +5198,22 @@ c_envOPpush_handlers(CLUREF e, CLUREF xs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE push_handlers ****/
 
 
 /**** BEGIN PROCEDURE push_resigs ****/
 
+
 errcode
 c_envOPpush_resigs(CLUREF e, CLUREF resigs)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(756);
 
   LINE(757);
@@ -5228,22 +5233,22 @@ c_envOPpush_resigs(CLUREF e, CLUREF resigs)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE push_resigs ****/
 
 
 /**** BEGIN PROCEDURE pop_handlers ****/
 
+
 errcode
 c_envOPpop_handlers(CLUREF e)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (c_env_own_init == 0) {
-            err = c_env_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (c_env_own_init == 0) {
+        err = c_env_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(760);
 
   LINE(761);
@@ -5270,19 +5275,19 @@ c_envOPpop_handlers(CLUREF e)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE pop_handlers ****/
 
-static int c_envOPadd_cond_own_init = 0;
 
 /**** BEGIN PROCEDURE add_cond ****/
 
+static int c_envOPadd_cond_own_init = 0;
+
 errcode
 c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF cn;
     CLUREF ent;
     CLUREF xs;
@@ -5290,11 +5295,11 @@ c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
     CLUREF n;
     CLUREF resigs;
     CLUREF resig;
-        if (c_envOPadd_cond_own_init == 0) {
+    if (c_envOPadd_cond_own_init == 0) {
         if (c_env_own_init == 0) {
             err = c_env_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         c_envOPadd_cond_own_init = 1;
     }
     enter_proc(765);
@@ -5359,7 +5364,7 @@ c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
                                     {
                                     CLUREF T_5_1;
                                     T_5_1.num = ((n.str->size != cn.str->size)? false :
-                                        !(bcmp(n.str->data, cn.str->data, n.str->size)));
+                                        !(memcmp(n.str->data, cn.str->data, n.str->size)));
                                     if (T_5_1.num == true) {
 
   LINE(773);
@@ -5433,7 +5438,7 @@ c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
                             {
                             CLUREF T_4_1;
                             T_4_1.num = ((cn.str->size != resig.str->size)? false :
-                                !(bcmp(cn.str->data, resig.str->data, cn.str->size)));
+                                !(memcmp(cn.str->data, resig.str->data, cn.str->size)));
                             if (T_4_1.num == true) {
 
   LINE(790);
@@ -5482,7 +5487,7 @@ c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE add_cond ****/
 
@@ -5493,90 +5498,90 @@ typedef struct{
     struct OP_ENTRY entry[84];
 } c_env_OPS;
 
-CLU_proc c_env_oe_add_cond = {{0,0,0,0}, c_envOPadd_cond, 0};
-CLU_proc c_env_oe_add_ownvar = {{0,0,0,0}, c_envOPadd_ownvar, 0};
-CLU_proc c_env_oe_add_undefined = {{0,0,0,0}, c_envOPadd_undefined, 0};
-CLU_proc c_env_oe_add_var = {{0,0,0,0}, c_envOPadd_var, 0};
-CLU_proc c_env_oe_begin_for = {{0,0,0,0}, c_envOPbegin_for, 0};
-CLU_proc c_env_oe_begin_recheck = {{0,0,0,0}, c_envOPbegin_recheck, 0};
-CLU_proc c_env_oe_begin_scope = {{0,0,0,0}, c_envOPbegin_scope, 0};
-CLU_proc c_env_oe_begin_specs = {{0,0,0,0}, c_envOPbegin_specs, 0};
-CLU_proc c_env_oe_begin_type_scope = {{0,0,0,0}, c_envOPbegin_type_scope, 0};
-CLU_proc c_env_oe_begin_while = {{0,0,0,0}, c_envOPbegin_while, 0};
-CLU_proc c_env_oe_break_illegal = {{0,0,0,0}, c_envOPbreak_illegal, 0};
-CLU_proc c_env_oe_building_specs = {{0,0,0,0}, c_envOPbuilding_specs, 0};
-CLU_proc c_env_oe_checking_specs = {{0,0,0,0}, c_envOPchecking_specs, 0};
-CLU_proc c_env_oe_continue_illegal = {{0,0,0,0}, c_envOPcontinue_illegal, 0};
-CLU_proc c_env_oe_create = {{0,0,0,0}, c_envOPcreate, 0};
-CLU_proc c_env_oe_declare = {{0,0,0,0}, c_envOPdeclare, 0};
-CLU_proc c_env_oe_end_loop = {{0,0,0,0}, c_envOPend_loop, 0};
-CLU_proc c_env_oe_end_recheck = {{0,0,0,0}, c_envOPend_recheck, 0};
-CLU_proc c_env_oe_end_reset = {{0,0,0,0}, c_envOPend_reset, 0};
-CLU_proc c_env_oe_end_scope = {{0,0,0,0}, c_envOPend_scope, 0};
-CLU_proc c_env_oe_end_specs = {{0,0,0,0}, c_envOPend_specs, 0};
-CLU_proc c_env_oe_end_type_scope = {{0,0,0,0}, c_envOPend_type_scope, 0};
-CLU_proc c_env_oe_equates = {{0,0,0,0}, c_envOPequates, 0};
-CLU_proc c_env_oe_err = {{0,0,0,0}, c_envOPerr, 0};
-CLU_proc c_env_oe_err1 = {{0,0,0,0}, c_envOPerr1, 0};
-CLU_proc c_env_oe_errt = {{0,0,0,0}, c_envOPerrt, 0};
-CLU_proc c_env_oe_eval_equates = {{0,0,0,0}, c_envOPeval_equates, 0};
-CLU_proc c_env_oe_eval_err = {{0,0,0,0}, c_envOPeval_err, 0};
-CLU_proc c_env_oe_eval_parms = {{0,0,0,0}, c_envOPeval_parms, 0};
-CLU_proc c_env_oe_fix_type = {{0,0,0,0}, c_envOPfix_type, 0};
-CLU_proc c_env_oe_get_any_type = {{0,0,0,0}, c_envOPget_any_type, 0};
-CLU_proc c_env_oe_get_array_ = {{0,0,0,0}, c_envOPget_array_, 0};
-CLU_proc c_env_oe_get_bad_expr = {{0,0,0,0}, c_envOPget_bad_expr, 0};
-CLU_proc c_env_oe_get_bool_type = {{0,0,0,0}, c_envOPget_bool_type, 0};
-CLU_proc c_env_oe_get_char_type = {{0,0,0,0}, c_envOPget_char_type, 0};
-CLU_proc c_env_oe_get_cvt_type = {{0,0,0,0}, c_envOPget_cvt_type, 0};
-CLU_proc c_env_oe_get_down_type = {{0,0,0,0}, c_envOPget_down_type, 0};
-CLU_proc c_env_oe_get_du = {{0,0,0,0}, c_envOPget_du, 0};
-CLU_proc c_env_oe_get_err = {{0,0,0,0}, c_envOPget_err, 0};
-CLU_proc c_env_oe_get_int_type = {{0,0,0,0}, c_envOPget_int_type, 0};
-CLU_proc c_env_oe_get_iter_ = {{0,0,0,0}, c_envOPget_iter_, 0};
-CLU_proc c_env_oe_get_mod_gen = {{0,0,0,0}, c_envOPget_mod_gen, 0};
-CLU_proc c_env_oe_get_module_name = {{0,0,0,0}, c_envOPget_module_name, 0};
-CLU_proc c_env_oe_get_null_type = {{0,0,0,0}, c_envOPget_null_type, 0};
-CLU_proc c_env_oe_get_oneof_ = {{0,0,0,0}, c_envOPget_oneof_, 0};
-CLU_proc c_env_oe_get_proc_ = {{0,0,0,0}, c_envOPget_proc_, 0};
-CLU_proc c_env_oe_get_real_type = {{0,0,0,0}, c_envOPget_real_type, 0};
-CLU_proc c_env_oe_get_record_ = {{0,0,0,0}, c_envOPget_record_, 0};
-CLU_proc c_env_oe_get_seq_ = {{0,0,0,0}, c_envOPget_seq_, 0};
-CLU_proc c_env_oe_get_str_type = {{0,0,0,0}, c_envOPget_str_type, 0};
-CLU_proc c_env_oe_get_struct_ = {{0,0,0,0}, c_envOPget_struct_, 0};
-CLU_proc c_env_oe_get_type = {{0,0,0,0}, c_envOPget_type, 0};
-CLU_proc c_env_oe_get_type_type = {{0,0,0,0}, c_envOPget_type_type, 0};
-CLU_proc c_env_oe_get_unknown_type = {{0,0,0,0}, c_envOPget_unknown_type, 0};
-CLU_proc c_env_oe_get_up_type = {{0,0,0,0}, c_envOPget_up_type, 0};
-CLU_proc c_env_oe_get_values = {{0,0,0,0}, c_envOPget_values, 0};
-CLU_proc c_env_oe_get_variant_ = {{0,0,0,0}, c_envOPget_variant_, 0};
-CLU_proc c_env_oe_get_xsignals = {{0,0,0,0}, c_envOPget_xsignals, 0};
-CLU_proc c_env_oe_hack = {{0,0,0,0}, c_envOPhack, 0};
-CLU_proc c_env_oe_in_cluster = {{0,0,0,0}, c_envOPin_cluster, 0};
-CLU_proc c_env_oe_in_proc = {{0,0,0,0}, c_envOPin_proc, 0};
-CLU_proc c_env_oe_is_hacked = {{0,0,0,0}, c_envOPis_hacked, 0};
-CLU_proc c_env_oe_lookup = {{0,0,0,0}, c_envOPlookup, 0};
-CLU_proc c_env_oe_new_apply = {{0,0,0,0}, c_envOPnew_apply, 0};
-CLU_proc c_env_oe_pop_externals = {{0,0,0,0}, c_envOPpop_externals, 0};
-CLU_proc c_env_oe_pop_handlers = {{0,0,0,0}, c_envOPpop_handlers, 0};
-CLU_proc c_env_oe_pop_undefined = {{0,0,0,0}, c_envOPpop_undefined, 0};
-CLU_proc c_env_oe_push_handlers = {{0,0,0,0}, c_envOPpush_handlers, 0};
-CLU_proc c_env_oe_push_parm = {{0,0,0,0}, c_envOPpush_parm, 0};
-CLU_proc c_env_oe_push_parms = {{0,0,0,0}, c_envOPpush_parms, 0};
-CLU_proc c_env_oe_push_resigs = {{0,0,0,0}, c_envOPpush_resigs, 0};
-CLU_proc c_env_oe_push_vals = {{0,0,0,0}, c_envOPpush_vals, 0};
-CLU_proc c_env_oe_rechecking_types = {{0,0,0,0}, c_envOPrechecking_types, 0};
-CLU_proc c_env_oe_reset = {{0,0,0,0}, c_envOPreset, 0};
-CLU_proc c_env_oe_scopify = {{0,0,0,0}, c_envOPscopify, 0};
-CLU_proc c_env_oe_set_down_type = {{0,0,0,0}, c_envOPset_down_type, 0};
-CLU_proc c_env_oe_set_line = {{0,0,0,0}, c_envOPset_line, 0};
-CLU_proc c_env_oe_set_mod_gen = {{0,0,0,0}, c_envOPset_mod_gen, 0};
-CLU_proc c_env_oe_set_up_type = {{0,0,0,0}, c_envOPset_up_type, 0};
-CLU_proc c_env_oe_set_varlist = {{0,0,0,0}, c_envOPset_varlist, 0};
-CLU_proc c_env_oe_types_illegal = {{0,0,0,0}, c_envOPtypes_illegal, 0};
-CLU_proc c_env_oe_unhack = {{0,0,0,0}, c_envOPunhack, 0};
-CLU_proc c_env_oe_warn = {{0,0,0,0}, c_envOPwarn, 0};
-CLU_proc c_env_oe_warn1 = {{0,0,0,0}, c_envOPwarn1, 0};
+CLU_proc c_env_oe_add_cond = { .proc = c_envOPadd_cond };
+CLU_proc c_env_oe_add_ownvar = { .proc = c_envOPadd_ownvar };
+CLU_proc c_env_oe_add_undefined = { .proc = c_envOPadd_undefined };
+CLU_proc c_env_oe_add_var = { .proc = c_envOPadd_var };
+CLU_proc c_env_oe_begin_for = { .proc = c_envOPbegin_for };
+CLU_proc c_env_oe_begin_recheck = { .proc = c_envOPbegin_recheck };
+CLU_proc c_env_oe_begin_scope = { .proc = c_envOPbegin_scope };
+CLU_proc c_env_oe_begin_specs = { .proc = c_envOPbegin_specs };
+CLU_proc c_env_oe_begin_type_scope = { .proc = c_envOPbegin_type_scope };
+CLU_proc c_env_oe_begin_while = { .proc = c_envOPbegin_while };
+CLU_proc c_env_oe_break_illegal = { .proc = c_envOPbreak_illegal };
+CLU_proc c_env_oe_building_specs = { .proc = c_envOPbuilding_specs };
+CLU_proc c_env_oe_checking_specs = { .proc = c_envOPchecking_specs };
+CLU_proc c_env_oe_continue_illegal = { .proc = c_envOPcontinue_illegal };
+CLU_proc c_env_oe_create = { .proc = c_envOPcreate };
+CLU_proc c_env_oe_declare = { .proc = c_envOPdeclare };
+CLU_proc c_env_oe_end_loop = { .proc = c_envOPend_loop };
+CLU_proc c_env_oe_end_recheck = { .proc = c_envOPend_recheck };
+CLU_proc c_env_oe_end_reset = { .proc = c_envOPend_reset };
+CLU_proc c_env_oe_end_scope = { .proc = c_envOPend_scope };
+CLU_proc c_env_oe_end_specs = { .proc = c_envOPend_specs };
+CLU_proc c_env_oe_end_type_scope = { .proc = c_envOPend_type_scope };
+CLU_proc c_env_oe_equates = { .proc = c_envOPequates };
+CLU_proc c_env_oe_err = { .proc = c_envOPerr };
+CLU_proc c_env_oe_err1 = { .proc = c_envOPerr1 };
+CLU_proc c_env_oe_errt = { .proc = c_envOPerrt };
+CLU_proc c_env_oe_eval_equates = { .proc = c_envOPeval_equates };
+CLU_proc c_env_oe_eval_err = { .proc = c_envOPeval_err };
+CLU_proc c_env_oe_eval_parms = { .proc = c_envOPeval_parms };
+CLU_proc c_env_oe_fix_type = { .proc = c_envOPfix_type };
+CLU_proc c_env_oe_get_any_type = { .proc = c_envOPget_any_type };
+CLU_proc c_env_oe_get_array_ = { .proc = c_envOPget_array_ };
+CLU_proc c_env_oe_get_bad_expr = { .proc = c_envOPget_bad_expr };
+CLU_proc c_env_oe_get_bool_type = { .proc = c_envOPget_bool_type };
+CLU_proc c_env_oe_get_char_type = { .proc = c_envOPget_char_type };
+CLU_proc c_env_oe_get_cvt_type = { .proc = c_envOPget_cvt_type };
+CLU_proc c_env_oe_get_down_type = { .proc = c_envOPget_down_type };
+CLU_proc c_env_oe_get_du = { .proc = c_envOPget_du };
+CLU_proc c_env_oe_get_err = { .proc = c_envOPget_err };
+CLU_proc c_env_oe_get_int_type = { .proc = c_envOPget_int_type };
+CLU_proc c_env_oe_get_iter_ = { .proc = c_envOPget_iter_ };
+CLU_proc c_env_oe_get_mod_gen = { .proc = c_envOPget_mod_gen };
+CLU_proc c_env_oe_get_module_name = { .proc = c_envOPget_module_name };
+CLU_proc c_env_oe_get_null_type = { .proc = c_envOPget_null_type };
+CLU_proc c_env_oe_get_oneof_ = { .proc = c_envOPget_oneof_ };
+CLU_proc c_env_oe_get_proc_ = { .proc = c_envOPget_proc_ };
+CLU_proc c_env_oe_get_real_type = { .proc = c_envOPget_real_type };
+CLU_proc c_env_oe_get_record_ = { .proc = c_envOPget_record_ };
+CLU_proc c_env_oe_get_seq_ = { .proc = c_envOPget_seq_ };
+CLU_proc c_env_oe_get_str_type = { .proc = c_envOPget_str_type };
+CLU_proc c_env_oe_get_struct_ = { .proc = c_envOPget_struct_ };
+CLU_proc c_env_oe_get_type = { .proc = c_envOPget_type };
+CLU_proc c_env_oe_get_type_type = { .proc = c_envOPget_type_type };
+CLU_proc c_env_oe_get_unknown_type = { .proc = c_envOPget_unknown_type };
+CLU_proc c_env_oe_get_up_type = { .proc = c_envOPget_up_type };
+CLU_proc c_env_oe_get_values = { .proc = c_envOPget_values };
+CLU_proc c_env_oe_get_variant_ = { .proc = c_envOPget_variant_ };
+CLU_proc c_env_oe_get_xsignals = { .proc = c_envOPget_xsignals };
+CLU_proc c_env_oe_hack = { .proc = c_envOPhack };
+CLU_proc c_env_oe_in_cluster = { .proc = c_envOPin_cluster };
+CLU_proc c_env_oe_in_proc = { .proc = c_envOPin_proc };
+CLU_proc c_env_oe_is_hacked = { .proc = c_envOPis_hacked };
+CLU_proc c_env_oe_lookup = { .proc = c_envOPlookup };
+CLU_proc c_env_oe_new_apply = { .proc = c_envOPnew_apply };
+CLU_proc c_env_oe_pop_externals = { .proc = c_envOPpop_externals };
+CLU_proc c_env_oe_pop_handlers = { .proc = c_envOPpop_handlers };
+CLU_proc c_env_oe_pop_undefined = { .proc = c_envOPpop_undefined };
+CLU_proc c_env_oe_push_handlers = { .proc = c_envOPpush_handlers };
+CLU_proc c_env_oe_push_parm = { .proc = c_envOPpush_parm };
+CLU_proc c_env_oe_push_parms = { .proc = c_envOPpush_parms };
+CLU_proc c_env_oe_push_resigs = { .proc = c_envOPpush_resigs };
+CLU_proc c_env_oe_push_vals = { .proc = c_envOPpush_vals };
+CLU_proc c_env_oe_rechecking_types = { .proc = c_envOPrechecking_types };
+CLU_proc c_env_oe_reset = { .proc = c_envOPreset };
+CLU_proc c_env_oe_scopify = { .proc = c_envOPscopify };
+CLU_proc c_env_oe_set_down_type = { .proc = c_envOPset_down_type };
+CLU_proc c_env_oe_set_line = { .proc = c_envOPset_line };
+CLU_proc c_env_oe_set_mod_gen = { .proc = c_envOPset_mod_gen };
+CLU_proc c_env_oe_set_up_type = { .proc = c_envOPset_up_type };
+CLU_proc c_env_oe_set_varlist = { .proc = c_envOPset_varlist };
+CLU_proc c_env_oe_types_illegal = { .proc = c_envOPtypes_illegal };
+CLU_proc c_env_oe_unhack = { .proc = c_envOPunhack };
+CLU_proc c_env_oe_warn = { .proc = c_envOPwarn };
+CLU_proc c_env_oe_warn1 = { .proc = c_envOPwarn1 };
 
 c_env_OPS c_env_ops_actual = {84, (OWNPTR)&c_env_own_init, (OWNPTR)&c_env_own_init, {
     {&c_env_oe_add_cond, "add_cond"},

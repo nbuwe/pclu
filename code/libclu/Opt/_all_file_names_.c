@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN ITERATOR _all_file_names_ ****/
+
 extern errcode arrayOPnew();
 extern errcode intOPequal();
 extern errcode stringOPindexc();
@@ -40,45 +43,42 @@ extern errcode arrayOPelements();
 extern errcode boolOPnot();
 extern errcode _all_file_names__IB_1();
 extern errcode _all_file_names__IB_2();
-CLUREF STR_;
-CLUREF STR_HOME;
+static CLUREF STR_;
+static CLUREF STR_HOME;
 static int _all_file_names__own_init = 0;
 CLUREF _all_file_names_OPinuse;
 CLUREF _all_file_names_OPtemp;
-
-/**** BEGIN ITERATOR _all_file_names_ ****/
+typedef struct {
+    void *user_locals;
+    errcode (*proc)();
+    errcode ecode2;
+    errcode err;
+    bool body_ctrl_req;
+    CLUREF fn;
+    CLUREF dr;
+    CLUREF z;
+    CLUREF nm;
+    CLUREF sf;
+    CLUREF ot;
+    CLUREF ok;
+    CLUREF list;
+    CLUREF used;
+    CLUREF off;
+    CLUREF buf;
+    CLUREF fs;
+} _all_file_names__LOCALS_t;
 
 errcode
-_all_file_names_(CLUREF fs, errcode (*proc)(), char **user_locals, errcode *iecode)
-    {
+_all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecode)
+{
     errcode ecode;
-    struct {
-        char **user_locals;
-        errcode (*proc)();
-        errcode err;
-        errcode ecode2;
-        bool body_ctrl_req;
-        CLUREF fn;
-        CLUREF dr;
-        CLUREF z;
-        CLUREF nm;
-        CLUREF sf;
-        CLUREF ot;
-        CLUREF ok;
-        CLUREF list;
-        CLUREF used;
-        CLUREF off;
-        CLUREF buf;
-        CLUREF fs;
-        } locals;
+    _all_file_names__LOCALS_t locals;
     locals.fs = fs;
     locals.proc = proc;
     locals.user_locals = user_locals;
-    locals.user_locals = user_locals;
-    locals.proc = proc;
-        if (_all_file_names__own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("HOME", CLU_1, CLU_4, &STR_HOME);
+    if (_all_file_names__own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("HOME", CLU_1, CLUREF_make_num(4), &STR_HOME);
         _all_file_names__own_init = 1;
         {
             {_all_file_names_OPinuse.tf = false;
@@ -133,7 +133,7 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), char **user_locals, errcode *ieco
             locals.err = file_nameOPunparse(locals.fn, &T_3_3);
             if (locals.err != ERR_ok) goto ex_1;
             T_3_4.num = ((T_3_3.str->size != STR_.str->size)? false :
-                !(bcmp(T_3_3.str->data, STR_.str->data, T_3_3.str->size)));
+                !(memcmp(T_3_3.str->data, STR_.str->data, T_3_3.str->size)));
             T_3_1.num = T_3_4.num;
         }
         if (T_3_1.num == true) {
@@ -379,35 +379,15 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), char **user_locals, errcode *ieco
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END ITERATOR _all_file_names_ ****/
 
 
 /**** BEGIN ITERATOR BODIES for _all_file_names_ ****/
 
-errcode _all_file_names__IB_1(iv_1, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-struct {
-    char **user_locals;
-    errcode (*proc)();
-    errcode err;
-    errcode ecode2;
-    bool body_ctrl_req;
-    CLUREF fn;
-    CLUREF dr;
-    CLUREF z;
-    CLUREF nm;
-    CLUREF sf;
-    CLUREF ot;
-    CLUREF ok;
-    CLUREF list;
-    CLUREF used;
-    CLUREF off;
-    CLUREF buf;
-    CLUREF fs;
-    } *locals;
+errcode
+_all_file_names__IB_1(CLUREF iv_1, _all_file_names__LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
     enter_iter_body_proc(42);
@@ -593,30 +573,10 @@ struct {
             locals->body_ctrl_req = true;
             {signal(ERR_iteriterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end _all_file_names__IB_1 */
-errcode _all_file_names__IB_2(iv_1, iv_2, locals, iecode)
-errcode *iecode;
-CLUREF iv_1;
-CLUREF iv_2;
-struct {
-    char **user_locals;
-    errcode (*proc)();
-    errcode err;
-    errcode ecode2;
-    bool body_ctrl_req;
-    CLUREF fn;
-    CLUREF dr;
-    CLUREF z;
-    CLUREF nm;
-    CLUREF sf;
-    CLUREF ot;
-    CLUREF ok;
-    CLUREF list;
-    CLUREF used;
-    CLUREF off;
-    CLUREF buf;
-    CLUREF fs;
-    } *locals;
+}   /* end _all_file_names__IB_1 */
+
+errcode
+_all_file_names__IB_2(CLUREF iv_1, CLUREF iv_2, _all_file_names__LOCALS_t *locals, errcode *iecode)
 {
     locals->off.num = iv_1.num;
     locals->buf.num = iv_2.num;
@@ -645,7 +605,7 @@ struct {
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-    T_1_1.num = locals->buf.num;
+    T_1_1.num = (long)locals->buf.num;
     locals->err = stringOPsubstr(T_1_1, locals->off, locals->z, &T_1_2);
     if (locals->err != ERR_ok) goto ex_0;
     locals->nm.num = T_1_2.num;
@@ -747,21 +707,21 @@ struct {
             locals->body_ctrl_req = true;
             {signal(ERR_iteriterbodyexit);}}
     end_0: {signal(ERR_ok);}
-    }/* end _all_file_names__IB_2 */
+}   /* end _all_file_names__IB_2 */
 
 /**** END ITERATOR BODIES for _all_file_names_ ****/
 
 
-extern errcode stringOPconcat();
-extern errcode stringOPappend();
 
 /**** BEGIN PROCEDURE _restar ****/
 
+extern errcode stringOPconcat();
+extern errcode stringOPappend();
+
 errcode
 _restar(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     enter_proc(85);
 
@@ -836,23 +796,23 @@ _restar(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _restar ****/
 
+
+
+/**** BEGIN PROCEDURE _match_name_spec ****/
 
 extern errcode stringOPsize();
 extern errcode _bytevecOPfetch();
 extern errcode _bytevecOPindexc();
 extern errcode intOPle();
 
-/**** BEGIN PROCEDURE _match_name_spec ****/
-
 errcode
 _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF l;
     CLUREF i;
     CLUREF h;
@@ -1316,7 +1276,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _match_name_spec ****/
 

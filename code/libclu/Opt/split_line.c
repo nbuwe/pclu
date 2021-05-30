@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE split_line ****/
+
 extern errcode arrayOPnew();
 extern errcode stringOPsize();
 extern errcode intOPfrom_to();
@@ -16,13 +19,10 @@ extern errcode intOPadd();
 extern errcode intOPle();
 extern errcode stringOPrest();
 
-/**** BEGIN PROCEDURE split_line ****/
-
 errcode
 split_line(CLUREF line, CLUREF sep, CLUREF quote, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF parts;
     CLUREF start;
     CLUREF len;
@@ -179,7 +179,7 @@ split_line(CLUREF line, CLUREF sep, CLUREF quote, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE split_line ****/
 

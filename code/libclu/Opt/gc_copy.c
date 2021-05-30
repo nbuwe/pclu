@@ -5,13 +5,15 @@
 #include "pclu_sys.h"
 
 
-typedef struct {
-long count;
-} gc_copy_of_t_REQS;
+/**** BEGIN PROCEDURE gc_copy ****/
 
-gc_copy_of_t_REQS gc_copy_of_t_reqs_actual = {0};
 
-struct REQS * gc_copy_of_t_reqs = (struct REQS *)&gc_copy_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} gc_copy_of_t_reqs_actual = { 0 };
+
+const struct REQS * const gc_copy_of_t_reqs
+    = (const struct REQS *)&gc_copy_of_t_reqs_actual;
 
 
 typedef struct {
@@ -28,10 +30,10 @@ extern errcode hash_obj();
 extern errcode _objOPequal();
 extern errcode _gcOPcount();
 extern errcode _eventOPundefer();
-extern struct REQS *table_of_key_reqs;
+extern const struct REQS * const table_of_key_reqs;
 extern struct OPS *_obj_ops;
-extern struct REQS *table_of_val_reqs;
-extern OWN_req table_ownreqs;
+extern const struct REQS * const table_of_val_reqs;
+extern const OWN_req table_ownreqs;
 extern struct OPS *table_ops;
 struct OPS *table_of__obj_table;
 struct OPS *table_of__obj_table;
@@ -41,27 +43,25 @@ OWNPTR table_of__obj__obj_owns;
 
 typedef struct {
     long gc_copy_own_init;
-    gc_copy_of_t_OPS *t_ops;
-    } gc_copy_OWN_DEFN;
-OWN_req gc_copy_ownreqs = {sizeof(gc_copy_OWN_DEFN), 1};
+    const gc_copy_of_t_OPS * const t_ops;
+} gc_copy_OWN_DEFN;
+const OWN_req gc_copy_ownreqs = { sizeof(gc_copy_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE gc_copy ****/
 
 errcode
 gc_copy(CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     gc_copy_OWN_DEFN *op_own_ptr;
-    op_own_ptr = (gc_copy_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->gc_copy_own_init == 0) {
-        add_parm_info_type(0, _obj_ops, table_of_key_reqs);
-        add_parm_info_type(1, _obj_ops, table_of_val_reqs);
+    op_own_ptr = (gc_copy_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->gc_copy_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, table_of_key_reqs);
+        add_parm_info_type(1, (const struct OPS *)_obj_ops, table_of_val_reqs);
         find_type_instance(table_ops, 2, &table_ownreqs, &(table_of__obj__obj_ops));
-        }
-        if (op_own_ptr->gc_copy_own_init == 0) {
+    }
+    if (op_own_ptr->gc_copy_own_init == 0) {
         op_own_ptr->gc_copy_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(12);
 
@@ -84,12 +84,12 @@ gc_copy(CLUREF x, CLUREF *ret_1)
     CLUREF T_1_9;
     RecordAlloc(2, T_1_1);
     T_1_2.num = 500;
-    err = proctypeOPnew(CLU_0, &T_1_3.proc);
+    err = proctypeOPnew(CLU_0, &T_1_3);
     if (err!= ERR_ok) goto ex_0;
     T_1_3.proc->type_owns = 0;
     T_1_3.proc->op_owns = 0;
     T_1_3.proc->proc = hash_obj;
-    err = proctypeOPnew(CLU_0, &T_1_4.proc);
+    err = proctypeOPnew(CLU_0, &T_1_4);
     if (err!= ERR_ok) goto ex_0;
     T_1_4.proc->proc = _objOPequal;
     generic_CLU_proc.type_owns = table_of__obj__obj_ops->type_owns;
@@ -97,14 +97,14 @@ gc_copy(CLUREF x, CLUREF *ret_1)
     CUR_PROC_VAR.proc = &generic_CLU_proc;
     err = tableOPcreate(T_1_2, T_1_3, T_1_4, &T_1_5);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[1]  = T_1_5.num;
+    T_1_1.vec->data[1] = T_1_5.num;
     err = _gcOPcount(&T_1_6);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[0]  = T_1_6.num;
-    T_1_7.num = x.num;
+    T_1_1.vec->data[0] = T_1_6.num;
+    T_1_7.num = (long)x.num;
     err = _gc_copy(T_1_1, T_1_7, &T_1_8);
     if (err != ERR_ok) goto ex_0;
-    T_1_9.num = T_1_8.num;
+    T_1_9.num = (long)T_1_8.num;
     x.num = T_1_9.num;
     }
 
@@ -129,19 +129,21 @@ gc_copy(CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE gc_copy ****/
 
 
 
-typedef struct {
-long count;
-} gc_copy_to_of_t_REQS;
+/**** BEGIN PROCEDURE gc_copy_to ****/
 
-gc_copy_to_of_t_REQS gc_copy_to_of_t_reqs_actual = {0};
 
-struct REQS * gc_copy_to_of_t_reqs = (struct REQS *)&gc_copy_to_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} gc_copy_to_of_t_reqs_actual = { 0 };
+
+const struct REQS * const gc_copy_to_of_t_reqs
+    = (const struct REQS *)&gc_copy_to_of_t_reqs_actual;
 
 
 typedef struct {
@@ -160,29 +162,27 @@ OWNPTR table_of__obj__obj_owns;
 
 typedef struct {
     long gc_copy_to_own_init;
-    gc_copy_to_of_t_OPS *t_ops;
-    } gc_copy_to_OWN_DEFN;
-OWN_req gc_copy_to_ownreqs = {sizeof(gc_copy_to_OWN_DEFN), 1};
+    const gc_copy_to_of_t_OPS * const t_ops;
+} gc_copy_to_OWN_DEFN;
+const OWN_req gc_copy_to_ownreqs = { sizeof(gc_copy_to_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE gc_copy_to ****/
 
 errcode
 gc_copy_to(CLUREF x, CLUREF leaves, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     gc_copy_to_OWN_DEFN *op_own_ptr;
     CLUREF tb;
     CLUREF y;
-    op_own_ptr = (gc_copy_to_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->gc_copy_to_own_init == 0) {
-        add_parm_info_type(0, _obj_ops, table_of_key_reqs);
-        add_parm_info_type(1, _obj_ops, table_of_val_reqs);
+    op_own_ptr = (gc_copy_to_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->gc_copy_to_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, table_of_key_reqs);
+        add_parm_info_type(1, (const struct OPS *)_obj_ops, table_of_val_reqs);
         find_type_instance(table_ops, 2, &table_ownreqs, &(table_of__obj__obj_ops));
-        }
-        if (op_own_ptr->gc_copy_to_own_init == 0) {
+    }
+    if (op_own_ptr->gc_copy_to_own_init == 0) {
         op_own_ptr->gc_copy_to_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(23);
 
@@ -199,12 +199,12 @@ gc_copy_to(CLUREF x, CLUREF leaves, CLUREF *ret_1)
         CLUREF T_1_3;
         CLUREF T_1_4;
         T_1_1.num = 500;
-        err = proctypeOPnew(CLU_0, &T_1_2.proc);
+        err = proctypeOPnew(CLU_0, &T_1_2);
         if (err!= ERR_ok) goto ex_0;
         T_1_2.proc->type_owns = 0;
         T_1_2.proc->op_owns = 0;
         T_1_2.proc->proc = hash_obj;
-        err = proctypeOPnew(CLU_0, &T_1_3.proc);
+        err = proctypeOPnew(CLU_0, &T_1_3);
         if (err!= ERR_ok) goto ex_0;
         T_1_3.proc->proc = _objOPequal;
         generic_CLU_proc.type_owns = table_of__obj__obj_ops->type_owns;
@@ -250,14 +250,14 @@ gc_copy_to(CLUREF x, CLUREF leaves, CLUREF *ret_1)
     CLUREF T_1_4;
     CLUREF T_1_5;
     RecordAlloc(2, T_1_1);
-    T_1_1.vec->data[1]  = tb.num;
+    T_1_1.vec->data[1] = tb.num;
     err = _gcOPcount(&T_1_2);
     if (err != ERR_ok) goto ex_0;
-    T_1_1.vec->data[0]  = T_1_2.num;
-    T_1_3.num = x.num;
+    T_1_1.vec->data[0] = T_1_2.num;
+    T_1_3.num = (long)x.num;
     err = _gc_copy(T_1_1, T_1_3, &T_1_4);
     if (err != ERR_ok) goto ex_0;
-    T_1_5.num = T_1_4.num;
+    T_1_5.num = (long)T_1_4.num;
     x.num = T_1_5.num;
     }
 
@@ -282,10 +282,13 @@ gc_copy_to(CLUREF x, CLUREF leaves, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE gc_copy_to ****/
 
+
+
+/**** BEGIN PROCEDURE _gc_copy ****/
 
 extern errcode boolOPnot();
 extern errcode _objOPis_ref();
@@ -318,8 +321,8 @@ struct OPS *table_of__obj_table;
 struct OPS *table_of__obj__obj_ops;
 struct OPS *table_of__obj__obj_ops;
 OWNPTR table_of__obj__obj_owns;
-extern struct REQS *_tagcell_of_t_reqs;
-extern OWN_req _tagcell_ownreqs;
+extern const struct REQS * const _tagcell_of_t_reqs;
+extern const OWN_req _tagcell_ownreqs;
 extern struct OPS *_tagcell_ops;
 struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
@@ -327,23 +330,20 @@ struct OPS *_tagcell_of__obj_ops;
 OWNPTR _tagcell_of__obj_owns;
 static int _gc_copy_own_init = 0;
 
-/**** BEGIN PROCEDURE _gc_copy ****/
-
 errcode
 _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF nx;
     CLUREF xx;
     CLUREF i;
     CLUREF tg;
     CLUREF val;
-        if (_gc_copy_own_init == 0) {
-        add_parm_info_type(0, _obj_ops, table_of_key_reqs);
-        add_parm_info_type(1, _obj_ops, table_of_val_reqs);
+    if (_gc_copy_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, table_of_key_reqs);
+        add_parm_info_type(1, (const struct OPS *)_obj_ops, table_of_val_reqs);
         find_type_instance(table_ops, 2, &table_ownreqs, &(table_of__obj__obj_ops));
-        add_parm_info_type(0, _obj_ops, _tagcell_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)_obj_ops, _tagcell_of_t_reqs);
         find_type_instance(_tagcell_ops, 1, &_tagcell_ownreqs, &(_tagcell_of__obj_ops));
         _gc_copy_own_init = 1;
     }
@@ -385,7 +385,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
         CLUREF T_2_1;
         err = _gcOPcount(&T_2_1);
         if (err != ERR_ok) goto ex_0;
-        t.vec->data[0]  = T_2_1.num;
+        t.vec->data[0] = T_2_1.num;
         }
 
   LINE(41);
@@ -393,7 +393,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = t.vec->data[1];
-        err = proctypeOPnew(CLU_0, &T_2_2.proc);
+        err = proctypeOPnew(CLU_0, &T_2_2);
         if (err!= ERR_ok) goto ex_0;
         T_2_2.proc->type_owns = 0;
         T_2_2.proc->op_owns = 0;
@@ -441,7 +441,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
         {
             {CLUREF T_2_1;
             CLUREF T_2_2;
-            T_2_1.num = x.num;
+            T_2_1.num = (long)x.num;
             err = _vecOPcopy(T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
             xx.num = T_2_2.num;
@@ -451,7 +451,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
   LINE(48);
         {
         CLUREF T_2_1;
-        T_2_1.num = xx.num;
+        T_2_1.num = (long)xx.num;
         nx.num = T_2_1.num;
         }
 
@@ -507,10 +507,10 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         CLUREF T_2_3;
-        T_2_1.num = x.num;
+        T_2_1.num = (long)x.num;
         err = _bytevecOPcopy(T_2_1, &T_2_2);
         if (err != ERR_ok) goto ex_0;
-        T_2_3.num = T_2_2.num;
+        T_2_3.num = (long)T_2_2.num;
         nx.num = T_2_3.num;
         }
 
@@ -535,7 +535,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
         {
             {CLUREF T_2_1;
             CLUREF T_2_2;
-            T_2_1.num = x.num;
+            T_2_1.num = (long)x.num;
             err = arrayOPcopy1(T_2_1, &T_2_2);
             if (err != ERR_ok) goto ex_0;
             xx.num = T_2_2.num;
@@ -545,7 +545,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
   LINE(58);
         {
         CLUREF T_2_1;
-        T_2_1.num = xx.num;
+        T_2_1.num = (long)xx.num;
         nx.num = T_2_1.num;
         }
 
@@ -607,7 +607,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
         {
             {CLUREF T_2_1;
             CLUREF T_2_2;
-            T_2_1.num = x.num;
+            T_2_1.num = (long)x.num;
             generic_CLU_proc.type_owns = _tagcell_of__obj_ops->type_owns;
             generic_CLU_proc.proc = _tagcellOPcopy;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -620,7 +620,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
   LINE(65);
         {
         CLUREF T_2_1;
-        T_2_1.num = xx.num;
+        T_2_1.num = (long)xx.num;
         nx.num = T_2_1.num;
         }
 
@@ -684,7 +684,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _gc_copy ****/
 

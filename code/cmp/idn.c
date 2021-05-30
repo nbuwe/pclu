@@ -15,9 +15,9 @@ extern errcode recordOPget_3();
 extern errcode recordOPset_3();
 extern errcode recordOPequal();
 extern errcode recordOP_gcd();
-extern struct REQS *sequence_of_t_reqs;
+extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *expr_ops;
-extern OWN_req sequence_ownreqs;
+extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -49,19 +49,21 @@ extern struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_
 extern struct OPS *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops;
 struct OPS  *record_kind_str_val_ops;
 static int idn_own_init = 0;
-OWN_req idn_ownreqs = {0,0};
-errcode idn_own_init_proc()
+const OWN_req idn_ownreqs = { 0, 0 };
+
+errcode
+idn_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (idn_own_init == 0) {
-        add_parm_info_type(0, expr_ops, sequence_of_t_reqs);
+    if (idn_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
         add_selector_info("name", 0, string_ops);
         add_selector_info("parms", 1, sequence_of_expr_ops);
         add_selector_info("type_", 2, typespec_ops);
         find_selector_ops("record", 3, &(record_name_parms_type__ops));
-        add_parm_info_type(0, record_name_parms_type__ops, sequence_of_t_reqs);
+        add_parm_info_type(0, (const struct OPS *)record_name_parms_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_name_parms_type__ops));
         add_selector_info("opers", 0, sequence_of_record_name_parms_type__ops);
         add_selector_info("parm", 1, idn_ops);
@@ -102,23 +104,26 @@ errcode idn_own_init_proc()
         add_selector_info("val", 2, oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops);
         find_selector_ops("record", 3, &(record_kind_str_val_ops));
         idn_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 idnOPcreate(CLUREF s, CLUREF k, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (idn_own_init == 0) {
-            err = idn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (idn_own_init == 0) {
+        err = idn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(21);
 
   LINE(22);
@@ -127,10 +132,10 @@ idnOPcreate(CLUREF s, CLUREF k, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     RecordAlloc(3, T_1_1);
-    T_1_1.vec->data[1]  = s.num;
+    T_1_1.vec->data[1] = s.num;
     CellAlloc(1, nil, T_1_2);
-    T_1_1.vec->data[2]  = T_1_2.num;
-    T_1_1.vec->data[0]  = k.num;
+    T_1_1.vec->data[2] = T_1_2.num;
+    T_1_1.vec->data[0] = k.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -143,22 +148,22 @@ idnOPcreate(CLUREF s, CLUREF k, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
 
 /**** BEGIN PROCEDURE get_str ****/
 
+
 errcode
 idnOPget_str(CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (idn_own_init == 0) {
-            err = idn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (idn_own_init == 0) {
+        err = idn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(27);
 
   LINE(28);
@@ -178,27 +183,27 @@ idnOPget_str(CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_str ****/
 
 
 /**** BEGIN PROCEDURE set_kind ****/
 
+
 errcode
 idnOPset_kind(CLUREF i, CLUREF k)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (idn_own_init == 0) {
-            err = idn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (idn_own_init == 0) {
+        err = idn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(31);
 
   LINE(32);
     {
-    i.vec->data[0]  = k.num;
+    i.vec->data[0] = k.num;
     }
     goto end_0;
     ex_0:
@@ -208,22 +213,22 @@ idnOPset_kind(CLUREF i, CLUREF k)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_kind ****/
 
 
 /**** BEGIN PROCEDURE get_kind ****/
 
+
 errcode
 idnOPget_kind(CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (idn_own_init == 0) {
-            err = idn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (idn_own_init == 0) {
+        err = idn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(35);
 
   LINE(36);
@@ -243,22 +248,22 @@ idnOPget_kind(CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_kind ****/
 
 
 /**** BEGIN PROCEDURE get_val ****/
 
+
 errcode
 idnOPget_val(CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (idn_own_init == 0) {
-            err = idn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (idn_own_init == 0) {
+        err = idn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(39);
 
   LINE(40);
@@ -278,27 +283,27 @@ idnOPget_val(CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_val ****/
 
 
 /**** BEGIN PROCEDURE set_val ****/
 
+
 errcode
 idnOPset_val(CLUREF i, CLUREF val)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (idn_own_init == 0) {
-            err = idn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (idn_own_init == 0) {
+        err = idn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(43);
 
   LINE(44);
     {
-    i.vec->data[2]  = val.num;
+    i.vec->data[2] = val.num;
     }
     goto end_0;
     ex_0:
@@ -308,22 +313,22 @@ idnOPset_val(CLUREF i, CLUREF val)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE set_val ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 idnOPcopy(CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (idn_own_init == 0) {
-            err = idn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (idn_own_init == 0) {
+        err = idn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(47);
 
   LINE(48);
@@ -341,22 +346,22 @@ idnOPcopy(CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
 
 
 /**** BEGIN PROCEDURE equal ****/
 
+
 errcode
 idnOPequal(CLUREF i1, CLUREF i2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (idn_own_init == 0) {
-            err = idn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (idn_own_init == 0) {
+        err = idn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(51);
 
   LINE(52);
@@ -376,22 +381,22 @@ idnOPequal(CLUREF i1, CLUREF i2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
 
 
 /**** BEGIN PROCEDURE similar ****/
 
+
 errcode
 idnOPsimilar(CLUREF i1, CLUREF i2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (idn_own_init == 0) {
-            err = idn_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (idn_own_init == 0) {
+        err = idn_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(55);
 
   LINE(56);
@@ -411,9 +416,12 @@ idnOPsimilar(CLUREF i1, CLUREF i2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
+
+
+/**** BEGIN PROCEDURE _gcd ****/
 
 struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
@@ -432,18 +440,15 @@ struct OPS  *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_v
 struct OPS  *record_kind_str_val_ops;
 static int idnOP_gcd_own_init = 0;
 
-/**** BEGIN PROCEDURE _gcd ****/
-
 errcode
 idnOP_gcd(CLUREF i, CLUREF tab, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (idnOP_gcd_own_init == 0) {
+    if (idnOP_gcd_own_init == 0) {
         if (idn_own_init == 0) {
             err = idn_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         idnOP_gcd_own_init = 1;
     }
     enter_proc(59);
@@ -470,7 +475,7 @@ idnOP_gcd(CLUREF i, CLUREF tab, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _gcd ****/
 
@@ -481,16 +486,16 @@ typedef struct{
     struct OP_ENTRY entry[10];
 } idn_OPS;
 
-CLU_proc idn_oe__gcd = {{0,0,0,0}, idnOP_gcd, 0};
-CLU_proc idn_oe_copy = {{0,0,0,0}, idnOPcopy, 0};
-CLU_proc idn_oe_create = {{0,0,0,0}, idnOPcreate, 0};
-CLU_proc idn_oe_equal = {{0,0,0,0}, idnOPequal, 0};
-CLU_proc idn_oe_get_kind = {{0,0,0,0}, idnOPget_kind, 0};
-CLU_proc idn_oe_get_str = {{0,0,0,0}, idnOPget_str, 0};
-CLU_proc idn_oe_get_val = {{0,0,0,0}, idnOPget_val, 0};
-CLU_proc idn_oe_set_kind = {{0,0,0,0}, idnOPset_kind, 0};
-CLU_proc idn_oe_set_val = {{0,0,0,0}, idnOPset_val, 0};
-CLU_proc idn_oe_similar = {{0,0,0,0}, idnOPsimilar, 0};
+CLU_proc idn_oe__gcd = { .proc = idnOP_gcd };
+CLU_proc idn_oe_copy = { .proc = idnOPcopy };
+CLU_proc idn_oe_create = { .proc = idnOPcreate };
+CLU_proc idn_oe_equal = { .proc = idnOPequal };
+CLU_proc idn_oe_get_kind = { .proc = idnOPget_kind };
+CLU_proc idn_oe_get_str = { .proc = idnOPget_str };
+CLU_proc idn_oe_get_val = { .proc = idnOPget_val };
+CLU_proc idn_oe_set_kind = { .proc = idnOPset_kind };
+CLU_proc idn_oe_set_val = { .proc = idnOPset_val };
+CLU_proc idn_oe_similar = { .proc = idnOPsimilar };
 
 idn_OPS idn_ops_actual = {10, (OWNPTR)&idn_own_init, (OWNPTR)&idn_own_init, {
     {&idn_oe__gcd, "_gcd"},

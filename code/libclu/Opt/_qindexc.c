@@ -4,19 +4,19 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _qindexc ****/
+
 extern errcode stringOPsize();
 extern errcode intOPle();
 extern errcode stringOPfetch();
 extern errcode charOPequal();
 extern errcode intOPadd();
 
-/**** BEGIN PROCEDURE _qindexc ****/
-
 errcode
 _qindexc(CLUREF c, CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF z;
     CLUREF i;
     CLUREF cc;
@@ -114,7 +114,7 @@ _qindexc(CLUREF c, CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _qindexc ****/
 

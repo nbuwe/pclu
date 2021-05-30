@@ -61,15 +61,17 @@ extern errcode stringOPdecode();
 extern errcode structOP_gcd();
 extern struct OPS *int_ops;
 struct OPS  *struct_days_hours_micros_millis_mins_secs_ops;
-CLUREF STR_;
-CLUREF STR_bad_040format;
+static CLUREF STR_;
+static CLUREF STR_bad_040format;
 static int time_own_init = 0;
-OWN_req time_ownreqs = {0,0};
-errcode time_own_init_proc()
+const OWN_req time_ownreqs = { 0, 0 };
+
+errcode
+time_own_init_proc(void)
 {
     errcode err;
     enter_own_init_proc();
-        if (time_own_init == 0) {
+    if (time_own_init == 0) {
         add_selector_info("days", 0, int_ops);
         add_selector_info("hours", 1, int_ops);
         add_selector_info("micros", 2, int_ops);
@@ -77,26 +79,29 @@ errcode time_own_init_proc()
         add_selector_info("mins", 4, int_ops);
         add_selector_info("secs", 5, int_ops);
         find_selector_ops("struct", 6, &(struct_days_hours_micros_millis_mins_secs_ops));
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("bad format", CLU_1, CLU_10, &STR_bad_040format);
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("bad format", CLU_1, CLUREF_make_num(10), &STR_bad_040format);
         time_own_init = 1;
-        {signal(ERR_ok);}
-    ex_0: pclu_unhandled(err); {signal(ERR_failure);}
-        }
+        signal(ERR_ok);
+      ex_0:
+        pclu_unhandled(err);
+        signal(ERR_failure);
     }
+    signal(ERR_ok);
+}
 
 
 /**** BEGIN PROCEDURE create ****/
 
+
 errcode
 timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis, CLUREF micros, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(12);
 
   LINE(14);
@@ -280,12 +285,12 @@ timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis,
         {
         CLUREF T_3_1;
         RecordAlloc(6, T_3_1);
-        T_3_1.vec->data[0]  = days.num;
-        T_3_1.vec->data[1]  = hours.num;
-        T_3_1.vec->data[4]  = mins.num;
-        T_3_1.vec->data[5]  = secs.num;
-        T_3_1.vec->data[3]  = millis.num;
-        T_3_1.vec->data[2]  = micros.num;
+        T_3_1.vec->data[0] = days.num;
+        T_3_1.vec->data[1] = hours.num;
+        T_3_1.vec->data[4] = mins.num;
+        T_3_1.vec->data[5] = secs.num;
+        T_3_1.vec->data[3] = millis.num;
+        T_3_1.vec->data[2] = micros.num;
         ret_1->num = T_3_1.num;
         }
         {signal (ERR_ok);}}
@@ -305,22 +310,22 @@ timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis,
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE create ****/
 
 
 /**** BEGIN PROCEDURE get_days ****/
 
+
 errcode
 timeOPget_days(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(33);
 
   LINE(34);
@@ -340,22 +345,22 @@ timeOPget_days(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_days ****/
 
 
 /**** BEGIN PROCEDURE get_hours ****/
 
+
 errcode
 timeOPget_hours(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(37);
 
   LINE(38);
@@ -375,22 +380,22 @@ timeOPget_hours(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_hours ****/
 
 
 /**** BEGIN PROCEDURE get_minutes ****/
 
+
 errcode
 timeOPget_minutes(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(41);
 
   LINE(42);
@@ -410,22 +415,22 @@ timeOPget_minutes(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_minutes ****/
 
 
 /**** BEGIN PROCEDURE get_seconds ****/
 
+
 errcode
 timeOPget_seconds(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(45);
 
   LINE(46);
@@ -445,22 +450,22 @@ timeOPget_seconds(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_seconds ****/
 
 
 /**** BEGIN PROCEDURE get_millis ****/
 
+
 errcode
 timeOPget_millis(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(49);
 
   LINE(50);
@@ -480,22 +485,22 @@ timeOPget_millis(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_millis ****/
 
 
 /**** BEGIN PROCEDURE get_micros ****/
 
+
 errcode
 timeOPget_micros(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(53);
 
   LINE(54);
@@ -515,22 +520,22 @@ timeOPget_micros(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_micros ****/
 
 
 /**** BEGIN PROCEDURE get_all ****/
 
+
 errcode
 timeOPget_all(CLUREF t, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret_4, CLUREF *ret_5, CLUREF *ret_6)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(57);
 
   LINE(58);
@@ -575,28 +580,28 @@ timeOPget_all(CLUREF t, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE get_all ****/
 
 
 /**** BEGIN PROCEDURE add ****/
 
+
 errcode
 timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF days;
     CLUREF hours;
     CLUREF mins;
     CLUREF secs;
     CLUREF millis;
     CLUREF micros;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(61);
 
   LINE(62);
@@ -870,12 +875,12 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         RecordAlloc(6, T_3_1);
-        T_3_1.vec->data[0]  = days.num;
-        T_3_1.vec->data[1]  = hours.num;
-        T_3_1.vec->data[4]  = mins.num;
-        T_3_1.vec->data[5]  = secs.num;
-        T_3_1.vec->data[3]  = millis.num;
-        T_3_1.vec->data[2]  = micros.num;
+        T_3_1.vec->data[0] = days.num;
+        T_3_1.vec->data[1] = hours.num;
+        T_3_1.vec->data[4] = mins.num;
+        T_3_1.vec->data[5] = secs.num;
+        T_3_1.vec->data[3] = millis.num;
+        T_3_1.vec->data[2] = micros.num;
         ret_1->num = T_3_1.num;
         }
         {signal (ERR_ok);}}
@@ -895,28 +900,28 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE add ****/
 
 
 /**** BEGIN PROCEDURE sub ****/
 
+
 errcode
 timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF days;
     CLUREF hours;
     CLUREF mins;
     CLUREF secs;
     CLUREF millis;
     CLUREF micros;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(95);
 
   LINE(96);
@@ -1192,12 +1197,12 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(6, T_1_1);
-    T_1_1.vec->data[0]  = days.num;
-    T_1_1.vec->data[1]  = hours.num;
-    T_1_1.vec->data[4]  = mins.num;
-    T_1_1.vec->data[5]  = secs.num;
-    T_1_1.vec->data[3]  = millis.num;
-    T_1_1.vec->data[2]  = micros.num;
+    T_1_1.vec->data[0] = days.num;
+    T_1_1.vec->data[1] = hours.num;
+    T_1_1.vec->data[4] = mins.num;
+    T_1_1.vec->data[5] = secs.num;
+    T_1_1.vec->data[3] = millis.num;
+    T_1_1.vec->data[2] = micros.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -1210,18 +1215,18 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE sub ****/
 
 
 /**** BEGIN PROCEDURE mul ****/
 
+
 errcode
 timeOPmul(CLUREF t, CLUREF n, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF days;
     CLUREF hours;
     CLUREF mins;
@@ -1229,10 +1234,10 @@ timeOPmul(CLUREF t, CLUREF n, CLUREF *ret_1)
     CLUREF millis;
     CLUREF micros;
     CLUREF carry;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(129);
 
   LINE(131);
@@ -1339,12 +1344,12 @@ timeOPmul(CLUREF t, CLUREF n, CLUREF *ret_1)
         {
         CLUREF T_3_1;
         RecordAlloc(6, T_3_1);
-        T_3_1.vec->data[0]  = days.num;
-        T_3_1.vec->data[1]  = hours.num;
-        T_3_1.vec->data[4]  = mins.num;
-        T_3_1.vec->data[5]  = secs.num;
-        T_3_1.vec->data[3]  = millis.num;
-        T_3_1.vec->data[2]  = micros.num;
+        T_3_1.vec->data[0] = days.num;
+        T_3_1.vec->data[1] = hours.num;
+        T_3_1.vec->data[4] = mins.num;
+        T_3_1.vec->data[5] = secs.num;
+        T_3_1.vec->data[3] = millis.num;
+        T_3_1.vec->data[2] = micros.num;
         ret_1->num = T_3_1.num;
         }
         {signal (ERR_ok);}}
@@ -1364,22 +1369,22 @@ timeOPmul(CLUREF t, CLUREF n, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE mul ****/
 
 
 /**** BEGIN PROCEDURE div ****/
 
+
 errcode
 timeOPdiv(CLUREF t, CLUREF n, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(146);
 
   LINE(147);
@@ -1406,18 +1411,18 @@ timeOPdiv(CLUREF t, CLUREF n, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE div ****/
 
 
 /**** BEGIN PROCEDURE average ****/
 
+
 errcode
 timeOPaverage(CLUREF t, CLUREF n, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF days;
     CLUREF hours;
     CLUREF mins;
@@ -1426,10 +1431,10 @@ timeOPaverage(CLUREF t, CLUREF n, CLUREF *ret_1)
     CLUREF micros;
     CLUREF rem;
     CLUREF i;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(151);
 
   LINE(152);
@@ -1545,12 +1550,12 @@ timeOPaverage(CLUREF t, CLUREF n, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     RecordAlloc(6, T_1_1);
-    T_1_1.vec->data[0]  = days.num;
-    T_1_1.vec->data[1]  = hours.num;
-    T_1_1.vec->data[4]  = mins.num;
-    T_1_1.vec->data[5]  = secs.num;
-    T_1_1.vec->data[3]  = millis.num;
-    T_1_1.vec->data[2]  = micros.num;
+    T_1_1.vec->data[0] = days.num;
+    T_1_1.vec->data[1] = hours.num;
+    T_1_1.vec->data[4] = mins.num;
+    T_1_1.vec->data[5] = secs.num;
+    T_1_1.vec->data[3] = millis.num;
+    T_1_1.vec->data[2] = micros.num;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
@@ -1563,28 +1568,28 @@ timeOPaverage(CLUREF t, CLUREF n, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE average ****/
 
 
 /**** BEGIN PROCEDURE do_div ****/
 
+
 errcode
 timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF t;
     CLUREF q;
     CLUREF r;
     CLUREF rr;
     CLUREF i;
     CLUREF x;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(168);
 
   LINE(169);
@@ -1764,22 +1769,22 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE do_div ****/
 
 
 /**** BEGIN PROCEDURE lt ****/
 
+
 errcode
 timeOPlt(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(188);
 
   LINE(189);
@@ -1927,22 +1932,22 @@ timeOPlt(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE lt ****/
 
 
 /**** BEGIN PROCEDURE le ****/
 
+
 errcode
 timeOPle(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(202);
 
   LINE(203);
@@ -1971,22 +1976,22 @@ timeOPle(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE le ****/
 
 
 /**** BEGIN PROCEDURE ge ****/
 
+
 errcode
 timeOPge(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(206);
 
   LINE(207);
@@ -2007,22 +2012,22 @@ timeOPge(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE ge ****/
 
 
 /**** BEGIN PROCEDURE gt ****/
 
+
 errcode
 timeOPgt(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(210);
 
   LINE(211);
@@ -2043,26 +2048,26 @@ timeOPgt(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE gt ****/
 
-static int timeOPparse_own_init = 0;
 
 /**** BEGIN PROCEDURE parse ****/
 
+static int timeOPparse_own_init = 0;
+
 errcode
 timeOPparse(CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF a;
     CLUREF i;
-        if (timeOPparse_own_init == 0) {
+    if (timeOPparse_own_init == 0) {
         if (time_own_init == 0) {
             err = time_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         timeOPparse_own_init = 1;
     }
     enter_proc(217);
@@ -2422,22 +2427,22 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE parse ****/
 
 
 /**** BEGIN PROCEDURE unparse ****/
 
+
 errcode
 timeOPunparse(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(259);
 
   LINE(260);
@@ -2458,22 +2463,22 @@ timeOPunparse(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE unparse ****/
 
 
 /**** BEGIN PROCEDURE t2r ****/
 
+
 errcode
 timeOPt2r(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(265);
 
   LINE(266);
@@ -2567,25 +2572,25 @@ timeOPt2r(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE t2r ****/
 
 
 /**** BEGIN PROCEDURE format ****/
 
+
 errcode
 timeOPformat(CLUREF t, CLUREF frac_width, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF s;
     CLUREF b;
     CLUREF frac;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(279);
 
   LINE(281);
@@ -2873,22 +2878,22 @@ timeOPformat(CLUREF t, CLUREF frac_width, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE format ****/
 
 
 /**** BEGIN PROCEDURE print ****/
 
+
 errcode
 timeOPprint(CLUREF t, CLUREF pst)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(311);
 
   LINE(312);
@@ -2908,25 +2913,25 @@ timeOPprint(CLUREF t, CLUREF pst)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE print ****/
+
+
+/**** BEGIN PROCEDURE equal ****/
 
 struct OPS  *struct_days_hours_micros_millis_mins_secs_ops;
 static int timeOPequal_own_init = 0;
 
-/**** BEGIN PROCEDURE equal ****/
-
 errcode
 timeOPequal(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (timeOPequal_own_init == 0) {
+    if (timeOPequal_own_init == 0) {
         if (time_own_init == 0) {
             err = time_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         timeOPequal_own_init = 1;
     }
     enter_proc(315);
@@ -2957,22 +2962,22 @@ timeOPequal(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE equal ****/
 
 
 /**** BEGIN PROCEDURE similar ****/
 
+
 errcode
 timeOPsimilar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(321);
 
   LINE(322);
@@ -2993,22 +2998,22 @@ timeOPsimilar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE similar ****/
 
 
 /**** BEGIN PROCEDURE copy ****/
 
+
 errcode
 timeOPcopy(CLUREF t, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(325);
 
   LINE(326);
@@ -3026,22 +3031,22 @@ timeOPcopy(CLUREF t, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE copy ****/
 
 
 /**** BEGIN PROCEDURE encode ****/
 
+
 errcode
 timeOPencode(CLUREF t, CLUREF ist)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (time_own_init == 0) {
-            err = time_own_init_proc();
-            if (err != ERR_ok) goto ex_0;
-            }
+    if (time_own_init == 0) {
+        err = time_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     enter_proc(329);
 
   LINE(330);
@@ -3066,24 +3071,24 @@ timeOPencode(CLUREF t, CLUREF ist)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE encode ****/
 
-static int timeOPdecode_own_init = 0;
 
 /**** BEGIN PROCEDURE decode ****/
 
+static int timeOPdecode_own_init = 0;
+
 errcode
 timeOPdecode(CLUREF ist, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (timeOPdecode_own_init == 0) {
+    if (timeOPdecode_own_init == 0) {
         if (time_own_init == 0) {
             err = time_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         timeOPdecode_own_init = 1;
     }
     enter_proc(334);
@@ -3129,25 +3134,25 @@ timeOPdecode(CLUREF ist, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE decode ****/
+
+
+/**** BEGIN PROCEDURE _gcd ****/
 
 struct OPS  *struct_days_hours_micros_millis_mins_secs_ops;
 static int timeOP_gcd_own_init = 0;
 
-/**** BEGIN PROCEDURE _gcd ****/
-
 errcode
 timeOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (timeOP_gcd_own_init == 0) {
+    if (timeOP_gcd_own_init == 0) {
         if (time_own_init == 0) {
             err = time_own_init_proc();
             if (err != ERR_ok) goto ex_0;
-            }
+        }
         timeOP_gcd_own_init = 1;
     }
     enter_proc(341);
@@ -3174,7 +3179,7 @@ timeOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _gcd ****/
 
@@ -3185,34 +3190,34 @@ typedef struct{
     struct OP_ENTRY entry[28];
 } time_OPS;
 
-CLU_proc time_oe__gcd = {{0,0,0,0}, timeOP_gcd, 0};
-CLU_proc time_oe_add = {{0,0,0,0}, timeOPadd, 0};
-CLU_proc time_oe_average = {{0,0,0,0}, timeOPaverage, 0};
-CLU_proc time_oe_copy = {{0,0,0,0}, timeOPcopy, 0};
-CLU_proc time_oe_create = {{0,0,0,0}, timeOPcreate, 0};
-CLU_proc time_oe_decode = {{0,0,0,0}, timeOPdecode, 0};
-CLU_proc time_oe_div = {{0,0,0,0}, timeOPdiv, 0};
-CLU_proc time_oe_encode = {{0,0,0,0}, timeOPencode, 0};
-CLU_proc time_oe_equal = {{0,0,0,0}, timeOPequal, 0};
-CLU_proc time_oe_format = {{0,0,0,0}, timeOPformat, 0};
-CLU_proc time_oe_ge = {{0,0,0,0}, timeOPge, 0};
-CLU_proc time_oe_get_all = {{0,0,0,0}, timeOPget_all, 0};
-CLU_proc time_oe_get_days = {{0,0,0,0}, timeOPget_days, 0};
-CLU_proc time_oe_get_hours = {{0,0,0,0}, timeOPget_hours, 0};
-CLU_proc time_oe_get_micros = {{0,0,0,0}, timeOPget_micros, 0};
-CLU_proc time_oe_get_millis = {{0,0,0,0}, timeOPget_millis, 0};
-CLU_proc time_oe_get_minutes = {{0,0,0,0}, timeOPget_minutes, 0};
-CLU_proc time_oe_get_seconds = {{0,0,0,0}, timeOPget_seconds, 0};
-CLU_proc time_oe_gt = {{0,0,0,0}, timeOPgt, 0};
-CLU_proc time_oe_le = {{0,0,0,0}, timeOPle, 0};
-CLU_proc time_oe_lt = {{0,0,0,0}, timeOPlt, 0};
-CLU_proc time_oe_mul = {{0,0,0,0}, timeOPmul, 0};
-CLU_proc time_oe_parse = {{0,0,0,0}, timeOPparse, 0};
-CLU_proc time_oe_print = {{0,0,0,0}, timeOPprint, 0};
-CLU_proc time_oe_similar = {{0,0,0,0}, timeOPsimilar, 0};
-CLU_proc time_oe_sub = {{0,0,0,0}, timeOPsub, 0};
-CLU_proc time_oe_t2r = {{0,0,0,0}, timeOPt2r, 0};
-CLU_proc time_oe_unparse = {{0,0,0,0}, timeOPunparse, 0};
+CLU_proc time_oe__gcd = { .proc = timeOP_gcd };
+CLU_proc time_oe_add = { .proc = timeOPadd };
+CLU_proc time_oe_average = { .proc = timeOPaverage };
+CLU_proc time_oe_copy = { .proc = timeOPcopy };
+CLU_proc time_oe_create = { .proc = timeOPcreate };
+CLU_proc time_oe_decode = { .proc = timeOPdecode };
+CLU_proc time_oe_div = { .proc = timeOPdiv };
+CLU_proc time_oe_encode = { .proc = timeOPencode };
+CLU_proc time_oe_equal = { .proc = timeOPequal };
+CLU_proc time_oe_format = { .proc = timeOPformat };
+CLU_proc time_oe_ge = { .proc = timeOPge };
+CLU_proc time_oe_get_all = { .proc = timeOPget_all };
+CLU_proc time_oe_get_days = { .proc = timeOPget_days };
+CLU_proc time_oe_get_hours = { .proc = timeOPget_hours };
+CLU_proc time_oe_get_micros = { .proc = timeOPget_micros };
+CLU_proc time_oe_get_millis = { .proc = timeOPget_millis };
+CLU_proc time_oe_get_minutes = { .proc = timeOPget_minutes };
+CLU_proc time_oe_get_seconds = { .proc = timeOPget_seconds };
+CLU_proc time_oe_gt = { .proc = timeOPgt };
+CLU_proc time_oe_le = { .proc = timeOPle };
+CLU_proc time_oe_lt = { .proc = timeOPlt };
+CLU_proc time_oe_mul = { .proc = timeOPmul };
+CLU_proc time_oe_parse = { .proc = timeOPparse };
+CLU_proc time_oe_print = { .proc = timeOPprint };
+CLU_proc time_oe_similar = { .proc = timeOPsimilar };
+CLU_proc time_oe_sub = { .proc = timeOPsub };
+CLU_proc time_oe_t2r = { .proc = timeOPt2r };
+CLU_proc time_oe_unparse = { .proc = timeOPunparse };
 
 time_OPS time_ops_actual = {28, (OWNPTR)&time_own_init, (OWNPTR)&time_own_init, {
     {&time_oe__gcd, "_gcd"},

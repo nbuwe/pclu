@@ -4,20 +4,20 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode streamOPopen();
-extern errcode file_nameOPparse();
-CLUREF STR_read;
-static int open_read_own_init = 0;
 
 /**** BEGIN PROCEDURE open_read ****/
 
+extern errcode streamOPopen();
+extern errcode file_nameOPparse();
+static CLUREF STR_read;
+static int open_read_own_init = 0;
+
 errcode
 open_read(CLUREF name, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (open_read_own_init == 0) {
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
+    if (open_read_own_init == 0) {
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
         open_read_own_init = 1;
     }
     enter_proc(3);
@@ -50,7 +50,7 @@ open_read(CLUREF name, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE open_read ****/
 

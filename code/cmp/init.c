@@ -5,6 +5,9 @@
 #include "pclu_sys.h"
 
 
+
+/**** BEGIN PROCEDURE initialize_compiler ****/
+
 extern errcode cmpvarOPset_version();
 extern errcode stringOPappend();
 extern errcode get_compiler_version();
@@ -28,17 +31,14 @@ extern errcode recordOPset_7();
 extern errcode oneofOPmake_2();
 extern errcode g_envOPcreate();
 extern errcode save_compiler();
-CLUREF STR_read;
-CLUREF STR_write;
+static CLUREF STR_read;
+static CLUREF STR_write;
 static int initialize_compiler_own_init = 0;
-
-/**** BEGIN PROCEDURE initialize_compiler ****/
 
 errcode
 initialize_compiler(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF comp;
     CLUREF fn;
     CLUREF inst;
@@ -48,9 +48,9 @@ initialize_compiler(CLUREF *ret_1)
     CLUREF exts;
     CLUREF undefs;
     CLUREF e;
-        if (initialize_compiler_own_init == 0) {
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons("write", CLU_1, CLU_5, &STR_write);
+    if (initialize_compiler_own_init == 0) {
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons("write", CLU_1, CLUREF_make_num(5), &STR_write);
         initialize_compiler_own_init = 1;
     }
     enter_proc(6);
@@ -180,22 +180,22 @@ initialize_compiler(CLUREF *ret_1)
         CLUREF T_1_2;
         CLUREF T_1_3;
         RecordAlloc(13, T_1_1);
-        T_1_1.vec->data[0]  = comp.num;
-        T_1_1.vec->data[2]  = true;
-        T_1_1.vec->data[1]  = true;
-        T_1_1.vec->data[11]  = ep.num;
-        T_1_1.vec->data[3]  = ec.num;
+        T_1_1.vec->data[0] = comp.num;
+        T_1_1.vec->data[2] = true;
+        T_1_1.vec->data[1] = true;
+        T_1_1.vec->data[11] = ep.num;
+        T_1_1.vec->data[3] = ec.num;
         CellAlloc(1, nil, T_1_2);
-        T_1_1.vec->data[6]  = T_1_2.num;
-        T_1_1.vec->data[8]  = 0;
-        T_1_1.vec->data[7]  = inst.num;
-        T_1_1.vec->data[10]  = outst.num;
-        T_1_1.vec->data[5]  = outst.num;
+        T_1_1.vec->data[6] = T_1_2.num;
+        T_1_1.vec->data[8] = 0;
+        T_1_1.vec->data[7] = inst.num;
+        T_1_1.vec->data[10] = outst.num;
+        T_1_1.vec->data[5] = outst.num;
         err = arrayOPnew(&T_1_3);
         if (err != ERR_ok) goto ex_0;
-        T_1_1.vec->data[9]  = T_1_3.num;
-        T_1_1.vec->data[4]  = exts.num;
-        T_1_1.vec->data[12]  = undefs.num;
+        T_1_1.vec->data[9] = T_1_3.num;
+        T_1_1.vec->data[4] = exts.num;
+        T_1_1.vec->data[12] = undefs.num;
         e.num = T_1_1.num;
         }
         }
@@ -219,7 +219,7 @@ initialize_compiler(CLUREF *ret_1)
     err = g_envOPcreate(comp, outst, fn, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     CellAlloc(2, T_1_1.num, T_1_2);
-    e.vec->data[6]  = T_1_2.num;
+    e.vec->data[6] = T_1_2.num;
     }
 
   LINE(36);
@@ -243,10 +243,13 @@ initialize_compiler(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE initialize_compiler ****/
 
+
+
+/**** BEGIN PROCEDURE initialize_specs ****/
 
 extern errcode basic_name();
 extern errcode boolOPnot();
@@ -261,28 +264,24 @@ extern errcode ceOPkeep();
 extern errcode recordOPget_1();
 extern errcode cmpvarOPstuffs();
 extern errcode duOPkeep();
-CLUREF STR_Can_047t_040find_040basic_056types_072_040please_040setenv_040CLUHOME_040to_040an_040appropriate_040value;
-CLUREF STR_junk;
-CLUREF STR__043specs_040;
-CLUREF STR__136;
+static CLUREF STR_Can_047t_040find_040basic_056types_072_040please_040setenv_040CLUHOME_040to_040an_040appropriate_040value;
+static CLUREF STR_junk;
+static CLUREF STR__043specs_040;
+static CLUREF STR__136;
 static int initialize_specs_own_init = 0;
-
-/**** BEGIN PROCEDURE initialize_specs ****/
 
 errcode
 initialize_specs()
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF fn;
     CLUREF ofn;
     CLUREF jcl;
-        if (initialize_specs_own_init == 0) {
-        CLU_string_size.num = 69;
-        stringOPcons("Can\'t find basic.types: please setenv CLUHOME to an appropriate value", CLU_1, CLU_string_size, &STR_Can_047t_040find_040basic_056types_072_040please_040setenv_040CLUHOME_040to_040an_040appropriate_040value);
-        stringOPcons("junk", CLU_1, CLU_4, &STR_junk);
-        stringOPcons("#specs ", CLU_1, CLU_7, &STR__043specs_040);
-        stringOPcons("^", CLU_1, CLU_1, &STR__136);
+    if (initialize_specs_own_init == 0) {
+        stringOPcons("Can\'t find basic.types: please setenv CLUHOME to an appropriate value", CLU_1, CLUREF_make_num(69), &STR_Can_047t_040find_040basic_056types_072_040please_040setenv_040CLUHOME_040to_040an_040appropriate_040value);
+        stringOPcons("junk", CLU_1, CLUREF_make_num(4), &STR_junk);
+        stringOPcons("#specs ", CLU_1, CLUREF_make_num(7), &STR__043specs_040);
+        stringOPcons("^", CLU_1, CLUREF_make_num(1), &STR__136);
         initialize_specs_own_init = 1;
     }
     enter_proc(40);
@@ -379,10 +378,13 @@ initialize_specs()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE initialize_specs ****/
 
+
+
+/**** BEGIN PROCEDURE save_compiler ****/
 
 extern errcode reset_compiler();
 extern errcode cmpvarOPversion();
@@ -393,13 +395,10 @@ extern errcode stringOPsubstr();
 extern errcode intOPsub();
 extern errcode dump_compiler();
 
-/**** BEGIN PROCEDURE save_compiler ****/
-
 errcode
 save_compiler()
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF vers;
     CLUREF z;
     enter_proc(51);
@@ -474,10 +473,13 @@ save_compiler()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE save_compiler ****/
 
+
+
+/**** BEGIN PROCEDURE reset_compiler ****/
 
 extern errcode ceOPreset();
 extern errcode recordOPset_3();
@@ -495,21 +497,18 @@ extern errcode arrayOPtrim();
 extern errcode recordOPget_10();
 static int reset_compiler_own_init = 0;
 
-/**** BEGIN PROCEDURE reset_compiler ****/
-
 errcode
 reset_compiler()
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF e;
     CLUREF fn;
     CLUREF inst;
     CLUREF outst;
     CLUREF comp;
-        if (reset_compiler_own_init == 0) {
-        stringOPcons("read", CLU_1, CLU_4, &STR_read);
-        stringOPcons("write", CLU_1, CLU_5, &STR_write);
+    if (reset_compiler_own_init == 0) {
+        stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
+        stringOPcons("write", CLU_1, CLUREF_make_num(5), &STR_write);
         reset_compiler_own_init = 1;
     }
     enter_proc(62);
@@ -569,7 +568,7 @@ reset_compiler()
 
   LINE(69);
     {
-    e.vec->data[2]  = true;
+    e.vec->data[2] = true;
     }
 
   LINE(70);
@@ -642,7 +641,7 @@ reset_compiler()
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE reset_compiler ****/
 

@@ -5,13 +5,15 @@
 #include "pclu_sys.h"
 
 
-typedef struct {
-long count;
-} quick_sort_of_t_REQS;
+/**** BEGIN PROCEDURE quick_sort ****/
 
-quick_sort_of_t_REQS quick_sort_of_t_reqs_actual = {0};
 
-struct REQS * quick_sort_of_t_reqs = (struct REQS *)&quick_sort_of_t_reqs_actual;
+static const struct /* REQS */ {
+    long count;
+} quick_sort_of_t_reqs_actual = { 0 };
+
+const struct REQS * const quick_sort_of_t_reqs
+    = (const struct REQS *)&quick_sort_of_t_reqs_actual;
 
 
 typedef struct {
@@ -31,26 +33,23 @@ extern errcode arrayOPremh();
 extern errcode intOPdiv();
 extern errcode boolOPnot();
 extern errcode quick_sort();
-extern struct REQS *quick_sort_of_t_reqs;
-extern OWN_req quick_sort_ownreqs;
+extern const struct REQS * const quick_sort_of_t_reqs;
+extern const OWN_req quick_sort_ownreqs;
 
 typedef struct {
     long quick_sort_own_init;
-    quick_sort_of_t_OPS *t_ops;
+    const quick_sort_of_t_OPS * const t_ops;
     struct OPS *quick_sort_of_t_table;
     struct OPS *quick_sort_of_t_ops;
     OWNPTR quick_sort_of_t_owns;
-    } quick_sort_OWN_DEFN;
-OWN_req quick_sort_ownreqs = {sizeof(quick_sort_OWN_DEFN), 1};
+} quick_sort_OWN_DEFN;
+const OWN_req quick_sort_ownreqs = { sizeof(quick_sort_OWN_DEFN), 1 };
 
-
-/**** BEGIN PROCEDURE quick_sort ****/
 
 errcode
 quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
-    {
+{
     errcode err;
-    errcode ecode2;
     quick_sort_OWN_DEFN *op_own_ptr;
     CLUREF olow;
     CLUREF ohigh;
@@ -58,13 +57,14 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
     CLUREF split;
     CLUREF mid;
     CLUREF val;
-    op_own_ptr = (quick_sort_OWN_DEFN*) CUR_PROC_VAR.proc->op_owns;
-        if (op_own_ptr->quick_sort_own_init == 0) {
-        add_parm_info_type(0, op_own_ptr->t_ops, quick_sort_of_t_reqs);
+    op_own_ptr = (quick_sort_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
+    if (op_own_ptr->quick_sort_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, quick_sort_of_t_reqs);
         find_prociter_instance(quick_sort, 1, &quick_sort_ownreqs, &(op_own_ptr->quick_sort_of_t_ops));
-        }
-        if (op_own_ptr->quick_sort_own_init == 0) {
+    }
+    if (op_own_ptr->quick_sort_own_init == 0) {
         op_own_ptr->quick_sort_own_init = 1;
+        /* no own vars to init */
     }
     enter_proc(2);
 
@@ -408,7 +408,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
         err = ERR_overflow;
         goto ex_0;}
     generic_CLU_proc.type_owns = 0;
-    generic_CLU_proc.op_owns = (long)op_own_ptr->quick_sort_of_t_ops->op_owns;
+    generic_CLU_proc.op_owns = op_own_ptr->quick_sort_of_t_ops->op_owns;
     generic_CLU_proc.proc = quick_sort;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
     err = quick_sort(a, olow, T_1_1, less, equal);
@@ -424,7 +424,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
         err = ERR_overflow;
         goto ex_0;}
     generic_CLU_proc.type_owns = 0;
-    generic_CLU_proc.op_owns = (long)op_own_ptr->quick_sort_of_t_ops->op_owns;
+    generic_CLU_proc.op_owns = op_own_ptr->quick_sort_of_t_ops->op_owns;
     generic_CLU_proc.proc = quick_sort;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
     err = quick_sort(a, T_1_1, ohigh, less, equal);
@@ -438,7 +438,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE quick_sort ****/
 

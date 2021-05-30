@@ -4,18 +4,18 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-CLUREF STR_UNIX;
-static int _operating_system_own_init = 0;
 
 /**** BEGIN PROCEDURE _operating_system ****/
 
+static CLUREF STR_UNIX;
+static int _operating_system_own_init = 0;
+
 errcode
 _operating_system(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
-        if (_operating_system_own_init == 0) {
-        stringOPcons("UNIX", CLU_1, CLU_4, &STR_UNIX);
+    if (_operating_system_own_init == 0) {
+        stringOPcons("UNIX", CLU_1, CLUREF_make_num(4), &STR_UNIX);
         _operating_system_own_init = 1;
     }
     enter_proc(2);
@@ -35,20 +35,20 @@ _operating_system(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _operating_system ****/
 
 
-extern errcode _host_name();
 
 /**** BEGIN PROCEDURE _host_system ****/
 
+extern errcode _host_name();
+
 errcode
 _host_system(CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(6);
 
   LINE(7);
@@ -69,7 +69,7 @@ _host_system(CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _host_system ****/
 

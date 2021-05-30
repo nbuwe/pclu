@@ -4,17 +4,17 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE _longsub ****/
+
 extern errcode intOPsub();
 extern errcode intOPlt();
 extern errcode intOPadd();
 
-/**** BEGIN PROCEDURE _longsub ****/
-
 errcode
 _longsub(CLUREF x1, CLUREF x2, CLUREF x3, CLUREF y1, CLUREF y2, CLUREF y3, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(3);
 
   LINE(4);
@@ -130,7 +130,7 @@ _longsub(CLUREF x1, CLUREF x2, CLUREF x3, CLUREF y1, CLUREF y2, CLUREF y3, CLURE
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _longsub ****/
 

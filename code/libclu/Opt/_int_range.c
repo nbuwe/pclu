@@ -7,11 +7,11 @@
 
 /**** BEGIN PROCEDURE _int_range ****/
 
+
 errcode
 _int_range(CLUREF *ret_1, CLUREF *ret_2)
-    {
+{
     errcode err;
-    errcode ecode2;
     enter_proc(2);
 
   LINE(5);
@@ -32,7 +32,7 @@ _int_range(CLUREF *ret_1, CLUREF *ret_2)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE _int_range ****/
 

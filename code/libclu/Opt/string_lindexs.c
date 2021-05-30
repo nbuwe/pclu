@@ -4,6 +4,9 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+
+/**** BEGIN PROCEDURE string_lindexs ****/
+
 extern errcode stringOPsize();
 extern errcode intOPfrom_to_by();
 extern errcode intOPsub();
@@ -12,13 +15,10 @@ extern errcode charOPequal();
 extern errcode stringOPfetch();
 extern errcode intOPadd();
 
-/**** BEGIN PROCEDURE string_lindexs ****/
-
 errcode
 string_lindexs(CLUREF pat, CLUREF s, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF z;
     CLUREF i;
     CLUREF ok;
@@ -160,7 +160,7 @@ string_lindexs(CLUREF pat, CLUREF s, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE string_lindexs ****/
 

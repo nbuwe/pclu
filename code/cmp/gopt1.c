@@ -5,6 +5,9 @@
 #include "pclu_sys.h"
 
 
+
+/**** BEGIN PROCEDURE g_qinv_test ****/
+
 extern errcode exprOPget_abs();
 extern errcode intOPequal();
 extern errcode sequenceOPsize();
@@ -23,38 +26,35 @@ extern errcode oneofOPis_7();
 extern errcode g_qselop();
 extern errcode oneofOPvalue_7();
 extern errcode all_field_types_null();
-CLUREF STR__137cvt;
-CLUREF STR_array;
-CLUREF STR_sequence;
-CLUREF STR__137vec;
-CLUREF STR_debug_137print;
-CLUREF STR_oneof;
-CLUREF STR_equal;
-CLUREF STR_record;
+static CLUREF STR__137cvt;
+static CLUREF STR_array;
+static CLUREF STR_sequence;
+static CLUREF STR__137vec;
+static CLUREF STR_debug_137print;
+static CLUREF STR_oneof;
+static CLUREF STR_equal;
+static CLUREF STR_record;
 static int g_qinv_test_own_init = 0;
-
-/**** BEGIN PROCEDURE g_qinv_test ****/
 
 errcode
 g_qinv_test(CLUREF exp, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ty;
     CLUREF ct;
     CLUREF cop;
     CLUREF gen;
     CLUREF xt;
     CLUREF flist;
-        if (g_qinv_test_own_init == 0) {
-        stringOPcons("_cvt", CLU_1, CLU_4, &STR__137cvt);
-        stringOPcons("array", CLU_1, CLU_5, &STR_array);
-        stringOPcons("sequence", CLU_1, CLU_8, &STR_sequence);
-        stringOPcons("_vec", CLU_1, CLU_4, &STR__137vec);
-        stringOPcons("debug_print", CLU_1, CLU_11, &STR_debug_137print);
-        stringOPcons("oneof", CLU_1, CLU_5, &STR_oneof);
-        stringOPcons("equal", CLU_1, CLU_5, &STR_equal);
-        stringOPcons("record", CLU_1, CLU_6, &STR_record);
+    if (g_qinv_test_own_init == 0) {
+        stringOPcons("_cvt", CLU_1, CLUREF_make_num(4), &STR__137cvt);
+        stringOPcons("array", CLU_1, CLUREF_make_num(5), &STR_array);
+        stringOPcons("sequence", CLU_1, CLUREF_make_num(8), &STR_sequence);
+        stringOPcons("_vec", CLU_1, CLUREF_make_num(4), &STR__137vec);
+        stringOPcons("debug_print", CLU_1, CLUREF_make_num(11), &STR_debug_137print);
+        stringOPcons("oneof", CLU_1, CLUREF_make_num(5), &STR_oneof);
+        stringOPcons("equal", CLU_1, CLUREF_make_num(5), &STR_equal);
+        stringOPcons("record", CLU_1, CLUREF_make_num(6), &STR_record);
         g_qinv_test_own_init = 1;
     }
     enter_proc(15);
@@ -88,7 +88,7 @@ g_qinv_test(CLUREF exp, CLUREF *ret_1)
                 err = duOPget_common(T_2_5, &T_2_6);
                 if (err != ERR_ok) goto ex_0;
                 T_2_7.num = ((T_2_6.str->size != STR__137cvt.str->size)? false :
-                    !(bcmp(T_2_6.str->data, STR__137cvt.str->data, T_2_6.str->size)));
+                    !(memcmp(T_2_6.str->data, STR__137cvt.str->data, T_2_6.str->size)));
                 T_2_1.num = T_2_7.num;
             }
             if (T_2_1.num == true) {
@@ -210,13 +210,13 @@ g_qinv_test(CLUREF exp, CLUREF *ret_1)
                 err = duOPget_common(gen, &T_3_3);
                 if (err != ERR_ok) goto ex_0;
                 T_3_4.num = ((T_3_3.str->size != STR_array.str->size)? false :
-                    !(bcmp(T_3_3.str->data, STR_array.str->data, T_3_3.str->size)));
+                    !(memcmp(T_3_3.str->data, STR_array.str->data, T_3_3.str->size)));
                 T_3_2.num = T_3_4.num;
                 if (!T_3_4.num) {
                     err = duOPget_common(gen, &T_3_5);
                     if (err != ERR_ok) goto ex_0;
                     T_3_6.num = ((T_3_5.str->size != STR_sequence.str->size)? false :
-                        !(bcmp(T_3_5.str->data, STR_sequence.str->data, T_3_5.str->size)));
+                        !(memcmp(T_3_5.str->data, STR_sequence.str->data, T_3_5.str->size)));
                     T_3_2.num = T_3_6.num;
                 }
                 T_3_1.num = T_3_2.num;
@@ -224,7 +224,7 @@ g_qinv_test(CLUREF exp, CLUREF *ret_1)
                     err = duOPget_common(gen, &T_3_7);
                     if (err != ERR_ok) goto ex_0;
                     T_3_8.num = ((T_3_7.str->size != STR__137vec.str->size)? false :
-                        !(bcmp(T_3_7.str->data, STR__137vec.str->data, T_3_7.str->size)));
+                        !(memcmp(T_3_7.str->data, STR__137vec.str->data, T_3_7.str->size)));
                     T_3_1.num = T_3_8.num;
                 }
                 if (T_3_1.num == true) {
@@ -235,7 +235,7 @@ g_qinv_test(CLUREF exp, CLUREF *ret_1)
                     CLUREF T_4_2;
                     T_4_1.num = cop.vec->data[0];
                     T_4_2.num = ((T_4_1.str->size != STR_debug_137print.str->size)? false :
-                        !(bcmp(T_4_1.str->data, STR_debug_137print.str->data, T_4_1.str->size)));
+                        !(memcmp(T_4_1.str->data, STR_debug_137print.str->data, T_4_1.str->size)));
                     if (T_4_2.num == true) {
                         {
                         {
@@ -334,12 +334,12 @@ g_qinv_test(CLUREF exp, CLUREF *ret_1)
                 err = duOPget_common(T_3_3, &T_3_4);
                 if (err != ERR_ok) goto ex_0;
                 T_3_5.num = ((T_3_4.str->size != STR_oneof.str->size)? false :
-                    !(bcmp(T_3_4.str->data, STR_oneof.str->data, T_3_4.str->size)));
+                    !(memcmp(T_3_4.str->data, STR_oneof.str->data, T_3_4.str->size)));
                 T_3_2.num = T_3_5.num;
                 if (T_3_5.num) {
                     T_3_6.num = cop.vec->data[0];
                     T_3_7.num = ((T_3_6.str->size != STR_equal.str->size)? false :
-                        !(bcmp(T_3_6.str->data, STR_equal.str->data, T_3_6.str->size)));
+                        !(memcmp(T_3_6.str->data, STR_equal.str->data, T_3_6.str->size)));
                     T_3_2.num = T_3_7.num;
                 }
                 T_3_1.num = T_3_2.num;
@@ -371,12 +371,12 @@ g_qinv_test(CLUREF exp, CLUREF *ret_1)
                 err = duOPget_common(T_3_2, &T_3_3);
                 if (err != ERR_ok) goto ex_0;
                 T_3_4.num = ((T_3_3.str->size != STR_record.str->size)? false :
-                    !(bcmp(T_3_3.str->data, STR_record.str->data, T_3_3.str->size)));
+                    !(memcmp(T_3_3.str->data, STR_record.str->data, T_3_3.str->size)));
                 T_3_1.num = T_3_4.num;
                 if (T_3_4.num) {
                     T_3_5.num = cop.vec->data[0];
                     T_3_6.num = ((T_3_5.str->size != STR_equal.str->size)? false :
-                        !(bcmp(T_3_5.str->data, STR_equal.str->data, T_3_5.str->size)));
+                        !(memcmp(T_3_5.str->data, STR_equal.str->data, T_3_5.str->size)));
                     T_3_1.num = T_3_6.num;
                 }
                 if (T_3_1.num == true) {
@@ -428,10 +428,13 @@ g_qinv_test(CLUREF exp, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE g_qinv_test ****/
 
+
+
+/**** BEGIN PROCEDURE g_qinv ****/
 
 extern errcode g_qinv_test();
 extern errcode g_qapply();
@@ -446,37 +449,34 @@ extern errcode g_envOPnewline();
 extern errcode g_envOPputl();
 extern errcode stringOPconcat();
 extern errcode exOPget_current_ex_label();
-CLUREF STR_cannot_040do_040quick_040invocation;
-CLUREF STR__040_075_040;
-CLUREF STR__050;
-CLUREF STR__054_040;
-CLUREF STR__046;
-CLUREF STR__051_073;
-CLUREF STR_if_040_050;
-CLUREF STR__040_041_075_040ERR_137ok_051_040goto_040;
-CLUREF STR__073;
+static CLUREF STR_cannot_040do_040quick_040invocation;
+static CLUREF STR__040_075_040;
+static CLUREF STR__050;
+static CLUREF STR__054_040;
+static CLUREF STR__046;
+static CLUREF STR__051_073;
+static CLUREF STR_if_040_050;
+static CLUREF STR__040_041_075_040ERR_137ok_051_040goto_040;
+static CLUREF STR__073;
 static int g_qinv_own_init = 0;
-
-/**** BEGIN PROCEDURE g_qinv ****/
 
 errcode
 g_qinv(CLUREF e, CLUREF exp, CLUREF args, CLUREF results)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF first;
     CLUREF each_arg;
     CLUREF each_res;
-        if (g_qinv_own_init == 0) {
-        stringOPcons("cannot do quick invocation", CLU_1, CLU_26, &STR_cannot_040do_040quick_040invocation);
-        stringOPcons(" = ", CLU_1, CLU_3, &STR__040_075_040);
-        stringOPcons("(", CLU_1, CLU_1, &STR__050);
-        stringOPcons(", ", CLU_1, CLU_2, &STR__054_040);
-        stringOPcons("&", CLU_1, CLU_1, &STR__046);
-        stringOPcons(");", CLU_1, CLU_2, &STR__051_073);
-        stringOPcons("if (", CLU_1, CLU_4, &STR_if_040_050);
-        stringOPcons(" != ERR_ok) goto ", CLU_1, CLU_17, &STR__040_041_075_040ERR_137ok_051_040goto_040);
-        stringOPcons(";", CLU_1, CLU_1, &STR__073);
+    if (g_qinv_own_init == 0) {
+        stringOPcons("cannot do quick invocation", CLU_1, CLUREF_make_num(26), &STR_cannot_040do_040quick_040invocation);
+        stringOPcons(" = ", CLU_1, CLUREF_make_num(3), &STR__040_075_040);
+        stringOPcons("(", CLU_1, CLUREF_make_num(1), &STR__050);
+        stringOPcons(", ", CLU_1, CLUREF_make_num(2), &STR__054_040);
+        stringOPcons("&", CLU_1, CLUREF_make_num(1), &STR__046);
+        stringOPcons(");", CLU_1, CLUREF_make_num(2), &STR__051_073);
+        stringOPcons("if (", CLU_1, CLUREF_make_num(4), &STR_if_040_050);
+        stringOPcons(" != ERR_ok) goto ", CLU_1, CLUREF_make_num(17), &STR__040_041_075_040ERR_137ok_051_040goto_040);
+        stringOPcons(";", CLU_1, CLUREF_make_num(1), &STR__073);
         g_qinv_own_init = 1;
     }
     enter_proc(72);
@@ -686,31 +686,31 @@ g_qinv(CLUREF e, CLUREF exp, CLUREF args, CLUREF results)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE g_qinv ****/
 
 
-extern errcode ibOPbodies();
-CLUREF STR__054_040locals_054_040iecode_051_073;
-CLUREF STR__054_040_046locals_054_040_046locals_056ecode2_051_073;
-static int g_qiinv_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qiinv ****/
 
+extern errcode ibOPbodies();
+static CLUREF STR__054_040locals_054_040iecode_051_073;
+static CLUREF STR__054_040_046locals_054_040_046locals_056ecode2_051_073;
+static int g_qiinv_own_init = 0;
+
 errcode
 g_qiinv(CLUREF e, CLUREF exp, CLUREF args, CLUREF ibname)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF each_arg;
-        if (g_qiinv_own_init == 0) {
-        stringOPcons("cannot do quick invocation", CLU_1, CLU_26, &STR_cannot_040do_040quick_040invocation);
-        stringOPcons(" = ", CLU_1, CLU_3, &STR__040_075_040);
-        stringOPcons("(", CLU_1, CLU_1, &STR__050);
-        stringOPcons(", ", CLU_1, CLU_2, &STR__054_040);
-        stringOPcons(", locals, iecode);", CLU_1, CLU_18, &STR__054_040locals_054_040iecode_051_073);
-        stringOPcons(", &locals, &locals.ecode2);", CLU_1, CLU_27, &STR__054_040_046locals_054_040_046locals_056ecode2_051_073);
+    if (g_qiinv_own_init == 0) {
+        stringOPcons("cannot do quick invocation", CLU_1, CLUREF_make_num(26), &STR_cannot_040do_040quick_040invocation);
+        stringOPcons(" = ", CLU_1, CLUREF_make_num(3), &STR__040_075_040);
+        stringOPcons("(", CLU_1, CLUREF_make_num(1), &STR__050);
+        stringOPcons(", ", CLU_1, CLUREF_make_num(2), &STR__054_040);
+        stringOPcons(", locals, iecode);", CLU_1, CLUREF_make_num(18), &STR__054_040locals_054_040iecode_051_073);
+        stringOPcons(", &locals, &locals.ecode2);", CLU_1, CLUREF_make_num(27), &STR__054_040_046locals_054_040_046locals_056ecode2_051_073);
         g_qiinv_own_init = 1;
     }
     enter_proc(102);
@@ -825,20 +825,20 @@ g_qiinv(CLUREF e, CLUREF exp, CLUREF args, CLUREF ibname)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE g_qiinv ****/
 
 
-extern errcode g_inline_iter_test_and_info();
 
 /**** BEGIN PROCEDURE g_inline_iter_test ****/
 
+extern errcode g_inline_iter_test_and_info();
+
 errcode
 g_inline_iter_test(CLUREF exp, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ans;
     CLUREF junk1;
     CLUREF junk2;
@@ -872,40 +872,40 @@ g_inline_iter_test(CLUREF exp, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE g_inline_iter_test ****/
 
 
-extern errcode g_envOPmin_inline();
-CLUREF STR_;
-CLUREF STR_indexes;
-CLUREF STR_elements;
-CLUREF STR_int;
-CLUREF STR_from_137to;
-CLUREF STR_from_137to_137by;
-static int g_inline_iter_test_and_info_own_init = 0;
 
 /**** BEGIN PROCEDURE g_inline_iter_test_and_info ****/
 
+extern errcode g_envOPmin_inline();
+static CLUREF STR_;
+static CLUREF STR_indexes;
+static CLUREF STR_elements;
+static CLUREF STR_int;
+static CLUREF STR_from_137to;
+static CLUREF STR_from_137to_137by;
+static int g_inline_iter_test_and_info_own_init = 0;
+
 errcode
 g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ty;
     CLUREF cop;
     CLUREF ct;
     CLUREF gen;
-        if (g_inline_iter_test_and_info_own_init == 0) {
-        stringOPcons("", CLU_1, CLU_0, &STR_);
-        stringOPcons("array", CLU_1, CLU_5, &STR_array);
-        stringOPcons("indexes", CLU_1, CLU_7, &STR_indexes);
-        stringOPcons("elements", CLU_1, CLU_8, &STR_elements);
-        stringOPcons("sequence", CLU_1, CLU_8, &STR_sequence);
-        stringOPcons("int", CLU_1, CLU_3, &STR_int);
-        stringOPcons("from_to", CLU_1, CLU_7, &STR_from_137to);
-        stringOPcons("from_to_by", CLU_1, CLU_10, &STR_from_137to_137by);
+    if (g_inline_iter_test_and_info_own_init == 0) {
+        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
+        stringOPcons("array", CLU_1, CLUREF_make_num(5), &STR_array);
+        stringOPcons("indexes", CLU_1, CLUREF_make_num(7), &STR_indexes);
+        stringOPcons("elements", CLU_1, CLUREF_make_num(8), &STR_elements);
+        stringOPcons("sequence", CLU_1, CLUREF_make_num(8), &STR_sequence);
+        stringOPcons("int", CLU_1, CLUREF_make_num(3), &STR_int);
+        stringOPcons("from_to", CLU_1, CLUREF_make_num(7), &STR_from_137to);
+        stringOPcons("from_to_by", CLU_1, CLUREF_make_num(10), &STR_from_137to_137by);
         g_inline_iter_test_and_info_own_init = 1;
     }
     enter_proc(132);
@@ -1014,12 +1014,12 @@ g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *re
                 err = duOPget_common(gen, &T_3_7);
                 if (err != ERR_ok) goto ex_0;
                 T_3_8.num = ((T_3_7.str->size != STR_array.str->size)? false :
-                    !(bcmp(T_3_7.str->data, STR_array.str->data, T_3_7.str->size)));
+                    !(memcmp(T_3_7.str->data, STR_array.str->data, T_3_7.str->size)));
                 T_3_6.num = T_3_8.num;
                 if (T_3_8.num) {
                     T_3_9.num = cop.vec->data[0];
                     T_3_10.num = ((T_3_9.str->size != STR_indexes.str->size)? false :
-                        !(bcmp(T_3_9.str->data, STR_indexes.str->data, T_3_9.str->size)));
+                        !(memcmp(T_3_9.str->data, STR_indexes.str->data, T_3_9.str->size)));
                     T_3_6.num = T_3_10.num;
                 }
                 T_3_5.num = T_3_6.num;
@@ -1027,12 +1027,12 @@ g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *re
                     err = duOPget_common(gen, &T_3_12);
                     if (err != ERR_ok) goto ex_0;
                     T_3_13.num = ((T_3_12.str->size != STR_array.str->size)? false :
-                        !(bcmp(T_3_12.str->data, STR_array.str->data, T_3_12.str->size)));
+                        !(memcmp(T_3_12.str->data, STR_array.str->data, T_3_12.str->size)));
                     T_3_11.num = T_3_13.num;
                     if (T_3_13.num) {
                         T_3_14.num = cop.vec->data[0];
                         T_3_15.num = ((T_3_14.str->size != STR_elements.str->size)? false :
-                            !(bcmp(T_3_14.str->data, STR_elements.str->data, T_3_14.str->size)));
+                            !(memcmp(T_3_14.str->data, STR_elements.str->data, T_3_14.str->size)));
                         T_3_11.num = T_3_15.num;
                     }
                     T_3_5.num = T_3_11.num;
@@ -1042,12 +1042,12 @@ g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *re
                     err = duOPget_common(gen, &T_3_17);
                     if (err != ERR_ok) goto ex_0;
                     T_3_18.num = ((T_3_17.str->size != STR_sequence.str->size)? false :
-                        !(bcmp(T_3_17.str->data, STR_sequence.str->data, T_3_17.str->size)));
+                        !(memcmp(T_3_17.str->data, STR_sequence.str->data, T_3_17.str->size)));
                     T_3_16.num = T_3_18.num;
                     if (T_3_18.num) {
                         T_3_19.num = cop.vec->data[0];
                         T_3_20.num = ((T_3_19.str->size != STR_indexes.str->size)? false :
-                            !(bcmp(T_3_19.str->data, STR_indexes.str->data, T_3_19.str->size)));
+                            !(memcmp(T_3_19.str->data, STR_indexes.str->data, T_3_19.str->size)));
                         T_3_16.num = T_3_20.num;
                     }
                     T_3_4.num = T_3_16.num;
@@ -1057,12 +1057,12 @@ g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *re
                     err = duOPget_common(gen, &T_3_22);
                     if (err != ERR_ok) goto ex_0;
                     T_3_23.num = ((T_3_22.str->size != STR_sequence.str->size)? false :
-                        !(bcmp(T_3_22.str->data, STR_sequence.str->data, T_3_22.str->size)));
+                        !(memcmp(T_3_22.str->data, STR_sequence.str->data, T_3_22.str->size)));
                     T_3_21.num = T_3_23.num;
                     if (T_3_23.num) {
                         T_3_24.num = cop.vec->data[0];
                         T_3_25.num = ((T_3_24.str->size != STR_elements.str->size)? false :
-                            !(bcmp(T_3_24.str->data, STR_elements.str->data, T_3_24.str->size)));
+                            !(memcmp(T_3_24.str->data, STR_elements.str->data, T_3_24.str->size)));
                         T_3_21.num = T_3_25.num;
                     }
                     T_3_3.num = T_3_21.num;
@@ -1072,12 +1072,12 @@ g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *re
                     err = duOPget_common(gen, &T_3_27);
                     if (err != ERR_ok) goto ex_0;
                     T_3_28.num = ((T_3_27.str->size != STR_int.str->size)? false :
-                        !(bcmp(T_3_27.str->data, STR_int.str->data, T_3_27.str->size)));
+                        !(memcmp(T_3_27.str->data, STR_int.str->data, T_3_27.str->size)));
                     T_3_26.num = T_3_28.num;
                     if (T_3_28.num) {
                         T_3_29.num = cop.vec->data[0];
                         T_3_30.num = ((T_3_29.str->size != STR_from_137to.str->size)? false :
-                            !(bcmp(T_3_29.str->data, STR_from_137to.str->data, T_3_29.str->size)));
+                            !(memcmp(T_3_29.str->data, STR_from_137to.str->data, T_3_29.str->size)));
                         T_3_26.num = T_3_30.num;
                     }
                     T_3_2.num = T_3_26.num;
@@ -1087,12 +1087,12 @@ g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *re
                     err = duOPget_common(gen, &T_3_32);
                     if (err != ERR_ok) goto ex_0;
                     T_3_33.num = ((T_3_32.str->size != STR_int.str->size)? false :
-                        !(bcmp(T_3_32.str->data, STR_int.str->data, T_3_32.str->size)));
+                        !(memcmp(T_3_32.str->data, STR_int.str->data, T_3_32.str->size)));
                     T_3_31.num = T_3_33.num;
                     if (T_3_33.num) {
                         T_3_34.num = cop.vec->data[0];
                         T_3_35.num = ((T_3_34.str->size != STR_from_137to_137by.str->size)? false :
-                            !(bcmp(T_3_34.str->data, STR_from_137to_137by.str->data, T_3_34.str->size)));
+                            !(memcmp(T_3_34.str->data, STR_from_137to_137by.str->data, T_3_34.str->size)));
                         T_3_31.num = T_3_35.num;
                     }
                     T_3_1.num = T_3_31.num;
@@ -1161,10 +1161,13 @@ g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *re
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE g_inline_iter_test_and_info ****/
 
+
+
+/**** BEGIN PROCEDURE g_inline_iter ****/
 
 extern errcode loop_contextOPenter_inline_for();
 extern errcode g_expr0();
@@ -1192,60 +1195,57 @@ extern errcode loop_contextOPget_current_inline_for_count();
 extern errcode intOPunparse();
 extern errcode g_envOPensure_newline();
 extern errcode loop_contextOPleave();
-extern struct REQS *seq_extend_of_t_reqs;
+extern const struct REQS * const seq_extend_of_t_reqs;
 extern struct OPS *expr_ops;
-extern OWN_req seq_extend_ownreqs;
+extern const OWN_req seq_extend_ownreqs;
 struct OPS *seq_extend_of_expr_table;
 struct OPS *seq_extend_of_expr_ops;
 struct OPS *seq_extend_of_expr_ops;
 OWNPTR seq_extend_of_expr_owns;
-CLUREF STR__173;
-CLUREF STR_for_040_050;
-CLUREF STR__073_040;
-CLUREF STR__040_074_075_040;
-CLUREF STR__050_050;
-CLUREF STR__040_075_075_0400_051_040_174_174_040_050_050;
-CLUREF STR__040_076_0400_051_077_040_050;
-CLUREF STR__051_040_072_040_050;
-CLUREF STR__040_076_075_040;
-CLUREF STR__051_051_051_073_040;
-CLUREF STR__053_053_051_040_173;
-CLUREF STR__040_053_075_040;
-CLUREF STR__051_040_173;
-CLUREF STR__056vec_055_076size_073;
-CLUREF STR__056array_055_076ext_137high_073;
-CLUREF STR__040_075_0401_073_040;
-CLUREF STR__056array_055_076ext_137low_073_040;
-CLUREF STR__040_076_040;
-CLUREF STR__056array_055_076ext_137high_040_174_174_040;
-CLUREF STR__040_074_040;
-CLUREF STR__056array_055_076ext_137low_051_040_173;
-CLUREF STR__040_075_040ERR_137failure_073;
-CLUREF STR_elist_1330_135_040_075_040array_137bounds_137exception_137STRING_073;
-CLUREF STR_goto_040;
-CLUREF STR__073_175;
-CLUREF STR__056vec_055_076data_133;
-CLUREF STR__040_055_0401_135;
-CLUREF STR__056array_055_076store_055_076data_133;
-CLUREF STR__040_055_040;
-CLUREF STR__056array_055_076ext_137low;
-CLUREF STR__040_053_040;
-CLUREF STR__056array_055_076int_137low;
-CLUREF STR__135;
-CLUREF STR_shouldn_047t_040get_040here_072_040g_137inline_137iter_072_040;
-CLUREF STR_OP;
-CLUREF STR__175;
-CLUREF STR_end_137inline_137for_137;
-CLUREF STR__072_073;
+static CLUREF STR__173;
+static CLUREF STR_for_040_050;
+static CLUREF STR__073_040;
+static CLUREF STR__040_074_075_040;
+static CLUREF STR__050_050;
+static CLUREF STR__040_075_075_0400_051_040_174_174_040_050_050;
+static CLUREF STR__040_076_0400_051_077_040_050;
+static CLUREF STR__051_040_072_040_050;
+static CLUREF STR__040_076_075_040;
+static CLUREF STR__051_051_051_073_040;
+static CLUREF STR__053_053_051_040_173;
+static CLUREF STR__040_053_075_040;
+static CLUREF STR__051_040_173;
+static CLUREF STR__056vec_055_076size_073;
+static CLUREF STR__056array_055_076ext_137high_073;
+static CLUREF STR__040_075_0401_073_040;
+static CLUREF STR__056array_055_076ext_137low_073_040;
+static CLUREF STR__040_076_040;
+static CLUREF STR__056array_055_076ext_137high_040_174_174_040;
+static CLUREF STR__040_074_040;
+static CLUREF STR__056array_055_076ext_137low_051_040_173;
+static CLUREF STR__040_075_040ERR_137failure_073;
+static CLUREF STR_elist_1330_135_040_075_040array_137bounds_137exception_137STRING_073;
+static CLUREF STR_goto_040;
+static CLUREF STR__073_175;
+static CLUREF STR__056vec_055_076data_133;
+static CLUREF STR__040_055_0401_135;
+static CLUREF STR__056array_055_076store_055_076data_133;
+static CLUREF STR__040_055_040;
+static CLUREF STR__056array_055_076ext_137low;
+static CLUREF STR__040_053_040;
+static CLUREF STR__056array_055_076int_137low;
+static CLUREF STR__135;
+static CLUREF STR_shouldn_047t_040get_040here_072_040g_137inline_137iter_072_040;
+static CLUREF STR_OP;
+static CLUREF STR__175;
+static CLUREF STR_end_137inline_137for_137;
+static CLUREF STR__072_073;
 static int g_inline_iter_own_init = 0;
-
-/**** BEGIN PROCEDURE g_inline_iter ****/
 
 errcode
 g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF yes;
     CLUREF typ;
     CLUREF op;
@@ -1266,57 +1266,57 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
     CLUREF varidn;
     CLUREF s;
     CLUREF n;
-        if (g_inline_iter_own_init == 0) {
-        add_parm_info_type(0, expr_ops, seq_extend_of_t_reqs);
+    if (g_inline_iter_own_init == 0) {
+        add_parm_info_type(0, (const struct OPS *)expr_ops, seq_extend_of_t_reqs);
         find_prociter_instance(seq_extend, 1, &seq_extend_ownreqs, &(seq_extend_of_expr_ops));
-        stringOPcons("{", CLU_1, CLU_1, &STR__173);
-        stringOPcons("from_to_by", CLU_1, CLU_10, &STR_from_137to_137by);
-        stringOPcons("elements", CLU_1, CLU_8, &STR_elements);
-        stringOPcons("int", CLU_1, CLU_3, &STR_int);
-        stringOPcons("from_to", CLU_1, CLU_7, &STR_from_137to);
-        stringOPcons("for (", CLU_1, CLU_5, &STR_for_040_050);
-        stringOPcons(" = ", CLU_1, CLU_3, &STR__040_075_040);
-        stringOPcons("; ", CLU_1, CLU_2, &STR__073_040);
-        stringOPcons(" <= ", CLU_1, CLU_4, &STR__040_074_075_040);
-        stringOPcons("((", CLU_1, CLU_2, &STR__050_050);
-        stringOPcons(" == 0) || ((", CLU_1, CLU_12, &STR__040_075_075_0400_051_040_174_174_040_050_050);
-        stringOPcons(" > 0)? (", CLU_1, CLU_8, &STR__040_076_0400_051_077_040_050);
-        stringOPcons(") : (", CLU_1, CLU_5, &STR__051_040_072_040_050);
-        stringOPcons(" >= ", CLU_1, CLU_4, &STR__040_076_075_040);
-        stringOPcons("))); ", CLU_1, CLU_5, &STR__051_051_051_073_040);
-        stringOPcons("++) {", CLU_1, CLU_5, &STR__053_053_051_040_173);
-        stringOPcons(" += ", CLU_1, CLU_4, &STR__040_053_075_040);
-        stringOPcons(") {", CLU_1, CLU_3, &STR__051_040_173);
-        stringOPcons(";", CLU_1, CLU_1, &STR__073);
-        stringOPcons("sequence", CLU_1, CLU_8, &STR_sequence);
-        stringOPcons("array", CLU_1, CLU_5, &STR_array);
-        stringOPcons("indexes", CLU_1, CLU_7, &STR_indexes);
-        stringOPcons(".vec->size;", CLU_1, CLU_11, &STR__056vec_055_076size_073);
-        stringOPcons(".array->ext_high;", CLU_1, CLU_17, &STR__056array_055_076ext_137high_073);
-        stringOPcons(" = 1; ", CLU_1, CLU_6, &STR__040_075_0401_073_040);
-        stringOPcons(".array->ext_low; ", CLU_1, CLU_17, &STR__056array_055_076ext_137low_073_040);
-        stringOPcons("if (", CLU_1, CLU_4, &STR_if_040_050);
-        stringOPcons(" > ", CLU_1, CLU_3, &STR__040_076_040);
-        stringOPcons(".array->ext_high || ", CLU_1, CLU_20, &STR__056array_055_076ext_137high_040_174_174_040);
-        stringOPcons(" < ", CLU_1, CLU_3, &STR__040_074_040);
-        stringOPcons(".array->ext_low) {", CLU_1, CLU_18, &STR__056array_055_076ext_137low_051_040_173);
-        stringOPcons(" = ERR_failure;", CLU_1, CLU_15, &STR__040_075_040ERR_137failure_073);
-        stringOPcons("elist[0] = array_bounds_exception_STRING;", CLU_1, CLU_41, &STR_elist_1330_135_040_075_040array_137bounds_137exception_137STRING_073);
-        stringOPcons("goto ", CLU_1, CLU_5, &STR_goto_040);
-        stringOPcons(";}", CLU_1, CLU_2, &STR__073_175);
-        stringOPcons(".vec->data[", CLU_1, CLU_11, &STR__056vec_055_076data_133);
-        stringOPcons(" - 1]", CLU_1, CLU_5, &STR__040_055_0401_135);
-        stringOPcons(".array->store->data[", CLU_1, CLU_20, &STR__056array_055_076store_055_076data_133);
-        stringOPcons(" - ", CLU_1, CLU_3, &STR__040_055_040);
-        stringOPcons(".array->ext_low", CLU_1, CLU_15, &STR__056array_055_076ext_137low);
-        stringOPcons(" + ", CLU_1, CLU_3, &STR__040_053_040);
-        stringOPcons(".array->int_low", CLU_1, CLU_15, &STR__056array_055_076int_137low);
-        stringOPcons("]", CLU_1, CLU_1, &STR__135);
-        stringOPcons("shouldn\'t get here: g_inline_iter: ", CLU_1, CLU_35, &STR_shouldn_047t_040get_040here_072_040g_137inline_137iter_072_040);
-        stringOPcons("OP", CLU_1, CLU_2, &STR_OP);
-        stringOPcons("}", CLU_1, CLU_1, &STR__175);
-        stringOPcons("end_inline_for_", CLU_1, CLU_15, &STR_end_137inline_137for_137);
-        stringOPcons(":;", CLU_1, CLU_2, &STR__072_073);
+        stringOPcons("{", CLU_1, CLUREF_make_num(1), &STR__173);
+        stringOPcons("from_to_by", CLU_1, CLUREF_make_num(10), &STR_from_137to_137by);
+        stringOPcons("elements", CLU_1, CLUREF_make_num(8), &STR_elements);
+        stringOPcons("int", CLU_1, CLUREF_make_num(3), &STR_int);
+        stringOPcons("from_to", CLU_1, CLUREF_make_num(7), &STR_from_137to);
+        stringOPcons("for (", CLU_1, CLUREF_make_num(5), &STR_for_040_050);
+        stringOPcons(" = ", CLU_1, CLUREF_make_num(3), &STR__040_075_040);
+        stringOPcons("; ", CLU_1, CLUREF_make_num(2), &STR__073_040);
+        stringOPcons(" <= ", CLU_1, CLUREF_make_num(4), &STR__040_074_075_040);
+        stringOPcons("((", CLU_1, CLUREF_make_num(2), &STR__050_050);
+        stringOPcons(" == 0) || ((", CLU_1, CLUREF_make_num(12), &STR__040_075_075_0400_051_040_174_174_040_050_050);
+        stringOPcons(" > 0)? (", CLU_1, CLUREF_make_num(8), &STR__040_076_0400_051_077_040_050);
+        stringOPcons(") : (", CLU_1, CLUREF_make_num(5), &STR__051_040_072_040_050);
+        stringOPcons(" >= ", CLU_1, CLUREF_make_num(4), &STR__040_076_075_040);
+        stringOPcons("))); ", CLU_1, CLUREF_make_num(5), &STR__051_051_051_073_040);
+        stringOPcons("++) {", CLU_1, CLUREF_make_num(5), &STR__053_053_051_040_173);
+        stringOPcons(" += ", CLU_1, CLUREF_make_num(4), &STR__040_053_075_040);
+        stringOPcons(") {", CLU_1, CLUREF_make_num(3), &STR__051_040_173);
+        stringOPcons(";", CLU_1, CLUREF_make_num(1), &STR__073);
+        stringOPcons("sequence", CLU_1, CLUREF_make_num(8), &STR_sequence);
+        stringOPcons("array", CLU_1, CLUREF_make_num(5), &STR_array);
+        stringOPcons("indexes", CLU_1, CLUREF_make_num(7), &STR_indexes);
+        stringOPcons(".vec->size;", CLU_1, CLUREF_make_num(11), &STR__056vec_055_076size_073);
+        stringOPcons(".array->ext_high;", CLU_1, CLUREF_make_num(17), &STR__056array_055_076ext_137high_073);
+        stringOPcons(" = 1; ", CLU_1, CLUREF_make_num(6), &STR__040_075_0401_073_040);
+        stringOPcons(".array->ext_low; ", CLU_1, CLUREF_make_num(17), &STR__056array_055_076ext_137low_073_040);
+        stringOPcons("if (", CLU_1, CLUREF_make_num(4), &STR_if_040_050);
+        stringOPcons(" > ", CLU_1, CLUREF_make_num(3), &STR__040_076_040);
+        stringOPcons(".array->ext_high || ", CLU_1, CLUREF_make_num(20), &STR__056array_055_076ext_137high_040_174_174_040);
+        stringOPcons(" < ", CLU_1, CLUREF_make_num(3), &STR__040_074_040);
+        stringOPcons(".array->ext_low) {", CLU_1, CLUREF_make_num(18), &STR__056array_055_076ext_137low_051_040_173);
+        stringOPcons(" = ERR_failure;", CLU_1, CLUREF_make_num(15), &STR__040_075_040ERR_137failure_073);
+        stringOPcons("elist[0] = array_bounds_exception_STRING;", CLU_1, CLUREF_make_num(41), &STR_elist_1330_135_040_075_040array_137bounds_137exception_137STRING_073);
+        stringOPcons("goto ", CLU_1, CLUREF_make_num(5), &STR_goto_040);
+        stringOPcons(";}", CLU_1, CLUREF_make_num(2), &STR__073_175);
+        stringOPcons(".vec->data[", CLU_1, CLUREF_make_num(11), &STR__056vec_055_076data_133);
+        stringOPcons(" - 1]", CLU_1, CLUREF_make_num(5), &STR__040_055_0401_135);
+        stringOPcons(".array->store->data[", CLU_1, CLUREF_make_num(20), &STR__056array_055_076store_055_076data_133);
+        stringOPcons(" - ", CLU_1, CLUREF_make_num(3), &STR__040_055_040);
+        stringOPcons(".array->ext_low", CLU_1, CLUREF_make_num(15), &STR__056array_055_076ext_137low);
+        stringOPcons(" + ", CLU_1, CLUREF_make_num(3), &STR__040_053_040);
+        stringOPcons(".array->int_low", CLU_1, CLUREF_make_num(15), &STR__056array_055_076int_137low);
+        stringOPcons("]", CLU_1, CLUREF_make_num(1), &STR__135);
+        stringOPcons("shouldn\'t get here: g_inline_iter: ", CLU_1, CLUREF_make_num(35), &STR_shouldn_047t_040get_040here_072_040g_137inline_137iter_072_040);
+        stringOPcons("OP", CLU_1, CLUREF_make_num(2), &STR_OP);
+        stringOPcons("}", CLU_1, CLUREF_make_num(1), &STR__175);
+        stringOPcons("end_inline_for_", CLU_1, CLUREF_make_num(15), &STR_end_137inline_137for_137);
+        stringOPcons(":;", CLU_1, CLUREF_make_num(2), &STR__072_073);
         g_inline_iter_own_init = 1;
     }
     enter_proc(162);
@@ -1416,11 +1416,11 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_2.num = ((op.str->size != STR_from_137to_137by.str->size)? false :
-        !(bcmp(op.str->data, STR_from_137to_137by.str->data, op.str->size)));
+        !(memcmp(op.str->data, STR_from_137to_137by.str->data, op.str->size)));
     T_1_1.num = T_1_2.num;
     if (!T_1_2.num) {
         T_1_3.num = ((op.str->size != STR_elements.str->size)? false :
-            !(bcmp(op.str->data, STR_elements.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_elements.str->data, op.str->size)));
         T_1_1.num = T_1_3.num;
     }
     if (T_1_1.num == true) {
@@ -1481,7 +1481,7 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
             {
             CLUREF T_2_1;
             generic_CLU_proc.type_owns = 0;
-            generic_CLU_proc.op_owns = (long)seq_extend_of_expr_ops->op_owns;
+            generic_CLU_proc.op_owns = seq_extend_of_expr_ops->op_owns;
             generic_CLU_proc.proc = seq_extend;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
             err = seq_extend(el, new_el, &T_2_1);
@@ -1525,7 +1525,7 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ((op.str->size != STR_from_137to_137by.str->size)? false :
-        !(bcmp(op.str->data, STR_from_137to_137by.str->data, op.str->size)));
+        !(memcmp(op.str->data, STR_from_137to_137by.str->data, op.str->size)));
     if (T_1_1.num == true) {
 
   LINE(197);
@@ -1548,7 +1548,7 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ((op.str->size != STR_elements.str->size)? false :
-        !(bcmp(op.str->data, STR_elements.str->data, op.str->size)));
+        !(memcmp(op.str->data, STR_elements.str->data, op.str->size)));
     if (T_1_1.num == true) {
 
   LINE(200);
@@ -1575,15 +1575,15 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
     CLUREF T_1_4;
     CLUREF T_1_5;
     T_1_2.num = ((typ.str->size != STR_int.str->size)? false :
-        !(bcmp(typ.str->data, STR_int.str->data, typ.str->size)));
+        !(memcmp(typ.str->data, STR_int.str->data, typ.str->size)));
     T_1_1.num = T_1_2.num;
     if (T_1_2.num) {
         T_1_4.num = ((op.str->size != STR_from_137to.str->size)? false :
-            !(bcmp(op.str->data, STR_from_137to.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_from_137to.str->data, op.str->size)));
         T_1_3.num = T_1_4.num;
         if (!T_1_4.num) {
             T_1_5.num = ((op.str->size != STR_from_137to_137by.str->size)? false :
-                !(bcmp(op.str->data, STR_from_137to_137by.str->data, op.str->size)));
+                !(memcmp(op.str->data, STR_from_137to_137by.str->data, op.str->size)));
             T_1_3.num = T_1_5.num;
         }
         T_1_1.num = T_1_3.num;
@@ -1617,7 +1617,7 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = ((op.str->size != STR_from_137to_137by.str->size)? false :
-            !(bcmp(op.str->data, STR_from_137to_137by.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_from_137to_137by.str->data, op.str->size)));
         if (T_2_1.num == true) {
 
   LINE(208);
@@ -1684,7 +1684,7 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = ((op.str->size != STR_from_137to.str->size)? false :
-            !(bcmp(op.str->data, STR_from_137to.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_from_137to.str->data, op.str->size)));
         if (T_2_1.num == true) {
 
   LINE(219);
@@ -1796,7 +1796,7 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = ((op.str->size != STR_from_137to.str->size)? false :
-            !(bcmp(op.str->data, STR_from_137to.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_from_137to.str->data, op.str->size)));
         if (T_2_1.num == true) {
 
   LINE(241);
@@ -1980,21 +1980,21 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
     CLUREF T_1_11;
     CLUREF T_1_12;
     T_1_8.num = ((typ.str->size != STR_sequence.str->size)? false :
-        !(bcmp(typ.str->data, STR_sequence.str->data, typ.str->size)));
+        !(memcmp(typ.str->data, STR_sequence.str->data, typ.str->size)));
     T_1_7.num = T_1_8.num;
     if (!T_1_8.num) {
         T_1_9.num = ((typ.str->size != STR_array.str->size)? false :
-            !(bcmp(typ.str->data, STR_array.str->data, typ.str->size)));
+            !(memcmp(typ.str->data, STR_array.str->data, typ.str->size)));
         T_1_7.num = T_1_9.num;
     }
     T_1_6.num = T_1_7.num;
     if (T_1_7.num) {
         T_1_11.num = ((op.str->size != STR_indexes.str->size)? false :
-            !(bcmp(op.str->data, STR_indexes.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_indexes.str->data, op.str->size)));
         T_1_10.num = T_1_11.num;
         if (!T_1_11.num) {
             T_1_12.num = ((op.str->size != STR_elements.str->size)? false :
-                !(bcmp(op.str->data, STR_elements.str->data, op.str->size)));
+                !(memcmp(op.str->data, STR_elements.str->data, op.str->size)));
             T_1_10.num = T_1_12.num;
         }
         T_1_6.num = T_1_10.num;
@@ -2040,7 +2040,7 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = ((typ.str->size != STR_sequence.str->size)? false :
-            !(bcmp(typ.str->data, STR_sequence.str->data, typ.str->size)));
+            !(memcmp(typ.str->data, STR_sequence.str->data, typ.str->size)));
         if (T_2_1.num == true) {
 
   LINE(277);
@@ -2062,7 +2062,7 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = ((op.str->size != STR_elements.str->size)? false :
-            !(bcmp(op.str->data, STR_elements.str->data, op.str->size)));
+            !(memcmp(op.str->data, STR_elements.str->data, op.str->size)));
         if (T_2_1.num == true) {
 
   LINE(283);
@@ -2118,7 +2118,7 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = ((typ.str->size != STR_sequence.str->size)? false :
-            !(bcmp(typ.str->data, STR_sequence.str->data, typ.str->size)));
+            !(memcmp(typ.str->data, STR_sequence.str->data, typ.str->size)));
         if (T_2_1.num == true) {
 
   LINE(293);
@@ -2196,11 +2196,11 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
         CLUREF T_2_2;
         CLUREF T_2_3;
         T_2_2.num = ((typ.str->size != STR_array.str->size)? false :
-            !(bcmp(typ.str->data, STR_array.str->data, typ.str->size)));
+            !(memcmp(typ.str->data, STR_array.str->data, typ.str->size)));
         T_2_1.num = T_2_2.num;
         if (T_2_2.num) {
             T_2_3.num = ((op.str->size != STR_elements.str->size)? false :
-                !(bcmp(op.str->data, STR_elements.str->data, op.str->size)));
+                !(memcmp(op.str->data, STR_elements.str->data, op.str->size)));
             T_2_1.num = T_2_3.num;
         }
         if (T_2_1.num == true) {
@@ -2431,7 +2431,7 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
                 {
                 CLUREF T_3_1;
                 T_3_1.num = ((op.str->size != STR_indexes.str->size)? false :
-                    !(bcmp(op.str->data, STR_indexes.str->data, op.str->size)));
+                    !(memcmp(op.str->data, STR_indexes.str->data, op.str->size)));
                 if (T_3_1.num == true) {
 
   LINE(343);
@@ -2446,7 +2446,7 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
                     {
                     CLUREF T_4_1;
                     T_4_1.num = ((typ.str->size != STR_sequence.str->size)? false :
-                        !(bcmp(typ.str->data, STR_sequence.str->data, typ.str->size)));
+                        !(memcmp(typ.str->data, STR_sequence.str->data, typ.str->size)));
                     if (T_4_1.num == true) {
 
   LINE(347);
@@ -2667,39 +2667,39 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE g_inline_iter ****/
 
 
-extern errcode stringOPindexc();
-extern errcode stringOPsubstr();
-CLUREF STR_get_137;
-CLUREF STR_set_137;
-CLUREF STR_make_137;
-CLUREF STR_is_137;
-CLUREF STR_change_137;
-CLUREF STR_value_137;
-CLUREF STR_replace_137;
-static int g_qselop_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qselop ****/
 
+extern errcode stringOPindexc();
+extern errcode stringOPsubstr();
+static CLUREF STR_get_137;
+static CLUREF STR_set_137;
+static CLUREF STR_make_137;
+static CLUREF STR_is_137;
+static CLUREF STR_change_137;
+static CLUREF STR_value_137;
+static CLUREF STR_replace_137;
+static int g_qselop_own_init = 0;
+
 errcode
 g_qselop(CLUREF nm, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF loc_of_sep;
     CLUREF prefix;
-        if (g_qselop_own_init == 0) {
-        stringOPcons("get_", CLU_1, CLU_4, &STR_get_137);
-        stringOPcons("set_", CLU_1, CLU_4, &STR_set_137);
-        stringOPcons("make_", CLU_1, CLU_5, &STR_make_137);
-        stringOPcons("is_", CLU_1, CLU_3, &STR_is_137);
-        stringOPcons("change_", CLU_1, CLU_7, &STR_change_137);
-        stringOPcons("value_", CLU_1, CLU_6, &STR_value_137);
-        stringOPcons("replace_", CLU_1, CLU_8, &STR_replace_137);
+    if (g_qselop_own_init == 0) {
+        stringOPcons("get_", CLU_1, CLUREF_make_num(4), &STR_get_137);
+        stringOPcons("set_", CLU_1, CLUREF_make_num(4), &STR_set_137);
+        stringOPcons("make_", CLU_1, CLUREF_make_num(5), &STR_make_137);
+        stringOPcons("is_", CLU_1, CLUREF_make_num(3), &STR_is_137);
+        stringOPcons("change_", CLU_1, CLUREF_make_num(7), &STR_change_137);
+        stringOPcons("value_", CLU_1, CLUREF_make_num(6), &STR_value_137);
+        stringOPcons("replace_", CLU_1, CLUREF_make_num(8), &STR_replace_137);
         g_qselop_own_init = 1;
     }
     enter_proc(388);
@@ -2740,41 +2740,41 @@ g_qselop(CLUREF nm, CLUREF *ret_1)
     CLUREF T_1_12;
     CLUREF T_1_13;
     T_1_7.num = ((prefix.str->size != STR_get_137.str->size)? false :
-        !(bcmp(prefix.str->data, STR_get_137.str->data, prefix.str->size)));
+        !(memcmp(prefix.str->data, STR_get_137.str->data, prefix.str->size)));
     T_1_6.num = T_1_7.num;
     if (!T_1_7.num) {
         T_1_8.num = ((prefix.str->size != STR_set_137.str->size)? false :
-            !(bcmp(prefix.str->data, STR_set_137.str->data, prefix.str->size)));
+            !(memcmp(prefix.str->data, STR_set_137.str->data, prefix.str->size)));
         T_1_6.num = T_1_8.num;
     }
     T_1_5.num = T_1_6.num;
     if (!T_1_6.num) {
         T_1_9.num = ((prefix.str->size != STR_make_137.str->size)? false :
-            !(bcmp(prefix.str->data, STR_make_137.str->data, prefix.str->size)));
+            !(memcmp(prefix.str->data, STR_make_137.str->data, prefix.str->size)));
         T_1_5.num = T_1_9.num;
     }
     T_1_4.num = T_1_5.num;
     if (!T_1_5.num) {
         T_1_10.num = ((prefix.str->size != STR_is_137.str->size)? false :
-            !(bcmp(prefix.str->data, STR_is_137.str->data, prefix.str->size)));
+            !(memcmp(prefix.str->data, STR_is_137.str->data, prefix.str->size)));
         T_1_4.num = T_1_10.num;
     }
     T_1_3.num = T_1_4.num;
     if (!T_1_4.num) {
         T_1_11.num = ((prefix.str->size != STR_change_137.str->size)? false :
-            !(bcmp(prefix.str->data, STR_change_137.str->data, prefix.str->size)));
+            !(memcmp(prefix.str->data, STR_change_137.str->data, prefix.str->size)));
         T_1_3.num = T_1_11.num;
     }
     T_1_2.num = T_1_3.num;
     if (!T_1_3.num) {
         T_1_12.num = ((prefix.str->size != STR_value_137.str->size)? false :
-            !(bcmp(prefix.str->data, STR_value_137.str->data, prefix.str->size)));
+            !(memcmp(prefix.str->data, STR_value_137.str->data, prefix.str->size)));
         T_1_2.num = T_1_12.num;
     }
     T_1_1.num = T_1_2.num;
     if (!T_1_2.num) {
         T_1_13.num = ((prefix.str->size != STR_replace_137.str->size)? false :
-            !(bcmp(prefix.str->data, STR_replace_137.str->data, prefix.str->size)));
+            !(memcmp(prefix.str->data, STR_replace_137.str->data, prefix.str->size)));
         T_1_1.num = T_1_13.num;
     }
     if (T_1_1.num == true) {
@@ -2804,28 +2804,28 @@ g_qselop(CLUREF nm, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE g_qselop ****/
 
 
-extern errcode sequenceOPbottom();
-CLUREF STR__056num_040_075_040;
-static int g_qapply_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qapply ****/
 
+extern errcode sequenceOPbottom();
+static CLUREF STR__056num_040_075_040_050long_051;
+static int g_qapply_own_init = 0;
+
 errcode
 g_qapply(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ct;
     CLUREF residn;
-        if (g_qapply_own_init == 0) {
-        stringOPcons("_cvt", CLU_1, CLU_4, &STR__137cvt);
-        stringOPcons(".num = ", CLU_1, CLU_7, &STR__056num_040_075_040);
-        stringOPcons(";", CLU_1, CLU_1, &STR__073);
+    if (g_qapply_own_init == 0) {
+        stringOPcons("_cvt", CLU_1, CLUREF_make_num(4), &STR__137cvt);
+        stringOPcons(".num = (long)", CLU_1, CLUREF_make_num(13), &STR__056num_040_075_040_050long_051);
+        stringOPcons(";", CLU_1, CLUREF_make_num(1), &STR__073);
         g_qapply_own_init = 1;
     }
     enter_proc(405);
@@ -2869,7 +2869,7 @@ g_qapply(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     err = duOPget_common(T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_3.num = ((T_1_2.str->size != STR__137cvt.str->size)? false :
-        !(bcmp(T_1_2.str->data, STR__137cvt.str->data, T_1_2.str->size)));
+        !(memcmp(T_1_2.str->data, STR__137cvt.str->data, T_1_2.str->size)));
     if (T_1_3.num == true) {
 
   LINE(411);
@@ -2895,7 +2895,7 @@ g_qapply(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
 
   LINE(413);
         {
-        err = g_envOPputs(e, STR__056num_040_075_040);
+        err = g_envOPputs(e, STR__056num_040_075_040_050long_051);
         if (err != ERR_ok) goto ex_0;
         }
 
@@ -2939,109 +2939,110 @@ g_qapply(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE g_qapply ****/
 
+
+
+/**** BEGIN PROCEDURE g_qop ****/
 
 extern errcode oneofOPis_20();
 extern errcode oneofOPvalue_20();
 extern errcode g_const_expr();
 extern errcode expr_print();
 extern errcode g_expr2a();
-CLUREF STR_bool;
-CLUREF STR_not;
-CLUREF STR__040_136_0401_073;
-CLUREF STR__137obj;
-CLUREF STR__056num_040_075_040_050;
-CLUREF STR__040_075_075_040;
-CLUREF STR__051_077_040true_040_072_040false_073;
-CLUREF STR__056cell_055_076tag;
-CLUREF STR_char;
-CLUREF STR__056ch;
-CLUREF STR__056tf;
-CLUREF STR_lt;
-CLUREF STR_le;
-CLUREF STR_ge;
-CLUREF STR_gt;
-CLUREF STR_c2i;
-CLUREF STR__056num_040_075_040_050long_051_050;
-CLUREF STR__056ch_040_046_0400xff_051_073;
-CLUREF STR_low;
-CLUREF STR__056array_055_076ext_137low_073;
-CLUREF STR_high;
-CLUREF STR_empty;
-CLUREF STR__056array_055_076ext_137size_040_075_075_0400_051_077_040true_040_072_040false_073;
-CLUREF STR_size;
-CLUREF STR__056array_055_076ext_137size_073;
-CLUREF STR_string;
-CLUREF STR__056num_040_075_040_050_050;
-CLUREF STR__056str_055_076size_040_041_075_040;
-CLUREF STR__056str_055_076size_051_077_040false_040_072;
-CLUREF STR__041_050bcmp_050;
-CLUREF STR__056str_055_076data_054_040;
-CLUREF STR__056str_055_076size_051_051_051_073;
-CLUREF STR_add;
-CLUREF STR__040if_040_050_050;
-CLUREF STR__056num_040_076_0400_040_046_046_040;
-CLUREF STR__040_074_0400_040_046_046_040;
-CLUREF STR__040_074_0400_051_040_174_174;
-CLUREF STR__040_040_040_040_040_050;
-CLUREF STR__056num_040_074_0400_040_046_046_040;
-CLUREF STR__040_076_0400_040_046_046_040;
-CLUREF STR__040_076_0400_051_051_040_173;
-CLUREF STR__040_075_040ERR_137overflow_073;
-CLUREF STR_sub;
-CLUREF STR__056num_040_076_075_0400_040_046_046_040;
-CLUREF STR__040_074_0400_040_046_046_040_050_055;
-CLUREF STR__051_040_074_0400_051_040_174_174;
-CLUREF STR__056num_040_074_075_0400_040_046_046_040;
-CLUREF STR__040_076_0400_040_046_046_040_050_055;
-CLUREF STR__051_040_076_0400_051_051_040_173;
-CLUREF STR_addh;
-CLUREF STR_if_040_050_050;
-CLUREF STR__056array_055_076int_137low_040_053_040;
-CLUREF STR__056array_055_076ext_137size_040_053_0401_051_040_074_040;
-CLUREF STR__056array_055_076int_137size_051_040_173;
-CLUREF STR__056array_055_076ext_137size_135_040_075_040;
-CLUREF STR__056array_055_076ext_137size_053_053_073_040;
-CLUREF STR__056array_055_076ext_137high_053_053_073_175;
-CLUREF STR_else_040_173;
-CLUREF STR__040_075_040arrayOPaddh_050;
-CLUREF STR_store;
-CLUREF STR__056array_055_076ext_137low_040_174_174_040;
-CLUREF STR__056array_055_076ext_137high_051_040_173;
-CLUREF STR__040_075_040ERR_137bounds_073;
-CLUREF STR__056array_055_076int_137low_040_055_040;
-CLUREF STR__056array_055_076ext_137low_135_040_075_040;
-CLUREF STR__137wordvec;
-CLUREF STR_fetch;
-CLUREF STR__040_074_0401_040_174_174_040_050;
-CLUREF STR__074_0742_051_040_076_040_050;
-CLUREF STR__056str_055_076size_051_051_040_173;
-CLUREF STR__040_055_0401_135_073;
-CLUREF STR__056vec;
-CLUREF STR__137bytevec;
-CLUREF STR__056str;
-CLUREF STR__056array;
-CLUREF STR__040_074_0401_040_174_174_040;
-CLUREF STR__055_076ext_137low_040_174_174_040;
-CLUREF STR__055_076size_040_051_040_173;
-CLUREF STR__055_076ext_137high_040_051_040_173;
-CLUREF STR__056ch_040_075_040;
-CLUREF STR__055_076data_133;
-CLUREF STR__055_076store_055_076data_133;
-CLUREF STR__055_076ext_137low_040_053_040;
-CLUREF STR__055_076int_137low_135_073;
+static CLUREF STR_bool;
+static CLUREF STR_not;
+static CLUREF STR__056num_040_075_040;
+static CLUREF STR__040_136_0401_073;
+static CLUREF STR__137obj;
+static CLUREF STR__056num_040_075_040_050;
+static CLUREF STR__040_075_075_040;
+static CLUREF STR__051_077_040true_040_072_040false_073;
+static CLUREF STR__056cell_055_076tag;
+static CLUREF STR_char;
+static CLUREF STR__056ch;
+static CLUREF STR__056tf;
+static CLUREF STR_lt;
+static CLUREF STR_le;
+static CLUREF STR_ge;
+static CLUREF STR_gt;
+static CLUREF STR_c2i;
+static CLUREF STR__056num_040_075_040_050long_051_050;
+static CLUREF STR__056ch_040_046_0400xff_051_073;
+static CLUREF STR_low;
+static CLUREF STR__056array_055_076ext_137low_073;
+static CLUREF STR_high;
+static CLUREF STR_empty;
+static CLUREF STR__056array_055_076ext_137size_040_075_075_0400_051_077_040true_040_072_040false_073;
+static CLUREF STR_size;
+static CLUREF STR__056array_055_076ext_137size_073;
+static CLUREF STR_string;
+static CLUREF STR__056num_040_075_040_050_050;
+static CLUREF STR__056str_055_076size_040_041_075_040;
+static CLUREF STR__056str_055_076size_051_077_040false_040_072;
+static CLUREF STR__041_050memcmp_050;
+static CLUREF STR__056str_055_076data_054_040;
+static CLUREF STR__056str_055_076size_051_051_051_073;
+static CLUREF STR_add;
+static CLUREF STR__040if_040_050_050;
+static CLUREF STR__056num_040_076_0400_040_046_046_040;
+static CLUREF STR__040_074_0400_040_046_046_040;
+static CLUREF STR__040_074_0400_051_040_174_174;
+static CLUREF STR__040_040_040_040_040_050;
+static CLUREF STR__056num_040_074_0400_040_046_046_040;
+static CLUREF STR__040_076_0400_040_046_046_040;
+static CLUREF STR__040_076_0400_051_051_040_173;
+static CLUREF STR__040_075_040ERR_137overflow_073;
+static CLUREF STR_sub;
+static CLUREF STR__056num_040_076_075_0400_040_046_046_040;
+static CLUREF STR__040_074_0400_040_046_046_040_050_055;
+static CLUREF STR__051_040_074_0400_051_040_174_174;
+static CLUREF STR__056num_040_074_075_0400_040_046_046_040;
+static CLUREF STR__040_076_0400_040_046_046_040_050_055;
+static CLUREF STR__051_040_076_0400_051_051_040_173;
+static CLUREF STR_addh;
+static CLUREF STR_if_040_050_050;
+static CLUREF STR__056array_055_076int_137low_040_053_040;
+static CLUREF STR__056array_055_076ext_137size_040_053_0401_051_040_074_040;
+static CLUREF STR__056array_055_076int_137size_051_040_173;
+static CLUREF STR__056array_055_076ext_137size_135_040_075_040;
+static CLUREF STR__056array_055_076ext_137size_053_053_073_040;
+static CLUREF STR__056array_055_076ext_137high_053_053_073_175;
+static CLUREF STR_else_040_173;
+static CLUREF STR__040_075_040arrayOPaddh_050;
+static CLUREF STR_store;
+static CLUREF STR__056array_055_076ext_137low_040_174_174_040;
+static CLUREF STR__056array_055_076ext_137high_051_040_173;
+static CLUREF STR__040_075_040ERR_137bounds_073;
+static CLUREF STR__056array_055_076int_137low_040_055_040;
+static CLUREF STR__056array_055_076ext_137low_135_040_075_040;
+static CLUREF STR__137wordvec;
+static CLUREF STR_fetch;
+static CLUREF STR__040_074_0401_040_174_174_040_050;
+static CLUREF STR__074_0742_051_040_076_040_050;
+static CLUREF STR__056str_055_076size_051_051_040_173;
+static CLUREF STR__040_055_0401_135_073;
+static CLUREF STR__056vec;
+static CLUREF STR__137bytevec;
+static CLUREF STR__056str;
+static CLUREF STR__056array;
+static CLUREF STR__040_074_0401_040_174_174_040;
+static CLUREF STR__055_076ext_137low_040_174_174_040;
+static CLUREF STR__055_076size_040_051_040_173;
+static CLUREF STR__055_076ext_137high_040_051_040_173;
+static CLUREF STR__056ch_040_075_040;
+static CLUREF STR__055_076data_133;
+static CLUREF STR__055_076store_055_076data_133;
+static CLUREF STR__055_076ext_137low_040_053_040;
+static CLUREF STR__055_076int_137low_135_073;
 static int g_qop_own_init = 0;
-
-/**** BEGIN PROCEDURE g_qop ****/
 
 errcode
 g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF cop;
     CLUREF gen;
     CLUREF flist;
@@ -3063,118 +3064,118 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF arg3;
     CLUREF arg1idn;
     CLUREF tail;
-        if (g_qop_own_init == 0) {
-        stringOPcons("bool", CLU_1, CLU_4, &STR_bool);
-        stringOPcons("not", CLU_1, CLU_3, &STR_not);
-        stringOPcons(".num = ", CLU_1, CLU_7, &STR__056num_040_075_040);
-        stringOPcons(" ^ 1;", CLU_1, CLU_5, &STR__040_136_0401_073);
-        stringOPcons("_obj", CLU_1, CLU_4, &STR__137obj);
-        stringOPcons("equal", CLU_1, CLU_5, &STR_equal);
-        stringOPcons(".num = (", CLU_1, CLU_8, &STR__056num_040_075_040_050);
-        stringOPcons(" == ", CLU_1, CLU_4, &STR__040_075_075_040);
-        stringOPcons(")? true : false;", CLU_1, CLU_16, &STR__051_077_040true_040_072_040false_073);
-        stringOPcons("oneof", CLU_1, CLU_5, &STR_oneof);
-        stringOPcons(".cell->tag", CLU_1, CLU_10, &STR__056cell_055_076tag);
-        stringOPcons("char", CLU_1, CLU_4, &STR_char);
-        stringOPcons(".ch", CLU_1, CLU_3, &STR__056ch);
-        stringOPcons(".tf", CLU_1, CLU_3, &STR__056tf);
-        stringOPcons("record", CLU_1, CLU_6, &STR_record);
-        stringOPcons("int", CLU_1, CLU_3, &STR_int);
-        stringOPcons("lt", CLU_1, CLU_2, &STR_lt);
-        stringOPcons(" < ", CLU_1, CLU_3, &STR__040_074_040);
-        stringOPcons("le", CLU_1, CLU_2, &STR_le);
-        stringOPcons(" <= ", CLU_1, CLU_4, &STR__040_074_075_040);
-        stringOPcons("ge", CLU_1, CLU_2, &STR_ge);
-        stringOPcons(" >= ", CLU_1, CLU_4, &STR__040_076_075_040);
-        stringOPcons("gt", CLU_1, CLU_2, &STR_gt);
-        stringOPcons(" > ", CLU_1, CLU_3, &STR__040_076_040);
-        stringOPcons("c2i", CLU_1, CLU_3, &STR_c2i);
-        stringOPcons(".num = (long)(", CLU_1, CLU_14, &STR__056num_040_075_040_050long_051_050);
-        stringOPcons(";", CLU_1, CLU_1, &STR__073);
-        stringOPcons(".ch & 0xff);", CLU_1, CLU_12, &STR__056ch_040_046_0400xff_051_073);
-        stringOPcons("array", CLU_1, CLU_5, &STR_array);
-        stringOPcons("low", CLU_1, CLU_3, &STR_low);
-        stringOPcons(".array->ext_low;", CLU_1, CLU_16, &STR__056array_055_076ext_137low_073);
-        stringOPcons("high", CLU_1, CLU_4, &STR_high);
-        stringOPcons(".array->ext_high;", CLU_1, CLU_17, &STR__056array_055_076ext_137high_073);
-        stringOPcons("empty", CLU_1, CLU_5, &STR_empty);
-        stringOPcons(".array->ext_size == 0)? true : false;", CLU_1, CLU_37, &STR__056array_055_076ext_137size_040_075_075_0400_051_077_040true_040_072_040false_073);
-        stringOPcons("size", CLU_1, CLU_4, &STR_size);
-        stringOPcons(".array->ext_size;", CLU_1, CLU_17, &STR__056array_055_076ext_137size_073);
-        stringOPcons("sequence", CLU_1, CLU_8, &STR_sequence);
-        stringOPcons(".vec->size;", CLU_1, CLU_11, &STR__056vec_055_076size_073);
-        stringOPcons("string", CLU_1, CLU_6, &STR_string);
-        stringOPcons(".num = ((", CLU_1, CLU_9, &STR__056num_040_075_040_050_050);
-        stringOPcons(".str->size != ", CLU_1, CLU_14, &STR__056str_055_076size_040_041_075_040);
-        stringOPcons(".str->size)? false :", CLU_1, CLU_20, &STR__056str_055_076size_051_077_040false_040_072);
-        stringOPcons("!(bcmp(", CLU_1, CLU_7, &STR__041_050bcmp_050);
-        stringOPcons(".str->data, ", CLU_1, CLU_12, &STR__056str_055_076data_054_040);
-        stringOPcons(".str->size)));", CLU_1, CLU_14, &STR__056str_055_076size_051_051_051_073);
-        stringOPcons("add", CLU_1, CLU_3, &STR_add);
-        stringOPcons(" + ", CLU_1, CLU_3, &STR__040_053_040);
-        stringOPcons(" if ((", CLU_1, CLU_6, &STR__040if_040_050_050);
-        stringOPcons(".num > 0 && ", CLU_1, CLU_12, &STR__056num_040_076_0400_040_046_046_040);
-        stringOPcons(" < 0 && ", CLU_1, CLU_8, &STR__040_074_0400_040_046_046_040);
-        stringOPcons(" < 0) ||", CLU_1, CLU_8, &STR__040_074_0400_051_040_174_174);
-        stringOPcons("     (", CLU_1, CLU_6, &STR__040_040_040_040_040_050);
-        stringOPcons(".num < 0 && ", CLU_1, CLU_12, &STR__056num_040_074_0400_040_046_046_040);
-        stringOPcons(" > 0 && ", CLU_1, CLU_8, &STR__040_076_0400_040_046_046_040);
-        stringOPcons(" > 0)) {", CLU_1, CLU_8, &STR__040_076_0400_051_051_040_173);
-        stringOPcons(" = ERR_overflow;", CLU_1, CLU_16, &STR__040_075_040ERR_137overflow_073);
-        stringOPcons("goto ", CLU_1, CLU_5, &STR_goto_040);
-        stringOPcons(";}", CLU_1, CLU_2, &STR__073_175);
-        stringOPcons("sub", CLU_1, CLU_3, &STR_sub);
-        stringOPcons(" - ", CLU_1, CLU_3, &STR__040_055_040);
-        stringOPcons(".num >= 0 && ", CLU_1, CLU_13, &STR__056num_040_076_075_0400_040_046_046_040);
-        stringOPcons(" < 0 && (-", CLU_1, CLU_10, &STR__040_074_0400_040_046_046_040_050_055);
-        stringOPcons(") < 0) ||", CLU_1, CLU_9, &STR__051_040_074_0400_051_040_174_174);
-        stringOPcons(".num <= 0 && ", CLU_1, CLU_13, &STR__056num_040_074_075_0400_040_046_046_040);
-        stringOPcons(" > 0 && (-", CLU_1, CLU_10, &STR__040_076_0400_040_046_046_040_050_055);
-        stringOPcons(") > 0)) {", CLU_1, CLU_9, &STR__051_040_076_0400_051_051_040_173);
-        stringOPcons("addh", CLU_1, CLU_4, &STR_addh);
-        stringOPcons("{", CLU_1, CLU_1, &STR__173);
-        stringOPcons("if ((", CLU_1, CLU_5, &STR_if_040_050_050);
-        stringOPcons(".array->int_low + ", CLU_1, CLU_18, &STR__056array_055_076int_137low_040_053_040);
-        stringOPcons(".array->ext_size + 1) < ", CLU_1, CLU_24, &STR__056array_055_076ext_137size_040_053_0401_051_040_074_040);
-        stringOPcons(".array->int_size) {", CLU_1, CLU_19, &STR__056array_055_076int_137size_051_040_173);
-        stringOPcons(".array->store->data[", CLU_1, CLU_20, &STR__056array_055_076store_055_076data_133);
-        stringOPcons(".array->ext_size] = ", CLU_1, CLU_20, &STR__056array_055_076ext_137size_135_040_075_040);
-        stringOPcons(".array->ext_size++; ", CLU_1, CLU_20, &STR__056array_055_076ext_137size_053_053_073_040);
-        stringOPcons(".array->ext_high++;}", CLU_1, CLU_20, &STR__056array_055_076ext_137high_053_053_073_175);
-        stringOPcons("else {", CLU_1, CLU_6, &STR_else_040_173);
-        stringOPcons(" = arrayOPaddh(", CLU_1, CLU_15, &STR__040_075_040arrayOPaddh_050);
-        stringOPcons(", ", CLU_1, CLU_2, &STR__054_040);
-        stringOPcons(");", CLU_1, CLU_2, &STR__051_073);
-        stringOPcons("if (", CLU_1, CLU_4, &STR_if_040_050);
-        stringOPcons(" != ERR_ok) goto ", CLU_1, CLU_17, &STR__040_041_075_040ERR_137ok_051_040goto_040);
-        stringOPcons("}", CLU_1, CLU_1, &STR__175);
-        stringOPcons("store", CLU_1, CLU_5, &STR_store);
-        stringOPcons(".array->ext_low || ", CLU_1, CLU_19, &STR__056array_055_076ext_137low_040_174_174_040);
-        stringOPcons(".array->ext_high) {", CLU_1, CLU_19, &STR__056array_055_076ext_137high_051_040_173);
-        stringOPcons(" = ERR_bounds;", CLU_1, CLU_14, &STR__040_075_040ERR_137bounds_073);
-        stringOPcons(".array->int_low - ", CLU_1, CLU_18, &STR__056array_055_076int_137low_040_055_040);
-        stringOPcons(".array->ext_low] = ", CLU_1, CLU_19, &STR__056array_055_076ext_137low_135_040_075_040);
-        stringOPcons("_wordvec", CLU_1, CLU_8, &STR__137wordvec);
-        stringOPcons("fetch", CLU_1, CLU_5, &STR_fetch);
-        stringOPcons(" < 1 || (", CLU_1, CLU_9, &STR__040_074_0401_040_174_174_040_050);
-        stringOPcons("<<2) > (", CLU_1, CLU_8, &STR__074_0742_051_040_076_040_050);
-        stringOPcons(".str->size)) {", CLU_1, CLU_14, &STR__056str_055_076size_051_051_040_173);
-        stringOPcons(".vec->data[", CLU_1, CLU_11, &STR__056vec_055_076data_133);
-        stringOPcons(" - 1];", CLU_1, CLU_6, &STR__040_055_0401_135_073);
-        stringOPcons("_vec", CLU_1, CLU_4, &STR__137vec);
-        stringOPcons(".vec", CLU_1, CLU_4, &STR__056vec);
-        stringOPcons("_bytevec", CLU_1, CLU_8, &STR__137bytevec);
-        stringOPcons(".str", CLU_1, CLU_4, &STR__056str);
-        stringOPcons(".array", CLU_1, CLU_6, &STR__056array);
-        stringOPcons(" < 1 || ", CLU_1, CLU_8, &STR__040_074_0401_040_174_174_040);
-        stringOPcons("->ext_low || ", CLU_1, CLU_13, &STR__055_076ext_137low_040_174_174_040);
-        stringOPcons("->size ) {", CLU_1, CLU_10, &STR__055_076size_040_051_040_173);
-        stringOPcons("->ext_high ) {", CLU_1, CLU_14, &STR__055_076ext_137high_040_051_040_173);
-        stringOPcons(".ch = ", CLU_1, CLU_6, &STR__056ch_040_075_040);
-        stringOPcons("->data[", CLU_1, CLU_7, &STR__055_076data_133);
-        stringOPcons("->store->data[", CLU_1, CLU_14, &STR__055_076store_055_076data_133);
-        stringOPcons("->ext_low + ", CLU_1, CLU_12, &STR__055_076ext_137low_040_053_040);
-        stringOPcons("->int_low];", CLU_1, CLU_11, &STR__055_076int_137low_135_073);
+    if (g_qop_own_init == 0) {
+        stringOPcons("bool", CLU_1, CLUREF_make_num(4), &STR_bool);
+        stringOPcons("not", CLU_1, CLUREF_make_num(3), &STR_not);
+        stringOPcons(".num = ", CLU_1, CLUREF_make_num(7), &STR__056num_040_075_040);
+        stringOPcons(" ^ 1;", CLU_1, CLUREF_make_num(5), &STR__040_136_0401_073);
+        stringOPcons("_obj", CLU_1, CLUREF_make_num(4), &STR__137obj);
+        stringOPcons("equal", CLU_1, CLUREF_make_num(5), &STR_equal);
+        stringOPcons(".num = (", CLU_1, CLUREF_make_num(8), &STR__056num_040_075_040_050);
+        stringOPcons(" == ", CLU_1, CLUREF_make_num(4), &STR__040_075_075_040);
+        stringOPcons(")? true : false;", CLU_1, CLUREF_make_num(16), &STR__051_077_040true_040_072_040false_073);
+        stringOPcons("oneof", CLU_1, CLUREF_make_num(5), &STR_oneof);
+        stringOPcons(".cell->tag", CLU_1, CLUREF_make_num(10), &STR__056cell_055_076tag);
+        stringOPcons("char", CLU_1, CLUREF_make_num(4), &STR_char);
+        stringOPcons(".ch", CLU_1, CLUREF_make_num(3), &STR__056ch);
+        stringOPcons(".tf", CLU_1, CLUREF_make_num(3), &STR__056tf);
+        stringOPcons("record", CLU_1, CLUREF_make_num(6), &STR_record);
+        stringOPcons("int", CLU_1, CLUREF_make_num(3), &STR_int);
+        stringOPcons("lt", CLU_1, CLUREF_make_num(2), &STR_lt);
+        stringOPcons(" < ", CLU_1, CLUREF_make_num(3), &STR__040_074_040);
+        stringOPcons("le", CLU_1, CLUREF_make_num(2), &STR_le);
+        stringOPcons(" <= ", CLU_1, CLUREF_make_num(4), &STR__040_074_075_040);
+        stringOPcons("ge", CLU_1, CLUREF_make_num(2), &STR_ge);
+        stringOPcons(" >= ", CLU_1, CLUREF_make_num(4), &STR__040_076_075_040);
+        stringOPcons("gt", CLU_1, CLUREF_make_num(2), &STR_gt);
+        stringOPcons(" > ", CLU_1, CLUREF_make_num(3), &STR__040_076_040);
+        stringOPcons("c2i", CLU_1, CLUREF_make_num(3), &STR_c2i);
+        stringOPcons(".num = (long)(", CLU_1, CLUREF_make_num(14), &STR__056num_040_075_040_050long_051_050);
+        stringOPcons(";", CLU_1, CLUREF_make_num(1), &STR__073);
+        stringOPcons(".ch & 0xff);", CLU_1, CLUREF_make_num(12), &STR__056ch_040_046_0400xff_051_073);
+        stringOPcons("array", CLU_1, CLUREF_make_num(5), &STR_array);
+        stringOPcons("low", CLU_1, CLUREF_make_num(3), &STR_low);
+        stringOPcons(".array->ext_low;", CLU_1, CLUREF_make_num(16), &STR__056array_055_076ext_137low_073);
+        stringOPcons("high", CLU_1, CLUREF_make_num(4), &STR_high);
+        stringOPcons(".array->ext_high;", CLU_1, CLUREF_make_num(17), &STR__056array_055_076ext_137high_073);
+        stringOPcons("empty", CLU_1, CLUREF_make_num(5), &STR_empty);
+        stringOPcons(".array->ext_size == 0)? true : false;", CLU_1, CLUREF_make_num(37), &STR__056array_055_076ext_137size_040_075_075_0400_051_077_040true_040_072_040false_073);
+        stringOPcons("size", CLU_1, CLUREF_make_num(4), &STR_size);
+        stringOPcons(".array->ext_size;", CLU_1, CLUREF_make_num(17), &STR__056array_055_076ext_137size_073);
+        stringOPcons("sequence", CLU_1, CLUREF_make_num(8), &STR_sequence);
+        stringOPcons(".vec->size;", CLU_1, CLUREF_make_num(11), &STR__056vec_055_076size_073);
+        stringOPcons("string", CLU_1, CLUREF_make_num(6), &STR_string);
+        stringOPcons(".num = ((", CLU_1, CLUREF_make_num(9), &STR__056num_040_075_040_050_050);
+        stringOPcons(".str->size != ", CLU_1, CLUREF_make_num(14), &STR__056str_055_076size_040_041_075_040);
+        stringOPcons(".str->size)? false :", CLU_1, CLUREF_make_num(20), &STR__056str_055_076size_051_077_040false_040_072);
+        stringOPcons("!(memcmp(", CLU_1, CLUREF_make_num(9), &STR__041_050memcmp_050);
+        stringOPcons(".str->data, ", CLU_1, CLUREF_make_num(12), &STR__056str_055_076data_054_040);
+        stringOPcons(".str->size)));", CLU_1, CLUREF_make_num(14), &STR__056str_055_076size_051_051_051_073);
+        stringOPcons("add", CLU_1, CLUREF_make_num(3), &STR_add);
+        stringOPcons(" + ", CLU_1, CLUREF_make_num(3), &STR__040_053_040);
+        stringOPcons(" if ((", CLU_1, CLUREF_make_num(6), &STR__040if_040_050_050);
+        stringOPcons(".num > 0 && ", CLU_1, CLUREF_make_num(12), &STR__056num_040_076_0400_040_046_046_040);
+        stringOPcons(" < 0 && ", CLU_1, CLUREF_make_num(8), &STR__040_074_0400_040_046_046_040);
+        stringOPcons(" < 0) ||", CLU_1, CLUREF_make_num(8), &STR__040_074_0400_051_040_174_174);
+        stringOPcons("     (", CLU_1, CLUREF_make_num(6), &STR__040_040_040_040_040_050);
+        stringOPcons(".num < 0 && ", CLU_1, CLUREF_make_num(12), &STR__056num_040_074_0400_040_046_046_040);
+        stringOPcons(" > 0 && ", CLU_1, CLUREF_make_num(8), &STR__040_076_0400_040_046_046_040);
+        stringOPcons(" > 0)) {", CLU_1, CLUREF_make_num(8), &STR__040_076_0400_051_051_040_173);
+        stringOPcons(" = ERR_overflow;", CLU_1, CLUREF_make_num(16), &STR__040_075_040ERR_137overflow_073);
+        stringOPcons("goto ", CLU_1, CLUREF_make_num(5), &STR_goto_040);
+        stringOPcons(";}", CLU_1, CLUREF_make_num(2), &STR__073_175);
+        stringOPcons("sub", CLU_1, CLUREF_make_num(3), &STR_sub);
+        stringOPcons(" - ", CLU_1, CLUREF_make_num(3), &STR__040_055_040);
+        stringOPcons(".num >= 0 && ", CLU_1, CLUREF_make_num(13), &STR__056num_040_076_075_0400_040_046_046_040);
+        stringOPcons(" < 0 && (-", CLU_1, CLUREF_make_num(10), &STR__040_074_0400_040_046_046_040_050_055);
+        stringOPcons(") < 0) ||", CLU_1, CLUREF_make_num(9), &STR__051_040_074_0400_051_040_174_174);
+        stringOPcons(".num <= 0 && ", CLU_1, CLUREF_make_num(13), &STR__056num_040_074_075_0400_040_046_046_040);
+        stringOPcons(" > 0 && (-", CLU_1, CLUREF_make_num(10), &STR__040_076_0400_040_046_046_040_050_055);
+        stringOPcons(") > 0)) {", CLU_1, CLUREF_make_num(9), &STR__051_040_076_0400_051_051_040_173);
+        stringOPcons("addh", CLU_1, CLUREF_make_num(4), &STR_addh);
+        stringOPcons("{", CLU_1, CLUREF_make_num(1), &STR__173);
+        stringOPcons("if ((", CLU_1, CLUREF_make_num(5), &STR_if_040_050_050);
+        stringOPcons(".array->int_low + ", CLU_1, CLUREF_make_num(18), &STR__056array_055_076int_137low_040_053_040);
+        stringOPcons(".array->ext_size + 1) < ", CLU_1, CLUREF_make_num(24), &STR__056array_055_076ext_137size_040_053_0401_051_040_074_040);
+        stringOPcons(".array->int_size) {", CLU_1, CLUREF_make_num(19), &STR__056array_055_076int_137size_051_040_173);
+        stringOPcons(".array->store->data[", CLU_1, CLUREF_make_num(20), &STR__056array_055_076store_055_076data_133);
+        stringOPcons(".array->ext_size] = ", CLU_1, CLUREF_make_num(20), &STR__056array_055_076ext_137size_135_040_075_040);
+        stringOPcons(".array->ext_size++; ", CLU_1, CLUREF_make_num(20), &STR__056array_055_076ext_137size_053_053_073_040);
+        stringOPcons(".array->ext_high++;}", CLU_1, CLUREF_make_num(20), &STR__056array_055_076ext_137high_053_053_073_175);
+        stringOPcons("else {", CLU_1, CLUREF_make_num(6), &STR_else_040_173);
+        stringOPcons(" = arrayOPaddh(", CLU_1, CLUREF_make_num(15), &STR__040_075_040arrayOPaddh_050);
+        stringOPcons(", ", CLU_1, CLUREF_make_num(2), &STR__054_040);
+        stringOPcons(");", CLU_1, CLUREF_make_num(2), &STR__051_073);
+        stringOPcons("if (", CLU_1, CLUREF_make_num(4), &STR_if_040_050);
+        stringOPcons(" != ERR_ok) goto ", CLU_1, CLUREF_make_num(17), &STR__040_041_075_040ERR_137ok_051_040goto_040);
+        stringOPcons("}", CLU_1, CLUREF_make_num(1), &STR__175);
+        stringOPcons("store", CLU_1, CLUREF_make_num(5), &STR_store);
+        stringOPcons(".array->ext_low || ", CLU_1, CLUREF_make_num(19), &STR__056array_055_076ext_137low_040_174_174_040);
+        stringOPcons(".array->ext_high) {", CLU_1, CLUREF_make_num(19), &STR__056array_055_076ext_137high_051_040_173);
+        stringOPcons(" = ERR_bounds;", CLU_1, CLUREF_make_num(14), &STR__040_075_040ERR_137bounds_073);
+        stringOPcons(".array->int_low - ", CLU_1, CLUREF_make_num(18), &STR__056array_055_076int_137low_040_055_040);
+        stringOPcons(".array->ext_low] = ", CLU_1, CLUREF_make_num(19), &STR__056array_055_076ext_137low_135_040_075_040);
+        stringOPcons("_wordvec", CLU_1, CLUREF_make_num(8), &STR__137wordvec);
+        stringOPcons("fetch", CLU_1, CLUREF_make_num(5), &STR_fetch);
+        stringOPcons(" < 1 || (", CLU_1, CLUREF_make_num(9), &STR__040_074_0401_040_174_174_040_050);
+        stringOPcons("<<2) > (", CLU_1, CLUREF_make_num(8), &STR__074_0742_051_040_076_040_050);
+        stringOPcons(".str->size)) {", CLU_1, CLUREF_make_num(14), &STR__056str_055_076size_051_051_040_173);
+        stringOPcons(".vec->data[", CLU_1, CLUREF_make_num(11), &STR__056vec_055_076data_133);
+        stringOPcons(" - 1];", CLU_1, CLUREF_make_num(6), &STR__040_055_0401_135_073);
+        stringOPcons("_vec", CLU_1, CLUREF_make_num(4), &STR__137vec);
+        stringOPcons(".vec", CLU_1, CLUREF_make_num(4), &STR__056vec);
+        stringOPcons("_bytevec", CLU_1, CLUREF_make_num(8), &STR__137bytevec);
+        stringOPcons(".str", CLU_1, CLUREF_make_num(4), &STR__056str);
+        stringOPcons(".array", CLU_1, CLUREF_make_num(6), &STR__056array);
+        stringOPcons(" < 1 || ", CLU_1, CLUREF_make_num(8), &STR__040_074_0401_040_174_174_040);
+        stringOPcons("->ext_low || ", CLU_1, CLUREF_make_num(13), &STR__055_076ext_137low_040_174_174_040);
+        stringOPcons("->size ) {", CLU_1, CLUREF_make_num(10), &STR__055_076size_040_051_040_173);
+        stringOPcons("->ext_high ) {", CLU_1, CLUREF_make_num(14), &STR__055_076ext_137high_040_051_040_173);
+        stringOPcons(".ch = ", CLU_1, CLUREF_make_num(6), &STR__056ch_040_075_040);
+        stringOPcons("->data[", CLU_1, CLUREF_make_num(7), &STR__055_076data_133);
+        stringOPcons("->store->data[", CLU_1, CLUREF_make_num(14), &STR__055_076store_055_076data_133);
+        stringOPcons("->ext_low + ", CLU_1, CLUREF_make_num(12), &STR__055_076ext_137low_040_053_040);
+        stringOPcons("->int_low];", CLU_1, CLUREF_make_num(11), &STR__055_076int_137low_135_073);
         g_qop_own_init = 1;
     }
     enter_proc(421);
@@ -3286,11 +3287,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_2;
     CLUREF T_1_3;
     T_1_2.num = ((type_name.str->size != STR_bool.str->size)? false :
-        !(bcmp(type_name.str->data, STR_bool.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_bool.str->data, type_name.str->size)));
     T_1_1.num = T_1_2.num;
     if (T_1_2.num) {
         T_1_3.num = ((op_name.str->size != STR_not.str->size)? false :
-            !(bcmp(op_name.str->data, STR_not.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_not.str->data, op_name.str->size)));
         T_1_1.num = T_1_3.num;
     }
     if (T_1_1.num == true) {
@@ -3349,11 +3350,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_5;
     CLUREF T_1_6;
     T_1_5.num = ((type_name.str->size != STR__137obj.str->size)? false :
-        !(bcmp(type_name.str->data, STR__137obj.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR__137obj.str->data, type_name.str->size)));
     T_1_4.num = T_1_5.num;
     if (T_1_5.num) {
         T_1_6.num = ((op_name.str->size != STR_equal.str->size)? false :
-            !(bcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
         T_1_4.num = T_1_6.num;
     }
     if (T_1_4.num == true) {
@@ -3431,11 +3432,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_8;
     CLUREF T_1_9;
     T_1_8.num = ((type_name.str->size != STR_oneof.str->size)? false :
-        !(bcmp(type_name.str->data, STR_oneof.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_oneof.str->data, type_name.str->size)));
     T_1_7.num = T_1_8.num;
     if (T_1_8.num) {
         T_1_9.num = ((op_name.str->size != STR_equal.str->size)? false :
-            !(bcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
         T_1_7.num = T_1_9.num;
     }
     if (T_1_7.num == true) {
@@ -3600,11 +3601,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_11;
     CLUREF T_1_12;
     T_1_11.num = ((type_name.str->size != STR_char.str->size)? false :
-        !(bcmp(type_name.str->data, STR_char.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_char.str->data, type_name.str->size)));
     T_1_10.num = T_1_11.num;
     if (T_1_11.num) {
         T_1_12.num = ((op_name.str->size != STR_equal.str->size)? false :
-            !(bcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
         T_1_10.num = T_1_12.num;
     }
     if (T_1_10.num == true) {
@@ -3788,11 +3789,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_14;
     CLUREF T_1_15;
     T_1_14.num = ((type_name.str->size != STR_bool.str->size)? false :
-        !(bcmp(type_name.str->data, STR_bool.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_bool.str->data, type_name.str->size)));
     T_1_13.num = T_1_14.num;
     if (T_1_14.num) {
         T_1_15.num = ((op_name.str->size != STR_equal.str->size)? false :
-            !(bcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
         T_1_13.num = T_1_15.num;
     }
     if (T_1_13.num == true) {
@@ -3976,11 +3977,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_17;
     CLUREF T_1_18;
     T_1_17.num = ((type_name.str->size != STR_record.str->size)? false :
-        !(bcmp(type_name.str->data, STR_record.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_record.str->data, type_name.str->size)));
     T_1_16.num = T_1_17.num;
     if (T_1_17.num) {
         T_1_18.num = ((op_name.str->size != STR_equal.str->size)? false :
-            !(bcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
         T_1_16.num = T_1_18.num;
     }
     if (T_1_16.num == true) {
@@ -4058,11 +4059,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_20;
     CLUREF T_1_21;
     T_1_20.num = ((type_name.str->size != STR_int.str->size)? false :
-        !(bcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
     T_1_19.num = T_1_20.num;
     if (T_1_20.num) {
         T_1_21.num = ((op_name.str->size != STR_equal.str->size)? false :
-            !(bcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
         T_1_19.num = T_1_21.num;
     }
     if (T_1_19.num == true) {
@@ -4140,11 +4141,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_23;
     CLUREF T_1_24;
     T_1_23.num = ((type_name.str->size != STR_int.str->size)? false :
-        !(bcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
     T_1_22.num = T_1_23.num;
     if (T_1_23.num) {
         T_1_24.num = ((op_name.str->size != STR_lt.str->size)? false :
-            !(bcmp(op_name.str->data, STR_lt.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_lt.str->data, op_name.str->size)));
         T_1_22.num = T_1_24.num;
     }
     if (T_1_22.num == true) {
@@ -4222,11 +4223,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_26;
     CLUREF T_1_27;
     T_1_26.num = ((type_name.str->size != STR_int.str->size)? false :
-        !(bcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
     T_1_25.num = T_1_26.num;
     if (T_1_26.num) {
         T_1_27.num = ((op_name.str->size != STR_le.str->size)? false :
-            !(bcmp(op_name.str->data, STR_le.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_le.str->data, op_name.str->size)));
         T_1_25.num = T_1_27.num;
     }
     if (T_1_25.num == true) {
@@ -4304,11 +4305,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_29;
     CLUREF T_1_30;
     T_1_29.num = ((type_name.str->size != STR_int.str->size)? false :
-        !(bcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
     T_1_28.num = T_1_29.num;
     if (T_1_29.num) {
         T_1_30.num = ((op_name.str->size != STR_ge.str->size)? false :
-            !(bcmp(op_name.str->data, STR_ge.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_ge.str->data, op_name.str->size)));
         T_1_28.num = T_1_30.num;
     }
     if (T_1_28.num == true) {
@@ -4386,11 +4387,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_32;
     CLUREF T_1_33;
     T_1_32.num = ((type_name.str->size != STR_int.str->size)? false :
-        !(bcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
     T_1_31.num = T_1_32.num;
     if (T_1_32.num) {
         T_1_33.num = ((op_name.str->size != STR_gt.str->size)? false :
-            !(bcmp(op_name.str->data, STR_gt.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_gt.str->data, op_name.str->size)));
         T_1_31.num = T_1_33.num;
     }
     if (T_1_31.num == true) {
@@ -4468,11 +4469,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_35;
     CLUREF T_1_36;
     T_1_35.num = ((type_name.str->size != STR_char.str->size)? false :
-        !(bcmp(type_name.str->data, STR_char.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_char.str->data, type_name.str->size)));
     T_1_34.num = T_1_35.num;
     if (T_1_35.num) {
         T_1_36.num = ((op_name.str->size != STR_c2i.str->size)? false :
-            !(bcmp(op_name.str->data, STR_c2i.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_c2i.str->data, op_name.str->size)));
         T_1_34.num = T_1_36.num;
     }
     if (T_1_34.num == true) {
@@ -4577,11 +4578,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_38;
     CLUREF T_1_39;
     T_1_38.num = ((type_name.str->size != STR_array.str->size)? false :
-        !(bcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
     T_1_37.num = T_1_38.num;
     if (T_1_38.num) {
         T_1_39.num = ((op_name.str->size != STR_low.str->size)? false :
-            !(bcmp(op_name.str->data, STR_low.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_low.str->data, op_name.str->size)));
         T_1_37.num = T_1_39.num;
     }
     if (T_1_37.num == true) {
@@ -4652,11 +4653,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_41;
     CLUREF T_1_42;
     T_1_41.num = ((type_name.str->size != STR_array.str->size)? false :
-        !(bcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
     T_1_40.num = T_1_41.num;
     if (T_1_41.num) {
         T_1_42.num = ((op_name.str->size != STR_high.str->size)? false :
-            !(bcmp(op_name.str->data, STR_high.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_high.str->data, op_name.str->size)));
         T_1_40.num = T_1_42.num;
     }
     if (T_1_40.num == true) {
@@ -4727,11 +4728,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_44;
     CLUREF T_1_45;
     T_1_44.num = ((type_name.str->size != STR_array.str->size)? false :
-        !(bcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
     T_1_43.num = T_1_44.num;
     if (T_1_44.num) {
         T_1_45.num = ((op_name.str->size != STR_empty.str->size)? false :
-            !(bcmp(op_name.str->data, STR_empty.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_empty.str->data, op_name.str->size)));
         T_1_43.num = T_1_45.num;
     }
     if (T_1_43.num == true) {
@@ -4802,11 +4803,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_47;
     CLUREF T_1_48;
     T_1_47.num = ((type_name.str->size != STR_array.str->size)? false :
-        !(bcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
     T_1_46.num = T_1_47.num;
     if (T_1_47.num) {
         T_1_48.num = ((op_name.str->size != STR_size.str->size)? false :
-            !(bcmp(op_name.str->data, STR_size.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_size.str->data, op_name.str->size)));
         T_1_46.num = T_1_48.num;
     }
     if (T_1_46.num == true) {
@@ -4877,11 +4878,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_50;
     CLUREF T_1_51;
     T_1_50.num = ((type_name.str->size != STR_sequence.str->size)? false :
-        !(bcmp(type_name.str->data, STR_sequence.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_sequence.str->data, type_name.str->size)));
     T_1_49.num = T_1_50.num;
     if (T_1_50.num) {
         T_1_51.num = ((op_name.str->size != STR_size.str->size)? false :
-            !(bcmp(op_name.str->data, STR_size.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_size.str->data, op_name.str->size)));
         T_1_49.num = T_1_51.num;
     }
     if (T_1_49.num == true) {
@@ -4965,11 +4966,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_54;
     CLUREF T_1_55;
     T_1_54.num = ((type_name.str->size != STR_string.str->size)? false :
-        !(bcmp(type_name.str->data, STR_string.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_string.str->data, type_name.str->size)));
     T_1_53.num = T_1_54.num;
     if (T_1_54.num) {
         T_1_55.num = ((op_name.str->size != STR_equal.str->size)? false :
-            !(bcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_equal.str->data, op_name.str->size)));
         T_1_53.num = T_1_55.num;
     }
     if (T_1_53.num == true) {
@@ -5055,7 +5056,7 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
 
   LINE(705);
         {
-        err = g_envOPputs(e, STR__041_050bcmp_050);
+        err = g_envOPputs(e, STR__041_050memcmp_050);
         if (err != ERR_ok) goto ex_0;
         }
 
@@ -5113,11 +5114,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_57;
     CLUREF T_1_58;
     T_1_57.num = ((type_name.str->size != STR_int.str->size)? false :
-        !(bcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
     T_1_56.num = T_1_57.num;
     if (T_1_57.num) {
         T_1_58.num = ((op_name.str->size != STR_add.str->size)? false :
-            !(bcmp(op_name.str->data, STR_add.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_add.str->data, op_name.str->size)));
         T_1_56.num = T_1_58.num;
     }
     if (T_1_56.num == true) {
@@ -5338,11 +5339,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_60;
     CLUREF T_1_61;
     T_1_60.num = ((type_name.str->size != STR_int.str->size)? false :
-        !(bcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR_int.str->data, type_name.str->size)));
     T_1_59.num = T_1_60.num;
     if (T_1_60.num) {
         T_1_61.num = ((op_name.str->size != STR_sub.str->size)? false :
-            !(bcmp(op_name.str->data, STR_sub.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_sub.str->data, op_name.str->size)));
         T_1_59.num = T_1_61.num;
     }
     if (T_1_59.num == true) {
@@ -5563,11 +5564,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_63;
     CLUREF T_1_64;
     T_1_63.num = ((op_name.str->size != STR_addh.str->size)? false :
-        !(bcmp(op_name.str->data, STR_addh.str->data, op_name.str->size)));
+        !(memcmp(op_name.str->data, STR_addh.str->data, op_name.str->size)));
     T_1_62.num = T_1_63.num;
     if (T_1_63.num) {
         T_1_64.num = ((type_name.str->size != STR_array.str->size)? false :
-            !(bcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
+            !(memcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
         T_1_62.num = T_1_64.num;
     }
     if (T_1_62.num == true) {
@@ -5825,11 +5826,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_66;
     CLUREF T_1_67;
     T_1_66.num = ((op_name.str->size != STR_store.str->size)? false :
-        !(bcmp(op_name.str->data, STR_store.str->data, op_name.str->size)));
+        !(memcmp(op_name.str->data, STR_store.str->data, op_name.str->size)));
     T_1_65.num = T_1_66.num;
     if (T_1_66.num) {
         T_1_67.num = ((type_name.str->size != STR_array.str->size)? false :
-            !(bcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
+            !(memcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
         T_1_65.num = T_1_67.num;
     }
     if (T_1_65.num == true) {
@@ -6044,11 +6045,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF T_1_69;
     CLUREF T_1_70;
     T_1_69.num = ((type_name.str->size != STR__137wordvec.str->size)? false :
-        !(bcmp(type_name.str->data, STR__137wordvec.str->data, type_name.str->size)));
+        !(memcmp(type_name.str->data, STR__137wordvec.str->data, type_name.str->size)));
     T_1_68.num = T_1_69.num;
     if (T_1_69.num) {
         T_1_70.num = ((op_name.str->size != STR_fetch.str->size)? false :
-            !(bcmp(op_name.str->data, STR_fetch.str->data, op_name.str->size)));
+            !(memcmp(op_name.str->data, STR_fetch.str->data, op_name.str->size)));
         T_1_68.num = T_1_70.num;
     }
     if (T_1_68.num == true) {
@@ -6227,7 +6228,7 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     else {
     CLUREF T_1_71;
     T_1_71.num = ((op_name.str->size != STR_fetch.str->size)? false :
-        !(bcmp(op_name.str->data, STR_fetch.str->data, op_name.str->size)));
+        !(memcmp(op_name.str->data, STR_fetch.str->data, op_name.str->size)));
     if (T_1_71.num == true) {
 
   LINE(904);
@@ -6236,11 +6237,11 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         CLUREF T_2_2;
         CLUREF T_2_3;
         T_2_2.num = ((type_name.str->size != STR__137vec.str->size)? false :
-            !(bcmp(type_name.str->data, STR__137vec.str->data, type_name.str->size)));
+            !(memcmp(type_name.str->data, STR__137vec.str->data, type_name.str->size)));
         T_2_1.num = T_2_2.num;
         if (!T_2_2.num) {
             T_2_3.num = ((type_name.str->size != STR_sequence.str->size)? false :
-                !(bcmp(type_name.str->data, STR_sequence.str->data, type_name.str->size)));
+                !(memcmp(type_name.str->data, STR_sequence.str->data, type_name.str->size)));
             T_2_1.num = T_2_3.num;
         }
         if (T_2_1.num == true) {
@@ -6253,7 +6254,7 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         else {
         CLUREF T_2_4;
         T_2_4.num = ((type_name.str->size != STR__137bytevec.str->size)? false :
-            !(bcmp(type_name.str->data, STR__137bytevec.str->data, type_name.str->size)));
+            !(memcmp(type_name.str->data, STR__137bytevec.str->data, type_name.str->size)));
         if (T_2_4.num == true) {
 
   LINE(907);
@@ -6264,7 +6265,7 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         else {
         CLUREF T_2_5;
         T_2_5.num = ((type_name.str->size != STR_array.str->size)? false :
-            !(bcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
+            !(memcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
         if (T_2_5.num == true) {
 
   LINE(909);
@@ -6336,7 +6337,7 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = ((type_name.str->size != STR_array.str->size)? false :
-            !(bcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
+            !(memcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
         T_2_2.num = T_2_1.num ^ 1;
         if (T_2_2.num == true) {
 
@@ -6398,7 +6399,7 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = ((type_name.str->size != STR_array.str->size)? false :
-            !(bcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
+            !(memcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
         T_2_2.num = T_2_1.num ^ 1;
         if (T_2_2.num == true) {
 
@@ -6472,7 +6473,7 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = ((type_name.str->size != STR__137bytevec.str->size)? false :
-            !(bcmp(type_name.str->data, STR__137bytevec.str->data, type_name.str->size)));
+            !(memcmp(type_name.str->data, STR__137bytevec.str->data, type_name.str->size)));
         if (T_2_1.num == true) {
 
   LINE(939);
@@ -6501,7 +6502,7 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         CLUREF T_2_1;
         CLUREF T_2_2;
         T_2_1.num = ((type_name.str->size != STR_array.str->size)? false :
-            !(bcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
+            !(memcmp(type_name.str->data, STR_array.str->data, type_name.str->size)));
         T_2_2.num = T_2_1.num ^ 1;
         if (T_2_2.num == true) {
 
@@ -6615,32 +6616,32 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE g_qop ****/
 
 
-extern errcode field_index();
-extern errcode intOPsub();
-CLUREF STR__135_073;
-CLUREF STR__135_040_040_075_040;
-CLUREF STR__056cell_055_076tag_040_075_075_040;
-CLUREF STR__051_040;
-CLUREF STR__040_075_040true_073_040else_040;
-CLUREF STR__040_075_040false_073;
-CLUREF STR__056cell_055_076tag_040_041_075_040;
-CLUREF STR__040_075_040ERR_137wrong_137tag_073_040goto_040;
-CLUREF STR__056cell_055_076value_073;
-CLUREF STR_CellAlloc_050;
-static int g_qsel_own_init = 0;
 
 /**** BEGIN PROCEDURE g_qsel ****/
 
+extern errcode field_index();
+extern errcode intOPsub();
+static CLUREF STR__135_073;
+static CLUREF STR__135_040_075_040;
+static CLUREF STR__056cell_055_076tag_040_075_075_040;
+static CLUREF STR__051_040;
+static CLUREF STR__040_075_040true_073_040else_040;
+static CLUREF STR__040_075_040false_073;
+static CLUREF STR__056cell_055_076tag_040_041_075_040;
+static CLUREF STR__040_075_040ERR_137wrong_137tag_073_040goto_040;
+static CLUREF STR__056cell_055_076value_073;
+static CLUREF STR_CellAlloc_050;
+static int g_qsel_own_init = 0;
+
 errcode
 g_qsel(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF cop;
     CLUREF nm;
     CLUREF loc_of_sep;
@@ -6651,31 +6652,31 @@ g_qsel(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     CLUREF residn;
     CLUREF argidn;
     CLUREF arg1idn;
-        if (g_qsel_own_init == 0) {
-        stringOPcons("get_", CLU_1, CLU_4, &STR_get_137);
-        stringOPcons(".num = ", CLU_1, CLU_7, &STR__056num_040_075_040);
-        stringOPcons(".vec->data[", CLU_1, CLU_11, &STR__056vec_055_076data_133);
-        stringOPcons("];", CLU_1, CLU_2, &STR__135_073);
-        stringOPcons("set_", CLU_1, CLU_4, &STR_set_137);
-        stringOPcons("]  = ", CLU_1, CLU_5, &STR__135_040_040_075_040);
-        stringOPcons(";", CLU_1, CLU_1, &STR__073);
-        stringOPcons("is_", CLU_1, CLU_3, &STR_is_137);
-        stringOPcons("if (", CLU_1, CLU_4, &STR_if_040_050);
-        stringOPcons(".cell->tag == ", CLU_1, CLU_14, &STR__056cell_055_076tag_040_075_075_040);
-        stringOPcons(") ", CLU_1, CLU_2, &STR__051_040);
-        stringOPcons(" = true; else ", CLU_1, CLU_14, &STR__040_075_040true_073_040else_040);
-        stringOPcons(" = false;", CLU_1, CLU_9, &STR__040_075_040false_073);
-        stringOPcons("value_", CLU_1, CLU_6, &STR_value_137);
-        stringOPcons(".cell->tag != ", CLU_1, CLU_14, &STR__056cell_055_076tag_040_041_075_040);
-        stringOPcons(") {", CLU_1, CLU_3, &STR__051_040_173);
-        stringOPcons(" = ERR_wrong_tag; goto ", CLU_1, CLU_23, &STR__040_075_040ERR_137wrong_137tag_073_040goto_040);
-        stringOPcons(";}", CLU_1, CLU_2, &STR__073_175);
-        stringOPcons(" = ", CLU_1, CLU_3, &STR__040_075_040);
-        stringOPcons(".cell->value;", CLU_1, CLU_13, &STR__056cell_055_076value_073);
-        stringOPcons("make_", CLU_1, CLU_5, &STR_make_137);
-        stringOPcons("CellAlloc(", CLU_1, CLU_10, &STR_CellAlloc_050);
-        stringOPcons(", ", CLU_1, CLU_2, &STR__054_040);
-        stringOPcons(");", CLU_1, CLU_2, &STR__051_073);
+    if (g_qsel_own_init == 0) {
+        stringOPcons("get_", CLU_1, CLUREF_make_num(4), &STR_get_137);
+        stringOPcons(".num = ", CLU_1, CLUREF_make_num(7), &STR__056num_040_075_040);
+        stringOPcons(".vec->data[", CLU_1, CLUREF_make_num(11), &STR__056vec_055_076data_133);
+        stringOPcons("];", CLU_1, CLUREF_make_num(2), &STR__135_073);
+        stringOPcons("set_", CLU_1, CLUREF_make_num(4), &STR_set_137);
+        stringOPcons("] = ", CLU_1, CLUREF_make_num(4), &STR__135_040_075_040);
+        stringOPcons(";", CLU_1, CLUREF_make_num(1), &STR__073);
+        stringOPcons("is_", CLU_1, CLUREF_make_num(3), &STR_is_137);
+        stringOPcons("if (", CLU_1, CLUREF_make_num(4), &STR_if_040_050);
+        stringOPcons(".cell->tag == ", CLU_1, CLUREF_make_num(14), &STR__056cell_055_076tag_040_075_075_040);
+        stringOPcons(") ", CLU_1, CLUREF_make_num(2), &STR__051_040);
+        stringOPcons(" = true; else ", CLU_1, CLUREF_make_num(14), &STR__040_075_040true_073_040else_040);
+        stringOPcons(" = false;", CLU_1, CLUREF_make_num(9), &STR__040_075_040false_073);
+        stringOPcons("value_", CLU_1, CLUREF_make_num(6), &STR_value_137);
+        stringOPcons(".cell->tag != ", CLU_1, CLUREF_make_num(14), &STR__056cell_055_076tag_040_041_075_040);
+        stringOPcons(") {", CLU_1, CLUREF_make_num(3), &STR__051_040_173);
+        stringOPcons(" = ERR_wrong_tag; goto ", CLU_1, CLUREF_make_num(23), &STR__040_075_040ERR_137wrong_137tag_073_040goto_040);
+        stringOPcons(";}", CLU_1, CLUREF_make_num(2), &STR__073_175);
+        stringOPcons(" = ", CLU_1, CLUREF_make_num(3), &STR__040_075_040);
+        stringOPcons(".cell->value;", CLU_1, CLUREF_make_num(13), &STR__056cell_055_076value_073);
+        stringOPcons("make_", CLU_1, CLUREF_make_num(5), &STR_make_137);
+        stringOPcons("CellAlloc(", CLU_1, CLUREF_make_num(10), &STR_CellAlloc_050);
+        stringOPcons(", ", CLU_1, CLUREF_make_num(2), &STR__054_040);
+        stringOPcons(");", CLU_1, CLUREF_make_num(2), &STR__051_073);
         g_qsel_own_init = 1;
     }
     enter_proc(961);
@@ -6807,7 +6808,7 @@ g_qsel(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ((prefix.str->size != STR_get_137.str->size)? false :
-        !(bcmp(prefix.str->data, STR_get_137.str->data, prefix.str->size)));
+        !(memcmp(prefix.str->data, STR_get_137.str->data, prefix.str->size)));
     if (T_1_1.num == true) {
 
   LINE(978);
@@ -6892,7 +6893,7 @@ g_qsel(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ((prefix.str->size != STR_set_137.str->size)? false :
-        !(bcmp(prefix.str->data, STR_set_137.str->data, prefix.str->size)));
+        !(memcmp(prefix.str->data, STR_set_137.str->data, prefix.str->size)));
     if (T_1_1.num == true) {
 
   LINE(989);
@@ -6933,7 +6934,7 @@ g_qsel(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         if (err != ERR_ok) goto ex_0;
         err = stringOPconcat(STR__056vec_055_076data_133, T_2_2, &T_2_3);
         if (err != ERR_ok) goto ex_0;
-        err = stringOPconcat(T_2_3, STR__135_040_040_075_040, &T_2_4);
+        err = stringOPconcat(T_2_3, STR__135_040_075_040, &T_2_4);
         if (err != ERR_ok) goto ex_0;
         err = g_envOPputs(e, T_2_4);
         if (err != ERR_ok) goto ex_0;
@@ -6969,7 +6970,7 @@ g_qsel(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ((prefix.str->size != STR_is_137.str->size)? false :
-        !(bcmp(prefix.str->data, STR_is_137.str->data, prefix.str->size)));
+        !(memcmp(prefix.str->data, STR_is_137.str->data, prefix.str->size)));
     if (T_1_1.num == true) {
 
   LINE(999);
@@ -7059,7 +7060,7 @@ g_qsel(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ((prefix.str->size != STR_value_137.str->size)? false :
-        !(bcmp(prefix.str->data, STR_value_137.str->data, prefix.str->size)));
+        !(memcmp(prefix.str->data, STR_value_137.str->data, prefix.str->size)));
     if (T_1_1.num == true) {
 
   LINE(1012);
@@ -7167,7 +7168,7 @@ g_qsel(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     T_1_1.num = ((prefix.str->size != STR_make_137.str->size)? false :
-        !(bcmp(prefix.str->data, STR_make_137.str->data, prefix.str->size)));
+        !(memcmp(prefix.str->data, STR_make_137.str->data, prefix.str->size)));
     if (T_1_1.num == true) {
 
   LINE(1030);
@@ -7253,10 +7254,13 @@ g_qsel(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE g_qsel ****/
 
+
+
+/**** BEGIN PROCEDURE is_temp ****/
 
 extern errcode idnOPget_str();
 extern errcode intOPge();
@@ -7264,13 +7268,10 @@ extern errcode stringOPsize();
 extern errcode charOPequal();
 extern errcode stringOPfetch();
 
-/**** BEGIN PROCEDURE is_temp ****/
-
 errcode
 is_temp(CLUREF i, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF nm;
     enter_proc(1050);
 
@@ -7341,33 +7342,33 @@ is_temp(CLUREF i, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE is_temp ****/
 
+
+
+/**** BEGIN PROCEDURE g_qtagcase ****/
 
 extern errcode exprOPget_typespec();
 extern errcode oneofOPis_1();
 extern errcode oneofOPvalue_1();
 extern errcode g_body();
-CLUREF STR_variant;
-CLUREF STR_tagcase_072_040not_040select_041_077;
-CLUREF STR_switch_040_050;
-CLUREF STR__056cell_055_076tag_051_040_173;
-CLUREF STR_case_040;
-CLUREF STR__072;
-CLUREF STR__040_173;
-CLUREF STR_break_073;
-CLUREF STR_default_072_040_173;
+static CLUREF STR_variant;
+static CLUREF STR_tagcase_072_040not_040select_041_077;
+static CLUREF STR_switch_040_050;
+static CLUREF STR__056cell_055_076tag_051_040_173;
+static CLUREF STR_case_040;
+static CLUREF STR__072;
+static CLUREF STR__040_173;
+static CLUREF STR_break_073;
+static CLUREF STR_default_072_040_173;
 static int g_qtagcase_own_init = 0;
-
-/**** BEGIN PROCEDURE g_qtagcase ****/
 
 errcode
 g_qtagcase(CLUREF e, CLUREF stmt, CLUREF *ret_1)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF ty;
     CLUREF sel;
     CLUREF el0;
@@ -7381,22 +7382,22 @@ g_qtagcase(CLUREF e, CLUREF stmt, CLUREF *ret_1)
     CLUREF dl;
     CLUREF this_temp;
     CLUREF objidn;
-        if (g_qtagcase_own_init == 0) {
-        stringOPcons("oneof", CLU_1, CLU_5, &STR_oneof);
-        stringOPcons("variant", CLU_1, CLU_7, &STR_variant);
-        stringOPcons("{", CLU_1, CLU_1, &STR__173);
-        stringOPcons("tagcase: not select!?", CLU_1, CLU_21, &STR_tagcase_072_040not_040select_041_077);
-        stringOPcons("switch (", CLU_1, CLU_8, &STR_switch_040_050);
-        stringOPcons(".cell->tag) {", CLU_1, CLU_13, &STR__056cell_055_076tag_051_040_173);
-        stringOPcons("is_", CLU_1, CLU_3, &STR_is_137);
-        stringOPcons("case ", CLU_1, CLU_5, &STR_case_040);
-        stringOPcons(":", CLU_1, CLU_1, &STR__072);
-        stringOPcons(" {", CLU_1, CLU_2, &STR__040_173);
-        stringOPcons(".num = ", CLU_1, CLU_7, &STR__056num_040_075_040);
-        stringOPcons(".cell->value;", CLU_1, CLU_13, &STR__056cell_055_076value_073);
-        stringOPcons("break;", CLU_1, CLU_6, &STR_break_073);
-        stringOPcons("}", CLU_1, CLU_1, &STR__175);
-        stringOPcons("default: {", CLU_1, CLU_10, &STR_default_072_040_173);
+    if (g_qtagcase_own_init == 0) {
+        stringOPcons("oneof", CLU_1, CLUREF_make_num(5), &STR_oneof);
+        stringOPcons("variant", CLU_1, CLUREF_make_num(7), &STR_variant);
+        stringOPcons("{", CLU_1, CLUREF_make_num(1), &STR__173);
+        stringOPcons("tagcase: not select!?", CLU_1, CLUREF_make_num(21), &STR_tagcase_072_040not_040select_041_077);
+        stringOPcons("switch (", CLU_1, CLUREF_make_num(8), &STR_switch_040_050);
+        stringOPcons(".cell->tag) {", CLU_1, CLUREF_make_num(13), &STR__056cell_055_076tag_051_040_173);
+        stringOPcons("is_", CLU_1, CLUREF_make_num(3), &STR_is_137);
+        stringOPcons("case ", CLU_1, CLUREF_make_num(5), &STR_case_040);
+        stringOPcons(":", CLU_1, CLUREF_make_num(1), &STR__072);
+        stringOPcons(" {", CLU_1, CLUREF_make_num(2), &STR__040_173);
+        stringOPcons(".num = ", CLU_1, CLUREF_make_num(7), &STR__056num_040_075_040);
+        stringOPcons(".cell->value;", CLU_1, CLUREF_make_num(13), &STR__056cell_055_076value_073);
+        stringOPcons("break;", CLU_1, CLUREF_make_num(6), &STR_break_073);
+        stringOPcons("}", CLU_1, CLUREF_make_num(1), &STR__175);
+        stringOPcons("default: {", CLU_1, CLUREF_make_num(10), &STR_default_072_040_173);
         g_qtagcase_own_init = 1;
     }
     enter_proc(1061);
@@ -7451,7 +7452,7 @@ g_qtagcase(CLUREF e, CLUREF stmt, CLUREF *ret_1)
             err = duOPget_common(T_4_2, &T_4_3);
             if (err != ERR_ok) goto ex_1;
             T_4_4.num = ((T_4_3.str->size != STR_oneof.str->size)? false :
-                !(bcmp(T_4_3.str->data, STR_oneof.str->data, T_4_3.str->size)));
+                !(memcmp(T_4_3.str->data, STR_oneof.str->data, T_4_3.str->size)));
             T_4_5.num = T_4_4.num ^ 1;
             T_4_1.num = T_4_5.num;
             if (T_4_5.num) {
@@ -7459,7 +7460,7 @@ g_qtagcase(CLUREF e, CLUREF stmt, CLUREF *ret_1)
                 err = duOPget_common(T_4_6, &T_4_7);
                 if (err != ERR_ok) goto ex_1;
                 T_4_8.num = ((T_4_7.str->size != STR_variant.str->size)? false :
-                    !(bcmp(T_4_7.str->data, STR_variant.str->data, T_4_7.str->size)));
+                    !(memcmp(T_4_7.str->data, STR_variant.str->data, T_4_7.str->size)));
                 T_4_9.num = T_4_8.num ^ 1;
                 T_4_1.num = T_4_9.num;
             }
@@ -7885,26 +7886,26 @@ g_qtagcase(CLUREF e, CLUREF stmt, CLUREF *ret_1)
         }
     end_0: elist[0] = no_return_values_STRING;
         {signal(ERR_failure);}
-    }
+}
 
 /**** END PROCEDURE g_qtagcase ****/
 
 
-extern errcode g_string_name();
-CLUREF STR_g_137expr_137plain_040doesn_047t_040support_040this_040expr;
-static int g_expr_plain_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr_plain ****/
 
+extern errcode g_string_name();
+static CLUREF STR_g_137expr_137plain_040doesn_047t_040support_040this_040expr;
+static int g_expr_plain_own_init = 0;
+
 errcode
 g_expr_plain(CLUREF e, CLUREF exp)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
     CLUREF s;
-        if (g_expr_plain_own_init == 0) {
-        stringOPcons("g_expr_plain doesn\'t support this expr", CLU_1, CLU_38, &STR_g_137expr_137plain_040doesn_047t_040support_040this_040expr);
+    if (g_expr_plain_own_init == 0) {
+        stringOPcons("g_expr_plain doesn\'t support this expr", CLU_1, CLUREF_make_num(38), &STR_g_137expr_137plain_040doesn_047t_040support_040this_040expr);
         g_expr_plain_own_init = 1;
     }
     enter_proc(1135);
@@ -7979,24 +7980,24 @@ g_expr_plain(CLUREF e, CLUREF exp)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE g_expr_plain ****/
 
 
-CLUREF STR__056num;
-static int g_expr2a_own_init = 0;
 
 /**** BEGIN PROCEDURE g_expr2a ****/
 
+static CLUREF STR__056num;
+static int g_expr2a_own_init = 0;
+
 errcode
 g_expr2a(CLUREF e, CLUREF exp)
-    {
+{
     errcode err;
-    errcode ecode2;
     CLUREF i;
-        if (g_expr2a_own_init == 0) {
-        stringOPcons(".num", CLU_1, CLU_4, &STR__056num);
+    if (g_expr2a_own_init == 0) {
+        stringOPcons(".num", CLU_1, CLUREF_make_num(4), &STR__056num);
         g_expr2a_own_init = 1;
     }
     enter_proc(1154);
@@ -8043,7 +8044,7 @@ g_expr2a(CLUREF e, CLUREF exp)
             {signal(ERR_failure);}
         }
     end_0: {signal(ERR_ok);}
-    }
+}
 
 /**** END PROCEDURE g_expr2a ****/
 
