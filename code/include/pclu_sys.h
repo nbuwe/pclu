@@ -498,7 +498,7 @@ struct REQ_ENTRY {
     const char *name;
 };
 
-struct REQS {
+typedef struct REQS {
     long count;
     const struct REQ_ENTRY entry[VARYING_LENGTH];
 } REQS;
@@ -508,7 +508,7 @@ struct OP_ENTRY {
     const char *name;
 };
 
-struct OPS {
+typedef struct OPS {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
