@@ -1123,7 +1123,7 @@ g_opstruct = proc(e:g_env, id:idn, ops:idnlist)
 	nm: string := each_op.str
 	% if nm = "%debug_print" cand ~dbg_info$active() then continue end
 	nm := c_fixup_opname(nm)
-    	g_env$puts(e, "CLU_proc ")
+    	g_env$puts(e, "static CLU_proc ")
 	g_env$puts(e, id.str)
 	g_env$puts(e, "_oe_")
 	g_env$puts(e, nm)
@@ -1134,13 +1134,14 @@ g_opstruct = proc(e:g_env, id:idn, ops:idnlist)
 	g_env$putl(e, " };")
 	end % for
     if dbg_info$active() then
-       g_env$puts(e, "CLU_proc ")
+       g_env$puts(e, "static CLU_proc ")
        g_env$puts(e, id.str)
        g_env$puts(e, "_oe_debug_print = { .proc = ")
        g_env$puts(e, id.str)
        g_env$putl(e, "OPdebug_print };")
        end
     g_env$blankline(e)
+    g_env$puts(e, "static ")
     g_env$puts(e, id.str)
     g_env$puts(e, "_OPS ")
     g_env$puts(e, id.str)
