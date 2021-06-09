@@ -92,25 +92,25 @@ clu: libpclu compiler clulibs cludent # PCLU debugger
 
 libpclu:
 	echo Creating library of optimized CLU system code for the C linker.
-	cd code; make optlib
+	cd code && ${MAKE} optlib
 
 compiler:
 	echo Building and installing the pclu compiler
 	echo Assumes that CLUHOME is set properly
-	cd code/cmp; make
+	cd code/cmp && ${MAKE}
 	mv code/cmp/pclu $(EXEDIR)/pclu
 
 clulibs:
 	echo Building CLU runtime libraries
-	cd lib; make
+	cd lib && ${MAKE}
 
 debugger:
 	echo Creating library of debuggable CLU system code for the C linker.
-	cd code; make debuglib
+	cd code && ${MAKE} debuglib
 
 PCLU:
 	echo 'Building and installing the PCLU driver (an alternative to pclu/plink)'
-	cd driver; make PCLU
+	cd driver && ${MAKE} PCLU
 	mv driver/PCLU $(EXEDIR)/PCLU
 
 install:
@@ -124,29 +124,29 @@ install-tar-gz:
 	tar cfv - ${INSTALL_FILES} | gzip -c > ${INSTALL_TARGZ_FILE}
 
 example: fictitious_file
-	cd example; make
-	cd example/debug; make
-	cd example/profile; make
+	cd example && ${MAKE}
+	cd example/debug && ${MAKE}
+	cd example/profile && ${MAKE}
 
 cludent: fictitious_file
-	cd cludent; make
+	cd cludent && ${MAKE}
 	mv cludent/cludent $(EXEDIR)/cludent
 
 newcompiler:
-	cd cmpclu; make
-	make compiler
+	cd cmpclu && ${MAKE}
+	${MAKE} compiler
 
 cdebugger:
-	cd code; make cdebuglib
+	cd code && ${MAKE} cdebuglib
 
 fictitious_file:
 
 clean:
-	for i in ${CLEANDIRS}; do (cd $$i; make clean); done
+	for i in ${CLEANDIRS}; do (cd $$i && ${MAKE} clean); done
 	${RM} ${FLUFF}
 	cd ${EXEDOR}; ${RM} ${FLUFF}
 
 veryclean:
 	${RM} ${FLUFF}
-	for i in ${CLEANDIRS}; do (cd $$i; make veryclean); done
+	for i in ${CLEANDIRS}; do (cd $$i && ${MAKE} veryclean); done
 	cd ${EXEDIR}; ${RM} pclu cludent liblst PCLU ${FLUFF}

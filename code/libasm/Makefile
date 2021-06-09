@@ -31,22 +31,22 @@ RM = /bin/rm -f
 FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 
 opt: fictitious_file
-	cd Opt; make CC="${CC}" CFLAGS="${CFLAGS} ${OPT_FLAGS}" OBJS="${OBJS}"
+	cd Opt && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS} ${OPT_FLAGS}" OBJS="${OBJS}"
 
 debugger: fictitious_file
 	cd Debugger; ${RM} *.c; ${LN} ../Opt/*.c .
-	cd Debugger; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
+	cd Debugger && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
 
 debug: fictitious_file
 	cd Debug; ${RM} *.c; ${LN} ../Opt/*.c .
-	cd Debug; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUG_FLAGS}" OBJS="${OBJS}"
+	cd Debug && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS} ${DEBUG_FLAGS}" OBJS="${OBJS}"
 
 fictitious_file:
 
 clean:
 	${RM} ${FLUFF}
-	cd Opt; make clean
-	cd Debug; make clean
-	cd Debugger; make clean
+	cd Opt && ${MAKE} clean
+	cd Debug && ${MAKE} clean
+	cd Debugger && ${MAKE} clean
 
 veryclean: clean

@@ -78,7 +78,7 @@ regen:
 	cp gcd_tab.c gc_read.c gc_dump.c ${CLUHOME}/code/libclu/Opt
 
 rebuild:
-	(cd ${CLUHOME}/code && { rm -f libpclu_opt.a; make; })
+	(cd ${CLUHOME}/code && { rm -f libpclu_opt.a; ${MAKE}; })
 	${CLUHOME}/exe/plink test_gcd.o -o test_gcd
 	./test_gcd
 

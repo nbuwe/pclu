@@ -11,7 +11,7 @@ FLUFF   = *~ *.old *.bak .*~ .*.old .*.bak
 o_files: ${OBJS}
 
 c_files:
-	cd ${LIB_DIR}; make libs
+	cd ${LIB_DIR} && ${MAKE} libs
 	$(CLU)  \#bindir `pwd` \#ext false \#dir ${LIB_DIR} \#me ${LIBS} \
 		\#ce ${LIB_DIR}/gcd.equ \
 		\#spec _host_address.spc _all_dir_entries_.spc \

@@ -123,8 +123,8 @@ useful.lib: lowlev.lib ${LOW_EQU} ${USE_SPECS} ${USELIB_SOURCES} \
 
 clean:
 	${RM} ${FLUFF}
-	cd clu; make clean
+	cd clu && ${MAKE} clean
 
 veryclean:
 	${RM} ${FLUFF} *.lib
-	cd clu; make veryclean
+	cd clu && ${MAKE} veryclean

@@ -3,7 +3,7 @@
 all:
 
 clean:
-	cd clu; make clean
+	cd clu && ${MAKE} clean
 
 veryclean: clean
 

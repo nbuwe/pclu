@@ -21,25 +21,25 @@ OBJS  = _adv.o _anyize.o _bytevec.o _chan.o _cvt.o _environ.o _environs.o \
 	variant.o variant_pfx.o
 
 opt: fictitious_file
-	cd Opt; make CC="${CC}" CFLAGS="${CFLAGS} ${OPT_FLAGS}" OBJS="${OBJS}"
+	cd Opt && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS} ${OPT_FLAGS}" OBJS="${OBJS}"
 
 debugger: fictitious_file
 	cd Debugger; ${RM} *.c *.h; ${LN} ../Opt/*.c . ; ${LN} ../Opt/*.h .
-	cd Debugger; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
+	cd Debugger && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
 
 fdebugger: fictitious_file
-	cd Debugger; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
+	cd Debugger && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}"
 
 debug: fictitious_file
 	cd Debug; ${RM} *.c *.h; ${LN} ../Opt/*.c . ; ${LN} ../Opt/*.h .
-	cd Debug; make CC="${CC}" CFLAGS="${CFLAGS} ${DEBUG_FLAGS}" OBJS="${OBJS}"
+	cd Debug && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS} ${DEBUG_FLAGS}" OBJS="${OBJS}"
 
 fictitious_file:
 
 clean:
 	${RM} ${FLUFF}
-	cd Debug; make clean
-	cd Debugger; make clean
-	cd Opt; make clean
+	cd Debug && ${MAKE} clean
+	cd Debugger && ${MAKE} clean
+	cd Opt && ${MAKE} clean
 
 veryclean: clean

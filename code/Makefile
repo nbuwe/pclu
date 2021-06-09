@@ -28,7 +28,7 @@ debuglib: debugfiles libpclu_debug.a
 cdebuglib: cdebugfiles libpclu_g.a
 
 optfiles: 
-	for i in ${CLIBDIRS}; do (cd $$i; make opt); done
+	for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} opt); done
 
 libpclu_opt.a:
 	${RM} libpclu_opt.a
@@ -48,8 +48,8 @@ libpclu_athena.a: ${DEBUG1}
 	ranlib libpclu_athena.a
 
 debugfiles:
-	for i in ${CLIBDIRS}; do (cd $$i; make debugger); done
-	cd ../debug; make
+	for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} debugger); done
+	cd ../debug && ${MAKE}
 
 #libpclu_debug.a: ${DEBUG1} ${DEBUG2}
 libpclu_debug.a:
@@ -60,7 +60,7 @@ libpclu_debug.a:
 	ranlib libpclu_debug.a
 
 cdebugfiles:
-	for i in ${CLIBDIRS}; do (cd $$i; make debug); done
+	for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} debug); done
 
 libpclu_g.a: ${G}
 	${RM} libpclu_g.a
@@ -68,10 +68,10 @@ libpclu_g.a: ${G}
 	ranlib libpclu_g.a
 
 clean:
-	for i in ${CLIBDIRS} cmp; do (cd $$i; make clean); done
+	for i in ${CLIBDIRS} cmp; do (cd $$i && ${MAKE} clean); done
 	${RM} ${FLUFF}
 
 veryclean: clean
-	for i in ${CLIBDIRS} cmp; do (cd $$i; make veryclean); done
+	for i in ${CLIBDIRS} cmp; do (cd $$i && ${MAKE} veryclean); done
 	${RM} libpclu_opt.a libpclu_debug.a libpclu_g.a ${FLUFF}
 

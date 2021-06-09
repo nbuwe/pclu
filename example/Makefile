@@ -18,8 +18,8 @@ factorial.o: factorial.clu
 
 clean:
 	${RM} ${OBJS} factorial factorial.lib  pclu.xref *.c ${FLUFF}
-	cd debug; make clean
-	cd profile; make clean
+	cd debug && ${MAKE} clean
+	cd profile && ${MAKE} clean
 
 veryclean: clean
 

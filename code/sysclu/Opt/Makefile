@@ -10,7 +10,7 @@ FLUFF   = *~ *.old *.bak .*~ .*.old .*.bak
 o_files: ${OBJS}
 
 c_files:
-	cd ${LIB_DIR}; make libs
+	cd ${LIB_DIR} && ${MAKE} libs
 	$(CLU)  \#ext false \#dir ${LIB_DIR} \#me ${LIBS} 	\
 		\#spec _gprof.spc \#dir ${SYS_CLU} 		\
 		\#bindir `pwd` \#ccopt 0			\

@@ -38,7 +38,7 @@ regen-debug:
 	$(PCLU) -xf cmp.xfile -opt false -bindir ../code/cmpdbg -co ${SRCS}
 
 rebuild:
-	(cd ../code/cmp && make)
+	(cd ../code/cmp && ${MAKE})
 
 lib:
 	${RM} ./cmp.lib
