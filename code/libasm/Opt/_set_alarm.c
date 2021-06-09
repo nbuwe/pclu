@@ -31,7 +31,7 @@ _set_alarm(CLUREF secs, CLUREF *ans)
     int which;
 
     if (secs.num > 0) {
-	vec.sa_handler = clu_alarm;
+	vec.sa_handler = CLU_alarm;
 	sigfillset(&vec.sa_mask);
 	vec.sa_flags = 1;
 	uerr = sigaction(SIGALRM, &vec, NULL);
