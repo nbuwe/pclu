@@ -22,11 +22,33 @@ _change_signal(CLUREF sig, CLUREF label, CLUREF *ans)
     struct sigaction vec, ovec;
 
     vec.sa_handler = (void (*)())label.ref;
-#if defined(LINUX) && !defined(OLD_LINUX)
-    vec.sa_mask.__val[0] = 0xff7bf0e0;
-#else
-    vec.sa_mask = 0xff7bf0e0;
+
+    sigemptyset(&vec.sa_mask);
+    sigaddset(&vec.sa_mask, SIGABRT);
+#ifdef SIGEMT
+    sigaddset(&vec.sa_mask, SIGEMT);
 #endif
+    sigaddset(&vec.sa_mask, SIGFPE);
+    sigaddset(&vec.sa_mask, SIGPIPE);
+    sigaddset(&vec.sa_mask, SIGALRM);
+    sigaddset(&vec.sa_mask, SIGTERM);
+    sigaddset(&vec.sa_mask, SIGURG);
+    sigaddset(&vec.sa_mask, SIGSTOP);
+    sigaddset(&vec.sa_mask, SIGTSTP);
+    sigaddset(&vec.sa_mask, SIGCHLD);
+    sigaddset(&vec.sa_mask, SIGTTIN);
+    sigaddset(&vec.sa_mask, SIGTTOU);
+    sigaddset(&vec.sa_mask, SIGIO);
+    sigaddset(&vec.sa_mask, SIGXFSZ);
+    sigaddset(&vec.sa_mask, SIGVTALRM);
+    sigaddset(&vec.sa_mask, SIGPROF);
+    sigaddset(&vec.sa_mask, SIGWINCH);
+#ifdef SIGINFO
+    sigaddset(&vec.sa_mask, SIGINFO);
+#endif
+    sigaddset(&vec.sa_mask, SIGUSR1);
+    sigaddset(&vec.sa_mask, SIGUSR2);
+
     vec.sa_flags = 1;
 
     err = sigaction(sig.num, &vec, &ovec);
