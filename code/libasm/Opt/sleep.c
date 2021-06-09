@@ -43,11 +43,7 @@ CLUREF secs;
 	secs.num = isecs;
 	if (secs.num == 0) signal(ERR_ok);
 	vec.sa_handler = sleep_alarm;
-#if defined(LINUX) && !defined(OLD_LINUX)
-	vec.sa_mask.__val[0] = -1;
-#else
-	vec.sa_mask = -1;
-#endif
+	sigfillset(&vec.sa_mask);
 	vec.sa_flags = true;
 	uerr = sigaction(SIGALRM, &vec, (struct sigaction*)0);
 	omask = sigblock(sigmask(SIGALRM));
