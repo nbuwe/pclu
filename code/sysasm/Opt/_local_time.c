@@ -37,7 +37,7 @@ CLUREF left, right, *ans;
 struct tm *tm;
 errcode err;
 CLUREF temp, day, mon, year, hour, min, sec;
-long clock;
+time_t clock;
 
 	clock = (left.num << 16) + right.num;
 	tm = localtime(&clock);
