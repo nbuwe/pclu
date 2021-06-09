@@ -29,6 +29,8 @@ static char rcsid[] = "$Header: _local_time.c,v 1.3 91/06/06 13:25:49 root Exp $
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+#include <errno.h>
+
 errcode _local_time(left, right, ans)
 CLUREF left, right, *ans;
 {
@@ -39,6 +41,10 @@ long clock;
 
 	clock = (left.num << 16) + right.num;
 	tm = localtime(&clock);
+	if (tm == NULL) {
+	    elist[0] = _unix_erstr(errno);
+	    signal(ERR_not_possible);
+	}
 	day.num = tm->tm_mday;
 	mon.num = tm->tm_mon + 1;
 	year.num = tm->tm_year + 1900;
