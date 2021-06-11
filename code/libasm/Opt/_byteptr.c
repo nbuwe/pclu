@@ -299,7 +299,7 @@ static CLU_proc _byteptr_oe_get_buf = { .proc = _byteptrOPget_buf };
 static CLU_proc _byteptr_oe_get_index = { .proc = _byteptrOPget_index };
 static CLU_proc _byteptr_oe_get_count = { .proc = _byteptrOPget_count };
 
-static OWN_ptr _byteptr_own_init = { .init_flag = 1 };
+OWN_ptr _byteptr_own_init = { .init_flag = 1 };
 
 static _byteptr_OPS _byteptr_ops_actual = {
     13,
