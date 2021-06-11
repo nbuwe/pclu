@@ -230,44 +230,47 @@ _byteptr8OPcopy(CLUREF bp, CLUREF *ans)
     temp->buf = b->buf;
     temp->idx.num = b->idx.num;
     temp->max.num = b->max.num;
-    t = *(CLUREF*)b;
+    t = *(CLUREF *)b;
 
     ans->vec = t.vec;
     signal(ERR_ok);
 }
 
 
+/*
+ * _gcd = proc (bp: _byteptr, tab: gcd_tab) returns (int)
+ */
 errcode
 _byteptr8OP_gcd(CLUREF bp, CLUREF tab, CLUREF *ans)
 {
     errcode err;
-    CLUREF ginfo;		// := ginfo$make_c_sel(...)
-    CLUREF sel_gproclist;	// := gproclist$[...]
-    CLUREF wordvec_gproc;	// := _wordvec$_gcd
-    CLUREF int_gproc;		// := int$_gcd
-    CLUREF sz;
 
+    CLUREF wordvec_gproc;	// := _wordvec$_gcd
     proctypeOPnew(CLU_0, &wordvec_gproc);
     wordvec_gproc.proc->proc = _wordvecOP_gcd;
     wordvec_gproc.proc->type_owns = &_wordvec_own_init;
     wordvec_gproc.proc->op_owns = &_wordvec_own_init;
 
+    CLUREF int_gproc;		// := int$_gcd
     proctypeOPnew(CLU_0, &int_gproc);
     int_gproc.proc->proc = intOP_gcd;
     int_gproc.proc->type_owns = &int_own_init;
     int_gproc.proc->op_owns = &int_own_init;
 
+    CLUREF sel_gproclist;	// := gproclist$[...]
     sequenceOPnew2(CLU_3, &sel_gproclist);
-    sel_gproclist.vec->data[0] = wordvec_gproc.num;
-    sel_gproclist.vec->data[1] = int_gproc.num;
-    sel_gproclist.vec->data[2] = int_gproc.num;
+    sel_gproclist.vec->data[0] = wordvec_gproc.num; /* buf */
+    sel_gproclist.vec->data[1] = int_gproc.num;	    /* idx */
+    sel_gproclist.vec->data[2] = int_gproc.num;	    /* max */
 
+    CLUREF ginfo;		// := ginfo$make_c_sel(...)
     err = oneofOPnew(CLU_3, sel_gproclist, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
-    sz.num = sizeof(WP);
+    CLUREF sz = { .num = sizeof(WP) };
 
+    // return (gcd_tab$insert(tab, sz, ginfo, bp))
     err = gcd_tabOPinsert(tab, sz, ginfo, bp, ans);
     if (err != ERR_ok)
 	resignal(err);
