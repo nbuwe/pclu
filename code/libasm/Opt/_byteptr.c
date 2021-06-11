@@ -15,8 +15,9 @@ extern errcode _printn();
 
 extern errcode _bytevecOP_gcd();
 extern OWN_ptr _bytevec_own_init;
-extern OWN_ptr int_own_init;
+
 extern errcode intOP_gcd();
+extern OWN_ptr int_own_init;
 
 typedef struct {
     CLUTYPE typ;
@@ -235,29 +236,33 @@ errcode
 _byteptrOP_gcd(CLUREF bp, CLUREF tab, CLUREF *ans)
 {
     errcode err;
-    CLUREF temp_oneof, temp_seq, temp_proc1, temp_proc2, sz;
+    CLUREF ginfo;
+    CLUREF sel_gproclist;
+    CLUREF bytevec_gproc;
+    CLUREF int_gproc;
+    CLUREF sz;
 
-    proctypeOPnew(CLU_0, &temp_proc1);
-    temp_proc1.proc->proc = _bytevecOP_gcd;
-    temp_proc1.proc->type_owns = &_bytevec_own_init;
-    temp_proc1.proc->op_owns = &_bytevec_own_init;
+    proctypeOPnew(CLU_0, &bytevec_gproc);
+    bytevec_gproc.proc->proc = _bytevecOP_gcd;
+    bytevec_gproc.proc->type_owns = &_bytevec_own_init;
+    bytevec_gproc.proc->op_owns = &_bytevec_own_init;
 
-    proctypeOPnew(CLU_0, &temp_proc2);
-    temp_proc2.proc->proc = intOP_gcd;
-    temp_proc2.proc->type_owns = &int_own_init;
-    temp_proc2.proc->op_owns = &int_own_init;
+    proctypeOPnew(CLU_0, &int_gproc);
+    int_gproc.proc->proc = intOP_gcd;
+    int_gproc.proc->type_owns = &int_own_init;
+    int_gproc.proc->op_owns = &int_own_init;
 
-    sequenceOPnew2(CLU_3, &temp_seq);
-    temp_seq.vec->data[0] = temp_proc1.num;
-    temp_seq.vec->data[1] = temp_proc2.num;
-    temp_seq.vec->data[2] = temp_proc2.num;
+    sequenceOPnew2(CLU_3, &sel_gproclist);
+    sel_gproclist.vec->data[0] = bytevec_gproc.num; /* buf */
+    sel_gproclist.vec->data[1] = int_gproc.num;     /* idx */
+    sel_gproclist.vec->data[2] = int_gproc.num;     /* max */
 
-    err = oneofOPnew(CLU_3, temp_seq, &temp_oneof);
+    err = oneofOPnew(CLU_3, sel_gproclist, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
     sz.num = sizeof(BP);
-    err = gcd_tabOPinsert(tab, sz, temp_oneof, bp, ans);
+    err = gcd_tabOPinsert(tab, sz, ginfo, bp, ans);
     if (err != ERR_ok)
 	resignal(err);
 
