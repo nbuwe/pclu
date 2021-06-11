@@ -9,6 +9,8 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+#include <stdint.h>
+
 
 /*
  * hash_obj = proc (key: _obj, int table_size) returns (int)
@@ -18,14 +20,12 @@
 errcode
 hash_obj(CLUREF _obj, CLUREF max, CLUREF *ans)
 {
-    int temp, temp2;
-
-    if (max.num == 0)
+    if (max.num == 0) {
 	ans->num = 0;
+    }
     else {
-	temp = _obj.num / 4;
-	temp2 = temp % max.num ;
-	ans->num = temp2;
+	uintptr_t ptrbits = (uintptr_t)_obj.ref / CLUREFSZ;
+	ans->num = ptrbits % max.num;
     }
 
     signal(ERR_ok);
