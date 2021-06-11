@@ -9,21 +9,24 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode _rtn_infoOPis_proc();
-extern errcode _rtn_infoOPis_iter();
-extern errcode _printn();
 
-extern errcode _bytevecOP_gcd();
+// insert = proc (tab: cvt, z: int, inf: ginfo, x: _obj) returns (int)
+extern errcode gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ans);
+
+// _gcd = proc (self: cvt, tab: gcd_tab) returns (int)
+extern errcode _bytevecOP_gcd(CLUREF self, CLUREF tab, CLUREF *ans);
 extern OWN_ptr _bytevec_own_init;
 
-extern errcode intOP_gcd();
+extern errcode intOP_gcd(CLUREF self, CLUREF tab, CLUREF *ans);
 extern OWN_ptr int_own_init;
 
+
+// rep = record
 typedef struct {
     CLUTYPE typ;
-    CLUREF buf;			/* bytevec */
-    CLUREF idx;
-    CLUREF max;
+    CLUREF buf;		// : bytevec
+    CLUREF idx;		// : int
+    CLUREF max;		// : int
 } BP;
 
 
@@ -51,11 +54,12 @@ _byteptrOPcreate(CLUREF bv, CLUREF i, CLUREF cnt, CLUREF *ans)
     temp->typ.val = 0;
     temp->typ.mark = 0;
     temp->typ.refp = 0;
+
     temp->buf.vec = bv.vec;
     temp->idx.num = i.num + 2;
     temp->max.num = len + 3;
-    t = *((CLUREF *)&temp);
 
+    t = *((CLUREF *)&temp);
     ans->vec = t.vec;
     signal(ERR_ok);
 }
