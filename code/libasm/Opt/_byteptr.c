@@ -232,36 +232,40 @@ _byteptrOPcopy(CLUREF bp, CLUREF *ans)
 }
 
 
+/*
+ * _gcd = proc (bp: _byteptr, tab: gcd_tab) returns (int)
+ */
 errcode
 _byteptrOP_gcd(CLUREF bp, CLUREF tab, CLUREF *ans)
 {
     errcode err;
-    CLUREF ginfo;
-    CLUREF sel_gproclist;
-    CLUREF bytevec_gproc;
-    CLUREF int_gproc;
-    CLUREF sz;
 
+    CLUREF bytevec_gproc;	// := _bytevec$_gcd
     proctypeOPnew(CLU_0, &bytevec_gproc);
     bytevec_gproc.proc->proc = _bytevecOP_gcd;
     bytevec_gproc.proc->type_owns = &_bytevec_own_init;
     bytevec_gproc.proc->op_owns = &_bytevec_own_init;
 
+    CLUREF int_gproc;		// := int$_gcd
     proctypeOPnew(CLU_0, &int_gproc);
     int_gproc.proc->proc = intOP_gcd;
     int_gproc.proc->type_owns = &int_own_init;
     int_gproc.proc->op_owns = &int_own_init;
 
+    CLUREF sel_gproclist;	// := gproclist$[...]
     sequenceOPnew2(CLU_3, &sel_gproclist);
     sel_gproclist.vec->data[0] = bytevec_gproc.num; /* buf */
     sel_gproclist.vec->data[1] = int_gproc.num;     /* idx */
     sel_gproclist.vec->data[2] = int_gproc.num;     /* max */
 
+    CLUREF ginfo;		// := ginfo$make_c_sel(...)
     err = oneofOPnew(CLU_3, sel_gproclist, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
-    sz.num = sizeof(BP);
+    CLUREF sz = { .num = sizeof(BP) };
+
+    // return (gcd_tab$insert(tab, sz, ginfo, bp))
     err = gcd_tabOPinsert(tab, sz, ginfo, bp, ans);
     if (err != ERR_ok)
 	resignal(err);
