@@ -26,7 +26,7 @@ _eventOPdefer(void)
 
 /*
  * Allow quit interrupt, allow array-trimming during G/C.
- * Must be paired with defer call!
+ * Must be paired with defer() call!
  */
 errcode
 _eventOPundefer(void)
