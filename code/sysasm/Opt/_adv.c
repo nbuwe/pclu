@@ -19,6 +19,9 @@ extern errcode arrayOPinternal_print(CLUREF a, CLUREF pst, CLUREF pfcn);
 extern errcode gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ans);
 
 
+/*
+ * What _adv[T] requires of T.
+ */
 static const struct /* REQS */ {
     long count;
     const struct REQ_ENTRY entry[2];
@@ -32,14 +35,34 @@ static const struct /* REQS */ {
 const struct REQS * const _adv_of_t_reqs
     = (const struct REQS *)&_adv_of_t_reqs_actual;
 
+
+/*
+ * An interface to T for an _adv[T] instance (as specified by REQS).
+ */
 typedef struct /* OPS */ {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    // struct OP_ENTRY entry[] but spelled out as individual members
     struct OP_ENTRY _gcd;
     struct OP_ENTRY debug_print;
 } _adv_of_t_OPS;
+
+
+/*
+ * Own data of an _adv[T] instance.
+ */
+typedef struct /* OWN_ptr */ {
+    long _adv_own_init;		/* unused */
+    const _adv_of_t_OPS * const t_ops;
+} _adv_OWN_DEFN;
+
+
+/*
+ * Tell instantiation code how to construct an _adv_OWN_DEFN object
+ * for an _adv[T] instantce.  What "own_count" really tells is where
+ * the parameters start (OPS for types, values for constants).
+ */
+const OWN_req _adv_ownreqs = { sizeof(_adv_OWN_DEFN), 1 };
 
 
 
@@ -209,11 +232,11 @@ _advOPset_vector(CLUREF adv, CLUREF v)
 errcode
 _advOP_gcd(CLUREF adv, CLUREF tab, CLUREF *ans)
 {
-    _adv_of_t_OPS *table = (_adv_of_t_OPS *)CUR_PROC_VAR.proc->type_owns->info[0];
+    _adv_OWN_DEFN *type_own_ptr = (_adv_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
     errcode err;
     CLUREF temp_oneof, temp_oneof_2, sz, fcn;
 
-    fcn.proc = table->_gcd.fcn;
+    fcn.proc = type_own_ptr->t_ops->_gcd.fcn;
     err = oneofOPnew(CLU_7, fcn, &temp_oneof);
     if (err != ERR_ok)
 	resignal(err);
@@ -241,11 +264,11 @@ _advOP_gcd(CLUREF adv, CLUREF tab, CLUREF *ans)
 errcode
 _advOPdebug_print(CLUREF adv, CLUREF ps)
 {
-    _adv_of_t_OPS *table = (_adv_of_t_OPS*)CUR_PROC_VAR.proc->type_owns->info[0];
+    _adv_OWN_DEFN *type_own_ptr = (_adv_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
     errcode err;
     CLUREF pfcn;
 
-    pfcn.proc = table->debug_print.fcn;
+    pfcn.proc = type_own_ptr->t_ops->debug_print.fcn;
     err = arrayOPinternal_print(adv, ps, pfcn);
     if (err != ERR_ok)
 	resignal(err);
@@ -253,9 +276,6 @@ _advOPdebug_print(CLUREF adv, CLUREF ps)
     signal(ERR_ok);
 }
 
-
-
-const OWN_req _adv_ownreqs = { 2 * UNIT, 1 };
 
 OWN_ptr _adv_own_init; /* dummy */
 
