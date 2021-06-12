@@ -48,6 +48,8 @@ _anyize(CLUREF x, CLUREF *ans)
      */
     CLUREF tag = { .ref = (char *)type_owns };
     err = oneofOPnew(tag, x, &temp);
+    if (err != ERR_ok)
+	resignal(err);
 
     ans->num = temp.num;
     signal(ERR_ok);
