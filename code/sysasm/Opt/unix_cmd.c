@@ -22,11 +22,9 @@ extern errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *a
 errcode
 unix_cmd(CLUREF input)
 {
-    int result;
-    CLUREF temp_str, n, num, size;
     errcode err;
 
-    result = system((char *)input.vec->data);
+    int result = system((char *)input.vec->data);
 #if 0
     printf("err = %X, %X %X %X\n", result, WTERMSIG(result),
 	   WEXITSTATUS(result), WSTOPSIG(result));
@@ -34,10 +32,27 @@ unix_cmd(CLUREF input)
     if (result == 0)
 	signal(ERR_ok);
 
-    err = stringOPcons("call to system failed: ", CLU_1, CLU_23, &temp_str);
-    n.num = (long)result;
-    err = intOPunparse(n, &num);
-    err = stringOPconcat(temp_str, num, &temp_str);
-    elist[0] = temp_str;
+
+    CLUREF msg;
+    err = stringOPcons("call to system failed: ", CLU_1, CLU_23, &msg);
+    if (err != ERR_ok)
+	goto ex_0;
+
+    CLUREF numstr;
+    err = intOPunparse(CLUREF_make_num(result) , &numstr);
+    if (err != ERR_ok)
+	goto ex_0;
+
+    err = stringOPconcat(msg, numstr, &msg);
+    if (err != ERR_ok)
+	goto ex_0;
+
+    elist[0] = msg;
     signal(ERR_failure);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
 }
