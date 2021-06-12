@@ -23,7 +23,7 @@ _round_real(CLUREF digs, CLUREF num, CLUREF *ans1, CLUREF *ans2)
 		digs.str->data[i] = '0';
 	    }
 	    else {
-		digs.str->data[i] = digs.str->data[i] + 1;
+		++digs.str->data[i];
 		done = true;
 		break;
 	    }
@@ -41,7 +41,7 @@ _round_real(CLUREF digs, CLUREF num, CLUREF *ans1, CLUREF *ans2)
     for (int i = num.num - 1; i >= 0; --i) {
 	if (digs.str->data[i] != '0')
 	    break;
-	nz -= 1;
+	--nz;
     }
     ans1->num = 0;
     ans2->num = nz;
