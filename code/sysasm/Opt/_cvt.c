@@ -1,20 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: _cvt.c,v 1.2 91/06/06 13:24:25 root Exp $";
-#endif 
-/* $Log:	_cvt.c,v $
- * Revision 1.2  91/06/06  13:24:25  root
- * added copyright notice
- * 
- * Revision 1.1  91/02/04  15:49:32  mtv
- * Initial revision
- * 
- * Revision 1.1  91/02/04  15:46:01  mtv
- * Initial revision
- * 
- */
 
 /*					*/
 /*		_CVT			*/
@@ -23,25 +7,40 @@ static char rcsid[] = "$Header: _cvt.c,v 1.2 91/06/06 13:24:25 root Exp $";
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-errcode _cvt(obj, ans)
-CLUREF obj, *ans;
-{
-	*ans = obj;
-	signal(ERR_ok);
-	}
 
+/* Don't care about FROM */
+static const struct /* REQS */ {
+    long count;
+} _cvt_of_from_reqs_actual = { 0 };
+
+const struct REQS * const _cvt_of_from_reqs
+    = (const struct REQS *)&_cvt_of_from_reqs_actual;
+
+
+/* Don't care about TO */
+static const struct /* REQS */ {
+    long count;
+} _cvt_of_to_reqs_actual = { 0 };
+
+const struct REQS * const _cvt_of_to_reqs
+    = (const struct REQS *)&_cvt_of_to_reqs_actual;
+
+
+/* No owns */
 const OWN_req _cvt_ownreqs = { 0, 0 };
 
-int _cvt_own_init = 0;
+OWN_ptr _cvt_own_init; /* dummy */
 
-typedef struct {
-long count;
-} _cvt_of_from_REQS;
-typedef struct {
-long count;
-} _cvt_of_to_REQS;
-_cvt_of_from_REQS _cvt_of_from_reqs_actual = {0};
-_cvt_of_to_REQS _cvt_of_to_reqs_actual = {0};
-_cvt_of_from_REQS  *_cvt_of_from_reqs = &_cvt_of_from_reqs_actual;
-_cvt_of_to_REQS *_cvt_of_to_reqs = &_cvt_of_to_reqs_actual;
 
+/*
+ * _cvt = proc [from, to: type] (x: from) returns (to)
+ *
+ * It's a cast and the real work happens in the type-checker.
+ * Optimizer just inlines _cvt() as direct assignment.
+ */
+errcode
+_cvt(CLUREF obj, CLUREF *ans)
+{
+    *ans = obj;
+    signal(ERR_ok);
+}
