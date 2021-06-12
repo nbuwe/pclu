@@ -18,6 +18,8 @@ errcode nullOPprint(CLUREF n, CLUREF pst);
 errcode
 nullOPequal(CLUREF nn1, CLUREF nn2, CLUREF *ans)
 {
+    (void) nn1;
+    (void) nn2;
     ans->tf = true;
     signal(ERR_ok);
 }
@@ -26,6 +28,8 @@ nullOPequal(CLUREF nn1, CLUREF nn2, CLUREF *ans)
 errcode
 nullOPsimilar(CLUREF nn1, CLUREF nn2, CLUREF *ans)
 {
+    (void) nn1;
+    (void) nn2;
     ans->tf = true;
     signal(ERR_ok);
 }
@@ -55,6 +59,8 @@ nullOPprint(CLUREF n, CLUREF pst)
 {
     errcode err;
     CLUREF temp_str, ans;
+
+    (void) n;
 
     err = stringOPcons("nil", CLU_1, CLU_3, &temp_str);
     if (err != ERR_ok) resignal(err);
@@ -101,6 +107,9 @@ nullOPdecode(CLUREF ist, CLUREF *ans)
 errcode
 nullOP_gcd(CLUREF s, CLUREF tab, CLUREF *ans)
 {
+    (void) s;
+    (void) tab;
+
     ans->num = -1;
     signal(ERR_ok);
 }
