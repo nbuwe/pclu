@@ -51,7 +51,7 @@ _bytevecOPcopy(CLUREF bv1, CLUREF *ans)
     for (count = 0, i = 0; count < bv1.str->size; ++i, ++count) {
 	bv2.str->data[i] = bv1.str->data[i];
     }
-    bv2.str->data[i] = '\000';
+    bv2.str->data[i] = '\0';
 
     ans->str = bv2.str;
     signal(ERR_ok);
