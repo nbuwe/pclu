@@ -14,6 +14,10 @@
 
 #include <errno.h>
 
+extern errcode dateOPcreate(CLUREF day, CLUREF month, CLUREF year,
+			    CLUREF hour, CLUREF minute, CLUREF second,
+			    CLUREF *ret_1);
+
 
 errcode
 _local_time(CLUREF left, CLUREF right, CLUREF *ans)
