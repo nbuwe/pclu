@@ -13,9 +13,7 @@
 errcode
 _round_real(CLUREF digs, CLUREF num, CLUREF *ans1, CLUREF *ans2)
 {
-    errcode err;
-    CLUREF temp1, temp2;
-    int nz, i, carry;
+    int nz, i;
     bool done;
 
     if (num.num > 9) num.num = 9;
