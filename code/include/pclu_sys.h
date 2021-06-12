@@ -98,11 +98,12 @@
 #endif
 
 #define clu_signal(x) return((long)x)
-#define resignal(x) \
-	{if ((x) == ERR_failure || (x) == ERR_ok) return((long)x);  \
-	elist[0] = _pclu_erstr((x)); \
-	return(ERR_failure); \
-	}
+#define resignal(x) do {				\
+	    if ((x) == ERR_ok || (x) == ERR_failure)	\
+		return (errcode)(x);			\
+	    elist[0] = _pclu_erstr((x));		\
+	    return ERR_failure;				\
+	} while (0)
 
 #ifndef BOOL
 typedef long bool;
