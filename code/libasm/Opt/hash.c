@@ -11,12 +11,12 @@
 
 
 /*
- * hash = proc (s: string, size: int) returns (int)
+ * hash = proc (s: string, table_size: int) returns (int)
  *
  *   A hashing function for strings.
  */
 errcode
-hash(CLUREF s, CLUREF max, CLUREF *ans)
+hash(CLUREF s, CLUREF table_size, CLUREF *ans)
 {
     int j, sum, temp;
 
@@ -37,13 +37,13 @@ hash(CLUREF s, CLUREF max, CLUREF *ans)
 	sum += s.str->data[j+1];
     }
 
-    if (max.num == 0) {
+    if (table_size.num == 0) {
 	ans->num = 0;
     }
     else {
 	if (sum < 0)
 	    sum = -sum;
-	ans->num = sum % max.num;
+	ans->num = sum % table_size.num;
     }
 
     signal(ERR_ok);

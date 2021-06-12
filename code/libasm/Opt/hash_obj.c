@@ -13,19 +13,19 @@
 
 
 /*
- * hash_obj = proc (key: _obj, int table_size) returns (int)
+ * hash_obj = proc (o: _obj, table_size: int) returns (int)
  *
- * Hash function for Clu objects for the TABLE cluster.
+ *     A hashing function for objects.
  */
 errcode
-hash_obj(CLUREF _obj, CLUREF max, CLUREF *ans)
+hash_obj(CLUREF o, CLUREF table_size, CLUREF *ans)
 {
-    if (max.num == 0) {
+    if (table_size.num == 0) {
 	ans->num = 0;
     }
     else {
-	uintptr_t ptrbits = (uintptr_t)_obj.ref / CLUREFSZ;
-	ans->num = ptrbits % max.num;
+	uintptr_t ptrbits = (uintptr_t)o.ref / CLUREFSZ;
+	ans->num = ptrbits % table_size.num;
     }
 
     signal(ERR_ok);

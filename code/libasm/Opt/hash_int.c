@@ -12,10 +12,15 @@
 #include <stdint.h>
 
 
+/*
+ * hash_int = proc (i: int, table_size: int) returns (int)
+ *
+ *   A hashing function for integers.
+ */
 errcode
-hash_int(CLUREF i, CLUREF max, CLUREF *ans)
+hash_int(CLUREF i, CLUREF table_size, CLUREF *ans)
 {
-    if (max.num == 0) {
+    if (table_size.num == 0) {
 	ans->num = 0;
     }
     else {
@@ -24,7 +29,7 @@ hash_int(CLUREF i, CLUREF max, CLUREF *ans)
 	 * towards zero) that can produce negative remainders with
 	 * signed operands, so use unsigned.
 	 */
-	ans->num = (uintptr_t)i.num % (uintptr_t)max.num;
+	ans->num = (uintptr_t)i.num % (uintptr_t)table_size.num;
     }
 
     signal(ERR_ok);
