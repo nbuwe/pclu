@@ -12,25 +12,32 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+#include <errno.h>
+
+extern errcode _local_time(CLUREF left, CLUREF right, CLUREF *ans);
+
 
 errcode
 now(CLUREF *ans)
 {
-    CLUREF temp;
     errcode err;
-    int unix_err;
-    struct timeval tp;
-    struct timezone tzp;
+    int status;
+
+    struct timeval tv;
+    status = gettimeofday(&tv, NULL);
+    if (status != 0) {
+	elist[0] = _unix_erstr(errno);
+	signal(ERR_failure);
+    }
+
+    CLUREF date;
     CLUREF left, right;
-
-    unix_err = gettimeofday(&tp, &tzp);
-
-    left.num = tp.tv_sec >> 16;
-    right.num = tp.tv_sec & 0Xffff;
-    err = _local_time(left, right, &temp);
+    left.num = tv.tv_sec >> 16;
+    right.num = tv.tv_sec & 0xffff;
+    err = _local_time(left, right, &date);
     if (err != ERR_ok)
 	resignal(err);
 
-    ans->num = temp.num;
+    *ans = date;
     signal(ERR_ok);
 }
