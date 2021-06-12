@@ -20,21 +20,23 @@ rename_file(CLUREF ofn, CLUREF nfn)
 {
     int status;
     errcode err;
-    CLUREF nnewfn, nname;
-    CLUREF onewfn, oname;
 
+    CLUREF onewfn;
     err = file_name_fill(ofn, CLU_empty_string, &onewfn);
     if (err != ERR_ok)
 	resignal(err);
 
+    CLUREF oname;
     err = file_nameOPunparse(onewfn, &oname);
     if (err != ERR_ok)
 	resignal(err);
 
+    CLUREF nnewfn;
     err = file_name_fill(nfn, CLU_empty_string, &nnewfn);
     if (err != ERR_ok)
 	resignal(err);
 
+    CLUREF nname;
     err = file_nameOPunparse(nnewfn, &nname);
     if (err != ERR_ok)
 	resignal(err);
