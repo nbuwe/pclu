@@ -1,38 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/util.c,v 1.8 91/08/29 16:44:47 dcurtis Exp $";
-#endif
-/* $Log:	util.c,v $
- * Revision 1.8  91/08/29  16:44:47  dcurtis
- * added definition for find_selops_init function (lint)
- * 
- * Revision 1.7  91/08/29  16:18:16  dcurtis
- * fixed definitions for args to find_ops_init, find_selops_init (lint)
- * 
- * Revision 1.6  91/08/29  14:57:06  dcurtis
- * fixed streamOP_close_all & _chanOP_save_tty calls to include elist argument
- * 
- * Revision 1.5  91/06/06  17:21:25  root
- * made CLU_n exist only on sparc stations
- * 
- * Revision 1.4  91/06/06  13:32:21  root
- * added copyright notice
- * 
- * Revision 1.3  91/06/03  11:47:56  root
- * sparcstation compatibility: int->CLUREF
- * 	also generated unions containing small integers
- * 	and cleaned up returning of function value of main program
- * 
- * Revision 1.2  91/02/14  16:20:48  dcurtis
- * changed #ifdef gc to #ifdef GC, to avoid name conflicts
- * 
- * Revision 1.1  91/02/04  15:49:57  mtv
- * Initial revision
- * 
- */
-
 
 /*						*/
 /*						*/
