@@ -72,6 +72,8 @@ proctypeOPdebug_print(CLUREF x1, CLUREF ps)
     errcode err;
     CLUREF ans, str;
 
+    (void) x1;
+
     stringOPcons("proctype", CLU_1, CLU_8, &str);
     err = pstreamOPtextc(ps, str, &ans);
     if (err != ERR_ok) resignal(err);
