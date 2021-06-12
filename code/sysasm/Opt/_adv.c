@@ -232,21 +232,22 @@ _advOPset_vector(CLUREF adv, CLUREF v)
 errcode
 _advOP_gcd(CLUREF adv, CLUREF tab, CLUREF *ans)
 {
-    _adv_OWN_DEFN *type_own_ptr = (_adv_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
     errcode err;
-    CLUREF temp_oneof, temp_oneof_2, sz, fcn;
+    _adv_OWN_DEFN *type_own_ptr = (_adv_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
-    fcn.proc = type_own_ptr->t_ops->_gcd.fcn;
-    err = oneofOPnew(CLU_7, fcn, &temp_oneof);
+    CLUREF arp;			// := ginfo$make_g_arp(T$_gcd)
+    CLUREF tOP_gcd = { .proc = type_own_ptr->t_ops->_gcd.fcn };
+    err = oneofOPnew(CLU_7, tOP_gcd, &arp);
     if (err != ERR_ok)
 	resignal(err);
 
-    err = oneofOPnew(CLU_6, temp_oneof, &temp_oneof_2);
+    CLUREF ginfo;		// := ginfo$make_f_adv(arp)
+    err = oneofOPnew(CLU_6, arp, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
-    sz.num = GCD_REF_SIZE + 6 * CLUREFSZ;
-    err = gcd_tabOPinsert(tab, sz, temp_oneof_2, adv, ans);
+    CLUREF sz = { .num = GCD_REF_SIZE + 6 * CLUREFSZ };
+    err = gcd_tabOPinsert(tab, sz, ginfo, adv, ans);
     if (err != ERR_ok)
 	resignal(err);
 
@@ -264,12 +265,12 @@ _advOP_gcd(CLUREF adv, CLUREF tab, CLUREF *ans)
 errcode
 _advOPdebug_print(CLUREF adv, CLUREF ps)
 {
-    _adv_OWN_DEFN *type_own_ptr = (_adv_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
     errcode err;
-    CLUREF pfcn;
+    _adv_OWN_DEFN *type_own_ptr = (_adv_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
-    pfcn.proc = type_own_ptr->t_ops->debug_print.fcn;
-    err = arrayOPinternal_print(adv, ps, pfcn);
+    /* print elements with T$debug_print() */
+    CLUREF tOPdebug_print = { .proc = type_own_ptr->t_ops->debug_print.fcn };
+    err = arrayOPinternal_print(adv, ps, tOPdebug_print);
     if (err != ERR_ok)
 	resignal(err);
 
