@@ -259,6 +259,8 @@ missing_print_fcn(CLUREF val, CLUREF pst)
 {
     errcode err;
 
+    (void) val;			/* no idea how to print it */
+
     static CLUREF msg = { .str = NULL };
     if (msg.str == NULL) {
 	err = stringOPcons("no print function", CLU_1, CLU_17, &msg);
