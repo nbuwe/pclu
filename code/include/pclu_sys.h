@@ -50,7 +50,7 @@
 #define _environ _OPenviron
 #define UNINIT 0xdeadffff
 #define MAX_SIG_VALS 	10
-#define intOPleastint	0X80000000
+#define intOPleastint	(-0x7fffffff-1)
 #define intOPmaxint	0X7FFFFFFF
 #define intOPsqrtmax	46341
 #define intOPmaxdigits   20
