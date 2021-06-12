@@ -71,10 +71,11 @@ struct {
 	OWNPTR  op_owns;
 	} generic_CLU_proc;
 
-struct OPS NO_OPS = {0,0,0};
-struct OPS NULL_OPS = {0,0,0};
-Vlist0 NO_VALS = {0,0};
-Slist0 NO_PARMS = {0,0};
+struct OPS NO_OPS = { .count = 0, .type_owns = NULL, .op_owns = NULL };
+struct OPS *NULL_OPS = NULL;
+
+Vlist0 NO_VALS =  { .hdr = 0, .count = 0 };
+Slist0 NO_PARMS = { .hdr = 0, .count = 0 };
 
 
 long maxheapsize = 0;

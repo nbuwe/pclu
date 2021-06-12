@@ -344,10 +344,10 @@ extern errcode debugOPleave_proc();
 extern errcode debugOPbegin_line();
 extern errcode force();
 extern struct OPS NO_OPS;
+extern struct OPS *NULL_OPS;
 extern struct obj **NewObjPtr;
 #ifndef CLU_sysasm_util_impl
 extern CLU_proc generic_CLU_proc;
-extern struct OPS *NULL_OPS;
 #endif
 #define zero_ops (struct OPS**)0
 #define m1_ops (struct OPS**)-1
