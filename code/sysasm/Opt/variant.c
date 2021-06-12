@@ -138,7 +138,7 @@ variantOPprint(CLUREF vnt, CLUREF pst)
     OWN_ptr *owns = CUR_PROC_VAR.proc->op_owns;
     CLUPROC *table = (CLUPROC *)owns->info; /* ptr to print fcns */
     errcode err;
-    CLUREF temp_str, temp_st2, tag, value, ans;
+    CLUREF temp_str, value, ans;
 
     err = stringOPcons("<", CLU_1, CLU_1, &temp_str);
     if (err != ERR_ok) resignal(err);
