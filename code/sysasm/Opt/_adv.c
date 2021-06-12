@@ -85,14 +85,14 @@ _advOPcreate(CLUREF low, CLUREF pred, CLUREF v, CLUREF *ret_1)
     temp.array->int_low = 0;
     temp.array->int_size = v.vec->size;
     temp.array->store = v.store;
+    (void) pred;		/* TODO */
 
     ret_1->array = temp.array;
     signal(ERR_ok);
 
   ex_0: {
-	if (err == ERR_failure)
-	    signal(ERR_failure);
-	elist[0] = _pclu_erstr(err);
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
 	signal(ERR_failure);
     }
 }
@@ -202,6 +202,8 @@ _advOPget_predict(CLUREF adv, CLUREF *ret_1)
 errcode
 _advOPset_predict(CLUREF adv, CLUREF pred)
 {
+    (void) adv;
+    (void) pred;
     signal(ERR_ok);
 }
 
@@ -239,24 +241,23 @@ _advOP_gcd(CLUREF adv, CLUREF tab, CLUREF *ans)
     CLUREF tOP_gcd = { .proc = type_own_ptr->t_ops->_gcd.fcn };
     err = oneofOPnew(CLU_7, tOP_gcd, &arp);
     if (err != ERR_ok)
-	resignal(err);
+	goto ex_0;
 
     CLUREF ginfo;		// := ginfo$make_f_adv(arp)
     err = oneofOPnew(CLU_6, arp, &ginfo);
     if (err != ERR_ok)
-	resignal(err);
+	goto ex_0;
 
     CLUREF sz = { .num = GCD_REF_SIZE + 6 * CLUREFSZ };
     err = gcd_tabOPinsert(tab, sz, ginfo, adv, ans);
     if (err != ERR_ok)
-	resignal(err);
+	goto ex_0;
 
     signal(ERR_ok);
 
   ex_0: {
-	if (err == ERR_failure)
-	    signal(ERR_failure);
-	elist[0] = _pclu_erstr(err);
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
 	signal(ERR_failure);
     }
 }
