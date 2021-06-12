@@ -313,7 +313,8 @@ typedef struct {
 static _adv_OPS _adv_ops_actual = {
     14,
     &_adv_own_init,
-    &_adv_own_init, {
+    &_adv_own_init,
+    {
 	{ &_adv_oe_create, "create" },
 	{ &_adv_oe_equal, "equal" },
 	{ &_adv_oe_get_low, "get_low" },
