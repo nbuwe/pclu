@@ -64,15 +64,6 @@ const OWN_req _vec_ownreqs = { sizeof(_vec_OWN_DEFN), 1 };
 errcode
 _vecOPcreate(CLUREF sz, CLUREF *ans)
 {
-    errcode err;
-    CLUREF temp;
-    int i;
-
-    CLU_NOREF(err);
-
-    if (sz.num < 0)
-	signal(ERR_negative_size);
-
     /*
      * Using sequenceOPnew for empty _vec's is NOT A GOOD IDEA:
      * sequences are immutable, but _vec's are used for array stores
@@ -88,21 +79,20 @@ _vecOPcreate(CLUREF sz, CLUREF *ans)
     }
 #endif
 
+    if (sz.num < 0)
+	signal(ERR_negative_size);
     if (sz.num > MAX_SEQ)
 	signal(ERR_toobig);
 
-    clu_alloc(sizeof(CLU_sequence) + (sz.num - 1) * CLUREFSZ,
-	      &temp);
-    temp.vec->size = sz.num;
-    temp.vec->typ.val = CT_AGG;
-    temp.vec->typ.mark = 0;
-    temp.vec->typ.refp = 0;
+    size_t bufsz = offsetof(CLU_sequence, data) + sz.num * CLUREFSZ;
 
-    for (i = 0; i < sz.num; ++i) {
-	temp.vec->data[i] = 0;
-    }
+    CLUREF v;
+    clu_alloc(bufsz, &v);
+    CLUTYPE_set(v.vec->typ, CT_AGG);
+    v.vec->size = sz.num;
+    // v.vec->data[] is zeroed out by the allocator
 
-    ans->vec = temp.vec;
+    ans->vec = v.vec;
     signal(ERR_ok);
 }
 
@@ -111,19 +101,15 @@ errcode
 _vecOPcopy(CLUREF v, CLUREF *ans)
 {
     errcode err;
-    CLUREF temp, sz;
-    int i;
 
-    sz.num = v.vec->size;
-    err = _vecOPcreate(sz, &temp);
+    CLUREF v2;
+    err = _vecOPcreate(CLUREF_make_num(v.vec->size), &v2);
     if (err != ERR_ok)
 	resignal(err);
 
-    for (i = 0; i < v.vec->size; i++) {
-	temp.vec->data[i] = v.vec->data[i];
-    }
+    memcpy(v2.vec->data, v.vec->data, v.vec->size * CLUREFSZ);
 
-    ans->vec = temp.vec;
+    ans->vec = v2.vec;
     signal(ERR_ok);
 }
 
@@ -149,7 +135,7 @@ _vecOPstore(CLUREF v, CLUREF i, CLUREF val)
     if (i.num > v.vec->size)
 	signal(ERR_bounds);
 
-    v.vec->data[i.num-1] = val.num;
+    v.vec->data[i.num - 1] = val.num;
     signal(ERR_ok);
 }
 
@@ -176,10 +162,11 @@ _vecOPequal(CLUREF v1, CLUREF v2, CLUREF *ans)
 errcode
 _vecOPmove_lr(CLUREF v1, CLUREF s1, CLUREF v2, CLUREF s2, CLUREF len)
 {
-    if (len.num < 0)
-	signal(ERR_negative_size);
     if (len.num == 0)
 	signal(ERR_ok);
+
+    if (len.num < 0)
+	signal(ERR_negative_size);
     if (s1.num > v1.vec->size)
 	signal(ERR_bounds);
     if (s2.num > v2.vec->size)
@@ -200,10 +187,11 @@ _vecOPmove_lr(CLUREF v1, CLUREF s1, CLUREF v2, CLUREF s2, CLUREF len)
 errcode
 _vecOPmove_rl(CLUREF v1, CLUREF s1, CLUREF v2, CLUREF s2, CLUREF len)
 {
-    if (len.num < 0)
-	signal(ERR_negative_size);
     if (len.num == 0)
 	signal(ERR_ok);
+
+    if (len.num < 0)
+	signal(ERR_negative_size);
     if (s1.num > v1.vec->size)
 	signal(ERR_bounds);
     if (s2.num > v2.vec->size)
@@ -224,20 +212,24 @@ _vecOPmove_rl(CLUREF v1, CLUREF s1, CLUREF v2, CLUREF s2, CLUREF len)
 errcode
 _vecOP_gcd(CLUREF v, CLUREF tab, CLUREF *ans)
 {
-    _vec_of_t_OPS *table
-	= (_vec_of_t_OPS*)CUR_PROC_VAR.proc->type_owns->info[0];
     errcode err;
-    CLUREF temp_oneof, sz, fcn;
+    _vec_OWN_DEFN *type_own_ptr
+	= (_vec_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
-    fcn.proc = table->_gcd.fcn;
-    err = oneofOPnew(CLU_2, fcn, &temp_oneof);
+    CLUREF ginfo;		// := ginfo$make_b_vec(T$gcd)
+    CLUREF tOP_gcd = { .proc = type_own_ptr->t_ops->_gcd.fcn };
+    err = oneofOPnew(CLU_2, tOP_gcd, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
-    sz.num = v.vec->size * GCD_REF_SIZE + 8;
-    err = gcd_tabOPinsert(tab, sz, temp_oneof, v, ans);
+    CLUREF sz = {
+	.num = offsetof(CLU_sequence, data) // header
+	     + v.vec->size * GCD_REF_SIZE   // elements
+    };
+    err = gcd_tabOPinsert(tab, sz, ginfo, v, ans);
     if (err != ERR_ok)
 	resignal(err);
+
     signal(ERR_ok);
 }
 
@@ -246,14 +238,14 @@ errcode
 _vecOPdebug_print(CLUREF v, CLUREF pst)
 {
     errcode err;
-    _vec_of_t_OPS *table
-	= (_vec_of_t_OPS *)CUR_PROC_VAR.proc->type_owns->info[0];
+    _vec_OWN_DEFN *type_own_ptr
+	= (_vec_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
-    CLUREF pfcn;
-    pfcn.proc = table->debug_print.fcn;
-    err = sequenceOPinternal_print(v, pst, pfcn);
+    CLUREF tOPdebug_print = { .proc = type_own_ptr->t_ops->debug_print.fcn };
+    err = sequenceOPinternal_print(v, pst, tOPdebug_print);
     if (err != ERR_ok)
 	resignal(err);
+
     signal(ERR_ok);
 }
 
