@@ -131,6 +131,24 @@ typedef struct  {
 	char	spare;
 	} CLUTYPE;
 
+/*
+ * The following is spelled in a somewhat roundabout way b/c gcc can
+ * optimize it into a single word store, but for some reason can't do
+ * that for a direct assignment of a compound literal.
+ */
+#if 0
+#define CLUTYPE_set(_typ, _val) do {		\
+	    _typ = (CLUTYPE){ .val = (_val) };	\
+	} while (0)
+#else
+#define CLUTYPE_set(_typ, _val) do {				\
+	    const CLUTYPE _clutype_val = { .val = (_val) };	\
+	    _typ = _clutype_val;				\
+	} while (0)
+#endif
+
+
+
 /*					*/
 /*	STRING DEFINITIONS		*/
 /*					*/
