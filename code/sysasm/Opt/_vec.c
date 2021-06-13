@@ -260,8 +260,6 @@ OWN_ptr _vec_own_init;		/* dummy */
     .op_owns = &_vec_own_init,			\
 }
 
-static CLU_proc _vec_oe__gcd = CLU_proc_INIT(_vecOP_gcd);
-static CLU_proc _vec_oe_debug_print = CLU_proc_INIT(_vecOPdebug_print);
 static CLU_proc _vec_oe_create = CLU_proc_INIT(_vecOPcreate);
 static CLU_proc _vec_oe_equal = CLU_proc_INIT(_vecOPequal);
 static CLU_proc _vec_oe_copy = CLU_proc_INIT(_vecOPcopy);
@@ -270,6 +268,9 @@ static CLU_proc _vec_oe_store = CLU_proc_INIT(_vecOPstore);
 static CLU_proc _vec_oe_size = CLU_proc_INIT(_vecOPsize);
 static CLU_proc _vec_oe_move_lr = CLU_proc_INIT(_vecOPmove_lr);
 static CLU_proc _vec_oe_move_rl = CLU_proc_INIT(_vecOPmove_rl);
+static CLU_proc _vec_oe__gcd = CLU_proc_INIT(_vecOP_gcd);
+static CLU_proc _vec_oe_debug_print = CLU_proc_INIT(_vecOPdebug_print);
+
 
 static struct /* OPS */ {
     int count;
