@@ -20,7 +20,7 @@ proctypeOPnew(CLUREF nops, CLUREF *ans)
     if (nops.num > 1)
 	size += (nops.num - 1) * sizeof(struct OPS *);
 #else
-    (void) nops;
+    CLU_NOREF(nops);
 #endif
 
     CLUREF temp;
@@ -72,7 +72,7 @@ proctypeOPdebug_print(CLUREF x1, CLUREF ps)
     errcode err;
     CLUREF ans, str;
 
-    (void) x1;
+    CLU_NOREF(x1);
 
     stringOPcons("proctype", CLU_1, CLU_8, &str);
     err = pstreamOPtextc(ps, str, &ans);

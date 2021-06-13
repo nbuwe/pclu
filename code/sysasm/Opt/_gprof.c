@@ -20,7 +20,7 @@ _gprofOPinit(void)
 errcode
 _gprofOPdump(CLUREF fs)
 {
-    (void) fs;
+    CLU_NOREF(fs);
     signal(ERR_ok);
 }
 
@@ -28,6 +28,6 @@ _gprofOPdump(CLUREF fs)
 errcode
 _gprofOPcontrol(CLUREF flag)
 {
-    (void) flag;
+    CLU_NOREF(flag);
     signal(ERR_ok);
 }

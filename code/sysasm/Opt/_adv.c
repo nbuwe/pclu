@@ -85,7 +85,7 @@ _advOPcreate(CLUREF low, CLUREF pred, CLUREF v, CLUREF *ret_1)
     temp.array->int_low = 0;
     temp.array->int_size = v.vec->size;
     temp.array->store = v.store;
-    (void) pred;		/* TODO */
+    CLU_NOREF(pred);		/* TODO */
 
     ret_1->array = temp.array;
     signal(ERR_ok);
@@ -202,8 +202,8 @@ _advOPget_predict(CLUREF adv, CLUREF *ret_1)
 errcode
 _advOPset_predict(CLUREF adv, CLUREF pred)
 {
-    (void) adv;
-    (void) pred;
+    CLU_NOREF(adv);
+    CLU_NOREF(pred);
     signal(ERR_ok);
 }
 

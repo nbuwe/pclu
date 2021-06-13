@@ -259,7 +259,7 @@ missing_print_fcn(CLUREF val, CLUREF pst)
 {
     errcode err;
 
-    (void) val;			/* no idea how to print it */
+    CLU_NOREF(val);		/* no idea how to print it */
 
     static CLUREF msg = { .str = NULL };
     if (msg.str == NULL) {

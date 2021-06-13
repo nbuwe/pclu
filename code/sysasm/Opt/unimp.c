@@ -51,7 +51,8 @@ _gcOPcount(CLUREF *ans)
 errcode
 _rtn_infoOPis_proc(CLUREF s, CLUREF *ans)
 {
-    (void) s;
+    CLU_NOREF(s);
+
     ans->tf = true;
     signal(ERR_ok);
 }
@@ -60,7 +61,8 @@ _rtn_infoOPis_proc(CLUREF s, CLUREF *ans)
 errcode
 _rtn_infoOPis_iter(CLUREF s, CLUREF *ans)
 {
-    (void) s;
+    CLU_NOREF(s);
+
     ans->tf = true;
     signal(ERR_ok);
 }
@@ -69,8 +71,9 @@ _rtn_infoOPis_iter(CLUREF s, CLUREF *ans)
 errcode
 _objOPis_uninit(CLUREF x, CLUREF *ans)
 {
-    (void) x;
-    (void) ans;
+    CLU_NOREF(x);
+    CLU_NOREF(ans);
+
     fprintf(stderr, "_obj$is_uninit not implemented\n");
     signal(ERR_failure);
 }
@@ -79,8 +82,9 @@ _objOPis_uninit(CLUREF x, CLUREF *ans)
 errcode
 atan4900(CLUREF x, CLUREF *ans)
 {
-    (void) x;
-    (void) ans;
+    CLU_NOREF(x);
+    CLU_NOREF(ans);
+
     fprintf(stderr, "atan4900 not implemented\n");
     signal(ERR_failure);
 }
@@ -89,8 +93,9 @@ atan4900(CLUREF x, CLUREF *ans)
 errcode
 _objOPis_routine(CLUREF x, CLUREF *ans)
 {
-    (void) x;
-    (void) ans;
+    CLU_NOREF(x);
+    CLU_NOREF(ans);
+
     fprintf(stderr, "_obj$is_routine not implemented\n");
     signal(ERR_failure);
 }
@@ -99,8 +104,9 @@ _objOPis_routine(CLUREF x, CLUREF *ans)
 errcode
 structOPcreate(CLUREF x, CLUREF *ans)
 {
-    (void) x;
-    (void) ans;
+    CLU_NOREF(x);
+    CLU_NOREF(ans);
+
     fprintf(stderr, "struct$create not implemented\n");
     signal(ERR_failure);
 }

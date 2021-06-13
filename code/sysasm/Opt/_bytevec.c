@@ -232,9 +232,9 @@ _bytevecOPnc_indexv(CLUREF bv1, CLUREF bv2, CLUREF first, CLUREF *ans)
 errcode
 _bytevecOPcomp(CLUREF v1, CLUREF v2, CLUREF *ans)
 {
-    (void) v1;
-    (void) v2;
-    (void) ans;
+    CLU_NOREF(v1);
+    CLU_NOREF(v2);
+    CLU_NOREF(ans);
 
     fprintf(stderr, "_bytevec$comp not implemented\n");
     signal(ERR_failure);
@@ -244,11 +244,11 @@ _bytevecOPcomp(CLUREF v1, CLUREF v2, CLUREF *ans)
 errcode
 _bytevecOPmove_rl(CLUREF v1, CLUREF s1, CLUREF v2, CLUREF s2, CLUREF len)
 {
-    (void) v1;
-    (void) s1;
-    (void) v2;
-    (void) s2;
-    (void) len;
+    CLU_NOREF(v1);
+    CLU_NOREF(s1);
+    CLU_NOREF(v2);
+    CLU_NOREF(s2);
+    CLU_NOREF(len);
 
     fprintf(stderr, "_bytevec$move_rl not implemented\n");
     signal(ERR_failure);
@@ -257,11 +257,11 @@ _bytevecOPmove_rl(CLUREF v1, CLUREF s1, CLUREF v2, CLUREF s2, CLUREF len)
 
 errcode _bytevecOPmove_b(CLUREF v1, CLUREF s1, CLUREF v2, CLUREF s2, CLUREF len)
 {
-    (void) v1;
-    (void) s1;
-    (void) v2;
-    (void) s2;
-    (void) len;
+    CLU_NOREF(v1);
+    CLU_NOREF(s1);
+    CLU_NOREF(v2);
+    CLU_NOREF(s2);
+    CLU_NOREF(len);
 
     fprintf(stderr, "_bytevec$move_b not implemented\n");
     signal(ERR_failure);
@@ -271,8 +271,8 @@ errcode _bytevecOPmove_b(CLUREF v1, CLUREF s1, CLUREF v2, CLUREF s2, CLUREF len)
 errcode
 _bytevecOPbuild(CLUREF v1, CLUREF *ans)
 {
-    (void) v1;
-    (void) ans;
+    CLU_NOREF(v1);
+    CLU_NOREF(ans);
 
     fprintf(stderr, "_bytevec$build not implemented\n");
     signal(ERR_failure);
