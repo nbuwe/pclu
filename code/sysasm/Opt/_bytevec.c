@@ -37,16 +37,10 @@ static void
 _bytevecOPOPalloc(size_t size, CLUREF *pnew)
 {
     size_t bufsz = _bytevecOPOPmemsize(size);
-    clu_alloc_atomic(bufsz, pnew);
-    pnew->str->size = size;
 
-    /*
-     * The following is spelled in a somewhat roundabout way b/c gcc
-     * can optimize it into a single word store, but for some reason
-     * can't do that for a direct assignment of a compound literal.
-     */
-    const CLUTYPE strtype = { .val = CT_STRING };
-    pnew->str->typ = strtype;
+    clu_alloc_atomic(bufsz, pnew);
+    CLUTYPE_set(pnew->str->typ, CT_STRING);
+    pnew->str->size = size;
 }
 
 
