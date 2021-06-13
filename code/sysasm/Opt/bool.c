@@ -130,6 +130,9 @@ boolOPdecode(CLUREF ist, CLUREF *ans)
 errcode
 boolOP_gcd(CLUREF b, CLUREF tab, CLUREF *ans)
 {
+    CLU_NOREF(b);
+    CLU_NOREF(tab);
+
     ans->num = -1;
     signal(ERR_ok);
 }
