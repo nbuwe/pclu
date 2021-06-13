@@ -8,14 +8,8 @@
 #ifndef PCLU_SYS
 #define PCLU_SYS
 
-#ifdef sparc
-#include <sys/param.h>
-#endif
-
-#ifndef INT_MIN
 #include <limits.h>
-#endif
-
+#include <stddef.h>
 #include <string.h>
 
 
