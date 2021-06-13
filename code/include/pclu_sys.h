@@ -1,30 +1,12 @@
-#ifndef PCLU_SYS
-#define PCLU_SYS
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-/* $Header: pclu_sys.h,v 1.4 91/05/06 12:21:49 dcurtis Exp $ */
-/* $Log:	pclu_sys.h,v $
- * Revision 1.4  91/05/06  12:21:49  dcurtis
- * *** empty log message ***
- * 
- * Revision 1.3  91/05/02  15:17:02  dcurtis
- * replaced a constant with a define for MAX_SIG_VALS
- * 	to ease future changes
- * 
- * Revision 1.2  91/04/02  19:40:46  mtv
- * Removed redundannt code from RecordAlloc and CellAlloc macros.
- * Updated allocation macros to work with (or without) MERGE_SIZES.
- * 
- * Revision 1.1  91/03/23  16:09:37  mtv
- * Initial revision
- * 
- */
 
 /*						  */
 /*	sys.h				          */
 /*						  */
 /*	Defines system constants		  */
+
+#ifndef PCLU_SYS
+#define PCLU_SYS
 
 #ifdef sparc
 #include <sys/param.h>
