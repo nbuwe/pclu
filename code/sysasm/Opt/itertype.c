@@ -67,6 +67,8 @@ itertypeOPdebug_print(CLUREF x1, CLUREF ps)
     CLUREF str, ans;
     errcode err;
 
+    CLU_NOREF(x1);
+
     stringOPcons("itertype", CLU_1, CLU_8, &str);
     err = pstreamOPtextc(ps, str, &ans);
     if (err != ERR_ok) resignal(err);
