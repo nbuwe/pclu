@@ -17,20 +17,26 @@ extern errcode stringOPdebug_print(CLUREF s, CLUREF pst);
 #define	CLU_roundup(x, y)	((((x)+((y)-1))/(y))*(y))
 
 
+static inline size_t
+_bytevecOPOPmemsize(size_t size)
+{
+    /*
+     * string header w/out the "inflexible" data[] array
+     * and extra space for NUL at the end
+     */
+    size += offsetof(CLU_string, data) + 1;
+
+    /* round up to word size */
+    size = CLU_roundup(size, CLUREFSZ);
+
+    return size;
+}
+
+
 static void
 _bytevecOPOPalloc(size_t size, CLUREF *pnew)
 {
-    size_t bufsz;
-
-    /* string header w/out the "inflexible" data[] array */
-    bufsz = offsetof(CLU_string, data);
-
-    /* data, with extra space for NUL at the end */
-    bufsz += size + 1;
-
-    /* allocator probably does that itself anyway */
-    bufsz = CLU_roundup(bufsz, CLUREFSZ);
-
+    size_t bufsz = _bytevecOPOPmemsize(size);
     clu_alloc_atomic(bufsz, pnew);
     pnew->str->size = size;
 
@@ -339,17 +345,14 @@ errcode
 _bytevecOP_gcd(CLUREF bv, CLUREF tab, CLUREF *ans)
 {
     errcode err;
-    CLUREF temp_oneof;
 
-    err = oneofOPnew(CLU_1, CLU_0, &temp_oneof);
+    CLUREF ginfo; 		// := ginfo$make_a_bvec(nil)
+    err = oneofOPnew(CLU_1, CLU_0, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
-    /* 16 for type + size, 1 for trailing 0, +3 &~3 to round up */
-    err = gcd_tabOPinsert(tab,
-			  CLUREF_make_num((2*CLUREFSZ
-				+ (bv.str->size + CLUREFSZ)) &~(CLUREFSZ-1)),
-			  temp_oneof, bv, ans);
+    long sz = _bytevecOPOPmemsize(bv.str->size);
+    err = gcd_tabOPinsert(tab, CLUREF_make_num(sz), ginfo, bv, ans);
     if (err != ERR_ok)
 	resignal(err);
     signal(ERR_ok);
