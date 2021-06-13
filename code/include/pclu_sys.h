@@ -12,6 +12,8 @@
 #include <stddef.h>
 #include <string.h>
 
+#define CLU_NOREF(var) ((void)(var))
+
 
 #ifdef LINUX
 #define gcollect GC_gcollect
