@@ -60,17 +60,12 @@ const OWN_req _tagcell_ownreqs = { sizeof(_tagcell_OWN_DEFN), 1 };
 errcode
 _tagcellOPcreate(CLUREF tg, CLUREF val, CLUREF *ans)
 {
-    errcode err;
-
     if (tg.num >= cellOPmaxtag)
 	signal(ERR_toobig);
 
     CLUREF tt;
     clu_alloc(sizeof(CLU_cell), &tt);
-    tt.cell->typ.mark = 0;
-    tt.cell->typ.val = CT_TAG;
-    tt.cell->typ.refp = 0;
-    tt.cell->typ.spare = 0;
+    CLUTYPE_set(tt.cell->typ, CT_TAG);
     tt.cell->tag = tg.num;
     tt.cell->value = val.num;
 
@@ -83,15 +78,15 @@ errcode
 _tagcellOPcopy(CLUREF tt, CLUREF *ans)
 {
     errcode err;
-    CLUREF tg, val, temp;
 
-    tg.num = tt.cell->tag;
-    val.num = tt.cell->value;
-    err = _tagcellOPcreate(tg, val, &temp);
+    CLUREF tt2;
+    err = _tagcellOPcreate(CLUREF_make_num(tt.cell->tag),
+			   CLUREF_make_num(tt.cell->value),
+			   &tt2);
     if (err != ERR_ok)
 	resignal(err);
 
-    ans->cell = temp.cell;
+    ans->cell = tt2.cell;
     signal(ERR_ok);
 }
 
@@ -139,18 +134,18 @@ _tagcellOPequal(CLUREF t1, CLUREF t2, CLUREF *ans)
 errcode
 _tagcellOP_gcd(CLUREF tt, CLUREF tab, CLUREF *ans)
 {
-    _tagcell_of_t_OPS *table
-	= (_tagcell_of_t_OPS *)CUR_PROC_VAR.proc->type_owns->info[0];
     errcode err;
-    CLUREF temp_oneof, sz, fcn;
+    _tagcell_OWN_DEFN *type_own_ptr
+	= (_tagcell_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
-    fcn.proc = table->_gcd.fcn;
-    err = oneofOPnew(CLU_5, fcn, &temp_oneof);
+    CLUREF ginfo;		// := ginfo$make_e_sell(T$_gcd)
+    CLUREF tOP_gcd = { .proc = type_own_ptr->t_ops->_gcd.fcn };
+    err = oneofOPnew(CLU_5, tOP_gcd, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
-    sz.num = 2*CLUREFSZ + GCD_REF_SIZE;
-    err = gcd_tabOPinsert(tab,  sz, temp_oneof, tt, ans);
+    CLUREF sz = { .num = GCD_REF_SIZE + 2 * CLUREFSZ };
+    err = gcd_tabOPinsert(tab,  sz, ginfo, tt, ans);
     if (err != ERR_ok)
 	resignal(err);
 
