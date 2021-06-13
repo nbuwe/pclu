@@ -79,17 +79,17 @@ boolOPprint(CLUREF b, CLUREF pst)
     static CLUREF false_STRING = { .str = NULL };
     if (true_STRING.str == NULL) {
 	err = stringOPcons("true", CLU_1, CLU_4, &true_STRING);
-	if (err != ERR_ok) resignal(err)
+	if (err != ERR_ok) resignal(err);
 
 	err = stringOPcons("false", CLU_1, CLU_5, &false_STRING);
-	if (err != ERR_ok) resignal(err)
+	if (err != ERR_ok) resignal(err);
     }
 
     if (b.tf)
 	err = pstreamOPtext(pst, true_STRING, &ans);
     else
 	err = pstreamOPtext(pst, false_STRING, &ans);
-    if (err != ERR_ok) resignal(err)
+    if (err != ERR_ok) resignal(err);
     signal(ERR_ok);
 }
 
