@@ -14,6 +14,36 @@
 extern errcode gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ans);
 extern errcode stringOPdebug_print(CLUREF s, CLUREF pst);
 
+#define	CLU_roundup(x, y)	((((x)+((y)-1))/(y))*(y))
+
+
+static void
+_bytevecOPOPalloc(size_t size, CLUREF *pnew)
+{
+    size_t bufsz;
+
+    /* string header w/out the "inflexible" data[] array */
+    bufsz = offsetof(CLU_string, data);
+
+    /* data, with extra space for NUL at the end */
+    bufsz += size + 1;
+
+    /* allocator probably does that itself anyway */
+    bufsz = CLU_roundup(bufsz, CLUREFSZ);
+
+    clu_alloc_atomic(bufsz, pnew);
+    pnew->str->size = size;
+
+    /*
+     * The following is spelled in a somewhat roundabout way b/c gcc
+     * can optimize it into a single word store, but for some reason
+     * can't do that for a direct assignment of a compound literal.
+     */
+    const CLUTYPE strtype = { .val = CT_STRING };
+    pnew->str->typ = strtype;
+}
+
+
 
 errcode
 _bytevecOPcreate(CLUREF sz, CLUREF *ans)
@@ -22,12 +52,7 @@ _bytevecOPcreate(CLUREF sz, CLUREF *ans)
 	signal(ERR_toobig);
 
     CLUREF bv;
-    clu_alloc_atomic(((sz.num+1+CLUREFSZ-1)/CLUREFSZ)*CLUREFSZ + sizeof(CLU_string) -1,
-		     &bv);
-    bv.str->size = sz.num;
-    bv.str->typ.val = CT_STRING;
-    bv.str->typ.mark = 0;
-    bv.str->typ.refp = 0;
+    _bytevecOPOPalloc(sz.num, &bv);
 
     ans->str = bv.str;
     signal(ERR_ok);
@@ -38,20 +63,14 @@ errcode
 _bytevecOPcopy(CLUREF bv1, CLUREF *ans)
 {
     CLUREF bv2;
-    long i, count;
+    _bytevecOPOPalloc(bv1.str->size, &bv2);
 
-    clu_alloc_atomic(((bv1.str->size+1+CLUREFSZ-1)/CLUREFSZ)*CLUREFSZ
-		     + sizeof(CLU_string) - CLUREFSZ,
-		     &bv2);
-    bv2.str->size = bv1.str->size;
-    bv2.str->typ.val = CT_STRING;
-    bv2.str->typ.mark = 0;
-    bv2.str->typ.refp = 0;
-
-    for (count = 0, i = 0; count < bv1.str->size; ++i, ++count) {
-	bv2.str->data[i] = bv1.str->data[i];
-    }
-    bv2.str->data[i] = '\0';
+    /*
+     * The destination is at least one byte larger than the size and
+     * the allocator zeroes out the returned memory, so we get the
+     * trailing NUL byte by construction.
+     */
+    memcpy(bv2.str->data, bv1.str->data, bv1.str->size);
 
     ans->str = bv2.str;
     signal(ERR_ok);
