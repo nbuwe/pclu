@@ -72,8 +72,8 @@
       1 'font-lock-type-face)
 
      ;; rep and cvt
-     '("\\_<rep\\|cvt\\_>"
-       0 font-lock-builtin-face)
+     '("\\_<\\(rep\\|cvt\\)\\_>"
+       1 font-lock-builtin-face)
 
      ;; functions
      '("\\_<\\(\\sw+\\)\\_>\\s-*=\\s-*\\(proc\\|iter\\)\\_>"
