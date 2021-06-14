@@ -327,32 +327,16 @@ errcode
 stringOPchars(CLUREF s, errcode (*iterbod)(), void *locals, errcode *ecode2)
 {
     errcode err;
-    CLUREF iv_1;
-    long index;
 
-    if (s.str->size == 0)
-	signal(ERR_ok);
+    CLUREF iv_1 = CLUREF_make_num(0); /* init all bytes */
+    for (long i = 0; i < s.str->size; ++i) {
+	iv_1.ch = s.str->data[i];
 
-    index = 0;
-    while (true) {
-	iv_1.num = 0;
-	iv_1.ch = s.str->data[index];
 	err = (*iterbod)(iv_1, locals, ecode2);
-	if (err == ERR_ok) {
-	    index += 1;
-	    if (index < s.str->size)
-		continue;
-	    signal(ERR_ok);
-	}
-	if (err == ERR_iterbodyreturn) signal(err);
-	/* 9/9/93 dwc: just propagate break, do not convert to ok */
-	if (err == ERR_break) signal(ERR_break);
-	if (err == ERR_iterbodyexit) signal(err);
-	if (err == ERR_iterbodysignal) signal(err);
-	if (err == ERR_iteriterbodysignal) signal(err);
-	if (err == ERR_iteriterbodyexit) signal(err);
-	if (err == ERR_iteriterbodyreturn) signal(err);
+	if (err != ERR_ok)
+	    signal(err);
     }
+    signal(ERR_ok);
 }
 
 
