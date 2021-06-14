@@ -4,8 +4,6 @@
 /*		STRING IMPLEMENTATION				*/
 /*								*/
 
-/* Maybe use bcopy? Is it efficient as is?  Is bcopy portable? */
-
 /* TODO: sc2s, s2sc */
 
 #include "pclu_err.h"
@@ -21,6 +19,36 @@ extern errcode pstreamOPtextc(CLUREF ps, CLUREF c, CLUREF *ret_1);
 extern errcode sequenceOPfill(CLUREF length, CLUREF x, CLUREF *ans);
 
 extern errcode stringOPprint(CLUREF s, CLUREF pst);
+
+#define	CLU_roundup(x, y)	((((x)+((y)-1))/(y))*(y))
+
+
+static inline size_t
+stringOPOPmemsize(size_t size)
+{
+    /*
+     * string header w/out the "inflexible" data[] array
+     * and extra space for NUL at the end
+     */
+    size += offsetof(CLU_string, data) + 1;
+
+    /* round up to word size */
+    size = CLU_roundup(size, CLUREFSZ);
+
+    return size;
+}
+
+
+static inline void
+stringOPOPalloc(size_t size, CLUREF *pnew)
+{
+    size_t bufsz = stringOPOPmemsize(size);
+
+    clu_alloc_atomic(bufsz, pnew);
+    CLUTYPE_set(pnew->str->typ, CT_STRING);
+    pnew->str->size = size;
+}
+
 
 
 errcode
@@ -71,38 +99,28 @@ stringOPindexc(CLUREF find, CLUREF s, CLUREF *ans)
 errcode
 stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans)
 {
-    CLUREF temp;
-    long i, j, count;
+    CLUREF s;
+    stringOPOPalloc(len.num, &s);
 
-    clu_alloc_atomic(((len.num+1+CLUREFSZ) & ~(CLUREFSZ-1))
-		     + sizeof(CLU_string) - 1, &temp);
-    temp.str->size = len.num;
-    temp.str->typ.val = CT_STRING;
-    temp.str->typ.mark = 0;
-    temp.str->typ.refp = 0;
+    /*
+     * The destination is at least one byte larger than the size and
+     * the allocator zeroes out the returned memory, so we get the
+     * trailing NUL byte by construction.
+     */
+    memcpy(s.str->data, buf + start.num - 1, len.num);
 
-    for (count = 0, i = start.num - 1, j = 0; count < len.num; ++i, ++j, ++count) {
-	temp.str->data[j] = buf[i];
-    }
-    temp.str->data[j] = '\000';
-
-    ans->str = temp.str;
+    ans->str = s.str;
     signal(ERR_ok);
 }
 
 
-errcode stringOPcons0(CLUREF len, CLUREF *ans)
+errcode
+stringOPcons0(CLUREF len, CLUREF *ans)
 {
-    CLUREF temp;
+    CLUREF s;
+    stringOPOPalloc(len.num, &s);
 
-    clu_alloc_atomic(((len.num+1+CLUREFSZ) & ~(CLUREFSZ-1))
-		     + sizeof(CLU_string) - 1, &temp);
-    temp.str->size = len.num;
-    temp.str->typ.val = CT_STRING;
-    temp.str->typ.mark = 0;
-    temp.str->typ.refp = 0;
-
-    ans->str = temp.str;
+    ans->str = s.str;
     signal(ERR_ok);
 }
 
@@ -110,16 +128,11 @@ errcode stringOPcons0(CLUREF len, CLUREF *ans)
 errcode
 stringOPc2s(CLUREF ch, CLUREF *ans)
 {
-    errcode err;
+    CLUREF s;
+    stringOPOPalloc(1, &s);
+    s.str->data[0] = ch.ch;
 
-    CLUREF temp;
-    err = stringOPcons0(CLU_1, &temp);
-    if (err != ERR_ok)
-	resignal(err);
-
-    temp.str->data[0] = ch.ch;
-
-    ans->str = temp.str;
+    ans->str = s.str;
     signal(ERR_ok);
 }
 
@@ -127,9 +140,6 @@ stringOPc2s(CLUREF ch, CLUREF *ans)
 errcode
 stringOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans)
 {
-    CLUREF temp;
-    long size, i, j;
-
     if (s1.str->size == 0) {
 	ans->str = s2.str;
 	signal(ERR_ok);
@@ -140,26 +150,21 @@ stringOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans)
 	signal(ERR_ok);
     }
 
-    size = s1.str->size + s2.str->size;
-    if (size > MAX_STR) {
+    // assert(s1.str->size > 0);
+    // assert(s1.str->size <= MAX_STR)
+    // assert(s2.str->size > 0);
+    // assert(s2.str->size <= MAX_STR)
+    if (s1.str->size > MAX_STR - s2.str->size) {
 	elist[0] = huge_allocation_request_STRING;
 	signal(ERR_failure);
     }
 
-    clu_alloc_atomic(((size+sizeof(CLUREF)) & ~(sizeof(CLUREF)-1)) +
-		     sizeof(CLU_string) -1, &temp);
-    temp.str->size = size;
-    temp.str->typ.val = CT_STRING;
-    temp.str->typ.mark = 0;
-    temp.str->typ.refp = 0;
+    CLUREF s;
+    stringOPOPalloc(s1.str->size + s2.str->size, &s);
+    memcpy(s.str->data, s1.str->data, s1.str->size);
+    memcpy(s.str->data + s1.str->size, s2.str->data, s2.str->size);
 
-    for (i = 0; i < s1.str->size; ++i)
-	temp.str->data[i] = s1.str->data[i];
-
-    for (i = 0, j = s1.str->size; i < s2.str->size; ++i, ++j)
-	temp.str->data[j] = s2.str->data[i];
-
-    ans->str = temp.str;
+    ans->str = s.str;
     signal(ERR_ok);
 }
 
@@ -167,28 +172,17 @@ stringOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans)
 errcode
 stringOPappend(CLUREF s, CLUREF c, CLUREF *ans)
 {
-    long size;
-    CLUREF temp;
-    long i;
-
-    size = s.str->size + 1;
-    if (size > MAX_STR) {
+    if (s.str->size > MAX_STR - 1) {
 	elist[0] = huge_allocation_request_STRING;
 	signal(ERR_failure);
     }
 
-    clu_alloc_atomic(((size+CLUREFSZ) & ~(CLUREFSZ-1))
-		     + sizeof(CLU_string) -1, &temp);
-    temp.str->size = size;
-    temp.str->typ.val = CT_STRING;
-    temp.str->typ.mark = 0;
-    temp.str->typ.refp = 0;
+    CLUREF s2;
+    stringOPOPalloc(s.str->size + 1, &s2);
+    memcpy(s2.str->data, s.str->data, s.str->size);
+    s2.str->data[s.str->size] = c.ch;
 
-    for (i = 0; i < s.str->size; ++i)
-	temp.str->data[i] = s.str->data[i];
-    temp.str->data[size-1] = c.ch;
-
-    ans->str = temp.str;
+    ans->str = s2.str;
     signal(ERR_ok);
 }
 
@@ -204,7 +198,8 @@ stringOPempty(CLUREF s, CLUREF *ans)
 }
 
 
-errcode stringOPsubstr(CLUREF s, CLUREF start, CLUREF len, CLUREF *ans)
+errcode
+stringOPsubstr(CLUREF s, CLUREF start, CLUREF len, CLUREF *ans)
 {
     errcode err;
     CLUREF temp;
@@ -256,25 +251,23 @@ stringOPrest(CLUREF s, CLUREF start, CLUREF *ans)
 errcode
 stringOPs2ac(CLUREF s, CLUREF *ans)
 {
-    CLUREF temp, c, num;
     errcode err;
-    long i, j;
 
-    num.num = s.str->size;
-    err = arrayOPpredict(CLU_1, num, &temp);
+    CLUREF a;
+    err = arrayOPpredict(CLU_1, CLUREF_make_num(s.str->size), &a);
     if (err != ERR_ok)
 	resignal(err);
 
-    j = temp.array->int_low;
-    c.num = 0;
-    for (i = 0; i < s.str->size; ++i, ++j) {
-	c.ch = s.str->data[i];
-	temp.array->store->data[j] = c.num;
+    CLUREF c = CLUREF_make_num(0); /* init all bytes */
+    long dst = a.array->int_low;
+    for (long src = 0; src < s.str->size; ++src, ++dst) {
+	c.ch = s.str->data[src];
+	a.array->store->data[dst] = c.num;
     }
-    temp.array->ext_size = s.str->size;
-    temp.array->ext_high = s.str->size;
+    a.array->ext_size = s.str->size;
+    a.array->ext_high = s.str->size;
 
-    ans->vec = temp.vec;
+    ans->array = a.array;
     signal(ERR_ok);
 }
 
@@ -282,22 +275,16 @@ stringOPs2ac(CLUREF s, CLUREF *ans)
 errcode
 stringOPac2s(CLUREF a, CLUREF *ans)
 {
-    CLUREF temp, c, num;
-    errcode err;
-    long i, j;
+    CLUREF s;
+    stringOPOPalloc(a.array->ext_size, &s);
 
-    num.num = a.array->ext_size;
-    err = stringOPcons0(num, &temp);
-    if (err != ERR_ok)
-	resignal(err);
-
-    j = a.array->int_low;
-    for (i = 0; i < a.array->ext_size; ++i, ++j) {
-	c.num = a.array->store->data[j];
-	temp.str->data[i] = c.ch;
+    long src = a.array->int_low;
+    for (long dst = 0; src < a.array->ext_size; ++src, ++dst) {
+	CLUREF c = { .num = a.array->store->data[src] };
+	s.str->data[dst] = c.ch;
     }
 
-    ans->str = temp.str;
+    ans->str = s.str;
     signal(ERR_ok);
 }
 
@@ -305,41 +292,33 @@ stringOPac2s(CLUREF a, CLUREF *ans)
 errcode
 stringOPs2sc(CLUREF s, CLUREF *ans)
 {
-    CLUREF temp, num;
     errcode err;
-    long i;
 
-    num.num = s.str->size;
-    err = sequenceOPfill(num, CLU_0, &temp);
+    CLUREF q;
+    err = sequenceOPfill(CLUREF_make_num(s.str->size), CLU_0, &q);
     if (err != ERR_ok)
 	resignal(err);
 
-    for (i = 0; i < s.str->size; ++i) {
-	temp.vec->data[i] = s.str->data[i];
+    for (long i = 0; i < s.str->size; ++i) {
+	q.vec->data[i] = (unsigned char)s.str->data[i];
     }
 
-    ans->vec = temp.vec;
+    ans->vec = q.vec;
     signal(ERR_ok);
 }
 
 
 errcode
-stringOPsc2s(CLUREF a, CLUREF *ans)
+stringOPsc2s(CLUREF q, CLUREF *ans)
 {
-    CLUREF temp, num;
-    errcode err;
-    long i;
+    CLUREF s;
+    stringOPOPalloc(q.vec->size, &s);
 
-    num.num = a.vec->size;
-    err = stringOPcons0(num, &temp);
-    if (err != ERR_ok)
-	resignal(err);
-
-    for (i = 0; i < a.vec->size; ++i) {
-	temp.str->data[i] = a.vec->data[i];
+    for (long i = 0; i < q.vec->size; ++i) {
+	s.str->data[i] = q.vec->data[i];
     }
 
-    ans->str = temp.str;
+    ans->str = s.str;
     signal(ERR_ok);
 }
 
