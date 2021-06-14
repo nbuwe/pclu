@@ -679,15 +679,13 @@ stringOP_gcd(CLUREF s, CLUREF tab, CLUREF *ans)
 {
     errcode err;
 
-    CLUREF temp_oneof;
-    err = oneofOPnew(CLU_1, CLU_0, &temp_oneof);
+    CLUREF ginfo; 		// := ginfo$make_a_bvec(nil)
+    err = oneofOPnew(CLU_1, CLU_0, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
-    CLUREF sz;
-    /* 8 for type + size, 1 for trailing 0, +3 &~3 to round up */
-    sz.num = 2*CLUREFSZ + (s.str->size+1 + CLUREFSZ-1)&~(CLUREFSZ-1);
-    err = gcd_tabOPinsert(tab, sz, temp_oneof, s, ans);
+    long sz = stringOPOPmemsize(s.str->size);
+    err = gcd_tabOPinsert(tab, CLUREF_make_num(sz), ginfo, s, ans);
     if (err != ERR_ok)
 	resignal(err);
 
