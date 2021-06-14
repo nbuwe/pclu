@@ -23,7 +23,7 @@ errcode
 charOPi2c(CLUREF i, CLUREF *ans)
 {
 
-    if (i.num > 255 || i.num < 0)
+    if (i.num < 0 || UCHAR_MAX < i.num)
 	signal(ERR_illegal_char);
 
     ans->ch = i.num;
@@ -34,8 +34,7 @@ charOPi2c(CLUREF i, CLUREF *ans)
 errcode
 charOPc2i(CLUREF c, CLUREF *ans)
 {
-    long temp = (c.ch) & 0xff;
-    ans->num = temp;
+    ans->num = (unsigned char)c.ch;
     signal(ERR_ok);
 }
 
@@ -43,21 +42,15 @@ charOPc2i(CLUREF c, CLUREF *ans)
 errcode
 charOPlt(CLUREF c1, CLUREF c2, CLUREF *ans)
 {
-    if ((unsigned char)c1.ch < (unsigned char)c2.ch) {
-	ans->tf = true; signal(ERR_ok);
-    }
-    ans->tf = false; signal(ERR_ok);
+    ans->tf = ((unsigned char)c1.ch < (unsigned char)c2.ch);
+    signal(ERR_ok);
 }
 
 
 errcode
 charOPle(CLUREF c1, CLUREF c2, CLUREF *ans)
 {
-    if ((unsigned char)c1.ch <= (unsigned char)c2.ch) {
-	ans->tf = true;
-	signal(ERR_ok);
-    }
-    ans->tf = false;
+    ans->tf = ((unsigned char)c1.ch <= (unsigned char)c2.ch);
     signal(ERR_ok);
 }
 
@@ -65,11 +58,7 @@ charOPle(CLUREF c1, CLUREF c2, CLUREF *ans)
 errcode
 charOPge(CLUREF c1, CLUREF c2, CLUREF *ans)
 {
-    if ((unsigned char) c1.ch >= (unsigned char)c2.ch) {
-	ans->tf = true;
-	signal(ERR_ok);
-    }
-    ans->tf = false;
+    ans->tf = ((unsigned char) c1.ch >= (unsigned char)c2.ch);
     signal(ERR_ok);
 }
 
@@ -77,11 +66,7 @@ charOPge(CLUREF c1, CLUREF c2, CLUREF *ans)
 errcode
 charOPgt(CLUREF c1, CLUREF c2, CLUREF *ans)
 {
-    if ((unsigned char)c1.ch > (unsigned char)c2.ch) {
-	ans->tf = true;
-	signal(ERR_ok);
-    }
-    ans->tf = false;
+    ans->tf = ((unsigned char)c1.ch > (unsigned char)c2.ch);
     signal(ERR_ok);
 }
 
@@ -89,11 +74,7 @@ charOPgt(CLUREF c1, CLUREF c2, CLUREF *ans)
 errcode
 charOPequal(CLUREF c1, CLUREF c2, CLUREF *ans)
 {
-    if ((unsigned char)c1.ch == (unsigned char)c2.ch) {
-	ans->tf = true;
-	signal(ERR_ok);
-    }
-    ans->tf = false;
+    ans->tf = ((unsigned char)c1.ch == (unsigned char)c2.ch);
     signal(ERR_ok);
 }
 
@@ -101,11 +82,7 @@ charOPequal(CLUREF c1, CLUREF c2, CLUREF *ans)
 errcode
 charOPsimilar(CLUREF c1, CLUREF c2, CLUREF *ans)
 {
-    if ((unsigned char)c1.ch == (unsigned char)c2.ch) {
-	ans->tf = true;
-	signal(ERR_ok);
-    }
-    ans->tf = false;
+    ans->tf = ((unsigned char)c1.ch == (unsigned char)c2.ch);
     signal(ERR_ok);
 }
 
