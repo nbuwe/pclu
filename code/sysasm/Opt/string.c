@@ -551,7 +551,7 @@ stringOPprint(CLUREF s, CLUREF pst)
 	unsigned char c = s.str->data[i];
 	CLUREF ascii = { .ch = c & 0x7f };
 	bool meta = (ascii.ch != c);
-	CLUREF prefix;
+	CLUREF prefix = { .str = NULL };
 
 	/* DEL is a "control" outside C0/C1 */
 	if (ascii.ch == '\177') {
@@ -564,7 +564,8 @@ stringOPprint(CLUREF s, CLUREF pst)
 	}
 	/* general G0 or G1 */
 	else if (ascii.ch >= ' ') {
-	    prefix = meta ? g1 : CLU_empty_string;
+	    if (meta)
+		prefix = g1;
 	}
 	/* general C1 */
 	else if (meta) {
@@ -602,9 +603,11 @@ stringOPprint(CLUREF s, CLUREF pst)
 	    ascii.ch += '@';	/* to upper case letters */
 	}
 
-	err = pstreamOPtext(pst, prefix, &ignored);
-	if (err != ERR_ok)
-	    goto ex_0;
+	if (prefix.str != NULL) {
+	    err = pstreamOPtext(pst, prefix, &ignored);
+	    if (err != ERR_ok)
+		goto ex_0;
+	}
 
 	err = pstreamOPtextc(pst, ascii, &ignored);
 	if (err != ERR_ok)
