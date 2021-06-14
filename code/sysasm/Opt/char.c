@@ -276,12 +276,6 @@ OWN_ptr char_own_init = { .init_flag = 1 };
     .op_owns = &char_own_init,			\
 }
 
-static CLU_proc char_oe_i2c = CLU_proc_INIT(charOPi2c);
-static CLU_proc char_oe_c2i = CLU_proc_INIT(charOPc2i);
-static CLU_proc char_oe_lt = CLU_proc_INIT(charOPlt);
-static CLU_proc char_oe_le = CLU_proc_INIT(charOPle);
-static CLU_proc char_oe_ge = CLU_proc_INIT(charOPge);
-static CLU_proc char_oe_gt = CLU_proc_INIT(charOPgt);
 static CLU_proc char_oe_equal = CLU_proc_INIT(charOPequal);
 static CLU_proc char_oe_similar = CLU_proc_INIT(charOPsimilar);
 static CLU_proc char_oe_copy = CLU_proc_INIT(charOPcopy);
@@ -290,6 +284,13 @@ static CLU_proc char_oe_encode = CLU_proc_INIT(charOPencode);
 static CLU_proc char_oe_decode = CLU_proc_INIT(charOPdecode);
 static CLU_proc char_oe__gcd = CLU_proc_INIT(charOP_gcd);
 static CLU_proc char_oe_debug_print = CLU_proc_INIT(charOPdebug_print);
+static CLU_proc char_oe_i2c = CLU_proc_INIT(charOPi2c);
+static CLU_proc char_oe_c2i = CLU_proc_INIT(charOPc2i);
+static CLU_proc char_oe_lt = CLU_proc_INIT(charOPlt);
+static CLU_proc char_oe_le = CLU_proc_INIT(charOPle);
+static CLU_proc char_oe_ge = CLU_proc_INIT(charOPge);
+static CLU_proc char_oe_gt = CLU_proc_INIT(charOPgt);
+
 
 static struct /* OPS */ {
     long count;
