@@ -111,75 +111,91 @@ charOPdebug_print(CLUREF c, CLUREF pst)
 errcode
 charOPprint(CLUREF c, CLUREF pst)
 {
-    CLUREF temp;
     errcode err;
-    CLUREF temp_str, temp_ref;
-    static bool init = false;
-    static CLUREF t1, t2, t3, t4, t5, ans;
+    CLUREF ignored;
 
-    if (init == 0) {
-	err = stringOPcons("'\\^", CLU_1, CLU_3, &t1);
-	err = stringOPcons("'\\!", CLU_1, CLU_3, &t2);
-	err = stringOPcons("'\\",  CLU_1, CLU_2, &t3);
-	err = stringOPcons("'\\&", CLU_1, CLU_3, &t4);
-	err = stringOPcons("'",    CLU_1, CLU_1, &t5);
+    static CLUREF plain, backslash, c0, c1, g1;
+    static bool init = false;
+    if (!init) {
+	stringOPcons("'",    CLU_1, CLU_1, &plain);
+	stringOPcons("'\\",  CLU_1, CLU_2, &backslash);
+	stringOPcons("'\\^", CLU_1, CLU_3, &c0);
+	stringOPcons("'\\!", CLU_1, CLU_3, &c1);
+	stringOPcons("'\\&", CLU_1, CLU_3, &g1);
 	init = true;
     }
 
-    temp.ch = c.ch & 0x7f;
-    if (temp.ch == '\177') {
-	temp_str = t1;
-	if (c.ch != temp.ch) temp_str = t2;
-	temp.ch = '?';
+    CLUREF prefix;
+    CLUREF ascii = { .ch = (unsigned char)c.ch & 0x7f };
+    bool meta = (ascii.ch != c.ch);
+
+    /* DEL is a "control" outside C0/C1 */
+    if (ascii.ch == '\177') {
+	prefix = meta ? c1 : c0;
+	ascii.ch = '?';
     }
-    else if (temp.ch == '\'' || temp.ch == '\\') {
-	temp_str = t3;
-	if (temp.ch != c.ch) temp_str = t4;
+    /* escape single quote or backslash in G0, not special in G1 */
+    else if (ascii.ch == '\'' || ascii.ch == '\\') {
+	prefix = meta ? g1 : backslash;
     }
-    else if (' ' <= temp.ch) {
-	temp_str = t5;
-	if (temp.ch != c.ch) temp_str = t4;
+    /* general G0 or G1 */
+    else if (' ' <= ascii.ch) {
+	prefix = meta ? g1 : plain;
     }
-    else if (temp.ch != c.ch) {
-	temp_str = t2;
-	temp.ch += 64;
+    /* general C1 */
+    else if (meta) {
+	prefix = c1;
+	ascii.ch += '@';	/* to upper case letters */
     }
-    else if (temp.ch == '\n') {
-	temp_str = t3;
-	temp.ch = 'n';
+    /* named C0 escapes */
+    else if (ascii.ch == '\n') {
+	prefix = backslash;
+	ascii.ch = 'n';
     }
-    else if (temp.ch == '\t') {
-	temp_str = t3;
-	temp.ch = 't';
+    else if (ascii.ch == '\t') {
+	prefix = backslash;
+	ascii.ch = 't';
     }
-    else if (temp.ch == '\f') {
-	temp_str = t3;
-	temp.ch = 'p';
+    else if (ascii.ch == '\f') {
+	prefix = backslash;
+	ascii.ch = 'p';
     }
-    else if (temp.ch == '\b') {
-	temp_str = t3;
-	temp.ch = 'b';
+    else if (ascii.ch == '\b') {
+	prefix = backslash;
+	ascii.ch = 'b';
     }
-    else if (temp.ch == '\r') {
-	temp_str = t3;
-	temp.ch = 'r';
+    else if (ascii.ch == '\r') {
+	prefix = backslash;
+	ascii.ch = 'r';
     }
-    else if (temp.ch == '\v') {
-	temp_str = t3;
-	temp.ch = 'v';
+    else if (ascii.ch == '\v') {
+	prefix = backslash;
+	ascii.ch = 'v';
     }
+    /* general C0 */
     else {
-	temp_str = t1;
-	temp.ch += 64;
+	prefix = c0;
+	ascii.ch += '@';	/* to upper case letters */
     }
 
-    err = pstreamOPtext(pst, temp_str, &ans);
-    err = pstreamOPtextc(pst, temp, &ans);
+    err = pstreamOPtext(pst, prefix, &ignored);
+    if (err != ERR_ok)
+	goto ex_0;
 
-    temp_ref.ch = '\'';
-    err = pstreamOPtextc(pst, temp_ref, &ans);
+    err = pstreamOPtextc(pst, ascii, &ignored);
+    if (err != ERR_ok)
+	goto ex_0;
+
+    err = pstreamOPtextc(pst, CLUREF_make_ch('\''), &ignored);
+    if (err != ERR_ok)
+	goto ex_0;
 
     signal(ERR_ok);
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
 }
 
 
