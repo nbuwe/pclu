@@ -1,39 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/struct.c,v 1.8 91/08/29 16:05:02 dcurtis Exp $";
-#endif
-/* $Log:	struct.c,v $
- * Revision 1.8  91/08/29  16:05:02  dcurtis
- * fixed casting on arguments to bcopy
- * 
- * Revision 1.7  91/08/29  14:58:41  dcurtis
- * removed elist from oneofOPnew call
- * 
- * Revision 1.6  91/07/25  08:34:52  root
- * result should be a *pointer* to a CLUREF in _gcd
- * 	necessary for sparc: lp/freeze,thaw
- * 
- * Revision 1.5  91/06/06  13:31:31  root
- * added copyright notice
- * 
- * Revision 1.4  91/06/05  13:26:37  root
- * added elist to sequence$new2
- * 
- * Revision 1.3  91/06/03  15:04:33  root
- * sparcstation compatibility: int->CLUREF
- * 
- * Revision 1.2  91/05/31  13:00:54  root
- * fixed aggregate initialization in ops_actual
- * fixed 2 instances of int vs CLUREF
- * added result argument to pstream calls
- * added start & length arguments to string$cons calls
- * 
- * Revision 1.1  91/02/04  15:49:54  mtv
- * Initial revision
- * 
- */
 
 /*							*/
 /*		STRUCT IMPLEMENTATION			*/
@@ -42,309 +7,381 @@ static char rcsid[] = "$Header: /pm/src/site/pclu/code/base/RCS/struct.c,v 1.8 9
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-extern errcode structOPblit();
-extern errcode structOPprint();
+errcode gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1);
+errcode istreamOPgeti(CLUREF ist, CLUREF *ret_1);
+errcode istreamOPputi(CLUREF ist, CLUREF i);
+errcode pstreamOPpause(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode pstreamOPstart(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode pstreamOPstop(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1);
 
-errcode structOPnew(size, ans)
-CLUREF size;
-CLUREF *ans;
+errcode structOPblit(CLUREF strct, CLUREF *ans);
+errcode structOPprint(CLUREF str, CLUREF pst);
+
+
+#define structOPOPmemsize(_size) (offsetof(CLU_sequence, data) + (_size) * CLUREFSZ)
+
+errcode
+structOPnew(CLUREF size, CLUREF *ans)
 {
-CLUREF temp;
+    CLUREF temp;
 
-	clu_alloc(size.num*CLUREFSZ + sizeof(CLU_sequence) - CLUREFSZ, &temp);
-	temp.vec->typ.mark = 0;
-	temp.vec->typ.val = CT_REC;
-	temp.vec->typ.refp = 0;
-	temp.vec->typ.spare = 0;
-	temp.vec->size = size.num;
-	ans->vec = temp.vec;
+    clu_alloc(structOPOPmemsize(size.num), &temp);
+    temp.vec->typ.mark = 0;
+    temp.vec->typ.val = CT_REC;
+    temp.vec->typ.refp = 0;
+    temp.vec->typ.spare = 0;
+    temp.vec->size = size.num;
+
+    ans->vec = temp.vec;
+    signal(ERR_ok);
+}
+
+
+errcode
+structOPblit(CLUREF strct, CLUREF *ans)
+{
+    CLUREF temp;
+
+    clu_alloc(structOPOPmemsize(strct.vec->size), &temp);
+    temp.vec->typ.mark = 0;
+    temp.vec->typ.val = CT_REC;
+    temp.vec->typ.refp = 0;
+    temp.vec->typ.spare = 0;
+    temp.vec->size = strct.vec->size;
+    bcopy((char*)strct.vec->data, (char*)temp.vec->data, strct.vec->size*CLUREFSZ);
+
+    ans->vec = temp.vec;
+    signal(ERR_ok);
+}
+
+
+errcode
+structOPcopy(CLUREF strct, CLUREF *ans)
+{
+    CLUPROC *field_copy =
+	(CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
+    errcode err;
+    CLUREF temp, elt;
+    long i;
+
+    clu_alloc(structOPOPmemsize(strct.vec->size), &temp);
+    temp.vec->typ.mark = 0;
+    temp.vec->typ.val = CT_REC;
+    temp.vec->typ.refp = 0;
+    temp.vec->typ.spare = 0;
+    temp.vec->size = strct.vec->size;
+
+    for (i = 0; i < strct.vec->size; ++i) {
+	elt.num = strct.vec->data[i];
+	CUR_PROC_VAR.proc = field_copy[i];
+	err = (*field_copy[i]->proc)(elt, &temp.vec->data[i]);
+	if (err != ERR_ok)
+	    resignal(err);
+    }
+
+    ans->vec = temp.vec;
+    signal(ERR_ok);
+}
+
+
+errcode
+structOPsimilar(CLUREF rec1, CLUREF rec2, CLUREF *ans)
+{
+    CLUPROC *field_similar
+	= (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
+    long i;
+    errcode err;
+    CLUREF elt1, elt2;
+
+    if (rec1.vec->size != rec2.vec->size) {
+	ans->tf = false;
 	signal(ERR_ok);
+    }
+
+    for (i = 0; i < rec1.vec->size; ++i) {
+	elt1.num = rec1.vec->data[i];
+	elt2.num = rec2.vec->data[i];
+	CUR_PROC_VAR.proc = field_similar[i];
+	err = (*field_similar[i]->proc)(elt1, elt2, ans);
+	if (ans->tf == false)
+	    signal(ERR_ok);
+    }
+    signal(ERR_ok);
+}
+
+
+errcode
+structOPequal(CLUREF str1, CLUREF str2, CLUREF *ans)
+{
+    CLUPROC *field_equal
+	= (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
+    long i;
+    errcode err;
+    CLUREF elt1, elt2;
+
+    if (str1.vec->size != str2.vec->size) {
+	ans->tf = false;
+	signal(ERR_ok);
+    }
+    for (i = 0; i < str1.vec->size; ++i) {
+	elt1.num = str1.vec->data[i];
+	elt2.num = str2.vec->data[i];
+	CUR_PROC_VAR.proc = field_equal[i];
+	err = (*field_equal[i]->proc)(elt1, elt2, ans);
+	if (ans->tf == false)
+	    signal(ERR_ok);
+    }
+    signal(ERR_ok);
+}
+
+
+errcode
+structOP_gcd(CLUREF str, CLUREF tab, CLUREF *ans)
+{
+    CLUPROC *field_gcd
+	= (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
+    errcode err;
+    long i;
+    CLUREF ginfo, gproclist, sz;
+
+    sz.num = str.vec->size;
+    sequenceOPnew2(sz, &gproclist);
+    for (i = 0; i < str.vec->size; ++i) {
+	gproclist.vec->data[i] = (long)field_gcd[i];
+    }
+
+    err = oneofOPnew(CLU_3, gproclist, &ginfo);
+    if (err != ERR_ok)
+	resignal(err);
+
+    sz.num = 2*CLUREFSZ + (str.vec->size * GCD_REF_SIZE);
+    err = gcd_tabOPinsert(tab, sz, ginfo, str, ans);
+    if (err != ERR_ok)
+	resignal(err);
+
+    signal(ERR_ok);
+}
+
+
+errcode
+structOPs2r(CLUREF str, CLUREF *ans)
+{
+    errcode err;
+    CLUREF temp, sz;
+
+    sz.num = str.vec->size;
+    err = recordOPnew(sz, &temp);
+    if (err != ERR_ok)
+	resignal(err);
+
+    bcopy((char*)str.vec->data, (char*)temp.vec->data, str.vec->size*CLUREFSZ);
+
+    ans->vec = temp.vec;
+    signal(ERR_ok);
+}
+
+
+errcode
+structOPr2s(CLUREF rec, CLUREF *ans)
+{
+    errcode err;
+    CLUREF temp, sz;
+
+    sz.num = rec.vec->size;
+    err = structOPnew(sz, &temp);
+    if (err != ERR_ok)
+	resignal(err);
+
+    bcopy((char*)rec.vec->data, (char*)temp.vec->data, rec.vec->size*CLUREFSZ);
+
+    ans->vec = temp.vec;
+    signal(ERR_ok);
+}
+
+
+errcode
+structOPdebug_print(CLUREF str, CLUREF pst)
+{
+    errcode err;
+
+    err = structOPprint(str, pst);
+    if (err != ERR_ok)
+	resignal(err);
+
+    signal(ERR_ok);
+}
+
+
+errcode
+structOPprint(CLUREF str, CLUREF pst)
+{
+    CLUPROC *field_print
+	= (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
+    char **field_name
+	= (char **)(field_print + str.vec->size);
+    long i;
+    errcode err;
+    CLUREF temp_str, temp_str2, temp_str3, ref, size, ans;
+
+    err = stringOPcons("{", CLU_1, CLU_1, &temp_str);
+    if (err != ERR_ok)
+	resignal(err);
+
+    err = pstreamOPstart(pst, temp_str, &ans);
+    if (err != ERR_ok)
+	resignal(err);
+    if (ans.tf == false)
+	goto done;
+
+    err = stringOPcons(",", CLU_1, CLU_1, &temp_str);
+    if (err != ERR_ok)
+	resignal(err);
+
+    err = stringOPcons(": ", CLU_1, CLU_2, &temp_str2);
+    if (err != ERR_ok)
+	resignal(err);
+
+    for (i = 0; i < str.vec->size; ++i) {
+	if (i != 0) {
+	    err = pstreamOPpause(pst, temp_str, &ans);
+	    if (err != ERR_ok)
+		resignal(err);
+	    if (ans.tf == false)
+		break;
 	}
 
+	size.num = strlen(field_name[i]);
+	stringOPcons(field_name[i], CLU_1, size, &temp_str3);
+	err = pstreamOPtext(pst, temp_str3, &ans);
+	if (err != ERR_ok)
+	    resignal(err);
 
-errcode structOPblit(strct, ans)
-CLUREF strct, *ans;
+	err = pstreamOPtext(pst, temp_str2, &ans);
+	if (err != ERR_ok)
+	    resignal(err);
+
+	ref.num = str.vec->data[i];
+	CUR_PROC_VAR.proc = field_print[i];
+	err = (*field_print[i]->proc)(ref, pst);
+	if (err != ERR_ok)
+	    resignal(err);
+    }
+
+  done:
+    err = stringOPcons("}", CLU_1, CLU_1, &temp_str);
+    if (err != ERR_ok)
+	resignal(err);
+
+    err = pstreamOPstop(pst, temp_str, &ans);
+    if (err != ERR_ok)
+	resignal(err);
+
+    signal(ERR_ok);
+}
+
+
+errcode
+structOPencode(CLUREF str, CLUREF ist)
 {
-CLUREF temp;
+    CLUPROC *field_encode
+	= (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
+    long i;
+    errcode err;
+    CLUREF ref;
 
-	clu_alloc(((strct.vec->size - 1)*sizeof(CLUREF))
-			 + sizeof(CLU_sequence), &temp);
-	temp.vec->typ.mark = 0;
-	temp.vec->typ.val = CT_REC;
-	temp.vec->typ.refp = 0;
-	temp.vec->typ.spare = 0;
-	temp.vec->size = strct.vec->size;
-	bcopy((char*)strct.vec->data, (char*)temp.vec->data, strct.vec->size*CLUREFSZ);
-	ans->vec = temp.vec;
+    err = istreamOPputi(ist, CLUREF_make_num(str.vec->size));
+    if (err == ERR_not_possible)
+	signal(err);
+    if (err != ERR_ok)
+	resignal(err);
 
-	signal(ERR_ok);
-	}
+    for (i = 0; i < str.vec->size; ++i) {
+	ref.num = str.vec->data[i];
+	CUR_PROC_VAR.proc = field_encode[i];
+	err = (*field_encode[i]->proc)(ref, ist);
+	if (err == ERR_not_possible)
+	    signal(err);
+	if (err != ERR_ok)
+	    resignal(err);
+    }
+    signal(ERR_ok);
+}
 
-errcode structOPcopy(strct, ans)
-CLUREF strct, *ans;
+
+errcode
+structOPdecode(CLUREF ist, CLUREF *ans)
 {
-CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to copy fcns */
-errcode err;
-CLUREF temp, elt;
-long i;
+    CLUPROC *field_decode
+	= (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info;
+    long i;
+    errcode err;
+    CLUREF temp, size;
 
-	clu_alloc(((strct.vec->size - 1) * sizeof(CLUREF))
-		 + sizeof(CLU_sequence), &temp);
-	temp.vec->typ.mark = 0;
-	temp.vec->typ.val = CT_REC;
-	temp.vec->typ.refp = 0;
-	temp.vec->typ.spare = 0;
-	temp.vec->size = strct.vec->size;
-	for (i = 0; i < strct.vec->size; i++) {
-		elt.num = strct.vec->data[i];
-		CUR_PROC_VAR.proc = (CLUPROC)table[i];
-		err = table[i]->proc(elt, &temp.vec->data[i]);
-		if (err != ERR_ok) resignal(err);
-		}
-	ans->vec = temp.vec;
-	signal(ERR_ok);
-	}
+    err = istreamOPgeti(ist, &size);
+    if (err == ERR_not_possible)
+	signal(err);
+    if (err != ERR_ok)
+	resignal(err);
 
-errcode structOPsimilar(rec1, rec2, ans)
-CLUREF rec1, rec2, *ans;
-{
-CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to similar fcns */
-long i;
-errcode err;
-CLUREF elt1, elt2;
+    err = structOPnew(size, &temp);
+    if (err != ERR_ok)
+	resignal(err);
 
-	if (rec1.vec->size != rec2.vec->size) {
-			ans->tf = false;
-			signal(ERR_ok);
-			}
-	for (i = 0; i < rec1.vec->size; i++) {
-		elt1.num = rec1.vec->data[i];
-		elt2.num = rec2.vec->data[i];
-		CUR_PROC_VAR.proc = (CLUPROC)table[i];
-		err = table[i]->proc(elt1, elt2, ans);
-			if (ans->tf == false) signal(ERR_ok);
-			}
-	signal(ERR_ok);
-	}
+    for (i = 0; i < temp.vec->size; ++i) {
+	CUR_PROC_VAR.proc = field_decode[i];
+	err = (*field_decode[i]->proc)(ist, &temp.vec->data[i]);
+	if (err == ERR_not_possible)
+	    signal(err);
+	if (err == ERR_end_of_file)
+	    signal(err);
+	if (err != ERR_ok)
+	    resignal(err);
+    }
 
-errcode structOPequal(str1, str2, ans)
-CLUREF str1, str2, *ans;
-{
-CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to equal fcns */
-long i;
-errcode err;
-CLUREF elt1, elt2;
+    ans->vec = temp.vec;
+    signal(ERR_ok);
+}
 
-	if (str1.vec->size != str2.vec->size) {
-			ans->tf = false;
-			signal(ERR_ok);
-			}
-	for (i = 0; i < str1.vec->size; i++) {
-		elt1.num = str1.vec->data[i];
-		elt2.num = str2.vec->data[i];
-		CUR_PROC_VAR.proc = (CLUPROC)table[i];
-		err = table[i]->proc(elt1, elt2, ans);
-			if (ans->tf == false) signal(ERR_ok);
-			}
-	signal(ERR_ok);
-	}
 
-errcode structOP_gcd(str, tab, ans)
-CLUREF str, tab, *ans;
-{
-CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to _gcd fcns */
-errcode err;
-long i;
-CLUREF temp_oneof, temp_seq, sz;
 
-	sz.num = str.vec->size;
-        sequenceOPnew2(sz, &temp_seq);
-        for (i = 0; i < str.vec->size; i++) {
-                temp_seq.vec->data[i] = (long)table[i];
-                }
+OWN_ptr struct_own_init = { .init_flag = 0 };
 
-	err = oneofOPnew(CLU_3, temp_seq, &temp_oneof);
-	if (err != ERR_ok) resignal(err);
-	sz.num = 2*CLUREFSZ + (str.vec->size * GCD_REF_SIZE);
-	err = gcd_tabOPinsert(tab, sz, temp_oneof, str, ans);
-	if (err != ERR_ok) resignal(err);
-	signal(ERR_ok);
-	}
+#define CLU_proc_INIT(f) {			\
+ /* .typ = { .val = CT_PROC }, */		\
+    .proc = f,					\
+    .type_owns = &struct_own_init,		\
+    .op_owns = &struct_own_init,		\
+}
+static CLU_proc struct_oe_equal = CLU_proc_INIT(structOPequal);
+static CLU_proc struct_oe_copy = CLU_proc_INIT(structOPcopy);
+static CLU_proc struct_oe_similar = CLU_proc_INIT(structOPsimilar);
+static CLU_proc struct_oe_print = CLU_proc_INIT(structOPprint);
+static CLU_proc struct_oe_encode = CLU_proc_INIT(structOPencode);
+static CLU_proc struct_oe_decode = CLU_proc_INIT(structOPdecode);
+static CLU_proc struct_oe__gcd = CLU_proc_INIT(structOP_gcd);
+static CLU_proc struct_oe_debug_print = CLU_proc_INIT(structOPdebug_print);
 
-errcode structOPs2r(str, ans)
-CLUREF str, *ans;
-{
-errcode err;
-CLUREF temp, sz;
 
-	sz.num = str.vec->size;
-	err = recordOPnew(sz, &temp);
-	if (err != ERR_ok) resignal(err);
-	bcopy((char*)str.vec->data, (char*)temp.vec->data, str.vec->size*CLUREFSZ);
-	ans->vec = temp.vec;
-	signal(ERR_ok);
-	}
+static struct /* OPS */ {
+    long count;
+    OWNPTR type_owns;
+    OWNPTR op_owns;
+    struct OP_ENTRY entry[8];
+} struct_ops_actual = {
+    8,
+    &struct_own_init,
+    &struct_own_init,
+    {
+	{ &struct_oe_equal, "equal" },
+	{ &struct_oe_copy, "copy" },
+	{ &struct_oe_similar, "similar" },
+	{ &struct_oe_print, "print" },
+	{ &struct_oe_encode, "encode" },
+	{ &struct_oe_decode, "decode" },
+	{ &struct_oe__gcd, "_gcd" },
+	{ &struct_oe_debug_print, "debug_print" },
+    }
+};
 
-errcode structOPr2s(rec, ans)
-CLUREF rec, *ans;
-{
-errcode err;
-CLUREF temp, sz;
-
-	sz.num = rec.vec->size;
-	err = structOPnew(sz, &temp);
-	if (err != ERR_ok) resignal(err);
-	bcopy((char*)rec.vec->data, (char*)temp.vec->data, rec.vec->size*CLUREFSZ);
-	ans->vec = temp.vec;
-	signal(ERR_ok);
-	}
-
-errcode structOPdebug_print(str, pst)
-CLUREF str, pst;
-{
-errcode err;
-	err = structOPprint(str, pst);
-	if (err != ERR_ok) resignal(err);
-	signal(ERR_ok);
-	}
-
-errcode structOPprint(str, pst)
-CLUREF str, pst;
-{
-CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to print fcns */
-char**table2 = (char**)(table + str.vec->size); /* ptr to field names */
-long i;
-errcode err;
-CLUREF temp_str, temp_str2, temp_str3, ref, size, ans;
-
-	err = stringOPcons("{", CLU_1, CLU_1, &temp_str);
-	if (err != ERR_ok) resignal(err);
-	err = pstreamOPstart(pst, temp_str, &ans);
-	if (err != ERR_ok) resignal(err);
-	if (ans.tf == false) goto done;
-	err = stringOPcons(",", CLU_1, CLU_1, &temp_str);
-	if (err != ERR_ok) resignal(err);
-	err = stringOPcons(": ", CLU_1, CLU_2, &temp_str2);
-	if (err != ERR_ok) resignal(err);
-	for (i = 0; i < str.vec->size; i++) {
-		if (i != 0) {
-			err = pstreamOPpause(pst, temp_str, &ans);
-			if (err != ERR_ok) resignal(err);
-			if (ans.tf == false) break;
-			}
-		size.num = strlen(table2[i]);
-		stringOPcons(table2[i], CLU_1, size, &temp_str3);
-		err = pstreamOPtext(pst, temp_str3, &ans);
-		if (err != ERR_ok) resignal(err);
-		err = pstreamOPtext(pst, temp_str2, &ans);
-		if (err != ERR_ok) resignal(err);
-		ref.num = str.vec->data[i];
-		CUR_PROC_VAR.proc = (CLUPROC)table[i];
-		err = table[i]->proc(ref, pst);
-		if (err != ERR_ok) resignal(err);
-		}
-done:
-	err = stringOPcons("}", CLU_1, CLU_1, &temp_str);
-	if (err != ERR_ok) resignal(err);
-	err = pstreamOPstop(pst, temp_str, &ans);
-	if (err != ERR_ok) resignal(err);
-	signal(ERR_ok);
-	}
-
-errcode structOPencode(str, ist)
-CLUREF str, ist;
-{
-CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to encode fcns */
-long i;
-errcode err;
-CLUREF ref;
-
-        err = istreamOPputi(ist, str.vec->size);
-        if (err == ERR_not_possible) signal(err);
-        if (err != ERR_ok) resignal(err);
-	for (i = 0; i < str.vec->size; i++) {
-		ref.num = str.vec->data[i];
-		CUR_PROC_VAR.proc = (CLUPROC)table[i];
-		err = table[i]->proc(ref, ist);
-		if (err == ERR_not_possible) signal(err);
-		if (err != ERR_ok) resignal(err);
-		}
-	signal(ERR_ok);
-	}
-
-errcode structOPdecode(ist, ans)
-CLUREF ist, *ans;
-{
-CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; /* ptr to decode fcns */
-long i;
-errcode err;
-CLUREF temp, size;
-
-        err = istreamOPgeti(ist, &size);
-        if (err == ERR_not_possible) signal(err);
-        if (err != ERR_ok) resignal(err);
-	err = structOPnew(size, &temp);
-	if (err != ERR_ok) resignal(err);
-	for (i = 0; i < temp.vec->size; i++) {
-		CUR_PROC_VAR.proc = (CLUPROC)table[i];
-		err = table[i]->proc(ist, &temp.vec->data[i]);
-		if (err == ERR_not_possible) signal(err);
-		if (err == ERR_end_of_file) signal(err);
-		if (err != ERR_ok) resignal(err);
-		}
-	ans->vec = temp.vec;
-	signal(ERR_ok);
-	}
-
-typedef struct {
-PROC *fcn;
-char *name;
-} SEL_ENTRY;
-
-typedef struct {
-long count;
-OWNPTR	type_owns;
-OWNPTR  op_owns;
-struct OP_ENTRY entry[8];
-} selector_OPS;
-
-typedef struct {
-long count;
-OWNPTR	type_owns;
-OWNPTR  op_owns;
-struct OP_ENTRY equal;
-struct OP_ENTRY copy;
-struct OP_ENTRY similar;
-struct OP_ENTRY print;
-struct OP_ENTRY encode;
-struct OP_ENTRY decode;
-struct OP_ENTRY _gcd;
-struct OP_ENTRY debug_print;
-} selector_TABLE;
-
-OWN_ptr struct_own_init = {0, 0};
-
-CLU_proc struct_oe_equal = {{0,0,0,0}, structOPequal, &struct_own_init, &struct_own_init};
-CLU_proc struct_oe_copy = {{0,0,0,0}, structOPcopy, &struct_own_init, &struct_own_init};
-CLU_proc struct_oe_similar = {{0,0,0,0}, structOPsimilar, &struct_own_init, &struct_own_init};
-CLU_proc struct_oe_print = {{0,0,0,0}, structOPprint, &struct_own_init, &struct_own_init};
-CLU_proc struct_oe_encode = {{0,0,0,0}, structOPencode, &struct_own_init, &struct_own_init};
-CLU_proc struct_oe_decode = {{0,0,0,0}, structOPdecode, &struct_own_init, &struct_own_init};
-CLU_proc struct_oe__gcd = {{0,0,0,0}, structOP_gcd, &struct_own_init, &struct_own_init};
-CLU_proc struct_oe_debug_print = {{0,0,0,0}, structOPdebug_print, &struct_own_init, &struct_own_init};
-
-selector_OPS struct_ops_actual = {8, 
-&struct_own_init,
-&struct_own_init, {
-{&struct_oe_equal, "equal"},
-{&struct_oe_copy, "copy"}, 
-{&struct_oe_similar, "similar"},
-{&struct_oe_print, "print"},
-{&struct_oe_encode, "encode"},
-{&struct_oe_decode, "decode"},
-{&struct_oe__gcd, "_gcd"},
-{&struct_oe_debug_print, "debug_print"}
-}};
-
-selector_OPS *struct_ops = &struct_ops_actual;
-
+struct OPS *struct_ops = (struct OPS *)&struct_ops_actual;
