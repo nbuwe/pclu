@@ -116,7 +116,6 @@ charOPprint(CLUREF c, CLUREF pst)
     CLUREF temp_str, temp_ref;
     static bool init = false;
     static CLUREF t1, t2, t3, t4, t5, ans;
-    bool done = false;
 
     if (init == 0) {
 	err = stringOPcons("'\\^", CLU_1, CLU_3, &t1);
@@ -132,54 +131,44 @@ charOPprint(CLUREF c, CLUREF pst)
 	temp_str = t1;
 	if (c.ch != temp.ch) temp_str = t2;
 	temp.ch = '?';
-	done = true;
     }
-    if (!done && (temp.ch == '\'' || temp.ch == '\\')) {
+    else if (temp.ch == '\'' || temp.ch == '\\') {
 	temp_str = t3;
 	if (temp.ch != c.ch) temp_str = t4;
-	done = true;
     }
-    if (!done && (' ' <= temp.ch)) {
+    else if (' ' <= temp.ch) {
 	temp_str = t5;
 	if (temp.ch != c.ch) temp_str = t4;
-	done = true;
     }
-    if (!done && (temp.ch != c.ch)) {
+    else if (temp.ch != c.ch) {
 	temp_str = t2;
 	temp.ch += 64;
-	done = true;
     }
-    if (!done && (temp.ch == '\n')) {
+    else if (temp.ch == '\n') {
 	temp_str = t3;
 	temp.ch = 'n';
-	done = true;
     }
-    if (!done && (temp.ch == '\t')) {
+    else if (temp.ch == '\t') {
 	temp_str = t3;
 	temp.ch = 't';
-	done = true;
     }
-    if (!done && (temp.ch == '\f')) {
+    else if (temp.ch == '\f') {
 	temp_str = t3;
 	temp.ch = 'p';
-	done = true;
     }
-    if (!done && (temp.ch == '\b')) {
+    else if (temp.ch == '\b') {
 	temp_str = t3;
 	temp.ch = 'b';
-	done = true;
     }
-    if (!done && (temp.ch == '\r')) {
+    else if (temp.ch == '\r') {
 	temp_str = t3;
 	temp.ch = 'r';
-	done = true;
     }
-    if (!done && (temp.ch == '\v')) {
+    else if (temp.ch == '\v') {
 	temp_str = t3;
 	temp.ch = 'v';
-	done = true;
     }
-    if (!done) {
+    else {
 	temp_str = t1;
 	temp.ch += 64;
     }
