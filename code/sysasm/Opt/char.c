@@ -90,7 +90,7 @@ charOPsimilar(CLUREF c1, CLUREF c2, CLUREF *ans)
 errcode
 charOPcopy(CLUREF c, CLUREF *ans)
 {
-    ans->num = c.ch;
+    *ans = c;
     signal(ERR_ok);
 }
 
