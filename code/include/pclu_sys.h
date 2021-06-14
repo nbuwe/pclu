@@ -317,7 +317,8 @@ typedef union {
 
 #define CLUREFSZ (sizeof(CLUREF))
 
-#define CLUREF_make_num(n) ((CLUREF){ .num = (n) })
+#define CLUREF_make_ch(c)	((CLUREF){ .ch = (c) })
+#define CLUREF_make_num(n)	((CLUREF){ .num = (n) })
 
 
 /* Entry point of a CLU program in the C code emitted by the compiler */
