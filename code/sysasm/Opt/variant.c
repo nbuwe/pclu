@@ -126,6 +126,11 @@ variantOPdebug_print(CLUREF vnt, CLUREF pst)
 {
     errcode err;
 
+    /*
+     * NB: Abuse^W rely on the fact that print and debug_print have
+     * similar op_owns, so call print but with debug_print field ops.
+     * Should probably just do a tail call.
+     */
     err = variantOPprint(vnt, pst);
     if (err != ERR_ok) resignal(err);
     signal(ERR_ok);
