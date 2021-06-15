@@ -15,7 +15,7 @@ errcode pstreamOPstart(CLUREF ps, CLUREF s, CLUREF *ret_1);
 errcode pstreamOPstop(CLUREF ps, CLUREF s, CLUREF *ret_1);
 errcode pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1);
 
-errcode structOPprint(CLUREF str, CLUREF pst);
+errcode structOPprint(CLUREF s, CLUREF pst);
 
 
 static void
@@ -242,7 +242,7 @@ structOPdebug_print(CLUREF s, CLUREF pst)
 
 
 errcode
-structOPprint(CLUREF str, CLUREF pst)
+structOPprint(CLUREF s, CLUREF pst)
 {
     errcode err;
     CLUREF ans;
@@ -250,7 +250,7 @@ structOPprint(CLUREF str, CLUREF pst)
     CLUPROC *field_print
 	= (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
     char **field_name
-	= (char **)(field_print + str.vec->size);
+	= (char **)(field_print + s.vec->size);
 
     static CLUREF lcurly, colon, comma, rcurly;
     static bool init = false;
@@ -269,7 +269,7 @@ structOPprint(CLUREF str, CLUREF pst)
     if (ans.tf == false)
 	goto done;
 
-    for (long i = 0; i < str.vec->size; ++i) {
+    for (long i = 0; i < s.vec->size; ++i) {
 	if (i != 0) {
 	    err = pstreamOPpause(pst, comma, &ans);
 	    if (err != ERR_ok)
@@ -290,7 +290,7 @@ structOPprint(CLUREF str, CLUREF pst)
 	if (err != ERR_ok)
 	    goto ex_0;
 
-	CLUREF value = { .num = str.vec->data[i] };
+	CLUREF value = { .num = s.vec->data[i] };
 	CUR_PROC_VAR.proc = field_print[i];
 	err = (*field_print[i]->proc)(value, pst);
 	if (err != ERR_ok)
