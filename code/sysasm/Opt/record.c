@@ -270,11 +270,10 @@ recordOPencode(CLUREF r, CLUREF ist)
 errcode
 recordOPdecode(CLUREF ist, CLUREF *ans)
 {
-    CLUPROC *field_decode = (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
-    long i;
     errcode err;
-    CLUREF temp, size;
+    CLUPROC *field_decode = (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
 
+    CLUREF size;
     err = istreamOPgeti(ist, &size);
     if (err == ERR_not_possible)
 	signal(err);
@@ -283,13 +282,14 @@ recordOPdecode(CLUREF ist, CLUREF *ans)
     if (err != ERR_ok)
 	resignal(err);
 
-    err = recordOPnew(size, &temp);
+    CLUREF r;
+    err = recordOPnew(size, &r);
     if (err != ERR_ok)
 	resignal(err);
 
-    for (i = 0; i < temp.vec->size; ++i) {
+    for (long i = 0; i < r.vec->size; ++i) {
 	CUR_PROC_VAR.proc = field_decode[i];
-	err = (*field_decode[i]->proc)(ist, &temp.vec->data[i]);
+	err = (*field_decode[i]->proc)(ist, &r.vec->data[i]);
 	if (err == ERR_not_possible)
 	    signal(err);
 	if (err == ERR_end_of_file)
@@ -298,7 +298,7 @@ recordOPdecode(CLUREF ist, CLUREF *ans)
 	    resignal(err);
     }
 
-    ans->vec = temp.vec;
+    *ans = r;
     signal(ERR_ok);
 }
 
