@@ -54,11 +54,17 @@ errcode recordOPcopy(CLUREF r, CLUREF *ans)
 	CUR_PROC_VAR.proc = field_copy[i];
 	err = (*field_copy[i]->proc)(elt, &r2.vec->data[i]);
 	if (err != ERR_ok)
-	    resignal(err);
+	    goto ex_0;
     }
 
     *ans = r2;
     signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
 }
 
 
@@ -96,11 +102,18 @@ recordOPsimilar(CLUREF r1, CLUREF r2, CLUREF *ans)
 	CUR_PROC_VAR.proc = field_similar[i];
 	err = (*field_similar[i]->proc)(e1, e2, ans);
 	if (err != ERR_ok)
-	    resignal(err);
+	    goto ex_0;
+
 	if (ans->tf == false)
-	    signal(ERR_ok);
+	    break;
     }
     signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
 }
 
 
@@ -120,14 +133,20 @@ recordOP_gcd(CLUREF r, CLUREF tab, CLUREF *ans)
     CLUREF ginfo;		// := ginfo$make_c_sel(gproclist)
     err = oneofOPnew(CLU_3, gproclist, &ginfo);
     if (err != ERR_ok)
-	resignal(err);
+	goto ex_0;
 
     CLUREF sz = { .num = 2 * CLUREFSZ + r.vec->size * GCD_REF_SIZE };
     err = gcd_tabOPinsert(tab, sz, ginfo, r, ans);
     if (err != ERR_ok)
-	resignal(err);
+	goto ex_0;
 
     signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
 }
 
 
@@ -170,9 +189,15 @@ recordOPdebug_print(CLUREF r, CLUREF pst)
      */
     err = recordOPprint(r, pst);
     if (err != ERR_ok)
-	resignal(err);
+	goto ex_0;
 
     signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
 }
 
 
@@ -186,25 +211,20 @@ recordOPprint(CLUREF r, CLUREF pst)
     CLUREF temp_str, temp_str2, temp_str3, e1;
     CLUREF size, ans;
 
-    err = stringOPcons("{", CLU_1, CLU_1, &temp_str);
-    if (err != ERR_ok) resignal(err);
-
+    stringOPcons("{", CLU_1, CLU_1, &temp_str);
     err = pstreamOPstart(pst, temp_str, &ans);
     if (err != ERR_ok)
-	resignal(err);
+	goto ex_0;
     if (ans.tf == false)
 	goto done;
 
-    err = stringOPcons(",", CLU_1, CLU_1, &temp_str);
-    if (err != ERR_ok) resignal(err);
-    err = stringOPcons(": ", CLU_1, CLU_2, &temp_str2);
-    if (err != ERR_ok) resignal(err);
-
+    stringOPcons(",", CLU_1, CLU_1, &temp_str);
+    stringOPcons(": ", CLU_1, CLU_2, &temp_str2);
     for (i = 0; i < r.vec->size; ++i) {
 	if (i != 0) {
 	    err = pstreamOPpause(pst, temp_str, &ans);
 	    if (err != ERR_ok)
-		resignal(err);
+		goto ex_0;
 	    if (ans.tf == false)
 		break;
 	}
@@ -214,28 +234,31 @@ recordOPprint(CLUREF r, CLUREF pst)
 
 	err = pstreamOPtext(pst, temp_str3, &ans);
 	if (err != ERR_ok)
-	    resignal(err);
+	    goto ex_0;
 
 	err = pstreamOPtext(pst, temp_str2, &ans);
 	if (err != ERR_ok)
-	    resignal(err);
+	    goto ex_0;
 
 	e1.num = r.vec->data[i];
 	CUR_PROC_VAR.proc = field_print[i];
 	err = (*field_print[i]->proc)(e1, pst);
 	if (err != ERR_ok)
-	    resignal(err);
+	    goto ex_0;
     }
   done:
-    err = stringOPcons("}", CLU_1, CLU_1, &temp_str);
-    if (err != ERR_ok)
-	resignal(err);
-
+    stringOPcons("}", CLU_1, CLU_1, &temp_str);
     err = pstreamOPstop(pst, temp_str, &ans);
     if (err != ERR_ok)
-	resignal(err);
+	goto ex_0;
 
     signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
 }
 
 
@@ -251,7 +274,7 @@ recordOPencode(CLUREF r, CLUREF ist)
     if (err == ERR_not_possible)
 	signal(err);
     if (err != ERR_ok)
-	resignal(err);
+	goto ex_0;
 
     for (i = 0; i < r.vec->size; ++i) {
 	e1.num = r.vec->data[i];
@@ -261,9 +284,15 @@ recordOPencode(CLUREF r, CLUREF ist)
 	if (err == ERR_not_possible)
 	    signal(err);
 	if (err != ERR_ok)
-	    resignal(err);
+	    goto ex_0;
     }
     signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
 }
 
 
@@ -280,12 +309,12 @@ recordOPdecode(CLUREF ist, CLUREF *ans)
     if (err == ERR_end_of_file)
 	signal(err);
     if (err != ERR_ok)
-	resignal(err);
+	goto ex_0;
 
     CLUREF r;
     err = recordOPnew(size, &r);
     if (err != ERR_ok)
-	resignal(err);
+	goto ex_0;
 
     for (long i = 0; i < r.vec->size; ++i) {
 	CUR_PROC_VAR.proc = field_decode[i];
@@ -295,11 +324,17 @@ recordOPdecode(CLUREF ist, CLUREF *ans)
 	if (err == ERR_end_of_file)
 	    signal(err);
 	if (err != ERR_ok)
-	    resignal(err);
+	    goto ex_0;
     }
 
     *ans = r;
     signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
 }
 
 
@@ -321,11 +356,18 @@ recordOPsimilar1(CLUREF r1, CLUREF r2, CLUREF *ans)
 	CUR_PROC_VAR.proc = field_similar1[i];
 	err = (*field_similar1[i]->proc)(e1, e2, ans);
 	if (err != ERR_ok)
-	    resignal(err);
+	    goto ex_0;
+
 	if (ans->tf == false)
-	    signal(ERR_ok);
+	    break;
     }
     signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
 }
 
 
