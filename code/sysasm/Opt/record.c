@@ -164,7 +164,7 @@ recordOPequal(CLUREF r1, CLUREF r2, CLUREF *ans)
 errcode
 recordOPr_gets_r(CLUREF r1, CLUREF r2)
 {
-    bcopy((char *)r2.vec->data, (char *)r1.vec->data, r1.vec->size * CLUREFSZ);
+    memcpy(r1.vec->data, r2.vec->data, r1.vec->size * CLUREFSZ);
     signal(ERR_ok);
 }
 
@@ -172,7 +172,7 @@ recordOPr_gets_r(CLUREF r1, CLUREF r2)
 errcode
 recordOPr_gets_s(CLUREF r1, CLUREF r2)
 {
-    bcopy((char *)r2.vec->data, (char *)r1.vec->data, r1.vec->size * CLUREFSZ);
+    memcpy(r1.vec->data, r2.vec->data, r1.vec->size * CLUREFSZ);
     signal(ERR_ok);
 }
 
