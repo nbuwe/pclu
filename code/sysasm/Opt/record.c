@@ -303,25 +303,23 @@ recordOPdecode(CLUREF ist, CLUREF *ans)
 }
 
 
-errcode recordOPsimilar1(rec1, rec2, ans)
-CLUREF rec1, rec2, *ans;
+errcode
+recordOPsimilar1(CLUREF r1, CLUREF r2, CLUREF *ans)
 {
-    CLUPROC *table = (CLUPROC*)CUR_PROC_VAR.proc->op_owns->info; 
-    long i;
     errcode err;
-    CLUREF e1, e2;
+    CLUPROC *field_similar1 = (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
 
-    if (rec1.vec->size != rec2.vec->size) {
+    if (r1.vec->size != r2.vec->size) {
 	ans->tf = false;
 	signal(ERR_ok);
     }
 
-    for (i = 0; i < rec1.vec->size; i++) {
-	e1.num = rec1.vec->data[i];
-	e2.num = rec2.vec->data[i];
+    for (long i = 0; i < r1.vec->size; ++i) {
+	CLUREF e1 = { .num = r1.vec->data[i] };
+	CLUREF e2 = { .num = r2.vec->data[i] };
 
-	CUR_PROC_VAR.proc = (CLUPROC)table[i];
-	err = table[i]->proc(e1, e2, ans);
+	CUR_PROC_VAR.proc = field_similar1[i];
+	err = (*field_similar1[i]->proc)(e1, e2, ans);
 	if (err != ERR_ok)
 	    resignal(err);
 	if (ans->tf == false)
