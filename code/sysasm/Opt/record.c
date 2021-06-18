@@ -18,49 +18,46 @@ errcode pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1);
 errcode recordOPprint(CLUREF rec, CLUREF pst);
 
 
+static void
+recordOPOPalloc(size_t size, CLUREF *pnew)
+{
+    size_t bufsz = offsetof(CLU_sequence, data) + size * CLUREFSZ;
+
+    clu_alloc(bufsz, pnew);
+    CLUTYPE_set(pnew->vec->typ, CT_REC);
+    pnew->vec->size = size;
+}
+
+
 errcode
 recordOPnew(CLUREF size, CLUREF *ans)
 {
-    CLUREF temp;
-    clu_alloc((size.num - 1)* (sizeof(CLUREF)) + sizeof(CLU_sequence), &temp);
-    temp.vec->typ.mark = 0;
-    temp.vec->typ.val = CT_REC;
-    temp.vec->typ.refp = 0;
-    temp.vec->typ.spare = 0;
-    temp.vec->size = size.num;
+    CLUREF r;
+    recordOPOPalloc(size.num, &r);
 
-    ans->vec = temp.vec;
+    *ans = r;
     signal(ERR_ok);
 }
 
 
 errcode recordOPcopy(CLUREF r, CLUREF *ans)
 {
-    CLUPROC *field_copy = (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
     errcode err;
+    CLUPROC *field_copy = (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
+
     CLUREF r2;
-    CLUREF size, e1, e2;
-    long i;
+    recordOPOPalloc(r.vec->size, &r2);
 
-    size.num = r.vec->size;
-    clu_alloc((size.num - 1)* (sizeof(CLUREF)) + sizeof(CLU_sequence), &r2);
-    r2.vec->typ.mark = 0;
-    r2.vec->typ.val = CT_REC;
-    r2.vec->typ.refp = 0;
-    r2.vec->typ.spare = 0;
-    r2.vec->size = size.num;
-
-    for (i = 0; i < size.num ; ++i) {
-	e1.num = r.vec->data[i];
+    for (long i = 0; i < r.vec->size; ++i) {
+	CLUREF elt = { .num = r.vec->data[i] };
 
 	CUR_PROC_VAR.proc = field_copy[i];
-	err = (*field_copy[i]->proc)(e1, &e2);
-	r2.vec->data[i] = e2.num;
+	err = (*field_copy[i]->proc)(elt, &r2.vec->data[i]);
 	if (err != ERR_ok)
 	    resignal(err);
     }
 
-    ans->vec = r2.vec;
+    *ans = r2;
     signal(ERR_ok);
 }
 
@@ -69,21 +66,12 @@ errcode
 recordOPcopy1(CLUREF r, CLUREF *ans)
 {
     CLUREF r2;
-    CLUREF size;
-    long i;
+    recordOPOPalloc(r.vec->size, &r2);
 
-    size.num = r.vec->size;
-    clu_alloc((size.num - 1)* (sizeof(CLUREF)) + sizeof(CLU_sequence), &r2);
-    r2.vec->typ.mark = 0;
-    r2.vec->typ.val = CT_REC;
-    r2.vec->typ.refp = 0;
-    r2.vec->typ.spare = 0;
-    r2.vec->size = r.vec->size;
-
-    for (i = 0; i < r.vec->size; ++i)
+    for (long i = 0; i < r.vec->size; ++i)
 	r2.vec->data[i] = r.vec->data[i];
 
-    ans->vec = r2.vec;
+    *ans = r2;
     signal(ERR_ok);
 }
 
