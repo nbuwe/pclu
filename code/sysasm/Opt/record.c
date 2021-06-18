@@ -204,51 +204,59 @@ recordOPdebug_print(CLUREF r, CLUREF pst)
 errcode
 recordOPprint(CLUREF r, CLUREF pst)
 {
+    errcode err;
+    CLUREF ans;
+
     CLUPROC *field_print = (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
     char **field_name = (char **)(field_print + r.vec->size);
-    long i;
-    errcode err;
-    CLUREF temp_str, temp_str2, temp_str3, e1;
-    CLUREF size, ans;
 
-    stringOPcons("{", CLU_1, CLU_1, &temp_str);
-    err = pstreamOPstart(pst, temp_str, &ans);
+    static CLUREF lcurly, colon, comma, rcurly;
+    static bool init = false;
+    if (!init) {
+	stringOPcons("{",  CLU_1, CLU_1, &lcurly);
+	stringOPcons(": ", CLU_1, CLU_2, &colon);
+	stringOPcons(",",  CLU_1, CLU_1, &comma);
+	stringOPcons("}",  CLU_1, CLU_1, &rcurly);
+	init = true;
+    }
+
+    err = pstreamOPstart(pst, lcurly, &ans);
     if (err != ERR_ok)
 	goto ex_0;
+
     if (ans.tf == false)
 	goto done;
 
-    stringOPcons(",", CLU_1, CLU_1, &temp_str);
-    stringOPcons(": ", CLU_1, CLU_2, &temp_str2);
-    for (i = 0; i < r.vec->size; ++i) {
+    for (long i = 0; i < r.vec->size; ++i) {
 	if (i != 0) {
-	    err = pstreamOPpause(pst, temp_str, &ans);
+	    err = pstreamOPpause(pst, comma, &ans);
 	    if (err != ERR_ok)
 		goto ex_0;
+
 	    if (ans.tf == false)
 		break;
 	}
 
-	size.num = strlen(field_name[i]);
-	stringOPcons(field_name[i], CLU_1, size, &temp_str3);
-
-	err = pstreamOPtext(pst, temp_str3, &ans);
+	CLUREF name;
+	CLUREF size = { .num = strlen(field_name[i]) };
+	stringOPcons(field_name[i], CLU_1, size, &name);
+	err = pstreamOPtext(pst, name, &ans);
 	if (err != ERR_ok)
 	    goto ex_0;
 
-	err = pstreamOPtext(pst, temp_str2, &ans);
+	err = pstreamOPtext(pst, colon, &ans);
 	if (err != ERR_ok)
 	    goto ex_0;
 
-	e1.num = r.vec->data[i];
+	CLUREF value = { .num = r.vec->data[i] };
 	CUR_PROC_VAR.proc = field_print[i];
-	err = (*field_print[i]->proc)(e1, pst);
+	err = (*field_print[i]->proc)(value, pst);
 	if (err != ERR_ok)
 	    goto ex_0;
     }
+
   done:
-    stringOPcons("}", CLU_1, CLU_1, &temp_str);
-    err = pstreamOPstop(pst, temp_str, &ans);
+    err = pstreamOPstop(pst, rcurly, &ans);
     if (err != ERR_ok)
 	goto ex_0;
 
