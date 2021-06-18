@@ -362,10 +362,10 @@ static CLU_proc record_oe_decode = CLU_proc_INIT(recordOPdecode);
 static CLU_proc record_oe__gcd = CLU_proc_INIT(recordOP_gcd);
 static CLU_proc record_oe_debug_print = CLU_proc_INIT(recordOPdebug_print);
 
-static struct {
+static struct /* OPS */ {
     long count;
-    OWNPTR	type_owns;
-    OWNPTR  op_owns;
+    OWNPTR type_owns;
+    OWNPTR op_owns;
     struct OP_ENTRY entry[8];
 } record_ops_actual = {
     8,
