@@ -119,23 +119,23 @@ recordOPsimilar(CLUREF r1, CLUREF r2, CLUREF *ans)
 errcode
 recordOP_gcd(CLUREF r, CLUREF tab, CLUREF *ans)
 {
-    CLUPROC *field_gcd = (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
-    long i;
     errcode err;
-    CLUREF temp_oneof, temp_seq, sz;
+    CLUPROC *field_gcd = (CLUPROC *)CUR_PROC_VAR.proc->op_owns->info;
 
-    sz.num = r.vec->size;
-    sequenceOPnew2(sz, &temp_seq);
-    for (i = 0; i < r.vec->size; i++) {
-	temp_seq.vec->data[i] = (long)field_gcd[i];
+
+    CLUREF gproclist;
+    sequenceOPnew2(CLUREF_make_num(r.vec->size), &gproclist);
+    for (long i = 0; i < r.vec->size; ++i) {
+	gproclist.vec->data[i] = (long)field_gcd[i];
     }
 
-    err = oneofOPnew(CLU_3, temp_seq, &temp_oneof);
+    CLUREF ginfo;		// := ginfo$make_c_sel(gproclist)
+    err = oneofOPnew(CLU_3, gproclist, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
-    sz.num = 2 * CLUREFSZ + r.vec->size * GCD_REF_SIZE;
-    err = gcd_tabOPinsert(tab, sz, temp_oneof, r, ans);
+    CLUREF sz = { .num = 2 * CLUREFSZ + r.vec->size * GCD_REF_SIZE };
+    err = gcd_tabOPinsert(tab, sz, ginfo, r, ans);
     if (err != ERR_ok)
 	resignal(err);
 
