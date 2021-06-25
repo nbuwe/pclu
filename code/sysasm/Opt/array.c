@@ -126,7 +126,7 @@ check_RI(CLUREF a)
 long
 arrayOPOPminimum_size(long n)
 {
-    long store_size = BYTES_TO_WORDS(sizeof(CLU_store) - sizeof(CLUREF));
+    long store_size = BYTES_TO_WORDS(offsetof(CLU_store, data));
     long ans;
 
     ans = n + store_size;
@@ -157,7 +157,7 @@ long
 arrayOPOPsize_for_growth(long n)
 {
     long pad = n >> 2;
-    long max_pad = BYTES_TO_WORDS(HBLKSIZE - sizeof(CLU_store) + sizeof(CLUREF));
+    long max_pad = BYTES_TO_WORDS(HBLKSIZE - offsetof(CLU_store, data));
     long min_pad = 2;
 
     if (pad < min_pad)
@@ -189,7 +189,7 @@ arrayOPOPnewstore(CLUREF desc, long size)
     CLUREF temp;
 
     size = arrayOPOPminimum_size(size);
-    clu_alloc(sizeof(CLU_store) + (size-1) * sizeof(CLUREF), &temp);
+    clu_alloc(offsetof(CLU_store, data) + size * sizeof(CLUREF), &temp);
     temp.store->typ.val = CT_STORE;
     temp.store->typ.mark = 0;
     temp.store->typ.refp = 0;
@@ -315,7 +315,7 @@ arrayOPpredict(CLUREF low, CLUREF size, CLUREF *ans)
     temp.array->typ.refp = 0;
 
     /* allocate storage for data */
-    clu_alloc(sizeof(CLU_store) + (s-1) * sizeof(CLUREF), &store);
+    clu_alloc(offsetof(CLU_store, data) + s * sizeof(CLUREF), &store);
     store.store->typ.val = CT_STORE;
     store.store->typ.mark = 0;
     store.store->typ.refp = 0;
