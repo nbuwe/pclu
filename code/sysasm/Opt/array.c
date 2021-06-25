@@ -172,13 +172,11 @@ arrayOPOPsize_for_growth(long n)
 errcode
 arrayOPOPnewdesc(CLUREF *ans)
 {
-    CLUREF temp;
-    clu_alloc(sizeof(CLU_array), &temp);
-    temp.array->typ.val = CT_ARRAY;
-    temp.array->typ.mark = 0;
-    temp.array->typ.refp = 0;
+    CLUREF desc;
+    clu_alloc(sizeof(CLU_array), &desc);
+    CLUTYPE_set(desc.array->typ, CT_ARRAY);
 
-    ans->array = temp.array;
+    *ans = desc;
     signal(ERR_ok);
 }
 
@@ -186,16 +184,14 @@ arrayOPOPnewdesc(CLUREF *ans)
 errcode
 arrayOPOPnewstore(CLUREF desc, long size)
 {
-    CLUREF temp;
-
     size = arrayOPOPminimum_size(size);
-    clu_alloc(offsetof(CLU_store, data) + size * sizeof(CLUREF), &temp);
-    temp.store->typ.val = CT_STORE;
-    temp.store->typ.mark = 0;
-    temp.store->typ.refp = 0;
-    temp.store->size = size;
 
-    desc.array->store = temp.store;
+    CLUREF store;
+    clu_alloc(offsetof(CLU_store, data) + size * sizeof(CLUREF), &store);
+    CLUTYPE_set(store.store->typ, CT_STORE);
+    store.store->size = size;
+
+    desc.array->store = store.store;
     desc.array->int_low = 0;
     desc.array->int_size = size;
 
@@ -206,38 +202,35 @@ arrayOPOPnewstore(CLUREF desc, long size)
 errcode
 arrayOPcreate(CLUREF low, CLUREF *ans)
 {
-    CLUREF temp, store;
-
 #if 0 /* ODD DWC */
     if (low.num < (long)MIN_ARR_INDEX) {
 	elist[0].str = array_bounds_overflow_STRING;
 	signal(ERR_failure);
     }
 #endif
+
     /* allocate array descriptor */
-    clu_alloc(sizeof(CLU_array), &temp);
-    temp.array->typ.val = CT_ARRAY;
-    temp.array->typ.mark = 0;
-    temp.array->typ.refp = 0;
+    CLUREF desc;
+    clu_alloc(sizeof(CLU_array), &desc);
+    CLUTYPE_set(desc.array->typ, CT_ARRAY);
 
     /* allocate storage for data */
+    CLUREF store;
     clu_alloc(sizeof(CLU_store), &store);
-    store.store->typ.val = CT_STORE;
-    store.store->typ.mark = 0;
-    store.store->typ.refp = 0;
+    CLUTYPE_set(store.store->typ, CT_STORE);
     store.store->size = 1;
 
-    temp.array->store = store.store;
-    temp.array->int_low = 0;
-    temp.array->int_size = 1;
-    temp.array->ext_low = low.num;
-    temp.array->ext_size = 0;
-    temp.array->ext_high = low.num - 1;
+    desc.array->store = store.store;
+    desc.array->int_low = 0;
+    desc.array->int_size = 1;
+    desc.array->ext_low = low.num;
+    desc.array->ext_size = 0;
+    desc.array->ext_high = low.num - 1;
 
 #ifdef DEBUG_ARRAY
-    check_RI(temp);
+    check_RI(desc);
 #endif
-    ans->array = temp.array;
+    *ans = desc;
     signal(ERR_ok);
 }
 
@@ -245,40 +238,36 @@ arrayOPcreate(CLUREF low, CLUREF *ans)
 errcode
 arrayOPnew(CLUREF *ans)
 {
-    CLUREF temp, store;
-
     /* allocate array descriptor */
+    CLUREF desc;
 #ifdef athena
-    clu_alloc(sizeof(CLU_array), &temp);
+    clu_alloc(sizeof(CLU_array), &desc);
 #else
-    Alloc(CLU_array_sizew, temp);
+    Alloc(CLU_array_sizew, desc);
 #endif
-    temp.array->typ.val = CT_ARRAY;
-    temp.array->typ.mark = 0;
-    temp.array->typ.refp = 0; 
+    CLUTYPE_set(desc.array->typ, CT_ARRAY);
 
     /* allocate storage for data */
+    CLUREF store;
 #ifdef athena
     clu_alloc(sizeof(CLU_store), &store);
 #else
     Alloc(CLU_store_sizew, store);
 #endif
-    store.store->typ.val = CT_STORE;
-    store.store->typ.mark = 0;
-    store.store->typ.refp = 0;
+    CLUTYPE_set(store.store->typ, CT_STORE);
     store.store->size = 1;
 
-    temp.array->store = store.store;
-    temp.array->int_low = 0;
-    temp.array->int_size = 1;
-    temp.array->ext_low = 1;
-    temp.array->ext_size = 0;
-    temp.array->ext_high = 0;
+    desc.array->store = store.store;
+    desc.array->int_low = 0;
+    desc.array->int_size = 1;
+    desc.array->ext_low = 1;
+    desc.array->ext_size = 0;
+    desc.array->ext_high = 0;
 
 #ifdef DEBUG_ARRAY
-    check_RI(temp);
+    check_RI(desc);
 #endif
-    ans->array = temp.array;
+    *ans = desc;
     signal(ERR_ok);
 }
 
@@ -286,7 +275,6 @@ arrayOPnew(CLUREF *ans)
 errcode
 arrayOPpredict(CLUREF low, CLUREF size, CLUREF *ans)
 {
-    CLUREF temp, store;
     long s;
 
 #if 0 /* ODD... DWC */
@@ -309,26 +297,24 @@ arrayOPpredict(CLUREF low, CLUREF size, CLUREF *ans)
     s = arrayOPOPminimum_size(s);
 
     /* allocate array descriptor */
-    clu_alloc(sizeof(CLU_array), &temp);
-    temp.array->typ.val = CT_ARRAY;
-    temp.array->typ.mark = 0;
-    temp.array->typ.refp = 0;
+    CLUREF desc;
+    clu_alloc(sizeof(CLU_array), &desc);
+    CLUTYPE_set(desc.array->typ, CT_ARRAY);
 
     /* allocate storage for data */
+    CLUREF store;
     clu_alloc(offsetof(CLU_store, data) + s * sizeof(CLUREF), &store);
-    store.store->typ.val = CT_STORE;
-    store.store->typ.mark = 0;
-    store.store->typ.refp = 0;
+    CLUTYPE_set(store.store->typ, CT_STORE);
     store.store->size = s;
 
-    temp.array->store = store.store;
-    temp.array->int_low = 0;
-    temp.array->int_size = s;
-    temp.array->ext_low = low.num;
-    temp.array->ext_size = 0;
-    temp.array->ext_high = low.num - 1;
+    desc.array->store = store.store;
+    desc.array->int_low = 0;
+    desc.array->int_size = s;
+    desc.array->ext_low = low.num;
+    desc.array->ext_size = 0;
+    desc.array->ext_high = low.num - 1;
 
-    ans->array = temp.array;
+    *ans = desc;
     signal(ERR_ok);
 }
 
