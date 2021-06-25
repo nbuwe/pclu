@@ -318,19 +318,11 @@ arrayOPpredict(CLUREF low, CLUREF size, CLUREF *ans)
 errcode
 arrayOPcons(CLUREF q, CLUREF *ans)
 {
-    errcode err;
     CLUREF temp;
-    long i;
+    arrayOPOPnewdesc(&temp);
+    arrayOPOPnewstore(temp, q.vec->size);
 
-    err = arrayOPOPnewdesc(&temp);
-    if (err != ERR_ok)
-	resignal(err);
-
-    err = arrayOPOPnewstore(temp, q.vec->size);
-    if (err != ERR_ok)
-	resignal(err);
-
-    for (i = 0 ; i < q.vec->size; ++i) {
+    for (long i = 0 ; i < q.vec->size; ++i) {
 	temp.array->store->data[i] = q.vec->data[i];
     }
     temp.array->ext_low = 1;
@@ -348,19 +340,11 @@ arrayOPcons(CLUREF q, CLUREF *ans)
 errcode
 arrayOPcons2(CLUREF low, CLUREF q, CLUREF *ans)
 {
-    errcode err;
     CLUREF temp;
-    long i;
+    arrayOPOPnewdesc(&temp);
+    arrayOPOPnewstore(temp, q.vec->size);
 
-    err = arrayOPOPnewdesc(&temp);
-    if (err != ERR_ok)
-	resignal(err);
-
-    err = arrayOPOPnewstore(temp, q.vec->size);
-    if (err != ERR_ok)
-	resignal(err);
-
-    for (i = 0 ; i < q.vec->size; ++i) {
+    for (long i = 0 ; i < q.vec->size; ++i) {
 	temp.array->store->data[i] = q.vec->data[i];
     }
     temp.array->ext_low = low.num;
@@ -467,10 +451,6 @@ arrayOPtrim(CLUREF a, CLUREF low, CLUREF size)
 errcode				/* signals negative_size */
 arrayOPfill(CLUREF low, CLUREF size, CLUREF elt, CLUREF *ans)
 {
-    CLUREF temp;
-    errcode err;
-    long i;
-
     if (size.num < 0)
 	signal(ERR_negative_size);
 #if 0
@@ -484,18 +464,15 @@ arrayOPfill(CLUREF low, CLUREF size, CLUREF elt, CLUREF *ans)
 	signal(ERR_failure);
     }
 
-    err = arrayOPOPnewdesc(&temp);
-    if (err != ERR_ok)
-	resignal(err);
-
-    err = arrayOPOPnewstore(temp, size.num);
-    if (err != ERR_ok)
-	resignal(err);
+    CLUREF temp;
+    arrayOPOPnewdesc(&temp);
+    arrayOPOPnewstore(temp, size.num);
 
     temp.array->ext_low = low.num;
     temp.array->ext_size = size.num;
     temp.array->ext_high = low.num + size.num - 1;
-    for (i = 0; i < size.num; ++i) {
+
+    for (long i = 0; i < size.num; ++i) {
 	temp.array->store->data[i] = elt.num;
     }
 
@@ -530,17 +507,13 @@ arrayOPfill_copy(CLUREF low, CLUREF size, CLUREF elt, CLUREF *ans)
 	signal(ERR_failure);
     }
 
-    err = arrayOPOPnewdesc(&temp);
-    if (err != ERR_ok)
-	resignal(err);
-
-    err = arrayOPOPnewstore(temp, size.num);
-    if (err != ERR_ok)
-	resignal(err);
+    arrayOPOPnewdesc(&temp);
+    arrayOPOPnewstore(temp, size.num);
 
     temp.array->ext_low = low.num;
     temp.array->ext_size = size.num;
     temp.array->ext_high = low.num + size.num - 1;
+
     for (i = 0; i < size.num; ++i) {
 	CUR_PROC_VAR.proc = table->copy.fcn;
 	err = table->copy.fcn->proc(elt, &temp.array->store->data[i]);
@@ -678,7 +651,6 @@ arrayOPaddl(CLUREF a, CLUREF elt)
     long new_size;
     long old_int_low;
     CLUREF oldstore;
-    errcode err;
     long i;
 
 #ifdef DEBUG_ARRAY
@@ -692,9 +664,8 @@ arrayOPaddl(CLUREF a, CLUREF elt)
 
     oldstore.store = a.array->store;
     old_int_low = a.array->int_low;
-    err = arrayOPOPnewstore(a, new_size);
-    if (err != ERR_ok)
-	resignal(err);
+
+    arrayOPOPnewstore(a, new_size);
 
     for (i = 1 ; i < new_size ; ++i) {
 	a.array->store->data[i] = oldstore.store->data[old_int_low + i - 1];
@@ -955,13 +926,8 @@ arrayOPcopy(CLUREF a1, CLUREF *ans) /* deep: use t$copy */
     check_RI(a1);
 #endif
 
-    err = arrayOPOPnewdesc(&temp);
-    if (err != ERR_ok)
-	resignal(err);
-
-    err = arrayOPOPnewstore(temp, a1.array->ext_size);
-    if (err != ERR_ok)
-	resignal(err);
+    arrayOPOPnewdesc(&temp);
+    arrayOPOPnewstore(temp, a1.array->ext_size);
 
     temp.array->ext_low = a1.array->ext_low;
     temp.array->ext_size = a1.array->ext_size;
@@ -987,24 +953,19 @@ errcode
 arrayOPcopy1(CLUREF a1, CLUREF *ans) /* shallow: do NOT use t$copy */
 {
     CLUREF temp;
-    errcode err;
     long i,j,k;
 
 #ifdef DEBUG_ARRAY
     check_RI(a1);
 #endif
 
-    err = arrayOPOPnewdesc(&temp);
-    if (err != ERR_ok)
-	resignal(err);
-
-    err = arrayOPOPnewstore(temp, a1.array->ext_size);
-    if (err != ERR_ok)
-	resignal(err);
+    arrayOPOPnewdesc(&temp);
+    arrayOPOPnewstore(temp, a1.array->ext_size);
 
     temp.array->ext_low = a1.array->ext_low;
     temp.array->ext_size = a1.array->ext_size;
     temp.array->ext_high = a1.array->ext_high;
+
     j = a1.array->int_low;
     k = temp.array->int_low;
     for (i = 0; i < a1.array->ext_size; ++i, ++j, ++k) {
