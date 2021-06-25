@@ -119,6 +119,89 @@ check_RI(CLUREF a)
 #endif	/* DEBUG_ARRAY */
 
 
+/*
+ * Computes the minimum size (number of elements) actually allocated
+ * for an array of size n.  Knows secrets about the storage manager.
+ */
+long
+arrayOPOPminimum_size(long n)
+{
+    long store_size = BYTES_TO_WORDS(sizeof(CLU_store) - sizeof(CLUREF));
+    long ans;
+
+    ans = n + store_size;
+#ifndef LINUX
+    if (ans < MAXOBJSZ) {
+#ifdef MERGE_SIZES
+	extern long size_map[];
+	ans = size_map[ans];
+#endif
+    }
+    else {
+	ans = WORDS_TO_BYTES(ans) + sizeof(struct hblkhdr);
+	ans = (ans + HBLKMASK) & ~HBLKMASK;
+	ans = BYTES_TO_WORDS(ans - sizeof(struct hblkhdr));
+    }
+#endif
+    return (ans - store_size);
+}
+
+
+/*
+ * Computes a desirable internal size for an array with n elems.
+ * Assumes the array may continue to grow.
+ * Ensures result >= n.
+ * Knows secrets about the storage manager.
+ */
+long
+arrayOPOPsize_for_growth(long n)
+{
+    long pad = n >> 2;
+    long max_pad = BYTES_TO_WORDS(HBLKSIZE - sizeof(CLU_store) + sizeof(CLUREF));
+    long min_pad = 2;
+
+    if (pad < min_pad)
+	pad = min_pad;
+    if (pad > max_pad)
+	pad = max_pad;
+
+    return (n + pad);
+}
+
+
+errcode
+arrayOPOPnewdesc(CLUREF *ans)
+{
+    CLUREF temp;
+    clu_alloc(sizeof(CLU_array), &temp);
+    temp.array->typ.val = CT_ARRAY;
+    temp.array->typ.mark = 0;
+    temp.array->typ.refp = 0;
+
+    ans->array = temp.array;
+    signal(ERR_ok);
+}
+
+
+errcode
+arrayOPOPnewstore(CLUREF desc, long size)
+{
+    CLUREF temp;
+
+    size = arrayOPOPminimum_size(size);
+    clu_alloc(sizeof(CLU_store) + (size-1) * sizeof(CLUREF), &temp);
+    temp.store->typ.val = CT_STORE;
+    temp.store->typ.mark = 0;
+    temp.store->typ.refp = 0;
+    temp.store->size = size;
+
+    desc.array->store = temp.store;
+    desc.array->int_low = 0;
+    desc.array->int_size = size;
+
+    signal(ERR_ok);
+}
+
 
 errcode
 arrayOPcreate(CLUREF low, CLUREF *ans)
@@ -1227,90 +1310,6 @@ arrayOP_gcd(CLUREF a, CLUREF tab, CLUREF *ans) /* use t$_gcd */
 	resignal(err);
 
     signal(ERR_ok);
-}
-
-
-errcode
-arrayOPOPnewdesc(CLUREF *ans)
-{
-    CLUREF temp;
-    clu_alloc(sizeof(CLU_array), &temp);
-    temp.array->typ.val = CT_ARRAY;
-    temp.array->typ.mark = 0;
-    temp.array->typ.refp = 0;
-
-    ans->array = temp.array;
-    signal(ERR_ok);
-}
-
-
-errcode
-arrayOPOPnewstore(CLUREF desc, long size)
-{
-    CLUREF temp;
-
-    size = arrayOPOPminimum_size(size);
-    clu_alloc(sizeof(CLU_store) + (size-1) * sizeof(CLUREF), &temp);
-    temp.store->typ.val = CT_STORE;
-    temp.store->typ.mark = 0;
-    temp.store->typ.refp = 0;
-    temp.store->size = size;
-
-    desc.array->store = temp.store;
-    desc.array->int_low = 0;
-    desc.array->int_size = size;
-
-    signal(ERR_ok);
-}
-
-
-/*
- * Computes the minimum size (number of elements) actually allocated
- * for an array of size n.  Knows secrets about the storage manager.
- */
-long
-arrayOPOPminimum_size(long n)
-{
-    long store_size = BYTES_TO_WORDS(sizeof(CLU_store) - sizeof(CLUREF));
-    long ans;
-
-    ans = n + store_size;
-#ifndef LINUX
-    if (ans < MAXOBJSZ) {
-#ifdef MERGE_SIZES
-	extern long size_map[];
-	ans = size_map[ans];
-#endif
-    }
-    else {
-	ans = WORDS_TO_BYTES(ans) + sizeof(struct hblkhdr);
-	ans = (ans + HBLKMASK) & ~HBLKMASK;
-	ans = BYTES_TO_WORDS(ans - sizeof(struct hblkhdr));
-    }
-#endif
-    return (ans - store_size);
-}
-
-
-/*
- * Computes a desirable internal size for an array with n elems.
- * Assumes the array may continue to grow.
- * Ensures result >= n.
- * Knows secrets about the storage manager.
- */
-long
-arrayOPOPsize_for_growth(long n)
-{
-    long pad = n >> 2;
-    long max_pad = BYTES_TO_WORDS(HBLKSIZE - sizeof(CLU_store) + sizeof(CLUREF));
-    long min_pad = 2;
-
-    if (pad < min_pad)
-	pad = min_pad;
-    if (pad > max_pad)
-	pad = max_pad;
-
-    return (n + pad);
 }
 
 
