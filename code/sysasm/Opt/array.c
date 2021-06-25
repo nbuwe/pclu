@@ -517,9 +517,9 @@ arrayOPfill_copy(CLUREF low, CLUREF size, CLUREF elt, CLUREF *ans)
     for (i = 0; i < size.num; ++i) {
 	CUR_PROC_VAR.proc = table->copy.fcn;
 	err = table->copy.fcn->proc(elt, &temp.array->store->data[i]);
+	if (err != ERR_ok)
+	    resignal(err);
     }
-    if (err != ERR_ok)
-	resignal(err);
 
 #ifdef DEBUG_ARRAY
     check_RI(temp);
