@@ -89,6 +89,14 @@ typedef struct /* OWN_ptr */ {
 } array_OWN_DEFN;
 
 
+/*
+ * Tell instantiation code how to construct an _OWN_DEFN object for an
+ * instantce.  What "own_count" really tells is where the parameters
+ * start (OPS for types, values for constants).
+ */
+const OWN_req array_ownreqs = { sizeof(array_OWN_DEFN), 1 };
+
+
 
 #ifdef DEBUG_ARRAY
 void
@@ -1348,15 +1356,6 @@ static CLU_proc array_oe_decode = CLU_proc_INIT(arrayOPdecode);
 static CLU_proc array_oe__gcd = CLU_proc_INIT(arrayOP_gcd);
 static CLU_proc array_oe_print = CLU_proc_INIT(arrayOPprint);
 static CLU_proc array_oe_debug_print = CLU_proc_INIT(arrayOPdebug_print);
-
-
-/*
- * Tell instantiation code how to construct an _OWN_DEFN object for an
- * instantce.  What "own_count" really tells is where the parameters
- * start (OPS for types, values for constants).
- */
-const OWN_req array_ownreqs = { sizeof(array_OWN_DEFN), 1 };
-
 
 static struct /* OPS */ {
     long count;
