@@ -334,7 +334,7 @@ arrayOPcons(CLUREF q, CLUREF *ans)
 	temp.array->store->data[i] = q.vec->data[i];
     }
     temp.array->ext_low = 1;
-    temp.array->ext_size = q.vec->size;	
+    temp.array->ext_size = q.vec->size;
     temp.array->ext_high = q.vec->size;
 
 #ifdef DEBUG_ARRAY
