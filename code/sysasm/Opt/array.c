@@ -32,11 +32,7 @@ errcode pstreamOPstart(CLUREF ps, CLUREF s, CLUREF *ret_1);
 errcode pstreamOPstop(CLUREF ps, CLUREF s, CLUREF *ret_1);
 errcode pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1);
 
-errcode arrayOPOPnewdesc();
-errcode arrayOPOPnewstore();
-errcode arrayOPOPsize_for_growth();
-errcode arrayOPOPminimum_size();
-errcode arrayOPinternal_print();
+errcode arrayOPinternal_print(CLUREF a, CLUREF pst, CLUREF pfcn);
 
 
 /*
