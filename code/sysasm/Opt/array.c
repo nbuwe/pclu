@@ -635,11 +635,12 @@ arrayOPaddh(CLUREF a, CLUREF elt)
 	new_size = arrayOPOPsize_for_growth(ext_size + 1);
 	if (new_size <= a.array->int_size) {
 	    /* Shift data to low end.  ENHANCE: Consider shrinking a. */
-	    bcopy(&a.array->store->data[int_low],
-		  &a.array->store->data[0],
-		  ext_size * sizeof(CLUREF));
-	    bzero(&a.array->store->data[ext_size], /* trash garbage pointers */
-		  int_low * sizeof(CLUREF));
+	    memmove(&a.array->store->data[0],
+		    &a.array->store->data[int_low],
+		    ext_size * sizeof(CLUREF));
+	    /* trash garbage pointers */
+	    memset(&a.array->store->data[ext_size], '\0',
+		   int_low * sizeof(CLUREF));
 	    a.array->int_low = int_low = 0;
 	}
 	else {
@@ -649,9 +650,9 @@ arrayOPaddh(CLUREF a, CLUREF elt)
 	    CLUSTORE old_store = a.array->store;
 
 	    arrayOPOPnewstore(a, new_size);
-	    bcopy(&old_store->data[int_low],
-		  &a.array->store->data[0],
-		  ext_size * sizeof(CLUREF));
+	    memcpy(&a.array->store->data[0],
+		   &old_store->data[int_low],
+		   ext_size * sizeof(CLUREF));
 	    gc_free(old_store);
 	    int_low = 0;
 	}
