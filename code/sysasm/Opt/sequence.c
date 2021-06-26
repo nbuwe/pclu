@@ -211,33 +211,35 @@ sequenceOPfill(CLUREF length, CLUREF x, CLUREF *ans)
 errcode
 sequenceOPfill_copy(CLUREF length, CLUREF x, CLUREF *ans)
 {
+    errcode err;
     const sequence_of_t_OPS *ops
 	= ((sequence_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
-    errcode err;
-    CLUREF s;
 
-    if (length.num < 1)
+    if (length.num < 0)
 	signal(ERR_negative_size);
-
-    if (length.num == 0) {
-	sequenceOPnew(ans);
-	signal(ERR_ok);
-    }
 
     if (length.num > MAX_SEQ) {
 	elist[0] = huge_allocation_request_STRING;
 	signal(ERR_failure);
     }
 
+    if (length.num == 0) {
+	sequenceOPnew(ans);
+	signal(ERR_ok);
+    }
+
+    CLUREF s;
     sequenceOPOPalloc(length.num, &s);
+
+    CLUREF tOPcopy = { .proc = ops->copy.fcn };
     for (long i = 0; i < length.num; ++i) {
-	CUR_PROC_VAR.proc = ops->copy.fcn;
-	err = (*ops->copy.fcn->proc)(x, &s.vec->data[i]);
+	CUR_PROC_VAR = tOPcopy;
+	err = (*tOPcopy.proc->proc)(x, &s.vec->data[i]);
 	if (err != ERR_ok)
 	    resignal(err);
     }
 
-    ans->vec = s.vec;
+    *ans = s;
     signal(ERR_ok);
 }
 
