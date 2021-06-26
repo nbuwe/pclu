@@ -306,24 +306,18 @@ sequenceOPreplace(CLUREF s, CLUREF ind, CLUREF x, CLUREF *ans)
 errcode
 sequenceOPaddh(CLUREF s, CLUREF x, CLUREF *ans)
 {
-    CLUREF s2;
-    long size;
-
-    size = s.vec->size;
+    size_t size = s.vec->size;
     if ((size + 1) * sizeof(CLUREF) > MAX_SEQ) {
 	elist[0] = huge_allocation_request_STRING;
 	signal(ERR_failure);
     }
 
+    CLUREF s2;
     sequenceOPOPalloc(size + 1, &s2);
-    bcopy((char *)&s.vec->data[0], (char *)s2.vec->data, size * CLUREFSZ);
-#if 0
-    for (long i = 0; i < size; ++i)
-	s2.vec->data[i] = s.vec->data[i];
-#endif
+    memcpy(s2.vec->data, s.vec->data, size * CLUREFSZ);
     s2.vec->data[size] = x.num;
 
-    ans->vec = s2.vec;
+    *ans = s2;
     signal(ERR_ok);
 }
 
@@ -331,21 +325,18 @@ sequenceOPaddh(CLUREF s, CLUREF x, CLUREF *ans)
 errcode
 sequenceOPaddl(CLUREF s, CLUREF x, CLUREF *ans)
 {
-    CLUREF s2;
-    long size;
-    long i;
-    size = s.vec->size;
+    size_t size = s.vec->size;
     if ((size + 1) * sizeof(CLUREF) > MAX_SEQ) {
 	elist[0] = huge_allocation_request_STRING;
 	signal(ERR_failure);
     }
 
+    CLUREF s2;
     sequenceOPOPalloc(size + 1, &s2);
     s2.vec->data[0] = x.num;
-    for (i = 0; i < size; i++)
-	s2.vec->data[i+1] = s.vec->data[i];
+    memcpy(&s2.vec->data[1], s.vec->data, size * CLUREFSZ);
 
-    ans->vec = s2.vec;
+    *ans = s2;
     signal(ERR_ok);
 }
 
@@ -353,11 +344,7 @@ sequenceOPaddl(CLUREF s, CLUREF x, CLUREF *ans)
 errcode
 sequenceOPremh(CLUREF s, CLUREF *ans)
 {
-    long size;
-    long i;
-    CLUREF s2;
-
-    size = s.vec->size;
+    size_t size = s.vec->size;
     if (size == 0)
 	signal (ERR_bounds);
 
@@ -366,11 +353,11 @@ sequenceOPremh(CLUREF s, CLUREF *ans)
 	signal(ERR_ok);
     }
 
+    CLUREF s2;
     sequenceOPOPalloc(size - 1, &s2);
-    for (i = 0; i < size - 1; ++i)
-	s2.vec->data[i] = s.vec->data[i];
+    memcpy(s2.vec->data, s.vec->data, (size - 1) * CLUREFSZ);
 
-    ans->vec = s2.vec;
+    *ans = s2;
     signal(ERR_ok);
 }
 
@@ -378,11 +365,7 @@ sequenceOPremh(CLUREF s, CLUREF *ans)
 errcode
 sequenceOPreml(CLUREF s, CLUREF *ans)
 {
-    long size;
-    long i;
-    CLUREF s2;
-
-    size = s.vec->size;
+    size_t size = s.vec->size;
     if (size == 0)
 	signal (ERR_bounds);
 
@@ -391,11 +374,11 @@ sequenceOPreml(CLUREF s, CLUREF *ans)
 	signal(ERR_ok);
     }
 
+    CLUREF s2;
     sequenceOPOPalloc(size - 1, &s2);
-    for (i = 0; i < size - 1; ++i)
-	s2.vec->data[i] = s.vec->data[i + 1];
+    memcpy(s2.vec->data, &s.vec->data[1], (size - 1) * CLUREFSZ);
 
-    ans->vec = s2.vec;
+    *ans = s2;
     signal(ERR_ok);
 }
 
