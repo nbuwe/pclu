@@ -435,21 +435,15 @@ sequenceOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans)
 errcode
 sequenceOPa2s(CLUREF a, CLUREF *ans)
 {
-    CLUREF temp;
+    CLUREF s;
+    sequenceOPOPalloc(a.array->ext_size, &s);
+    s.vec->typ.refp = a.array->typ.refp;
 
-    sequenceOPOPalloc(a.array->ext_size, &temp);
-    temp.vec->typ.refp = a.array->typ.refp;
+    memcpy(s.vec->data,
+	   &a.array->store->data[a.array->int_low],
+	   a.array->ext_size * CLUREFSZ);
 
-#if 0
-    for (long j = 0, i = a.array->int_low ; j < a.array->ext_size; ++j, ++i) {
-	temp.vec->data[j] = a.array->store->data[i];
-    }
-#endif
-    bcopy((char *)&a.array->store->data[a.array->int_low],
-	  (char *)temp.vec->data,
-	  a.array->ext_size * CLUREFSZ);  /* new 6/25/90 */
-
-    ans->vec = temp.vec;
+    *ans = s;
     signal(ERR_ok);
 }
 
