@@ -281,24 +281,19 @@ sequenceOPtop(CLUREF s, CLUREF *ans)
 errcode
 sequenceOPreplace(CLUREF s, CLUREF ind, CLUREF x, CLUREF *ans)
 {
-    CLUREF s2;
-    long i, size;
-
     if (ind.num <= 0)
 	signal(ERR_bounds);
 
-    size = s.vec->size;
-    if (ind.num > size)
+    size_t size = s.vec->size;
+    if ((size_t)ind.num > size)
 	signal(ERR_bounds);
 
+    CLUREF s2;
     sequenceOPOPalloc(size, &s2);
-    /* original does copying in 10000 byte chunks */
-    for (i = 0; i < size; ++i) {
-	s2.vec->data[i] = s.vec->data[i];
-    }
+    memcpy(s2.vec->data, s.vec->data, size * CLUREFSZ);
     s2.vec->data[ind.num - 1] = x.num;
 
-    ans->vec = s2.vec;
+    *ans = s2;
     signal(ERR_ok);
 }
 
