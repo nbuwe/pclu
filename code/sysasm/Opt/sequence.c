@@ -99,7 +99,7 @@ sequenceOPnew(CLUREF *ans)
 	init = true;
     }
 
-    ans->vec = CLU_empty_sequence.vec;
+    *ans = CLU_empty_sequence;
     signal(ERR_ok);
 }
 
@@ -110,7 +110,7 @@ sequenceOPnew2(CLUREF size, CLUREF *ans)
     CLUREF s;
     sequenceOPOPalloc(size.num, &s);
 
-    ans->vec = s.vec;
+    *ans = s;
     signal(ERR_ok);
 }
 
@@ -130,7 +130,7 @@ sequenceOPe2s(CLUREF x, CLUREF *ans)
     sequenceOPOPalloc(1, &s);
     s.vec->data[0] = x.num;
 
-    ans->vec = s.vec;
+    *ans = s;
     signal(ERR_ok);
 }
 
