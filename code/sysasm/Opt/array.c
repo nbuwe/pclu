@@ -1238,23 +1238,24 @@ errcode
 arrayOP_gcd(CLUREF a, CLUREF tab, CLUREF *ans) /* use t$_gcd */
 {
     errcode err;
-    CLUREF ginfo2, ginfo, sz;
     const array_of_t_OPS *ops
 	= ((array_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
 
-
-    // ginfo$make_g_arp(t$_gcd)
+    CLUREF ginfo;		// := ginfo$make_g_arp(t$_gcd)
     CLUREF tOP_gcd = { .proc = ops->_gcd.fcn };
     err = oneofOPnew(CLU_7, tOP_gcd, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
-    // ginfo$make_f_adv(...)  % wrap it
+    CLUREF ginfo2;		// := ginfo$make_f_adv(ginfo)	% wrap
     err = oneofOPnew(CLU_6, ginfo, &ginfo2);
     if (err != ERR_ok)
 	resignal(err);
 
-    sz.num = 6*CLUREFSZ + GCD_REF_SIZE;
+    CLUREF sz = {
+	.num = offsetof(CLU_array, store) // plain data at the start
+	     + GCD_REF_SIZE		  // CLU_array::store
+    };
     err = gcd_tabOPinsert(tab, sz, ginfo2, a, ans);
     if (err != ERR_ok)
 	resignal(err);
