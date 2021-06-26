@@ -2105,8 +2105,8 @@ _chan *ch  = (_chan *)chref.ref;
 	uerr = fstat(fd, &stat);
 	if (uerr == 0) {
 
-		err = _local_time((stat.st_mtime >> 16) & 0xffff,
-			stat.st_mtime & 0xffff, &time);
+	    err = _local_time(CLUREF_make_num((stat.st_mtime >> 16) & 0xffff),
+			      CLUREF_make_num(stat.st_mtime & 0xffff), &time);
 		if (err != ERR_ok) resignal(err);
 		ans->num = time.num;
 
