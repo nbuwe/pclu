@@ -742,25 +742,22 @@ sequenceOPinternal_print(CLUREF s, CLUREF pst, CLUREF pfcn)
 errcode
 sequenceOPencode(CLUREF s, CLUREF ist)
 {
+    errcode err;
     const sequence_of_t_OPS *ops
 	= ((sequence_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
-    errcode err;
-    long i;
-    CLUREF sz, elt;
 
-    sz.num = s.vec->size;
-    err = istreamOPputi(ist, sz);
-    if (err == ERR_not_possible) signal(err);
-    if (err != ERR_ok) resignal(err);
-    if (s.vec->size == 0) {
-	signal(ERR_ok);
-    }
+    err = istreamOPputi(ist, CLUREF_make_num(s.vec->size));
+    if (err == ERR_not_possible)
+	signal(err);
+    if (err != ERR_ok)
+	resignal(err);
 
-    for (i = 0; i < s.vec->size; ++i) {
-	elt.num = s.vec->data[i];
+    CLUREF tOPencode = { .proc = ops->encode.fcn };
+    for (long i = 0; i < s.vec->size; ++i) {
+	CLUREF elt = { .num = s.vec->data[i] };
 
-	CUR_PROC_VAR.proc = ops->encode.fcn;
-	err = (*ops->encode.fcn->proc)(elt, ist);
+	CUR_PROC_VAR = tOPencode;
+	err = (*tOPencode.proc->proc)(elt, ist);
 	if (err == ERR_not_possible)
 	    signal(err);
 	if (err != ERR_ok)
