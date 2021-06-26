@@ -80,17 +80,22 @@ const OWN_req sequence_ownreqs = { sizeof(sequence_OWN_DEFN), 1 };
 
 
 
+static inline void
+sequenceOPOPalloc(size_t size, CLUREF *pnew)
+{
+    clu_alloc(offsetof(CLU_sequence, data) + size * CLUREFSZ, pnew);
+    pnew->vec->size = size;
+    CLUTYPE_set(pnew->vec->typ, CT_AGG);
+}
+
+
 errcode
 sequenceOPnew(CLUREF *ans)
 {
     static CLUREF CLU_empty_sequence;
     static bool init = false;
     if (!init) {
-	clu_alloc(offsetof(CLU_sequence, data), &CLU_empty_sequence);
-	CLU_empty_sequence.vec->size = 0;
-	CLU_empty_sequence.vec->typ.val = CT_AGG;
-	CLU_empty_sequence.vec->typ.mark = 0;
-	CLU_empty_sequence.vec->typ.refp = 0;
+	sequenceOPOPalloc(0, &CLU_empty_sequence);
 	init = true;
     }
 
@@ -103,11 +108,7 @@ errcode
 sequenceOPnew2(CLUREF size, CLUREF *ans)
 {
     CLUREF s;
-    clu_alloc(offsetof(CLU_sequence, data) + size.num * CLUREFSZ, &s);
-    s.vec->size = size.num;
-    s.vec->typ.val = CT_AGG;
-    s.vec->typ.mark = 0;
-    s.vec->typ.refp = 0;
+    sequenceOPOPalloc(size.num, &s);
 
     ans->vec = s.vec;
     signal(ERR_ok);
@@ -126,13 +127,7 @@ errcode
 sequenceOPe2s(CLUREF x, CLUREF *ans)
 {
     CLUREF s;
-    clu_alloc(sizeof(CLU_sequence), &s);
-    s.vec->size = 1;
-
-    s.vec->typ.val = CT_AGG;
-    s.vec->typ.mark = 0;
-    s.vec->typ.refp = 0;
-
+    sequenceOPOPalloc(1, &s);
     s.vec->data[0] = x.num;
 
     ans->vec = s.vec;
@@ -180,13 +175,8 @@ sequenceOPsubseq(CLUREF s, CLUREF first, CLUREF length, CLUREF *ans)
     copycount = length.num;
     if (copycount + first.num - 1 > s.vec->size)
 	copycount = s.vec->size - first.num + 1;
-    clu_alloc((copycount-1)*sizeof(CLUREF) + sizeof(CLU_sequence),
-	      &s2);
-    s2.vec->size = copycount;
-    s2.vec->typ.val = CT_AGG;
-    s2.vec->typ.mark = 0;
-    s2.vec->typ.refp = 0;
 
+    sequenceOPOPalloc(copycount, &s2);
     for (i = 0; i < copycount; i++) {
 	s2.vec->data[i] = s.vec->data[first.num-1+i];
     }
@@ -216,12 +206,7 @@ sequenceOPfill(CLUREF length, CLUREF x, CLUREF *ans)
 	signal(ERR_failure);
     }
 
-    clu_alloc(offsetof(CLU_sequence, data) + length.num * CLUREFSZ, &s);
-    s.vec->size = length.num;
-    s.vec->typ.val = CT_AGG;
-    s.vec->typ.mark = 0;
-    s.vec->typ.refp = 0;
-
+    sequenceOPOPalloc(length.num, &s);
     for (long i = 0; i < length.num; ++i)
 	s.vec->data[i] = x.num;
 
@@ -252,12 +237,7 @@ sequenceOPfill_copy(CLUREF length, CLUREF x, CLUREF *ans)
 	signal(ERR_failure);
     }
 
-    clu_alloc(offsetof(CLU_sequence, data) + length.num * CLUREFSZ, &s);
-    s.vec->size = length.num;
-    s.vec->typ.val = CT_AGG;
-    s.vec->typ.mark = 0;
-    s.vec->typ.refp = 0;
-
+    sequenceOPOPalloc(length.num, &s);
     for (long i = 0; i < length.num; ++i) {
 	CUR_PROC_VAR.proc = ops->copy.fcn;
 	err = (*ops->copy.fcn->proc)(x, &s.vec->data[i]);
@@ -319,12 +299,7 @@ sequenceOPreplace(CLUREF s, CLUREF ind, CLUREF x, CLUREF *ans)
     if (ind.num > size)
 	signal(ERR_bounds);
 
-    clu_alloc(offsetof(CLU_sequence, data) + size * CLUREFSZ, &s2);
-    s2.vec->size = size;
-    s2.vec->typ.val = CT_AGG;
-    s2.vec->typ.mark = 0;
-    s2.vec->typ.refp = 0;
-
+    sequenceOPOPalloc(size, &s2);
     /* original does copying in 10000 byte chunks */
     for (i = 0; i < size; ++i) {
 	s2.vec->data[i] = s.vec->data[i];
@@ -348,12 +323,7 @@ sequenceOPaddh(CLUREF s, CLUREF x, CLUREF *ans)
 	signal(ERR_failure);
     }
 
-    clu_alloc(offsetof(CLU_sequence, data) + (size + 1) * CLUREFSZ, &s2);
-    s2.vec->size = size + 1;
-    s2.vec->typ.val = CT_AGG;
-    s2.vec->typ.mark = 0;
-    s2.vec->typ.refp = 0;
-
+    sequenceOPOPalloc(size + 1, &s2);
     bcopy((char *)&s.vec->data[0], (char *)s2.vec->data, size * CLUREFSZ);
 #if 0
     for (long i = 0; i < size; ++i)
@@ -378,12 +348,7 @@ sequenceOPaddl(CLUREF s, CLUREF x, CLUREF *ans)
 	signal(ERR_failure);
     }
 
-    clu_alloc(offsetof(CLU_sequence, data) + (size + 1) * CLUREFSZ, &s2);
-    s2.vec->size = size + 1;
-    s2.vec->typ.val = CT_AGG;
-    s2.vec->typ.mark = 0;
-    s2.vec->typ.refp = 0;
-
+    sequenceOPOPalloc(size + 1, &s2);
     s2.vec->data[0] = x.num;
     for (i = 0; i < size; i++)
 	s2.vec->data[i+1] = s.vec->data[i];
@@ -412,12 +377,7 @@ sequenceOPremh(CLUREF s, CLUREF *ans)
 	signal(ERR_ok);
     }
 
-    clu_alloc(offsetof(CLU_sequence, data) + (size - 1) * CLUREFSZ, &s2);
-    s2.vec->size = size - 1;
-    s2.vec->typ.val = CT_AGG;
-    s2.vec->typ.mark = 0;
-    s2.vec->typ.refp = 0;
-
+    sequenceOPOPalloc(size - 1, &s2);
     for (i = 0; i < size - 1; ++i)
 	s2.vec->data[i] = s.vec->data[i];
 
@@ -445,12 +405,7 @@ sequenceOPreml(CLUREF s, CLUREF *ans)
 	signal(ERR_ok);
     }
 
-    clu_alloc(offsetof(CLU_sequence, data) + (size - 1) * CLUREFSZ, &s2);
-    s2.vec->size = size - 1;
-    s2.vec->typ.val = CT_AGG;
-    s2.vec->typ.mark = 0;
-    s2.vec->typ.refp = 0;
-
+    sequenceOPOPalloc(size - 1, &s2);
     for (i = 0; i < size - 1; ++i)
 	s2.vec->data[i] = s.vec->data[i + 1];
 
@@ -480,12 +435,7 @@ sequenceOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans)
 	signal(ERR_failure);
     }
 
-    clu_alloc(offsetof(CLU_sequence, data) + size * CLUREFSZ, &temp);
-    temp.vec->size = size;
-    temp.vec->typ.val = CT_AGG;
-    temp.vec->typ.mark = 0;
-    temp.vec->typ.refp = 0;
-
+    sequenceOPOPalloc(size, &temp);
     for (i = 0; i < s1.vec->size; ++i)
 	temp.vec->data[i] = s1.vec->data[i];
     for (j = 0, i = s1.vec->size; j < s2.vec->size; ++j, ++i)
@@ -501,10 +451,7 @@ sequenceOPa2s(CLUREF a, CLUREF *ans)
 {
     CLUREF temp;
 
-    clu_alloc(offsetof(CLU_sequence, data) + a.array->ext_size * CLUREFSZ, &temp);
-    temp.vec->size = a.array->ext_size;
-    temp.vec->typ.val = CT_AGG;
-    temp.vec->typ.mark = 0;
+    sequenceOPOPalloc(a.array->ext_size, &temp);
     temp.vec->typ.refp = a.array->typ.refp;
 
 #if 0
@@ -645,12 +592,7 @@ sequenceOPcopy(CLUREF s1, CLUREF *ans)
 	signal(ERR_ok);
     }
 
-    clu_alloc(offsetof(CLU_sequence, data) + s1.vec->size * CLUREFSZ, &s2);
-    s2.vec->size = s1.vec->size;
-    s2.vec->typ.val = CT_AGG;
-    s2.vec->typ.mark = 0;
-    s2.vec->typ.refp = 0;
-
+    sequenceOPOPalloc(s1.vec->size, &s2);
     for (i = 0; i < s1.vec->size; i++) {
 	elt1.num = s1.vec->data[i];
 
