@@ -531,36 +531,37 @@ sequenceOPequal(CLUREF s1, CLUREF s2, CLUREF *ans)
 errcode
 sequenceOPsimilar(CLUREF s1, CLUREF s2, CLUREF *ans)
 {
+    errcode err;
     const sequence_of_t_OPS *ops
 	= ((sequence_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
-    long i;
-    errcode err;
-    CLUREF elt1, elt2, temp;
 
     if (s1.vec->size != s2.vec->size) {
 	ans->tf = false;
 	signal(ERR_ok);
     }
+
     if (s1.vec->size == 0) {
 	ans->tf = true;
 	signal(ERR_ok);
     }
 
-    for (i = 0; i < s1.vec->size; i++) {
-	elt1.num = s1.vec->data[i];
-	elt2.num = s2.vec->data[i];
+    CLUREF similar = CLU_true;
+    CLUREF tOPsimilar = { .proc = ops->similar.fcn };
 
-	CUR_PROC_VAR.proc = ops->similar.fcn;
-	err = (*ops->similar.fcn->proc)(elt1, elt2, &temp);
+    for (long i = 0; i < s1.vec->size; ++i) {
+	CLUREF elt1 = { .num = s1.vec->data[i] };
+	CLUREF elt2 = { .num = s2.vec->data[i] };
+
+	CUR_PROC_VAR = tOPsimilar;
+	err = (*tOPsimilar.proc->proc)(elt1, elt2, &similar);
 	if (err != ERR_ok)
 	    resignal(err);
 
-	if (temp.tf != true) {
-	    ans->tf = false;
-	    signal(ERR_ok);
-	}
+	if (!similar.tf)
+	    break;
     }
-    ans->tf = true;
+
+    *ans = similar;
     signal(ERR_ok);
 }
 
