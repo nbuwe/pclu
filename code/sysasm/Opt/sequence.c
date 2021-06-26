@@ -816,19 +816,20 @@ sequenceOPdecode(CLUREF ist, CLUREF *ans)
 errcode
 sequenceOP_gcd(CLUREF s, CLUREF tab, CLUREF *ans)
 {
+    errcode err;
     const sequence_of_t_OPS *ops
 	= ((sequence_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
-    errcode err;
-    CLUREF ginfo, sz;
 
-    // ginfo$make_b_vec(t$_gcd)
+    CLUREF ginfo;		// := ginfo$make_b_vec(t$_gcd)
     CLUREF tOP_gcd = { .proc = ops->_gcd.fcn };
     err = oneofOPnew(CLU_2, tOP_gcd, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
-    sz.num = offsetof(CLU_sequence, data) // header
-	+ s.vec->size * GCD_REF_SIZE;	  // elements
+    CLUREF sz = {
+	.num = offsetof(CLU_sequence, data) // header
+	     + s.vec->size * GCD_REF_SIZE   // elements
+    };
     err = gcd_tabOPinsert(tab, sz, ginfo, s, ans);
     if (err != ERR_ok)
 	resignal(err);
