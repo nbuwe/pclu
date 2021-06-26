@@ -488,7 +488,7 @@ arrayOPfill(CLUREF low, CLUREF size, CLUREF elt, CLUREF *ans)
 errcode				/* signals negative_size */
 arrayOPfill_copy(CLUREF low, CLUREF size, CLUREF elt, CLUREF *ans)
 {
-    const array_of_t_OPS *table
+    const array_of_t_OPS *ops
 	= ((array_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
     CLUREF temp;
     errcode err;
@@ -514,9 +514,10 @@ arrayOPfill_copy(CLUREF low, CLUREF size, CLUREF elt, CLUREF *ans)
     temp.array->ext_size = size.num;
     temp.array->ext_high = low.num + size.num - 1;
 
+    CLUREF tOPcopy = { .proc = ops->copy.fcn };
     for (i = 0; i < size.num; ++i) {
-	CUR_PROC_VAR.proc = table->copy.fcn;
-	err = table->copy.fcn->proc(elt, &temp.array->store->data[i]);
+	CUR_PROC_VAR = tOPcopy;
+	err = (*tOPcopy.proc->proc)(elt, &temp.array->store->data[i]);
 	if (err != ERR_ok)
 	    resignal(err);
     }
@@ -826,7 +827,7 @@ arrayOPequal(CLUREF a1, CLUREF a2, CLUREF *ans)
 errcode
 arrayOPsimilar(CLUREF a1, CLUREF a2, CLUREF *ans) /* use t$similar */
 {
-    const array_of_t_OPS *table
+    const array_of_t_OPS *ops
 	= ((array_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
     long i, j, count;
     errcode err;
@@ -846,6 +847,7 @@ arrayOPsimilar(CLUREF a1, CLUREF a2, CLUREF *ans) /* use t$similar */
     }
 
     /* ANOTHER CASE TO CHECK FOR BOUNDS? */
+    CLUREF tOPsimilar = { .proc = ops->similar.fcn };
     for (i = a1.array->int_low, j = a2.array->int_low, count = a1.array->ext_low;
 	 count <= a1.array->ext_high;
 	 ++i, ++j, ++count)
@@ -853,8 +855,8 @@ arrayOPsimilar(CLUREF a1, CLUREF a2, CLUREF *ans) /* use t$similar */
 	elt1.num = a1.array->store->data[i];
 	elt2.num = a2.array->store->data[i];
 
-	CUR_PROC_VAR.proc = table->similar.fcn;
-	err = table->similar.fcn->proc(elt1, elt2, &ans2);
+	CUR_PROC_VAR = tOPsimilar;
+	err = (*tOPsimilar.proc->proc)(elt1, elt2, &ans2);
 	if (err != ERR_ok)
 	    resignal(err);
 
@@ -871,7 +873,7 @@ arrayOPsimilar(CLUREF a1, CLUREF a2, CLUREF *ans) /* use t$similar */
 errcode
 arrayOPsimilar1(CLUREF a1, CLUREF a2, CLUREF *ans) /* use t$equal */
 {
-    const array_of_t_OPS *table
+    const array_of_t_OPS *ops
 	= ((array_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
     long i, j, count;
     errcode err;
@@ -891,6 +893,7 @@ arrayOPsimilar1(CLUREF a1, CLUREF a2, CLUREF *ans) /* use t$equal */
     }
 
     /* ANOTHER CASE TO CHECK FOR BOUNDS? */
+    CLUREF tOPequal = { .proc = ops->equal.fcn };
     for (i = a1.array->int_low, j = a2.array->int_low, count = a1.array->ext_low;
 	 count <= a1.array->ext_high;
 	 ++i, ++j, ++count)
@@ -898,8 +901,8 @@ arrayOPsimilar1(CLUREF a1, CLUREF a2, CLUREF *ans) /* use t$equal */
 	elt1.num = a1.array->store->data[i];
 	elt2.num = a2.array->store->data[i];
 
-	CUR_PROC_VAR.proc = table->equal.fcn;
-	err = table->equal.fcn->proc(elt1, elt2, &ans2);
+	CUR_PROC_VAR = tOPequal;
+	err = (*tOPequal.proc->proc)(elt1, elt2, &ans2);
 	if (err != ERR_ok)
 	    resignal(err);
 
@@ -916,7 +919,7 @@ arrayOPsimilar1(CLUREF a1, CLUREF a2, CLUREF *ans) /* use t$equal */
 errcode
 arrayOPcopy(CLUREF a1, CLUREF *ans) /* deep: use t$copy */
 {
-    const array_of_t_OPS *table
+    const array_of_t_OPS *ops
 	= ((array_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
     CLUREF temp, elt;
     errcode err;
@@ -932,11 +935,14 @@ arrayOPcopy(CLUREF a1, CLUREF *ans) /* deep: use t$copy */
     temp.array->ext_low = a1.array->ext_low;
     temp.array->ext_size = a1.array->ext_size;
     temp.array->ext_high = a1.array->ext_high;
+
+    CLUREF tOPcopy = { .proc = ops->copy.fcn };
     for (i = 0; i < a1.array->ext_size; ++i) {
 	elt.num = a1.array->store->data[i + a1.array->int_low];
-	CUR_PROC_VAR.proc = table->copy.fcn;
 	/* added _int_low 7/24/90 */
-	err = table->copy.fcn->proc(elt, &temp.array->store->data[i]);
+
+	CUR_PROC_VAR = tOPcopy;
+	err = (*tOPcopy.proc->proc)(elt, &temp.array->store->data[i]);
 	if (err != ERR_ok)
 	    resignal(err);
     }
@@ -984,12 +990,11 @@ errcode
 arrayOPdebug_print(CLUREF a, CLUREF pst) /* use t$debug_print */
 {
     errcode err;
-    const array_of_t_OPS *table
+    const array_of_t_OPS *ops
 	= ((array_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
-    CLUREF pfcn;
 
-    pfcn.proc = table->debug_print.fcn;
-    err = arrayOPinternal_print(a, pst, pfcn);
+    CLUREF tOPdebug_print = { .proc = ops->debug_print.fcn };
+    err = arrayOPinternal_print(a, pst, tOPdebug_print);
     if (err != ERR_ok)
 	resignal(err);
 
@@ -1001,12 +1006,11 @@ errcode
 arrayOPprint(CLUREF a, CLUREF pst) /* use t$print */
 {
     errcode err;
-    const array_of_t_OPS *table
+    const array_of_t_OPS *ops
 	= ((array_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
-    CLUREF pfcn;
 
-    pfcn.proc = table->print.fcn;
-    err = arrayOPinternal_print(a, pst, pfcn);
+    CLUREF tOPprint = { .proc = ops->print.fcn };
+    err = arrayOPinternal_print(a, pst, tOPprint);
     if (err != ERR_ok)
 	resignal(err);
 
@@ -1097,7 +1101,7 @@ arrayOPinternal_print(CLUREF a, CLUREF pst, CLUREF pfcn)
 errcode				    /* signals not_possible(string) */
 arrayOPencode(CLUREF a, CLUREF ist) /* use t$encode */
 {
-    const array_of_t_OPS *table
+    const array_of_t_OPS *ops
 	= ((array_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
     errcode err;
     long i;
@@ -1130,11 +1134,12 @@ arrayOPencode(CLUREF a, CLUREF ist) /* use t$encode */
     if (a.array->ext_size == 0)
 	signal(ERR_ok);
 
+    CLUREF tOPencode = { .proc = ops->encode.fcn };
     for (i = 0; i < a.array->ext_size; ++i) {
 	num.num = a.array->store->data[i];
 
-	CUR_PROC_VAR.proc = table->encode.fcn;
-	err = table->encode.fcn->proc(num, ist);
+	CUR_PROC_VAR = tOPencode;
+	err = (*tOPencode.proc->proc)(num, ist);
 	if (err == ERR_not_possible)
 	    signal(err);
 	if (err != ERR_ok)
@@ -1147,7 +1152,7 @@ arrayOPencode(CLUREF a, CLUREF ist) /* use t$encode */
 errcode		       /* signals not_possible(string), end_of_file */
 arrayOPdecode(CLUREF ist, CLUREF *ans) /* use t$decode */
 {
-    const array_of_t_OPS *table
+    const array_of_t_OPS *ops
 	= ((array_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
     errcode err;
     long i;
@@ -1210,9 +1215,10 @@ arrayOPdecode(CLUREF ist, CLUREF *ans) /* use t$decode */
 	signal(ERR_ok);
     }
 
+    CLUREF tOPdecode = { .proc = ops->decode.fcn };
     for (i = 0; i < size.num; ++i) {
-	CUR_PROC_VAR.proc = table->decode.fcn;
-	err = table->decode.fcn->proc(ist, &elt);
+	CUR_PROC_VAR = tOPdecode;
+	err = (*tOPdecode.proc->proc)(ist, &elt);
 	if (err == ERR_end_of_file)
 	    signal(err);
 	if (err == ERR_not_possible)
@@ -1232,14 +1238,14 @@ errcode
 arrayOP_gcd(CLUREF a, CLUREF tab, CLUREF *ans) /* use t$_gcd */
 {
     errcode err;
-    CLUREF ginfo2, ginfo, sz, fcn;
-    const array_of_t_OPS *table
+    CLUREF ginfo2, ginfo, sz;
+    const array_of_t_OPS *ops
 	= ((array_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
 
 
     // ginfo$make_g_arp(t$_gcd)
-    fcn.proc = table->_gcd.fcn;
-    err = oneofOPnew(CLU_7, fcn, &ginfo);
+    CLUREF tOP_gcd = { .proc = ops->_gcd.fcn };
+    err = oneofOPnew(CLU_7, tOP_gcd, &ginfo);
     if (err != ERR_ok)
 	resignal(err);
 
