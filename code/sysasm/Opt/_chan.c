@@ -19,7 +19,21 @@
 #include <termios.h>
 #include <unistd.h>
 
+errcode _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1);
+errcode _local_time(CLUREF left, CLUREF right, CLUREF *ans);
+errcode boolOPprint(CLUREF b, CLUREF pst);
+errcode file_nameOPparse(CLUREF s, CLUREF *ret_1);
+errcode file_nameOPprint(CLUREF x, CLUREF ps);
+errcode file_nameOPunparse(CLUREF x, CLUREF *ret_1);
+errcode file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1);
+errcode intOPprint(CLUREF i, CLUREF pst);
+errcode pstreamOPpause(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode pstreamOPstart(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode pstreamOPstop(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1);
+errcode stringOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans);
 errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
+errcode stringOPsubstr(CLUREF s, CLUREF start, CLUREF len, CLUREF *ans);
 
 errcode _chanOP_open(CLUREF fn, CLUREF flags, CLUREF fmode, CLUREF *uchan);
 
