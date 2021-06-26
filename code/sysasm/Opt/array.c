@@ -1025,18 +1025,18 @@ arrayOPinternal_print(CLUREF a, CLUREF pst, CLUREF pfcn)
     CLUREF ans, max, num;
     long i,j;
 
+    static CLUREF lbrack, dotdot, colon, comma, rbrack;
     static bool init = false;
-    static CLUREF str1, str2, str3, str4, str5;
     if (init == false) {
-	stringOPcons("[", CLU_1, CLU_1, &str1);
-	stringOPcons("..", CLU_1, CLU_2, &str2);
-	stringOPcons(": ", CLU_1, CLU_2, &str3);
-	stringOPcons(",", CLU_1, CLU_1, &str4);
-	stringOPcons("]", CLU_1, CLU_1, &str5);
+	stringOPcons("[", CLU_1, CLU_1, &lbrack);
+	stringOPcons("..", CLU_1, CLU_2, &dotdot);
+	stringOPcons(": ", CLU_1, CLU_2, &colon);
+	stringOPcons(",", CLU_1, CLU_1, &comma);
+	stringOPcons("]", CLU_1, CLU_1, &rbrack);
 	init = true;
     }
 
-    err = pstreamOPtext(pst, str1, &ans);
+    err = pstreamOPtext(pst, lbrack, &ans);
     if (err != ERR_ok)
 	resignal(err);
 
@@ -1050,7 +1050,7 @@ arrayOPinternal_print(CLUREF a, CLUREF pst, CLUREF pfcn)
 	resignal(err);
 
     if (a.array->ext_size >= max.num) {
-	err = pstreamOPtext(pst, str2, &ans);
+	err = pstreamOPtext(pst, dotdot, &ans);
 	if (err != ERR_ok)
 	    resignal(err);
 
@@ -1060,12 +1060,12 @@ arrayOPinternal_print(CLUREF a, CLUREF pst, CLUREF pfcn)
 	    resignal(err);
     }
 
-    err = pstreamOPstart(pst, str3, &ans);
+    err = pstreamOPstart(pst, colon, &ans);
     if (err != ERR_ok)
 	resignal(err);
 
     if (ans.tf == false || a.array->ext_size == 0) {
-	err = pstreamOPstop(pst, str5, &ans);
+	err = pstreamOPstop(pst, rbrack, &ans);
 	if (err != ERR_ok)
 	    resignal(err);
 
@@ -1075,7 +1075,7 @@ arrayOPinternal_print(CLUREF a, CLUREF pst, CLUREF pfcn)
     /* the original code has a bounds check in the following loop */
     for (i = 0, j = a.array->int_low; i < a.array->ext_size; ++i, ++j) {
 	if (i != 0) {
-	    err = pstreamOPpause(pst, str4, &ans);
+	    err = pstreamOPpause(pst, comma, &ans);
 	    if (err != ERR_ok)
 		resignal(err);
 
@@ -1089,7 +1089,7 @@ arrayOPinternal_print(CLUREF a, CLUREF pst, CLUREF pfcn)
 	    resignal(err);
     }
 
-    err = pstreamOPstop(pst, str5, &ans);
+    err = pstreamOPstop(pst, rbrack, &ans);
     if (err != ERR_ok)
 	resignal(err);
 
