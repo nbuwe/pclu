@@ -568,27 +568,29 @@ sequenceOPsimilar(CLUREF s1, CLUREF s2, CLUREF *ans)
 errcode
 sequenceOPcopy(CLUREF s1, CLUREF *ans)
 {
+    errcode err;
     const sequence_of_t_OPS *ops
 	= ((sequence_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
-    errcode err;
-    CLUREF s2, elt1;
-    long i;
+
     if (s1.vec->size == 0) {
-	ans->vec = s1.vec;
+	*ans = s1;
 	signal(ERR_ok);
     }
 
+    CLUREF s2;
     sequenceOPOPalloc(s1.vec->size, &s2);
-    for (i = 0; i < s1.vec->size; i++) {
-	elt1.num = s1.vec->data[i];
 
-	CUR_PROC_VAR.proc = ops->copy.fcn;
-	err = (*ops->copy.fcn->proc)(elt1, &s2.vec->data[i]);
+    CLUREF tOPcopy = { .proc = ops->copy.fcn };
+    for (long i = 0; i < s1.vec->size; i++) {
+	CLUREF elt1 = { .num = s1.vec->data[i] };
+
+	CUR_PROC_VAR = tOPcopy;
+	err = (*tOPcopy.proc->proc)(elt1, &s2.vec->data[i]);
 	if (err != ERR_ok)
 	    resignal(err);
     }
 
-    ans->vec = s2.vec;
+    *ans = s2;
     signal(ERR_ok);
 }
 
