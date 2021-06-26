@@ -332,7 +332,7 @@ arrayOPcons(CLUREF q, CLUREF *ans)
 #ifdef DEBUG_ARRAY
     check_RI(temp);
 #endif
-    ans->vec = temp.vec;
+    *ans = temp;
     signal(ERR_ok);
 }
 
@@ -354,7 +354,7 @@ arrayOPcons2(CLUREF low, CLUREF q, CLUREF *ans)
 #ifdef DEBUG_ARRAY
     check_RI(temp);
 #endif
-    ans->vec = temp.vec;
+    *ans = temp;
     signal(ERR_ok);
 }
 
@@ -479,7 +479,7 @@ arrayOPfill(CLUREF low, CLUREF size, CLUREF elt, CLUREF *ans)
 #ifdef DEBUG_ARRAY
     check_RI(temp);
 #endif
-    ans->array = temp.array;
+    *ans = temp;
     signal(ERR_ok);
 }
 
@@ -525,7 +525,7 @@ arrayOPfill_copy(CLUREF low, CLUREF size, CLUREF elt, CLUREF *ans)
 #ifdef DEBUG_ARRAY
     check_RI(temp);
 #endif
-    ans->array = temp.array;
+    *ans = temp;
     signal(ERR_ok);
 }
 
@@ -950,7 +950,7 @@ arrayOPcopy(CLUREF a1, CLUREF *ans) /* deep: use t$copy */
 #ifdef DEBUG_ARRAY
     check_RI(temp);
 #endif
-    ans->array = temp.array;
+    *ans = temp;
     signal(ERR_ok);
 }
 
@@ -981,7 +981,7 @@ arrayOPcopy1(CLUREF a1, CLUREF *ans) /* shallow: do NOT use t$copy */
 #ifdef DEBUG_ARRAY
     check_RI(temp);
 #endif
-    ans->array = temp.array;
+    *ans = temp;
     signal(ERR_ok);
 }
 
@@ -1083,7 +1083,7 @@ arrayOPinternal_print(CLUREF a, CLUREF pst, CLUREF pfcn)
 		break;
 	}
 	num.num = a.array->store->data[j];
-	CUR_PROC_VAR.proc = pfcn.proc;
+	CUR_PROC_VAR = pfcn;
 	err = pfcn.proc->proc(num, pst);
 	if (err != ERR_ok)
 	    resignal(err);
@@ -1211,7 +1211,7 @@ arrayOPdecode(CLUREF ist, CLUREF *ans) /* use t$decode */
 	resignal(err);
 
     if (size.num == 0) {
-	ans->vec = temp.vec;
+	*ans = temp;
 	signal(ERR_ok);
     }
 
@@ -1229,7 +1229,7 @@ arrayOPdecode(CLUREF ist, CLUREF *ans) /* use t$decode */
 	temp.array->store->data[i] = elt.num;
     }
 
-    ans->array = temp.array;
+    *ans = temp;
     signal(ERR_ok);
 }
 
