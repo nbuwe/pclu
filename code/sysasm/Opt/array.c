@@ -685,20 +685,20 @@ arrayOPaddl(CLUREF a, CLUREF elt)
 errcode				/* signals bounds */
 arrayOPremh(CLUREF a, CLUREF *ans)
 {
-    CLUREF *elem;
 #ifdef DEBUG_ARRAY
     check_RI(a);
 #endif
     if (a.array->ext_size == 0)
 	signal(ERR_bounds);
 
-    elem = (CLUREF *)
-	&a.array->store->data[a.array->int_low + a.array->ext_size - 1];
+    size_t hidx = a.array->int_low + a.array->ext_size - 1;
+    CLUREF *phigh = (CLUREF *)&a.array->store->data[hidx];
 
-    ans->num = elem->num;
-    elem->num = 0;		/* enhance gc */
-    a.array->ext_high -= 1;
-    a.array->ext_size -= 1;
+    *ans = *phigh;
+    phigh->num = 0;		/* enhance gc */
+
+    --a.array->ext_high;
+    --a.array->ext_size;
 
 #ifdef DEBUG_ARRAY
     check_RI(a);
@@ -710,19 +710,21 @@ arrayOPremh(CLUREF a, CLUREF *ans)
 errcode				/* signals bounds */
 arrayOPreml(CLUREF a, CLUREF *ans)
 {
-    CLUREF *elem;
 #ifdef DEBUG_ARRAY
     check_RI(a);
 #endif
     if (a.array->ext_size == 0)
 	signal(ERR_bounds);
 
-    elem = (CLUREF *) &a.array->store->data[a.array->int_low];
-    ans->num = elem->num;
-    elem->num = 0;		/* enhance gc */
-    a.array->ext_low += 1;
-    a.array->int_low += 1;
-    a.array->ext_size -= 1;
+    size_t lidx = a.array->int_low;
+    CLUREF *plow = (CLUREF *)&a.array->store->data[lidx];
+
+    *ans = *plow;
+    plow->num = 0;		/* enhance gc */
+
+    ++a.array->int_low;
+    ++a.array->ext_low;
+    --a.array->ext_size;
 
 #ifdef DEBUG_ARRAY
     check_RI(a);
