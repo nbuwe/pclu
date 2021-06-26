@@ -774,12 +774,11 @@ sequenceOPencode(CLUREF s, CLUREF ist)
 errcode
 sequenceOPdecode(CLUREF ist, CLUREF *ans)
 {
+    errcode err;
     const sequence_of_t_OPS *ops
 	= ((sequence_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
-    errcode err;
-    long i;
-    CLUREF elt, temp, size;
 
+    CLUREF size;
     err = istreamOPgeti(ist, &size);
     if (err == ERR_end_of_file)
 	signal(err);
@@ -788,25 +787,28 @@ sequenceOPdecode(CLUREF ist, CLUREF *ans)
     if (err != ERR_ok)
 	resignal(err);
 
-    sequenceOPnew2(size, &temp);
-
     if (size.num == 0) {
-	ans->vec = temp.vec;
+	sequenceOPnew(ans);
 	signal(ERR_ok);
     }
 
-    for (i = 0; i < size.num; ++i) {
-	CUR_PROC_VAR.proc = ops->decode.fcn;
-	err = (*ops->decode.fcn->proc)(ist, &elt);
+    CLUREF s;
+    sequenceOPnew2(size, &s);
+
+    CLUREF tOPdecode = { .proc = ops->decode.fcn };
+    for (long i = 0; i < size.num; ++i) {
+	CLUREF elt;
+	CUR_PROC_VAR = tOPdecode;
+	err = (*tOPdecode.proc->proc)(ist, &elt);
 	if (err == ERR_not_possible)
 	    signal(err);
 	if (err != ERR_ok)
 	    resignal(err);
 
-	temp.vec->data[i] = elt.num;
+	s.vec->data[i] = elt.num;
     }
 
-    ans->vec = temp.vec;
+    *ans = s;
     signal(ERR_ok);
 }
 
