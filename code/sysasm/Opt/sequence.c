@@ -84,8 +84,8 @@ static inline void
 sequenceOPOPalloc(size_t size, CLUREF *pnew)
 {
     clu_alloc(offsetof(CLU_sequence, data) + size * CLUREFSZ, pnew);
-    pnew->vec->size = size;
     CLUTYPE_set(pnew->vec->typ, CT_AGG);
+    pnew->vec->size = size;
 }
 
 
