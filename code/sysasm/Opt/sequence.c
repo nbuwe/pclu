@@ -146,19 +146,17 @@ sequenceOPsize(CLUREF x, CLUREF *ans)
 errcode
 sequenceOPsubseq(CLUREF s, CLUREF first, CLUREF length, CLUREF *ans)
 {
-    CLUREF s2;
-    long i, copycount;
-
     if (first.num < 1)
 	signal(ERR_bounds);
 
     if (first.num == 1 && length.num == s.vec->size) {
-	ans->vec = s.vec;
+	*ans = s;
 	signal(ERR_ok);
     }
 
     if (first.num > (s.vec->size + 1))
 	signal(ERR_bounds);
+
     if (length.num < 0)
 	signal(ERR_negative_size);
 
@@ -167,16 +165,15 @@ sequenceOPsubseq(CLUREF s, CLUREF first, CLUREF length, CLUREF *ans)
 	signal(ERR_ok);
     }
 
-    copycount = length.num;
+    long copycount = length.num;
     if (copycount + first.num - 1 > s.vec->size)
 	copycount = s.vec->size - first.num + 1;
 
+    CLUREF s2;
     sequenceOPOPalloc(copycount, &s2);
-    for (i = 0; i < copycount; i++) {
-	s2.vec->data[i] = s.vec->data[first.num-1+i];
-    }
+    memcpy(s2.vec->data, &s.vec->data[first.num - 1], copycount * CLUREFSZ);
 
-    ans->vec = s2.vec;
+    *ans = s2;
     signal(ERR_ok);
 }
 
