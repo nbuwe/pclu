@@ -184,26 +184,25 @@ sequenceOPsubseq(CLUREF s, CLUREF first, CLUREF length, CLUREF *ans)
 errcode
 sequenceOPfill(CLUREF length, CLUREF x, CLUREF *ans)
 {
-    CLUREF s;
-
     if (length.num < 0)
 	signal(ERR_negative_size);
-
-    if (length.num == 0) {
-	sequenceOPnew(ans);
-	signal(ERR_ok);
-    }
 
     if (length.num > MAX_SEQ) {
 	elist[0] = huge_allocation_request_STRING;
 	signal(ERR_failure);
     }
 
+    if (length.num == 0) {
+	sequenceOPnew(ans);
+	signal(ERR_ok);
+    }
+
+    CLUREF s;
     sequenceOPOPalloc(length.num, &s);
     for (long i = 0; i < length.num; ++i)
 	s.vec->data[i] = x.num;
 
-    ans->vec = s.vec;
+    *ans = s;
     signal(ERR_ok);
 }
 
