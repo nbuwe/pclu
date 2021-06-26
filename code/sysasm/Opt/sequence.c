@@ -146,7 +146,6 @@ sequenceOPsize(CLUREF x, CLUREF *ans)
 errcode
 sequenceOPsubseq(CLUREF s, CLUREF first, CLUREF length, CLUREF *ans)
 {
-    errcode err;
     CLUREF s2;
     long i, copycount;
 
@@ -164,11 +163,7 @@ sequenceOPsubseq(CLUREF s, CLUREF first, CLUREF length, CLUREF *ans)
 	signal(ERR_negative_size);
 
     if (length.num == 0) {
-	err = sequenceOPnew(&s2);
-	if (err != ERR_ok)
-	    resignal(err);
-
-	ans->vec = s2.vec;
+	sequenceOPnew(ans);
 	signal(ERR_ok);
     }
 
@@ -189,15 +184,13 @@ sequenceOPsubseq(CLUREF s, CLUREF first, CLUREF length, CLUREF *ans)
 errcode
 sequenceOPfill(CLUREF length, CLUREF x, CLUREF *ans)
 {
-    errcode err;
     CLUREF s;
 
     if (length.num < 0)
 	signal(ERR_negative_size);
 
     if (length.num == 0) {
-	err = sequenceOPnew(&s);
-	ans->vec = s.vec;
+	sequenceOPnew(ans);
 	signal(ERR_ok);
     }
 
@@ -227,8 +220,7 @@ sequenceOPfill_copy(CLUREF length, CLUREF x, CLUREF *ans)
 	signal(ERR_negative_size);
 
     if (length.num == 0) {
-	err = sequenceOPnew(&s);
-	ans->vec = s.vec;
+	sequenceOPnew(ans);
 	signal(ERR_ok);
     }
 
@@ -363,7 +355,6 @@ sequenceOPremh(CLUREF s, CLUREF *ans)
 {
     long size;
     long i;
-    errcode err;
     CLUREF s2;
 
     size = s.vec->size;
@@ -371,9 +362,7 @@ sequenceOPremh(CLUREF s, CLUREF *ans)
 	signal (ERR_bounds);
 
     if (size == 1) {
-	err = sequenceOPnew(&s2);
-	if (err != ERR_ok) resignal(err);
-	ans->vec = s2.vec;
+	sequenceOPnew(ans);
 	signal(ERR_ok);
     }
 
@@ -391,7 +380,6 @@ sequenceOPreml(CLUREF s, CLUREF *ans)
 {
     long size;
     long i;
-    errcode err;
     CLUREF s2;
 
     size = s.vec->size;
@@ -399,9 +387,7 @@ sequenceOPreml(CLUREF s, CLUREF *ans)
 	signal (ERR_bounds);
 
     if (size == 1) {
-	err = sequenceOPnew(&s2);
-	if (err != ERR_ok) resignal(err);
-	ans->vec = s2.vec;
+	sequenceOPnew(ans);
 	signal(ERR_ok);
     }
 
@@ -802,9 +788,7 @@ sequenceOPdecode(CLUREF ist, CLUREF *ans)
     if (err != ERR_ok)
 	resignal(err);
 
-    err = sequenceOPnew2(size, &temp);
-    if (err != ERR_ok)
-	resignal(err);
+    sequenceOPnew2(size, &temp);
 
     if (size.num == 0) {
 	ans->vec = temp.vec;
