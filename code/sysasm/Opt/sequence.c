@@ -804,7 +804,7 @@ sequenceOP_gcd(CLUREF s, CLUREF tab, CLUREF *ans)
 
 
 
-OWN_ptr sequence_own_init = { .init_flag = 0 }; /* dummy */
+OWN_ptr sequence_own_init;	/* dummy */
 
 #define CLU_proc_INIT(f) {			\
  /* .typ = { .val = CT_PROC }, */		\
@@ -843,7 +843,7 @@ static CLU_proc sequence_oe_decode = CLU_proc_INIT(sequenceOPdecode);
 static CLU_proc sequence_oe__gcd = CLU_proc_INIT(sequenceOP_gcd);
 static CLU_proc sequence_oe_debug_print = CLU_proc_INIT(sequenceOPdebug_print);
 
-static struct {
+static struct /* OPS */ {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
