@@ -71,6 +71,14 @@ typedef struct /* OWN_ptr */ {
 } sequence_OWN_DEFN;
 
 
+/*
+ * Tell instantiation code how to construct an _OWN_DEFN object for an
+ * instantce.  What "own_count" really tells is where the parameters
+ * start (OPS for types, values for constants).
+ */
+const OWN_req sequence_ownreqs = { sizeof(sequence_OWN_DEFN), 1 };
+
+
 
 errcode
 sequenceOPnew(CLUREF *ans)
@@ -901,12 +909,6 @@ sequenceOP_gcd(CLUREF s, CLUREF tab, CLUREF *ans)
 }
 
 
-/*
- * Tell instantiation code how to construct an _OWN_DEFN object for an
- * instantce.  What "own_count" really tells is where the parameters
- * start (OPS for types, values for constants).
- */
-const OWN_req sequence_ownreqs = { sizeof(sequence_OWN_DEFN), 1 };
 
 OWN_ptr sequence_own_init = { .init_flag = 0 }; /* dummy */
 
