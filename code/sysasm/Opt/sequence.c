@@ -403,31 +403,27 @@ sequenceOPreml(CLUREF s, CLUREF *ans)
 errcode
 sequenceOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans)
 {
-    CLUREF temp;
-    long size, i, j;
-
     if (s1.vec->size == 0) {
-	ans->vec = s2.vec;
+	*ans = s2;
 	signal(ERR_ok);
     }
     if (s2.vec->size == 0) {
-	ans->vec = s1.vec;
+	*ans = s1;
 	signal(ERR_ok);
     }
 
-    size = s1.vec->size + s2.vec->size;
+    size_t size = s1.vec->size + s2.vec->size;
     if (size > MAX_SEQ) {
 	elist[0] = huge_allocation_request_STRING;
 	signal(ERR_failure);
     }
 
-    sequenceOPOPalloc(size, &temp);
-    for (i = 0; i < s1.vec->size; ++i)
-	temp.vec->data[i] = s1.vec->data[i];
-    for (j = 0, i = s1.vec->size; j < s2.vec->size; ++j, ++i)
-	temp.vec->data[i] = s2.vec->data[j];
+    CLUREF s;
+    sequenceOPOPalloc(size, &s);
+    memcpy(&s.vec->data[0], s1.vec->data, s1.vec->size * CLUREFSZ);
+    memcpy(&s.vec->data[s1.vec->size], s2.vec->data, s2.vec->size * CLUREFSZ);
 
-    ans->vec = temp.vec;
+    *ans = s;
     signal(ERR_ok);
 }
 
