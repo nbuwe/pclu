@@ -458,24 +458,22 @@ errcode
 sequenceOPs2a(CLUREF s, CLUREF *ans)
 {
     errcode err;
-    CLUREF temp;
 
-    err = arrayOPOPnewdesc(&temp);
+    CLUREF a;
+    err = arrayOPOPnewdesc(&a);
     if (err != ERR_ok)
 	resignal(err);
 
-    err = arrayOPOPnewstore(temp, s.vec->size);
+    err = arrayOPOPnewstore(a, s.vec->size);
     if (err != ERR_ok)
 	resignal(err);
 
-    for (long i = 0 ; i < temp.array->int_size; ++i) {
-	temp.array->store->data[i] = s.vec->data[i];
-    }
-    temp.array->ext_low = 1;
-    temp.array->ext_size = s.vec->size;
-    temp.array->ext_high = s.vec->size;
+    memcpy(a.array->store->data, s.vec->data, s.vec->size * CLUREFSZ);
+    a.array->ext_low = 1;
+    a.array->ext_high = s.vec->size;
+    a.array->ext_size = s.vec->size;
 
-    ans->vec = temp.vec;
+    *ans = a;
     signal(ERR_ok);
 }
 
@@ -494,36 +492,37 @@ sequenceOPempty(CLUREF s, CLUREF *ans)
 errcode
 sequenceOPequal(CLUREF s1, CLUREF s2, CLUREF *ans)
 {
+    errcode err;
     const sequence_of_t_OPS *ops
 	= ((sequence_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
-    long i;
-    CLUREF elt1, elt2, temp;
-    errcode err;
 
     if (s1.vec->size != s2.vec->size) {
 	ans->tf = false;
 	signal(ERR_ok);
     }
+
     if (s1.vec->size == 0) {
 	ans->tf = true;
 	signal(ERR_ok);
     }
 
-    for (i = 0; i < s1.vec->size; ++i) {
-	elt1.num = s1.vec->data[i];
-	elt2.num = s2.vec->data[i];
+    CLUREF equal = CLU_true;
+    CLUREF tOPequal = { .proc = ops->equal.fcn };
 
-	CUR_PROC_VAR.proc = ops->equal.fcn;
-	err = (*ops->equal.fcn->proc)(elt1, elt2, &temp);
+    for (long i = 0; i < s1.vec->size; ++i) {
+	CLUREF elt1 = { .num = s1.vec->data[i] };
+	CLUREF elt2 = { .num = s2.vec->data[i] };
+
+	CUR_PROC_VAR = tOPequal;
+	err = (*tOPequal.proc->proc)(elt1, elt2, &equal);
 	if (err != ERR_ok)
 	    resignal(err);
 
-	if (temp.tf != true) {
-	    ans->tf = false;
-	    signal(ERR_ok);
-	}
+	if (!equal.tf)
+	    break;
     }
-    ans->tf = true;
+
+    *ans = equal;
     signal(ERR_ok);
 }
 
