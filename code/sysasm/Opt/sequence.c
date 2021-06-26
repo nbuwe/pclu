@@ -692,12 +692,12 @@ sequenceOPinternal_print(CLUREF s, CLUREF pst, CLUREF pfcn)
     errcode err;
     CLUREF ans;
 
-    static bool init = false;
     static CLUREF lbrack, comma, rbrack;
+    static bool init = false;
     if (init == false) {
-	err = stringOPcons("[", CLU_1, CLU_1, &lbrack);
-	err = stringOPcons(",", CLU_1, CLU_1, &comma);
-	err = stringOPcons("]", CLU_1, CLU_1, &rbrack);
+	stringOPcons("[", CLU_1, CLU_1, &lbrack);
+	stringOPcons(",", CLU_1, CLU_1, &comma);
+	stringOPcons("]", CLU_1, CLU_1, &rbrack);
 	init = true;
     }
 
@@ -714,7 +714,9 @@ sequenceOPinternal_print(CLUREF s, CLUREF pst, CLUREF pfcn)
     }
 
     for (long i = 0; i < s.vec->size; ++i) {
-	if (i != 0) {
+	CLUREF elt = { .num = s.vec->data[i] };
+
+	if (i != 0) {		/* print separator */
 	    err = pstreamOPpause(pst, comma, &ans);
 	    if (err != ERR_ok)
 		resignal(err);
@@ -722,10 +724,8 @@ sequenceOPinternal_print(CLUREF s, CLUREF pst, CLUREF pfcn)
 	    if (ans.tf == false)
 		break;
 	}
-	static CLUREF elt;	/* XXX! */
-	elt.num = s.vec->data[i];
 
-	CUR_PROC_VAR.proc = pfcn.proc;
+	CUR_PROC_VAR = pfcn;
 	err = (*pfcn.proc->proc)(elt, pst);
 	if (err != ERR_ok)
 	    resignal(err);
