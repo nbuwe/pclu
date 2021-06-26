@@ -1028,11 +1028,11 @@ arrayOPinternal_print(CLUREF a, CLUREF pst, CLUREF pfcn)
     static bool init = false;
     static CLUREF str1, str2, str3, str4, str5;
     if (init == false) {
-	err = stringOPcons("[", CLU_1, CLU_1, &str1);
-	err = stringOPcons("..", CLU_1, CLU_2, &str2);
-	err = stringOPcons(": ", CLU_1, CLU_2, &str3);
-	err = stringOPcons(",", CLU_1, CLU_1, &str4);
-	err = stringOPcons("]", CLU_1, CLU_1, &str5);
+	stringOPcons("[", CLU_1, CLU_1, &str1);
+	stringOPcons("..", CLU_1, CLU_2, &str2);
+	stringOPcons(": ", CLU_1, CLU_2, &str3);
+	stringOPcons(",", CLU_1, CLU_1, &str4);
+	stringOPcons("]", CLU_1, CLU_1, &str5);
 	init = true;
     }
 
