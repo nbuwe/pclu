@@ -35,6 +35,9 @@ errcode stringOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans);
 errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
 errcode stringOPsubstr(CLUREF s, CLUREF start, CLUREF len, CLUREF *ans);
 
+void sigfixmask(sigset_t *setp, int m);
+
+
 errcode _chanOP_open(CLUREF fn, CLUREF flags, CLUREF fmode, CLUREF *uchan);
 
 extern int _chanOPtstop();
