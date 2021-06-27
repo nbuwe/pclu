@@ -602,8 +602,12 @@ int result, mask;
 	sigaction(SIGTSTP, &temp, 0);
 	pid = getpid();
 	result = kill(pid, SIGTSTP);
-	mask = sigsetmask(0);
-	sigsetmask(mask);
+
+	sigset_t eset, oset;
+	sigemptyset(&eset);
+	sigprocmask(SIG_SETMASK, &eset, &oset);
+	sigprocmask(SIG_SETMASK, &oset, NULL);
+
 	_chanOP_restore_tty();
 	temp.sa_handler = (void (*)())_chanOPtstop;
 	sigfixmask(&temp.sa_mask, SIGNAL_MASK);
