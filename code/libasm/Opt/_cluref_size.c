@@ -1,12 +1,16 @@
-
 /* Copyright Massachusetts Institute of Technology 1993 */
 
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-errcode _cluref_size(ans)
-CLUREF *ans;
+
+/*
+ * Returns the size, in bytes, of pointers and ints,
+ * i.e., the size of a machine word.
+ */
+errcode
+_cluref_size(CLUREF *ans)
 {
-	ans->num = sizeof(CLUREF);
-	signal(ERR_ok);
-	}
+    ans->num = CLUREFSZ;
+    signal(ERR_ok);
+}
