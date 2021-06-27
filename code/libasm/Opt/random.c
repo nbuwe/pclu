@@ -37,11 +37,9 @@ randomOPreset(void)
 errcode
 randomOPseed(CLUREF x)
 {
-    if (!init) {
-	hi.num = 0xbfc896df;
-	lo.num = 0x6ab8724a;
-	init = true;
-    }
+    if (!init)
+	randomOPreset();
+
     hi.num = hi.num ^ x.num;
     signal(ERR_ok);
 }
@@ -57,11 +55,9 @@ randomOPnext(CLUREF x, CLUREF *ans)
     CLUREF save;		/* aka n2 */
     int flag;
 
-    if (!init) {
-	hi.num = 0xbfc896df;
-	lo.num = 0x6ab8724a;
-	init = true;
-    }
+    if (!init)
+	randomOPreset();
+
     templo.num = lo.num;
     temphi.num = hi.num;
     lo.num = temphi.num;
