@@ -1649,7 +1649,8 @@ CLUREF chref;
 CLUREF bv, flags, addr;
 CLUREF *ans1, *ans2;
 {
-int result, fromlen;
+int result;
+socklen_t fromlen;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0) {
@@ -1877,7 +1878,8 @@ CLUREF chref;
 CLUREF addr, *ans1, *ans2;
 {
 errcode err;
-int fd, result, len, s, z;
+int fd, result, s, z;
+socklen_t len;
 _chan *newch;
 CLUREF temp_str, fn;
 _chan *ch  = (_chan *)chref.ref;
@@ -1981,7 +1983,8 @@ errcode _chanOPpeername(chref, name, ans)
 CLUREF chref;
 CLUREF name, *ans;
 {
-int fd, uerr, size;
+int fd, uerr;
+socklen_t size;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
@@ -2005,7 +2008,8 @@ errcode _chanOPsockname(chref, name, ans)
 CLUREF chref;
 CLUREF name, *ans;
 {
-int fd, uerr, size;
+int fd, uerr;
+socklen_t size;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
@@ -2030,7 +2034,8 @@ CLUREF chref;
 CLUREF level, option, *ans;
 {
 int fd, uerr;
-int optlen, optval;
+int optval;
+socklen_t optlen;
 _chan *ch  = (_chan *)chref.ref;
 
 	if (ch->rd.num < 0 && ch->wr.num < 0) {
