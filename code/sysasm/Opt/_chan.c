@@ -2208,7 +2208,7 @@ _chan *ch  = (_chan *)chref.ref;
 		}
 	fd = ch->rd.num;
 	if (fd < 0) fd = ch->wr.num;
-	if (buf.vec->size < sizeof(struct stat)) signal(ERR_bounds);
+	if ((size_t)buf.vec->size < sizeof(struct stat)) signal(ERR_bounds);
 	result = fstat(fd, (struct stat *)buf.vec->data);
 	if (result == -1) {
 		elist[0] = _unix_erstr(errno);
