@@ -1,61 +1,60 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: file_exists.c,v 1.2 91/06/06 13:53:13 dcurtis Exp $";
-#endif
-/* $Log:	file_exists.c,v $
- * Revision 1.2  91/06/06  13:53:13  dcurtis
- * added copyright notice
- * 
- * Revision 1.1  91/02/04  23:21:14  mtv
- * Initial revision
- * 
- */
 
 /*						*/
 /*		IMPLEMENTATION OF		*/
 /*			file_exists		*/
 /*						*/
 
-/*          Altered by Robert G. Fermier        */
-
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
 #include <errno.h>
-extern CLUREF empty_string;
+#include <unistd.h>
 
-errcode file_exists(fn, ans)
-CLUREF fn, *ans;
+errcode file_nameOPunparse(CLUREF x, CLUREF *ret_1);
+errcode file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1);
+
+
+
+errcode
+file_exists(CLUREF fn, CLUREF *ans)
 {
-errcode err;
-int uerr;
-CLUREF wd, name, home;
+    errcode err;
+    int status;
 
-	err = file_name_fill(fn, empty_string, &name);
-	if (err != ERR_ok) resignal(err);
+    CLUREF newfn;
+    err = file_name_fill(fn, CLU_empty_string, &newfn);
+    if (err != ERR_ok)
+	goto ex_0;
 
-	err = file_nameOPunparse(name, &name);
-	if (err != ERR_ok) resignal(err);
+    CLUREF name;
+    err = file_nameOPunparse(newfn, &name);
+    if (err != ERR_ok)
+	goto ex_0;
 
-	/* For now, emulate Berkeley behavior: if name is empty
-	   access is ok: 3/24/94 dcurtis */
-	if (strlen(name.str->data) == 0) {
-		ans->tf = true;
-		signal(ERR_ok);
-		}
+    /* For now, emulate Berkeley behavior: if name is empty
+       access is ok: 3/24/94 dcurtis */
+    if (name.str->data[0] == '\0') {
+	ans->tf = true;
+	signal(ERR_ok);
+    }
 
-	uerr = access(name.str->data, 0);
-	if (uerr == 0) {
-		ans->tf = true;
-		signal(ERR_ok);
-		}
+    status = access(name.str->data, F_OK);
+    if (status != 0) {
 	if (errno == ENOENT || errno == ENOTDIR) {
-		ans->tf = false;
-		signal(ERR_ok);
-		}
+	    ans->tf = false;
+	    signal(ERR_ok);
+	}
 	elist[0] = _unix_erstr(errno);
 	signal(ERR_not_possible);
-	}
+    }
 
+    ans->tf = true;
+    signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
+}
