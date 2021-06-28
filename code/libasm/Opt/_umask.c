@@ -1,18 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: _umask.c,v 1.2 91/06/06 13:52:14 dcurtis Exp $";
-#endif
-/* $Log:	_umask.c,v $
- * Revision 1.2  91/06/06  13:52:14  dcurtis
- * added copyright notice
- * 
- * Revision 1.1  91/02/04  23:21:08  mtv
- * Initial revision
- * 
- */
-
 
 /*						*/
 /*						*/
@@ -23,19 +9,16 @@ static char rcsid[] = "$Header: _umask.c,v 1.2 91/06/06 13:52:14 dcurtis Exp $";
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-#include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
-errcode _umask(mask, ans)
-CLUREF mask, *ans;
+
+
+errcode
+_umask(CLUREF mask, CLUREF *ans)
 {
-int err;
+    mode_t omask = umask(mask.num); /* always succeeds */
 
-	err = umask(mask);
-	ans->num = err;
-	signal(ERR_ok);
-/*
-	if (err == 0) signal(ERR_ok);
-	elist[0] = _unix_erstr(errno);
-	signal(ERR_not_possible);
-*/
-	}
+    ans->num = omask;
+    signal(ERR_ok);
+}
