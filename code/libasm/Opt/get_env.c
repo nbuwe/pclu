@@ -1,20 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: get_env.c,v 1.3 91/06/06 13:53:45 dcurtis Exp $";
-#endif
-/* $Log:	get_env.c,v $
- * Revision 1.3  91/06/06  13:53:45  dcurtis
- * added copyright notice
- * 
- * Revision 1.2  91/06/03  16:51:52  root
- * sparcstation compatibility: int->CLUREF
- * 
- * Revision 1.1  91/02/04  23:21:23  mtv
- * Initial revision
- * 
- */
 
 /*						*/
 /*						*/
@@ -25,47 +9,65 @@ static char rcsid[] = "$Header: get_env.c,v 1.3 91/06/06 13:53:45 dcurtis Exp $"
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+/* sysasm: util.c */
 extern char **environ;
+
+/* sysasm: _chan.c - debugger fd? */
 extern int wrpipe;
 
-static int argv = 0;
+static CLUREF save_env;
 
-errcode get_env(ans)
-CLUREF *ans;
+
+/*
+ * get_env = proc () returns (sequence[string])
+ *
+ * This doesn't seem to be actually declared in any spec file.
+ * See also _environ and _environs in sysasm (etc.spc).
+ */
+errcode
+get_env(CLUREF *ans)
 {
-errcode err;
-CLUREF temp;
-CLUREF temp2;
-CLUREF size, len;
-int i;
+    errcode err;
 
-	if (argv != 0) {
-		ans->num = argv;
-		signal(ERR_ok);
-		}
-	if (wrpipe != 0 || environ[0] == 0) {
-		err = sequenceOPnew(&temp);
-		if (err != ERR_ok) resignal(err);
-		argv = temp.num;
-		ans->vec = temp.vec;
-		signal(ERR_ok);
-		}
-	/* find number of strings in environ */
-	size.num = 0;
-	for (i = 0;; i++) {
-		if (environ[i] == 0) break;
-		size.num += 1;
-		}
-	err = sequenceOPfill(size, CLU_0, &temp);
-	if (err != ERR_ok) resignal(err);
-	for(i = 0;; i++) {
-		if (environ[i] == 0) break;
-		len.num = strlen(environ[i]);
-		err = stringOPcons(environ[i], CLU_0, len, &temp2);
-		if (err != ERR_ok) resignal(err);
-		temp.vec->data[i] = temp2.num;	
-		}
-	argv = temp.num;
-	ans->vec = temp.vec;
+    if (save_env.vec != NULL) {
+	*ans = save_env;
 	signal(ERR_ok);
-	}
+    }
+
+    if (wrpipe != 0 || environ[0] == NULL) {
+	err = sequenceOPnew(&save_env);
+	if (err != ERR_ok)
+	    goto ex_0;
+
+	*ans = save_env;
+	signal(ERR_ok);
+    }
+
+    /* find number of strings in environ */
+    size_t size = 0;
+    for (size_t i = 0; environ[i] != NULL; ++i)
+	++size;
+
+    CLUREF seq;
+    err = sequenceOPnew2(CLUREF_make_num(size), &seq);
+    if (err != ERR_ok)
+	goto ex_0;
+
+    for (size_t i = 0; environ[i] != NULL; ++i) {
+	size_t len = strlen(environ[i]);
+
+	CLUREF e;
+	stringOPcons(environ[i], CLU_1, CLUREF_make_num(len), &e);
+	seq.vec->data[i] = e.num;
+    }
+
+    save_env = seq;
+    *ans = save_env;
+    signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
+}
