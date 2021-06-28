@@ -1,64 +1,62 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: _file_exists.c,v 1.2 91/06/06 13:44:58 dcurtis Exp $";
-#endif
-/* $Log:	_file_exists.c,v $
- * Revision 1.2  91/06/06  13:44:58  dcurtis
- * added copyright notice
- * 
- * Revision 1.1  91/02/04  23:20:22  mtv
- * Initial revision
- * 
- */
 
 /*						*/
 /*		IMPLEMENTATION OF		*/
 /*			_file_exists		*/
 /*						*/
 
-/*        Modified by Robert G. Fermier         */
-
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <errno.h>
 
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
 #include <errno.h>
-//extern int errno;
-extern CLUREF empty_string;
+#include <stdint.h>
 
-errcode _file_exists(fs, ftype, ans)
-CLUREF fs, ftype, *ans;
+errcode stringOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans);
+errcode working_dir(CLUREF *ret_1);
+
+
+
+errcode
+_file_exists(CLUREF fs, CLUREF ftype, CLUREF *ans)
 {
+    errcode err;
+    int status;
 
-int uerr;
-errcode err;
-struct stat buf;
-CLUREF wd, name;
+    CLUREF name = fs;
+    if (fs.str->data[0] != '/') {
+	CLUREF wd;
+	err = working_dir(&wd);
+	if (err != ERR_ok)
+	    goto ex_0;
 
-	name.str = fs.str;
-	if (fs.str->size == 0 || fs.str->data[0] != '/') {
-		err = working_dir(&wd);
-		if (err != ERR_ok) resignal(err);
-		err = stringOPconcat(wd, fs, &name);
-		if (err != ERR_ok) resignal(err);
-		}
+	err = stringOPconcat(wd, fs, &name);
+	if (err != ERR_ok)
+	    goto ex_0;
+    }
 
-	uerr = stat(name.str->data, &buf);
-	if (uerr == 0) {
-		if ((buf.st_mode & S_IFMT)>>12 == ftype.num) ans->tf = true;
-		else ans->tf = false;
-		signal(ERR_ok);
-		}
+    struct stat st;
+    status = stat(name.str->data, &st);
+    if (status != 0) {
 	if (errno == ENOENT || errno == ENOTDIR) {
-		ans->tf = false;
-		signal(ERR_ok);
-		}
+	    ans->tf = false;
+	    signal(ERR_ok);
+	}
 	elist[0] = _unix_erstr(errno);
 	signal(ERR_not_possible);
-	}
+    }
 
+    if ((st.st_mode & S_IFMT) >> 12 == (uintptr_t)ftype.num)
+	ans->tf = true;
+    else
+	ans->tf = false;
+    signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
+}
