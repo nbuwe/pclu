@@ -278,30 +278,36 @@ _byteptrOP_gcd(CLUREF bp, CLUREF tab, CLUREF *ans)
 }
 
 
-typedef struct {
+
+OWN_ptr _byteptr_own_init = { .init_flag = 1 };
+
+#define CLU_proc_INIT(f) {			\
+ /* .typ = { .val = CT_PROC }, */		\
+    .proc = f,					\
+    .type_owns = &_byteptr_own_init,		\
+    .op_owns = &_byteptr_own_init,		\
+}
+
+static CLU_proc _byteptr_oe_create = CLU_proc_INIT(_byteptrOPcreate);
+static CLU_proc _byteptr_oe_equal = CLU_proc_INIT(_byteptrOPequal);
+static CLU_proc _byteptr_oe_similar = CLU_proc_INIT(_byteptrOPsimilar);
+static CLU_proc _byteptr_oe_copy = CLU_proc_INIT(_byteptrOPcopy);
+static CLU_proc _byteptr_oe__gcd = CLU_proc_INIT(_byteptrOP_gcd);
+static CLU_proc _byteptr_oe_reset = CLU_proc_INIT(_byteptrOPreset);
+static CLU_proc _byteptr_oe_peek = CLU_proc_INIT(_byteptrOPpeek);
+static CLU_proc _byteptr_oe_deposit = CLU_proc_INIT(_byteptrOPdeposit);
+static CLU_proc _byteptr_oe_adjust = CLU_proc_INIT(_byteptrOPadjust);
+static CLU_proc _byteptr_oe_empty = CLU_proc_INIT(_byteptrOPempty);
+static CLU_proc _byteptr_oe_get_buf = CLU_proc_INIT(_byteptrOPget_buf);
+static CLU_proc _byteptr_oe_get_index = CLU_proc_INIT(_byteptrOPget_index);
+static CLU_proc _byteptr_oe_get_count = CLU_proc_INIT(_byteptrOPget_count);
+
+static struct {
     int count;
     OWNPTR type_owns;
     OWNPTR op_owns;
     struct OP_ENTRY entry[13];
-} _byteptr_OPS;
-
-static CLU_proc _byteptr_oe_create = { .proc = _byteptrOPcreate };
-static CLU_proc _byteptr_oe_equal = { .proc = _byteptrOPequal };
-static CLU_proc _byteptr_oe_similar = { .proc = _byteptrOPsimilar };
-static CLU_proc _byteptr_oe_copy = { .proc = _byteptrOPcopy };
-static CLU_proc _byteptr_oe__gcd = { .proc = _byteptrOP_gcd };
-static CLU_proc _byteptr_oe_reset = { .proc = _byteptrOPreset };
-static CLU_proc _byteptr_oe_peek = { .proc = _byteptrOPpeek };
-static CLU_proc _byteptr_oe_deposit = { .proc = _byteptrOPdeposit };
-static CLU_proc _byteptr_oe_adjust = { .proc = _byteptrOPadjust };
-static CLU_proc _byteptr_oe_empty = { .proc = _byteptrOPempty };
-static CLU_proc _byteptr_oe_get_buf = { .proc = _byteptrOPget_buf };
-static CLU_proc _byteptr_oe_get_index = { .proc = _byteptrOPget_index };
-static CLU_proc _byteptr_oe_get_count = { .proc = _byteptrOPget_count };
-
-OWN_ptr _byteptr_own_init = { .init_flag = 1 };
-
-static _byteptr_OPS _byteptr_ops_actual = {
+} _byteptr_ops_actual = {
     13,
     &_byteptr_own_init,
     &_byteptr_own_init,
