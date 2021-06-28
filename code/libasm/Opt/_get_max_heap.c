@@ -4,17 +4,23 @@
 #include "pclu_sys.h"
 
 #ifndef LINUX
-errcode _get_max_heap(ans)
-CLUREF *ans;
+
+errcode
+_get_max_heap(CLUREF *ans)
 {
-	ans->num = blks_hard_limit * HBLKSIZE;
-	signal(ERR_ok);
-	}
-#else
-errcode _get_max_heap(ans)
-CLUREF *ans;
+    ans->num = blks_hard_limit * HBLKSIZE;
+    signal(ERR_ok);
+}
+
+#else  /* LINUX */
+
+#include <gc/gc.h>
+#include <gc/private/gc_priv.h>
+
+errcode
+_get_max_heap(CLUREF *ans)
 {
-        ans->num = GC_get_max_heap_size();
-        signal(ERR_ok);
-        }
+    ans->num = GC_max_heapsize;	/* XXX: private */
+    signal(ERR_ok);
+}
 #endif
