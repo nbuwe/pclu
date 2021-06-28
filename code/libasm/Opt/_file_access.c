@@ -1,17 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: _file_access.c,v 1.2 91/06/06 13:44:45 dcurtis Exp $";
-#endif
-/* $Log:	_file_access.c,v $
- * Revision 1.2  91/06/06  13:44:45  dcurtis
- * added copyright notice
- * 
- * Revision 1.1  91/02/04  23:20:20  mtv
- * Initial revision
- * 
- */
 
 /*						*/
 /*		IMPLEMENTATION OF		*/
@@ -22,29 +9,41 @@ static char rcsid[] = "$Header: _file_access.c,v 1.2 91/06/06 13:44:45 dcurtis E
 #include "pclu_sys.h"
 
 #include <errno.h>
-//extern int errno;
-extern CLUREF empty_string;
+#include <unistd.h>
 
-errcode _file_access(fs, mode, ans)
-CLUREF fs, mode, *ans;
+errcode stringOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans);
+errcode working_dir(CLUREF *ret_1);
+
+
+
+errcode
+_file_access(CLUREF fs, CLUREF mode, CLUREF *ans)
 {
-errcode err;
-int uerr;
-CLUREF wd, name;
+    errcode err;
+    int status;
 
-	name.str = fs.str;
-	if (fs.str->size == 0 || fs.str->data[0] != '/') {
-		err = working_dir(&wd);
-		if (err != ERR_ok) resignal(err);
-		err = stringOPconcat(wd, fs, &name);
-		if (err != ERR_ok) resignal(err);
-		}
+    CLUREF name = fs;
+    if (fs.str->data[0] != '/') {
+	CLUREF wd;
+	err = working_dir(&wd);
+	if (err != ERR_ok)
+	    goto ex_0;
 
-	uerr = access(name.str->data, mode.num);
-	if (uerr == 0)
-		ans->tf = true;
-	else
-		ans->tf = false;
-	signal(ERR_ok);
-	}
+	err = stringOPconcat(wd, fs, &name);
+	if (err != ERR_ok)
+	    goto ex_0;
+    }
 
+    status = access(name.str->data, mode.num);
+    if (status == 0)
+	ans->tf = true;
+    else
+	ans->tf = false;
+    signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
+}
