@@ -1,59 +1,64 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: file_date.c,v 1.2 91/06/06 13:53:04 dcurtis Exp $";
-#endif
-/* $Log:	file_date.c,v $
- * Revision 1.2  91/06/06  13:53:04  dcurtis
- * added copyright notice
- * 
- * Revision 1.1  91/02/04  23:21:13  mtv
- * Initial revision
- * 
- */
 
 /*						*/
 /*		IMPLEMENTATION OF		*/
 /*			file_date		*/
 /*						*/
 
-#include <sys/types.h>
-#include <sys/stat.h>
-
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+
 #include <errno.h>
-extern CLUREF empty_string;
 
-errcode file_date(fn, read, ans)
-CLUREF fn, read, *ans;
+errcode file_nameOPunparse(CLUREF x, CLUREF *ret_1);
+errcode file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1);
+errcode _local_time(CLUREF left, CLUREF right, CLUREF *ans);
+
+
+
+errcode
+file_date(CLUREF fn, CLUREF read, CLUREF *ans)
 {
+    errcode err;
+    int status;
 
-int uerr;
-errcode err;
-CLUREF newfn, name, temp;
-struct stat buf;
-time_t time;
-CLUREF arg1, arg2;
+    CLUREF newfn;
+    err = file_name_fill(fn, CLU_empty_string, &newfn);
+    if (err != ERR_ok)
+	goto ex_0;
 
-	err = file_name_fill(fn, empty_string, &newfn);
-	if (err != ERR_ok) resignal(err);
-	err = file_nameOPunparse(newfn, &name);
-	if (err != ERR_ok) resignal(err);
-	uerr = stat(name.str->data, &buf);
-	if (uerr != 0) {
-		elist[0] = _unix_erstr(errno);
-		signal(ERR_not_possible);
-		}
-	if (read.tf == true) time = buf.st_atime;
-	else time = buf.st_mtime;
-	arg1.num = (time >> 16) & 0xffff;
-	arg2.num = time & 0xffff;
-	err = _local_time(arg1, arg2, &temp);
-	if (err != ERR_ok) resignal(err);
-	ans->num = temp.num;
-	signal(ERR_ok);
-	}
+    CLUREF name;
+    err = file_nameOPunparse(newfn, &name);
+    if (err != ERR_ok)
+	goto ex_0;
 
+    struct stat st;
+    status = stat(name.str->data, &st);
+    if (status != 0) {
+	elist[0] = _unix_erstr(errno);
+	signal(ERR_not_possible);
+    }
+
+    time_t time = read.tf ? st.st_atime : st.st_mtime;
+
+    /*
+     * XXX: This strange API pattern is probably a leftover from
+     * tagged ints that were, consequently, less than 32-bit.
+     */
+    err = _local_time(CLUREF_make_num(time >> 16),
+		      CLUREF_make_num(time & 0xffff),
+		      ans);
+    if (err != ERR_ok)
+	goto ex_0;
+
+    signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
+}
