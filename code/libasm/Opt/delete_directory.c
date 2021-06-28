@@ -1,46 +1,48 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: delete_directory.c,v 1.2 91/06/06 13:52:54 dcurtis Exp $";
-#endif 
-/* $Log:	delete_directory.c,v $
- * Revision 1.2  91/06/06  13:52:54  dcurtis
- * added copyright notice
- * 
- * Revision 1.1  91/02/04  23:21:12  mtv
- * Initial revision
- * 
- */
 
 /*						*/
 /*		IMPLEMENTATION OF		*/
 /*			delete_directory	*/
 /*						*/
 
-/*         Modified by Robert G. Fermier        */
-
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
 #include <errno.h>
-extern CLUREF empty_string;
+#include <unistd.h>
 
-errcode delete_directory(fn)
-CLUREF fn;
+errcode file_nameOPunparse(CLUREF x, CLUREF *ret_1);
+errcode file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1);
+
+
+
+errcode
+delete_directory(CLUREF fn)
 {
-errcode err;
-CLUREF newfn, name;
+    errcode err;
+    int status;
 
-	err = file_name_fill(fn, empty_string, &newfn);
-	if (err != ERR_ok) resignal(err);
-	err = file_nameOPunparse(newfn, &name);
-	if (err != ERR_ok) resignal(err);
-	err = rmdir(name.str->data);
-	if (err != 0) {
-		elist[0] = _unix_erstr(errno);
-		signal(ERR_not_possible);
-		}
-	signal(ERR_ok);
-	}
+    CLUREF newfn;
+    err = file_name_fill(fn, CLU_empty_string, &newfn);
+    if (err != ERR_ok)
+	goto ex_0;
 
+    CLUREF name;
+    err = file_nameOPunparse(newfn, &name);
+    if (err != ERR_ok)
+	goto ex_0;
+
+    status = rmdir(name.str->data);
+    if (status != 0) {
+	elist[0] = _unix_erstr(errno);
+	signal(ERR_not_possible);
+    }
+
+    signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
+}

@@ -1,17 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: create_directory.c,v 1.2 91/06/06 13:52:43 dcurtis Exp $";
-#endif
-/* $Log:	create_directory.c,v $
- * Revision 1.2  91/06/06  13:52:43  dcurtis
- * added copyright notice
- * 
- * Revision 1.1  91/02/04  23:21:10  mtv
- * Initial revision
- * 
- */
 
 /*						*/
 /*						*/
@@ -22,24 +9,43 @@ static char rcsid[] = "$Header: create_directory.c,v 1.2 91/06/06 13:52:43 dcurt
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+
 #include <errno.h>
-extern CLUREF empty_string;
 
-errcode create_directory(fn, mode)
-CLUREF fn, mode;
+errcode file_nameOPunparse(CLUREF x, CLUREF *ret_1);
+errcode file_name_fill(CLUREF fn, CLUREF dsuffix, CLUREF *ret_1);
+
+
+
+errcode
+create_directory(CLUREF fn, CLUREF mode)
 {
-CLUREF newfn, name;
-int err;
+    errcode err;
+    int status;
 
-	err = file_name_fill(fn, empty_string, &newfn);
-	if (err != ERR_ok) resignal(err);
-	err = file_nameOPunparse(newfn, &name);
-	if (err != ERR_ok) resignal(err);
-	err = mkdir(name.str->data, mode.num);
-	if (err != 0) {
-		elist[0] = _unix_erstr(errno);
-		signal(ERR_not_possible);
-		}
-	signal(ERR_ok);
-	}
+    CLUREF newfn;
+    err = file_name_fill(fn, CLU_empty_string, &newfn);
+    if (err != ERR_ok)
+	goto ex_0;
 
+    CLUREF name;
+    err = file_nameOPunparse(newfn, &name);
+    if (err != ERR_ok)
+	goto ex_0;
+
+    status = mkdir(name.str->data, mode.num);
+    if (status != 0) {
+	elist[0] = _unix_erstr(errno);
+	signal(ERR_not_possible);
+    }
+
+    signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
+}
