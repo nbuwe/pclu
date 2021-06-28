@@ -1,18 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: stream2chan.c,v 1.2 91/06/06 13:57:10 dcurtis Exp $";
-#endif
-/* $Log:	stream2chan.c,v $
- * Revision 1.2  91/06/06  13:57:10  dcurtis
- * added copyright notice
- * 
- * Revision 1.1  91/02/04  23:21:42  mtv
- * Initial revision
- * 
- */
-
 
 /*						*/
 /*						*/
@@ -23,15 +9,27 @@ static char rcsid[] = "$Header: stream2chan.c,v 1.2 91/06/06 13:57:10 dcurtis Ex
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-errcode stream2chan(st, ans)
-CLUREF st, *ans;
-{
-errcode err;
-CLUREF temp;
+errcode streamOPget_chan(CLUREF st, CLUREF *ret_1);
 
-	err = streamOPget_chan(st, &temp);
-	if (err == ERR_not_possible) signal(err);
-	if (err != ERR_ok) resignal(err);
-	*ans = temp;
-	signal(ERR_ok);
-	}
+
+errcode
+stream2chan(CLUREF st, CLUREF *ans)
+{
+    errcode err;
+
+    CLUREF chan;
+    err = streamOPget_chan(st, &chan);
+    if (err == ERR_not_possible)
+	signal(err);
+    if (err != ERR_ok)
+	goto ex_0;
+
+    *ans = chan;
+    signal(ERR_ok);
+
+  ex_0: {
+	if (err != ERR_failure)
+	    elist[0] = _pclu_erstr(err);
+	signal(ERR_failure);
+    }
+}
