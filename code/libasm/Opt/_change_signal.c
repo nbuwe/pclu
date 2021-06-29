@@ -18,10 +18,11 @@
 errcode
 _change_signal(CLUREF sig, CLUREF label, CLUREF *ans)
 {
-    int err;
-    struct sigaction vec, ovec;
+    int status;
 
-    vec.sa_handler = (void (*)())label.ref;
+    struct sigaction vec;
+    vec.sa_handler = (void (*)(int))label.num;
+    vec.sa_flags = 1;
 
     sigemptyset(&vec.sa_mask);
     sigaddset(&vec.sa_mask, SIGABRT);
@@ -49,13 +50,13 @@ _change_signal(CLUREF sig, CLUREF label, CLUREF *ans)
     sigaddset(&vec.sa_mask, SIGUSR1);
     sigaddset(&vec.sa_mask, SIGUSR2);
 
-    vec.sa_flags = 1;
-
-    err = sigaction(sig.num, &vec, &ovec);
-    if (err != 0) {
+    struct sigaction ovec;
+    status = sigaction(sig.num, &vec, &ovec);
+    if (status != 0) {
 	elist[0] = _unix_erstr(errno);
 	signal(ERR_not_possible);
     }
-    ans->num = (int)ovec.sa_handler;
+
+    ans->num = (long)ovec.sa_handler;
     signal(ERR_ok);
 }
