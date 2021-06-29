@@ -1,17 +1,4 @@
-
 /* Copyright Massachusetts Institute of Technology 1990,1991 */
-
-#ifndef lint
-static char rcsid[] = "$Header: _ioctl.c,v 1.2 91/06/06 13:48:07 dcurtis Exp $";
-#endif
-/* $Log:	_ioctl.c,v $
- * Revision 1.2  91/06/06  13:48:07  dcurtis
- * added copyright notice
- * 
- * Revision 1.1  91/02/04  23:20:42  mtv
- * Initial revision
- * 
- */
 
 /*						*/
 /*						*/
@@ -22,20 +9,37 @@ static char rcsid[] = "$Header: _ioctl.c,v 1.2 91/06/06 13:48:07 dcurtis Exp $";
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+#include <sys/ioctl.h>
 #include <errno.h>
 
-errcode _ioctl(fdesc, reqh, reql, argp, disp)
-CLUREF fdesc, reqh, reql, argp, disp;
+
+/*
+ * _ioctl = proc [T: type] (fdesc, reqh, reql: int, argp: T, disp: int)
+ *            signals (not_possible(string))
+ *     % issue REQ ioctl on given file descriptor with given argument(s)
+ *     % REQ is given in halves, high and low
+ *     % if ARGP is not an int, DISP should generally be 4
+ *   end _ioctl
+ *
+ * uwe: It's not entirely clear to me how this is supposed to be used.
+ *
+ * The original obviously never worked anyway b/c it used H << 16 + L
+ * to reassemble the 32-bit request, which means H << (16 + L) - not
+ * (H << 16) + L it intends to say.
+ *
+ * Also this file doesn't provide _ioctl_of_t_reqs and _ioctl_ownreqs,
+ * so the code calling _ioctl[]() just wouldn't link.
+ */
+errcode
+_ioctl(CLUREF fdesc, CLUREF reqh, CLUREF reql, CLUREF argp, CLUREF disp)
 {
-int req;
-int err;
+    int status;
 
-	req = reqh.num<<16 + reql.num;
-	err = ioctl(fdesc, req, argp.vec->data[disp.num]);
-	if (err != 0) {
-		elist[0] = _unix_erstr(errno);
-		signal(ERR_not_possible);
-		}
-	signal(ERR_ok);
-	}
-
+    unsigned long req = (reqh.num << 16) | reql.num;
+    status = ioctl(fdesc.num, req, argp.vec->data[disp.num]);
+    if (status != 0) {
+	elist[0] = _unix_erstr(errno);
+	signal(ERR_not_possible);
+    }
+    signal(ERR_ok);
+}
