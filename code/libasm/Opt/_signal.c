@@ -13,10 +13,10 @@
 #include "pclu_sys.h"
 
 #include <errno.h>
-//#include <unistd.h>
+#include <unistd.h>
 
 #ifdef LINUX
-// #include <gc/private/gc_priv.h>
+#include <gc/private/gc_priv.h>
 #define gcflag GC_collection_in_progress()
 #else
 extern int gcflag;
@@ -51,7 +51,7 @@ _signalOPset(CLUREF sig, CLUREF hold)
     if (sig.num < 0 || sig.num > 32)
 	signal(ERR_bad_code);
 
-    if (~hold.tf) {		// XXX: FIXME!
+    if (!hold.tf) {
 	vec.sa_handler = _signalOPhand;
 	sigfixmask(&vec.sa_mask, 0xf8e70020);
 	/* vec.sa_mask = 0xf8e70020; */
@@ -83,7 +83,6 @@ _signalOPset(CLUREF sig, CLUREF hold)
 void _signalOPhand(sig)
 int sig;
 {
-    CLUREF msgs, str;
 #if 0
     printf("signal caught: %d\n", sig);
 #endif
@@ -93,11 +92,12 @@ int sig;
 
     if (_signalOPmsgs.vec == NULL)
 	return;
-    msgs = _signalOPmsgs;
-    if (msgs.vec->data[sig - 1] != 0) // { // XXX: FIXME
-	str.num = msgs.vec->data[sig - 1];
-	write(1, str.vec->data, str.vec->size);
-    // }
+
+    CLUREF msgs = _signalOPmsgs;
+    if (msgs.vec->data[sig - 1] != 0) {
+	CLUREF str = { .num = msgs.vec->data[sig - 1] };
+	write(1, str.str->data, str.str->size);
+    }
     return;
 }
 
@@ -111,7 +111,7 @@ _signalOPunset(CLUREF sig)
     if (sig.num < 0 || sig.num > 32)
 	signal(ERR_bad_code);
 
-    if (_signalOPflags && (1 << (sig.num - 1))) { // XXX: FIXME
+    if (_signalOPflags & (1 << (sig.num - 1))) {
 	_signalOPflags &= ~(1 << (sig.num - 1));
 	vec.sa_handler = _signalOPohands[sig.num - 1];
 	sigfixmask(&vec.sa_mask, _signalOPomasks[sig.num - 1]);
@@ -122,7 +122,7 @@ _signalOPunset(CLUREF sig)
 	sigaction(sig.num, &vec, 0);
     }
 
-    if (_signalOPholds && (1 << (sig.num - 1))) { // XXX: FIXME
+    if (_signalOPholds & (1 << (sig.num - 1))) {
 	_signalOPholds &= ~(1 << (sig.num - 1));
 	omask = sigblock(0);
 	omask &= ~(1 << (sig.num - 1));
@@ -205,5 +205,5 @@ sigetmask(sigset_t *setp)
 	if (sigismember(setp, i))
 	    result |= 1 << (i-1);
     }
-    // return result;
+    return result;
 }
