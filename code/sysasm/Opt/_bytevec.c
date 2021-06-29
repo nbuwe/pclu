@@ -14,7 +14,6 @@
 extern errcode gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ans);
 extern errcode stringOPdebug_print(CLUREF s, CLUREF pst);
 
-#define	CLU_roundup(x, y)	((((x)+((y)-1))/(y))*(y))
 
 
 static inline size_t

@@ -20,7 +20,6 @@ extern errcode sequenceOPfill(CLUREF length, CLUREF x, CLUREF *ans);
 
 extern errcode stringOPprint(CLUREF s, CLUREF pst);
 
-#define	CLU_roundup(x, y)	((((x)+((y)-1))/(y))*(y))
 
 
 static inline size_t

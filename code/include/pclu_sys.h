@@ -14,6 +14,8 @@
 
 #define CLU_NOREF(var) ((void)(var))
 
+#define	CLU_roundup(x, y)	((((x)+((y)-1))/(y))*(y))
+
 
 #ifdef LINUX
 #define gcollect GC_gcollect
