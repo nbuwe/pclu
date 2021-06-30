@@ -14,6 +14,7 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+errcode sequenceOPnew(CLUREF *ans);
 
 /*
  * POSIX requires {NGROUPS_MAX} to be at least 8, NetBSD has 16, but

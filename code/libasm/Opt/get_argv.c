@@ -9,6 +9,8 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+errcode sequenceOPnew(CLUREF *ans);
+
 /* sysasm: util.c */
 extern int argc;
 extern char **argv;
