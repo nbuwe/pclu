@@ -6,23 +6,28 @@
 /*			pause			*/
 /*						*/
 
-#include <signal.h>
-#undef signal
-
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+errcode _pause(void);
+
 
 /*
- * This is not speced as a clu proc and CHANGES mention intentionally
- * changing its return type to int.  Doesn't seem to be used anywhere,
- * so just keep it as it is.
+ * Forward to _pause() which has exact same code this implementation
+ * used to have.
+ *
+ * FIXME: This function overrides pause(3) from libc.
+ *
+ * It's probably better to fix up the clu name to avoid the name clash
+ * as the compiler already does for C keywords.
+ *
+ * This code could dodge this problem b/c 3rd party C code calling
+ * pause(3) and clu code calling pause() are ABI compatible.  Note
+ * that pause(3) always returns -1 and sets EINTR, but no normal C
+ * code would ever depend on that.
  */
-int /* sic */
+int
 pause(void)
 {
-    sigset_t empty_mask;
-    sigemptyset(&empty_mask);
-    sigsuspend(&empty_mask);
-    signal(ERR_ok);
+    return _pause();
 }
