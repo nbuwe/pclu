@@ -6,58 +6,40 @@
 /*			_sleep			*/
 /*						*/
 
-#include <sys/time.h>
-#include <signal.h>
-#undef signal
-
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-void _sleep_alarm(int);
+#include <time.h>
+
 
 
 errcode
 _sleep(CLUREF millis)
 {
-    int uerr;
-    int omask, omask2;
-    struct sigaction vec;
-    int which;
-    struct itimerval value;
+    int status;
 
     if (millis.num == 0)
 	signal(ERR_ok);
 
-    vec.sa_handler = _sleep_alarm;
-    /* vec.sa_mask = -1; */
-    sigfillset(&vec.sa_mask);
-    vec.sa_flags = true;
+#if 0				/* not specd to signal this */
+    if (millis.num < 0)
+	signal(ERR_negative_time);
+#endif
 
-    uerr = sigaction(SIGALRM, &vec, NULL);
+    struct timespec req;
+    req.tv_sec = millis.num / 1000;
+    req.tv_nsec = (millis.num % 1000) * 1000 * 1000;
 
-    omask = sigblock(sigmask(SIGALRM));
-    which = ITIMER_REAL;
-    value.it_interval.tv_sec = 0;
-    value.it_interval.tv_usec = 0;
-    value.it_value.tv_sec = millis.num / 1000;
-    value.it_value.tv_usec = millis.num % 1000;
-    uerr = setitimer(which, &value, NULL);
-    if (uerr != 0)
-	signal(ERR_ok);
+    struct timespec rem;
+    status = nanosleep(&req, &rem);
+#if 0				/* not specd to signal this */
+    if (status < 0) {		/* interrupted (remaining: int)  */
+	elist[0].num = rem.tv_sec * 1000 + rem.tv_nsec / (1000 * 1000);
+	signal("ERR_interrupted");
+    }
+#else
+    CLU_NOREF(status);
+#endif
 
-    omask2 = sigpause(omask);
-
-    sigsetmask(omask);
-    value.it_value.tv_sec = 0;
-    value.it_value.tv_usec = 0;
-    setitimer(which, &value, NULL);
     signal(ERR_ok);
-}
-
-
-void
-_sleep_alarm(int sig)
-{
-    CLU_NOREF(sig);
-    return;
 }
