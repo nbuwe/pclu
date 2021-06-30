@@ -16,8 +16,8 @@
 void sleep_alarm(int);
 
 
-unsigned
-int sleep(unsigned int isecs)
+unsigned int
+sleep(unsigned int isecs)
 {
     int uerr;
     int omask, omask2;
