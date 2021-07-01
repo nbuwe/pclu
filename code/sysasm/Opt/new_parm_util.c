@@ -62,6 +62,30 @@ static long current_odefs;
 static long fti_tdefs;
 
 
+/*
+ * Save information about the index'th parameter, a type, for use in
+ * instance finding routines.
+ */
+void
+add_parm_info_type(long index, const struct OPS *ops, const struct REQS *reqs)
+{
+    inst_info_value[index] = (long)ops;
+    inst_info_reqs[index] = reqs;
+}
+
+
+/*
+ * Save information about the index'th parameter, a constant, for use
+ * in instance finding routines
+ */
+void
+add_parm_info_const(long index, CLUREF value)
+{
+    inst_info_value[index] = value.num;
+    inst_info_reqs[index] = NULL;
+}
+
+
 errcode
 find_type_instance(struct OPS *aops,
 		   long nparm, const OWN_req *ownreqp,
@@ -496,28 +520,6 @@ init_parm_ops_table_centry(full_ops_table, nth, nth_ops_val)
     signal(ERR_ok);
 }
 #endif	/* 0 */
-
-
-/* save information about a type parameter */
-/*	for use in instance finding routines */
-
-void
-add_parm_info_type(long index, const struct OPS *ops, const struct REQS *reqs)
-{
-    inst_info_value[index] = (long)ops;
-    inst_info_reqs[index] = reqs;
-}
-
-
-/* save information about a constant parameter */
-/*	for use in instance finding routines */
-
-void
-add_parm_info_const(long index, CLUREF value)
-{
-    inst_info_value[index] = value.num;
-    inst_info_reqs[index] = NULL;
-}
 
 
 /* storage for following routine */
