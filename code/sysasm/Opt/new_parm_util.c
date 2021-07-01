@@ -11,7 +11,7 @@
  *
  *   // built-in (sequence.c)
  *   extern struct OPS *sequence_ops;        // the template
- *   extern struct REQS *sequence_of_t_reqs; // what it needs
+ *   extern struct REQS *sequence_of_t_reqs; // what it needs of T
  *   extern const OWN_req sequence_ownreqs;  // how to instantiate owns
  *
  *   // comes from elsewhere
@@ -86,6 +86,16 @@ add_parm_info_const(long index, CLUREF value)
 }
 
 
+/*
+ * Create or find existing instance of ops template "aops" (abstract
+ * ops) parameterized with "nparm" inst_info_*[] parameters.
+ *
+ * "ownreq" tells how to allocate and init the OWNPTR data.  The
+ * compiler defines the paramd code's view of its ownptr as an
+ * foo_OWN_DEFN structure where OWN_ptr::info[] elements are separate,
+ * named fields that contain space for own variables and for the
+ * parameters ops/constants.
+ */
 errcode
 find_type_instance(struct OPS *aops,
 		   long nparm, const OWN_req *ownreqp,
