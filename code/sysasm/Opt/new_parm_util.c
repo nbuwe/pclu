@@ -299,6 +299,44 @@ find_prociter_instance(errcode (*procaddr)(),
 }
 
 
+/*
+ * Instantiate type ops: create a copy of the abstract ops template
+ * and fill it with instantiated type owns.
+ *
+ * "nparams" is only used as input to proctype$new, to be obsoleted.
+ */
+static errcode
+build_type_ops(struct OPS *aops, long nparams, OWNPTR owns, struct OPS **table)
+{
+    errcode err;
+
+    size_t size = offsetof(struct OPS, entry)		/* header */
+	+ aops->count * sizeof(struct OP_ENTRY);	/* entries */
+
+    struct OPS *ops;
+    clu_alloc(size, &ops);
+    ops->count = aops->count;
+    ops->type_owns = owns;
+
+    for (long i = 0; i < aops->count; ++i) {
+	CLUREF proc;
+	err = proctypeOPnew(CLUREF_make_num(nparams), &proc);
+	if (err != ERR_ok)
+	    resignal(err);
+
+	proc.proc = aops->entry[i].fcn;
+	proc.proc->type_owns = owns;
+	proc.proc->op_owns = owns;
+
+	ops->entry[i].fcn = proc.proc;
+	ops->entry[i].name = aops->entry[i].name;
+    }
+
+    *table = ops;
+    signal(ERR_ok);
+}
+
+
 errcode
 build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 		  struct OPS **table, long *defs)
@@ -455,44 +493,6 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 	}
     }
     *table = temp;
-    signal(ERR_ok);
-}
-
-
-/*
- * Instantiate type ops: create a copy of the abstract ops template
- * and fill it with instantiated type owns.
- *
- * "nparams" is only used as input to proctype$new, to be obsoleted.
- */
-static errcode
-build_type_ops(struct OPS *aops, long nparams, OWNPTR owns, struct OPS **table)
-{
-    errcode err;
-
-    size_t size = offsetof(struct OPS, entry)		/* header */
-	+ aops->count * sizeof(struct OP_ENTRY);	/* entries */
-
-    struct OPS *ops;
-    clu_alloc(size, &ops);
-    ops->count = aops->count;
-    ops->type_owns = owns;
-
-    for (long i = 0; i < aops->count; ++i) {
-	CLUREF proc;
-	err = proctypeOPnew(CLUREF_make_num(nparams), &proc);
-	if (err != ERR_ok)
-	    resignal(err);
-
-	proc.proc = aops->entry[i].fcn;
-	proc.proc->type_owns = owns;
-	proc.proc->op_owns = owns;
-
-	ops->entry[i].fcn = proc.proc;
-	ops->entry[i].name = aops->entry[i].name;
-    }
-
-    *table = ops;
     signal(ERR_ok);
 }
 
