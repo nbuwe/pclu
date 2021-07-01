@@ -395,27 +395,29 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 }
 
 
-/* suppose an instantiation without any where clauses has occurred */
-/* suppose the same instantiation is desired but now there are where clauses */
-/* let's fill them in */
 
+/*
+ * Suppose an instantiation without any where clauses has occurred.
+ * Suppose the same instantiation is desired but now there are where
+ * clauses.  Let's fill them in.
+ */
 static void
 update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **table)
 {
-    long i, tdefs;
-    long *temp_owns;
+    long i;
 
-    tdefs = current_tdefs;
-    temp_owns = (long*)(*table)->type_owns;
-    for (i = 0; i < nparm; i++) {
-	if (inst_info_reqs[i] == NULL) {
+    long tdefs = current_tdefs;
+    long *owns = (long *)(*table)->type_owns;
+    for (i = 0; i < nparm; ++i) {
+	if (inst_info_reqs[i] == NULL) /* a constant parameter */
 	    continue;
-	}
+
 	update_parm_table2(inst_info_reqs[i],
-			   (struct OPS*)inst_info_value[i],
-			   (struct OPS**)&temp_owns[i+ownreqp->own_count],
+			   (struct OPS *)inst_info_value[i],
+			   (struct OPS **)&owns[i + ownreqp->own_count],
 			   &tdefs);
     }
+
     current_tdefs = tdefs;
     update_ops();
 }
