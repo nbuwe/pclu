@@ -404,11 +404,10 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 static void
 update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **table)
 {
-    long i;
+    long *owns = (long *)(*table)->type_owns;
 
     long tdefs = current_tdefs;
-    long *owns = (long *)(*table)->type_owns;
-    for (i = 0; i < nparm; ++i) {
+    for (long i = 0; i < nparm; ++i) {
 	if (inst_info_reqs[i] == NULL) /* a constant parameter */
 	    continue;
 
