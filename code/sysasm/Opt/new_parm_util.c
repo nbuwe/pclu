@@ -324,7 +324,7 @@ build_type_ops(struct OPS *aops, long nparams, OWNPTR owns, struct OPS **table)
 	if (err != ERR_ok)
 	    resignal(err);
 
-	proc.proc = aops->entry[i].fcn;
+	proc.proc->proc = aops->entry[i].fcn->proc;
 	proc.proc->type_owns = owns;
 	proc.proc->op_owns = owns;
 
