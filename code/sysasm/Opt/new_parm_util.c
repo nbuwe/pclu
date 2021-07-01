@@ -425,11 +425,10 @@ static void
 update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
 	      struct OPS **table)
 {
-    long i;
+    long *owns = (long *)(*table)->op_owns;
 
     long odefs = current_odefs;
-    long *owns = (long *)(*table)->op_owns;
-    for (i = 0; i < nparm-ntparm; ++i) {
+    for (long i = 0; i < nparm-ntparm; ++i) {
 	if (inst_info_reqs[ntparm + i] == NULL) /* a constant parameter */
 	    continue;
 
