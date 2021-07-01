@@ -133,7 +133,7 @@ find_type_instance(struct OPS *aops,
     long tdefs = 0;
     for (long i = 0; i < nparm; ++i) {
 	/* Pointer to a field in the instance's _OWN_DEFN structure */
-	long *fieldp = owns->info + ownreqp->own_count - 1;
+	long *fieldp = owns->info + (ownreqp->own_count - 1) + i;
 
 	if (inst_info_reqs[i] == NULL) {
 	    /* a constant parameter */
@@ -213,7 +213,7 @@ find_typeop_instance(struct OPS *aops,
     long odefs = 0;
     for (long i = 0; i < nparm - ntparm; ++i) {
 	/* Pointer to a field in the instance's _OWN_DEFN structure */
-	long *fieldp = owns->info + ownreqp->own_count - 1;
+	long *fieldp = owns->info + (ownreqp->own_count - 1) + i;
 
 	if (inst_info_reqs[ntparm+i] == NULL) {
 	    /* a constant parameter */
