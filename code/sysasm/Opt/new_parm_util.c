@@ -119,7 +119,7 @@ find_type_instance(struct OPS *aops,
 	owns_size = offsetof(OWN_ptr, info); /* just the flag */
     OWNPTR owns;
     clu_alloc(owns_size, &owns);
-    owns->init_flag = 0;
+    // owns->init_flag = 0; // allocated memory is already zeroed out
 
     /* allocate and build ops table */
     struct OPS *ops;
@@ -176,13 +176,9 @@ find_typeop_instance(struct OPS *aops,
 		     const OWN_req *ownreqp, const OWN_req *townreqp,
 		     struct OPS **result)
 {
-    long ans, i, size, tdefs, odefs;
-    struct OPS *type_ops, *temp;
-    long *temp_owns;
-
     /* look up type/op instance and return it if it exists */
-    ans = find_ops(aops, procaddr, nparm, result);
-    if (ans == true) {
+    bool already = find_ops(aops, procaddr, nparm, result);
+    if (already) {
 	if (current_tdefs != 0)
 	    update_type_ops(ntparm, townreqp, result);
 	if (current_odefs != 0)
@@ -190,42 +186,52 @@ find_typeop_instance(struct OPS *aops,
 	signal(ERR_ok);
     }
 
-    /* it doesn't exist: make find_type_instance find/build type instance */
+    /* find/build type instance */
+    struct OPS *type_ops;
     find_type_instance(aops, ntparm, townreqp, &type_ops);
-    tdefs = fti_tdefs;
+    long tdefs = fti_tdefs;
 
-    /* build ops structure */
-    clu_alloc(sizeof(struct OPS), &temp);
-    temp->type_owns = type_ops->type_owns;
+    /* build op ops structure */
+    struct OPS *ops;
+    clu_alloc(sizeof(struct OPS), &ops);
+    ops->type_owns = type_ops->type_owns;
 
     /* allocate op own structure & put into type ops */
-    size = ownreqp->size;
-    if (size == 0) size = UNIT;
-    clu_alloc(size, &temp_owns);
-    temp->op_owns = (OWNPTR)temp_owns;
+    size_t owns_size = ownreqp->size;
+    if (owns_size == 0)
+	owns_size = offsetof(OWN_ptr, info); /* just the flag */
+    OWNPTR owns;
+    clu_alloc(owns_size, &owns);
+    // owns->init_flag = 0; // allocated memory is already zeroed out
+    ops->op_owns = owns;
 
-    /* build parm tables for op and stick them into the op owns */
+    /*
+     * Put parm values into the own structure:
+     *   put const value for const parameters
+     *   build parm table per reqs for type parameters
+     */
+    long odefs = 0;
+    for (long i = 0; i < nparm - ntparm; ++i) {
+	/* Pointer to a field in the instance's _OWN_DEFN structure */
+	long *fieldp = owns->info + ownreqp->own_count - 1;
 
-    /*   put const value for const parameters */
-    /*   build parm table per reqs for type parameters and put in owns */
-    odefs = 0;
-    for (i = 0; i < nparm-ntparm; i++) {
 	if (inst_info_reqs[ntparm+i] == NULL) {
-	    temp_owns[i+ownreqp->own_count]
-		= inst_info_value[ntparm+i];
-	    continue;
+	    /* a constant parameter */
+	    *fieldp = inst_info_value[ntparm + i];
 	}
-	build_parm_table2(inst_info_reqs[ntparm+i],
-			  (struct OPS *)inst_info_value[ntparm+i],
-			  (struct OPS **)&temp_owns[i+ownreqp->own_count],
-			  &odefs);
+	else {
+	    /* a type parameter */
+	    struct OPS *parm_ops = (struct OPS *)inst_info_value[ntparm + i];
+	    build_parm_table2(inst_info_reqs[ntparm + i], parm_ops,
+			      (struct OPS **)fieldp,
+			      &odefs);
+	}
     }
 
     /* save result for the future */
-    add_ops(aops, procaddr, nparm, temp, tdefs, odefs);
+    add_ops(aops, procaddr, nparm, ops, tdefs, odefs);
 
-    /* hand the result back to the caller */
-    *result = temp;
+    *result = ops;
     signal(ERR_ok);
 }
 
