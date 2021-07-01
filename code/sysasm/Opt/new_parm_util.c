@@ -49,9 +49,8 @@ static void add_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 static bool find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 		     struct OPS **ptr_to_opsptr);
 
-static errcode build_parm_ops_table2(struct OPS *base_ops,
-				     long nparams, OWNPTR inst_owns,
-				     struct OPS **ans);
+static errcode build_type_ops(struct OPS *aops, long nparams, OWNPTR owns,
+			      struct OPS **table);
 static errcode build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 				 struct OPS **table, long *defs);
 static errcode update_parm_table2(const struct REQS *reqs, struct OPS *ops,
@@ -123,7 +122,7 @@ find_type_instance(struct OPS *aops,
 
     /* allocate and build ops table */
     struct OPS *ops;
-    build_parm_ops_table2(aops, nparm, owns, &ops);
+    build_type_ops(aops, nparm, owns, &ops);
 
     /*
      * Put parm values into the own structure:
@@ -460,31 +459,40 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 }
 
 
-/* nparams - input to proctype$new, to be obsolete */
+/*
+ * Instantiate type ops: create a copy of the abstract ops template
+ * and fill it with instantiated type owns.
+ *
+ * "nparams" is only used as input to proctype$new, to be obsoleted.
+ */
 static errcode
-build_parm_ops_table2(struct OPS *base_ops, long nparams, OWNPTR inst_owns,
-		      struct OPS **ans)
+build_type_ops(struct OPS *aops, long nparams, OWNPTR owns, struct OPS **table)
 {
-    long i, size;
     errcode err;
-    CLUREF temp2, num;
-    struct OPS *temp;
 
-    size = sizeof(struct OPS) + (base_ops->count - 1) * sizeof(struct OP_ENTRY);
-    clu_alloc(size, &temp);
-    temp->count = base_ops->count;
-    temp->type_owns = inst_owns;
-    for (i = 0; i < base_ops->count; i++) {
-	temp->entry[i].name  = base_ops->entry[i].name;
-	num.num = nparams;
-	err = proctypeOPnew(num, &temp2);
-	if (err != ERR_ok) resignal(err);
-	temp->entry[i].fcn = temp2.proc;
-	temp->entry[i].fcn->proc = base_ops->entry[i].fcn->proc;
-	temp->entry[i].fcn->type_owns = inst_owns;
-	temp->entry[i].fcn->op_owns = inst_owns;
+    size_t size = offsetof(struct OPS, entry)		/* header */
+	+ aops->count * sizeof(struct OP_ENTRY);	/* entries */
+
+    struct OPS *ops;
+    clu_alloc(size, &ops);
+    ops->count = aops->count;
+    ops->type_owns = owns;
+
+    for (long i = 0; i < aops->count; ++i) {
+	CLUREF proc;
+	err = proctypeOPnew(CLUREF_make_num(nparams), &proc);
+	if (err != ERR_ok)
+	    resignal(err);
+
+	proc.proc = aops->entry[i].fcn;
+	proc.proc->type_owns = owns;
+	proc.proc->op_owns = owns;
+
+	ops->entry[i].fcn = proc.proc;
+	ops->entry[i].name = aops->entry[i].name;
     }
-    *ans = temp;
+
+    *table = ops;
     signal(ERR_ok);
 }
 
