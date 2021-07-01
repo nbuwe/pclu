@@ -497,38 +497,6 @@ build_type_ops(struct OPS *aops, long nparams, OWNPTR owns, struct OPS **table)
 }
 
 
-#if 0 /* OBSOLETE */
-/* insert table describing type parameter */
-errcode
-init_parm_ops_table_tentry(full_ops_table, nth, nth_ops_table)
-  struct OPS *full_ops_table;
-  long nth;
-  struct OPS *nth_ops_table;
-{
-    long i;
-    for (i = 0; i < full_ops_table->count; i++) {
-	full_ops_table->entry[i].fcn->tables[nth] = nth_ops_table;
-    }
-    signal(ERR_ok);
-}
-
-
-/* insert table describing constant parameter */
-errcode
-init_parm_ops_table_centry(full_ops_table, nth, nth_ops_val)
-  struct OPS *full_ops_table;
-  long nth;
-  CLUREF nth_ops_val;
-{
-    long i;
-    for (i = 0; i < full_ops_table->count; i++) {
-	full_ops_table->entry[i].fcn->const_parms[nth]
-	    = nth_ops_val.num;
-    }
-    signal(ERR_ok);
-}
-#endif	/* 0 */
-
 
 /* storage for following routine */
 
