@@ -105,50 +105,58 @@ find_type_instance(struct OPS *aops,
 		   long nparm, const OWN_req *ownreqp,
 		   struct OPS **result)
 {
-    long ans, i, size, tdefs;
-    long *temp_owns;
-    struct OPS *temp;
-
     /* see if the ops table already exists */
-    ans = find_ops(aops, 0, nparm, result);
-    if (ans == true) {
+    bool already = find_ops(aops, 0, nparm, result);
+    if (already) {
 	if (current_tdefs != 0)
 	    update_type_ops(nparm, ownreqp, result);
 	signal(ERR_ok);
     }
 
-    /* it doesn't exist: build it */
-
     /* allocate type owns */
-    size = ownreqp->size;
-    if (size == 0) size = UNIT;
-    clu_alloc(size, &temp_owns);
-    temp_owns[0] = 0;
+    size_t owns_size = ownreqp->size;
+    if (owns_size == 0)
+	owns_size = offsetof(OWN_ptr, info); /* just the flag */
+    OWNPTR owns;
+    clu_alloc(owns_size, &owns);
+    owns->init_flag = 0;
 
     /* allocate and build ops table */
-    build_parm_ops_table2(aops, nparm, (OWNPTR)temp_owns, &temp);
+    struct OPS *ops;
+    build_parm_ops_table2(aops, nparm, owns, &ops);
 
-    /* put parm values into own structure */
-    /*   put const value for const parameters */
-    /*   build parm table per reqs for type parameters and put in owns */
-    tdefs = 0;
-    for (i = 0; i < nparm; i++) {
+    /*
+     * Put parm values into the own structure:
+     *   put const value for const parameters
+     *   build parm table per reqs for type parameters
+     */
+    long tdefs = 0;
+    for (long i = 0; i < nparm; ++i) {
+	/* Pointer to a field in the instance's _OWN_DEFN structure */
+	long *fieldp = owns->info + ownreqp->own_count - 1;
+
 	if (inst_info_reqs[i] == NULL) {
-	    temp_owns[i+ownreqp->own_count] = inst_info_value[i];
-	    continue;
+	    /* a constant parameter */
+	    *fieldp = inst_info_value[i];
 	}
-	build_parm_table2(inst_info_reqs[i],
-			  (struct OPS*)inst_info_value[i],
-			  (struct OPS**)&temp_owns[i+ownreqp->own_count],
-			  &tdefs);
+	else {
+	    /* a type parameter */
+	    struct OPS *parm_ops = (struct OPS *)inst_info_value[i];
+
+	    /* extract from parm_ops what's required of them */
+	    build_parm_table2(inst_info_reqs[i], parm_ops,
+			      (struct OPS **)fieldp,
+			      &tdefs);
+	}
     }
 
     /* save the result for the future */
-    add_ops(aops, 0, nparm, temp, tdefs, 0);
-    fti_tdefs = tdefs;	/* for use by find_typeop_instance */
+    add_ops(aops, NULL, nparm, ops, tdefs, 0);
 
-    /* hand the result back to the caller */
-    *result = temp;
+    /* save for use by subsequent find_typeop_instance calls */
+    fti_tdefs = tdefs;
+
+    *result = ops;
     signal(ERR_ok);
 }
 
