@@ -10,7 +10,7 @@
  * the compiler generates C code like:
  *
  *   // built-in (sequence.c)
- *   extern struct OPS *sequence_ops;        // the template
+ *   extern struct OPS *sequence_ops;        // the template (abstract ops)
  *   extern struct REQS *sequence_of_t_reqs; // what it needs of T
  *   extern const OWN_req sequence_ownreqs;  // how to instantiate owns
  *
@@ -26,6 +26,16 @@
  *   // build ops
  *   find_type_instance(sequence_ops, 1, &sequence_ownreqs,
  *       &sequence_of_foo_ops);
+ *
+ * Similarly standalone parmd procedure or iterator are instantiated
+ * with find_prociter_instance() and parmd operations of a type are
+ * instantiated with find_typeop_instance().
+ *
+ * OWNREQ tells how to allocate and init the OWNPTR data for the
+ * instance.  The compiler defines the paramd code's view of its
+ * ownptr as a foo_OWN_DEFN structure where OWN_ptr::info[] elements
+ * are separate, named fields that contain space for own variables and
+ * for the parameters ops/constants.
  */
 
 #include "pclu_err.h"
@@ -87,14 +97,8 @@ add_parm_info_const(long index, CLUREF value)
 
 
 /*
- * Create or find existing instance of ops template "aops" (abstract
- * ops) parameterized with "nparm" inst_info_*[] parameters.
- *
- * "ownreq" tells how to allocate and init the OWNPTR data.  The
- * compiler defines the paramd code's view of its ownptr as an
- * foo_OWN_DEFN structure where OWN_ptr::info[] elements are separate,
- * named fields that contain space for own variables and for the
- * parameters ops/constants.
+ * Create (or find existing) instance of type ops template "aops"
+ * (abstract ops) parameterized with "nparm" inst_info_*[] parameters.
  */
 errcode
 find_type_instance(struct OPS *aops,
@@ -149,54 +153,14 @@ find_type_instance(struct OPS *aops,
 }
 
 
-errcode
-find_typeop_instance_old(struct OPS *aops,
-			 long nparm, long ntparm,
-			 const OWN_req *ownreqp, const OWN_req *townreqp,
-			 struct OPS **result)
-{
-    long ans, i, size, tdefs;
-    struct OPS *temp;
-    long *temp_owns;
-
-    /* look up type/op instance and return it if it exists */
-    ans = find_ops(aops, 0, nparm, result);
-    if (ans == true)
-	signal(ERR_ok);
-
-    /* it doesn't exist: make find_type_instance find/build type instance */
-    find_type_instance(aops, ntparm, townreqp, &temp);
-
-    /* allocate op own structure & put into type ops */
-    size = ownreqp->size;
-    if (size == 0) size = UNIT;
-    clu_alloc(size, &temp_owns);
-    temp->op_owns = (OWNPTR)temp_owns;
-
-    /* build parm tables for op and stick them into the op owns */
-
-    /*   put const value for const parameters */
-    /*   build parm table per reqs for type parameters and put in owns */
-    for (i = 0; i < nparm-ntparm; i++) {
-	if (inst_info_reqs[ntparm+i] == NULL) {
-	    temp_owns[i+ownreqp->own_count]
-		= inst_info_value[ntparm+i];
-	    continue;
-	}
-	build_parm_table2(inst_info_reqs[ntparm+i],
-			  (struct OPS *)inst_info_value[ntparm+i],
-			  (struct OPS **)&temp_owns[i+ownreqp->own_count],
-			  &tdefs);
-    }
-
-    /* save result for the future */
-    add_ops(aops, 0, nparm, temp, 0, 0);
-
-    /* hand the result back to the caller */
-    *result = temp;
-    signal(ERR_ok);
-}
-
+/*
+ * Create (or find existing) instance of own data for a parmd op of a
+ * type.  The type may be parmd or unparmd.  The result is OPS, but a
+ * degenerate one, with only the type and op ownptrs and no entries.
+ *
+ * inst_info_*[] parameters contains "nparm" parameters of which the
+ * first "ntparm" are the parameters for the type (may be 0).
+ */
 errcode
 find_typeop_instance(struct OPS *aops,
 		     errcode (*procaddr)(),
@@ -258,6 +222,11 @@ find_typeop_instance(struct OPS *aops,
 }
 
 
+/*
+ * Create (or find existing) instance of own data for a parmd
+ * procedure or iterator.  The result is OPS, but a degenerate one,
+ * with only the op ownptr and no entries.
+ */
 errcode
 find_prociter_instance(errcode (*procaddr)(),
 		       long nparm, const OWN_req *ownreqp,
