@@ -246,49 +246,56 @@ find_prociter_instance(errcode (*procaddr)(),
 		       long nparm, const OWN_req *ownreqp,
 		       struct OPS **result)
 {
-    long ans, i, size, odefs;
-    struct OPS *temp;
-    long *temp_owns;
-
     /* look up type/op instance and return it if it exists */
-    ans = find_ops((struct OPS*)0, procaddr, nparm, result);
-    if (ans == true) {
+    bool already = find_ops(NULL, procaddr, nparm, result);
+    if (already) {
 	if (current_odefs != 0)
 	    update_op_ops(nparm, 0, ownreqp, result);
 	signal(ERR_ok);
     }
 
     /* build ops structure */
-    clu_alloc(sizeof(struct OPS), &temp);
-    temp->type_owns = 0;
+    struct OPS *ops;
+    clu_alloc(sizeof(struct OPS), &ops);
+    ops->type_owns = NULL;
 
     /* build own structure */
-    size = ownreqp->size;
-    if (size == 0) size = UNIT;
-    clu_alloc(size, &temp_owns);
-    temp->op_owns = (OWNPTR)temp_owns;
+    size_t owns_size = ownreqp->size;
+    if (owns_size == 0)
+	owns_size = offsetof(OWN_ptr, info); /* just the flag */
+    OWNPTR owns;
+    clu_alloc(owns_size, &owns);
+    // owns->init_flag = 0; // allocated memory is already zeroed out
+    ops->op_owns = owns;
 
-    /* build parm tables for op and stick them into the op owns */
+    /*
+     * Put parm values into the own structure:
+     *   put const value for const parameters
+     *   build parm table per reqs for type parameters
+     */
+    long odefs = 0;
+    for (long i = 0; i < nparm; ++i) {
+	/* Pointer to a field in the instance's _OWN_DEFN structure */
+	long *fieldp = owns->info + (ownreqp->own_count - 1) + i;
 
-    /*   put const value for const parameters */
-    /*   build parm table per reqs for type parameters and put in owns */
-    odefs = 0;
-    for (i = 0; i < nparm; i++) {
 	if (inst_info_reqs[i] == NULL) {
-	    temp_owns[i+ownreqp->own_count] = inst_info_value[i];
-	    continue;
+	    /* a constant parameter */
+	    *fieldp = inst_info_value[i];
 	}
-	build_parm_table2(inst_info_reqs[i],
-			  (struct OPS*)inst_info_value[i],
-			  (struct OPS**)&temp_owns[i+ownreqp->own_count],
-			  &odefs);
+	else {
+	    /* a type parameter */
+	    struct OPS *parm_ops = (struct OPS *)inst_info_value[i];
+
+	    build_parm_table2(inst_info_reqs[i], parm_ops,
+			      (struct OPS **)fieldp,
+			      &odefs);
+	}
     }
 
     /* save result for the future */
-    add_ops((struct OPS*)0, procaddr, nparm, temp, 0, odefs);
+    add_ops(NULL, procaddr, nparm, ops, 0, odefs);
 
-    /* hand the result back to the caller */
-    *result = temp;
+    *result = ops;
     signal(ERR_ok);
 }
 
