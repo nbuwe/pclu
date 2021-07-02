@@ -503,7 +503,8 @@ errcode  (*ops_proc[MAX_INSTS])();   /* abstract proc */
 OPSPTR	opsptr_arr[MAX_INSTS]; /* instantiated ops */
 
 long *parm_vals[MAX_INSTS][MAX_PARMS];
-long *parm_types[MAX_INSTS][MAX_PARMS]; /* 0 => const, !0 => type */
+const struct REQS *parm_reqs[MAX_INSTS][MAX_PARMS]; /* NULL => const, else => type */
+
 long  parm_types_defs[MAX_INSTS]; /* count of missing fcns on type*/
 long  parm_ops_defs[MAX_INSTS]; /* count of missing fcns per op/proc*/
 long num_entries = 0;
@@ -518,8 +519,8 @@ find_ops_init(OWNPTR *ans1, OWNREQ *ans2, void **ans3)
 	ops_arr[i] = 0;
 	ops_proc[i] = 0;
 	for (size_t j = 0; j < MAX_PARMS; j++) {
-	    parm_vals[i][j]  = (long *) 0;
-	    parm_types[i][j] = (long *) 0;
+	    parm_vals[i][j] = NULL;
+	    parm_reqs[i][j] = NULL;
 	}
     }
 #endif
@@ -553,7 +554,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 
 	    /* ownreqs matches: see if instance information lines up */
 	    for (j = 0 ; j < nparm; j++) {
-		if (parm_types[i][j] == 0) {
+		if (parm_reqs[i][j] == NULL) {
 		    /* make sure instance is a constant */
 		    /* and check constant value equality */
 		    if (inst_info_reqs[j] == NULL
@@ -614,7 +615,7 @@ add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
     for (j = 0 ; j < nparm; j++) {
 	parm_vals[num_entries][j] = (long*)inst_info_value[j];
 	/* save const/type ind */
-	parm_types[num_entries][j] = (long*)inst_info_reqs[j]; 
+	parm_reqs[num_entries][j] = inst_info_reqs[j];
     }
 
     num_entries++;
