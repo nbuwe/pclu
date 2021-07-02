@@ -41,16 +41,17 @@ get_jcl(CLUREF *ans)
 
     size_t size = 0;
     for (int i = 1; i < argc; ++i)
-	size += strlen(argv[i]) + 1; /* for space or NUL */
+	size += strlen(argv[i]) + 1; /* for space */
 
     stringOPcons0(CLUREF_make_num(size), &jcl);
 
     char *dst = jcl.str->data;
     for (int i = 1; i < argc; ++i) {
-	if (i != 1)
-	    *dst++ = ' ';
 	for (const char *src = argv[i]; *src != '\0'; ++src, ++dst)
 	    *dst = *src;
+
+	/* this is what original code did, always adding trailing space */
+	*dst++ = ' ';
     }
 
     *ans = jcl;
