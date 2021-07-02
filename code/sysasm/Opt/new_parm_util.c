@@ -370,7 +370,7 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 	    if (name1 == 0 || name1[0] != name[0])
 		continue;
 	    if (!(strcmp(name1, name))) {
-		*defs--;
+		--*defs;
 		temp->entry[i].name = name1;
 		temp->entry[i].fcn = ops->entry[j].fcn;
 		break;
@@ -386,7 +386,7 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 	if (!(strcmp(name1, "debug_print"))) {
 	    temp->entry[i].name = name1;
 	    temp->entry[i].fcn = ops->entry[j].fcn;
-	    *defs--;
+	    --*defs;
 	    break;
 	}
     }
@@ -470,7 +470,7 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 	    if (name1 == 0 || name1[0] != name[0])
 		continue;
 	    if (!(strcmp(name1, name))) {
-		*defs--;
+		--*defs;
 		temp->entry[i].name = name1;
 		temp->entry[i].fcn = ops->entry[j].fcn;
 		break;
@@ -484,7 +484,7 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 	if (name1 == 0)
 	    continue;
 	if (!(strcmp(name1, "debug_print"))) {
-	    *defs--;
+	    --*defs;
 	    temp->entry[i].name = name1;
 	    temp->entry[i].fcn = ops->entry[j].fcn;
 	    break;
