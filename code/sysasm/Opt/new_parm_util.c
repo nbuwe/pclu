@@ -44,12 +44,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void add_ops(struct OPS *aops, errcode (*procaddr)(), long count,
+static void add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 		    struct OPS *new_ops, long tdefs, long odefs);
-static bool find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
+static bool find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 		     struct OPS **ptr_to_opsptr);
 
-static errcode build_type_ops(struct OPS *aops, long nparams, OWNPTR owns,
+static errcode build_type_ops(struct OPS *aops, long nparm, OWNPTR owns,
 			      struct OPS **table);
 static errcode build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 				 struct OPS **table, long *defs);
@@ -303,10 +303,10 @@ find_prociter_instance(errcode (*procaddr)(),
  * Instantiate type ops: create a copy of the abstract ops template
  * and fill it with instantiated type owns.
  *
- * "nparams" is only used as input to proctype$new, to be obsoleted.
+ * "nparm" is only used as input to proctype$new, to be obsoleted.
  */
 static errcode
-build_type_ops(struct OPS *aops, long nparams, OWNPTR owns, struct OPS **table)
+build_type_ops(struct OPS *aops, long nparm, OWNPTR owns, struct OPS **table)
 {
     errcode err;
 
@@ -320,7 +320,7 @@ build_type_ops(struct OPS *aops, long nparams, OWNPTR owns, struct OPS **table)
 
     for (long i = 0; i < aops->count; ++i) {
 	CLUREF proc;
-	err = proctypeOPnew(CLUREF_make_num(nparams), &proc);
+	err = proctypeOPnew(CLUREF_make_num(nparm), &proc);
 	if (err != ERR_ok)
 	    resignal(err);
 
@@ -532,7 +532,7 @@ find_ops_init(OWNPTR *ans1, OWNREQ *ans2, void **ans3)
 /* routine to find ops given type and instance information */
 
 static bool
-find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
+find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 	 struct OPS **ptr_to_opsptr)
 {
     long i, j;
@@ -540,7 +540,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
     struct OPS *new_owns, *ops1, *ops2;
 
     /* if too many parms, then die */
-    if (count >= MAX_PARMS) {
+    if (nparm >= MAX_PARMS) {
 	fprintf(stderr,
 		"find_ops: too many parameters: increase MAX_PARMS\n");
 	exit(-10);
@@ -552,7 +552,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 	    found = true;
 
 	    /* ownreqs matches: see if instance information lines up */
-	    for (j = 0 ; j < count; j++) {
+	    for (j = 0 ; j < nparm; j++) {
 		if (parm_types[i][j] == 0) {
 		    /* make sure instance is a constant */
 		    /* and check constant value equality */
@@ -602,7 +602,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 
 
 static void
-add_ops(struct OPS *aops, errcode (*procaddr)(), long count,
+add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 	struct OPS *new_ops, long tdefs, long odefs)
 {
     long j;
@@ -611,7 +611,7 @@ add_ops(struct OPS *aops, errcode (*procaddr)(), long count,
     opsptr_arr[num_entries] = new_ops;
     parm_types_defs[num_entries] = tdefs;
     parm_ops_defs[num_entries] = odefs;
-    for (j = 0 ; j < count; j++) {
+    for (j = 0 ; j < nparm; j++) {
 	parm_vals[num_entries][j] = (long*)inst_info_value[j];
 	/* save const/type ind */
 	parm_types[num_entries][j] = (long*)inst_info_reqs[j]; 
