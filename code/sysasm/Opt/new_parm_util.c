@@ -606,23 +606,21 @@ static void
 add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 	struct OPS *new_ops, long tdefs, long odefs)
 {
-    long j;
-    ops_arr[num_entries] = aops;
-    ops_proc[num_entries] = procaddr;
-    opsptr_arr[num_entries] = new_ops;
-    parm_types_defs[num_entries] = tdefs;
-    parm_ops_defs[num_entries] = odefs;
-    for (j = 0 ; j < nparm; j++) {
-	parm_vals[num_entries][j] = inst_info_value[j];
-	/* save const/type ind */
-	parm_reqs[num_entries][j] = inst_info_reqs[j];
-    }
-
-    num_entries++;
-    if (num_entries == MAX_INSTS) {
+    long slot = num_entries++;
+    if (num_entries == MAX_INSTS) { /* XXX: sic */
 	fprintf(stderr,
 		"add_ops: too many instantiations: increase MAX_INSTS\n");
 	exit(-10);
+    }
+
+    ops_arr[slot] = aops;
+    ops_proc[slot] = procaddr;
+    opsptr_arr[slot] = new_ops;
+    parm_types_defs[slot] = tdefs;
+    parm_ops_defs[slot] = odefs;
+    for (long j = 0 ; j < nparm; ++j) {
+	parm_vals[slot][j] = inst_info_value[j];
+	parm_reqs[slot][j] = inst_info_reqs[j];
     }
 }
 
@@ -630,6 +628,7 @@ add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 static void
 update_ops(void)
 {
+    /* XXX: this is kinda suspect */
     parm_types_defs[num_entries] = current_tdefs;
     parm_ops_defs[num_entries] = current_odefs;
 }
