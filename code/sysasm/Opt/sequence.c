@@ -66,7 +66,7 @@ typedef struct {
  * Own data of a sequence[T] instance.
  */
 typedef struct /* OWN_ptr */ {
-    long array_own_init;	/* unused */
+    long sequence_own_init;	/* unused */
     const sequence_of_t_OPS * const t_ops;
 } sequence_OWN_DEFN;
 
