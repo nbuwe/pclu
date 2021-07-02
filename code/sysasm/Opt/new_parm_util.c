@@ -47,7 +47,7 @@
 static void add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 		    struct OPS *new_ops, long tdefs, long odefs);
 static bool find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
-		     struct OPS **ptr_to_opsptr);
+		     struct OPS **table);
 
 static errcode build_type_ops(struct OPS *aops, long nparm, OWNPTR owns,
 			      struct OPS **table);
@@ -534,7 +534,7 @@ find_ops_init(OWNPTR *ans1, OWNREQ *ans2, void **ans3)
 
 static bool
 find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
-	 struct OPS **ptr_to_opsptr)
+	 struct OPS **table)
 {
     long i, j;
     bool found = false;
@@ -591,7 +591,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 
     if (found) {
 	/* entry found: return owns */
-	*ptr_to_opsptr = opsptr_arr[i];
+	*table = opsptr_arr[i];
 	current_tdefs = parm_types_defs[i];
 	current_odefs = parm_ops_defs[i];
 	return true;
