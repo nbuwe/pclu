@@ -498,16 +498,16 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 
 /* storage for following routine */
 
-OPSPTR  ops_arr[MAX_INSTS];   /* abstract ops */
-errcode  (*ops_proc[MAX_INSTS])();   /* abstract proc */
-OPSPTR	opsptr_arr[MAX_INSTS]; /* instantiated ops */
+static OPSPTR ops_arr[MAX_INSTS];	 /* abstract ops */
+static errcode (*ops_proc[MAX_INSTS])(); /* abstract proc */
+static OPSPTR opsptr_arr[MAX_INSTS];	 /* instantiated ops */
 
-long parm_vals[MAX_INSTS][MAX_PARMS];
-const struct REQS *parm_reqs[MAX_INSTS][MAX_PARMS]; /* NULL => const, else => type */
+static long parm_vals[MAX_INSTS][MAX_PARMS];
+static const struct REQS *parm_reqs[MAX_INSTS][MAX_PARMS]; /* NULL => const */
 
-long  parm_types_defs[MAX_INSTS]; /* count of missing fcns on type*/
-long  parm_ops_defs[MAX_INSTS]; /* count of missing fcns per op/proc*/
-long num_entries = 0;
+static long parm_types_defs[MAX_INSTS]; /* count of missing fcns on type */
+static long parm_ops_defs[MAX_INSTS];   /* count of missing fcns per op/proc */
+static long num_entries = 0;
 
 /* routine to initialize structures used by find_ops */
 void
