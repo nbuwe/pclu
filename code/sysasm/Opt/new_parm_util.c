@@ -498,9 +498,9 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 
 /* storage for following routine */
 
-OWNREQ  ops_arr[MAX_INSTS];   /* abstract ops */
+OPSPTR  ops_arr[MAX_INSTS];   /* abstract ops */
 errcode  (*ops_proc[MAX_INSTS])();   /* abstract proc */
-OWNPTR	opsptr_arr[MAX_INSTS]; /* instantiated ops */
+OPSPTR	opsptr_arr[MAX_INSTS]; /* instantiated ops */
 
 long *parm_vals[MAX_INSTS][MAX_PARMS];
 long *parm_types[MAX_INSTS][MAX_PARMS]; /* 0 => const, !0 => type */
@@ -548,7 +548,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 
     /* first match ownreqs to ownreq_arr entries */
     for (i = 0; i < num_entries; i++) {
-	if (aops == (struct OPS *)ops_arr[i] && procaddr == ops_proc[i]) {
+	if (aops == ops_arr[i] && procaddr == ops_proc[i]) {
 	    found = true;
 
 	    /* ownreqs matches: see if instance information lines up */
@@ -590,7 +590,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 
     if (found) {
 	/* entry found: return owns */
-	*ptr_to_opsptr = (struct OPS *)opsptr_arr[i];
+	*ptr_to_opsptr = opsptr_arr[i];
 	current_tdefs = parm_types_defs[i];
 	current_odefs = parm_ops_defs[i];
 	return true;
@@ -606,9 +606,9 @@ add_ops(struct OPS *aops, errcode (*procaddr)(), long count,
 	struct OPS *new_ops, long tdefs, long odefs)
 {
     long j;
-    ops_arr[num_entries] = (OWNREQ)aops;
+    ops_arr[num_entries] = aops;
     ops_proc[num_entries] = procaddr;
-    opsptr_arr[num_entries] = (OWNPTR)new_ops;
+    opsptr_arr[num_entries] = new_ops;
     parm_types_defs[num_entries] = tdefs;
     parm_ops_defs[num_entries] = odefs;
     for (j = 0 ; j < count; j++) {
