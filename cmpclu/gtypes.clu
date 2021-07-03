@@ -176,18 +176,26 @@ sig = cluster is name, lookup, index
 
     end sig
 
+
+% pclu_sys.h predefines CLU_n constants for small ints.  This was
+% important in the K&R days because there were no struct literals and
+% constants that were not predefined like that had to be passed via a
+% temporary variable.
+%
+% With ANSI C we have CLUREF_make_num(n) macro (that wraps compound
+% literal syntax) that can always be used.  Switching to that requires
+% a bit of associated cleanup, but this module will be obsoleted
+% eventually.
+
 int_const = cluster is exists, g_emit
+    rep = null
 
-    rep = int
-
-    own low: int := 0
-    own high: int := 50
+    low = 0
+    high = 50
 
     exists = proc(i: int) returns (bool)
-
-	if (low <= i cand i <= high) then return (true) end
-	return (false)
-	end exists
+	return (low <= i cand i <= high)
+      end exists
 
     g_emit = proc (e: g_env, i: int)
 	make_num: bool := ~exists(i)
@@ -197,7 +205,8 @@ int_const = cluster is exists, g_emit
 	if make_num then g_env$puts(e, ")") end
       end g_emit
 
-    end int_const
+  end int_const
+
 
 g_xref = cluster is add_ent, lookup, flush
     rep = null
