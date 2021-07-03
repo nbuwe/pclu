@@ -1359,7 +1359,7 @@ g_int_const1 = proc (e: g_env, i: int) returns (exprlist)
     end g_int_const1
 
 g_int_const = proc(e: g_env, i: int)
-    g_env$puts(e, "CLU_" || int$unparse(i))
+    int_const$g_emit(e, i)
     end g_int_const
 
 g_bool_const = proc(e: g_env, b: bool)

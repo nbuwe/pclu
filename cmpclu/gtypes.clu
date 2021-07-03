@@ -176,7 +176,7 @@ sig = cluster is name, lookup, index
 
     end sig
 
-int_const = cluster is exists
+int_const = cluster is exists, g_emit
 
     rep = int
 
@@ -188,6 +188,14 @@ int_const = cluster is exists
 	if (low <= i cand i <= high) then return (true) end
 	return (false)
 	end exists
+
+    g_emit = proc (e: g_env, i: int)
+	make_num: bool := ~exists(i)
+	if make_num then g_env$puts(e, "CLUREF_make_num(")
+	  else g_env$puts(e, "CLU_") end
+	g_env$puts(e, int$unparse(i))
+	if make_num then g_env$puts(e, ")") end
+      end g_emit
 
     end int_const
 
