@@ -45,19 +45,20 @@
 #include <stdlib.h>
 
 static void add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
-		    struct OPS *new_ops, long tdefs, long odefs);
+		    struct OPS *instance, long tdefs, long odefs);
 static bool find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
-		     struct OPS **table);
+		     struct OPS **instance);
 
 static errcode build_type_ops(struct OPS *aops, long nparm, OWNPTR owns,
-			      struct OPS **table);
+			      struct OPS **instance);
 static errcode build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 				 struct OPS **table, long *defs);
 static errcode update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 				  struct OPS **table, long *defs);
-static void update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **table);
+static void update_type_ops(long nparm, const OWN_req *ownreqp,
+			    struct OPS **instance);
 static void update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
-			  struct OPS **table);
+			  struct OPS **instance);
 static void update_ops(void);
 
 #define MAX_INSTS 500
@@ -104,7 +105,7 @@ find_type_instance(struct OPS *aops,
 		   long nparm, const OWN_req *ownreqp,
 		   struct OPS **result)
 {
-    /* see if the ops table already exists */
+    /* see if the instance already exists */
     bool already = find_ops(aops, 0, nparm, result);
     if (already) {
 	if (current_tdefs != 0)
@@ -120,7 +121,7 @@ find_type_instance(struct OPS *aops,
     clu_alloc(owns_size, &owns);
     // owns->init_flag = 0; // allocated memory is already zeroed out
 
-    /* allocate and build ops table */
+    /* allocate and build aops instance */
     struct OPS *ops;
     build_type_ops(aops, nparm, owns, &ops);
 
@@ -306,7 +307,7 @@ find_prociter_instance(errcode (*procaddr)(),
  * "nparm" is only used as input to proctype$new, to be obsoleted.
  */
 static errcode
-build_type_ops(struct OPS *aops, long nparm, OWNPTR owns, struct OPS **table)
+build_type_ops(struct OPS *aops, long nparm, OWNPTR owns, struct OPS **instance)
 {
     errcode err;
 
@@ -332,7 +333,7 @@ build_type_ops(struct OPS *aops, long nparm, OWNPTR owns, struct OPS **table)
 	ops->entry[i].name = aops->entry[i].name;
     }
 
-    *table = ops;
+    *instance = ops;
     signal(ERR_ok);
 }
 
@@ -402,9 +403,9 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
  * clauses.  Let's fill them in.
  */
 static void
-update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **table)
+update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **instance)
 {
-    long *owns = (long *)(*table)->type_owns;
+    long *owns = (long *)(*instance)->type_owns;
 
     long tdefs = current_tdefs;
     for (long i = 0; i < nparm; ++i) {
@@ -423,9 +424,9 @@ update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **table)
 
 static void
 update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
-	      struct OPS **table)
+	      struct OPS **instance)
 {
-    long *owns = (long *)(*table)->op_owns;
+    long *owns = (long *)(*instance)->op_owns;
 
     long odefs = current_odefs;
     for (long i = 0; i < nparm-ntparm; ++i) {
@@ -534,7 +535,7 @@ find_ops_init(OWNPTR *ans1, OWNREQ *ans2, void **ans3)
 
 static bool
 find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
-	 struct OPS **table)
+	 struct OPS **instance)
 {
     long i, j;
     bool found = false;
@@ -591,7 +592,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 
     if (found) {
 	/* entry found: return owns */
-	*table = opsptr_arr[i];
+	*instance = opsptr_arr[i];
 	current_tdefs = parm_types_defs[i];
 	current_odefs = parm_ops_defs[i];
 	return true;
@@ -604,7 +605,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 
 static void
 add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
-	struct OPS *new_ops, long tdefs, long odefs)
+	struct OPS *instance, long tdefs, long odefs)
 {
     long slot = num_entries++;
     if (num_entries == MAX_INSTS) { /* XXX: sic */
@@ -615,7 +616,7 @@ add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 
     ops_arr[slot] = aops;
     ops_proc[slot] = procaddr;
-    opsptr_arr[slot] = new_ops;
+    opsptr_arr[slot] = instance;
     parm_types_defs[slot] = tdefs;
     parm_ops_defs[slot] = odefs;
     for (long j = 0 ; j < nparm; ++j) {
