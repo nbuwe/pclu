@@ -30,12 +30,6 @@
  * Similarly standalone parmd procedure or iterator are instantiated
  * with find_prociter_instance() and parmd operations of a type are
  * instantiated with find_typeop_instance().
- *
- * OWNREQ tells how to allocate and init the OWNPTR data for the
- * instance.  The compiler defines the paramd code's view of its
- * ownptr as a foo_OWN_DEFN structure where OWN_ptr::info[] elements
- * are separate, named fields that contain space for own variables and
- * for the parameters ops/constants.
  */
 
 #include "pclu_err.h"
@@ -97,6 +91,27 @@ add_parm_info_const(long index, CLUREF value)
 
 
 /*
+ * OWNREQ tells how to allocate and init the OWNPTR data for an
+ * instance.  The compiler defines the parmd code's view of its ownptr
+ * as a foo_OWN_DEFN structure where OWN_ptr::info[] elements are
+ * separate, named fields that contain space for own variables and for
+ * the parameter ops/constants.
+ */
+static OWNPTR
+owns_alloc(const OWN_req *ownreqp)
+{
+    size_t owns_size = ownreqp->size;
+    if (owns_size == 0)
+	owns_size = offsetof(OWN_ptr, info); /* just the flag */
+
+    OWNPTR owns;
+    clu_alloc(owns_size, &owns);
+    // owns->init_flag = 0; // allocated memory is already zeroed out
+    return owns;
+}
+
+
+/*
  * Create (or find existing) instance of type ops template "aops"
  * (abstract ops) parameterized with "nparm" inst_parm_*[] parameters.
  */
@@ -113,13 +128,7 @@ find_type_instance(struct OPS *aops,
 	signal(ERR_ok);
     }
 
-    /* allocate type owns */
-    size_t owns_size = ownreqp->size;
-    if (owns_size == 0)
-	owns_size = offsetof(OWN_ptr, info); /* just the flag */
-    OWNPTR owns;
-    clu_alloc(owns_size, &owns);
-    // owns->init_flag = 0; // allocated memory is already zeroed out
+    OWNPTR owns = owns_alloc(ownreqp);
 
     /* allocate and build aops instance */
     struct OPS *ops;
@@ -186,23 +195,20 @@ find_typeop_instance(struct OPS *aops,
 	signal(ERR_ok);
     }
 
+    OWNPTR owns = owns_alloc(ownreqp);
+
     /* find/build type instance */
     struct OPS *type_ops;
     find_type_instance(aops, ntparm, townreqp, &type_ops);
     long tdefs = fti_tdefs;
 
-    /* build op ops structure */
+    /*
+     * Create dummy ops structure that is used only as a container for
+     * the op's ownptr.
+     */
     struct OPS *ops;
     clu_alloc(sizeof(struct OPS), &ops);
     ops->type_owns = type_ops->type_owns;
-
-    /* allocate op own structure & put into type ops */
-    size_t owns_size = ownreqp->size;
-    if (owns_size == 0)
-	owns_size = offsetof(OWN_ptr, info); /* just the flag */
-    OWNPTR owns;
-    clu_alloc(owns_size, &owns);
-    // owns->init_flag = 0; // allocated memory is already zeroed out
     ops->op_owns = owns;
 
     /*
@@ -254,18 +260,15 @@ find_prociter_instance(errcode (*procaddr)(),
 	signal(ERR_ok);
     }
 
-    /* build ops structure */
+    OWNPTR owns = owns_alloc(ownreqp);
+
+    /*
+     * Create dummy ops structure that is used only as a container for
+     * the op's ownptr.
+     */
     struct OPS *ops;
     clu_alloc(sizeof(struct OPS), &ops);
-    ops->type_owns = NULL;
-
-    /* build own structure */
-    size_t owns_size = ownreqp->size;
-    if (owns_size == 0)
-	owns_size = offsetof(OWN_ptr, info); /* just the flag */
-    OWNPTR owns;
-    clu_alloc(owns_size, &owns);
-    // owns->init_flag = 0; // allocated memory is already zeroed out
+    ops->type_owns = NULL;	/* doesn't belong to a type */
     ops->op_owns = owns;
 
     /*
