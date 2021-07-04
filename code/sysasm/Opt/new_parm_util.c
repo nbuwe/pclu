@@ -63,8 +63,8 @@ static void update_ops(void);
 #define MAX_INSTS 500
 #define MAX_PARMS 20
 
-static long inst_info_value[MAX_PARMS];
-static const struct REQS *inst_info_reqs[MAX_PARMS]; /* NULL for consts */
+static long inst_parm_value[MAX_PARMS];
+static const struct REQS *inst_parm_reqs[MAX_PARMS]; /* NULL for consts */
 static long current_tdefs;
 static long current_odefs;
 
@@ -78,8 +78,8 @@ static long fti_tdefs;
 void
 add_parm_info_type(long index, const struct OPS *ops, const struct REQS *reqs)
 {
-    inst_info_value[index] = (long)ops;
-    inst_info_reqs[index] = reqs;
+    inst_parm_value[index] = (long)ops;
+    inst_parm_reqs[index] = reqs;
 }
 
 
@@ -90,14 +90,14 @@ add_parm_info_type(long index, const struct OPS *ops, const struct REQS *reqs)
 void
 add_parm_info_const(long index, CLUREF value)
 {
-    inst_info_value[index] = value.num;
-    inst_info_reqs[index] = NULL;
+    inst_parm_value[index] = value.num;
+    inst_parm_reqs[index] = NULL;
 }
 
 
 /*
  * Create (or find existing) instance of type ops template "aops"
- * (abstract ops) parameterized with "nparm" inst_info_*[] parameters.
+ * (abstract ops) parameterized with "nparm" inst_parm_*[] parameters.
  */
 errcode
 find_type_instance(struct OPS *aops,
@@ -134,16 +134,16 @@ find_type_instance(struct OPS *aops,
 	/* Pointer to a field in the instance's _OWN_DEFN structure */
 	long *fieldp = owns->info + (ownreqp->own_count - 1) + i;
 
-	if (inst_info_reqs[i] == NULL) {
+	if (inst_parm_reqs[i] == NULL) {
 	    /* a constant parameter */
-	    *fieldp = inst_info_value[i];
+	    *fieldp = inst_parm_value[i];
 	}
 	else {
 	    /* a type parameter */
-	    struct OPS *parm_ops = (struct OPS *)inst_info_value[i];
+	    struct OPS *parm_ops = (struct OPS *)inst_parm_value[i];
 
 	    /* extract from parm_ops what's required of them */
-	    build_parm_table2(inst_info_reqs[i], parm_ops,
+	    build_parm_table2(inst_parm_reqs[i], parm_ops,
 			      (struct OPS **)fieldp,
 			      &tdefs);
 	}
@@ -165,7 +165,7 @@ find_type_instance(struct OPS *aops,
  * type.  The type may be parmd or unparmd.  The result is OPS, but a
  * degenerate one, with only the type and op ownptrs and no entries.
  *
- * inst_info_*[] parameters contains "nparm" parameters of which the
+ * inst_parm_*[] parameters contains "nparm" parameters of which the
  * first "ntparm" are the parameters for the type (may be 0).
  */
 errcode
@@ -214,14 +214,14 @@ find_typeop_instance(struct OPS *aops,
 	/* Pointer to a field in the instance's _OWN_DEFN structure */
 	long *fieldp = owns->info + (ownreqp->own_count - 1) + i;
 
-	if (inst_info_reqs[ntparm+i] == NULL) {
+	if (inst_parm_reqs[ntparm+i] == NULL) {
 	    /* a constant parameter */
-	    *fieldp = inst_info_value[ntparm + i];
+	    *fieldp = inst_parm_value[ntparm + i];
 	}
 	else {
 	    /* a type parameter */
-	    struct OPS *parm_ops = (struct OPS *)inst_info_value[ntparm + i];
-	    build_parm_table2(inst_info_reqs[ntparm + i], parm_ops,
+	    struct OPS *parm_ops = (struct OPS *)inst_parm_value[ntparm + i];
+	    build_parm_table2(inst_parm_reqs[ntparm + i], parm_ops,
 			      (struct OPS **)fieldp,
 			      &odefs);
 	}
@@ -277,15 +277,15 @@ find_prociter_instance(errcode (*procaddr)(),
 	/* Pointer to a field in the instance's _OWN_DEFN structure */
 	long *fieldp = owns->info + (ownreqp->own_count - 1) + i;
 
-	if (inst_info_reqs[i] == NULL) {
+	if (inst_parm_reqs[i] == NULL) {
 	    /* a constant parameter */
-	    *fieldp = inst_info_value[i];
+	    *fieldp = inst_parm_value[i];
 	}
 	else {
 	    /* a type parameter */
-	    struct OPS *parm_ops = (struct OPS *)inst_info_value[i];
+	    struct OPS *parm_ops = (struct OPS *)inst_parm_value[i];
 
-	    build_parm_table2(inst_info_reqs[i], parm_ops,
+	    build_parm_table2(inst_parm_reqs[i], parm_ops,
 			      (struct OPS **)fieldp,
 			      &odefs);
 	}
@@ -408,11 +408,11 @@ update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **table)
 
     long tdefs = current_tdefs;
     for (long i = 0; i < nparm; ++i) {
-	if (inst_info_reqs[i] == NULL) /* a constant parameter */
+	if (inst_parm_reqs[i] == NULL) /* a constant parameter */
 	    continue;
 
-	update_parm_table2(inst_info_reqs[i],
-			   (struct OPS *)inst_info_value[i],
+	update_parm_table2(inst_parm_reqs[i],
+			   (struct OPS *)inst_parm_value[i],
 			   (struct OPS **)&owns[i + ownreqp->own_count],
 			   &tdefs);
     }
@@ -429,11 +429,11 @@ update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
 
     long odefs = current_odefs;
     for (long i = 0; i < nparm-ntparm; ++i) {
-	if (inst_info_reqs[ntparm + i] == NULL) /* a constant parameter */
+	if (inst_parm_reqs[ntparm + i] == NULL) /* a constant parameter */
 	    continue;
 
-	update_parm_table2(inst_info_reqs[ntparm + i],
-			   (struct OPS *)inst_info_value[ntparm + i],
+	update_parm_table2(inst_parm_reqs[ntparm + i],
+			   (struct OPS *)inst_parm_value[ntparm + i],
 			   (struct OPS **)&owns[i + ownreqp->own_count],
 			   &odefs);
     }
@@ -557,8 +557,8 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 		if (parm_reqs[i][j] == NULL) {
 		    /* make sure instance is a constant */
 		    /* and check constant value equality */
-		    if (inst_info_reqs[j] == NULL
-			&& inst_info_value[j] == parm_vals[i][j])
+		    if (inst_parm_reqs[j] == NULL
+			&& inst_parm_value[j] == parm_vals[i][j])
 			continue;
 		    else {
 			found = false;
@@ -568,8 +568,8 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 		else {
 		    /* make sure isntance is a type */
 		    /* and check type match via type_owns */
-		    if (inst_info_reqs[j] != NULL) {
-			ops1 = (struct OPS*)inst_info_value[j];
+		    if (inst_parm_reqs[j] != NULL) {
+			ops1 = (struct OPS*)inst_parm_value[j];
 			ops2 = (struct OPS*)parm_vals[i][j];
 			if (ops1->type_owns == ops2->type_owns)
 			    continue;
@@ -619,8 +619,8 @@ add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
     parm_types_defs[slot] = tdefs;
     parm_ops_defs[slot] = odefs;
     for (long j = 0 ; j < nparm; ++j) {
-	parm_vals[slot][j] = inst_info_value[j];
-	parm_reqs[slot][j] = inst_info_reqs[j];
+	parm_vals[slot][j] = inst_parm_value[j];
+	parm_reqs[slot][j] = inst_parm_reqs[j];
     }
 }
 
