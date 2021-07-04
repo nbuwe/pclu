@@ -153,7 +153,7 @@ find_type_instance(struct OPS *aops,
     /* save the result for the future */
     add_ops(aops, NULL, nparm, ops, tdefs, 0);
 
-    /* save for use by subsequent find_typeop_instance calls */
+    /* "return" tdefs if called by find_typeop_instance */
     fti_tdefs = tdefs;
 
     *result = ops;
