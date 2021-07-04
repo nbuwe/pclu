@@ -345,7 +345,6 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
     long i,j;
     const char *name, *name1;
     struct OPS * temp;
-    errcode err;
 
     /* REQS -> OPS          \/          3/29/90 */
     clu_alloc(sizeof(struct OPS) +
@@ -539,7 +538,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 {
     long i, j;
     bool found = false;
-    struct OPS *new_owns, *ops1, *ops2;
+    struct OPS *ops1, *ops2;
 
     /* if too many parms, then die */
     if (nparm >= MAX_PARMS) {
