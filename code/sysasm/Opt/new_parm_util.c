@@ -338,7 +338,7 @@ build_type_ops(struct OPS *aops, long nparm, OWNPTR owns, struct OPS **instance)
 }
 
 
-errcode
+static errcode
 build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 		  struct OPS **table, long *defs)
 {
@@ -441,7 +441,7 @@ update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
 }
 
 
-errcode
+static errcode
 update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 		   struct OPS **table, long *defs)
 {
