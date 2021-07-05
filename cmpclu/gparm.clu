@@ -482,33 +482,10 @@ g_parm_table = proc(e: g_env, each_pb: pb)
     % pb_print(each_pb)
     tagcase each_pb
        tag apply, op:
-	   formals: idnlist := pb_formals(each_pb)
 	   actuals: exprlist := pb_actuals(each_pb)
 	   gen: DU := pb_gen(each_pb)
            op_name: string := ""
-	   if idnlist$size(formals) = exprlist$size(actuals) then
-	      index := 1
- 	      for each_parm:idn in idnlist$elements(formals) do
-	          op_name := ""
-		  if pb$is_op (each_pb) then
-		     if is_op_parm(each_parm, gen) then
-			tail: string := c_fixup_opname(pb$value_op(each_pb).name)
-			op_name := "_op_" || tail end
-		     end
-		  nm: string := gen.common || op_name || "_of_" 
-				  || s_expr4(actuals[index]) || "_table"
-		  if own_defn$test(nm) then
-		     % logit(98, "11 " || nm)
-		     dbg_info$add_own(nm)
-		     g_env$putl(e, "struct OPS *" || nm || ";")
-		     end
-		  index := index + 1
-		  end % for
-	      else
-   		   % logit(334, "gpt mismatch f,a :" || gen.common || " " 
-   			   % || int$unparse(idnlist$size(formals))
-   			   % || " " || int$unparse(exprlist$size(actuals)))
-	      end
+
 	   % INSTANTIATED TABLES
 	   parmct: int := exprlist$size(actuals)
 	   nm: string := ""
