@@ -91,7 +91,9 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	g_check_handlers(e, all_stmts)
 
 	% define params and owns
+	own_defn$start()
 	g_tbl$find_tables(e, all_stmts, definition$make_apply(a))
+	own_defn$stop()
 	g_const$find_consts(e, all_stmts)
 	owns$save(a.init)
 	if ~(current_apply$parmd() cor
@@ -1059,7 +1061,9 @@ g_typedefn = proc (e: g_env, t: typedefn)
     g_expr_proc_names(ext_names, s)
     g_externs(e, ext_names, s)
     ib$init()		% forget the for statement bodies
+    own_defn$start()
     g_tbl$find_tables(e, s, definition$make_cluster_(t))
+    own_defn$stop()
     g_tbl$prune()	% forget tables dependent on op parms
     parm$leave()
     dbg_info$set_own_context(e, "type", ~decllist$empty(t.parms))
