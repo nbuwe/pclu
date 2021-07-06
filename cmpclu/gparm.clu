@@ -520,28 +520,6 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 		 end
 	      end
 
-	   % INSTANCE INFO FOR FINDING OWNS
-	   if parmct ~= 0 then
-	      if pb$is_op(each_pb) then
-		 if is_op_parmd(each_pb) then
-		    tail: string := c_fixup_opname(pb$value_op(each_pb).name)
-		    op_name := "_op_" || tail end
-		 end
-	      sname: string := gen.common || op_name || "_of"
-	      for each_parm:expr in exprlist$elements(actuals) do
-		  sname := sname || "_" || s_expr4(each_parm)
-		  end
-	      % OWN PTR DECLARATION
-              % if g_env$add_global(sname || "_owns") then
-	      % changed preceding line to following 2 lines 12/4/91 dcurtis
-	      nm := sname || "_owns"
-	      if own_defn$test(nm) then
-		 % logit(98, "14 " || nm)
-		 dbg_info$add_own(nm)
-		 g_env$puts(e, "OWNPTR ")
-		 g_env$putl(e, nm || ";")
-		 end
-	      end
        tag a_cons(a:arraycons):
 	   % typespec_print(a.type_)
 	   tagcase (a.type_.abs)
@@ -554,9 +532,8 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 			 dbg_info$add_own(nm)
 			 g_env$putl(e, "struct OPS *" || nm || ";") end
 		      end % for
-		
-		  % INSTANTIATED OPS
 
+		  % INSTANTIATED OPS
 		  nm: string := ct.gen.common || "_of"
 		  for each_expr:expr in exprlist$elements(ct.parms) do
 		      nm := nm || "_" || s_expr4(each_expr)
@@ -567,16 +544,6 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 		     dbg_info$add_own(nm)
 		     g_env$putl(e, "struct OPS *" || nm || ";") end
 
-		  % OWN PTR
-	          nm := ct.gen.common || "_of"
-		  for each_parm:expr in exprlist$elements(ct.parms) do
-		      nm := nm || "_" s_expr4(each_parm)
-		      end
-		  nm := nm || "_owns"
-		  if own_defn$test(nm) then
-		     % logit(98, "17 " || nm)
-		     dbg_info$add_own(nm)
-		     g_env$putl(e, "OWNPTR " || nm || ";") end
 	      others:
 		  logit(619, "g_parm_blocks array type unhandled")
 		  typespec_print(a.type_)
@@ -585,9 +552,8 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 	   %	   nm: string := "_anyize_of_" || s_expr4(ex) || "_table"
 	   %	   if own_defn$test(nm) then
 	   %	      g_env$putl(e, "struct OPS *" || nm || ";") end
-		
-	   % INSTANTIATED OPS
 
+	   % INSTANTIATED OPS
 	   nm: string := "_anyize_of_" || s_name_typespec(ex.typespec) || "_ops"
 	   % logit (nm)
 	   if own_defn$test(nm) then
@@ -595,12 +561,6 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 	      dbg_info$add_own(nm)
 	      g_env$putl(e, "struct OPS *" || nm || ";") end
 
-	   % OWN PTR
-	   nm := "_anyize_of_" || s_name_typespec(ex.typespec) || "_owns"
-	   if own_defn$test(nm) then
-	      % logit(98, "19 " || nm)
-	      dbg_info$add_own(nm)
-	      g_env$putl(e, "OWNPTR " || nm || ";") end
        tag force_(ty: typespec):
 
 	   % INSTANTIATED OPS
@@ -610,12 +570,6 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 	      dbg_info$add_own(nm)
 	      g_env$putl(e, "struct OPS *" || nm || ";") end
 
-	   % OWN PTR
-	   nm := "_anyize_of_" || s_name_typespec(ty) || "_owns"
-	   if own_defn$test(nm) then
-	      % logit(98, "21 " || nm)
-	      dbg_info$add_own(nm)
-	      g_env$putl(e, "OWNPTR " || nm || ";") end
        others:
 	   logit(620, "g_parm_blocks: t/ainfo 1")
        end % tag
