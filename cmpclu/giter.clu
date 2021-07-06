@@ -149,35 +149,33 @@ ib = cluster is init, reset, add_body, gen_bodies, next_name,
 	    end
 
 	% put in standard return
-	g_env$putl(e, "{signal(ERR_ok);}")
+	g_env$blankline(e)
+	g_env$putl(e, "signal(ERR_ok);")
 
 	% put in default exception handler for iterator bodies
-	g_env$putl(e, ex$get_current_ex_label()||":")
-	g_env$indent(e)
-	g_env$putl(e, "{")
+	g_env$outdent(e)
+	g_env$putl(e, "  " || ex$get_current_ex_label() || ":")
 	g_env$indent(e)
 	g_env$puts(e, "*iecode = ")
 	g_err(e)
 	g_env$putl(e, ";")
-	if current_apply$is_iter() 
+	if current_apply$is_iter()
 	   then
 		g_locals(e)
 		g_env$putl(e, "body_ctrl_req = true;")
-		g_env$puts(e, "{signal(ERR_iteriterbodyexit);}")
+		g_env$putl(e, "signal(ERR_iteriterbodyexit);")
 	   else
-		g_env$puts(e, "{signal(ERR_iterbodyexit);}")
+		g_env$putl(e, "signal(ERR_iterbodyexit);")
 	   end
+
 	g_env$outdent(e)
-	g_env$outdent(e)
-	g_env$putl(e, "}")
-	g_env$newline(e)
-	g_env$puts(e, ex$get_current_end_label() || ": {signal(ERR_ok);}")
-	g_env$ensure_newline(e)
+	g_env$putl(e, "  " || ex$get_current_end_label() || ":")
+	g_env$indent(e)
+	g_env$putl(e, "signal(ERR_ok);")
 
 	% finish up
 	g_env$outdent(e)
-	g_env$puts(e, "}")
-	g_env$putl(e, "   /* end " || ibname || " */")
+	g_env$putl(e, "}")
 
 	loop_context$leave()
 	% restore_name()
