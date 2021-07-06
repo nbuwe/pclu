@@ -924,25 +924,25 @@ g_parm_build_one = proc(e: g_env, each_pb:pb)
 	   formals: idnlist := pb_formals(each_pb)
 	   actuals: exprlist := pb_actuals(each_pb)
 	   gen: DU := pb_gen(each_pb)
-	   yes: bool := false
+	   is_type: bool := false
 	   if pb$is_apply(each_pb) then
 	      ct:clutype := pb$value_apply(each_pb)
               specs: DUspecs, b:bool := du$read_specs(gen)
-              if ~DUspecs$is_none(specs) then
-		 if DUspecs$is_cluster_(specs) then yes := true end
-		 else
-		      yes := true  % to get sequence, array
-		 end
+	      % uwe: The old comment for the is_none case said "to get
+	      % sequence, array", but that seems to be true no more.
+	      % Similarly, in the code below sequence and array don't
+	      % seem to need explicit special treatment.
+	      is_type := DUspecs$is_none(specs)
+			   cor DUspecs$is_cluster_(specs)
 	      end
            type_name: string := gen.common
-	   if pb$is_op(each_pb) cor yes
+	   if is_type cor pb$is_op(each_pb)
 	      then
-		   %		   if pb$is_op(each_pb) cand parmd_type(gen) then
-		   if parmd_type(gen) 
+		   % PARMD TYPE
+		   if parmd_type(gen)
 			cor gen.common = "sequence"
 			cor gen.common = "array"
 		      then
-
 			   parm_count: int := cluster_parm_count(gen)
 			   if gen.common = "sequence" cor gen.common = "array"
 			      then parm_count := 1 end
@@ -971,8 +971,10 @@ g_parm_build_one = proc(e: g_env, each_pb:pb)
 		      else
 			   % logit("type not parameterized: " || gen.common)
 		      end
+
+		   % PARMD TYPE OP
 		   if pb$is_op(each_pb) cand is_op_parmd(each_pb) then
-		      % build ops table for instantiated type
+		      % build ops table for instantiated type op
 		      g_env$puts(e, "find_typeop_instance(")
 
 		      % TABLE OF ALL OPS (UNINSTANTIATED)
@@ -1009,8 +1011,10 @@ g_parm_build_one = proc(e: g_env, each_pb:pb)
 			  end
 		      g_env$putl(e, "_ops));")
 		      end
+
 	    elseif pb$is_apply(each_pb)
 	      then
+		   % PARMD PROC/ITER (that is not a type op)
 		   if parmd_dus(gen) then
 		      % build ops table for instantiated proc/iter
 		      g_env$puts(e, "find_prociter_instance(")
