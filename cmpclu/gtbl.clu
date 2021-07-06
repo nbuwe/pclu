@@ -511,7 +511,7 @@ g_tbl = cluster is Find_Tables, Build_Tables, G_Field_Tables, Exist, Prune
 	if own_defn$test(nm) then
 	   % logit(98, "g_sel_table " || nm)
 	   dbg_info$add_own(nm)
-	   g_env$putl(e, "struct OPS  *" || nm || ";")
+	   g_env$putl(e, "struct OPS *" || nm || ";")
 	   end
 	end g_sel_table
 
