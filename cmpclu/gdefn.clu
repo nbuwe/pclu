@@ -474,6 +474,8 @@ own_init = proc(ilist: initlist) returns (bool)
 % pass 1: generate typedefs
 
 g_pownvars_decl = proc (e: g_env, ilist: initlist)
+    defn_name: string := op_own_name()
+    % uwe: always equal to defn_name, afaict
     ref: string := current_apply$get_short_name()
     if string$empty(ref) then
        ref := current_type$get_name() end
@@ -492,7 +494,6 @@ g_pownvars_decl = proc (e: g_env, ilist: initlist)
 
    own_defn$start()
    g_tbl$g_field_tables(e, dynamic)
-   defn_name: string := op_own_name()
    own_defn$stop()
 
    g_env$outdent(e)
