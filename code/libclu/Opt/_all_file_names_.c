@@ -41,9 +41,8 @@ extern errcode arrayOPstore();
 extern errcode arrayOPaddh();
 extern errcode arrayOPelements();
 extern errcode boolOPnot();
-extern errcode _all_file_names__IB_1();
-extern errcode _all_file_names__IB_2();
-static CLUREF STR_;
+static errcode _all_file_names__IB_1();
+static errcode _all_file_names__IB_2();
 static CLUREF STR_HOME;
 static int _all_file_names__own_init = 0;
 CLUREF _all_file_names_OPinuse;
@@ -77,7 +76,6 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecod
     locals.proc = proc;
     locals.user_locals = user_locals;
     if (_all_file_names__own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("HOME", CLU_1, CLUREF_make_num(4), &STR_HOME);
         _all_file_names__own_init = 1;
         {
@@ -114,7 +112,7 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecod
             if (locals.err != ERR_ok) goto ex_1;
             locals.err = file_nameOPparse(T_3_1, &T_3_2);
             if (locals.err != ERR_ok) goto ex_1;
-            locals.err = file_name_fill(T_3_2, STR_, &T_3_3);
+            locals.err = file_name_fill(T_3_2, CLU_empty_string, &T_3_3);
             if (locals.err != ERR_ok) goto ex_1;
             locals.fn.num = T_3_3.num;
             }
@@ -132,8 +130,8 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecod
         if (!T_3_2.num) {
             locals.err = file_nameOPunparse(locals.fn, &T_3_3);
             if (locals.err != ERR_ok) goto ex_1;
-            T_3_4.num = ((T_3_3.str->size != STR_.str->size)? false :
-                !(memcmp(T_3_3.str->data, STR_.str->data, T_3_3.str->size)));
+            T_3_4.num = ((T_3_3.str->size != CLU_empty_string.str->size)? false :
+                !(memcmp(T_3_3.str->data, CLU_empty_string.str->data, T_3_3.str->size)));
             T_3_1.num = T_3_4.num;
         }
         if (T_3_1.num == true) {
@@ -371,14 +369,14 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecod
         else {
             goto ex_0;}
     end_3:;
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END ITERATOR _all_file_names_ ****/
@@ -386,7 +384,7 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecod
 
 /**** BEGIN ITERATOR BODIES for _all_file_names_ ****/
 
-errcode
+static errcode
 _all_file_names__IB_1(CLUREF iv_1, _all_file_names__LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
@@ -566,16 +564,17 @@ _all_file_names__IB_1(CLUREF iv_1, _all_file_names__LOCALS_t *locals, errcode *i
         }
         }
         }/* end if */
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            locals->body_ctrl_req = true;
-            {signal(ERR_iteriterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end _all_file_names__IB_1 */
 
-errcode
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    locals->body_ctrl_req = true;
+    signal(ERR_iteriterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
+
+static errcode
 _all_file_names__IB_2(CLUREF iv_1, CLUREF iv_2, _all_file_names__LOCALS_t *locals, errcode *iecode)
 {
     locals->off.num = iv_1.num;
@@ -700,14 +699,15 @@ _all_file_names__IB_2(CLUREF iv_1, CLUREF iv_2, _all_file_names__LOCALS_t *local
         if (locals->err != ERR_ok) goto ex_0;}
     }
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            locals->body_ctrl_req = true;
-            {signal(ERR_iteriterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end _all_file_names__IB_2 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    locals->body_ctrl_req = true;
+    signal(ERR_iteriterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for _all_file_names_ ****/
 
@@ -787,15 +787,15 @@ _restar(CLUREF s, CLUREF *ret_1)
         }
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _restar ****/
@@ -1267,15 +1267,15 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _match_name_spec ****/

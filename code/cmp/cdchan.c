@@ -60,14 +60,10 @@ extern const struct REQS * const _adv_of_t_reqs;
 extern struct OPS *char_ops;
 extern const OWN_req _adv_ownreqs;
 extern struct OPS *_adv_ops;
-struct OPS *_adv_of_char_table;
 struct OPS *_adv_of_char_ops;
-struct OPS *_adv_of_char_ops;
-OWNPTR _adv_of_char_owns;
 static CLUREF STR__057dev;
 static CLUREF STR_null;
 static CLUREF STR_random;
-static CLUREF STR_;
 static CLUREF STR_channel_040is_040closed;
 static int code_chan_own_init = 0;
 const OWN_req code_chan_ownreqs = { 0, 0 };
@@ -85,7 +81,6 @@ code_chan_own_init_proc(void)
         stringOPcons("/dev", CLU_1, CLUREF_make_num(4), &STR__057dev);
         stringOPcons("null", CLU_1, CLUREF_make_num(4), &STR_null);
         stringOPcons("random", CLU_1, CLUREF_make_num(6), &STR_random);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("channel is closed", CLU_1, CLUREF_make_num(17), &STR_channel_040is_040closed);
         code_chan_own_init = 1;
         {
@@ -210,19 +205,19 @@ code_chanOPopen(CLUREF fn, CLUREF *ret_1, CLUREF *ret_2)
     T_1_2.vec->data[4] = 0;
     T_1_2.vec->data[1] = false;
     T_1_2.vec->data[3] = false;
-    T_1_2.vec->data[6] = STR_.num;
+    T_1_2.vec->data[6] = CLU_empty_string.num;
     ret_2->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE open ****/
@@ -393,15 +388,15 @@ code_chanOPwrite(CLUREF cc, CLUREF base, CLUREF code, CLUREF eblock, CLUREF *ret
     ret_1->num = count.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE write ****/
@@ -409,10 +404,7 @@ code_chanOPwrite(CLUREF cc, CLUREF base, CLUREF code, CLUREF eblock, CLUREF *ret
 
 /**** BEGIN PROCEDURE boutput ****/
 
-struct OPS *_adv_of_char_table;
 struct OPS *_adv_of_char_ops;
-struct OPS *_adv_of_char_ops;
-OWNPTR _adv_of_char_owns;
 static int code_chanOPboutput_own_init = 0;
 
 errcode
@@ -666,14 +658,14 @@ code_chanOPboutput(CLUREF cc, CLUREF block)
     if (err != ERR_ok) goto ex_0;
     cc.vec->data[4] = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE boutput ****/
@@ -937,14 +929,14 @@ code_chanOPoutput(CLUREF cc, CLUREF block)
     {
     cc.vec->data[4] = index.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE output ****/
@@ -1032,15 +1024,15 @@ code_chanOPget_chan(CLUREF cc, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_chan ****/
@@ -1067,15 +1059,15 @@ code_chanOPsize(CLUREF cc, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE size ****/
@@ -1270,14 +1262,14 @@ code_chanOPclose(CLUREF cc)
         cc.vec->data[3] = true;
         }
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE close ****/
@@ -1289,13 +1281,13 @@ typedef struct{
     struct OP_ENTRY entry[5];
 } code_chan_OPS;
 
-CLU_proc code_chan_oe_close = { .proc = code_chanOPclose };
-CLU_proc code_chan_oe_get_chan = { .proc = code_chanOPget_chan };
-CLU_proc code_chan_oe_open = { .proc = code_chanOPopen };
-CLU_proc code_chan_oe_size = { .proc = code_chanOPsize };
-CLU_proc code_chan_oe_write = { .proc = code_chanOPwrite };
+static CLU_proc code_chan_oe_close = { .proc = code_chanOPclose };
+static CLU_proc code_chan_oe_get_chan = { .proc = code_chanOPget_chan };
+static CLU_proc code_chan_oe_open = { .proc = code_chanOPopen };
+static CLU_proc code_chan_oe_size = { .proc = code_chanOPsize };
+static CLU_proc code_chan_oe_write = { .proc = code_chanOPwrite };
 
-code_chan_OPS code_chan_ops_actual = {5, (OWNPTR)&code_chan_own_init, (OWNPTR)&code_chan_own_init, {
+static code_chan_OPS code_chan_ops_actual = {5, (OWNPTR)&code_chan_own_init, (OWNPTR)&code_chan_own_init, {
     {&code_chan_oe_close, "close"},
     {&code_chan_oe_get_chan, "get_chan"},
     {&code_chan_oe_open, "open"},

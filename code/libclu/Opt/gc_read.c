@@ -25,7 +25,7 @@ typedef struct {
 extern errcode gcbOPinit();
 extern errcode gcoOPinit();
 extern errcode _chanOPopen();
-extern errcode _bytevecOPcreate();
+extern errcode _wordvecOPcreate();
 extern errcode _cvt();
 extern errcode _chanOPgetb();
 extern errcode boolOPnot();
@@ -55,8 +55,8 @@ gc_read(CLUREF fn, CLUREF *ret_1)
     gc_read_OWN_DEFN *op_own_ptr;
     CLUREF ch;
     CLUREF why;
-    CLUREF bv8;
     CLUREF wv2;
+    CLUREF buf;
     CLUREF result;
     op_own_ptr = (gc_read_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;
     if (op_own_ptr->gc_read_own_init == 0) {
@@ -69,22 +69,22 @@ gc_read(CLUREF fn, CLUREF *ret_1)
     }
     enter_proc(3);
 
-  LINE(11);
+  LINE(9);
     {
 
-  LINE(12);
+  LINE(10);
         {
         err = gcbOPinit();
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(13);
+  LINE(11);
         {
         err = gcoOPinit();
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(14);
+  LINE(12);
         {
         CLUREF T_4_1;
         err = _chanOPopen(fn, STR_read, CLU_0, &T_4_1);
@@ -97,7 +97,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
                 CLUREF why;
                 why.num = elist[0].num;
 
-  LINE(16);
+  LINE(14);
                     {
                     elist[0] = why;
                     {signal (ERR_not_possible);}}
@@ -107,31 +107,31 @@ gc_read(CLUREF fn, CLUREF *ret_1)
                 }
             end_2:;
 
-  LINE(18);
+  LINE(17);
         {
             {CLUREF T_3_1;
-            err = _bytevecOPcreate(CLU_8, &T_3_1);
+            err = _wordvecOPcreate(CLU_2, &T_3_1);
             if (err != ERR_ok) goto ex_1;
-            bv8.num = T_3_1.num;
-            }
-            }
-
-  LINE(19);
-        {
-            {CLUREF T_3_1;
-            T_3_1.num = (long)bv8.num;
             wv2.num = T_3_1.num;
             }
             }
 
-  LINE(22);
+  LINE(18);
+        {
+            {CLUREF T_3_1;
+            T_3_1.num = (long)wv2.num;
+            buf.num = T_3_1.num;
+            }
+            }
+
+  LINE(21);
         {
         CLUREF T_3_1;
-        err = _chanOPgetb(ch, bv8, &T_3_1);
+        err = _chanOPgetb(ch, buf, &T_3_1);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(27);
+  LINE(26);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -152,19 +152,19 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         CLUREF T_3_17;
         CLUREF T_3_18;
         CLUREF T_3_19;
-        if (1 < 1 || 1 > bv8.str->size ) {
+        if (1 < 1 || 1 > buf.str->size ) {
             err = ERR_bounds;
             goto ex_1;}
-        T_3_4.ch = bv8.str->data[1 - 1];
+        T_3_4.ch = buf.str->data[1 - 1];
         T_3_5.ch = 'D';
         T_3_6.num = (T_3_4.ch == T_3_5.ch)? true : false;
         T_3_7.num = T_3_6.num ^ 1;
         T_3_3.num = T_3_7.num;
         if (!T_3_7.num) {
-            if (2 < 1 || 2 > bv8.str->size ) {
+            if (2 < 1 || 2 > buf.str->size ) {
                 err = ERR_bounds;
                 goto ex_1;}
-            T_3_8.ch = bv8.str->data[2 - 1];
+            T_3_8.ch = buf.str->data[2 - 1];
             T_3_9.ch = 'W';
             T_3_10.num = (T_3_8.ch == T_3_9.ch)? true : false;
             T_3_11.num = T_3_10.num ^ 1;
@@ -172,10 +172,10 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         }
         T_3_2.num = T_3_3.num;
         if (!T_3_3.num) {
-            if (3 < 1 || 3 > bv8.str->size ) {
+            if (3 < 1 || 3 > buf.str->size ) {
                 err = ERR_bounds;
                 goto ex_1;}
-            T_3_12.ch = bv8.str->data[3 - 1];
+            T_3_12.ch = buf.str->data[3 - 1];
             T_3_13.ch = 'C';
             T_3_14.num = (T_3_12.ch == T_3_13.ch)? true : false;
             T_3_15.num = T_3_14.num ^ 1;
@@ -183,10 +183,10 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         }
         T_3_1.num = T_3_2.num;
         if (!T_3_2.num) {
-            if (4 < 1 || 4 > bv8.str->size ) {
+            if (4 < 1 || 4 > buf.str->size ) {
                 err = ERR_bounds;
                 goto ex_1;}
-            T_3_16.ch = bv8.str->data[4 - 1];
+            T_3_16.ch = buf.str->data[4 - 1];
             T_3_17.ch = '1';
             T_3_18.num = (T_3_16.ch == T_3_17.ch)? true : false;
             T_3_19.num = T_3_18.num ^ 1;
@@ -194,21 +194,21 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         }
         if (T_3_1.num == true) {
 
-  LINE(32);
+  LINE(31);
             {
             elist[0] = STR_bad_040file_040format;
             {signal (ERR_not_possible);}}
             }
             }/* end if */
 
-  LINE(36);
+  LINE(35);
         {
         CLUREF T_3_1;
-        err = _chanOPgetb(ch, bv8, &T_3_1);
+        err = _chanOPgetb(ch, buf, &T_3_1);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(40);
+  LINE(39);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -219,7 +219,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         T_3_2.num = (T_3_1.num == 32)? true : false;
         if (T_3_2.num == true) {
 
-  LINE(43);
+  LINE(42);
             {
             {
             CLUREF T_4_1;
@@ -235,7 +235,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
             }
             }/* end if */
 
-  LINE(48);
+  LINE(47);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -248,14 +248,14 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         T_3_3.num = T_3_2.num ^ 1;
         if (T_3_3.num == true) {
 
-  LINE(51);
+  LINE(50);
             {
             elist[0] = STR_bad_040file_040format;
             {signal (ERR_not_possible);}}
             }
             }/* end if */
 
-  LINE(53);
+  LINE(52);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -268,14 +268,14 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         T_3_3.num = T_3_2.num ^ 1;
         if (T_3_3.num == true) {
 
-  LINE(56);
+  LINE(55);
             {
             elist[0] = STR_bad_040file_040format;
             {signal (ERR_not_possible);}}
             }
             }/* end if */
 
-  LINE(62);
+  LINE(61);
         {
         err = gcrOPpass1(ch);
         if (err != ERR_ok) goto ex_3;
@@ -287,13 +287,13 @@ gc_read(CLUREF fn, CLUREF *ret_1)
                 goto ex_1;}
         end_3:;
 
-  LINE(64);
+  LINE(63);
         {
         err = _chanOPclose(ch);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(67);
+  LINE(66);
         {
         CLUREF T_3_1;
         err = _chanOPopen(fn, STR_read, CLU_0, &T_3_1);
@@ -301,17 +301,17 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         ch.num = T_3_1.num;
         }
 
-  LINE(68);
+  LINE(67);
         {
         CLUREF T_3_1;
-        err = _chanOPgetb(ch, bv8, &T_3_1);
+        err = _chanOPgetb(ch, buf, &T_3_1);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(69);
+  LINE(68);
         {
         CLUREF T_4_1;
-        err = _chanOPgetb(ch, bv8, &T_4_1);
+        err = _chanOPgetb(ch, buf, &T_4_1);
         if (err != ERR_ok) goto ex_4;
         }
         goto end_4;
@@ -321,25 +321,25 @@ gc_read(CLUREF fn, CLUREF *ret_1)
                 goto ex_1;}
         end_4:;
 
-  LINE(74);
+  LINE(73);
         {
         err = gcbOPinit();
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(75);
+  LINE(74);
         {
         err = gcrOPpass2(ch);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(76);
+  LINE(75);
         {
         err = _chanOPclose(ch);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(79);
+  LINE(78);
         {
             {CLUREF T_3_1;
             CLUREF T_3_2;
@@ -350,13 +350,13 @@ gc_read(CLUREF fn, CLUREF *ret_1)
             }
             }
 
-  LINE(80);
+  LINE(79);
         {
         err = gcoOPreset();
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(81);
+  LINE(80);
         {
         {
         ret_1->num = result.num;
@@ -367,27 +367,27 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         ex_1:
             {
 
-  LINE(84);
+  LINE(83);
                 {
                 err = _chanOPclose(ch);
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(85);
+  LINE(84);
                 {
                 elist[0] = STR_bad_040file_040format;
                 {signal (ERR_not_possible);}}
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE gc_read ****/
@@ -395,6 +395,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
 
 /**** BEGIN CLUSTER gcr ****/
 
+extern errcode _wordvecOPbytes_per_word();
 extern errcode gcbOPget_next_hdr();
 extern errcode gcrOPmake_bvec1();
 extern errcode gcrOPmake_vec1();
@@ -402,6 +403,7 @@ extern errcode gcrOPmake_cell1();
 extern errcode gcrOPmake_adv1();
 extern errcode gcoOPsave_new_obj();
 extern errcode gcbOPget_size();
+extern errcode _bytevecOPcreate();
 extern errcode gcbOPgetb();
 extern errcode intOPfrom_to();
 extern errcode _vecOPcreate();
@@ -421,6 +423,7 @@ extern errcode _vecOPstore();
 extern errcode gcbOPget_next_obj();
 extern errcode _tagcellOPset();
 extern errcode intOPsub();
+extern errcode intOPmul();
 extern errcode _advOPset_vector();
 extern errcode _advOPset_start();
 extern errcode _advOPset_size();
@@ -428,19 +431,14 @@ extern const struct REQS * const _tagcell_of_t_reqs;
 extern struct OPS *_obj_ops;
 extern const OWN_req _tagcell_ownreqs;
 extern struct OPS *_tagcell_ops;
-struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
-struct OPS *_tagcell_of__obj_ops;
-OWNPTR _tagcell_of__obj_owns;
 extern const struct REQS * const _adv_of_t_reqs;
 extern const OWN_req _adv_ownreqs;
 extern struct OPS *_adv_ops;
-struct OPS *_adv_of__obj_table;
 struct OPS *_adv_of__obj_ops;
-struct OPS *_adv_of__obj_ops;
-OWNPTR _adv_of__obj_owns;
 static int gcr_own_init = 0;
 const OWN_req gcr_ownreqs = { 0, 0 };
+CLUREF gcrOPclurefsz;
 
 errcode
 gcr_own_init_proc(void)
@@ -454,6 +452,13 @@ gcr_own_init_proc(void)
         find_type_instance(_adv_ops, 1, &_adv_ownreqs, &(_adv_of__obj_ops));
         stringOPcons("bad file format", CLU_1, CLUREF_make_num(15), &STR_bad_040file_040format);
         gcr_own_init = 1;
+        {
+            {CLUREF T_0_1;
+            err = _wordvecOPbytes_per_word(&T_0_1);
+            if (err != ERR_ok) goto ex_0;
+            gcrOPclurefsz.num = T_0_1.num;
+            }
+            }
         signal(ERR_ok);
       ex_0:
         pclu_unhandled(err);
@@ -481,13 +486,13 @@ gcrOPpass1(CLUREF ch)
         }
         gcrOPpass1_own_init = 1;
     }
-    enter_proc(93);
+    enter_proc(94);
 
-  LINE(95);
+  LINE(96);
     for (;;) {
         if (true != true) { break; }
 
-  LINE(96);
+  LINE(97);
         {
             {CLUREF T_3_1;
             CLUREF T_3_2;
@@ -501,7 +506,7 @@ gcrOPpass1(CLUREF ch)
             ex_1:
                 if ((err == ERR_none)) {
 
-  LINE(97);
+  LINE(98);
                     {
                     {signal (ERR_ok);}}
                 }
@@ -510,13 +515,13 @@ gcrOPpass1(CLUREF ch)
                 }
             end_1:;
 
-  LINE(98);
+  LINE(99);
         {
         if (true == true) {
             }
             }/* end if */
 
-  LINE(102);
+  LINE(103);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -524,13 +529,13 @@ gcrOPpass1(CLUREF ch)
         T_2_2.num = (hdr.num == T_2_1.num)? true : false;
         if (T_2_2.num == true) {
 
-  LINE(104);
+  LINE(105);
             {
             if (true == true) {
                 }
                 }/* end if */
 
-  LINE(107);
+  LINE(108);
             {
             CLUREF T_3_1;
             err = gcrOPmake_bvec1(ch, &T_3_1);
@@ -545,13 +550,13 @@ gcrOPpass1(CLUREF ch)
         T_2_4.num = (hdr.num == T_2_3.num)? true : false;
         if (T_2_4.num == true) {
 
-  LINE(110);
+  LINE(111);
             {
             if (true == true) {
                 }
                 }/* end if */
 
-  LINE(113);
+  LINE(114);
             {
             CLUREF T_3_1;
             err = gcrOPmake_vec1(ch, &T_3_1);
@@ -566,13 +571,13 @@ gcrOPpass1(CLUREF ch)
         T_2_6.num = (hdr.num == T_2_5.num)? true : false;
         if (T_2_6.num == true) {
 
-  LINE(116);
+  LINE(117);
             {
             if (true == true) {
                 }
                 }/* end if */
 
-  LINE(119);
+  LINE(120);
             {
             CLUREF T_3_1;
             err = gcrOPmake_cell1(ch, &T_3_1);
@@ -587,11 +592,11 @@ gcrOPpass1(CLUREF ch)
         T_2_8.num = (hdr.num == T_2_7.num)? true : false;
         if (T_2_8.num == true) {
 
-  LINE(122);
+  LINE(123);
             {
             if (true == true) {
 
-  LINE(125);
+  LINE(126);
                 {
                 CLUREF T_4_1;
                 err = gcrOPmake_adv1(ch, &T_4_1);
@@ -603,27 +608,27 @@ gcrOPpass1(CLUREF ch)
             }
         else {
 
-  LINE(128);
+  LINE(129);
             {
             elist[0] = STR_bad_040file_040format;
             {signal (ERR_not_possible);}}
             }}}}}/* end if */
 
-  LINE(130);
+  LINE(131);
         {
         err = gcoOPsave_new_obj(id, o);
         if (err != ERR_ok) goto ex_0;
         }
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE pass1 ****/
@@ -644,9 +649,9 @@ gcrOPmake_bvec1(CLUREF ch, CLUREF *ret_1)
         err = gcr_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(135);
+    enter_proc(136);
 
-  LINE(136);
+  LINE(137);
     {
         {CLUREF T_1_1;
         err = gcbOPget_size(ch, &T_1_1);
@@ -655,7 +660,7 @@ gcrOPmake_bvec1(CLUREF ch, CLUREF *ret_1)
         }
         }
 
-  LINE(138);
+  LINE(139);
     {
         {CLUREF T_1_1;
         err = _bytevecOPcreate(size, &T_1_1);
@@ -664,16 +669,16 @@ gcrOPmake_bvec1(CLUREF ch, CLUREF *ret_1)
         }
         }
 
-  LINE(139);
+  LINE(140);
     {
 
-  LINE(140);
+  LINE(141);
         {
         err = gcbOPgetb(ch, bv);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(141);
+  LINE(142);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -697,7 +702,7 @@ gcrOPmake_bvec1(CLUREF ch, CLUREF *ret_1)
             end_1:;
         }
 
-  LINE(150);
+  LINE(151);
     {
     {
     CLUREF T_1_1;
@@ -705,15 +710,15 @@ gcrOPmake_bvec1(CLUREF ch, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE make_bvec1 ****/
@@ -732,9 +737,9 @@ gcrOPmake_vec1(CLUREF ch, CLUREF *ret_1)
         err = gcr_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(153);
+    enter_proc(154);
 
-  LINE(154);
+  LINE(155);
     {
         {CLUREF T_1_1;
         err = gcbOPget_size(ch, &T_1_1);
@@ -743,7 +748,7 @@ gcrOPmake_vec1(CLUREF ch, CLUREF *ret_1)
         }
         }
 
-  LINE(155);
+  LINE(156);
     {
         {CLUREF T_1_1;
         err = _vecOPcreate(size, &T_1_1);
@@ -752,13 +757,13 @@ gcrOPmake_vec1(CLUREF ch, CLUREF *ret_1)
         }
         }
 
-  LINE(156);
+  LINE(157);
     {
     err = gcbOPskip_obj(ch, size);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(157);
+  LINE(158);
     {
     {
     CLUREF T_1_1;
@@ -766,15 +771,15 @@ gcrOPmake_vec1(CLUREF ch, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE make_vec1 ****/
@@ -782,10 +787,7 @@ gcrOPmake_vec1(CLUREF ch, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE make_cell1 ****/
 
-struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
-struct OPS *_tagcell_of__obj_ops;
-OWNPTR _tagcell_of__obj_owns;
 static int gcrOPmake_cell1_own_init = 0;
 
 errcode
@@ -800,9 +802,9 @@ gcrOPmake_cell1(CLUREF ch, CLUREF *ret_1)
         }
         gcrOPmake_cell1_own_init = 1;
     }
-    enter_proc(160);
+    enter_proc(161);
 
-  LINE(161);
+  LINE(162);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -816,20 +818,20 @@ gcrOPmake_cell1(CLUREF ch, CLUREF *ret_1)
         }
         }
 
-  LINE(162);
+  LINE(163);
     {
     CLUREF T_1_1;
     err = gcbOPgeti(ch, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(163);
+  LINE(164);
     {
     err = gcbOPskip_obj(ch, CLU_1);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(164);
+  LINE(165);
     {
     {
     CLUREF T_1_1;
@@ -837,15 +839,15 @@ gcrOPmake_cell1(CLUREF ch, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE make_cell1 ****/
@@ -868,9 +870,9 @@ gcrOPmake_adv1(CLUREF ch, CLUREF *ret_1)
         err = gcr_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(167);
+    enter_proc(168);
 
-  LINE(168);
+  LINE(169);
     {
         {CLUREF T_1_1;
         err = gcbOPget_size(ch, &T_1_1);
@@ -879,7 +881,7 @@ gcrOPmake_adv1(CLUREF ch, CLUREF *ret_1)
         }
         }
 
-  LINE(169);
+  LINE(170);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -894,7 +896,7 @@ gcrOPmake_adv1(CLUREF ch, CLUREF *ret_1)
         }
         }
 
-  LINE(170);
+  LINE(171);
     {
         {CLUREF T_1_1;
         err = arrayOPpredict(ext_low, int_size, &T_1_1);
@@ -903,13 +905,13 @@ gcrOPmake_adv1(CLUREF ch, CLUREF *ret_1)
         }
         }
 
-  LINE(171);
+  LINE(172);
     {
     err = gcbOPskip_obj(ch, CLU_1);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(172);
+  LINE(173);
     {
     {
     CLUREF T_1_1;
@@ -917,15 +919,15 @@ gcrOPmake_adv1(CLUREF ch, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE make_adv1 ****/
@@ -949,13 +951,13 @@ gcrOPpass2(CLUREF ch)
         }
         gcrOPpass2_own_init = 1;
     }
-    enter_proc(175);
+    enter_proc(176);
 
-  LINE(177);
+  LINE(178);
     for (;;) {
         if (true != true) { break; }
 
-  LINE(178);
+  LINE(179);
         {
             {CLUREF T_3_1;
             CLUREF T_3_2;
@@ -969,7 +971,7 @@ gcrOPpass2(CLUREF ch)
             ex_1:
                 if ((err == ERR_none)) {
 
-  LINE(179);
+  LINE(180);
                     {
                     {signal (ERR_ok);}}
                 }
@@ -978,7 +980,7 @@ gcrOPpass2(CLUREF ch)
                 }
             end_1:;
 
-  LINE(181);
+  LINE(182);
         {
             {CLUREF T_2_1;
             err = gcoOPget_obj(id, &T_2_1);
@@ -987,7 +989,7 @@ gcrOPpass2(CLUREF ch)
             }
             }
 
-  LINE(182);
+  LINE(183);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -995,7 +997,7 @@ gcrOPpass2(CLUREF ch)
         T_2_2.num = (hdr.num == T_2_1.num)? true : false;
         if (T_2_2.num == true) {
 
-  LINE(185);
+  LINE(186);
             {
             err = gcrOPmake_bvec2(ch, o);
             if (err != ERR_ok) goto ex_0;
@@ -1008,7 +1010,7 @@ gcrOPpass2(CLUREF ch)
         T_2_4.num = (hdr.num == T_2_3.num)? true : false;
         if (T_2_4.num == true) {
 
-  LINE(188);
+  LINE(189);
             {
             err = gcrOPmake_vec2(ch, o);
             if (err != ERR_ok) goto ex_0;
@@ -1021,7 +1023,7 @@ gcrOPpass2(CLUREF ch)
         T_2_6.num = (hdr.num == T_2_5.num)? true : false;
         if (T_2_6.num == true) {
 
-  LINE(191);
+  LINE(192);
             {
             err = gcrOPmake_cell2(ch, o);
             if (err != ERR_ok) goto ex_0;
@@ -1034,7 +1036,7 @@ gcrOPpass2(CLUREF ch)
         T_2_8.num = (hdr.num == T_2_7.num)? true : false;
         if (T_2_8.num == true) {
 
-  LINE(194);
+  LINE(195);
             {
             err = gcrOPmake_adv2(ch, o);
             if (err != ERR_ok) goto ex_0;
@@ -1042,21 +1044,21 @@ gcrOPpass2(CLUREF ch)
             }
         else {
 
-  LINE(196);
+  LINE(197);
             {
             elist[0] = STR_bad_040file_040format;
             {signal (ERR_not_possible);}}
             }}}}}/* end if */
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE pass2 ****/
@@ -1074,9 +1076,9 @@ gcrOPmake_bvec2(CLUREF ch, CLUREF o)
         err = gcr_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(202);
+    enter_proc(203);
 
-  LINE(203);
+  LINE(204);
     {
         {CLUREF T_1_1;
         err = gcbOPget_size(ch, &T_1_1);
@@ -1085,28 +1087,28 @@ gcrOPmake_bvec2(CLUREF ch, CLUREF o)
         }
         }
 
-  LINE(204);
+  LINE(205);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-    T_1_1.num = size.num + 4;
-     if ((T_1_1.num > 0 && size.num < 0 && 4 < 0) ||
-         (T_1_1.num < 0 && size.num > 0 && 4 > 0)) {
+    T_1_1.num = size.num + gcrOPclurefsz.num;
+     if ((T_1_1.num > 0 && size.num < 0 && gcrOPclurefsz.num < 0) ||
+         (T_1_1.num < 0 && size.num > 0 && gcrOPclurefsz.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    err = intOPdiv(T_1_1, CLU_4, &T_1_2);
+    err = intOPdiv(T_1_1, gcrOPclurefsz, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     err = gcbOPskip(ch, T_1_2);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE make_bvec2 ****/
@@ -1126,9 +1128,9 @@ gcrOPmake_vec2(CLUREF ch, CLUREF o)
         err = gcr_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(207);
+    enter_proc(208);
 
-  LINE(208);
+  LINE(209);
     {
         {CLUREF T_1_1;
         err = gcbOPget_size(ch, &T_1_1);
@@ -1137,7 +1139,7 @@ gcrOPmake_vec2(CLUREF ch, CLUREF o)
         }
         }
 
-  LINE(209);
+  LINE(210);
     {
         {CLUREF T_1_1;
         T_1_1.num = (long)o.num;
@@ -1145,7 +1147,7 @@ gcrOPmake_vec2(CLUREF ch, CLUREF o)
         }
         }
 
-  LINE(210);
+  LINE(211);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1153,7 +1155,7 @@ gcrOPmake_vec2(CLUREF ch, CLUREF o)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
-  LINE(211);
+  LINE(212);
             {
             CLUREF T_2_1;
             err = gcbOPget_next_obj(ch, &T_2_1);
@@ -1164,14 +1166,14 @@ gcrOPmake_vec2(CLUREF ch, CLUREF o)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE make_vec2 ****/
@@ -1179,10 +1181,7 @@ gcrOPmake_vec2(CLUREF ch, CLUREF o)
 
 /**** BEGIN PROCEDURE make_cell2 ****/
 
-struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
-struct OPS *_tagcell_of__obj_ops;
-OWNPTR _tagcell_of__obj_owns;
 static int gcrOPmake_cell2_own_init = 0;
 
 errcode
@@ -1198,9 +1197,9 @@ gcrOPmake_cell2(CLUREF ch, CLUREF o)
         }
         gcrOPmake_cell2_own_init = 1;
     }
-    enter_proc(215);
+    enter_proc(216);
 
-  LINE(216);
+  LINE(217);
     {
         {CLUREF T_1_1;
         T_1_1.num = (long)o.num;
@@ -1208,7 +1207,7 @@ gcrOPmake_cell2(CLUREF ch, CLUREF o)
         }
         }
 
-  LINE(217);
+  LINE(218);
     {
         {CLUREF T_1_1;
         err = gcbOPgeti(ch, &T_1_1);
@@ -1217,7 +1216,7 @@ gcrOPmake_cell2(CLUREF ch, CLUREF o)
         }
         }
 
-  LINE(218);
+  LINE(219);
     {
     CLUREF T_1_1;
     err = gcbOPget_next_obj(ch, &T_1_1);
@@ -1228,14 +1227,14 @@ gcrOPmake_cell2(CLUREF ch, CLUREF o)
     err = _tagcellOPset(t, tg, T_1_1);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE make_cell2 ****/
@@ -1243,10 +1242,7 @@ gcrOPmake_cell2(CLUREF ch, CLUREF o)
 
 /**** BEGIN PROCEDURE make_adv2 ****/
 
-struct OPS *_adv_of__obj_table;
 struct OPS *_adv_of__obj_ops;
-struct OPS *_adv_of__obj_ops;
-OWNPTR _adv_of__obj_owns;
 static int gcrOPmake_adv2_own_init = 0;
 
 errcode
@@ -1267,24 +1263,27 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
         }
         gcrOPmake_adv2_own_init = 1;
     }
-    enter_proc(221);
+    enter_proc(222);
 
-  LINE(222);
+  LINE(223);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
+        CLUREF T_1_3;
         err = gcbOPget_size(ch, &T_1_1);
         if (err != ERR_ok) goto ex_0;
-        T_1_2.num = T_1_1.num - 8;
-         if ((T_1_2.num >= 0 && T_1_1.num < 0 && (-8) < 0) ||
-             (T_1_2.num <= 0 && T_1_1.num > 0 && (-8) > 0)) {
+        err = intOPmul(CLU_2, gcrOPclurefsz, &T_1_2);
+        if (err != ERR_ok) goto ex_0;
+        T_1_3.num = T_1_1.num - T_1_2.num;
+         if ((T_1_3.num >= 0 && T_1_1.num < 0 && (-T_1_2.num) < 0) ||
+             (T_1_3.num <= 0 && T_1_1.num > 0 && (-T_1_2.num) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        size.num = T_1_2.num;
+        size.num = T_1_3.num;
         }
         }
 
-  LINE(224);
+  LINE(225);
     {
         {CLUREF T_1_1;
         T_1_1.num = (long)o.num;
@@ -1292,7 +1291,7 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
         }
         }
 
-  LINE(225);
+  LINE(226);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -1307,7 +1306,7 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
         }
         }
 
-  LINE(231);
+  LINE(232);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -1318,7 +1317,7 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
         }
         }
 
-  LINE(233);
+  LINE(234);
     {
     generic_CLU_proc.type_owns = _adv_of__obj_ops->type_owns;
     generic_CLU_proc.proc = _advOPset_vector;
@@ -1327,7 +1326,7 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(235);
+  LINE(236);
     {
     generic_CLU_proc.type_owns = _adv_of__obj_ops->type_owns;
     generic_CLU_proc.proc = _advOPset_start;
@@ -1336,7 +1335,7 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(236);
+  LINE(237);
     {
     generic_CLU_proc.type_owns = _adv_of__obj_ops->type_owns;
     generic_CLU_proc.proc = _advOPset_size;
@@ -1344,14 +1343,14 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
     err = _advOPset_size(a, j1);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE make_adv2 ****/
@@ -1363,10 +1362,10 @@ typedef struct{
     struct OP_ENTRY entry[2];
 } gcr_OPS;
 
-CLU_proc gcr_oe_pass1 = { .proc = gcrOPpass1 };
-CLU_proc gcr_oe_pass2 = { .proc = gcrOPpass2 };
+static CLU_proc gcr_oe_pass1 = { .proc = gcrOPpass1 };
+static CLU_proc gcr_oe_pass2 = { .proc = gcrOPpass2 };
 
-gcr_OPS gcr_ops_actual = {2, (OWNPTR)&gcr_own_init, (OWNPTR)&gcr_own_init, {
+static gcr_OPS gcr_ops_actual = {2, (OWNPTR)&gcr_own_init, (OWNPTR)&gcr_own_init, {
     {&gcr_oe_pass1, "pass1"},
     {&gcr_oe_pass2, "pass2"}}};
 
@@ -1376,16 +1375,16 @@ struct OPS *gcr_ops = (struct OPS *)&gcr_ops_actual;
 
 /**** BEGIN CLUSTER gcb ****/
 
-extern errcode _wordvecOPcreate();
 extern errcode _chanOPgetw();
 extern errcode _bytevecOPsize();
-extern errcode intOPmul();
 extern errcode intOPlt();
 extern errcode intOPmin();
 extern errcode _wordvecOPmove_w2b();
 static CLUREF STR_bad_040format_040file;
 static int gcb_own_init = 0;
 const OWN_req gcb_ownreqs = { 0, 0 };
+CLUREF gcbOPclurefsz;
+CLUREF gcbOPbpagesz;
 CLUREF gcbOPlookahead;
 CLUREF gcbOPlook_index;
 CLUREF gcbOPlook_count;
@@ -1403,11 +1402,25 @@ gcb_own_init_proc(void)
         gcb_own_init = 1;
         {
             {CLUREF T_0_1;
-            CLUREF T_0_2;
-            T_0_1.num = 4096;
-            err = _wordvecOPcreate(T_0_1, &T_0_2);
+            err = _wordvecOPbytes_per_word(&T_0_1);
             if (err != ERR_ok) goto ex_0;
-            gcbOPlookahead.num = T_0_2.num;
+            gcbOPclurefsz.num = T_0_1.num;
+            }
+            }
+        {
+            {CLUREF T_0_2;
+            CLUREF T_0_3;
+            T_0_2.num = 1024;
+            err = intOPmul(T_0_2, gcbOPclurefsz, &T_0_3);
+            if (err != ERR_ok) goto ex_0;
+            gcbOPbpagesz.num = T_0_3.num;
+            }
+            }
+        {
+            {CLUREF T_0_4;
+            err = _wordvecOPcreate(gcbOPbpagesz, &T_0_4);
+            if (err != ERR_ok) goto ex_0;
+            gcbOPlookahead.num = T_0_4.num;
             }
             }
         {
@@ -1419,12 +1432,10 @@ gcb_own_init_proc(void)
             }
             }
         {
-            {CLUREF T_0_3;
-            CLUREF T_0_4;
-            T_0_3.num = 4096;
-            err = _bytevecOPcreate(T_0_3, &T_0_4);
+            {CLUREF T_0_5;
+            err = _bytevecOPcreate(gcbOPbpagesz, &T_0_5);
             if (err != ERR_ok) goto ex_0;
-            gcbOPscratch.num = T_0_4.num;
+            gcbOPscratch.num = T_0_5.num;
             }
             }
         {
@@ -1432,10 +1443,10 @@ gcb_own_init_proc(void)
             }
             }
         {
-            {CLUREF T_0_5;
-            err = _wordvecOPcreate(CLU_1, &T_0_5);
+            {CLUREF T_0_6;
+            err = _wordvecOPcreate(CLU_1, &T_0_6);
             if (err != ERR_ok) goto ex_0;
-            gcbOPwv1.num = T_0_5.num;
+            gcbOPwv1.num = T_0_6.num;
             }
             }
         signal(ERR_ok);
@@ -1458,30 +1469,30 @@ gcbOPinit()
         err = gcb_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(253);
+    enter_proc(257);
 
-  LINE(254);
+  LINE(258);
     {
     gcbOPobj_addr.num = 0;
     }
 
-  LINE(255);
+  LINE(259);
     {
     gcbOPlook_index.num = 0;
     }
 
-  LINE(256);
+  LINE(260);
     {
     gcbOPlook_count.num = 0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE init ****/
@@ -1500,15 +1511,15 @@ gcbOPget_next_hdr(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2)
         err = gcb_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(259);
+    enter_proc(263);
 
-  LINE(261);
+  LINE(265);
     {
         {this_addr.num = gcbOPobj_addr.num;
         }
         }
 
-  LINE(262);
+  LINE(266);
     {
         {CLUREF T_2_1;
         err = gcbOPgeti(ch, &T_2_1);
@@ -1520,7 +1531,7 @@ gcbOPget_next_hdr(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2)
         ex_1:
             if ((err == ERR_end_of_file)) {
 
-  LINE(263);
+  LINE(267);
                 {
                 {signal (ERR_none);}}
             }
@@ -1529,7 +1540,7 @@ gcbOPget_next_hdr(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2)
             }
         end_1:;
 
-  LINE(264);
+  LINE(268);
     {
     {
     ret_1->num = hdr.num;
@@ -1538,15 +1549,15 @@ gcbOPget_next_hdr(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = this_addr.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_next_hdr ****/
@@ -1564,9 +1575,9 @@ gcbOPget_size(CLUREF ch, CLUREF *ret_1)
         err = gcb_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(267);
+    enter_proc(271);
 
-  LINE(268);
+  LINE(272);
     {
         {CLUREF T_1_1;
         err = gcbOPgeti(ch, &T_1_1);
@@ -1575,21 +1586,21 @@ gcbOPget_size(CLUREF ch, CLUREF *ret_1)
         }
         }
 
-  LINE(269);
+  LINE(273);
     {
     {
     ret_1->num = size.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_size ****/
@@ -1610,9 +1621,9 @@ gcbOPget_array_info(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUR
         err = gcb_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(272);
+    enter_proc(276);
 
-  LINE(273);
+  LINE(277);
     {
         {CLUREF T_1_1;
         err = gcbOPgeti(ch, &T_1_1);
@@ -1621,7 +1632,7 @@ gcbOPget_array_info(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUR
         }
         }
 
-  LINE(274);
+  LINE(278);
     {
         {CLUREF T_1_1;
         err = gcbOPgeti(ch, &T_1_1);
@@ -1630,7 +1641,7 @@ gcbOPget_array_info(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUR
         }
         }
 
-  LINE(275);
+  LINE(279);
     {
         {CLUREF T_1_1;
         err = gcbOPgeti(ch, &T_1_1);
@@ -1639,7 +1650,7 @@ gcbOPget_array_info(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUR
         }
         }
 
-  LINE(276);
+  LINE(280);
     {
         {CLUREF T_1_1;
         err = gcbOPgeti(ch, &T_1_1);
@@ -1648,7 +1659,7 @@ gcbOPget_array_info(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUR
         }
         }
 
-  LINE(277);
+  LINE(281);
     {
     {
     ret_1->num = size.num;
@@ -1663,15 +1674,15 @@ gcbOPget_array_info(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUR
     ret_4->num = predict.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_array_info ****/
@@ -1694,13 +1705,13 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
         }
         gcbOPget_next_obj_own_init = 1;
     }
-    enter_proc(280);
+    enter_proc(284);
 
-  LINE(282);
+  LINE(286);
     for (;;) {
         if (true != true) { break; }
 
-  LINE(284);
+  LINE(288);
         {
         CLUREF T_3_1;
         err = gcbOPgeti(ch, &T_3_1);
@@ -1711,7 +1722,7 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
             ex_1:
                 if ((err == ERR_end_of_file)) {
 
-  LINE(285);
+  LINE(289);
                     {
                     {signal (ERR_none);}}
                 }
@@ -1720,7 +1731,7 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
                 }
             end_1:;
 
-  LINE(286);
+  LINE(290);
         {
         CLUREF T_3_1;
         err = gcbOPgeti(ch, &T_3_1);
@@ -1731,7 +1742,7 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
             ex_2:
                 if ((err == ERR_end_of_file)) {
 
-  LINE(288);
+  LINE(292);
                     {
                     elist[0] = STR_bad_040format_040file;
                     {signal (ERR_not_possible);}}
@@ -1741,13 +1752,13 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
                 }
             end_2:;
 
-  LINE(289);
+  LINE(293);
         {
         CLUREF T_2_1;
         T_2_1.num = (ty.num == 32)? true : false;
         if (T_2_1.num == true) {
 
-  LINE(291);
+  LINE(295);
             {
             {
             CLUREF T_3_1;
@@ -1761,7 +1772,7 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
         T_2_2.num = (ty.num == 33)? true : false;
         if (T_2_2.num == true) {
 
-  LINE(294);
+  LINE(298);
             {
             {
             CLUREF T_3_1;
@@ -1773,22 +1784,22 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
             }
         else {
 
-  LINE(296);
+  LINE(300);
             {
             elist[0] = STR_bad_040format_040file;
             {signal (ERR_not_possible);}}
             }}}/* end if */
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_next_obj ****/
@@ -1812,9 +1823,9 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
         }
         gcbOPskip_obj_own_init = 1;
     }
-    enter_proc(301);
+    enter_proc(305);
 
-  LINE(302);
+  LINE(306);
     {
     CLUREF T_1_1;
     T_1_1.num = (count.num == 0)? true : false;
@@ -1824,7 +1835,7 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
         }
         }/* end if */
 
-  LINE(303);
+  LINE(307);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1832,7 +1843,7 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_1.num;
 
-  LINE(304);
+  LINE(308);
             {
                 {CLUREF T_3_1;
                 err = gcbOPgeti(ch, &T_3_1);
@@ -1844,7 +1855,7 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
                 ex_1:
                     if ((err == ERR_end_of_file)) {
 
-  LINE(305);
+  LINE(309);
                         {
                         {signal (ERR_none);}}
                     }
@@ -1853,7 +1864,7 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
                     }
                 end_1:;
 
-  LINE(306);
+  LINE(310);
             {
                 {CLUREF T_3_1;
                 err = gcbOPgeti(ch, &T_3_1);
@@ -1865,7 +1876,7 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
                 ex_2:
                     if ((err == ERR_end_of_file)) {
 
-  LINE(308);
+  LINE(312);
                         {
                         elist[0] = STR_bad_040format_040file;
                         {signal (ERR_not_possible);}}
@@ -1875,7 +1886,7 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
                     }
                 end_2:;
 
-  LINE(309);
+  LINE(313);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -1892,7 +1903,7 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
             }
             if (T_2_1.num == true) {
 
-  LINE(311);
+  LINE(315);
                 {
                 elist[0] = STR_bad_040format_040file;
                 {signal (ERR_not_possible);}}
@@ -1901,14 +1912,14 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE skip_obj ****/
@@ -1926,15 +1937,15 @@ gcbOPgeti(CLUREF ch, CLUREF *ret_1)
         err = gcb_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(316);
+    enter_proc(320);
 
-  LINE(318);
+  LINE(322);
     {
     CLUREF T_1_1;
     T_1_1.num = (gcbOPlook_count.num == 0)? true : false;
     if (T_1_1.num == true) {
 
-  LINE(319);
+  LINE(323);
         {
         CLUREF T_3_1;
         err = _chanOPgetw(ch, gcbOPlookahead, &T_3_1);
@@ -1948,14 +1959,14 @@ gcbOPgeti(CLUREF ch, CLUREF *ret_1)
                 goto ex_0;}
         end_1:;
 
-  LINE(321);
+  LINE(325);
         {
         gcbOPlook_index.num = 1;
         }
         }
         }/* end if */
 
-  LINE(323);
+  LINE(327);
     {
         {CLUREF T_1_1;
         if (gcbOPlook_index.num < 1 || (gcbOPlook_index.num<<2) > (gcbOPlookahead.str->size)) {
@@ -1966,18 +1977,18 @@ gcbOPgeti(CLUREF ch, CLUREF *ret_1)
         }
         }
 
-  LINE(324);
+  LINE(328);
     {
     CLUREF T_1_1;
-    T_1_1.num = gcbOPlook_count.num - 4;
-     if ((T_1_1.num >= 0 && gcbOPlook_count.num < 0 && (-4) < 0) ||
-         (T_1_1.num <= 0 && gcbOPlook_count.num > 0 && (-4) > 0)) {
+    T_1_1.num = gcbOPlook_count.num - gcbOPclurefsz.num;
+     if ((T_1_1.num >= 0 && gcbOPlook_count.num < 0 && (-gcbOPclurefsz.num) < 0) ||
+         (T_1_1.num <= 0 && gcbOPlook_count.num > 0 && (-gcbOPclurefsz.num) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     gcbOPlook_count.num = T_1_1.num;
     }
 
-  LINE(325);
+  LINE(329);
     {
     CLUREF T_1_1;
     T_1_1.num = gcbOPlook_index.num + 1;
@@ -1988,32 +1999,32 @@ gcbOPgeti(CLUREF ch, CLUREF *ret_1)
     gcbOPlook_index.num = T_1_1.num;
     }
 
-  LINE(326);
+  LINE(330);
     {
     CLUREF T_1_1;
-    T_1_1.num = gcbOPobj_addr.num + 4;
-     if ((T_1_1.num > 0 && gcbOPobj_addr.num < 0 && 4 < 0) ||
-         (T_1_1.num < 0 && gcbOPobj_addr.num > 0 && 4 > 0)) {
+    T_1_1.num = gcbOPobj_addr.num + gcbOPclurefsz.num;
+     if ((T_1_1.num > 0 && gcbOPobj_addr.num < 0 && gcbOPclurefsz.num < 0) ||
+         (T_1_1.num < 0 && gcbOPobj_addr.num > 0 && gcbOPclurefsz.num > 0)) {
         err = ERR_overflow;
         goto ex_0;}
     gcbOPobj_addr.num = T_1_1.num;
     }
 
-  LINE(327);
+  LINE(331);
     {
     {
     ret_1->num = ans.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE geti ****/
@@ -2035,15 +2046,15 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         err = gcb_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(330);
+    enter_proc(334);
 
-  LINE(332);
+  LINE(336);
     {
         {copied.num = 0;
         }
         }
 
-  LINE(333);
+  LINE(337);
     {
         {CLUREF T_1_1;
         err = _bytevecOPsize(b, &T_1_1);
@@ -2052,20 +2063,20 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         }
         }
 
-  LINE(334);
+  LINE(338);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
         CLUREF T_1_4;
-        T_1_1.num = data_count.num + 4;
-         if ((T_1_1.num > 0 && data_count.num < 0 && 4 < 0) ||
-             (T_1_1.num < 0 && data_count.num > 0 && 4 > 0)) {
+        T_1_1.num = data_count.num + gcbOPclurefsz.num;
+         if ((T_1_1.num > 0 && data_count.num < 0 && gcbOPclurefsz.num < 0) ||
+             (T_1_1.num < 0 && data_count.num > 0 && gcbOPclurefsz.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        err = intOPdiv(T_1_1, CLU_4, &T_1_2);
+        err = intOPdiv(T_1_1, gcbOPclurefsz, &T_1_2);
         if (err != ERR_ok) goto ex_0;
-        err = intOPmul(T_1_2, CLU_4, &T_1_3);
+        err = intOPmul(T_1_2, gcbOPclurefsz, &T_1_3);
         if (err != ERR_ok) goto ex_0;
         T_1_4.num = T_1_3.num - data_count.num;
          if ((T_1_4.num >= 0 && T_1_3.num < 0 && (-data_count.num) < 0) ||
@@ -2076,25 +2087,25 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         }
         }
 
-  LINE(335);
+  LINE(339);
     {
         {b_index.num = 1;
         }
         }
 
-  LINE(336);
+  LINE(340);
     for (;;) {
         CLUREF T_1_1;
         T_1_1.num = (copied.num < data_count.num)? true : false;
         if (T_1_1.num != true) { break; }
 
-  LINE(337);
+  LINE(341);
         {
         CLUREF T_2_1;
         T_2_1.num = (gcbOPlook_count.num == 0)? true : false;
         if (T_2_1.num == true) {
 
-  LINE(338);
+  LINE(342);
             {
             CLUREF T_4_1;
             err = _chanOPgetw(ch, gcbOPlookahead, &T_4_1);
@@ -2108,14 +2119,14 @@ gcbOPgetb(CLUREF ch, CLUREF b)
                     goto ex_0;}
             end_1:;
 
-  LINE(340);
+  LINE(344);
             {
             gcbOPlook_index.num = 1;
             }
             }
             }/* end if */
 
-  LINE(342);
+  LINE(346);
         {
             {CLUREF T_2_1;
             CLUREF T_2_2;
@@ -2136,7 +2147,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
             }
             }
 
-  LINE(343);
+  LINE(347);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -2146,7 +2157,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
              (T_2_1.num <= 0 && gcbOPlook_index.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        err = intOPmul(T_2_1, CLU_4, &T_2_2);
+        err = intOPmul(T_2_1, gcbOPclurefsz, &T_2_2);
         if (err != ERR_ok) goto ex_0;
         T_2_3.num = T_2_2.num + 1;
          if ((T_2_3.num > 0 && T_2_2.num < 0 && 1 < 0) ||
@@ -2157,7 +2168,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(344);
+  LINE(348);
         {
         CLUREF T_2_1;
         T_2_1.num = gcbOPlook_count.num - count.num;
@@ -2168,11 +2179,11 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         gcbOPlook_count.num = T_2_1.num;
         }
 
-  LINE(345);
+  LINE(349);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
-        err = intOPdiv(count, CLU_4, &T_2_1);
+        err = intOPdiv(count, gcbOPclurefsz, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = gcbOPlook_index.num + T_2_1.num;
          if ((T_2_2.num > 0 && gcbOPlook_index.num < 0 && T_2_1.num < 0) ||
@@ -2182,7 +2193,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         gcbOPlook_index.num = T_2_2.num;
         }
 
-  LINE(346);
+  LINE(350);
         {
         CLUREF T_2_1;
         T_2_1.num = b_index.num + count.num;
@@ -2193,7 +2204,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         b_index.num = T_2_1.num;
         }
 
-  LINE(347);
+  LINE(351);
         {
         CLUREF T_2_1;
         T_2_1.num = copied.num + count.num;
@@ -2206,13 +2217,13 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         }
         end_while_1:;
 
-  LINE(349);
+  LINE(353);
     {
     CLUREF T_1_1;
     T_1_1.num = (gcbOPlook_count.num == 0)? true : false;
     if (T_1_1.num == true) {
 
-  LINE(350);
+  LINE(354);
         {
         CLUREF T_3_1;
         err = _chanOPgetw(ch, gcbOPlookahead, &T_3_1);
@@ -2226,14 +2237,14 @@ gcbOPgetb(CLUREF ch, CLUREF b)
                 goto ex_0;}
         end_2:;
 
-  LINE(352);
+  LINE(356);
         {
         gcbOPlook_index.num = 1;
         }
         }
         }/* end if */
 
-  LINE(354);
+  LINE(358);
     {
     CLUREF T_1_1;
     T_1_1.num = gcbOPlook_count.num - pad_count.num;
@@ -2244,7 +2255,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
     gcbOPlook_count.num = T_1_1.num;
     }
 
-  LINE(355);
+  LINE(359);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2263,7 +2274,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         }
         }/* end if */
 
-  LINE(356);
+  LINE(360);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2279,14 +2290,14 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         goto ex_0;}
     gcbOPobj_addr.num = T_1_2.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE getb ****/
@@ -2306,36 +2317,36 @@ gcbOPskip(CLUREF ch, CLUREF i)
         err = gcb_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(359);
+    enter_proc(363);
 
-  LINE(361);
+  LINE(365);
     {
         {CLUREF T_1_1;
-        err = intOPmul(i, CLU_4, &T_1_1);
+        err = intOPmul(i, gcbOPclurefsz, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         i4.num = T_1_1.num;
         }
         }
 
-  LINE(362);
+  LINE(366);
     {
         {skipped.num = 0;
         }
         }
 
-  LINE(363);
+  LINE(367);
     for (;;) {
         CLUREF T_1_1;
         T_1_1.num = (skipped.num < i4.num)? true : false;
         if (T_1_1.num != true) { break; }
 
-  LINE(364);
+  LINE(368);
         {
         CLUREF T_2_1;
         T_2_1.num = (gcbOPlook_count.num == 0)? true : false;
         if (T_2_1.num == true) {
 
-  LINE(365);
+  LINE(369);
             {
             CLUREF T_4_1;
             err = _chanOPgetw(ch, gcbOPlookahead, &T_4_1);
@@ -2349,14 +2360,14 @@ gcbOPskip(CLUREF ch, CLUREF i)
                     goto ex_0;}
             end_1:;
 
-  LINE(367);
+  LINE(371);
             {
             gcbOPlook_index.num = 1;
             }
             }
             }/* end if */
 
-  LINE(369);
+  LINE(373);
         {
             {CLUREF T_2_1;
             CLUREF T_2_2;
@@ -2371,7 +2382,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
             }
             }
 
-  LINE(370);
+  LINE(374);
         {
         CLUREF T_2_1;
         T_2_1.num = gcbOPlook_count.num - count.num;
@@ -2382,11 +2393,11 @@ gcbOPskip(CLUREF ch, CLUREF i)
         gcbOPlook_count.num = T_2_1.num;
         }
 
-  LINE(371);
+  LINE(375);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
-        err = intOPdiv(count, CLU_4, &T_2_1);
+        err = intOPdiv(count, gcbOPclurefsz, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         T_2_2.num = gcbOPlook_index.num + T_2_1.num;
          if ((T_2_2.num > 0 && gcbOPlook_index.num < 0 && T_2_1.num < 0) ||
@@ -2396,7 +2407,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
         gcbOPlook_index.num = T_2_2.num;
         }
 
-  LINE(372);
+  LINE(376);
         {
         CLUREF T_2_1;
         T_2_1.num = skipped.num + count.num;
@@ -2409,7 +2420,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
         }
         end_while_1:;
 
-  LINE(374);
+  LINE(378);
     {
     CLUREF T_1_1;
     T_1_1.num = gcbOPobj_addr.num + i4.num;
@@ -2419,14 +2430,14 @@ gcbOPskip(CLUREF ch, CLUREF i)
         goto ex_0;}
     gcbOPobj_addr.num = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE skip ****/
@@ -2438,17 +2449,17 @@ typedef struct{
     struct OP_ENTRY entry[9];
 } gcb_OPS;
 
-CLU_proc gcb_oe_get_array_info = { .proc = gcbOPget_array_info };
-CLU_proc gcb_oe_get_next_hdr = { .proc = gcbOPget_next_hdr };
-CLU_proc gcb_oe_get_next_obj = { .proc = gcbOPget_next_obj };
-CLU_proc gcb_oe_get_size = { .proc = gcbOPget_size };
-CLU_proc gcb_oe_getb = { .proc = gcbOPgetb };
-CLU_proc gcb_oe_geti = { .proc = gcbOPgeti };
-CLU_proc gcb_oe_init = { .proc = gcbOPinit };
-CLU_proc gcb_oe_skip = { .proc = gcbOPskip };
-CLU_proc gcb_oe_skip_obj = { .proc = gcbOPskip_obj };
+static CLU_proc gcb_oe_get_array_info = { .proc = gcbOPget_array_info };
+static CLU_proc gcb_oe_get_next_hdr = { .proc = gcbOPget_next_hdr };
+static CLU_proc gcb_oe_get_next_obj = { .proc = gcbOPget_next_obj };
+static CLU_proc gcb_oe_get_size = { .proc = gcbOPget_size };
+static CLU_proc gcb_oe_getb = { .proc = gcbOPgetb };
+static CLU_proc gcb_oe_geti = { .proc = gcbOPgeti };
+static CLU_proc gcb_oe_init = { .proc = gcbOPinit };
+static CLU_proc gcb_oe_skip = { .proc = gcbOPskip };
+static CLU_proc gcb_oe_skip_obj = { .proc = gcbOPskip_obj };
 
-gcb_OPS gcb_ops_actual = {9, (OWNPTR)&gcb_own_init, (OWNPTR)&gcb_own_init, {
+static gcb_OPS gcb_ops_actual = {9, (OWNPTR)&gcb_own_init, (OWNPTR)&gcb_own_init, {
     {&gcb_oe_get_array_info, "get_array_info"},
     {&gcb_oe_get_next_hdr, "get_next_hdr"},
     {&gcb_oe_get_next_obj, "get_next_obj"},
@@ -2486,9 +2497,9 @@ gcoOPinit()
 {
     errcode err;
     CLUREF no_bucket;
-    enter_proc(390);
+    enter_proc(394);
 
-  LINE(391);
+  LINE(395);
     {
         {CLUREF T_1_1;
         T_1_1.num = (long)nil;
@@ -2496,7 +2507,7 @@ gcoOPinit()
         }
         }
 
-  LINE(392);
+  LINE(396);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2505,14 +2516,14 @@ gcoOPinit()
     if (err != ERR_ok) goto ex_0;
     gcoOPobj_store.num = T_1_2.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE init ****/
@@ -2527,9 +2538,9 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
     errcode err;
     CLUREF k;
     CLUREF this_buck;
-    enter_proc(395);
+    enter_proc(399);
 
-  LINE(397);
+  LINE(401);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -2546,7 +2557,7 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
         }
         }
 
-  LINE(398);
+  LINE(402);
     {
         {CLUREF T_1_1;
         if (k.num < gcoOPobj_store.array->ext_low || k.num > gcoOPobj_store.array->ext_high ) {
@@ -2557,7 +2568,7 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
         }
         }
 
-  LINE(399);
+  LINE(403);
     for (;;) {
         CLUREF T_1_1;
         CLUREF T_1_2;
@@ -2580,7 +2591,7 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
         }
         if (T_1_1.num != true) { break; }
 
-  LINE(400);
+  LINE(404);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -2591,7 +2602,7 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
         }
         end_while_1:;
 
-  LINE(402);
+  LINE(406);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2605,7 +2616,7 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
         }
         }/* end if */
 
-  LINE(403);
+  LINE(407);
     {
     {
     CLUREF T_1_1;
@@ -2613,15 +2624,15 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_obj ****/
@@ -2636,9 +2647,9 @@ gcoOPsave_new_obj(CLUREF i, CLUREF o)
     errcode err;
     CLUREF k;
     CLUREF this_buck;
-    enter_proc(406);
+    enter_proc(410);
 
-  LINE(407);
+  LINE(411);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -2655,7 +2666,7 @@ gcoOPsave_new_obj(CLUREF i, CLUREF o)
         }
         }
 
-  LINE(408);
+  LINE(412);
     {
         {CLUREF T_1_1;
         if (k.num < gcoOPobj_store.array->ext_low || k.num > gcoOPobj_store.array->ext_high ) {
@@ -2666,7 +2677,7 @@ gcoOPsave_new_obj(CLUREF i, CLUREF o)
         }
         }
 
-  LINE(409);
+  LINE(413);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2682,14 +2693,14 @@ gcoOPsave_new_obj(CLUREF i, CLUREF o)
     gcoOPobj_store.array->store->data[k.num + gcoOPobj_store.array->int_low - gcoOPobj_store.array->ext_low] = T_1_1.num;
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE save_new_obj ****/
@@ -2702,23 +2713,23 @@ errcode
 gcoOPreset()
 {
     errcode err;
-    enter_proc(412);
+    enter_proc(416);
 
-  LINE(413);
+  LINE(417);
     {
     CLUREF T_1_1;
     err = arrayOPnew(&T_1_1);
     if (err != ERR_ok) goto ex_0;
     gcoOPobj_store.num = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE reset ****/
@@ -2730,12 +2741,12 @@ typedef struct{
     struct OP_ENTRY entry[4];
 } gco_OPS;
 
-CLU_proc gco_oe_get_obj = { .proc = gcoOPget_obj };
-CLU_proc gco_oe_init = { .proc = gcoOPinit };
-CLU_proc gco_oe_reset = { .proc = gcoOPreset };
-CLU_proc gco_oe_save_new_obj = { .proc = gcoOPsave_new_obj };
+static CLU_proc gco_oe_get_obj = { .proc = gcoOPget_obj };
+static CLU_proc gco_oe_init = { .proc = gcoOPinit };
+static CLU_proc gco_oe_reset = { .proc = gcoOPreset };
+static CLU_proc gco_oe_save_new_obj = { .proc = gcoOPsave_new_obj };
 
-gco_OPS gco_ops_actual = {4, (OWNPTR)&gco_own_init, (OWNPTR)&gco_own_init, {
+static gco_OPS gco_ops_actual = {4, (OWNPTR)&gco_own_init, (OWNPTR)&gco_own_init, {
     {&gco_oe_get_obj, "get_obj"},
     {&gco_oe_init, "init"},
     {&gco_oe_reset, "reset"},
@@ -2776,15 +2787,15 @@ log_bytevec(CLUREF bv)
         stringOPcons("\'", CLU_1, CLUREF_make_num(1), &STR__047);
         log_bytevec_own_init = 1;
     }
-    enter_proc(468);
+    enter_proc(472);
 
-  LINE(469);
+  LINE(473);
     {
     err = logit(STR_gc_137read_072_040next_040_137bytevec);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(470);
+  LINE(474);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2795,7 +2806,7 @@ log_bytevec(CLUREF bv)
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             i.num = T_1_2.num;
 
-  LINE(471);
+  LINE(475);
             {
                 {CLUREF T_2_1;
                 if (i.num < 1 || i.num > bv.str->size ) {
@@ -2806,7 +2817,7 @@ log_bytevec(CLUREF bv)
                 }
                 }
 
-  LINE(472);
+  LINE(476);
             {
                 {CLUREF T_2_1;
                 CLUREF T_2_2;
@@ -2829,7 +2840,7 @@ log_bytevec(CLUREF bv)
                 }
                 }
 
-  LINE(473);
+  LINE(477);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -2865,7 +2876,7 @@ log_bytevec(CLUREF bv)
                 }
                 }/* end if */
 
-  LINE(474);
+  LINE(478);
             {
             err = logit(s);
             if (err != ERR_ok) goto ex_0;
@@ -2873,14 +2884,14 @@ log_bytevec(CLUREF bv)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE log_bytevec ****/

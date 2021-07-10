@@ -26,7 +26,6 @@ extern errcode stringOPac2s();
 extern errcode arrayOPfill();
 extern errcode stringOPappend();
 extern errcode stringOPconcat();
-static CLUREF STR_;
 static CLUREF STR__072pc_075;
 static int _termcap_own_init = 0;
 
@@ -41,7 +40,6 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
     CLUREF scale;
     CLUREF s;
     if (_termcap_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons(":pc=", CLU_1, CLUREF_make_num(4), &STR__072pc_075);
         _termcap_own_init = 1;
     }
@@ -81,7 +79,7 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
 
   LINE(13);
     {
-        {pad = STR_;
+        {pad = CLU_empty_string;
         }
         }
 
@@ -383,7 +381,7 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
 
   LINE(51);
     {
-        {s = STR_;
+        {s = CLU_empty_string;
         }
         }
 
@@ -428,15 +426,15 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _termcap ****/
@@ -799,15 +797,15 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = c.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _termcap_decode ****/

@@ -8,7 +8,7 @@
 /**** BEGIN ITERATOR all_file_names ****/
 
 extern errcode _all_file_names_();
-extern errcode all_file_names_IB_1();
+static errcode all_file_names_IB_1();
 typedef struct {
     void *user_locals;
     errcode (*proc)();
@@ -78,14 +78,14 @@ all_file_names(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecode)
         {signal (ERR_none);}}
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END ITERATOR all_file_names ****/
@@ -93,7 +93,7 @@ all_file_names(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecode)
 
 /**** BEGIN ITERATOR BODIES for all_file_names ****/
 
-errcode
+static errcode
 all_file_names_IB_1(CLUREF iv_1, all_file_names_LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
@@ -114,14 +114,15 @@ all_file_names_IB_1(CLUREF iv_1, all_file_names_LOCALS_t *locals, errcode *iecod
     signal(locals->err);
     }
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            locals->body_ctrl_req = true;
-            {signal(ERR_iteriterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end all_file_names_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    locals->body_ctrl_req = true;
+    signal(ERR_iteriterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for all_file_names ****/
 

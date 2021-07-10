@@ -15,7 +15,7 @@ extern errcode arrayOPaddh();
 extern errcode arrayOPtop();
 extern errcode arrayOPremh();
 extern errcode stringOPac2s();
-extern errcode unify_spacing_IB_1();
+static errcode unify_spacing_IB_1();
 static int unify_spacing_own_init = 0;
 CLUREF unify_spacingOPbuf;
 typedef struct {
@@ -131,15 +131,15 @@ unify_spacing(CLUREF s, CLUREF *ret_1)
     ret_1->num = locals.s.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE unify_spacing ****/
@@ -147,7 +147,7 @@ unify_spacing(CLUREF s, CLUREF *ret_1)
 
 /**** BEGIN ITERATOR BODIES for unify_spacing ****/
 
-errcode
+static errcode
 unify_spacing_IB_1(CLUREF iv_1, unify_spacing_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
@@ -255,13 +255,14 @@ unify_spacing_IB_1(CLUREF iv_1, unify_spacing_LOCALS_t *locals, errcode *iecode)
     {
     locals->out.tf = true;
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end unify_spacing_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for unify_spacing ****/
 

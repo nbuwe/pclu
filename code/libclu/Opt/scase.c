@@ -24,15 +24,15 @@ lower_case(CLUREF s, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE lower_case ****/
@@ -57,15 +57,15 @@ upper_case(CLUREF s, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE upper_case ****/
@@ -90,15 +90,15 @@ capitalize(CLUREF s, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE capitalize ****/
@@ -120,8 +120,8 @@ extern errcode charOPc2i();
 extern errcode arrayOPaddh();
 extern errcode stringOPac2s();
 extern errcode arrayOPtrim();
-extern errcode _case_IB_1();
-extern errcode _case_IB_2();
+static errcode _case_IB_1();
+static errcode _case_IB_2();
 static int _case_own_init = 0;
 CLUREF _caseOPbuf;
 typedef struct {
@@ -232,15 +232,15 @@ _case(CLUREF s, CLUREF first, CLUREF rest, CLUREF *ret_1)
     ret_1->num = locals.s.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _case ****/
@@ -248,7 +248,7 @@ _case(CLUREF s, CLUREF first, CLUREF rest, CLUREF *ret_1)
 
 /**** BEGIN ITERATOR BODIES for _case ****/
 
-errcode
+static errcode
 _case_IB_1(CLUREF iv_1, _case_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
@@ -328,15 +328,16 @@ _case_IB_1(CLUREF iv_1, _case_LOCALS_t *locals, errcode *iecode)
     {
     locals->upper.num = locals->rest.num;
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end _case_IB_1 */
 
-errcode
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
+
+static errcode
 _case_IB_2(CLUREF iv_1, _case_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
@@ -460,13 +461,14 @@ _case_IB_2(CLUREF iv_1, _case_LOCALS_t *locals, errcode *iecode)
     {
     locals->upper.num = locals->rest.num;
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end _case_IB_2 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for _case ****/
 

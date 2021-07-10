@@ -43,77 +43,49 @@ extern const struct REQS * const table_of_val_reqs;
 extern struct OPS *du_ops;
 extern const OWN_req table_ownreqs;
 extern struct OPS *table_ops;
-struct OPS *table_of_string_table;
-struct OPS *table_of_du_table;
 struct OPS *table_of_string_du_ops;
-struct OPS *table_of_string_du_ops;
-OWNPTR table_of_string_du_owns;
 extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *idn_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_idn_table;
 struct OPS *sequence_of_idn_ops;
-struct OPS *sequence_of_idn_ops;
-OWNPTR sequence_of_idn_owns;
 extern struct OPS *sequence_of_idn_ops;
 extern struct OPS *typespec_ops;
-struct OPS  *record_parms_type__ops;
+struct OPS *record_parms_type__ops;
 extern struct OPS *expr_ops;
-struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
 extern struct OPS *sequence_of_expr_ops;
-struct OPS  *record_name_parms_type__ops;
+struct OPS *record_name_parms_type__ops;
 extern struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__table;
 struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-OWNPTR sequence_of_record_name_parms_type__owns;
 extern struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS  *record_opers_parm_ops;
+struct OPS *record_opers_parm_ops;
 extern struct OPS *record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_table;
 struct OPS *sequence_of_record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_ops;
-OWNPTR sequence_of_record_opers_parm_owns;
 extern struct OPS *record_parms_type__ops;
 extern struct OPS *sequence_of_record_opers_parm_ops;
-struct OPS  *record_info_name_where__ops;
+struct OPS *record_info_name_where__ops;
 extern struct OPS *record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__table;
 struct OPS *sequence_of_record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__ops;
-OWNPTR sequence_of_record_info_name_where__owns;
 extern struct OPS *sequence_of_record_info_name_where__ops;
-struct OPS  *record_opers_parms_ops;
+struct OPS *record_opers_parms_ops;
 extern struct OPS *record_opers_parms_ops;
 extern struct OPS *null_ops;
-struct OPS  *oneof_apply_atype_cluster__none_select_ops;
+struct OPS *oneof_apply_atype_cluster__none_select_ops;
 extern struct OPS *oneof_apply_atype_cluster__none_select_ops;
-struct OPS  *record_name_path_specs_ops;
+struct OPS *record_name_path_specs_ops;
 extern const struct REQS * const array_of_t_reqs;
 extern struct OPS *record_name_path_specs_ops;
 extern const OWN_req array_ownreqs;
 extern struct OPS *array_ops;
-struct OPS *array_of_record_name_path_specs_table;
 struct OPS *array_of_record_name_path_specs_ops;
-struct OPS *array_of_record_name_path_specs_ops;
-OWNPTR array_of_record_name_path_specs_owns;
 extern const struct REQS * const gc_dump_of_t_reqs;
 extern struct OPS *array_of_record_name_path_specs_ops;
 extern const OWN_req gc_dump_ownreqs;
-struct OPS *gc_dump_of_array_of_record_name_path_specs_table;
 struct OPS *gc_dump_of_array_of_record_name_path_specs_ops;
-struct OPS *gc_dump_of_array_of_record_name_path_specs_ops;
-OWNPTR gc_dump_of_array_of_record_name_path_specs_owns;
 extern const struct REQS * const gc_read_of_t_reqs;
 extern const OWN_req gc_read_ownreqs;
-struct OPS *gc_read_of_array_of_record_name_path_specs_table;
 struct OPS *gc_read_of_array_of_record_name_path_specs_ops;
-struct OPS *gc_read_of_array_of_record_name_path_specs_ops;
-OWNPTR gc_read_of_array_of_record_name_path_specs_owns;
 static CLUREF STR_null;
 static CLUREF STR_bool;
 static CLUREF STR_int;
@@ -131,7 +103,6 @@ static CLUREF STR_itertype;
 static CLUREF STR_type;
 static CLUREF STR_nothing_040to_040dump;
 static CLUREF STR__137l_137;
-static CLUREF STR_;
 static int xlib_own_init = 0;
 const OWN_req xlib_ownreqs = { 0, 0 };
 CLUREF xlibOPtab;
@@ -205,7 +176,6 @@ xlib_own_init_proc(void)
         stringOPcons("type", CLU_1, CLUREF_make_num(4), &STR_type);
         stringOPcons("nothing to dump", CLU_1, CLUREF_make_num(15), &STR_nothing_040to_040dump);
         stringOPcons("_l_", CLU_1, CLUREF_make_num(3), &STR__137l_137);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         xlib_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -389,14 +359,14 @@ xlibOPinit()
     err = xlibOPbind(STR_type, T_1_1);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE init ****/
@@ -404,11 +374,7 @@ xlibOPinit()
 
 /**** BEGIN PROCEDURE lookup ****/
 
-struct OPS *table_of_string_table;
-struct OPS *table_of_du_table;
 struct OPS *table_of_string_du_ops;
-struct OPS *table_of_string_du_ops;
-OWNPTR table_of_string_du_owns;
 static int xlibOPlookup_own_init = 0;
 
 errcode
@@ -442,15 +408,15 @@ xlibOPlookup(CLUREF path, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE lookup ****/
@@ -458,11 +424,7 @@ xlibOPlookup(CLUREF path, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE bind ****/
 
-struct OPS *table_of_string_table;
-struct OPS *table_of_du_table;
 struct OPS *table_of_string_du_ops;
-struct OPS *table_of_string_du_ops;
-OWNPTR table_of_string_du_owns;
 static int xlibOPbind_own_init = 0;
 
 errcode
@@ -492,14 +454,14 @@ xlibOPbind(CLUREF path, CLUREF d)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE bind ****/
@@ -507,11 +469,7 @@ xlibOPbind(CLUREF path, CLUREF d)
 
 /**** BEGIN PROCEDURE get_du ****/
 
-struct OPS *table_of_string_table;
-struct OPS *table_of_du_table;
 struct OPS *table_of_string_du_ops;
-struct OPS *table_of_string_du_ops;
-OWNPTR table_of_string_du_owns;
 static int xlibOPget_du_own_init = 0;
 
 errcode
@@ -573,15 +531,15 @@ xlibOPget_du(CLUREF n, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_du ****/
@@ -589,47 +547,22 @@ xlibOPget_du(CLUREF n, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE dump ****/
 
-extern errcode xlibOPdump_IB_1();
-struct OPS *table_of_string_table;
-struct OPS *table_of_du_table;
+static errcode xlibOPdump_IB_1();
 struct OPS *table_of_string_du_ops;
-struct OPS *table_of_string_du_ops;
-OWNPTR table_of_string_du_owns;
-struct OPS *sequence_of_idn_table;
 struct OPS *sequence_of_idn_ops;
-struct OPS *sequence_of_idn_ops;
-OWNPTR sequence_of_idn_owns;
-struct OPS  *record_parms_type__ops;
-struct OPS *sequence_of_expr_table;
+struct OPS *record_parms_type__ops;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__table;
+struct OPS *record_name_parms_type__ops;
 struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-OWNPTR sequence_of_record_name_parms_type__owns;
-struct OPS  *record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_table;
+struct OPS *record_opers_parm_ops;
 struct OPS *sequence_of_record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_ops;
-OWNPTR sequence_of_record_opers_parm_owns;
-struct OPS  *record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__table;
+struct OPS *record_info_name_where__ops;
 struct OPS *sequence_of_record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__ops;
-OWNPTR sequence_of_record_info_name_where__owns;
-struct OPS  *record_opers_parms_ops;
-struct OPS  *oneof_apply_atype_cluster__none_select_ops;
-struct OPS  *record_name_path_specs_ops;
-struct OPS *array_of_record_name_path_specs_table;
+struct OPS *record_opers_parms_ops;
+struct OPS *oneof_apply_atype_cluster__none_select_ops;
+struct OPS *record_name_path_specs_ops;
 struct OPS *array_of_record_name_path_specs_ops;
-struct OPS *array_of_record_name_path_specs_ops;
-OWNPTR array_of_record_name_path_specs_owns;
-struct OPS *gc_dump_of_array_of_record_name_path_specs_table;
 struct OPS *gc_dump_of_array_of_record_name_path_specs_ops;
-struct OPS *gc_dump_of_array_of_record_name_path_specs_ops;
-OWNPTR gc_dump_of_array_of_record_name_path_specs_owns;
 static int xlibOPdump_own_init = 0;
 typedef struct {
     errcode ecode2;
@@ -706,7 +639,7 @@ xlibOPdump(CLUREF fn, CLUREF *ret_1)
         if (locals.err != ERR_ok) goto ex_1;
         locals.err = file_nameOPget_name(locals.fn, &T_2_2);
         if (locals.err != ERR_ok) goto ex_1;
-        locals.err = file_nameOPcreate(T_2_1, T_2_2, STR__137l_137, STR_, &T_2_3);
+        locals.err = file_nameOPcreate(T_2_1, T_2_2, STR__137l_137, CLU_empty_string, &T_2_3);
         if (locals.err != ERR_ok) goto ex_1;
         generic_CLU_proc.type_owns = 0;
         generic_CLU_proc.op_owns = gc_dump_of_array_of_record_name_path_specs_ops->op_owns;
@@ -736,7 +669,7 @@ xlibOPdump(CLUREF fn, CLUREF *ret_1)
     if (locals.err != ERR_ok) goto ex_2;
     locals.err = file_nameOPget_suffix(locals.fn, &T_2_3);
     if (locals.err != ERR_ok) goto ex_2;
-    locals.err = file_nameOPcreate(T_2_1, T_2_2, T_2_3, STR_, &T_2_4);
+    locals.err = file_nameOPcreate(T_2_1, T_2_2, T_2_3, CLU_empty_string, &T_2_4);
     if (locals.err != ERR_ok) goto ex_2;
     locals.err = rename_file(locals.nfn, T_2_4);
     if (locals.err != ERR_ok) goto ex_2;
@@ -784,20 +717,20 @@ xlibOPdump(CLUREF fn, CLUREF *ret_1)
     if (locals.err != ERR_ok) goto ex_0;
     locals.err = file_nameOPget_suffix(locals.fn, &T_1_3);
     if (locals.err != ERR_ok) goto ex_0;
-    locals.err = file_nameOPcreate(T_1_1, T_1_2, T_1_3, STR_, &T_1_4);
+    locals.err = file_nameOPcreate(T_1_1, T_1_2, T_1_3, CLU_empty_string, &T_1_4);
     if (locals.err != ERR_ok) goto ex_0;
     ret_1->num = T_1_4.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE dump ****/
@@ -805,7 +738,7 @@ xlibOPdump(CLUREF fn, CLUREF *ret_1)
 
 /**** BEGIN ITERATOR BODIES for dump ****/
 
-errcode
+static errcode
 xlibOPdump_IB_1(CLUREF iv_1, CLUREF iv_2, xlibOPdump_LOCALS_t *locals, errcode *iecode)
 {
     locals->path.num = iv_1.num;
@@ -857,59 +790,35 @@ xlibOPdump_IB_1(CLUREF iv_1, CLUREF iv_2, xlibOPdump_LOCALS_t *locals, errcode *
         }
         }
         }/* end if */
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end xlibOPdump_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for dump ****/
 
 
 /**** BEGIN PROCEDURE merge ****/
 
-struct OPS *sequence_of_idn_table;
 struct OPS *sequence_of_idn_ops;
-struct OPS *sequence_of_idn_ops;
-OWNPTR sequence_of_idn_owns;
-struct OPS  *record_parms_type__ops;
-struct OPS *sequence_of_expr_table;
+struct OPS *record_parms_type__ops;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__table;
+struct OPS *record_name_parms_type__ops;
 struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-OWNPTR sequence_of_record_name_parms_type__owns;
-struct OPS  *record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_table;
+struct OPS *record_opers_parm_ops;
 struct OPS *sequence_of_record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_ops;
-OWNPTR sequence_of_record_opers_parm_owns;
-struct OPS  *record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__table;
+struct OPS *record_info_name_where__ops;
 struct OPS *sequence_of_record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__ops;
-OWNPTR sequence_of_record_info_name_where__owns;
-struct OPS  *record_opers_parms_ops;
-struct OPS  *oneof_apply_atype_cluster__none_select_ops;
-struct OPS  *record_name_path_specs_ops;
-struct OPS *array_of_record_name_path_specs_table;
+struct OPS *record_opers_parms_ops;
+struct OPS *oneof_apply_atype_cluster__none_select_ops;
+struct OPS *record_name_path_specs_ops;
 struct OPS *array_of_record_name_path_specs_ops;
-struct OPS *array_of_record_name_path_specs_ops;
-OWNPTR array_of_record_name_path_specs_owns;
-struct OPS *gc_read_of_array_of_record_name_path_specs_table;
 struct OPS *gc_read_of_array_of_record_name_path_specs_ops;
-struct OPS *gc_read_of_array_of_record_name_path_specs_ops;
-OWNPTR gc_read_of_array_of_record_name_path_specs_owns;
-struct OPS *table_of_string_table;
-struct OPS *table_of_du_table;
 struct OPS *table_of_string_du_ops;
-struct OPS *table_of_string_du_ops;
-OWNPTR table_of_string_du_owns;
 static int xlibOPmerge_own_init = 0;
 
 errcode
@@ -1036,14 +945,14 @@ xlibOPmerge(CLUREF fn)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE merge ****/
@@ -1051,46 +960,21 @@ xlibOPmerge(CLUREF fn)
 
 /**** BEGIN PROCEDURE unmerge ****/
 
-struct OPS *sequence_of_idn_table;
 struct OPS *sequence_of_idn_ops;
-struct OPS *sequence_of_idn_ops;
-OWNPTR sequence_of_idn_owns;
-struct OPS  *record_parms_type__ops;
-struct OPS *sequence_of_expr_table;
+struct OPS *record_parms_type__ops;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__table;
+struct OPS *record_name_parms_type__ops;
 struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-OWNPTR sequence_of_record_name_parms_type__owns;
-struct OPS  *record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_table;
+struct OPS *record_opers_parm_ops;
 struct OPS *sequence_of_record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_ops;
-OWNPTR sequence_of_record_opers_parm_owns;
-struct OPS  *record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__table;
+struct OPS *record_info_name_where__ops;
 struct OPS *sequence_of_record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__ops;
-OWNPTR sequence_of_record_info_name_where__owns;
-struct OPS  *record_opers_parms_ops;
-struct OPS  *oneof_apply_atype_cluster__none_select_ops;
-struct OPS  *record_name_path_specs_ops;
-struct OPS *array_of_record_name_path_specs_table;
+struct OPS *record_opers_parms_ops;
+struct OPS *oneof_apply_atype_cluster__none_select_ops;
+struct OPS *record_name_path_specs_ops;
 struct OPS *array_of_record_name_path_specs_ops;
-struct OPS *array_of_record_name_path_specs_ops;
-OWNPTR array_of_record_name_path_specs_owns;
-struct OPS *gc_read_of_array_of_record_name_path_specs_table;
 struct OPS *gc_read_of_array_of_record_name_path_specs_ops;
-struct OPS *gc_read_of_array_of_record_name_path_specs_ops;
-OWNPTR gc_read_of_array_of_record_name_path_specs_owns;
-struct OPS *table_of_string_table;
-struct OPS *table_of_du_table;
 struct OPS *table_of_string_du_ops;
-struct OPS *table_of_string_du_ops;
-OWNPTR table_of_string_du_owns;
 static int xlibOPunmerge_own_init = 0;
 
 errcode
@@ -1158,14 +1042,14 @@ xlibOPunmerge(CLUREF fn)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE unmerge ****/
@@ -1177,15 +1061,15 @@ typedef struct{
     struct OP_ENTRY entry[7];
 } xlib_OPS;
 
-CLU_proc xlib_oe_bind = { .proc = xlibOPbind };
-CLU_proc xlib_oe_dump = { .proc = xlibOPdump };
-CLU_proc xlib_oe_get_du = { .proc = xlibOPget_du };
-CLU_proc xlib_oe_init = { .proc = xlibOPinit };
-CLU_proc xlib_oe_lookup = { .proc = xlibOPlookup };
-CLU_proc xlib_oe_merge = { .proc = xlibOPmerge };
-CLU_proc xlib_oe_unmerge = { .proc = xlibOPunmerge };
+static CLU_proc xlib_oe_bind = { .proc = xlibOPbind };
+static CLU_proc xlib_oe_dump = { .proc = xlibOPdump };
+static CLU_proc xlib_oe_get_du = { .proc = xlibOPget_du };
+static CLU_proc xlib_oe_init = { .proc = xlibOPinit };
+static CLU_proc xlib_oe_lookup = { .proc = xlibOPlookup };
+static CLU_proc xlib_oe_merge = { .proc = xlibOPmerge };
+static CLU_proc xlib_oe_unmerge = { .proc = xlibOPunmerge };
 
-xlib_OPS xlib_ops_actual = {7, (OWNPTR)&xlib_own_init, (OWNPTR)&xlib_own_init, {
+static xlib_OPS xlib_ops_actual = {7, (OWNPTR)&xlib_own_init, (OWNPTR)&xlib_own_init, {
     {&xlib_oe_bind, "bind"},
     {&xlib_oe_dump, "dump"},
     {&xlib_oe_get_du, "get_du"},

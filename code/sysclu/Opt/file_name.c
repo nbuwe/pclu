@@ -44,8 +44,7 @@ extern errcode file_nameOPparse();
 extern errcode stringOPdecode();
 extern errcode recordOP_gcd();
 extern struct OPS *string_ops;
-struct OPS  *record_dir_name_other_suffix_ops;
-static CLUREF STR_;
+struct OPS *record_dir_name_other_suffix_ops;
 static CLUREF STR__057;
 static CLUREF STR_output;
 static CLUREF STR__137;
@@ -64,7 +63,6 @@ file_name_own_init_proc(void)
         add_selector_info("other", 2, string_ops);
         add_selector_info("suffix", 3, string_ops);
         find_selector_ops("record", 4, &(record_dir_name_other_suffix_ops));
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("/", CLU_1, CLUREF_make_num(1), &STR__057);
         stringOPcons("output", CLU_1, CLUREF_make_num(6), &STR_output);
         stringOPcons("_", CLU_1, CLUREF_make_num(1), &STR__137);
@@ -334,15 +332,15 @@ file_nameOPcreate(CLUREF dir, CLUREF name, CLUREF suffix, CLUREF other, CLUREF *
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE create ****/
@@ -405,7 +403,7 @@ file_nameOPparse(CLUREF s, CLUREF *ret_1)
 
   LINE(75);
         {
-        dir = STR_;
+        dir = CLU_empty_string;
         }
         }
     else {
@@ -480,15 +478,15 @@ file_nameOPparse(CLUREF s, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE parse ****/
@@ -635,15 +633,15 @@ file_nameOPunparse(CLUREF x, CLUREF *ret_1)
     ret_1->num = s.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE unparse ****/
@@ -670,15 +668,15 @@ file_nameOPget_dir(CLUREF x, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_dir ****/
@@ -705,15 +703,15 @@ file_nameOPget_name(CLUREF x, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_name ****/
@@ -740,15 +738,15 @@ file_nameOPget_suffix(CLUREF x, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_suffix ****/
@@ -775,15 +773,15 @@ file_nameOPget_other(CLUREF x, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_other ****/
@@ -873,15 +871,15 @@ file_nameOPmake_output(CLUREF x, CLUREF ext, CLUREF *ret_1)
     ret_1->num = x.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE make_output ****/
@@ -970,7 +968,7 @@ file_nameOPmake_temp(CLUREF tdir, CLUREF prog, CLUREF kind, CLUREF *ret_1)
     if (err != ERR_ok) goto ex_1;
     err = stringOPconcat(T_2_4, kind, &T_2_5);
     if (err != ERR_ok) goto ex_1;
-    err = file_nameOPcreate(tdir, T_2_5, STR_, STR_, &T_2_6);
+    err = file_nameOPcreate(tdir, T_2_5, CLU_empty_string, CLU_empty_string, &T_2_6);
     if (err != ERR_ok) goto ex_1;
     ret_1->num = T_2_6.num;
     }
@@ -981,15 +979,15 @@ file_nameOPmake_temp(CLUREF tdir, CLUREF prog, CLUREF kind, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE make_temp ****/
@@ -997,7 +995,7 @@ file_nameOPmake_temp(CLUREF tdir, CLUREF prog, CLUREF kind, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE equal ****/
 
-struct OPS  *record_dir_name_other_suffix_ops;
+struct OPS *record_dir_name_other_suffix_ops;
 static int file_nameOPequal_own_init = 0;
 
 errcode
@@ -1026,15 +1024,15 @@ file_nameOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE equal ****/
@@ -1042,7 +1040,7 @@ file_nameOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE similar ****/
 
-struct OPS  *record_dir_name_other_suffix_ops;
+struct OPS *record_dir_name_other_suffix_ops;
 static int file_nameOPsimilar_own_init = 0;
 
 errcode
@@ -1071,15 +1069,15 @@ file_nameOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE similar ****/
@@ -1104,15 +1102,15 @@ file_nameOPcopy(CLUREF x, CLUREF *ret_1)
     ret_1->num = x.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE copy ****/
@@ -1260,14 +1258,14 @@ file_nameOPprint(CLUREF x, CLUREF ps)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE print ****/
@@ -1300,14 +1298,14 @@ file_nameOPencode(CLUREF fn, CLUREF ist)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE encode ****/
@@ -1362,15 +1360,15 @@ file_nameOPdecode(CLUREF ist, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE decode ****/
@@ -1378,7 +1376,7 @@ file_nameOPdecode(CLUREF ist, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-struct OPS  *record_dir_name_other_suffix_ops;
+struct OPS *record_dir_name_other_suffix_ops;
 static int file_nameOP_gcd_own_init = 0;
 
 errcode
@@ -1407,15 +1405,15 @@ file_nameOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _gcd ****/
@@ -1427,24 +1425,24 @@ typedef struct{
     struct OP_ENTRY entry[16];
 } file_name_OPS;
 
-CLU_proc file_name_oe__gcd = { .proc = file_nameOP_gcd };
-CLU_proc file_name_oe_copy = { .proc = file_nameOPcopy };
-CLU_proc file_name_oe_create = { .proc = file_nameOPcreate };
-CLU_proc file_name_oe_decode = { .proc = file_nameOPdecode };
-CLU_proc file_name_oe_encode = { .proc = file_nameOPencode };
-CLU_proc file_name_oe_equal = { .proc = file_nameOPequal };
-CLU_proc file_name_oe_get_dir = { .proc = file_nameOPget_dir };
-CLU_proc file_name_oe_get_name = { .proc = file_nameOPget_name };
-CLU_proc file_name_oe_get_other = { .proc = file_nameOPget_other };
-CLU_proc file_name_oe_get_suffix = { .proc = file_nameOPget_suffix };
-CLU_proc file_name_oe_make_output = { .proc = file_nameOPmake_output };
-CLU_proc file_name_oe_make_temp = { .proc = file_nameOPmake_temp };
-CLU_proc file_name_oe_parse = { .proc = file_nameOPparse };
-CLU_proc file_name_oe_print = { .proc = file_nameOPprint };
-CLU_proc file_name_oe_similar = { .proc = file_nameOPsimilar };
-CLU_proc file_name_oe_unparse = { .proc = file_nameOPunparse };
+static CLU_proc file_name_oe__gcd = { .proc = file_nameOP_gcd };
+static CLU_proc file_name_oe_copy = { .proc = file_nameOPcopy };
+static CLU_proc file_name_oe_create = { .proc = file_nameOPcreate };
+static CLU_proc file_name_oe_decode = { .proc = file_nameOPdecode };
+static CLU_proc file_name_oe_encode = { .proc = file_nameOPencode };
+static CLU_proc file_name_oe_equal = { .proc = file_nameOPequal };
+static CLU_proc file_name_oe_get_dir = { .proc = file_nameOPget_dir };
+static CLU_proc file_name_oe_get_name = { .proc = file_nameOPget_name };
+static CLU_proc file_name_oe_get_other = { .proc = file_nameOPget_other };
+static CLU_proc file_name_oe_get_suffix = { .proc = file_nameOPget_suffix };
+static CLU_proc file_name_oe_make_output = { .proc = file_nameOPmake_output };
+static CLU_proc file_name_oe_make_temp = { .proc = file_nameOPmake_temp };
+static CLU_proc file_name_oe_parse = { .proc = file_nameOPparse };
+static CLU_proc file_name_oe_print = { .proc = file_nameOPprint };
+static CLU_proc file_name_oe_similar = { .proc = file_nameOPsimilar };
+static CLU_proc file_name_oe_unparse = { .proc = file_nameOPunparse };
 
-file_name_OPS file_name_ops_actual = {16, (OWNPTR)&file_name_own_init, (OWNPTR)&file_name_own_init, {
+static file_name_OPS file_name_ops_actual = {16, (OWNPTR)&file_name_own_init, (OWNPTR)&file_name_own_init, {
     {&file_name_oe__gcd, "_gcd"},
     {&file_name_oe_copy, "copy"},
     {&file_name_oe_create, "create"},

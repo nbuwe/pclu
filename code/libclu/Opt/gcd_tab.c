@@ -101,6 +101,8 @@ typedef struct {
     OWNPTR op_owns;
     struct OP_ENTRY _gcd;
 } gcd_tab_op_mgrind_of_t_OPS;
+extern errcode _wordvecOPbytes_per_word();
+extern errcode intOPmul();
 extern errcode _chanOPopen();
 extern errcode _chanOPget_name();
 extern errcode _gcOPcount();
@@ -130,7 +132,6 @@ extern errcode sequenceOPfetch();
 extern errcode _tagcellOPget();
 extern errcode _advOPget_vector();
 extern errcode gcd_tabOPinsert();
-extern errcode intOPmul();
 extern errcode _vecOPsize();
 extern errcode boolOPnot();
 extern errcode _objOPequal();
@@ -163,21 +164,18 @@ extern const struct REQS * const _tagcell_of_t_reqs;
 extern struct OPS *_obj_ops;
 extern const OWN_req _tagcell_ownreqs;
 extern struct OPS *_tagcell_ops;
-struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
-struct OPS *_tagcell_of__obj_ops;
-OWNPTR _tagcell_of__obj_owns;
 extern const struct REQS * const _adv_of_t_reqs;
 extern const OWN_req _adv_ownreqs;
 extern struct OPS *_adv_ops;
-struct OPS *_adv_of__obj_table;
 struct OPS *_adv_of__obj_ops;
-struct OPS *_adv_of__obj_ops;
-OWNPTR _adv_of__obj_owns;
 static CLUREF STR_write;
 static CLUREF STR_gcd_137tab_072_040array_040store_040not_040a_040ref;
 static int gcd_tab_own_init = 0;
 const OWN_req gcd_tab_ownreqs = { 0, 0 };
+CLUREF gcd_tabOPclurefsz;
+CLUREF gcd_tabOPgcd_ref_size;
+CLUREF gcd_tabOPbpagesz;
 
 errcode
 gcd_tab_own_init_proc(void)
@@ -192,6 +190,29 @@ gcd_tab_own_init_proc(void)
         stringOPcons("write", CLU_1, CLUREF_make_num(5), &STR_write);
         stringOPcons("gcd_tab: array store not a ref", CLU_1, CLUREF_make_num(30), &STR_gcd_137tab_072_040array_040store_040not_040a_040ref);
         gcd_tab_own_init = 1;
+        {
+            {CLUREF T_0_1;
+            err = _wordvecOPbytes_per_word(&T_0_1);
+            if (err != ERR_ok) goto ex_0;
+            gcd_tabOPclurefsz.num = T_0_1.num;
+            }
+            }
+        {
+            {CLUREF T_0_2;
+            err = intOPmul(gcd_tabOPclurefsz, CLU_2, &T_0_2);
+            if (err != ERR_ok) goto ex_0;
+            gcd_tabOPgcd_ref_size.num = T_0_2.num;
+            }
+            }
+        {
+            {CLUREF T_0_3;
+            CLUREF T_0_4;
+            T_0_3.num = 1024;
+            err = intOPmul(T_0_3, gcd_tabOPclurefsz, &T_0_4);
+            if (err != ERR_ok) goto ex_0;
+            gcd_tabOPbpagesz.num = T_0_4.num;
+            }
+            }
         signal(ERR_ok);
       ex_0:
         pclu_unhandled(err);
@@ -207,9 +228,7 @@ gcd_tab_own_init_proc(void)
 typedef struct {
     long grind_own_init;
     const gcd_tab_op_grind_of_t_OPS * const t_ops;
-    struct OPS *gcd_tab_op_mgrind_of_t_table;
     struct OPS *gcd_tab_op_mgrind_of_t_ops;
-    OWNPTR gcd_tab_op_mgrind_of_t_owns;
 } gcd_tab_op_grind_OWN_DEFN;
 const OWN_req gcd_tab_op_grind_ownreqs = { sizeof(gcd_tab_op_grind_OWN_DEFN), 1 };
 
@@ -229,13 +248,17 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
         find_typeop_instance(gcd_tab_ops, gcd_tabOPmgrind, 1, 0, &gcd_tab_op_mgrind_ownreqs, &gcd_tab_ownreqs, &(op_own_ptr->gcd_tab_op_mgrind_of_t_ops));
         stringOPcons("write", CLU_1, CLUREF_make_num(5), &STR_write);
     }
+    if (gcd_tab_own_init == 0) {
+        err = gcd_tab_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     if (op_own_ptr->grind_own_init == 0) {
         op_own_ptr->grind_own_init = 1;
         /* no own vars to init */
     }
-    enter_proc(44);
+    enter_proc(49);
 
-  LINE(48);
+  LINE(53);
     {
         {CLUREF T_2_1;
         err = _chanOPopen(fn, STR_write, CLU_0, &T_2_1);
@@ -250,7 +273,7 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
             goto ex_0;}
     end_1:;
 
-  LINE(50);
+  LINE(55);
     {
     CLUREF T_1_1;
     err = _chanOPget_name(ch, &T_1_1);
@@ -258,7 +281,7 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
     fn.num = T_1_1.num;
     }
 
-  LINE(51);
+  LINE(56);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -289,7 +312,7 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
         }
         }
 
-  LINE(56);
+  LINE(61);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -300,16 +323,16 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
         }
         }
 
-  LINE(63);
+  LINE(68);
     {
     err = _eventOPdefer();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(64);
+  LINE(69);
     {
 
-  LINE(65);
+  LINE(70);
         {
         generic_CLU_proc.type_owns = 0;
         generic_CLU_proc.op_owns = op_own_ptr->gcd_tab_op_mgrind_of_t_ops->op_owns;
@@ -319,7 +342,7 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
         if (err != ERR_ok) goto ex_2;
         }
 
-  LINE(66);
+  LINE(71);
         {
         CLUREF T_3_1;
         T_3_1.num = tab.vec->data[3];
@@ -327,13 +350,13 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
         if (err != ERR_ok) goto ex_2;
         }
 
-  LINE(67);
+  LINE(72);
         {
         err = _chanOPset_access(ch, CLU_4);
         if (err != ERR_ok) goto ex_2;
         }
 
-  LINE(68);
+  LINE(73);
         {
         err = _chanOPputw(ch, buf, CLU_1, CLU_4, CLU_0);
         if (err != ERR_ok) goto ex_2;
@@ -345,13 +368,13 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
             CLUREF why;
             why.num = elist[0].num;
 
-  LINE(70);
+  LINE(75);
                 {
                 err = _eventOPundefer();
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(71);
+  LINE(76);
                 {
                 err = _chanOPabort(ch);
                 if (err != ERR_ok) goto ex_3;
@@ -365,7 +388,7 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
                         }
                     end_3:;
 
-  LINE(73);
+  LINE(78);
                 {
                 elist[0] = why;
                 {signal (ERR_not_possible);}}
@@ -375,13 +398,13 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
             }
         end_2:;
 
-  LINE(75);
+  LINE(80);
     {
     err = _eventOPundefer();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(77);
+  LINE(82);
     {
     err = _chanOPclose(ch);
     if (err != ERR_ok) goto ex_4;
@@ -393,21 +416,21 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
             goto ex_0;}
     end_4:;
 
-  LINE(79);
+  LINE(84);
     {
     {
     ret_1->num = fn.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE grind ****/
@@ -419,9 +442,7 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
 typedef struct {
     long grindc_own_init;
     const gcd_tab_op_grindc_of_t_OPS * const t_ops;
-    struct OPS *gcd_tab_op_mgrind_of_t_table;
     struct OPS *gcd_tab_op_mgrind_of_t_ops;
-    OWNPTR gcd_tab_op_mgrind_of_t_owns;
 } gcd_tab_op_grindc_OWN_DEFN;
 const OWN_req gcd_tab_op_grindc_ownreqs = { sizeof(gcd_tab_op_grindc_OWN_DEFN), 1 };
 
@@ -439,13 +460,17 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
         add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, gcd_tab_op_mgrind_of_t_reqs);
         find_typeop_instance(gcd_tab_ops, gcd_tabOPmgrind, 1, 0, &gcd_tab_op_mgrind_ownreqs, &gcd_tab_ownreqs, &(op_own_ptr->gcd_tab_op_mgrind_of_t_ops));
     }
+    if (gcd_tab_own_init == 0) {
+        err = gcd_tab_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     if (op_own_ptr->grindc_own_init == 0) {
         op_own_ptr->grindc_own_init = 1;
         /* no own vars to init */
     }
-    enter_proc(83);
+    enter_proc(88);
 
-  LINE(86);
+  LINE(91);
     {
     err = _chanOPset_access(ch, pos);
     if (err != ERR_ok) goto ex_1;
@@ -457,7 +482,7 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
             goto ex_0;}
     end_1:;
 
-  LINE(88);
+  LINE(93);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -484,7 +509,7 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
         }
         }
 
-  LINE(93);
+  LINE(98);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -495,16 +520,16 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
         }
         }
 
-  LINE(94);
+  LINE(99);
     {
     err = _eventOPdefer();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(95);
+  LINE(100);
     {
 
-  LINE(96);
+  LINE(101);
         {
         generic_CLU_proc.type_owns = 0;
         generic_CLU_proc.op_owns = op_own_ptr->gcd_tab_op_mgrind_of_t_ops->op_owns;
@@ -514,7 +539,7 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
         if (err != ERR_ok) goto ex_2;
         }
 
-  LINE(97);
+  LINE(102);
         {
         CLUREF T_3_1;
         T_3_1.num = tab.vec->data[3];
@@ -522,7 +547,7 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
         if (err != ERR_ok) goto ex_2;
         }
 
-  LINE(98);
+  LINE(103);
         {
         CLUREF T_3_1;
         T_3_1.num = pos.num + 4;
@@ -534,7 +559,7 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
         if (err != ERR_ok) goto ex_2;
         }
 
-  LINE(99);
+  LINE(104);
         {
         err = _chanOPputw(ch, buf, CLU_1, CLU_4, CLU_0);
         if (err != ERR_ok) goto ex_2;
@@ -546,13 +571,13 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
             CLUREF why;
             why.num = elist[0].num;
 
-  LINE(101);
+  LINE(106);
                 {
                 err = _eventOPundefer();
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(102);
+  LINE(107);
                 {
                 elist[0] = why;
                 {signal (ERR_not_possible);}}
@@ -562,19 +587,19 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
             }
         end_2:;
 
-  LINE(104);
+  LINE(109);
     {
     err = _eventOPundefer();
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE grindc ****/
@@ -586,12 +611,8 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
 typedef struct {
     long grindp_own_init;
     const gcd_tab_op_grindp_of_t_OPS * const t_ops;
-    struct OPS *gcd_tab_op_pgrind_of_t_table;
     struct OPS *gcd_tab_op_pgrind_of_t_ops;
-    OWNPTR gcd_tab_op_pgrind_of_t_owns;
-    struct OPS *gcd_tab_op_mgrind_of_t_table;
     struct OPS *gcd_tab_op_mgrind_of_t_ops;
-    OWNPTR gcd_tab_op_mgrind_of_t_owns;
 } gcd_tab_op_grindp_OWN_DEFN;
 const OWN_req gcd_tab_op_grindp_ownreqs = { sizeof(gcd_tab_op_grindp_OWN_DEFN), 1 };
 
@@ -611,13 +632,17 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
         add_parm_info_type(0, (const struct OPS *)op_own_ptr->t_ops, gcd_tab_op_mgrind_of_t_reqs);
         find_typeop_instance(gcd_tab_ops, gcd_tabOPmgrind, 1, 0, &gcd_tab_op_mgrind_ownreqs, &gcd_tab_ownreqs, &(op_own_ptr->gcd_tab_op_mgrind_of_t_ops));
     }
+    if (gcd_tab_own_init == 0) {
+        err = gcd_tab_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     if (op_own_ptr->grindp_own_init == 0) {
         op_own_ptr->grindp_own_init = 1;
         /* no own vars to init */
     }
-    enter_proc(108);
+    enter_proc(113);
 
-  LINE(110);
+  LINE(115);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -644,7 +669,7 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
         }
         }
 
-  LINE(115);
+  LINE(120);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -655,16 +680,16 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
         }
         }
 
-  LINE(116);
+  LINE(121);
     {
     err = _eventOPdefer();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(117);
+  LINE(122);
     {
 
-  LINE(118);
+  LINE(123);
         {
         generic_CLU_proc.type_owns = 0;
         generic_CLU_proc.op_owns = op_own_ptr->gcd_tab_op_pgrind_of_t_ops->op_owns;
@@ -674,7 +699,7 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(119);
+  LINE(124);
         {
         CLUREF T_3_1;
         T_3_1.num = tab.vec->data[3];
@@ -682,12 +707,12 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(120);
+  LINE(125);
         {
         tab.vec->data[3] = 0;
         }
 
-  LINE(121);
+  LINE(126);
         {
         generic_CLU_proc.type_owns = 0;
         generic_CLU_proc.op_owns = op_own_ptr->gcd_tab_op_mgrind_of_t_ops->op_owns;
@@ -703,13 +728,13 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
             CLUREF why;
             why.num = elist[0].num;
 
-  LINE(123);
+  LINE(128);
                 {
                 err = _eventOPundefer();
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(124);
+  LINE(129);
                 {
                 elist[0] = why;
                 {signal (ERR_not_possible);}}
@@ -719,19 +744,19 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
             }
         end_1:;
 
-  LINE(126);
+  LINE(131);
     {
     err = _eventOPundefer();
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE grindp ****/
@@ -739,14 +764,8 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
 
 /**** BEGIN PROCEDURE pgrind ****/
 
-struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
-struct OPS *_tagcell_of__obj_ops;
-OWNPTR _tagcell_of__obj_owns;
-struct OPS *_adv_of__obj_table;
 struct OPS *_adv_of__obj_ops;
-struct OPS *_adv_of__obj_ops;
-OWNPTR _adv_of__obj_owns;
 
 typedef struct {
     long pgrind_own_init;
@@ -777,13 +796,17 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
         add_parm_info_type(0, (const struct OPS *)_obj_ops, _adv_of_t_reqs);
         find_type_instance(_adv_ops, 1, &_adv_ownreqs, &(_adv_of__obj_ops));
     }
+    if (gcd_tab_own_init == 0) {
+        err = gcd_tab_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     if (op_own_ptr->pgrind_own_init == 0) {
         op_own_ptr->pgrind_own_init = 1;
         /* no own vars to init */
     }
-    enter_proc(130);
+    enter_proc(135);
 
-  LINE(132);
+  LINE(137);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -793,7 +816,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(133);
+  LINE(138);
     {
         {CLUREF T_1_1;
         T_1_1.num = tab.vec->data[2];
@@ -801,7 +824,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
         }
         }
 
-  LINE(134);
+  LINE(139);
     {
         {CLUREF T_1_1;
         T_1_1.num = tab.vec->data[4];
@@ -809,17 +832,17 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
         }
         }
 
-  LINE(135);
+  LINE(140);
     {
         {idx.num = 0;
         }
         }
 
-  LINE(136);
+  LINE(141);
     for (;;) {
         if (true != true) { break; }
 
-  LINE(137);
+  LINE(142);
         {
         CLUREF T_3_1;
         T_3_1.num = idx.num + 1;
@@ -830,7 +853,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
         idx.num = T_3_1.num;
         }
 
-  LINE(138);
+  LINE(143);
         {
         CLUREF T_3_1;
         if (idx.num < iq.array->ext_low || idx.num > iq.array->ext_high ) {
@@ -846,46 +869,6 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
              {CLUREF T_3_2;
             T_3_2.num = T_3_1.cell->value;
             p.num = T_3_2.num;
-
-  LINE(141);
-                {
-                    {CLUREF T_4_1;
-                    CLUREF T_4_2;
-                    if (idx.num < oq.array->ext_low || idx.num > oq.array->ext_high ) {
-                        err = ERR_bounds;
-                        goto ex_1;}
-                    T_4_1.num = oq.array->store->data[idx.num - oq.array->ext_low + oq.array->int_low];
-                    T_4_2.num = (long)T_4_1.num;
-                    v.num = T_4_2.num;
-                    }
-                    }
-
-  LINE(142);
-                {
-                CLUREF T_4_1;
-                CLUREF T_4_2;
-                CLUREF T_4_3;
-                    T_4_2.num = v.vec->size;
-                    T_4_3 = v;
-                    for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
-                        e.num = T_4_3.vec->data[T_4_1.num - 1];
-
-  LINE(143);
-                        {
-                        CLUREF T_5_1;
-                        CUR_PROC_VAR = p;
-                        err = p.proc->proc(e, tab, &T_5_1);
-                        if (err != ERR_ok) goto ex_1;
-                        }
-                    }
-                }
-                end_inline_for_1:;
-                break;
-                }
-        case 3:
-             {CLUREF T_3_3;
-            T_3_3.num = T_3_1.cell->value;
-            l.num = T_3_3.num;
 
   LINE(146);
                 {
@@ -904,11 +887,51 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                 {
                 CLUREF T_4_1;
                 CLUREF T_4_2;
+                CLUREF T_4_3;
+                    T_4_2.num = v.vec->size;
+                    T_4_3 = v;
+                    for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
+                        e.num = T_4_3.vec->data[T_4_1.num - 1];
+
+  LINE(148);
+                        {
+                        CLUREF T_5_1;
+                        CUR_PROC_VAR = p;
+                        err = p.proc->proc(e, tab, &T_5_1);
+                        if (err != ERR_ok) goto ex_1;
+                        }
+                    }
+                }
+                end_inline_for_1:;
+                break;
+                }
+        case 3:
+             {CLUREF T_3_3;
+            T_3_3.num = T_3_1.cell->value;
+            l.num = T_3_3.num;
+
+  LINE(151);
+                {
+                    {CLUREF T_4_1;
+                    CLUREF T_4_2;
+                    if (idx.num < oq.array->ext_low || idx.num > oq.array->ext_high ) {
+                        err = ERR_bounds;
+                        goto ex_1;}
+                    T_4_1.num = oq.array->store->data[idx.num - oq.array->ext_low + oq.array->int_low];
+                    T_4_2.num = (long)T_4_1.num;
+                    v.num = T_4_2.num;
+                    }
+                    }
+
+  LINE(152);
+                {
+                CLUREF T_4_1;
+                CLUREF T_4_2;
                     T_4_2.num = v.vec->size;
                     for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                         i.num = T_4_1.num;
 
-  LINE(148);
+  LINE(153);
                         {
                         CLUREF T_5_1;
                         CLUREF T_5_2;
@@ -935,7 +958,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
             T_3_4.num = T_3_1.cell->value;
             l.num = T_3_4.num;
 
-  LINE(151);
+  LINE(156);
                 {
                     {CLUREF T_4_1;
                     CLUREF T_4_2;
@@ -956,7 +979,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                     }
                     }
 
-  LINE(152);
+  LINE(157);
                 {
                 CLUREF T_4_1;
                 CLUREF T_4_2;
@@ -975,7 +998,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
             T_3_5.num = T_3_1.cell->value;
             p.num = T_3_5.num;
 
-  LINE(154);
+  LINE(159);
                 {
                     {CLUREF T_4_1;
                     CLUREF T_4_2;
@@ -996,7 +1019,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                     }
                     }
 
-  LINE(155);
+  LINE(160);
                 {
                 CLUREF T_4_1;
                 CUR_PROC_VAR = p;
@@ -1010,7 +1033,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
             T_3_6.num = T_3_1.cell->value;
             inf.num = T_3_6.num;
 
-  LINE(157);
+  LINE(162);
                 {
                     {CLUREF T_4_1;
                     CLUREF T_4_2;
@@ -1023,7 +1046,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                     }
                     }
 
-  LINE(158);
+  LINE(163);
                 {
                     {CLUREF T_4_1;
                     generic_CLU_proc.type_owns = _adv_of__obj_ops->type_owns;
@@ -1035,7 +1058,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                     }
                     }
 
-  LINE(159);
+  LINE(164);
                 {
                 CLUREF T_4_1;
                 CLUREF T_4_2;
@@ -1050,7 +1073,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                      (T_4_2.num < 0 && T_4_1.num > 0 && 1 > 0)) {
                     err = ERR_overflow;
                     goto ex_1;}
-                err = intOPmul(CLU_4, T_4_2, &T_4_3);
+                err = intOPmul(gcd_tabOPclurefsz, T_4_2, &T_4_3);
                 if (err != ERR_ok) goto ex_1;
                 T_4_4.num = (long)inf.num;
                 T_4_5.num = (long)v.num;
@@ -1064,7 +1087,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
             T_3_7.num = T_3_1.cell->value;
             p.num = T_3_7.num;
 
-  LINE(162);
+  LINE(167);
                 {
                     {CLUREF T_4_1;
                     CLUREF T_4_2;
@@ -1077,7 +1100,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                     }
                     }
 
-  LINE(163);
+  LINE(168);
                 {
                 CLUREF T_4_1;
                 CLUREF T_4_2;
@@ -1087,7 +1110,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                     for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                         e.num = T_4_3.vec->data[T_4_1.num - 1];
 
-  LINE(164);
+  LINE(169);
                         {
                         CLUREF T_5_1;
                         CLUREF T_5_2;
@@ -1097,7 +1120,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                         T_5_3.num = T_5_2.num ^ 1;
                         if (T_5_3.num == true) {
 
-  LINE(165);
+  LINE(170);
                             {
                             CLUREF T_6_1;
                             CUR_PROC_VAR = p;
@@ -1123,14 +1146,14 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE pgrind ****/
@@ -1138,14 +1161,8 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
 
 /**** BEGIN PROCEDURE mgrind ****/
 
-struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
-struct OPS *_tagcell_of__obj_ops;
-OWNPTR _tagcell_of__obj_owns;
-struct OPS *_adv_of__obj_table;
 struct OPS *_adv_of__obj_ops;
-struct OPS *_adv_of__obj_ops;
-OWNPTR _adv_of__obj_owns;
 
 typedef struct {
     long mgrind_own_init;
@@ -1179,13 +1196,17 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
         find_type_instance(_adv_ops, 1, &_adv_ownreqs, &(_adv_of__obj_ops));
         stringOPcons("gcd_tab: array store not a ref", CLU_1, CLUREF_make_num(30), &STR_gcd_137tab_072_040array_040store_040not_040a_040ref);
     }
+    if (gcd_tab_own_init == 0) {
+        err = gcd_tab_own_init_proc();
+        if (err != ERR_ok) goto ex_0;
+    }
     if (op_own_ptr->mgrind_own_init == 0) {
         op_own_ptr->mgrind_own_init = 1;
         /* no own vars to init */
     }
-    enter_proc(172);
+    enter_proc(177);
 
-  LINE(176);
+  LINE(181);
     {
     err = gcd_storeOPinit(buf, ch);
     if (err != ERR_ok) goto ex_1;
@@ -1197,7 +1218,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
             goto ex_0;}
     end_1:;
 
-  LINE(178);
+  LINE(183);
     {
     err = gcd_storeOPstore_id();
     if (err != ERR_ok) goto ex_2;
@@ -1209,7 +1230,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
             goto ex_0;}
     end_2:;
 
-  LINE(180);
+  LINE(185);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -1221,13 +1242,13 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
         }
         }
 
-  LINE(182);
+  LINE(187);
     {
     CLUREF T_1_1;
     T_1_1.num = (val.num < 0)? true : false;
     if (T_1_1.num == true) {
 
-  LINE(183);
+  LINE(188);
         {
         CLUREF T_3_1;
         T_3_1.num = (long)x.num;
@@ -1243,7 +1264,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
         }
     else {
 
-  LINE(185);
+  LINE(190);
         {
         err = gcd_storeOPstore_ref(val);
         if (err != ERR_ok) goto ex_4;
@@ -1256,7 +1277,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
         end_4:;
         }}/* end if */
 
-  LINE(188);
+  LINE(193);
     {
         {CLUREF T_1_1;
         T_1_1.num = tab.vec->data[2];
@@ -1264,7 +1285,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
         }
         }
 
-  LINE(189);
+  LINE(194);
     {
         {CLUREF T_1_1;
         T_1_1.num = tab.vec->data[4];
@@ -1272,11 +1293,11 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
         }
         }
 
-  LINE(190);
+  LINE(195);
     for (;;) {
         if (true != true) { break; }
 
-  LINE(191);
+  LINE(196);
         {
         CLUREF T_4_1;
         err = arrayOPreml(iq, &T_4_1);
@@ -1285,7 +1306,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
         case 1:
              {
 
-  LINE(194);
+  LINE(199);
                 {
                     {CLUREF T_5_1;
                     CLUREF T_5_2;
@@ -1296,7 +1317,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     }
 
-  LINE(195);
+  LINE(200);
                 {
                     {CLUREF T_5_1;
                     err = _bytevecOPsize(b, &T_5_1);
@@ -1305,7 +1326,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     }
 
-  LINE(196);
+  LINE(201);
                 {
                 CLUREF T_6_1;
                 T_6_1.num = 8192;
@@ -1319,7 +1340,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                         goto ex_6;}
                 end_7:;
 
-  LINE(198);
+  LINE(203);
                 {
                 err = gcd_storeOPstore_string(b);
                 if (err != ERR_ok) goto ex_8;
@@ -1337,7 +1358,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
             T_4_2.num = T_4_1.cell->value;
             p.num = T_4_2.num;
 
-  LINE(202);
+  LINE(207);
                 {
                     {CLUREF T_5_1;
                     CLUREF T_5_2;
@@ -1348,7 +1369,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     }
 
-  LINE(203);
+  LINE(208);
                 {
                 CLUREF T_6_1;
                 CLUREF T_6_2;
@@ -1364,7 +1385,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                         goto ex_6;}
                 end_9:;
 
-  LINE(205);
+  LINE(210);
                 {
                 CLUREF T_5_1;
                 CLUREF T_5_2;
@@ -1374,7 +1395,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     for (T_5_1.num = 1; T_5_1.num <= T_5_2.num; T_5_1.num++) {
                         e.num = T_5_3.vec->data[T_5_1.num - 1];
 
-  LINE(206);
+  LINE(211);
                         {
                         CLUREF T_6_1;
                         CUR_PROC_VAR = p;
@@ -1383,13 +1404,13 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                         val.num = T_6_1.num;
                         }
 
-  LINE(207);
+  LINE(212);
                         {
                         CLUREF T_6_1;
                         T_6_1.num = (val.num < 0)? true : false;
                         if (T_6_1.num == true) {
 
-  LINE(208);
+  LINE(213);
                             {
                             CLUREF T_8_1;
                             T_8_1.num = (long)e.num;
@@ -1405,7 +1426,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }
                         else {
 
-  LINE(210);
+  LINE(215);
                             {
                             err = gcd_storeOPstore_ref(val);
                             if (err != ERR_ok) goto ex_11;
@@ -1427,7 +1448,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
             T_4_3.num = T_4_1.cell->value;
             l.num = T_4_3.num;
 
-  LINE(216);
+  LINE(221);
                 {
                     {CLUREF T_5_1;
                     CLUREF T_5_2;
@@ -1438,7 +1459,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     }
 
-  LINE(217);
+  LINE(222);
                 {
                     {CLUREF T_5_1;
                     T_5_1.num = v.vec->size;
@@ -1446,7 +1467,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     }
 
-  LINE(218);
+  LINE(223);
                 {
                 CLUREF T_6_1;
                 T_6_1.num = 4096;
@@ -1460,7 +1481,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                         goto ex_6;}
                 end_12:;
 
-  LINE(220);
+  LINE(225);
                 {
                 CLUREF T_5_1;
                 CLUREF T_5_2;
@@ -1468,7 +1489,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     for (T_5_1.num = 1; T_5_1.num <= T_5_2.num; T_5_1.num++) {
                         i.num = T_5_1.num;
 
-  LINE(221);
+  LINE(226);
                         {
                             {CLUREF T_6_1;
                             if (i.num < 1 || i.num > v.vec->size ) {
@@ -1479,7 +1500,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }
                             }
 
-  LINE(222);
+  LINE(227);
                         {
                         CLUREF T_6_1;
                         CLUREF T_6_2;
@@ -1493,13 +1514,13 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                         val.num = T_6_1.num;
                         }
 
-  LINE(223);
+  LINE(228);
                         {
                         CLUREF T_6_1;
                         T_6_1.num = (val.num < 0)? true : false;
                         if (T_6_1.num == true) {
 
-  LINE(224);
+  LINE(229);
                             {
                             CLUREF T_8_1;
                             T_8_1.num = (long)e.num;
@@ -1515,7 +1536,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }
                         else {
 
-  LINE(226);
+  LINE(231);
                             {
                             err = gcd_storeOPstore_ref(val);
                             if (err != ERR_ok) goto ex_14;
@@ -1537,7 +1558,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
             T_4_4.num = T_4_1.cell->value;
             l.num = T_4_4.num;
 
-  LINE(232);
+  LINE(237);
                 {
                     {CLUREF T_5_1;
                     CLUREF T_5_2;
@@ -1556,7 +1577,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     }
 
-  LINE(233);
+  LINE(238);
                 {
                 CLUREF T_6_1;
                 T_6_1.num = 16384;
@@ -1570,7 +1591,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                         goto ex_6;}
                 end_15:;
 
-  LINE(235);
+  LINE(240);
                 {
                 CLUREF T_5_1;
                 CLUREF T_5_2;
@@ -1584,13 +1605,13 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 val.num = T_5_1.num;
                 }
 
-  LINE(236);
+  LINE(241);
                 {
                 CLUREF T_5_1;
                 T_5_1.num = (val.num < 0)? true : false;
                 if (T_5_1.num == true) {
 
-  LINE(237);
+  LINE(242);
                     {
                     CLUREF T_7_1;
                     T_7_1.num = (long)e.num;
@@ -1606,7 +1627,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                 else {
 
-  LINE(239);
+  LINE(244);
                     {
                     err = gcd_storeOPstore_ref(val);
                     if (err != ERR_ok) goto ex_17;
@@ -1625,7 +1646,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
             T_4_5.num = T_4_1.cell->value;
             p.num = T_4_5.num;
 
-  LINE(244);
+  LINE(249);
                 {
                     {CLUREF T_5_1;
                     CLUREF T_5_2;
@@ -1644,7 +1665,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     }
 
-  LINE(245);
+  LINE(250);
                 {
                 CLUREF T_6_1;
                 T_6_1.num = 16384;
@@ -1658,7 +1679,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                         goto ex_6;}
                 end_18:;
 
-  LINE(247);
+  LINE(252);
                 {
                 CLUREF T_5_1;
                 CUR_PROC_VAR = p;
@@ -1667,13 +1688,13 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 val.num = T_5_1.num;
                 }
 
-  LINE(248);
+  LINE(253);
                 {
                 CLUREF T_5_1;
                 T_5_1.num = (val.num < 0)? true : false;
                 if (T_5_1.num == true) {
 
-  LINE(249);
+  LINE(254);
                     {
                     CLUREF T_7_1;
                     T_7_1.num = (long)e.num;
@@ -1689,7 +1710,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                 else {
 
-  LINE(251);
+  LINE(256);
                     {
                     err = gcd_storeOPstore_ref(val);
                     if (err != ERR_ok) goto ex_20;
@@ -1708,7 +1729,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
             T_4_6.num = T_4_1.cell->value;
             inf.num = T_4_6.num;
 
-  LINE(256);
+  LINE(261);
                 {
                     {CLUREF T_5_1;
                     CLUREF T_5_2;
@@ -1719,7 +1740,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     }
 
-  LINE(257);
+  LINE(262);
                 {
                     {CLUREF T_5_1;
                     generic_CLU_proc.type_owns = _adv_of__obj_ops->type_owns;
@@ -1731,7 +1752,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     }
 
-  LINE(258);
+  LINE(263);
                 {
                     {CLUREF T_5_1;
                     err = _vecOPsize(v, &T_5_1);
@@ -1740,28 +1761,31 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     }
 
-  LINE(259);
+  LINE(264);
                 {
                 CLUREF T_5_1;
                 CLUREF T_5_2;
                 CLUREF T_5_3;
                 CLUREF T_5_4;
                 CLUREF T_5_5;
-                err = intOPmul(CLU_8, z, &T_5_1);
+                CLUREF T_5_6;
+                err = intOPmul(gcd_tabOPgcd_ref_size, z, &T_5_1);
                 if (err != ERR_ok) goto ex_6;
-                T_5_2.num = T_5_1.num + 8;
-                 if ((T_5_2.num > 0 && T_5_1.num < 0 && 8 < 0) ||
-                     (T_5_2.num < 0 && T_5_1.num > 0 && 8 > 0)) {
+                err = intOPmul(CLU_2, gcd_tabOPclurefsz, &T_5_2);
+                if (err != ERR_ok) goto ex_6;
+                T_5_3.num = T_5_1.num + T_5_2.num;
+                 if ((T_5_3.num > 0 && T_5_1.num < 0 && T_5_2.num < 0) ||
+                     (T_5_3.num < 0 && T_5_1.num > 0 && T_5_2.num > 0)) {
                     err = ERR_overflow;
                     goto ex_6;}
-                T_5_3.num = (long)inf.num;
-                T_5_4.num = (long)v.num;
-                err = gcd_tabOPinsert(tab, T_5_2, T_5_3, T_5_4, &T_5_5);
+                T_5_4.num = (long)inf.num;
+                T_5_5.num = (long)v.num;
+                err = gcd_tabOPinsert(tab, T_5_3, T_5_4, T_5_5, &T_5_6);
                 if (err != ERR_ok) goto ex_6;
-                val.num = T_5_5.num;
+                val.num = T_5_6.num;
                 }
 
-  LINE(262);
+  LINE(267);
                 {
                 err = gcd_storeOPstore_array_desc(a);
                 if (err != ERR_ok) goto ex_21;
@@ -1773,20 +1797,20 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                         goto ex_6;}
                 end_21:;
 
-  LINE(264);
+  LINE(269);
                 {
                 CLUREF T_5_1;
                 T_5_1.num = (val.num < 0)? true : false;
                 if (T_5_1.num == true) {
 
-  LINE(266);
+  LINE(271);
                     {
                     elist[0] = STR_gcd_137tab_072_040array_040store_040not_040a_040ref;
                     {signal (ERR_failure);}}
                     }
                 else {
 
-  LINE(268);
+  LINE(273);
                     {
                     err = gcd_storeOPstore_ref(val);
                     if (err != ERR_ok) goto ex_22;
@@ -1805,7 +1829,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
             T_4_7.num = T_4_1.cell->value;
             p.num = T_4_7.num;
 
-  LINE(273);
+  LINE(278);
                 {
                     {CLUREF T_5_1;
                     CLUREF T_5_2;
@@ -1816,7 +1840,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     }
 
-  LINE(274);
+  LINE(279);
                 {
                 CLUREF T_6_1;
                 CLUREF T_6_2;
@@ -1832,7 +1856,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                         goto ex_6;}
                 end_23:;
 
-  LINE(276);
+  LINE(281);
                 {
                 CLUREF T_5_1;
                 CLUREF T_5_2;
@@ -1842,7 +1866,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     for (T_5_1.num = 1; T_5_1.num <= T_5_2.num; T_5_1.num++) {
                         e.num = T_5_3.vec->data[T_5_1.num - 1];
 
-  LINE(277);
+  LINE(282);
                         {
                         CLUREF T_6_1;
                         CLUREF T_6_2;
@@ -1850,7 +1874,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                         T_6_2.num = (e.num == T_6_1.num)? true : false;
                         if (T_6_2.num == true) {
 
-  LINE(279);
+  LINE(284);
                             {
                             err = gcd_storeOPstore_lit(CLU_0);
                             if (err != ERR_ok) goto ex_24;
@@ -1864,7 +1888,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }
                         else {
 
-  LINE(282);
+  LINE(287);
                             {
                             CLUREF T_7_1;
                             CUR_PROC_VAR = p;
@@ -1873,13 +1897,13 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             val.num = T_7_1.num;
                             }
 
-  LINE(283);
+  LINE(288);
                             {
                             CLUREF T_7_1;
                             T_7_1.num = (val.num < 0)? true : false;
                             if (T_7_1.num == true) {
 
-  LINE(284);
+  LINE(289);
                                 {
                                 CLUREF T_9_1;
                                 T_9_1.num = (long)e.num;
@@ -1895,7 +1919,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                                 }
                             else {
 
-  LINE(286);
+  LINE(291);
                                 {
                                 err = gcd_storeOPstore_ref(val);
                                 if (err != ERR_ok) goto ex_26;
@@ -1932,7 +1956,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
             }
         end_5:;
 
-  LINE(295);
+  LINE(300);
     {
     err = gcd_storeOPdone();
     if (err != ERR_ok) goto ex_27;
@@ -1943,14 +1967,14 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
         else {
             goto ex_0;}
     end_27:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE mgrind ****/
@@ -1971,9 +1995,9 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         err = gcd_tab_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(300);
+    enter_proc(305);
 
-  LINE(307);
+  LINE(312);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -1990,7 +2014,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         }
         }
 
-  LINE(308);
+  LINE(313);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -2003,13 +2027,13 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         }
         }
 
-  LINE(309);
+  LINE(314);
     {
         {mb.num = xmb.num;
         }
         }
 
-  LINE(310);
+  LINE(315);
     for (;;) {
         CLUREF T_1_1;
         CLUREF T_1_2;
@@ -2019,7 +2043,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         T_1_3.num = T_1_2.num ^ 1;
         if (T_1_3.num != true) { break; }
 
-  LINE(311);
+  LINE(316);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -2029,7 +2053,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         T_2_3.num = (x.num == T_2_2.num)? true : false;
         if (T_2_3.num == true) {
 
-  LINE(312);
+  LINE(317);
             {
             {
             CLUREF T_3_1;
@@ -2042,7 +2066,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
             }
             }/* end if */
 
-  LINE(313);
+  LINE(318);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -2053,7 +2077,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         }
         end_while_1:;
 
-  LINE(315);
+  LINE(320);
     {
         {CLUREF T_1_1;
         T_1_1.num = tab.vec->data[3];
@@ -2061,7 +2085,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         }
         }
 
-  LINE(316);
+  LINE(321);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2076,7 +2100,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(319);
+  LINE(324);
     {
     CLUREF T_1_1;
     T_1_1.num = tab.vec->data[4];
@@ -2090,7 +2114,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
     }
     }
 
-  LINE(320);
+  LINE(325);
     {
     CLUREF T_1_1;
     T_1_1.num = tab.vec->data[2];
@@ -2104,7 +2128,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
     }
     }
 
-  LINE(321);
+  LINE(326);
     {
     CLUREF T_1_1;
     T_1_1.num = addr.num + z.num;
@@ -2115,21 +2139,21 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
     tab.vec->data[3] = T_1_1.num;
     }
 
-  LINE(322);
+  LINE(327);
     {
     {
     ret_1->num = addr.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE insert ****/
@@ -2141,11 +2165,11 @@ typedef struct{
     struct OP_ENTRY entry[3];
 } gcd_tab_OPS;
 
-CLU_proc gcd_tab_oe_grind = { .proc = gcd_tabOPgrind };
-CLU_proc gcd_tab_oe_grindc = { .proc = gcd_tabOPgrindc };
-CLU_proc gcd_tab_oe_grindp = { .proc = gcd_tabOPgrindp };
+static CLU_proc gcd_tab_oe_grind = { .proc = gcd_tabOPgrind };
+static CLU_proc gcd_tab_oe_grindc = { .proc = gcd_tabOPgrindc };
+static CLU_proc gcd_tab_oe_grindp = { .proc = gcd_tabOPgrindp };
 
-gcd_tab_OPS gcd_tab_ops_actual = {3, (OWNPTR)&gcd_tab_own_init, (OWNPTR)&gcd_tab_own_init, {
+static gcd_tab_OPS gcd_tab_ops_actual = {3, (OWNPTR)&gcd_tab_own_init, (OWNPTR)&gcd_tab_own_init, {
     {&gcd_tab_oe_grind, "grind"},
     {&gcd_tab_oe_grindc, "grindc"},
     {&gcd_tab_oe_grindp, "grindp"}}};
@@ -2168,12 +2192,12 @@ extern errcode intOPmin();
 extern errcode _wordvecOPmove_b2w();
 extern errcode intOPequal();
 extern errcode intOPle();
-struct OPS *_adv_of__obj_table;
 struct OPS *_adv_of__obj_ops;
-struct OPS *_adv_of__obj_ops;
-OWNPTR _adv_of__obj_owns;
 static int gcd_store_own_init = 0;
 const OWN_req gcd_store_ownreqs = { 0, 0 };
+CLUREF gcd_storeOPclurefsz;
+CLUREF gcd_storeOPgcd_ref_size;
+CLUREF gcd_storeOPbpagesz;
 CLUREF gcd_storeOPpos;
 CLUREF gcd_storeOPbuf;
 CLUREF gcd_storeOPch;
@@ -2187,6 +2211,29 @@ gcd_store_own_init_proc(void)
         add_parm_info_type(0, (const struct OPS *)_obj_ops, _adv_of_t_reqs);
         find_type_instance(_adv_ops, 1, &_adv_ownreqs, &(_adv_of__obj_ops));
         gcd_store_own_init = 1;
+        {
+            {CLUREF T_0_1;
+            err = _wordvecOPbytes_per_word(&T_0_1);
+            if (err != ERR_ok) goto ex_0;
+            gcd_storeOPclurefsz.num = T_0_1.num;
+            }
+            }
+        {
+            {CLUREF T_0_2;
+            err = intOPmul(gcd_storeOPclurefsz, CLU_2, &T_0_2);
+            if (err != ERR_ok) goto ex_0;
+            gcd_storeOPgcd_ref_size.num = T_0_2.num;
+            }
+            }
+        {
+            {CLUREF T_0_3;
+            CLUREF T_0_4;
+            T_0_3.num = 1024;
+            err = intOPmul(T_0_3, gcd_storeOPclurefsz, &T_0_4);
+            if (err != ERR_ok) goto ex_0;
+            gcd_storeOPbpagesz.num = T_0_4.num;
+            }
+            }
         {
             {gcd_storeOPpos.num = 1;
             }
@@ -2211,30 +2258,30 @@ gcd_storeOPinit(CLUREF w, CLUREF c)
         err = gcd_store_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(364);
+    enter_proc(372);
 
-  LINE(365);
+  LINE(373);
     {
     gcd_storeOPbuf.num = w.num;
     }
 
-  LINE(366);
+  LINE(374);
     {
     gcd_storeOPch.num = c.num;
     }
 
-  LINE(367);
+  LINE(375);
     {
     gcd_storeOPpos.num = 1;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE init ****/
@@ -2251,9 +2298,9 @@ gcd_storeOPstore_id()
         err = gcd_store_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(370);
+    enter_proc(378);
 
-  LINE(378);
+  LINE(386);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2263,7 +2310,7 @@ gcd_storeOPstore_id()
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(379);
+  LINE(387);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2273,7 +2320,7 @@ gcd_storeOPstore_id()
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(380);
+  LINE(388);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2283,7 +2330,7 @@ gcd_storeOPstore_id()
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(381);
+  LINE(389);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2293,18 +2340,18 @@ gcd_storeOPstore_id()
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(382);
+  LINE(390);
     {
     gcd_storeOPpos.num = 3;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE store_id ****/
@@ -2321,9 +2368,9 @@ gcd_storeOPstore_lit(CLUREF i1)
         err = gcd_store_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(385);
+    enter_proc(393);
 
-  LINE(388);
+  LINE(396);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2336,13 +2383,13 @@ gcd_storeOPstore_lit(CLUREF i1)
             goto ex_0;}
     end_1:;
 
-  LINE(390);
+  LINE(398);
     {
     err = _wordvecOPstore(gcd_storeOPbuf, gcd_storeOPpos, CLU_32);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(391);
+  LINE(399);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2353,7 +2400,7 @@ gcd_storeOPstore_lit(CLUREF i1)
     gcd_storeOPpos.num = T_1_1.num;
     }
 
-  LINE(392);
+  LINE(400);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2366,13 +2413,13 @@ gcd_storeOPstore_lit(CLUREF i1)
             goto ex_0;}
     end_2:;
 
-  LINE(394);
+  LINE(402);
     {
     err = _wordvecOPstore(gcd_storeOPbuf, gcd_storeOPpos, i1);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(395);
+  LINE(403);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2382,14 +2429,14 @@ gcd_storeOPstore_lit(CLUREF i1)
         goto ex_0;}
     gcd_storeOPpos.num = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE store_lit ****/
@@ -2406,9 +2453,9 @@ gcd_storeOPstore_ref(CLUREF i1)
         err = gcd_store_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(398);
+    enter_proc(406);
 
-  LINE(401);
+  LINE(409);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2421,13 +2468,13 @@ gcd_storeOPstore_ref(CLUREF i1)
             goto ex_0;}
     end_1:;
 
-  LINE(403);
+  LINE(411);
     {
     err = _wordvecOPstore(gcd_storeOPbuf, gcd_storeOPpos, CLU_33);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(404);
+  LINE(412);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2438,7 +2485,7 @@ gcd_storeOPstore_ref(CLUREF i1)
     gcd_storeOPpos.num = T_1_1.num;
     }
 
-  LINE(405);
+  LINE(413);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2451,13 +2498,13 @@ gcd_storeOPstore_ref(CLUREF i1)
             goto ex_0;}
     end_2:;
 
-  LINE(407);
+  LINE(415);
     {
     err = _wordvecOPstore(gcd_storeOPbuf, gcd_storeOPpos, i1);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(408);
+  LINE(416);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2467,14 +2514,14 @@ gcd_storeOPstore_ref(CLUREF i1)
         goto ex_0;}
     gcd_storeOPpos.num = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE store_ref ****/
@@ -2491,9 +2538,9 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
         err = gcd_store_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(412);
+    enter_proc(420);
 
-  LINE(415);
+  LINE(423);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2506,13 +2553,13 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
             goto ex_0;}
     end_1:;
 
-  LINE(417);
+  LINE(425);
     {
     err = _wordvecOPstore(gcd_storeOPbuf, gcd_storeOPpos, hid);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(418);
+  LINE(426);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2523,7 +2570,7 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
     gcd_storeOPpos.num = T_1_1.num;
     }
 
-  LINE(419);
+  LINE(427);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2536,13 +2583,13 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
             goto ex_0;}
     end_2:;
 
-  LINE(421);
+  LINE(429);
     {
     err = _wordvecOPstore(gcd_storeOPbuf, gcd_storeOPpos, size);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(422);
+  LINE(430);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2552,14 +2599,14 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
         goto ex_0;}
     gcd_storeOPpos.num = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE store_hdr ****/
@@ -2567,10 +2614,7 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
 
 /**** BEGIN PROCEDURE store_array_desc ****/
 
-struct OPS *_adv_of__obj_table;
 struct OPS *_adv_of__obj_ops;
-struct OPS *_adv_of__obj_ops;
-OWNPTR _adv_of__obj_owns;
 static int gcd_storeOPstore_array_desc_own_init = 0;
 
 errcode
@@ -2584,9 +2628,9 @@ gcd_storeOPstore_array_desc(CLUREF a)
         }
         gcd_storeOPstore_array_desc_own_init = 1;
     }
-    enter_proc(427);
+    enter_proc(435);
 
-  LINE(431);
+  LINE(439);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2599,7 +2643,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
             goto ex_0;}
     end_1:;
 
-  LINE(433);
+  LINE(441);
     {
     CLUREF T_1_1;
     T_1_1.num = 24576;
@@ -2607,7 +2651,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(434);
+  LINE(442);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2618,7 +2662,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     gcd_storeOPpos.num = T_1_1.num;
     }
 
-  LINE(436);
+  LINE(444);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2631,13 +2675,22 @@ gcd_storeOPstore_array_desc(CLUREF a)
             goto ex_0;}
     end_2:;
 
-  LINE(438);
+  LINE(446);
     {
-    err = _wordvecOPstore(gcd_storeOPbuf, gcd_storeOPpos, CLU_32);
+    CLUREF T_1_1;
+    CLUREF T_1_2;
+    err = intOPmul(CLU_6, gcd_storeOPclurefsz, &T_1_1);
+    if (err != ERR_ok) goto ex_0;
+    T_1_2.num = T_1_1.num + gcd_storeOPgcd_ref_size.num;
+     if ((T_1_2.num > 0 && T_1_1.num < 0 && gcd_storeOPgcd_ref_size.num < 0) ||
+         (T_1_2.num < 0 && T_1_1.num > 0 && gcd_storeOPgcd_ref_size.num > 0)) {
+        err = ERR_overflow;
+        goto ex_0;}
+    err = _wordvecOPstore(gcd_storeOPbuf, gcd_storeOPpos, T_1_2);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(439);
+  LINE(447);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2648,7 +2701,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     gcd_storeOPpos.num = T_1_1.num;
     }
 
-  LINE(441);
+  LINE(449);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2661,7 +2714,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
             goto ex_0;}
     end_3:;
 
-  LINE(443);
+  LINE(451);
     {
     CLUREF T_1_1;
     generic_CLU_proc.type_owns = _adv_of__obj_ops->type_owns;
@@ -2673,7 +2726,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(444);
+  LINE(452);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2684,7 +2737,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     gcd_storeOPpos.num = T_1_1.num;
     }
 
-  LINE(446);
+  LINE(454);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2697,7 +2750,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
             goto ex_0;}
     end_4:;
 
-  LINE(448);
+  LINE(456);
     {
     CLUREF T_1_1;
     generic_CLU_proc.type_owns = _adv_of__obj_ops->type_owns;
@@ -2709,7 +2762,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(449);
+  LINE(457);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2720,7 +2773,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     gcd_storeOPpos.num = T_1_1.num;
     }
 
-  LINE(451);
+  LINE(459);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2733,7 +2786,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
             goto ex_0;}
     end_5:;
 
-  LINE(453);
+  LINE(461);
     {
     CLUREF T_1_1;
     generic_CLU_proc.type_owns = _adv_of__obj_ops->type_owns;
@@ -2745,7 +2798,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(454);
+  LINE(462);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2756,7 +2809,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     gcd_storeOPpos.num = T_1_1.num;
     }
 
-  LINE(456);
+  LINE(464);
     {
     CLUREF T_2_1;
     err = gcd_storeOPneed(CLU_1, &T_2_1);
@@ -2769,7 +2822,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
             goto ex_0;}
     end_6:;
 
-  LINE(458);
+  LINE(466);
     {
     CLUREF T_1_1;
     generic_CLU_proc.type_owns = _adv_of__obj_ops->type_owns;
@@ -2781,7 +2834,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(459);
+  LINE(467);
     {
     CLUREF T_1_1;
     T_1_1.num = gcd_storeOPpos.num + 1;
@@ -2791,14 +2844,14 @@ gcd_storeOPstore_array_desc(CLUREF a)
         goto ex_0;}
     gcd_storeOPpos.num = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE store_array_desc ****/
@@ -2824,9 +2877,9 @@ gcd_storeOPstore_string(CLUREF s)
         err = gcd_store_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(464);
+    enter_proc(472);
 
-  LINE(466);
+  LINE(474);
     {
         {CLUREF T_1_1;
         err = _bytevecOPsize(s, &T_1_1);
@@ -2835,13 +2888,13 @@ gcd_storeOPstore_string(CLUREF s)
         }
         }
 
-  LINE(468);
+  LINE(476);
     {
         {bytes_to_go.num = bsize.num;
         }
         }
 
-  LINE(469);
+  LINE(477);
     {
         {CLUREF T_1_1;
         T_1_1.num = bsize.num + 1;
@@ -2853,14 +2906,14 @@ gcd_storeOPstore_string(CLUREF s)
         }
         }
 
-  LINE(470);
+  LINE(478);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
         CLUREF T_1_3;
-        T_1_1.num = total_bytes.num + 4;
-         if ((T_1_1.num > 0 && total_bytes.num < 0 && 4 < 0) ||
-             (T_1_1.num < 0 && total_bytes.num > 0 && 4 > 0)) {
+        T_1_1.num = total_bytes.num + gcd_storeOPclurefsz.num;
+         if ((T_1_1.num > 0 && total_bytes.num < 0 && gcd_storeOPclurefsz.num < 0) ||
+             (T_1_1.num < 0 && total_bytes.num > 0 && gcd_storeOPclurefsz.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         T_1_2.num = T_1_1.num - 1;
@@ -2868,35 +2921,35 @@ gcd_storeOPstore_string(CLUREF s)
              (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_0;}
-        err = intOPdiv(T_1_2, CLU_4, &T_1_3);
+        err = intOPdiv(T_1_2, gcd_storeOPclurefsz, &T_1_3);
         if (err != ERR_ok) goto ex_0;
         rounded_longs.num = T_1_3.num;
         }
         }
 
-  LINE(471);
+  LINE(479);
     {
         {total_longs.num = rounded_longs.num;
         }
         }
 
-  LINE(474);
+  LINE(482);
     {
         {total_output.num = 0;
         }
         }
 
-  LINE(475);
+  LINE(483);
     {
         {i.num = 1;
         }
         }
 
-  LINE(476);
+  LINE(484);
     for (;;) {
         if (true != true) { break; }
 
-  LINE(477);
+  LINE(485);
         {
             {CLUREF T_4_1;
             err = gcd_storeOPneed(rounded_longs, &T_4_1);
@@ -2911,11 +2964,11 @@ gcd_storeOPstore_string(CLUREF s)
                 goto ex_1;}
         end_2:;
 
-  LINE(479);
+  LINE(487);
         {
             {CLUREF T_3_1;
             CLUREF T_3_2;
-            err = intOPmul(avail, CLU_4, &T_3_1);
+            err = intOPmul(avail, gcd_storeOPclurefsz, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             err = intOPmin(bytes_to_go, T_3_1, &T_3_2);
             if (err != ERR_ok) goto ex_1;
@@ -2923,26 +2976,32 @@ gcd_storeOPstore_string(CLUREF s)
             }
             }
 
-  LINE(480);
+  LINE(488);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
-        err = intOPmul(gcd_storeOPpos, CLU_4, &T_3_1);
+        CLUREF T_3_3;
+        err = intOPmul(gcd_storeOPpos, gcd_storeOPclurefsz, &T_3_1);
         if (err != ERR_ok) goto ex_1;
-        T_3_2.num = T_3_1.num - 3;
-         if ((T_3_2.num >= 0 && T_3_1.num < 0 && (-3) < 0) ||
-             (T_3_2.num <= 0 && T_3_1.num > 0 && (-3) > 0)) {
+        T_3_2.num = gcd_storeOPclurefsz.num - 1;
+         if ((T_3_2.num >= 0 && gcd_storeOPclurefsz.num < 0 && (-1) < 0) ||
+             (T_3_2.num <= 0 && gcd_storeOPclurefsz.num > 0 && (-1) > 0)) {
             err = ERR_overflow;
             goto ex_1;}
-        err = _wordvecOPmove_b2w(s, i, gcd_storeOPbuf, T_3_2, copy_count);
+        T_3_3.num = T_3_1.num - T_3_2.num;
+         if ((T_3_3.num >= 0 && T_3_1.num < 0 && (-T_3_2.num) < 0) ||
+             (T_3_3.num <= 0 && T_3_1.num > 0 && (-T_3_2.num) > 0)) {
+            err = ERR_overflow;
+            goto ex_1;}
+        err = _wordvecOPmove_b2w(s, i, gcd_storeOPbuf, T_3_3, copy_count);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(485);
+  LINE(493);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
-        err = intOPmul(avail, CLU_4, &T_3_1);
+        err = intOPmul(avail, gcd_storeOPclurefsz, &T_3_1);
         if (err != ERR_ok) goto ex_1;
         T_3_2.num = i.num + T_3_1.num;
          if ((T_3_2.num > 0 && i.num < 0 && T_3_1.num < 0) ||
@@ -2952,7 +3011,7 @@ gcd_storeOPstore_string(CLUREF s)
         i.num = T_3_2.num;
         }
 
-  LINE(486);
+  LINE(494);
         {
         CLUREF T_3_1;
         T_3_1.num = bytes_to_go.num - copy_count.num;
@@ -2963,7 +3022,7 @@ gcd_storeOPstore_string(CLUREF s)
         bytes_to_go.num = T_3_1.num;
         }
 
-  LINE(487);
+  LINE(495);
         {
         CLUREF T_3_1;
         T_3_1.num = gcd_storeOPpos.num + avail.num;
@@ -2974,7 +3033,7 @@ gcd_storeOPstore_string(CLUREF s)
         gcd_storeOPpos.num = T_3_1.num;
         }
 
-  LINE(488);
+  LINE(496);
         {
         CLUREF T_3_1;
         T_3_1.num = total_output.num + avail.num;
@@ -2985,7 +3044,7 @@ gcd_storeOPstore_string(CLUREF s)
         total_output.num = T_3_1.num;
         }
 
-  LINE(489);
+  LINE(497);
         {
         CLUREF T_3_1;
         T_3_1.num = (total_output.num == total_longs.num)? true : false;
@@ -2997,7 +3056,7 @@ gcd_storeOPstore_string(CLUREF s)
             }
             }/* end if */
 
-  LINE(490);
+  LINE(498);
         {
         CLUREF T_3_1;
         T_3_1.num = rounded_longs.num - avail.num;
@@ -3017,14 +3076,14 @@ gcd_storeOPstore_string(CLUREF s)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE store_string ****/
@@ -3041,9 +3100,9 @@ gcd_storeOPdone()
         err = gcd_store_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(495);
+    enter_proc(503);
 
-  LINE(497);
+  LINE(505);
     {
     CLUREF T_2_1;
     CLUREF T_2_2;
@@ -3052,7 +3111,7 @@ gcd_storeOPdone()
          (T_2_1.num <= 0 && gcd_storeOPpos.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_1;}
-    err = intOPmul(CLU_4, T_2_1, &T_2_2);
+    err = intOPmul(gcd_storeOPclurefsz, T_2_1, &T_2_2);
     if (err != ERR_ok) goto ex_1;
     err = _chanOPputw(gcd_storeOPch, gcd_storeOPbuf, CLU_1, T_2_2, CLU_0);
     if (err != ERR_ok) goto ex_1;
@@ -3063,14 +3122,14 @@ gcd_storeOPdone()
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE done ****/
@@ -3087,15 +3146,14 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
         err = gcd_store_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(501);
+    enter_proc(509);
 
-  LINE(502);
+  LINE(510);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
     CLUREF T_1_4;
-    CLUREF T_1_5;
     T_1_1.num = gcd_storeOPpos.num + i.num;
      if ((T_1_1.num > 0 && gcd_storeOPpos.num < 0 && i.num < 0) ||
          (T_1_1.num < 0 && gcd_storeOPpos.num > 0 && i.num > 0)) {
@@ -3106,11 +3164,10 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
          (T_1_2.num <= 0 && T_1_1.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    err = intOPmul(CLU_4, T_1_2, &T_1_3);
+    err = intOPmul(gcd_storeOPclurefsz, T_1_2, &T_1_3);
     if (err != ERR_ok) goto ex_0;
-    T_1_4.num = 4096;
-    T_1_5.num = (T_1_3.num <= T_1_4.num)? true : false;
-    if (T_1_5.num == true) {
+    T_1_4.num = (T_1_3.num <= gcd_storeOPbpagesz.num)? true : false;
+    if (T_1_4.num == true) {
         {
         {
         ret_1->num = i.num;
@@ -3119,17 +3176,15 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
         }
         }/* end if */
 
-  LINE(503);
+  LINE(511);
     {
     CLUREF T_1_1;
     T_1_1.num = (i.num == 1)? true : false;
     if (T_1_1.num == true) {
 
-  LINE(507);
+  LINE(515);
         {
-        CLUREF T_3_1;
-        T_3_1.num = 4096;
-        err = _chanOPputw(gcd_storeOPch, gcd_storeOPbuf, CLU_1, T_3_1, CLU_0);
+        err = _chanOPputw(gcd_storeOPch, gcd_storeOPbuf, CLU_1, gcd_storeOPbpagesz, CLU_0);
         if (err != ERR_ok) goto ex_1;
         }
         goto end_1;
@@ -3139,12 +3194,12 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
                 goto ex_0;}
         end_1:;
 
-  LINE(509);
+  LINE(517);
         {
         gcd_storeOPpos.num = 1;
         }
 
-  LINE(510);
+  LINE(518);
         {
         {
         ret_1->num = i.num;
@@ -3153,7 +3208,7 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
         }
     else {
 
-  LINE(512);
+  LINE(520);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -3182,11 +3237,9 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
             }
             }/* end if */
 
-  LINE(514);
+  LINE(522);
         {
-        CLUREF T_3_1;
-        T_3_1.num = 4096;
-        err = _chanOPputw(gcd_storeOPch, gcd_storeOPbuf, CLU_1, T_3_1, CLU_0);
+        err = _chanOPputw(gcd_storeOPch, gcd_storeOPbuf, CLU_1, gcd_storeOPbpagesz, CLU_0);
         if (err != ERR_ok) goto ex_2;
         }
         goto end_2;
@@ -3196,12 +3249,12 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
                 goto ex_0;}
         end_2:;
 
-  LINE(516);
+  LINE(524);
         {
         gcd_storeOPpos.num = 1;
         }
 
-  LINE(517);
+  LINE(525);
         {
         {
         CLUREF T_2_1;
@@ -3213,15 +3266,15 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE need ****/
@@ -3233,16 +3286,16 @@ typedef struct{
     struct OP_ENTRY entry[8];
 } gcd_store_OPS;
 
-CLU_proc gcd_store_oe_done = { .proc = gcd_storeOPdone };
-CLU_proc gcd_store_oe_init = { .proc = gcd_storeOPinit };
-CLU_proc gcd_store_oe_store_array_desc = { .proc = gcd_storeOPstore_array_desc };
-CLU_proc gcd_store_oe_store_hdr = { .proc = gcd_storeOPstore_hdr };
-CLU_proc gcd_store_oe_store_id = { .proc = gcd_storeOPstore_id };
-CLU_proc gcd_store_oe_store_lit = { .proc = gcd_storeOPstore_lit };
-CLU_proc gcd_store_oe_store_ref = { .proc = gcd_storeOPstore_ref };
-CLU_proc gcd_store_oe_store_string = { .proc = gcd_storeOPstore_string };
+static CLU_proc gcd_store_oe_done = { .proc = gcd_storeOPdone };
+static CLU_proc gcd_store_oe_init = { .proc = gcd_storeOPinit };
+static CLU_proc gcd_store_oe_store_array_desc = { .proc = gcd_storeOPstore_array_desc };
+static CLU_proc gcd_store_oe_store_hdr = { .proc = gcd_storeOPstore_hdr };
+static CLU_proc gcd_store_oe_store_id = { .proc = gcd_storeOPstore_id };
+static CLU_proc gcd_store_oe_store_lit = { .proc = gcd_storeOPstore_lit };
+static CLU_proc gcd_store_oe_store_ref = { .proc = gcd_storeOPstore_ref };
+static CLU_proc gcd_store_oe_store_string = { .proc = gcd_storeOPstore_string };
 
-gcd_store_OPS gcd_store_ops_actual = {8, (OWNPTR)&gcd_store_own_init, (OWNPTR)&gcd_store_own_init, {
+static gcd_store_OPS gcd_store_ops_actual = {8, (OWNPTR)&gcd_store_own_init, (OWNPTR)&gcd_store_own_init, {
     {&gcd_store_oe_done, "done"},
     {&gcd_store_oe_init, "init"},
     {&gcd_store_oe_store_array_desc, "store_array_desc"},
@@ -3274,9 +3327,9 @@ logit(CLUREF s)
         stringOPcons("\n", CLU_1, CLUREF_make_num(1), &STR__012);
         logit_own_init = 1;
     }
-    enter_proc(558);
+    enter_proc(566);
 
-  LINE(559);
+  LINE(567);
     {
         {CLUREF T_1_1;
         err = streamOPerror_output(&T_1_1);
@@ -3285,7 +3338,7 @@ logit(CLUREF s)
         }
         }
 
-  LINE(560);
+  LINE(568);
     {
     CLUREF T_1_1;
     err = stringOPconcat(s, STR__012, &T_1_1);
@@ -3293,14 +3346,14 @@ logit(CLUREF s)
     err = streamOPputs(po, T_1_1);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE logit ****/

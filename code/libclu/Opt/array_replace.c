@@ -50,9 +50,7 @@ extern struct OPS *_adv_ops;
 typedef struct {
     long array_replace_own_init;
     const array_replace_of_t_OPS * const t_ops;
-    struct OPS *_adv_of_t_table;
     struct OPS *_adv_of_t_ops;
-    OWNPTR _adv_of_t_owns;
 } array_replace_OWN_DEFN;
 const OWN_req array_replace_ownreqs = { sizeof(array_replace_OWN_DEFN), 1 };
 
@@ -865,14 +863,14 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
     err = _eventOPundefer();
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE array_replace ****/

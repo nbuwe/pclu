@@ -35,7 +35,6 @@ extern errcode _bytevecOPstore();
 extern errcode _wordvecOPcreate();
 extern errcode _wordvecOPstore();
 extern errcode charOPequal();
-static CLUREF STR_;
 static CLUREF STR_PATH;
 static CLUREF STR__072_057bin_072_057usr_057bin;
 static CLUREF STR__056;
@@ -60,7 +59,6 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     CLUREF cnt;
     CLUREF v;
     if (_job_stuff_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("PATH", CLU_1, CLUREF_make_num(4), &STR_PATH);
         stringOPcons(":/bin:/usr/bin", CLU_1, CLUREF_make_num(14), &STR__072_057bin_072_057usr_057bin);
         stringOPcons(".", CLU_1, CLUREF_make_num(1), &STR__056);
@@ -78,7 +76,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
   LINE(9);
     {
     CLUREF T_1_1;
-    err = file_name_fill(fn, STR_, &T_1_1);
+    err = file_name_fill(fn, CLU_empty_string, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     fn.num = T_1_1.num;
     }
@@ -218,7 +216,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
 
   LINE(26);
                     {
-                    ws = STR_;
+                    ws = CLU_empty_string;
                     }
                     }
                 else {
@@ -601,15 +599,15 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     ret_3->num = fs.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _job_stuff ****/

@@ -61,7 +61,6 @@ extern errcode recordOPset_3();
 static CLUREF STR__057dev;
 static CLUREF STR_null;
 static CLUREF STR_write;
-static CLUREF STR_;
 static CLUREF STR_channel_040is_040closed;
 static int data_chan_own_init = 0;
 const OWN_req data_chan_ownreqs = { 0, 0 };
@@ -77,7 +76,6 @@ data_chan_own_init_proc(void)
         stringOPcons("/dev", CLU_1, CLUREF_make_num(4), &STR__057dev);
         stringOPcons("null", CLU_1, CLUREF_make_num(4), &STR_null);
         stringOPcons("write", CLU_1, CLUREF_make_num(5), &STR_write);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("channel is closed", CLU_1, CLUREF_make_num(17), &STR_channel_040is_040closed);
         data_chan_own_init = 1;
         {
@@ -196,7 +194,7 @@ data_chanOPopen(CLUREF fn, CLUREF *ret_1, CLUREF *ret_2)
         T_1_1.vec->data[4] = 10;
         T_1_1.vec->data[2] = false;
         T_1_1.vec->data[3] = false;
-        T_1_1.vec->data[6] = STR_.num;
+        T_1_1.vec->data[6] = CLU_empty_string.num;
         dc.num = T_1_1.num;
         }
         }
@@ -212,15 +210,15 @@ data_chanOPopen(CLUREF fn, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE open ****/
@@ -642,15 +640,15 @@ data_chanOPstore_str(CLUREF dc, CLUREF s, CLUREF *ret_1)
     ret_1->num = v.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE store_str ****/
@@ -945,15 +943,15 @@ data_chanOPstore_vec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     ret_1->num = v.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE store_vec ****/
@@ -1251,15 +1249,15 @@ data_chanOPstore_avec(CLUREF dc, CLUREF vec, CLUREF *ret_1)
     ret_1->num = v.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE store_avec ****/
@@ -1447,15 +1445,15 @@ data_chanOPstore_cell(CLUREF dc, CLUREF code, CLUREF val, CLUREF *ret_1)
     ret_1->num = v.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE store_cell ****/
@@ -1485,15 +1483,15 @@ data_chanOPoneof2(CLUREF dc, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE oneof2 ****/
@@ -1859,14 +1857,14 @@ data_chanOPadd_close(CLUREF dc, CLUREF val, CLUREF cc)
         dc.vec->data[3] = true;
         }
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE add_close ****/
@@ -2061,14 +2059,14 @@ data_chanOPclose(CLUREF dc)
         dc.vec->data[3] = true;
         }
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE close ****/
@@ -2080,16 +2078,16 @@ typedef struct{
     struct OP_ENTRY entry[8];
 } data_chan_OPS;
 
-CLU_proc data_chan_oe_add_close = { .proc = data_chanOPadd_close };
-CLU_proc data_chan_oe_close = { .proc = data_chanOPclose };
-CLU_proc data_chan_oe_oneof2 = { .proc = data_chanOPoneof2 };
-CLU_proc data_chan_oe_open = { .proc = data_chanOPopen };
-CLU_proc data_chan_oe_store_avec = { .proc = data_chanOPstore_avec };
-CLU_proc data_chan_oe_store_cell = { .proc = data_chanOPstore_cell };
-CLU_proc data_chan_oe_store_str = { .proc = data_chanOPstore_str };
-CLU_proc data_chan_oe_store_vec = { .proc = data_chanOPstore_vec };
+static CLU_proc data_chan_oe_add_close = { .proc = data_chanOPadd_close };
+static CLU_proc data_chan_oe_close = { .proc = data_chanOPclose };
+static CLU_proc data_chan_oe_oneof2 = { .proc = data_chanOPoneof2 };
+static CLU_proc data_chan_oe_open = { .proc = data_chanOPopen };
+static CLU_proc data_chan_oe_store_avec = { .proc = data_chanOPstore_avec };
+static CLU_proc data_chan_oe_store_cell = { .proc = data_chanOPstore_cell };
+static CLU_proc data_chan_oe_store_str = { .proc = data_chanOPstore_str };
+static CLU_proc data_chan_oe_store_vec = { .proc = data_chanOPstore_vec };
 
-data_chan_OPS data_chan_ops_actual = {8, (OWNPTR)&data_chan_own_init, (OWNPTR)&data_chan_own_init, {
+static data_chan_OPS data_chan_ops_actual = {8, (OWNPTR)&data_chan_own_init, (OWNPTR)&data_chan_own_init, {
     {&data_chan_oe_add_close, "add_close"},
     {&data_chan_oe_close, "close"},
     {&data_chan_oe_oneof2, "oneof2"},

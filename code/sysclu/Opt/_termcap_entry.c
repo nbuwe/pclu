@@ -33,7 +33,6 @@ extern errcode stringOPsubstr();
 extern errcode intOPsub();
 extern errcode _chanOPclose();
 extern errcode stringOPindexs();
-static CLUREF STR_;
 static CLUREF STR_read;
 static CLUREF STR__012;
 static CLUREF STR__072tc_075;
@@ -58,7 +57,6 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
     CLUREF z;
     CLUREF i;
     if (_termcap_entry_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
         stringOPcons("\n", CLU_1, CLUREF_make_num(1), &STR__012);
         stringOPcons(":tc=", CLU_1, CLUREF_make_num(4), &STR__072tc_075);
@@ -68,7 +66,7 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
 
   LINE(4);
     {
-        {ent = STR_;
+        {ent = CLU_empty_string;
         }
         }
 
@@ -576,15 +574,15 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
   LINE(67);
     {
     {signal (ERR_not_found);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _termcap_entry ****/

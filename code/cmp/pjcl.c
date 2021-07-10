@@ -20,7 +20,6 @@ extern errcode arrayOPaddh();
 extern errcode charOPequal();
 extern errcode flush_blanks();
 extern errcode arrayOPreml();
-static CLUREF STR_;
 static int parse_command_line_own_init = 0;
 
 errcode
@@ -34,7 +33,6 @@ parse_command_line(CLUREF line, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     CLUREF cmnd;
     CLUREF args;
     if (parse_command_line_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         parse_command_line_own_init = 1;
     }
     enter_proc(5);
@@ -70,7 +68,7 @@ parse_command_line(CLUREF line, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
 
   LINE(11);
                 {
-                opart = STR_;
+                opart = CLU_empty_string;
                 }
             }
             else {
@@ -127,7 +125,7 @@ parse_command_line(CLUREF line, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
 
   LINE(19);
                         {
-                        cmnd = STR_;
+                        cmnd = CLU_empty_string;
                         }
                         }}/* end if */
                 }
@@ -200,15 +198,15 @@ parse_command_line(CLUREF line, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     ret_3->num = ohave.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE parse_command_line ****/
@@ -238,7 +236,6 @@ get_output_part(CLUREF line, CLUREF *ret_1)
     CLUREF c;
     CLUREF fs;
     if (get_output_part_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         get_output_part_own_init = 1;
     }
     enter_proc(34);
@@ -429,20 +426,20 @@ get_output_part(CLUREF line, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    err = gets_to(fs, STR_, &T_1_1);
+    err = gets_to(fs, CLU_empty_string, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_output_part ****/
@@ -504,15 +501,15 @@ get_option_parts(CLUREF line, CLUREF *ret_1)
     ret_1->num = opts.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_option_parts ****/
@@ -583,15 +580,15 @@ get_option_part(CLUREF line, CLUREF *ret_1)
         {
         {signal (ERR_none);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_option_part ****/
@@ -639,15 +636,15 @@ get_command_part(CLUREF line, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_command_part ****/
@@ -744,15 +741,15 @@ get_input_parts(CLUREF line, CLUREF *ret_1)
             }/* end if */
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_input_parts ****/
@@ -769,7 +766,6 @@ get_input_part(CLUREF line, CLUREF *ret_1)
 {
     errcode err;
     if (get_input_part_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("#", CLU_1, CLUREF_make_num(1), &STR__043);
         get_input_part_own_init = 1;
     }
@@ -789,7 +785,7 @@ get_input_part(CLUREF line, CLUREF *ret_1)
   LINE(99);
         {
         {
-        ret_1->str = STR_.str;
+        ret_1->str = CLU_empty_string.str;
         }
         {signal (ERR_ok);}}
         }
@@ -805,15 +801,15 @@ get_input_part(CLUREF line, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_input_part ****/
@@ -833,7 +829,6 @@ move_to_next(CLUREF line)
     CLUREF extra;
     if (move_to_next_own_init == 0) {
         stringOPcons("#", CLU_1, CLUREF_make_num(1), &STR__043);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         move_to_next_own_init = 1;
     }
     enter_proc(104);
@@ -875,8 +870,8 @@ move_to_next(CLUREF line)
     else {
     CLUREF T_1_4;
     CLUREF T_1_5;
-    T_1_4.num = ((extra.str->size != STR_.str->size)? false :
-        !(memcmp(extra.str->data, STR_.str->data, extra.str->size)));
+    T_1_4.num = ((extra.str->size != CLU_empty_string.str->size)? false :
+        !(memcmp(extra.str->data, CLU_empty_string.str->data, extra.str->size)));
     T_1_5.num = T_1_4.num ^ 1;
     if (T_1_5.num == true) {
 
@@ -886,14 +881,14 @@ move_to_next(CLUREF line)
         {signal (ERR_extra);}}
         }
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE move_to_next ****/
@@ -967,15 +962,15 @@ flush_blanks(CLUREF line, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE flush_blanks ****/
@@ -1142,15 +1137,15 @@ gets_to(CLUREF line, CLUREF terms, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE gets_to ****/
@@ -1265,14 +1260,14 @@ unify(CLUREF line)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE unify ****/

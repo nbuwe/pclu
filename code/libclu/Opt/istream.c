@@ -55,7 +55,6 @@ static CLUREF STR_cannot_040set_040date;
 static CLUREF STR_no_040channel_040attached_040to_040istream;
 static CLUREF STR_bad_040format;
 static CLUREF STR_cannot_040write_040to_040this_040istream;
-static CLUREF STR_;
 static int istream_own_init = 0;
 const OWN_req istream_ownreqs = { 0, 0 };
 
@@ -75,7 +74,6 @@ istream_own_init_proc(void)
         stringOPcons("no channel attached to istream", CLU_1, CLUREF_make_num(30), &STR_no_040channel_040attached_040to_040istream);
         stringOPcons("bad format", CLU_1, CLUREF_make_num(10), &STR_bad_040format);
         stringOPcons("cannot write to this istream", CLU_1, CLUREF_make_num(28), &STR_cannot_040write_040to_040this_040istream);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         istream_own_init = 1;
         signal(ERR_ok);
       ex_0:
@@ -216,15 +214,15 @@ istreamOPopen(CLUREF f, CLUREF access, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE open ****/
@@ -253,15 +251,15 @@ istreamOPcan_read(CLUREF ist, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE can_read ****/
@@ -290,15 +288,15 @@ istreamOPcan_write(CLUREF ist, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE can_write ****/
@@ -402,15 +400,15 @@ istreamOPempty(CLUREF ist, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE empty ****/
@@ -489,14 +487,14 @@ istreamOPreset(CLUREF ist)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE reset ****/
@@ -557,14 +555,14 @@ istreamOPflush(CLUREF ist)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE flush ****/
@@ -645,15 +643,15 @@ istreamOPget_date(CLUREF ist, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_date ****/
@@ -680,14 +678,14 @@ istreamOPset_date(CLUREF ist, CLUREF new_date)
     {
     elist[0] = STR_cannot_040set_040date;
     {signal (ERR_not_possible);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_date ****/
@@ -714,15 +712,15 @@ istreamOPget_name(CLUREF ist, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_name ****/
@@ -813,14 +811,14 @@ istreamOPclose(CLUREF ist)
     CellAlloc(1, nil, T_1_1);
     ist.vec->data[0] = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE close ****/
@@ -893,14 +891,14 @@ istreamOPabort(CLUREF ist)
     CellAlloc(1, nil, T_1_1);
     ist.vec->data[0] = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE abort ****/
@@ -929,15 +927,15 @@ istreamOPis_closed(CLUREF ist, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE is_closed ****/
@@ -964,15 +962,15 @@ istreamOPequal(CLUREF ist1, CLUREF ist2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE equal ****/
@@ -999,15 +997,15 @@ istreamOPsimilar(CLUREF ist1, CLUREF ist2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE similar ****/
@@ -1032,15 +1030,15 @@ istreamOPcopy(CLUREF ist, CLUREF *ret_1)
     ret_1->num = ist.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE copy ****/
@@ -1109,15 +1107,15 @@ istreamOPget_chan(CLUREF ist, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_chan ****/
@@ -1249,15 +1247,15 @@ istreamOPgeti(CLUREF ist, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE geti ****/
@@ -1359,14 +1357,14 @@ istreamOPputi(CLUREF ist, CLUREF i)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE puti ****/
@@ -1475,7 +1473,7 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
                 {
                 {
                 CLUREF T_5_1;
-                T_5_1.num = (long)STR_.num;
+                T_5_1.num = (long)CLU_empty_string.num;
                 ret_1->num = T_5_1.num;
                 }
                 {signal (ERR_ok);}}
@@ -1680,15 +1678,15 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE getbv ****/
@@ -1942,14 +1940,14 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE putbv ****/
@@ -1961,23 +1959,23 @@ typedef struct{
     struct OP_ENTRY entry[15];
 } istream_OPS;
 
-CLU_proc istream_oe_abort = { .proc = istreamOPabort };
-CLU_proc istream_oe_can_read = { .proc = istreamOPcan_read };
-CLU_proc istream_oe_can_write = { .proc = istreamOPcan_write };
-CLU_proc istream_oe_close = { .proc = istreamOPclose };
-CLU_proc istream_oe_copy = { .proc = istreamOPcopy };
-CLU_proc istream_oe_empty = { .proc = istreamOPempty };
-CLU_proc istream_oe_equal = { .proc = istreamOPequal };
-CLU_proc istream_oe_flush = { .proc = istreamOPflush };
-CLU_proc istream_oe_get_date = { .proc = istreamOPget_date };
-CLU_proc istream_oe_get_name = { .proc = istreamOPget_name };
-CLU_proc istream_oe_is_closed = { .proc = istreamOPis_closed };
-CLU_proc istream_oe_open = { .proc = istreamOPopen };
-CLU_proc istream_oe_reset = { .proc = istreamOPreset };
-CLU_proc istream_oe_set_date = { .proc = istreamOPset_date };
-CLU_proc istream_oe_similar = { .proc = istreamOPsimilar };
+static CLU_proc istream_oe_abort = { .proc = istreamOPabort };
+static CLU_proc istream_oe_can_read = { .proc = istreamOPcan_read };
+static CLU_proc istream_oe_can_write = { .proc = istreamOPcan_write };
+static CLU_proc istream_oe_close = { .proc = istreamOPclose };
+static CLU_proc istream_oe_copy = { .proc = istreamOPcopy };
+static CLU_proc istream_oe_empty = { .proc = istreamOPempty };
+static CLU_proc istream_oe_equal = { .proc = istreamOPequal };
+static CLU_proc istream_oe_flush = { .proc = istreamOPflush };
+static CLU_proc istream_oe_get_date = { .proc = istreamOPget_date };
+static CLU_proc istream_oe_get_name = { .proc = istreamOPget_name };
+static CLU_proc istream_oe_is_closed = { .proc = istreamOPis_closed };
+static CLU_proc istream_oe_open = { .proc = istreamOPopen };
+static CLU_proc istream_oe_reset = { .proc = istreamOPreset };
+static CLU_proc istream_oe_set_date = { .proc = istreamOPset_date };
+static CLU_proc istream_oe_similar = { .proc = istreamOPsimilar };
 
-istream_OPS istream_ops_actual = {15, (OWNPTR)&istream_own_init, (OWNPTR)&istream_own_init, {
+static istream_OPS istream_ops_actual = {15, (OWNPTR)&istream_own_init, (OWNPTR)&istream_own_init, {
     {&istream_oe_abort, "abort"},
     {&istream_oe_can_read, "can_read"},
     {&istream_oe_can_write, "can_write"},

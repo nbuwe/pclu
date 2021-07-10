@@ -60,8 +60,7 @@ extern errcode timeOPparse();
 extern errcode stringOPdecode();
 extern errcode structOP_gcd();
 extern struct OPS *int_ops;
-struct OPS  *struct_days_hours_micros_millis_mins_secs_ops;
-static CLUREF STR_;
+struct OPS *struct_days_hours_micros_millis_mins_secs_ops;
 static CLUREF STR_bad_040format;
 static int time_own_init = 0;
 const OWN_req time_ownreqs = { 0, 0 };
@@ -79,7 +78,6 @@ time_own_init_proc(void)
         add_selector_info("mins", 4, int_ops);
         add_selector_info("secs", 5, int_ops);
         find_selector_ops("struct", 6, &(struct_days_hours_micros_millis_mins_secs_ops));
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("bad format", CLU_1, CLUREF_make_num(10), &STR_bad_040format);
         time_own_init = 1;
         signal(ERR_ok);
@@ -301,15 +299,15 @@ timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis,
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE create ****/
@@ -336,15 +334,15 @@ timeOPget_days(CLUREF t, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_days ****/
@@ -371,15 +369,15 @@ timeOPget_hours(CLUREF t, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_hours ****/
@@ -406,15 +404,15 @@ timeOPget_minutes(CLUREF t, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_minutes ****/
@@ -441,15 +439,15 @@ timeOPget_seconds(CLUREF t, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_seconds ****/
@@ -476,15 +474,15 @@ timeOPget_millis(CLUREF t, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_millis ****/
@@ -511,15 +509,15 @@ timeOPget_micros(CLUREF t, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_micros ****/
@@ -571,15 +569,15 @@ timeOPget_all(CLUREF t, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret
     ret_6->num = T_1_6.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_all ****/
@@ -891,15 +889,15 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE add ****/
@@ -1206,15 +1204,15 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE sub ****/
@@ -1360,15 +1358,15 @@ timeOPmul(CLUREF t, CLUREF n, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE mul ****/
@@ -1402,15 +1400,15 @@ timeOPdiv(CLUREF t, CLUREF n, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE div ****/
@@ -1559,15 +1557,15 @@ timeOPaverage(CLUREF t, CLUREF n, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE average ****/
@@ -1760,15 +1758,15 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
     ret_2->num = r.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE do_div ****/
@@ -1923,15 +1921,15 @@ timeOPlt(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}}}}}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE lt ****/
@@ -1967,15 +1965,15 @@ timeOPle(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE le ****/
@@ -2003,15 +2001,15 @@ timeOPge(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE ge ****/
@@ -2039,15 +2037,15 @@ timeOPgt(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE gt ****/
@@ -2224,7 +2222,7 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
 
   LINE(233);
             {
-            s = STR_;
+            s = CLU_empty_string;
             }
             }}/* end if */
 
@@ -2418,15 +2416,15 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
                 {signal (ERR_bad_format);}}
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE parse ****/
@@ -2454,15 +2452,15 @@ timeOPunparse(CLUREF t, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE unparse ****/
@@ -2563,15 +2561,15 @@ timeOPt2r(CLUREF t, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE t2r ****/
@@ -2869,15 +2867,15 @@ timeOPformat(CLUREF t, CLUREF frac_width, CLUREF *ret_1)
     ret_1->num = T_1_4.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE format ****/
@@ -2905,14 +2903,14 @@ timeOPprint(CLUREF t, CLUREF pst)
     err = pstreamOPtext(pst, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE print ****/
@@ -2920,7 +2918,7 @@ timeOPprint(CLUREF t, CLUREF pst)
 
 /**** BEGIN PROCEDURE equal ****/
 
-struct OPS  *struct_days_hours_micros_millis_mins_secs_ops;
+struct OPS *struct_days_hours_micros_millis_mins_secs_ops;
 static int timeOPequal_own_init = 0;
 
 errcode
@@ -2953,15 +2951,15 @@ timeOPequal(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE equal ****/
@@ -2989,15 +2987,15 @@ timeOPsimilar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE similar ****/
@@ -3022,15 +3020,15 @@ timeOPcopy(CLUREF t, CLUREF *ret_1)
     ret_1->num = t.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE copy ****/
@@ -3063,14 +3061,14 @@ timeOPencode(CLUREF t, CLUREF ist)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE encode ****/
@@ -3125,15 +3123,15 @@ timeOPdecode(CLUREF ist, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE decode ****/
@@ -3141,7 +3139,7 @@ timeOPdecode(CLUREF ist, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-struct OPS  *struct_days_hours_micros_millis_mins_secs_ops;
+struct OPS *struct_days_hours_micros_millis_mins_secs_ops;
 static int timeOP_gcd_own_init = 0;
 
 errcode
@@ -3170,15 +3168,15 @@ timeOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _gcd ****/
@@ -3190,36 +3188,36 @@ typedef struct{
     struct OP_ENTRY entry[28];
 } time_OPS;
 
-CLU_proc time_oe__gcd = { .proc = timeOP_gcd };
-CLU_proc time_oe_add = { .proc = timeOPadd };
-CLU_proc time_oe_average = { .proc = timeOPaverage };
-CLU_proc time_oe_copy = { .proc = timeOPcopy };
-CLU_proc time_oe_create = { .proc = timeOPcreate };
-CLU_proc time_oe_decode = { .proc = timeOPdecode };
-CLU_proc time_oe_div = { .proc = timeOPdiv };
-CLU_proc time_oe_encode = { .proc = timeOPencode };
-CLU_proc time_oe_equal = { .proc = timeOPequal };
-CLU_proc time_oe_format = { .proc = timeOPformat };
-CLU_proc time_oe_ge = { .proc = timeOPge };
-CLU_proc time_oe_get_all = { .proc = timeOPget_all };
-CLU_proc time_oe_get_days = { .proc = timeOPget_days };
-CLU_proc time_oe_get_hours = { .proc = timeOPget_hours };
-CLU_proc time_oe_get_micros = { .proc = timeOPget_micros };
-CLU_proc time_oe_get_millis = { .proc = timeOPget_millis };
-CLU_proc time_oe_get_minutes = { .proc = timeOPget_minutes };
-CLU_proc time_oe_get_seconds = { .proc = timeOPget_seconds };
-CLU_proc time_oe_gt = { .proc = timeOPgt };
-CLU_proc time_oe_le = { .proc = timeOPle };
-CLU_proc time_oe_lt = { .proc = timeOPlt };
-CLU_proc time_oe_mul = { .proc = timeOPmul };
-CLU_proc time_oe_parse = { .proc = timeOPparse };
-CLU_proc time_oe_print = { .proc = timeOPprint };
-CLU_proc time_oe_similar = { .proc = timeOPsimilar };
-CLU_proc time_oe_sub = { .proc = timeOPsub };
-CLU_proc time_oe_t2r = { .proc = timeOPt2r };
-CLU_proc time_oe_unparse = { .proc = timeOPunparse };
+static CLU_proc time_oe__gcd = { .proc = timeOP_gcd };
+static CLU_proc time_oe_add = { .proc = timeOPadd };
+static CLU_proc time_oe_average = { .proc = timeOPaverage };
+static CLU_proc time_oe_copy = { .proc = timeOPcopy };
+static CLU_proc time_oe_create = { .proc = timeOPcreate };
+static CLU_proc time_oe_decode = { .proc = timeOPdecode };
+static CLU_proc time_oe_div = { .proc = timeOPdiv };
+static CLU_proc time_oe_encode = { .proc = timeOPencode };
+static CLU_proc time_oe_equal = { .proc = timeOPequal };
+static CLU_proc time_oe_format = { .proc = timeOPformat };
+static CLU_proc time_oe_ge = { .proc = timeOPge };
+static CLU_proc time_oe_get_all = { .proc = timeOPget_all };
+static CLU_proc time_oe_get_days = { .proc = timeOPget_days };
+static CLU_proc time_oe_get_hours = { .proc = timeOPget_hours };
+static CLU_proc time_oe_get_micros = { .proc = timeOPget_micros };
+static CLU_proc time_oe_get_millis = { .proc = timeOPget_millis };
+static CLU_proc time_oe_get_minutes = { .proc = timeOPget_minutes };
+static CLU_proc time_oe_get_seconds = { .proc = timeOPget_seconds };
+static CLU_proc time_oe_gt = { .proc = timeOPgt };
+static CLU_proc time_oe_le = { .proc = timeOPle };
+static CLU_proc time_oe_lt = { .proc = timeOPlt };
+static CLU_proc time_oe_mul = { .proc = timeOPmul };
+static CLU_proc time_oe_parse = { .proc = timeOPparse };
+static CLU_proc time_oe_print = { .proc = timeOPprint };
+static CLU_proc time_oe_similar = { .proc = timeOPsimilar };
+static CLU_proc time_oe_sub = { .proc = timeOPsub };
+static CLU_proc time_oe_t2r = { .proc = timeOPt2r };
+static CLU_proc time_oe_unparse = { .proc = timeOPunparse };
 
-time_OPS time_ops_actual = {28, (OWNPTR)&time_own_init, (OWNPTR)&time_own_init, {
+static time_OPS time_ops_actual = {28, (OWNPTR)&time_own_init, (OWNPTR)&time_own_init, {
     {&time_oe__gcd, "_gcd"},
     {&time_oe_add, "add"},
     {&time_oe_average, "average"},

@@ -88,7 +88,6 @@ extern errcode recordOPget_4();
 extern errcode dbg_infoOPprocess_mixedlist();
 extern errcode current_typeOPget_name();
 extern errcode dbg_infoOPvars_in_decllist();
-static CLUREF STR_;
 static CLUREF STR_OP;
 static CLUREF STR_op;
 static CLUREF STR_type;
@@ -235,7 +234,6 @@ dbg_info_own_init_proc(void)
     errcode err;
     enter_own_init_proc();
     if (dbg_info_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("OP", CLU_1, CLUREF_make_num(2), &STR_OP);
         stringOPcons("op", CLU_1, CLUREF_make_num(2), &STR_op);
         stringOPcons("type", CLU_1, CLUREF_make_num(4), &STR_type);
@@ -541,8 +539,8 @@ dbg_infoOPstart(CLUREF e, CLUREF a, CLUREF cname, CLUREF iterp)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-    T_1_1.num = ((cname.str->size != STR_.str->size)? false :
-        !(memcmp(cname.str->data, STR_.str->data, cname.str->size)));
+    T_1_1.num = ((cname.str->size != CLU_empty_string.str->size)? false :
+        !(memcmp(cname.str->data, CLU_empty_string.str->data, cname.str->size)));
     T_1_2.num = T_1_1.num ^ 1;
     if (T_1_2.num == true) {
         {
@@ -560,8 +558,8 @@ dbg_infoOPstart(CLUREF e, CLUREF a, CLUREF cname, CLUREF iterp)
   LINE(48);
     {
     CLUREF T_1_1;
-    T_1_1.num = ((cname.str->size != STR_.str->size)? false :
-        !(memcmp(cname.str->data, STR_.str->data, cname.str->size)));
+    T_1_1.num = ((cname.str->size != CLU_empty_string.str->size)? false :
+        !(memcmp(cname.str->data, CLU_empty_string.str->data, cname.str->size)));
     if (T_1_1.num == true) {
         {
         CLUREF T_2_1;
@@ -728,14 +726,14 @@ dbg_infoOPstart(CLUREF e, CLUREF a, CLUREF cname, CLUREF iterp)
     T_1_1.num = dbg_infoOPopformals.array->ext_size;
     dbg_infoOPnopformals.num = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE start ****/
@@ -802,14 +800,14 @@ dbg_infoOPreset()
     {
     dbg_infoOPnptowns.num = 0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE reset ****/
@@ -834,15 +832,15 @@ dbg_infoOPactive(CLUREF *ret_1)
     ret_1->num = dbg_infoOPyes.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE active ****/
@@ -932,14 +930,14 @@ dbg_infoOPset_own_context(CLUREF e, CLUREF context, CLUREF parmd)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_own_context ****/
@@ -1036,14 +1034,14 @@ dbg_infoOPadd_own(CLUREF entry)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE add_own ****/
@@ -1117,14 +1115,14 @@ dbg_infoOPadd_ilist(CLUREF entry)
         }
         }
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE add_ilist ****/
@@ -1204,14 +1202,14 @@ dbg_infoOPemit_extern(CLUREF e)
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_extern ****/
@@ -1255,14 +1253,14 @@ dbg_infoOPemit_local_entry(CLUREF e)
     err = g_envOPputl(e, STR_long_040DBG_137LINE_073);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_local_entry ****/
@@ -1306,14 +1304,14 @@ dbg_infoOPinit_local_entry(CLUREF e)
     err = g_envOPputl(e, T_1_2);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE init_local_entry ****/
@@ -1346,14 +1344,14 @@ dbg_infoOPadd_locals(CLUREF lcls)
     {
     dbg_infoOPlocals_UNIQ.num = lcls.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE add_locals ****/
@@ -1393,14 +1391,14 @@ dbg_infoOPextend_locals(CLUREF d)
         if (err != ERR_ok) goto ex_0;}
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE extend_locals ****/
@@ -1440,14 +1438,14 @@ dbg_infoOPadd_local(CLUREF anelt)
         if (err != ERR_ok) goto ex_0;}
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE add_local ****/
@@ -1511,14 +1509,14 @@ dbg_infoOPemit_decls(CLUREF e)
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_decls ****/
@@ -1942,14 +1940,14 @@ dbg_infoOPemit_externs(CLUREF e)
         end_inline_for_8:;
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_externs ****/
@@ -2107,14 +2105,14 @@ dbg_infoOPemit_own_externs(CLUREF e)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_own_externs ****/
@@ -2434,14 +2432,14 @@ dbg_infoOPemit_extern_typespec(CLUREF e, CLUREF each_val)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_extern_typespec ****/
@@ -2742,14 +2740,14 @@ dbg_infoOPemit_sub_typedefs(CLUREF e)
     err = dbg_infoOPemit_vlist_typedef(e, dbg_infoOPnpopowns);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_sub_typedefs ****/
@@ -2844,14 +2842,14 @@ dbg_infoOPemit_vlist_typedef(CLUREF e, CLUREF n)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_vlist_typedef ****/
@@ -2946,14 +2944,14 @@ dbg_infoOPemit_siglist_typedef(CLUREF e, CLUREF n)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_siglist_typedef ****/
@@ -3189,14 +3187,14 @@ dbg_infoOPemit_typedef(CLUREF e)
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_typedef ****/
@@ -3313,7 +3311,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
   LINE(457);
             {
             CLUREF T_2_1;
-            err = dbg_infoOPemit_sub_decl_typespec(e, STR_, each_val, first, &T_2_1);
+            err = dbg_infoOPemit_sub_decl_typespec(e, CLU_empty_string, each_val, first, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             first.num = T_2_1.num;
             }
@@ -3478,7 +3476,7 @@ dbg_infoOPemit_sub_decls(CLUREF e)
   LINE(473);
                     {
                     CLUREF T_3_1;
-                    err = dbg_infoOPemit_sub_decl_typespec(e, STR_, each_val, first, &T_3_1);
+                    err = dbg_infoOPemit_sub_decl_typespec(e, CLU_empty_string, each_val, first, &T_3_1);
                     if (err != ERR_ok) goto ex_0;
                     first.num = T_3_1.num;
                     }
@@ -4139,14 +4137,14 @@ dbg_infoOPemit_sub_decls(CLUREF e)
     err = g_envOPputl(e, STR__175_073);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_sub_decls ****/
@@ -4250,14 +4248,14 @@ dbg_infoOPemit_ptown_decl(CLUREF e)
     err = g_envOPputl(e, STR__175_175_073);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_ptown_decl ****/
@@ -4414,14 +4412,14 @@ dbg_infoOPemit_own_decl(CLUREF e)
     err = g_envOPputl(e, STR__175_073);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_own_decl ****/
@@ -4566,14 +4564,14 @@ dbg_infoOPprocess_mixedlist(CLUREF e, CLUREF list)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE process_mixedlist ****/
@@ -4899,15 +4897,15 @@ dbg_infoOPprocess_initlists(CLUREF e, CLUREF tyexists, CLUREF tylist, CLUREF opl
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE process_initlists ****/
@@ -4959,14 +4957,14 @@ dbg_infoOPprocess_ownlists(CLUREF e, CLUREF own_list)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE process_ownlists ****/
@@ -5379,15 +5377,15 @@ dbg_infoOPemit_sub_decl_typespec(CLUREF e, CLUREF id, CLUREF each_val, CLUREF fi
     ret_1->num = first.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE emit_sub_decl_typespec ****/
@@ -5840,14 +5838,14 @@ dbg_infoOPemit_decl(CLUREF e)
     err = g_envOPputl(e, T_1_4);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE emit_decl ****/
@@ -5912,15 +5910,15 @@ dbg_infoOPidns_in_decls(CLUREF a, CLUREF *ret_1)
     ret_1->num = count.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE idns_in_decls ****/
@@ -6039,15 +6037,15 @@ dbg_infoOPowns_in_mixedlist(CLUREF it, CLUREF *ret_1)
     ret_1->num = count.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE owns_in_mixedlist ****/
@@ -6154,15 +6152,15 @@ dbg_infoOPvars_in_mixedlist(CLUREF it, CLUREF *ret_1)
     ret_1->num = count.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE vars_in_mixedlist ****/
@@ -6304,15 +6302,15 @@ dbg_infoOPvars_in_initlist(CLUREF it, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE vars_in_initlist ****/
@@ -6373,15 +6371,15 @@ dbg_infoOPvars_in_decllist(CLUREF dl, CLUREF *ret_1)
     ret_1->num = count.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE vars_in_decllist ****/
@@ -6393,21 +6391,21 @@ typedef struct{
     struct OP_ENTRY entry[13];
 } dbg_info_OPS;
 
-CLU_proc dbg_info_oe_active = { .proc = dbg_infoOPactive };
-CLU_proc dbg_info_oe_add_ilist = { .proc = dbg_infoOPadd_ilist };
-CLU_proc dbg_info_oe_add_local = { .proc = dbg_infoOPadd_local };
-CLU_proc dbg_info_oe_add_locals = { .proc = dbg_infoOPadd_locals };
-CLU_proc dbg_info_oe_add_own = { .proc = dbg_infoOPadd_own };
-CLU_proc dbg_info_oe_emit_decls = { .proc = dbg_infoOPemit_decls };
-CLU_proc dbg_info_oe_emit_extern = { .proc = dbg_infoOPemit_extern };
-CLU_proc dbg_info_oe_emit_local_entry = { .proc = dbg_infoOPemit_local_entry };
-CLU_proc dbg_info_oe_extend_locals = { .proc = dbg_infoOPextend_locals };
-CLU_proc dbg_info_oe_init_local_entry = { .proc = dbg_infoOPinit_local_entry };
-CLU_proc dbg_info_oe_reset = { .proc = dbg_infoOPreset };
-CLU_proc dbg_info_oe_set_own_context = { .proc = dbg_infoOPset_own_context };
-CLU_proc dbg_info_oe_start = { .proc = dbg_infoOPstart };
+static CLU_proc dbg_info_oe_active = { .proc = dbg_infoOPactive };
+static CLU_proc dbg_info_oe_add_ilist = { .proc = dbg_infoOPadd_ilist };
+static CLU_proc dbg_info_oe_add_local = { .proc = dbg_infoOPadd_local };
+static CLU_proc dbg_info_oe_add_locals = { .proc = dbg_infoOPadd_locals };
+static CLU_proc dbg_info_oe_add_own = { .proc = dbg_infoOPadd_own };
+static CLU_proc dbg_info_oe_emit_decls = { .proc = dbg_infoOPemit_decls };
+static CLU_proc dbg_info_oe_emit_extern = { .proc = dbg_infoOPemit_extern };
+static CLU_proc dbg_info_oe_emit_local_entry = { .proc = dbg_infoOPemit_local_entry };
+static CLU_proc dbg_info_oe_extend_locals = { .proc = dbg_infoOPextend_locals };
+static CLU_proc dbg_info_oe_init_local_entry = { .proc = dbg_infoOPinit_local_entry };
+static CLU_proc dbg_info_oe_reset = { .proc = dbg_infoOPreset };
+static CLU_proc dbg_info_oe_set_own_context = { .proc = dbg_infoOPset_own_context };
+static CLU_proc dbg_info_oe_start = { .proc = dbg_infoOPstart };
 
-dbg_info_OPS dbg_info_ops_actual = {13, (OWNPTR)&dbg_info_own_init, (OWNPTR)&dbg_info_own_init, {
+static dbg_info_OPS dbg_info_ops_actual = {13, (OWNPTR)&dbg_info_own_init, (OWNPTR)&dbg_info_own_init, {
     {&dbg_info_oe_active, "active"},
     {&dbg_info_oe_add_ilist, "add_ilist"},
     {&dbg_info_oe_add_local, "add_local"},
@@ -6581,15 +6579,15 @@ escape_ckeyword(CLUREF nm, CLUREF *ret_1)
     ret_1->num = nm.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE escape_ckeyword ****/

@@ -41,7 +41,6 @@ extern errcode intOPgt();
 extern errcode arrayOPlow();
 extern errcode arrayOPset_low();
 extern errcode dateOPcreate();
-static CLUREF STR_;
 static CLUREF STR__072;
 static CLUREF STR_jan_040feb_040mar_040apr_040may_040jun_040jul_040aug_040sep_040oct_040nov_040dec_040;
 static CLUREF STR__054;
@@ -68,7 +67,6 @@ date_parse(CLUREF s, CLUREF *ret_1)
     CLUREF min;
     CLUREF sec;
     if (date_parse_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons(":", CLU_1, CLUREF_make_num(1), &STR__072);
         stringOPcons("jan feb mar apr may jun jul aug sep oct nov dec ", CLU_1, CLUREF_make_num(48), &STR_jan_040feb_040mar_040apr_040may_040jun_040jul_040aug_040sep_040oct_040nov_040dec_040);
         stringOPcons(",", CLU_1, CLUREF_make_num(1), &STR__054);
@@ -141,7 +139,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
 
   LINE(32);
         {
-            {acc = STR_;
+            {acc = CLU_empty_string;
             }
             }
 
@@ -949,15 +947,15 @@ date_parse(CLUREF s, CLUREF *ret_1)
   LINE(136);
     {
     {signal (ERR_invalid_format);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE date_parse ****/
@@ -1370,15 +1368,15 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
                 goto ex_0;
             }
         end_2:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE date_sub ****/
@@ -1411,15 +1409,15 @@ ago(CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
     ret_1->num = T_1_3.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE ago ****/

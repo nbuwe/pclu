@@ -32,7 +32,7 @@ extern errcode dateOPcreate();
 extern errcode intOPdecode();
 extern errcode structOP_gcd();
 extern struct OPS *int_ops;
-struct OPS  *struct_day_hour_minute_month_second_year_ops;
+struct OPS *struct_day_hour_minute_month_second_year_ops;
 static CLUREF STR__040;
 static CLUREF STR_January;
 static CLUREF STR_February;
@@ -204,15 +204,15 @@ dateOPcreate(CLUREF day, CLUREF month, CLUREF year, CLUREF hour, CLUREF minute, 
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE create ****/
@@ -239,15 +239,15 @@ dateOPget_day(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_day ****/
@@ -274,15 +274,15 @@ dateOPget_month(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_month ****/
@@ -309,15 +309,15 @@ dateOPget_year(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_year ****/
@@ -344,15 +344,15 @@ dateOPget_hour(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_hour ****/
@@ -379,15 +379,15 @@ dateOPget_minute(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_minute ****/
@@ -414,15 +414,15 @@ dateOPget_second(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_second ****/
@@ -474,15 +474,15 @@ dateOPget_all(CLUREF d, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret
     ret_6->num = T_1_6.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_all ****/
@@ -523,15 +523,15 @@ dateOPunparse(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_4.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE unparse ****/
@@ -603,15 +603,15 @@ dateOPunparse_date(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_11.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE unparse_date ****/
@@ -742,15 +742,15 @@ dateOPunparse_time(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_4.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE unparse_time ****/
@@ -758,7 +758,7 @@ dateOPunparse_time(CLUREF d, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE equal ****/
 
-struct OPS  *struct_day_hour_minute_month_second_year_ops;
+struct OPS *struct_day_hour_minute_month_second_year_ops;
 static int dateOPequal_own_init = 0;
 
 errcode
@@ -791,15 +791,15 @@ dateOPequal(CLUREF date1, CLUREF date2, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE equal ****/
@@ -807,7 +807,7 @@ dateOPequal(CLUREF date1, CLUREF date2, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE similar ****/
 
-struct OPS  *struct_day_hour_minute_month_second_year_ops;
+struct OPS *struct_day_hour_minute_month_second_year_ops;
 static int dateOPsimilar_own_init = 0;
 
 errcode
@@ -836,15 +836,15 @@ dateOPsimilar(CLUREF date1, CLUREF date2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE similar ****/
@@ -869,15 +869,15 @@ dateOPcopy(CLUREF d, CLUREF *ret_1)
     ret_1->num = d.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE copy ****/
@@ -1043,15 +1043,15 @@ dateOPlt(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     ret_1->num = T_1_3.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE lt ****/
@@ -1217,15 +1217,15 @@ dateOPle(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     ret_1->num = T_1_3.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE le ****/
@@ -1253,15 +1253,15 @@ dateOPgt(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE gt ****/
@@ -1289,15 +1289,15 @@ dateOPge(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE ge ****/
@@ -1325,14 +1325,14 @@ dateOPprint(CLUREF d, CLUREF ps)
     err = pstreamOPtext(ps, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE print ****/
@@ -1408,14 +1408,14 @@ dateOPencode(CLUREF d, CLUREF ist)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE encode ****/
@@ -1485,15 +1485,15 @@ dateOPdecode(CLUREF ist, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE decode ****/
@@ -1501,7 +1501,7 @@ dateOPdecode(CLUREF ist, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-struct OPS  *struct_day_hour_minute_month_second_year_ops;
+struct OPS *struct_day_hour_minute_month_second_year_ops;
 static int dateOP_gcd_own_init = 0;
 
 errcode
@@ -1530,15 +1530,15 @@ dateOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _gcd ****/
@@ -1550,30 +1550,30 @@ typedef struct{
     struct OP_ENTRY entry[22];
 } date_OPS;
 
-CLU_proc date_oe__gcd = { .proc = dateOP_gcd };
-CLU_proc date_oe_copy = { .proc = dateOPcopy };
-CLU_proc date_oe_create = { .proc = dateOPcreate };
-CLU_proc date_oe_decode = { .proc = dateOPdecode };
-CLU_proc date_oe_encode = { .proc = dateOPencode };
-CLU_proc date_oe_equal = { .proc = dateOPequal };
-CLU_proc date_oe_ge = { .proc = dateOPge };
-CLU_proc date_oe_get_all = { .proc = dateOPget_all };
-CLU_proc date_oe_get_day = { .proc = dateOPget_day };
-CLU_proc date_oe_get_hour = { .proc = dateOPget_hour };
-CLU_proc date_oe_get_minute = { .proc = dateOPget_minute };
-CLU_proc date_oe_get_month = { .proc = dateOPget_month };
-CLU_proc date_oe_get_second = { .proc = dateOPget_second };
-CLU_proc date_oe_get_year = { .proc = dateOPget_year };
-CLU_proc date_oe_gt = { .proc = dateOPgt };
-CLU_proc date_oe_le = { .proc = dateOPle };
-CLU_proc date_oe_lt = { .proc = dateOPlt };
-CLU_proc date_oe_print = { .proc = dateOPprint };
-CLU_proc date_oe_similar = { .proc = dateOPsimilar };
-CLU_proc date_oe_unparse = { .proc = dateOPunparse };
-CLU_proc date_oe_unparse_date = { .proc = dateOPunparse_date };
-CLU_proc date_oe_unparse_time = { .proc = dateOPunparse_time };
+static CLU_proc date_oe__gcd = { .proc = dateOP_gcd };
+static CLU_proc date_oe_copy = { .proc = dateOPcopy };
+static CLU_proc date_oe_create = { .proc = dateOPcreate };
+static CLU_proc date_oe_decode = { .proc = dateOPdecode };
+static CLU_proc date_oe_encode = { .proc = dateOPencode };
+static CLU_proc date_oe_equal = { .proc = dateOPequal };
+static CLU_proc date_oe_ge = { .proc = dateOPge };
+static CLU_proc date_oe_get_all = { .proc = dateOPget_all };
+static CLU_proc date_oe_get_day = { .proc = dateOPget_day };
+static CLU_proc date_oe_get_hour = { .proc = dateOPget_hour };
+static CLU_proc date_oe_get_minute = { .proc = dateOPget_minute };
+static CLU_proc date_oe_get_month = { .proc = dateOPget_month };
+static CLU_proc date_oe_get_second = { .proc = dateOPget_second };
+static CLU_proc date_oe_get_year = { .proc = dateOPget_year };
+static CLU_proc date_oe_gt = { .proc = dateOPgt };
+static CLU_proc date_oe_le = { .proc = dateOPle };
+static CLU_proc date_oe_lt = { .proc = dateOPlt };
+static CLU_proc date_oe_print = { .proc = dateOPprint };
+static CLU_proc date_oe_similar = { .proc = dateOPsimilar };
+static CLU_proc date_oe_unparse = { .proc = dateOPunparse };
+static CLU_proc date_oe_unparse_date = { .proc = dateOPunparse_date };
+static CLU_proc date_oe_unparse_time = { .proc = dateOPunparse_time };
 
-date_OPS date_ops_actual = {22, (OWNPTR)&date_own_init, (OWNPTR)&date_own_init, {
+static date_OPS date_ops_actual = {22, (OWNPTR)&date_own_init, (OWNPTR)&date_own_init, {
     {&date_oe__gcd, "_gcd"},
     {&date_oe_copy, "copy"},
     {&date_oe_create, "create"},

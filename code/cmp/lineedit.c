@@ -10,7 +10,6 @@
 
 extern errcode intOPfrom_to();
 extern errcode stringOPconcat();
-static CLUREF STR_;
 static int fill_own_init = 0;
 
 errcode
@@ -20,14 +19,13 @@ fill(CLUREF substring, CLUREF times, CLUREF *ret_1)
     CLUREF dum;
     CLUREF i;
     if (fill_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         fill_own_init = 1;
     }
     enter_proc(102);
 
   LINE(105);
     {
-        {dum = STR_;
+        {dum = CLU_empty_string;
         }
         }
 
@@ -56,15 +54,15 @@ fill(CLUREF substring, CLUREF times, CLUREF *ret_1)
     ret_1->num = dum.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE fill ****/
@@ -202,15 +200,15 @@ insert_text(CLUREF str, CLUREF text_to_insert, CLUREF current_text, CLUREF curre
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE insert_text ****/
@@ -233,7 +231,6 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
     CLUREF new_pos;
     CLUREF new_text;
     if (delete_text_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("\033[D", CLU_1, CLUREF_make_num(3), &STR__033_133D);
         stringOPcons(" ", CLU_1, CLUREF_make_num(1), &STR__040);
         delete_text_own_init = 1;
@@ -269,7 +266,7 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
 
   LINE(149);
                     {
-                    rest_of_line = STR_;
+                    rest_of_line = CLU_empty_string;
                     }
                 }
                 else {
@@ -279,7 +276,7 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
 
   LINE(151);
         {
-            {get_to_start = STR_;
+            {get_to_start = CLU_empty_string;
             }
             }
 
@@ -466,15 +463,15 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE delete_text ****/
@@ -646,15 +643,15 @@ find_word(CLUREF current_text, CLUREF current_pos, CLUREF delim, CLUREF *ret_1, 
     ret_2->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE find_word ****/
@@ -706,15 +703,15 @@ getc_noeof(CLUREF str, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE getc_noeof ****/
@@ -743,10 +740,7 @@ extern const struct REQS * const stable_of_value_t_reqs;
 extern struct OPS *int_ops;
 extern const OWN_req stable_ownreqs;
 extern struct OPS *stable_ops;
-struct OPS *stable_of_int_table;
 struct OPS *stable_of_int_ops;
-struct OPS *stable_of_int_ops;
-OWNPTR stable_of_int_owns;
 static int get_key_press_own_init = 0;
 CLUREF get_key_pressOPbindings;
 
@@ -766,7 +760,6 @@ get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
     if (get_key_press_own_init == 0) {
         add_parm_info_type(0, (const struct OPS *)int_ops, stable_of_value_t_reqs);
         find_type_instance(stable_ops, 1, &stable_ownreqs, &(stable_of_int_ops));
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         get_key_press_own_init = 1;
         {
             {CLUREF T_0_1;
@@ -780,19 +773,19 @@ get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
 
   LINE(239);
     {
-        {so_far = STR_;
+        {so_far = CLU_empty_string;
         }
         }
 
   LINE(240);
     {
-        {put_back = STR_;
+        {put_back = CLU_empty_string;
         }
         }
 
   LINE(241);
     {
-        {last_exact = STR_;
+        {last_exact = CLU_empty_string;
         }
         }
 
@@ -887,14 +880,14 @@ get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
 
   LINE(264);
             {
-            put_back = STR_;
+            put_back = CLU_empty_string;
             }
             }
         else {
         CLUREF T_2_1;
         CLUREF T_2_2;
-        T_2_1.num = ((last_exact.str->size != STR_.str->size)? false :
-            !(memcmp(last_exact.str->data, STR_.str->data, last_exact.str->size)));
+        T_2_1.num = ((last_exact.str->size != CLU_empty_string.str->size)? false :
+            !(memcmp(last_exact.str->data, CLU_empty_string.str->data, last_exact.str->size)));
         T_2_2.num = T_2_1.num ^ 1;
         if (T_2_2.num == true) {
 
@@ -918,8 +911,8 @@ get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
         CLUREF T_2_3;
         T_2_1.num = partial.num;
         if (partial.num) {
-            T_2_2.num = ((last_exact.str->size != STR_.str->size)? false :
-                !(memcmp(last_exact.str->data, STR_.str->data, last_exact.str->size)));
+            T_2_2.num = ((last_exact.str->size != CLU_empty_string.str->size)? false :
+                !(memcmp(last_exact.str->data, CLU_empty_string.str->data, last_exact.str->size)));
             T_2_3.num = T_2_2.num ^ 1;
             T_2_1.num = T_2_3.num;
         }
@@ -990,8 +983,8 @@ get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
         T_2_2.num = partial.num ^ 1;
         T_2_1.num = T_2_2.num;
         if (!T_2_2.num) {
-            T_2_4.num = ((last_exact.str->size != STR_.str->size)? false :
-                !(memcmp(last_exact.str->data, STR_.str->data, last_exact.str->size)));
+            T_2_4.num = ((last_exact.str->size != CLU_empty_string.str->size)? false :
+                !(memcmp(last_exact.str->data, CLU_empty_string.str->data, last_exact.str->size)));
             T_2_5.num = T_2_4.num ^ 1;
             T_2_3.num = T_2_5.num;
             if (T_2_5.num) {
@@ -1025,8 +1018,8 @@ get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
             else {
             CLUREF T_3_1;
             CLUREF T_3_2;
-            T_3_1.num = ((last_exact.str->size != STR_.str->size)? false :
-                !(memcmp(last_exact.str->data, STR_.str->data, last_exact.str->size)));
+            T_3_1.num = ((last_exact.str->size != CLU_empty_string.str->size)? false :
+                !(memcmp(last_exact.str->data, CLU_empty_string.str->data, last_exact.str->size)));
             T_3_2.num = T_3_1.num ^ 1;
             if (T_3_2.num == true) {
 
@@ -1074,15 +1067,15 @@ get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
             }/* end if */
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_key_press ****/
@@ -1093,10 +1086,7 @@ get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
 
 extern errcode stableOPcreate();
 extern errcode stableOPinsert();
-struct OPS *stable_of_int_table;
 struct OPS *stable_of_int_ops;
-struct OPS *stable_of_int_ops;
-OWNPTR stable_of_int_owns;
 static CLUREF STR__001;
 static CLUREF STR__002;
 static CLUREF STR__004;
@@ -1370,15 +1360,15 @@ setup_default_keytable(CLUREF *ret_1)
     ret_1->num = temp.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE setup_default_keytable ****/
@@ -1392,10 +1382,7 @@ extern errcode overload_keytable_file();
 extern errcode file_nameOPparse();
 extern errcode _system_root();
 extern errcode setup_default_keytable();
-struct OPS *stable_of_int_table;
 struct OPS *stable_of_int_ops;
-struct OPS *stable_of_int_ops;
-OWNPTR stable_of_int_owns;
 static CLUREF STR__057lineedit_056keys;
 static CLUREF STR__057_056inputrc;
 static CLUREF STR__057_056lineedit_056keys;
@@ -1410,7 +1397,6 @@ setup_keytable(CLUREF *ret_1)
     if (setup_keytable_own_init == 0) {
         add_parm_info_type(0, (const struct OPS *)int_ops, stable_of_value_t_reqs);
         find_type_instance(stable_ops, 1, &stable_ownreqs, &(stable_of_int_ops));
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("/lineedit.keys", CLU_1, CLUREF_make_num(14), &STR__057lineedit_056keys);
         stringOPcons("/.inputrc", CLU_1, CLUREF_make_num(9), &STR__057_056inputrc);
         stringOPcons("/.lineedit.keys", CLU_1, CLUREF_make_num(15), &STR__057_056lineedit_056keys);
@@ -1433,7 +1419,7 @@ setup_keytable(CLUREF *ret_1)
   LINE(343);
     {
         {CLUREF T_1_1;
-        err = _home_dir(STR_, &T_1_1);
+        err = _home_dir(CLU_empty_string, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         hd.num = T_1_1.num;
         }
@@ -1516,15 +1502,15 @@ setup_keytable(CLUREF *ret_1)
     ret_1->num = temp_table.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE setup_keytable ****/
@@ -1544,10 +1530,7 @@ extern errcode upper_case();
 extern errcode stringOPindexs();
 extern errcode stableOPdelete();
 extern errcode streamOPclose();
-struct OPS *stable_of_int_table;
 struct OPS *stable_of_int_ops;
-struct OPS *stable_of_int_ops;
-OWNPTR stable_of_int_owns;
 static CLUREF STR_read;
 static CLUREF STR__011;
 static CLUREF STR_format_040error_040in_040;
@@ -1626,7 +1609,6 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
         find_type_instance(stable_ops, 1, &stable_ownreqs, &(stable_of_int_ops));
         stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
         stringOPcons(" ", CLU_1, CLUREF_make_num(1), &STR__040);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("\t", CLU_1, CLUREF_make_num(1), &STR__011);
         stringOPcons("format error in ", CLU_1, CLUREF_make_num(16), &STR_format_040error_040in_040);
         stringOPcons("line: ", CLU_1, CLUREF_make_num(6), &STR_line_072_040);
@@ -1724,7 +1706,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
             CLUREF T_3_2;
             err = streamOPgetl(str, &T_3_1);
             if (err != ERR_ok) goto ex_2;
-            err = replace(STR__040, STR_, T_3_1, &T_3_2);
+            err = replace(STR__040, CLU_empty_string, T_3_1, &T_3_2);
             if (err != ERR_ok) goto ex_2;
             line.num = T_3_2.num;
             }
@@ -1733,7 +1715,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
   LINE(367);
         {
         CLUREF T_3_1;
-        err = replace(STR__011, STR_, line, &T_3_1);
+        err = replace(STR__011, CLU_empty_string, line, &T_3_1);
         if (err != ERR_ok) goto ex_2;
         line.num = T_3_1.num;
         }
@@ -1749,8 +1731,8 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
         CLUREF T_3_7;
         CLUREF T_3_8;
         CLUREF T_3_9;
-        T_3_3.num = ((line.str->size != STR_.str->size)? false :
-            !(memcmp(line.str->data, STR_.str->data, line.str->size)));
+        T_3_3.num = ((line.str->size != CLU_empty_string.str->size)? false :
+            !(memcmp(line.str->data, CLU_empty_string.str->data, line.str->size)));
         T_3_2.num = T_3_3.num;
         if (!T_3_3.num) {
             err = stringOPfetch(line, CLU_1, &T_3_4);
@@ -1971,7 +1953,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
   LINE(400);
         {
         CLUREF T_3_1;
-        err = replace(STR__054, STR_, key, &T_3_1);
+        err = replace(STR__054, CLU_empty_string, key, &T_3_1);
         if (err != ERR_ok) goto ex_2;
         key.num = T_3_1.num;
         }
@@ -2162,7 +2144,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
 
   LINE(421);
                 {
-                key = STR_;
+                key = CLU_empty_string;
                 }
                 }}/* end if */
             }
@@ -2173,7 +2155,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
 
   LINE(424);
                     {
-                    key = STR_;
+                    key = CLU_empty_string;
                     }
                 }
                 else {
@@ -2199,8 +2181,8 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
-        T_3_1.num = ((key.str->size != STR_.str->size)? false :
-            !(memcmp(key.str->data, STR_.str->data, key.str->size)));
+        T_3_1.num = ((key.str->size != CLU_empty_string.str->size)? false :
+            !(memcmp(key.str->data, CLU_empty_string.str->data, key.str->size)));
         T_3_2.num = T_3_1.num ^ 1;
         if (T_3_2.num == true) {
 
@@ -2523,14 +2505,14 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
     err = streamOPclose(str);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE overload_keytable_file ****/
@@ -2614,15 +2596,15 @@ replace(CLUREF look_for, CLUREF new, CLUREF from, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE replace ****/
@@ -2648,7 +2630,7 @@ extern errcode intOPlt();
 extern errcode arrayOPfetch();
 extern errcode arrayOPlow();
 extern errcode find_word();
-extern errcode lineedit_IB_1();
+static errcode lineedit_IB_1();
 static CLUREF STR__040_072_073_056_054_057_174;
 static CLUREF STR__007;
 static int lineedit_own_init = 0;
@@ -2679,7 +2661,6 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
     locals.str = str;
     locals.prompt = prompt;
     if (lineedit_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("\033[D", CLU_1, CLUREF_make_num(3), &STR__033_133D);
         stringOPcons(" :;.,/|", CLU_1, CLUREF_make_num(7), &STR__040_072_073_056_054_057_174);
         stringOPcons("\007", CLU_1, CLUREF_make_num(1), &STR__007);
@@ -2705,13 +2686,13 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
 
   LINE(539);
     {
-        {locals.kill_ring = STR_;
+        {locals.kill_ring = CLU_empty_string;
         }
         }
 
   LINE(540);
     {
-        {locals.input_line = STR_;
+        {locals.input_line = CLU_empty_string;
         }
         }
 
@@ -2835,8 +2816,8 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
             T_4_4.num = T_4_3.num ^ 1;
             T_4_1.num = T_4_4.num;
             if (T_4_4.num) {
-                T_4_5.num = ((locals.input_line.str->size != STR_.str->size)? false :
-                    !(memcmp(locals.input_line.str->data, STR_.str->data, locals.input_line.str->size)));
+                T_4_5.num = ((locals.input_line.str->size != CLU_empty_string.str->size)? false :
+                    !(memcmp(locals.input_line.str->data, CLU_empty_string.str->data, locals.input_line.str->size)));
                 T_4_6.num = T_4_5.num ^ 1;
                 T_4_1.num = T_4_6.num;
             }
@@ -3431,15 +3412,15 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
             }}}}}}}}}}}}}}}}}/* end if */
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE lineedit ****/
@@ -3447,7 +3428,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
 
 /**** BEGIN ITERATOR BODIES for lineedit ****/
 
-errcode
+static errcode
 lineedit_IB_1(CLUREF iv_1, lineedit_LOCALS_t *locals, errcode *iecode)
 {
     locals->ss.num = iv_1.num;
@@ -3470,13 +3451,14 @@ lineedit_IB_1(CLUREF iv_1, lineedit_LOCALS_t *locals, errcode *iecode)
         if (locals->err != ERR_ok) goto ex_0;}
     }
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end lineedit_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for lineedit ****/
 

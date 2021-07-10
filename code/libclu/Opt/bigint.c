@@ -66,10 +66,7 @@ extern const struct REQS * const array_of_t_reqs;
 extern struct OPS *int_ops;
 extern const OWN_req array_ownreqs;
 extern struct OPS *array_ops;
-struct OPS *array_of_int_table;
 struct OPS *array_of_int_ops;
-struct OPS *array_of_int_ops;
-OWNPTR array_of_int_owns;
 static int bigint_own_init = 0;
 const OWN_req bigint_ownreqs = { 0, 0 };
 
@@ -218,15 +215,15 @@ bigintOPi2bi(CLUREF i, CLUREF *ret_1)
             {signal (ERR_ok);}}
             }}/* end if */
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE i2bi ****/
@@ -331,15 +328,15 @@ bigintOPbi2i(CLUREF a, CLUREF *ret_1)
     ret_1->num = at.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE bi2i ****/
@@ -546,15 +543,15 @@ bigintOPparse(CLUREF a, CLUREF *ret_1)
     ret_1->num = psum.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE parse ****/
@@ -751,15 +748,15 @@ bigintOPunparse(CLUREF r, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE unparse ****/
@@ -881,15 +878,15 @@ bigintOPone_digit_divide(CLUREF rnb, CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = rem.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE one_digit_divide ****/
@@ -917,15 +914,15 @@ bigintOPadd(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE add ****/
@@ -953,15 +950,15 @@ bigintOPsub(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE sub ****/
@@ -994,15 +991,15 @@ bigintOPminus(CLUREF a, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE minus ****/
@@ -1269,15 +1266,15 @@ bigintOPaddsub(CLUREF a, CLUREF b, CLUREF neg, CLUREF *ret_1)
     ret_1->num = c.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE addsub ****/
@@ -1309,15 +1306,15 @@ bigintOPmax_size(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = T_1_3.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE max_size ****/
@@ -1383,15 +1380,15 @@ bigintOPfetch_digit(CLUREF n, CLUREF i, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE fetch_digit ****/
@@ -1419,15 +1416,15 @@ bigintOPgt(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE gt ****/
@@ -1455,15 +1452,15 @@ bigintOPge(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE ge ****/
@@ -1491,15 +1488,15 @@ bigintOPlt(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE lt ****/
@@ -1527,15 +1524,15 @@ bigintOPle(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE le ****/
@@ -1616,15 +1613,15 @@ bigintOPequal(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->tf = true;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE equal ****/
@@ -1662,15 +1659,15 @@ bigintOPmax(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE max ****/
@@ -1708,15 +1705,15 @@ bigintOPmin(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE min ****/
@@ -1761,15 +1758,15 @@ bigintOPabs(CLUREF a, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE abs ****/
@@ -1911,15 +1908,15 @@ bigintOPgtge(CLUREF a, CLUREF b, CLUREF eq, CLUREF *ret_1)
     ret_1->num = eq.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE gtge ****/
@@ -1947,15 +1944,15 @@ bigintOPsimilar(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE similar ****/
@@ -1980,15 +1977,15 @@ bigintOPcopy(CLUREF a, CLUREF *ret_1)
     ret_1->num = a.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE copy ****/
@@ -1996,10 +1993,7 @@ bigintOPcopy(CLUREF a, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE encode ****/
 
-struct OPS *array_of_int_table;
 struct OPS *array_of_int_ops;
-struct OPS *array_of_int_ops;
-OWNPTR array_of_int_owns;
 static int bigintOPencode_own_init = 0;
 
 errcode
@@ -2029,14 +2023,14 @@ bigintOPencode(CLUREF v, CLUREF i)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE encode ****/
@@ -2044,10 +2038,7 @@ bigintOPencode(CLUREF v, CLUREF i)
 
 /**** BEGIN PROCEDURE decode ****/
 
-struct OPS *array_of_int_table;
 struct OPS *array_of_int_ops;
-struct OPS *array_of_int_ops;
-OWNPTR array_of_int_owns;
 static int bigintOPdecode_own_init = 0;
 
 errcode
@@ -2082,15 +2073,15 @@ bigintOPdecode(CLUREF i, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE decode ****/
@@ -2598,15 +2589,15 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = c.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE mul ****/
@@ -2736,14 +2727,14 @@ bigintOPmul_sub_in(CLUREF c, CLUREF a, CLUREF p)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE mul_sub_in ****/
@@ -2904,14 +2895,14 @@ bigintOPclear_leads(CLUREF r)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE clear_leads ****/
@@ -3059,15 +3050,15 @@ bigintOPpower(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = sexp.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE power ****/
@@ -3164,15 +3155,15 @@ bigintOPdiv(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = q.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE div ****/
@@ -3267,15 +3258,15 @@ bigintOPmod(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE mod ****/
@@ -3446,15 +3437,15 @@ bigintOPdivmodhack(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret
     ret_5->num = mod0.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE divmodhack ****/
@@ -3655,15 +3646,15 @@ bigintOPdivmod(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = newba.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE divmod ****/
@@ -3899,15 +3890,15 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
     ret_1->num = divsofar.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE div_one ****/
@@ -4052,15 +4043,15 @@ bigintOPdiv_lt(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE div_lt ****/
@@ -4234,14 +4225,14 @@ bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE div_sub ****/
@@ -4384,15 +4375,15 @@ bigintOPnew_base(CLUREF a, CLUREF *ret_1)
     ret_1->num = r.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE new_base ****/
@@ -4612,15 +4603,15 @@ bigintOPold_base(CLUREF a, CLUREF *ret_1)
     ret_1->num = r.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE old_base ****/
@@ -4632,31 +4623,31 @@ typedef struct{
     struct OP_ENTRY entry[23];
 } bigint_OPS;
 
-CLU_proc bigint_oe_abs = { .proc = bigintOPabs };
-CLU_proc bigint_oe_add = { .proc = bigintOPadd };
-CLU_proc bigint_oe_bi2i = { .proc = bigintOPbi2i };
-CLU_proc bigint_oe_copy = { .proc = bigintOPcopy };
-CLU_proc bigint_oe_decode = { .proc = bigintOPdecode };
-CLU_proc bigint_oe_div = { .proc = bigintOPdiv };
-CLU_proc bigint_oe_encode = { .proc = bigintOPencode };
-CLU_proc bigint_oe_equal = { .proc = bigintOPequal };
-CLU_proc bigint_oe_ge = { .proc = bigintOPge };
-CLU_proc bigint_oe_gt = { .proc = bigintOPgt };
-CLU_proc bigint_oe_i2bi = { .proc = bigintOPi2bi };
-CLU_proc bigint_oe_le = { .proc = bigintOPle };
-CLU_proc bigint_oe_lt = { .proc = bigintOPlt };
-CLU_proc bigint_oe_max = { .proc = bigintOPmax };
-CLU_proc bigint_oe_min = { .proc = bigintOPmin };
-CLU_proc bigint_oe_minus = { .proc = bigintOPminus };
-CLU_proc bigint_oe_mod = { .proc = bigintOPmod };
-CLU_proc bigint_oe_mul = { .proc = bigintOPmul };
-CLU_proc bigint_oe_parse = { .proc = bigintOPparse };
-CLU_proc bigint_oe_power = { .proc = bigintOPpower };
-CLU_proc bigint_oe_similar = { .proc = bigintOPsimilar };
-CLU_proc bigint_oe_sub = { .proc = bigintOPsub };
-CLU_proc bigint_oe_unparse = { .proc = bigintOPunparse };
+static CLU_proc bigint_oe_abs = { .proc = bigintOPabs };
+static CLU_proc bigint_oe_add = { .proc = bigintOPadd };
+static CLU_proc bigint_oe_bi2i = { .proc = bigintOPbi2i };
+static CLU_proc bigint_oe_copy = { .proc = bigintOPcopy };
+static CLU_proc bigint_oe_decode = { .proc = bigintOPdecode };
+static CLU_proc bigint_oe_div = { .proc = bigintOPdiv };
+static CLU_proc bigint_oe_encode = { .proc = bigintOPencode };
+static CLU_proc bigint_oe_equal = { .proc = bigintOPequal };
+static CLU_proc bigint_oe_ge = { .proc = bigintOPge };
+static CLU_proc bigint_oe_gt = { .proc = bigintOPgt };
+static CLU_proc bigint_oe_i2bi = { .proc = bigintOPi2bi };
+static CLU_proc bigint_oe_le = { .proc = bigintOPle };
+static CLU_proc bigint_oe_lt = { .proc = bigintOPlt };
+static CLU_proc bigint_oe_max = { .proc = bigintOPmax };
+static CLU_proc bigint_oe_min = { .proc = bigintOPmin };
+static CLU_proc bigint_oe_minus = { .proc = bigintOPminus };
+static CLU_proc bigint_oe_mod = { .proc = bigintOPmod };
+static CLU_proc bigint_oe_mul = { .proc = bigintOPmul };
+static CLU_proc bigint_oe_parse = { .proc = bigintOPparse };
+static CLU_proc bigint_oe_power = { .proc = bigintOPpower };
+static CLU_proc bigint_oe_similar = { .proc = bigintOPsimilar };
+static CLU_proc bigint_oe_sub = { .proc = bigintOPsub };
+static CLU_proc bigint_oe_unparse = { .proc = bigintOPunparse };
 
-bigint_OPS bigint_ops_actual = {23, (OWNPTR)&bigint_own_init, (OWNPTR)&bigint_own_init, {
+static bigint_OPS bigint_ops_actual = {23, (OWNPTR)&bigint_own_init, (OWNPTR)&bigint_own_init, {
     {&bigint_oe_abs, "abs"},
     {&bigint_oe_add, "add"},
     {&bigint_oe_bi2i, "bi2i"},

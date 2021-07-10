@@ -32,7 +32,7 @@ extern errcode stringOPequal();
 extern errcode recordOP_gcd();
 extern struct OPS *int_ops;
 extern struct OPS *string_ops;
-struct OPS  *record_index_name_ops;
+struct OPS *record_index_name_ops;
 static int du_own_init = 0;
 const OWN_req du_ownreqs = { 0, 0 };
 CLUREF duOPstore;
@@ -155,15 +155,15 @@ duOPcreate(CLUREF common, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE create ****/
@@ -190,15 +190,15 @@ duOPget_unique(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_unique ****/
@@ -225,15 +225,15 @@ duOPget_common(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_common ****/
@@ -300,15 +300,15 @@ duOPread_specs(CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = fixdus.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE read_specs ****/
@@ -363,14 +363,14 @@ duOPadd_specs(CLUREF d, CLUREF specs)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE add_specs ****/
@@ -402,15 +402,15 @@ duOPget_mspecs(CLUREF d, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_mspecs ****/
@@ -440,14 +440,14 @@ duOPset_mspecs(CLUREF d, CLUREF specs)
     duOPcache.array->store->data[T_1_1.num + duOPcache.array->int_low - duOPcache.array->ext_low] = specs.num;
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_mspecs ****/
@@ -486,15 +486,15 @@ duOPget_dump_info(CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = T_1_4.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_dump_info ****/
@@ -576,14 +576,14 @@ duOPupdate_specs(CLUREF d, CLUREF specs)
             }/* end if */
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE update_specs ****/
@@ -651,14 +651,14 @@ duOPforget_specs(CLUREF d)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE forget_specs ****/
@@ -714,14 +714,14 @@ duOPkeep()
         }
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE keep ****/
@@ -793,14 +793,14 @@ duOPreset()
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE reset ****/
@@ -827,15 +827,15 @@ duOPequal(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE equal ****/
@@ -867,15 +867,15 @@ duOPsimilar(CLUREF d1, CLUREF d2, CLUREF *ret_1)
     ret_1->num = T_1_3.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE similar ****/
@@ -900,15 +900,15 @@ duOPcopy(CLUREF d, CLUREF *ret_1)
     ret_1->num = d.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE copy ****/
@@ -916,7 +916,7 @@ duOPcopy(CLUREF d, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-struct OPS  *record_index_name_ops;
+struct OPS *record_index_name_ops;
 static int duOP_gcd_own_init = 0;
 
 errcode
@@ -945,15 +945,15 @@ duOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _gcd ****/
@@ -965,24 +965,24 @@ typedef struct{
     struct OP_ENTRY entry[16];
 } du_OPS;
 
-CLU_proc du_oe__gcd = { .proc = duOP_gcd };
-CLU_proc du_oe_add_specs = { .proc = duOPadd_specs };
-CLU_proc du_oe_copy = { .proc = duOPcopy };
-CLU_proc du_oe_create = { .proc = duOPcreate };
-CLU_proc du_oe_equal = { .proc = duOPequal };
-CLU_proc du_oe_forget_specs = { .proc = duOPforget_specs };
-CLU_proc du_oe_get_common = { .proc = duOPget_common };
-CLU_proc du_oe_get_dump_info = { .proc = duOPget_dump_info };
-CLU_proc du_oe_get_mspecs = { .proc = duOPget_mspecs };
-CLU_proc du_oe_get_unique = { .proc = duOPget_unique };
-CLU_proc du_oe_keep = { .proc = duOPkeep };
-CLU_proc du_oe_read_specs = { .proc = duOPread_specs };
-CLU_proc du_oe_reset = { .proc = duOPreset };
-CLU_proc du_oe_set_mspecs = { .proc = duOPset_mspecs };
-CLU_proc du_oe_similar = { .proc = duOPsimilar };
-CLU_proc du_oe_update_specs = { .proc = duOPupdate_specs };
+static CLU_proc du_oe__gcd = { .proc = duOP_gcd };
+static CLU_proc du_oe_add_specs = { .proc = duOPadd_specs };
+static CLU_proc du_oe_copy = { .proc = duOPcopy };
+static CLU_proc du_oe_create = { .proc = duOPcreate };
+static CLU_proc du_oe_equal = { .proc = duOPequal };
+static CLU_proc du_oe_forget_specs = { .proc = duOPforget_specs };
+static CLU_proc du_oe_get_common = { .proc = duOPget_common };
+static CLU_proc du_oe_get_dump_info = { .proc = duOPget_dump_info };
+static CLU_proc du_oe_get_mspecs = { .proc = duOPget_mspecs };
+static CLU_proc du_oe_get_unique = { .proc = duOPget_unique };
+static CLU_proc du_oe_keep = { .proc = duOPkeep };
+static CLU_proc du_oe_read_specs = { .proc = duOPread_specs };
+static CLU_proc du_oe_reset = { .proc = duOPreset };
+static CLU_proc du_oe_set_mspecs = { .proc = duOPset_mspecs };
+static CLU_proc du_oe_similar = { .proc = duOPsimilar };
+static CLU_proc du_oe_update_specs = { .proc = duOPupdate_specs };
 
-du_OPS du_ops_actual = {16, (OWNPTR)&du_own_init, (OWNPTR)&du_own_init, {
+static du_OPS du_ops_actual = {16, (OWNPTR)&du_own_init, (OWNPTR)&du_own_init, {
     {&du_oe__gcd, "_gcd"},
     {&du_oe_add_specs, "add_specs"},
     {&du_oe_copy, "copy"},

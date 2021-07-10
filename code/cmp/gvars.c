@@ -29,11 +29,7 @@ extern errcode sequenceOPfill();
 extern const struct REQS * const addh_if_new_of_ty_reqs;
 extern struct OPS *string_ops;
 extern const OWN_req addh_if_new_ownreqs;
-struct OPS *addh_if_new_of_string_table;
 struct OPS *addh_if_new_of_string_ops;
-struct OPS *addh_if_new_of_string_ops;
-OWNPTR addh_if_new_of_string_owns;
-static CLUREF STR_;
 static CLUREF STR_OP;
 static CLUREF STR_is_137;
 static int g_expr_proc_names_own_init = 0;
@@ -64,7 +60,6 @@ g_expr_proc_names(CLUREF a, CLUREF bod)
     if (g_expr_proc_names_own_init == 0) {
         add_parm_info_type(0, (const struct OPS *)string_ops, addh_if_new_of_ty_reqs);
         find_prociter_instance(addh_if_new, 1, &addh_if_new_ownreqs, &(addh_if_new_of_string_ops));
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("OP", CLU_1, CLUREF_make_num(2), &STR_OP);
         stringOPcons("is_", CLU_1, CLUREF_make_num(3), &STR_is_137);
         g_expr_proc_names_own_init = 1;
@@ -308,7 +303,7 @@ g_expr_proc_names(CLUREF a, CLUREF bod)
 
   LINE(47);
                     {
-                        {nm = STR_;
+                        {nm = CLU_empty_string;
                         }
                         }
 
@@ -611,14 +606,14 @@ g_expr_proc_names(CLUREF a, CLUREF bod)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_expr_proc_names ****/
@@ -653,14 +648,14 @@ g_proc_exprlist(CLUREF a, CLUREF el)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_proc_exprlist ****/
@@ -682,10 +677,7 @@ extern errcode parmOPmember_op();
 extern errcode idnOPget_str();
 extern errcode parmOPmember_base();
 extern errcode stringOPequal();
-struct OPS *addh_if_new_of_string_table;
 struct OPS *addh_if_new_of_string_ops;
-struct OPS *addh_if_new_of_string_ops;
-OWNPTR addh_if_new_of_string_owns;
 static int g_proc_exprs_own_init = 0;
 
 errcode
@@ -714,7 +706,6 @@ g_proc_exprs(CLUREF a, CLUREF ex)
         add_parm_info_type(0, (const struct OPS *)string_ops, addh_if_new_of_ty_reqs);
         find_prociter_instance(addh_if_new, 1, &addh_if_new_ownreqs, &(addh_if_new_of_string_ops));
         stringOPcons("OP", CLU_1, CLUREF_make_num(2), &STR_OP);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         g_proc_exprs_own_init = 1;
     }
     enter_proc(101);
@@ -1011,7 +1002,7 @@ g_proc_exprs(CLUREF a, CLUREF ex)
 
   LINE(137);
             {
-                {prefix = STR_;
+                {prefix = CLU_empty_string;
                 }
                 }
 
@@ -1110,8 +1101,8 @@ g_proc_exprs(CLUREF a, CLUREF ex)
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
-                T_3_1.num = ((prefix.str->size != STR_.str->size)? false :
-                    !(memcmp(prefix.str->data, STR_.str->data, prefix.str->size)));
+                T_3_1.num = ((prefix.str->size != CLU_empty_string.str->size)? false :
+                    !(memcmp(prefix.str->data, CLU_empty_string.str->data, prefix.str->size)));
                 T_3_2.num = T_3_1.num ^ 1;
                 if (T_3_2.num == true) {
 
@@ -1186,14 +1177,14 @@ g_proc_exprs(CLUREF a, CLUREF ex)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_proc_exprs ****/
@@ -1292,14 +1283,14 @@ addh_if_new(CLUREF a, CLUREF elt)
   LINE(179);
     {
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE addh_if_new ****/
@@ -1315,20 +1306,14 @@ extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *idn_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_idn_table;
 struct OPS *sequence_of_idn_ops;
-struct OPS *sequence_of_idn_ops;
-OWNPTR sequence_of_idn_owns;
 extern struct OPS *sequence_of_idn_ops;
 extern struct OPS *typespec_ops;
-struct OPS  *record_idns_type__ops;
+struct OPS *record_idns_type__ops;
 extern const struct REQS * const array_extend_of_t_reqs;
 extern struct OPS *record_idns_type__ops;
 extern const OWN_req array_extend_ownreqs;
-struct OPS *array_extend_of_record_idns_type__table;
 struct OPS *array_extend_of_record_idns_type__ops;
-struct OPS *array_extend_of_record_idns_type__ops;
-OWNPTR array_extend_of_record_idns_type__owns;
 static int g_lvs_stmts_own_init = 0;
 
 errcode
@@ -1768,14 +1753,14 @@ g_lvs_stmts(CLUREF dl, CLUREF bod)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_lvs_stmts ****/
@@ -2081,15 +2066,15 @@ g_lvs_uniq(CLUREF old, CLUREF *ret_1)
     ret_1->num = new.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE g_lvs_uniq ****/
@@ -2141,14 +2126,14 @@ fidOPg_fidn_save()
     {
     fidOPold_fid.num = fidOPcur_fid.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_fidn_save ****/
@@ -2171,14 +2156,14 @@ fidOPg_fidn_restore()
     {
     fidOPcur_fid.num = fidOPold_fid.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_fidn_restore ****/
@@ -2224,15 +2209,15 @@ fidOPg_fid(CLUREF ret, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE g_fid ****/
@@ -2244,11 +2229,11 @@ typedef struct{
     struct OP_ENTRY entry[3];
 } fid_OPS;
 
-CLU_proc fid_oe_g_fid = { .proc = fidOPg_fid };
-CLU_proc fid_oe_g_fidn_restore = { .proc = fidOPg_fidn_restore };
-CLU_proc fid_oe_g_fidn_save = { .proc = fidOPg_fidn_save };
+static CLU_proc fid_oe_g_fid = { .proc = fidOPg_fid };
+static CLU_proc fid_oe_g_fidn_restore = { .proc = fidOPg_fidn_restore };
+static CLU_proc fid_oe_g_fidn_save = { .proc = fidOPg_fidn_save };
 
-fid_OPS fid_ops_actual = {3, (OWNPTR)&fid_own_init, (OWNPTR)&fid_own_init, {
+static fid_OPS fid_ops_actual = {3, (OWNPTR)&fid_own_init, (OWNPTR)&fid_own_init, {
     {&fid_oe_g_fid, "g_fid"},
     {&fid_oe_g_fidn_restore, "g_fidn_restore"},
     {&fid_oe_g_fidn_save, "g_fidn_save"}}};
@@ -2331,14 +2316,14 @@ exOPinit()
     if (err != ERR_ok) goto ex_0;
     exOPsave.num = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE init ****/
@@ -2384,14 +2369,14 @@ exOPenter()
         goto ex_0;}
     exOPnext.num = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE enter ****/
@@ -2417,14 +2402,14 @@ exOPleave()
     if (err != ERR_ok) goto ex_0;
     exOPcurrent.num = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE leave ****/
@@ -2459,15 +2444,15 @@ exOPget_current_ex_label(CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_current_ex_label ****/
@@ -2502,15 +2487,15 @@ exOPget_current_end_label(CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_current_end_label ****/
@@ -2522,13 +2507,13 @@ typedef struct{
     struct OP_ENTRY entry[5];
 } ex_OPS;
 
-CLU_proc ex_oe_enter = { .proc = exOPenter };
-CLU_proc ex_oe_get_current_end_label = { .proc = exOPget_current_end_label };
-CLU_proc ex_oe_get_current_ex_label = { .proc = exOPget_current_ex_label };
-CLU_proc ex_oe_init = { .proc = exOPinit };
-CLU_proc ex_oe_leave = { .proc = exOPleave };
+static CLU_proc ex_oe_enter = { .proc = exOPenter };
+static CLU_proc ex_oe_get_current_end_label = { .proc = exOPget_current_end_label };
+static CLU_proc ex_oe_get_current_ex_label = { .proc = exOPget_current_ex_label };
+static CLU_proc ex_oe_init = { .proc = exOPinit };
+static CLU_proc ex_oe_leave = { .proc = exOPleave };
 
-ex_OPS ex_ops_actual = {5, (OWNPTR)&ex_own_init, (OWNPTR)&ex_own_init, {
+static ex_OPS ex_ops_actual = {5, (OWNPTR)&ex_own_init, (OWNPTR)&ex_own_init, {
     {&ex_oe_enter, "enter"},
     {&ex_oe_get_current_end_label, "get_current_end_label"},
     {&ex_oe_get_current_ex_label, "get_current_ex_label"},
@@ -2687,14 +2672,14 @@ tvOPenter()
     {
     tvOPicounter.num = 0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE enter ****/
@@ -2736,14 +2721,14 @@ tvOPleave()
     if (err != ERR_ok) goto ex_0;
     tvOPicounter.num = T_1_1.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE leave ****/
@@ -2805,14 +2790,14 @@ tvOPreset()
     {
     tvOPsave_icounter.num = 0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE reset ****/
@@ -2885,14 +2870,14 @@ tvOPdecl_next(CLUREF e, CLUREF t)
     err = g_decl(e, T_1_1);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE decl_next ****/
@@ -2949,14 +2934,14 @@ tvOPblind_decl_next(CLUREF e)
     err = g_envOPputl(e, T_1_6);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE blind_decl_next ****/
@@ -3028,15 +3013,15 @@ tvOPidn_next(CLUREF ty, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE idn_next ****/
@@ -3059,14 +3044,14 @@ tvOPsave()
     {
     tvOPsave_icounter.num = tvOPicounter.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE save ****/
@@ -3089,14 +3074,14 @@ tvOPrestore()
     {
     tvOPicounter.num = tvOPsave_icounter.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE restore ****/
@@ -3108,16 +3093,16 @@ typedef struct{
     struct OP_ENTRY entry[8];
 } tv_OPS;
 
-CLU_proc tv_oe_blind_decl_next = { .proc = tvOPblind_decl_next };
-CLU_proc tv_oe_decl_next = { .proc = tvOPdecl_next };
-CLU_proc tv_oe_enter = { .proc = tvOPenter };
-CLU_proc tv_oe_idn_next = { .proc = tvOPidn_next };
-CLU_proc tv_oe_leave = { .proc = tvOPleave };
-CLU_proc tv_oe_reset = { .proc = tvOPreset };
-CLU_proc tv_oe_restore = { .proc = tvOPrestore };
-CLU_proc tv_oe_save = { .proc = tvOPsave };
+static CLU_proc tv_oe_blind_decl_next = { .proc = tvOPblind_decl_next };
+static CLU_proc tv_oe_decl_next = { .proc = tvOPdecl_next };
+static CLU_proc tv_oe_enter = { .proc = tvOPenter };
+static CLU_proc tv_oe_idn_next = { .proc = tvOPidn_next };
+static CLU_proc tv_oe_leave = { .proc = tvOPleave };
+static CLU_proc tv_oe_reset = { .proc = tvOPreset };
+static CLU_proc tv_oe_restore = { .proc = tvOPrestore };
+static CLU_proc tv_oe_save = { .proc = tvOPsave };
 
-tv_OPS tv_ops_actual = {8, (OWNPTR)&tv_own_init, (OWNPTR)&tv_own_init, {
+static tv_OPS tv_ops_actual = {8, (OWNPTR)&tv_own_init, (OWNPTR)&tv_own_init, {
     {&tv_oe_blind_decl_next, "blind_decl_next"},
     {&tv_oe_decl_next, "decl_next"},
     {&tv_oe_enter, "enter"},

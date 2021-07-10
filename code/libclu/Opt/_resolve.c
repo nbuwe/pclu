@@ -60,7 +60,6 @@ static CLUREF STR__057usr_057local_057ns_057resolv_056conf;
 static CLUREF STR__057etc_057resolv_056conf;
 static CLUREF STR__057etc_057athena_057nameserver_057resolv_056conf;
 static CLUREF STR_read;
-static CLUREF STR_;
 static CLUREF STR_domain;
 static CLUREF STR__040;
 static CLUREF STR__011;
@@ -91,7 +90,6 @@ _resolve_own_init_proc(void)
         stringOPcons("/etc/resolv.conf", CLU_1, CLUREF_make_num(16), &STR__057etc_057resolv_056conf);
         stringOPcons("/etc/athena/nameserver/resolv.conf", CLU_1, CLUREF_make_num(34), &STR__057etc_057athena_057nameserver_057resolv_056conf);
         stringOPcons("read", CLU_1, CLUREF_make_num(4), &STR_read);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("domain", CLU_1, CLUREF_make_num(6), &STR_domain);
         stringOPcons(" ", CLU_1, CLUREF_make_num(1), &STR__040);
         stringOPcons("\t", CLU_1, CLUREF_make_num(1), &STR__011);
@@ -207,7 +205,7 @@ _resolveOPinit(CLUREF *ret_1)
   LINE(68);
         {
         {
-        ret_1->str = STR_.str;
+        ret_1->str = CLU_empty_string.str;
         }
         {signal (ERR_ok);}}
         }
@@ -327,7 +325,7 @@ _resolveOPinit(CLUREF *ret_1)
   LINE(86);
             {
             {
-            ret_1->str = STR_.str;
+            ret_1->str = CLU_empty_string.str;
             }
             {signal (ERR_ok);}}
             }
@@ -655,15 +653,15 @@ _resolveOPinit(CLUREF *ret_1)
     ret_1->num = _resolveOPdefaultdomain.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE init ****/
@@ -776,15 +774,15 @@ _resolveOPn2a(CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = r.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE n2a ****/
@@ -1302,15 +1300,15 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
   LINE(196);
     {
     {signal (ERR_not_found);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE qry ****/
@@ -1572,15 +1570,15 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE nstore ****/
@@ -1681,15 +1679,15 @@ _resolveOPnskip(CLUREF idx, CLUREF *ret_1)
     ret_1->num = idx.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE nskip ****/
@@ -1836,15 +1834,15 @@ _resolveOPsend(CLUREF len, CLUREF *ret_1)
   LINE(268);
     {
     {signal (ERR_timeout);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE send ****/
@@ -1856,9 +1854,9 @@ typedef struct{
     struct OP_ENTRY entry[1];
 } _resolve_OPS;
 
-CLU_proc _resolve_oe_n2a = { .proc = _resolveOPn2a };
+static CLU_proc _resolve_oe_n2a = { .proc = _resolveOPn2a };
 
-_resolve_OPS _resolve_ops_actual = {1, (OWNPTR)&_resolve_own_init, (OWNPTR)&_resolve_own_init, {
+static _resolve_OPS _resolve_ops_actual = {1, (OWNPTR)&_resolve_own_init, (OWNPTR)&_resolve_own_init, {
     {&_resolve_oe_n2a, "n2a"}}};
 
 struct OPS *_resolve_ops = (struct OPS *)&_resolve_ops_actual;

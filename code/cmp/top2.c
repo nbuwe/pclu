@@ -24,8 +24,8 @@ extern errcode xrefOPadd_refs();
 extern errcode xrefOPrem_refs();
 extern errcode xrefOPoutput();
 extern errcode cmpvarOPexternals();
-extern errcode compile_IB_1();
-extern errcode compile_IB_2();
+static errcode compile_IB_1();
+static errcode compile_IB_2();
 static CLUREF STR_Undefined;
 static CLUREF STR_Referencing_040Modules;
 static CLUREF STR_External;
@@ -205,15 +205,15 @@ compile(CLUREF mode, CLUREF args, CLUREF outst, CLUREF *ret_1)
     ret_1->num = locals.allok.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE compile ****/
@@ -221,7 +221,7 @@ compile(CLUREF mode, CLUREF args, CLUREF outst, CLUREF *ret_1)
 
 /**** BEGIN ITERATOR BODIES for compile ****/
 
-errcode
+static errcode
 compile_IB_1(CLUREF iv_1, compile_LOCALS_t *locals, errcode *iecode)
 {
     locals->fn.num = iv_1.num;
@@ -254,15 +254,16 @@ compile_IB_1(CLUREF iv_1, compile_LOCALS_t *locals, errcode *iecode)
                 goto ex_0;
             }
         end_1:;
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end compile_IB_1 */
 
-errcode
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
+
+static errcode
 compile_IB_2(CLUREF iv_1, compile_LOCALS_t *locals, errcode *iecode)
 {
     locals->id.num = iv_1.num;
@@ -308,13 +309,14 @@ compile_IB_2(CLUREF iv_1, compile_LOCALS_t *locals, errcode *iecode)
         }
     }
     end_inline_for_2:;
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end compile_IB_2 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for compile ****/
 
@@ -488,15 +490,15 @@ setup_stuff(CLUREF mode, CLUREF outst, CLUREF *ret_1, CLUREF *ret_2)
         }
         {signal (ERR_ok);}}
         }}}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE setup_stuff ****/
@@ -532,7 +534,6 @@ extern errcode timeOPformat();
 extern errcode timeOPsub();
 static CLUREF STR_failure_072_040;
 static CLUREF STR__137b_137;
-static CLUREF STR_;
 static CLUREF STR_time_040_075_040;
 static int compile1_own_init = 0;
 
@@ -551,7 +552,6 @@ compile1(CLUREF e, CLUREF fn, CLUREF *ret_1)
     if (compile1_own_init == 0) {
         stringOPcons("failure: ", CLU_1, CLUREF_make_num(9), &STR_failure_072_040);
         stringOPcons("_b_", CLU_1, CLUREF_make_num(3), &STR__137b_137);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("time = ", CLU_1, CLUREF_make_num(7), &STR_time_040_075_040);
         compile1_own_init = 1;
     }
@@ -797,7 +797,7 @@ compile1(CLUREF e, CLUREF fn, CLUREF *ret_1)
             goto ex_4;}
         err = stringOPsubstr(T_3_1, CLU_1, T_3_2, &T_3_3);
         if (err != ERR_ok) goto ex_4;
-        err = file_nameOPcreate(dname, T_3_3, STR__137b_137, STR_, &T_3_4);
+        err = file_nameOPcreate(dname, T_3_3, STR__137b_137, CLU_empty_string, &T_3_4);
         if (err != ERR_ok) goto ex_4;
         err = delete_file(T_3_4);
         if (err != ERR_ok) goto ex_4;
@@ -858,15 +858,15 @@ compile1(CLUREF e, CLUREF fn, CLUREF *ret_1)
     ret_1->num = allok.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE compile1 ****/
@@ -920,7 +920,6 @@ reset_stuff(CLUREF e, CLUREF fn)
         stringOPcons("Creating DU specs from", CLU_1, CLUREF_make_num(22), &STR_Creating_040DU_040specs_040from);
         stringOPcons("Adding to CE from", CLU_1, CLUREF_make_num(17), &STR_Adding_040to_040CE_040from);
         stringOPcons("_b_", CLU_1, CLUREF_make_num(3), &STR__137b_137);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         reset_stuff_own_init = 1;
     }
     enter_proc(132);
@@ -1144,7 +1143,7 @@ reset_stuff(CLUREF e, CLUREF fn)
             goto ex_0;}
         err = stringOPsubstr(T_2_1, CLU_1, T_2_3, &T_2_4);
         if (err != ERR_ok) goto ex_0;
-        err = file_nameOPcreate(dname, T_2_4, STR__137b_137, STR_, &T_2_5);
+        err = file_nameOPcreate(dname, T_2_4, STR__137b_137, CLU_empty_string, &T_2_5);
         if (err != ERR_ok) goto ex_0;
         fn.num = T_2_5.num;
         }
@@ -1219,14 +1218,14 @@ reset_stuff(CLUREF e, CLUREF fn)
     {
     e.vec->data[7] = inst.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE reset_stuff ****/
@@ -1297,15 +1296,15 @@ do_parse(CLUREF e, CLUREF *ret_1)
             }/* end if */
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE do_parse ****/
@@ -1388,15 +1387,15 @@ do_check(CLUREF e, CLUREF *ret_1)
             }/* end if */
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE do_check ****/
@@ -1434,7 +1433,6 @@ do_compile(CLUREF e, CLUREF *ret_1)
     CLUREF td;
     CLUREF ge;
     if (do_compile_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("\n", CLU_1, CLUREF_make_num(1), &STR__012);
         stringOPcons(" already defined\n", CLU_1, CLUREF_make_num(17), &STR__040already_040defined_012);
         do_compile_own_init = 1;
@@ -1493,7 +1491,7 @@ do_compile(CLUREF e, CLUREF *ret_1)
 
   LINE(208);
         {
-            {mod = STR_;
+            {mod = CLU_empty_string;
             }
             }
 
@@ -1722,15 +1720,15 @@ do_compile(CLUREF e, CLUREF *ret_1)
     ret_1->num = allok.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE do_compile ****/
@@ -2129,15 +2127,15 @@ do_specs(CLUREF e, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE do_specs ****/
@@ -2269,14 +2267,14 @@ setup_specs_pass2(CLUREF e, CLUREF mdefs)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE setup_specs_pass2 ****/
@@ -2337,14 +2335,14 @@ install_specs(CLUREF md)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE install_specs ****/
@@ -2552,15 +2550,15 @@ specs_one(CLUREF e, CLUREF def, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = md.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE specs_one ****/
@@ -2701,15 +2699,15 @@ do_ce(CLUREF e, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE do_ce ****/
@@ -2860,15 +2858,15 @@ add_ce_entries(CLUREF e, CLUREF equates, CLUREF *ret_1)
     ret_1->num = ok.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE add_ce_entries ****/
@@ -2943,15 +2941,15 @@ parse_one(CLUREF e, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = err_UNIQ.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE parse_one ****/
@@ -3144,15 +3142,15 @@ check_one(CLUREF e, CLUREF def, CLUREF go, CLUREF *ret_1)
     ret_1->num = ok.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE check_one ****/
@@ -3400,15 +3398,15 @@ check_one1(CLUREF e, CLUREF def, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE check_one1 ****/
@@ -3501,15 +3499,15 @@ get_user(CLUREF e, CLUREF def, CLUREF *ret_1)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_user ****/
@@ -3566,15 +3564,15 @@ is_internal(CLUREF n, CLUREF exts, CLUREF *ret_1)
     ret_1->tf = true;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE is_internal ****/
@@ -3705,14 +3703,14 @@ remove_externals(CLUREF def, CLUREF exts)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE remove_externals ****/
@@ -3771,15 +3769,15 @@ generate_one(CLUREF e, CLUREF def, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE generate_one ****/
@@ -3817,7 +3815,6 @@ cc_one(CLUREF e)
     CLUREF ofn;
     if (cc_one_own_init == 0) {
         stringOPcons("_b_", CLU_1, CLUREF_make_num(3), &STR__137b_137);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("o", CLU_1, CLUREF_make_num(1), &STR_o);
         stringOPcons(" -o ", CLU_1, CLUREF_make_num(4), &STR__040_055o_040);
         stringOPcons(" ", CLU_1, CLUREF_make_num(1), &STR__040);
@@ -3887,7 +3884,7 @@ cc_one(CLUREF e)
             goto ex_0;}
         err = stringOPsubstr(T_1_1, CLU_1, T_1_3, &T_1_4);
         if (err != ERR_ok) goto ex_0;
-        err = file_nameOPcreate(dname, T_1_4, STR__137b_137, STR_, &T_1_5);
+        err = file_nameOPcreate(dname, T_1_4, STR__137b_137, CLU_empty_string, &T_1_5);
         if (err != ERR_ok) goto ex_0;
         bfn.num = T_1_5.num;
         }
@@ -3958,7 +3955,7 @@ cc_one(CLUREF e)
 
   LINE(545);
     {
-        {ofile = STR_;
+        {ofile = CLU_empty_string;
         }
         }
 
@@ -4031,14 +4028,14 @@ cc_one(CLUREF e)
     err = g_xrefOPflush();
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE cc_one ****/
@@ -4059,7 +4056,6 @@ new_suffix(CLUREF fn, CLUREF suf, CLUREF *ret_1)
     CLUREF nfn;
     if (new_suffix_own_init == 0) {
         stringOPcons("*", CLU_1, CLUREF_make_num(1), &STR__052);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         new_suffix_own_init = 1;
     }
     enter_proc(563);
@@ -4109,7 +4105,7 @@ new_suffix(CLUREF fn, CLUREF suf, CLUREF *ret_1)
             !(memcmp(suf.str->data, STR__052.str->data, suf.str->size)));
         if (T_3_1.num == true) {
             {
-            suf = STR_;
+            suf = CLU_empty_string;
             }
             }
             }/* end if */
@@ -4138,7 +4134,7 @@ new_suffix(CLUREF fn, CLUREF suf, CLUREF *ret_1)
                 goto ex_1;}
             err = stringOPsubstr(T_3_1, CLU_1, T_3_4, &T_3_5);
             if (err != ERR_ok) goto ex_1;
-            err = file_nameOPcreate(dname, T_3_5, suf, STR_, &T_3_6);
+            err = file_nameOPcreate(dname, T_3_5, suf, CLU_empty_string, &T_3_6);
             if (err != ERR_ok) goto ex_1;
             nfn.num = T_3_6.num;
             }
@@ -4157,15 +4153,15 @@ new_suffix(CLUREF fn, CLUREF suf, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE new_suffix ****/

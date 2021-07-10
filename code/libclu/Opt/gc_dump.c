@@ -35,9 +35,7 @@ extern const OWN_req gcd_tab_op_grind_ownreqs;
 typedef struct {
     long gc_dump_own_init;
     const gc_dump_of_t_OPS * const t_ops;
-    struct OPS *gcd_tab_op_grind_of_t_table;
     struct OPS *gcd_tab_op_grind_of_t_ops;
-    OWNPTR gcd_tab_op_grind_of_t_owns;
 } gc_dump_OWN_DEFN;
 const OWN_req gc_dump_ownreqs = { sizeof(gc_dump_OWN_DEFN), 1 };
 
@@ -77,15 +75,15 @@ gc_dump(CLUREF x, CLUREF fn, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE gc_dump ****/

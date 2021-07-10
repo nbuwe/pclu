@@ -283,15 +283,15 @@ p_clist(CLUREF e, CLUREF p_t, CLUREF what, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_clist ****/
@@ -392,15 +392,15 @@ p_slist(CLUREF e, CLUREF p_t, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_slist ****/
@@ -523,15 +523,15 @@ p_list(CLUREF e, CLUREF p_t, CLUREF emptyok, CLUREF what, CLUREF *ret_1)
     ret_1->num = list.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_list ****/
@@ -565,9 +565,7 @@ static CLUREF STR__135_040in_040_133;
 typedef struct {
     long p_blist_own_init;
     const p_blist_of_t_OPS * const t_ops;
-    struct OPS *p_clist_of_t_table;
     struct OPS *p_clist_of_t_ops;
-    OWNPTR p_clist_of_t_owns;
 } p_blist_OWN_DEFN;
 const OWN_req p_blist_ownreqs = { sizeof(p_blist_OWN_DEFN), 1 };
 
@@ -697,15 +695,15 @@ p_blist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF what, CLUREF *ret_1)
     ret_1->num = list.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_blist ****/
@@ -736,9 +734,7 @@ static CLUREF STR__051_040in_040_050;
 typedef struct {
     long p_plist_own_init;
     const p_plist_of_t_OPS * const t_ops;
-    struct OPS *p_clist_of_t_table;
     struct OPS *p_clist_of_t_ops;
-    OWNPTR p_clist_of_t_owns;
 } p_plist_OWN_DEFN;
 const OWN_req p_plist_ownreqs = { sizeof(p_plist_OWN_DEFN), 1 };
 
@@ -906,15 +902,15 @@ p_plist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF emptyok, CLUREF what, CLUREF
     ret_1->num = list.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_plist ****/

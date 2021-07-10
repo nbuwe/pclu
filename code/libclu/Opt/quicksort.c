@@ -35,12 +35,8 @@ extern const OWN_req lqsort_ownreqs;
 typedef struct {
     long quicksort_own_init;
     const quicksort_of_t_OPS * const t_ops;
-    struct OPS *sisort_of_t_table;
     struct OPS *sisort_of_t_ops;
-    OWNPTR sisort_of_t_owns;
-    struct OPS *lqsort_of_t_table;
     struct OPS *lqsort_of_t_ops;
-    OWNPTR lqsort_of_t_owns;
 } quicksort_OWN_DEFN;
 const OWN_req quicksort_ownreqs = { sizeof(quicksort_OWN_DEFN), 1 };
 
@@ -129,14 +125,14 @@ quicksort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
         {signal (ERR_bounds);}}
         }
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE quicksort ****/
@@ -170,12 +166,8 @@ extern errcode intOPequal();
 typedef struct {
     long lqsort_own_init;
     const lqsort_of_t_OPS * const t_ops;
-    struct OPS *sisort_of_t_table;
     struct OPS *sisort_of_t_ops;
-    OWNPTR sisort_of_t_owns;
-    struct OPS *lqsort_of_t_table;
     struct OPS *lqsort_of_t_ops;
-    OWNPTR lqsort_of_t_owns;
 } lqsort_OWN_DEFN;
 const OWN_req lqsort_ownreqs = { sizeof(lqsort_OWN_DEFN), 1 };
 
@@ -779,14 +771,14 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE lqsort ****/
@@ -950,14 +942,14 @@ sisort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE sisort ****/

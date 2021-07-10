@@ -70,46 +70,37 @@ extern errcode tableOPlookup();
 extern errcode tableOPbind();
 extern struct OPS *null_ops;
 extern struct OPS *du_ops;
-struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
+struct OPS *oneof_applytype__cluster__iter__proc__selector__ops;
 extern struct OPS *bool_ops;
 extern struct OPS *string_ops;
 extern struct OPS *int_ops;
-struct OPS  *struct_neg_op_prec_ops;
+struct OPS *struct_neg_op_prec_ops;
 extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *oneof_none_one_ops;
+struct OPS *oneof_none_one_ops;
 extern struct OPS *sequence_of_expr_ops;
 extern struct OPS *oneof_none_one_ops;
 extern struct OPS *typespec_ops;
-struct OPS  *record_elts_low_type__ops;
-struct OPS  *record_gen_parms_ops;
-struct OPS  *record_left_right_ops;
-struct OPS  *record_index_object_ops;
-struct OPS  *record_object_sel_ops;
-struct OPS  *record_left_neg_op_right_ops;
-struct OPS  *record_apply_args_ops;
-struct OPS  *record_name_parms_type__ops;
+struct OPS *record_elts_low_type__ops;
+struct OPS *record_gen_parms_ops;
+struct OPS *record_left_right_ops;
+struct OPS *record_index_object_ops;
+struct OPS *record_object_sel_ops;
+struct OPS *record_left_neg_op_right_ops;
+struct OPS *record_apply_args_ops;
+struct OPS *record_name_parms_type__ops;
 extern struct OPS *idn_ops;
-struct OPS  *record_idn_parms_ops;
-struct OPS *sequence_of_string_table;
+struct OPS *record_idn_parms_ops;
 struct OPS *sequence_of_string_ops;
-struct OPS *sequence_of_string_ops;
-OWNPTR sequence_of_string_owns;
 extern struct OPS *sequence_of_string_ops;
-struct OPS  *record_line_sels_val_ops;
+struct OPS *record_line_sels_val_ops;
 extern struct OPS *record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_table;
 struct OPS *sequence_of_record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_ops;
-OWNPTR sequence_of_record_line_sels_val_owns;
 extern struct OPS *sequence_of_record_line_sels_val_ops;
-struct OPS  *record_fields_type__ops;
+struct OPS *record_fields_type__ops;
 extern struct OPS *record_elts_low_type__ops;
 extern struct OPS *record_gen_parms_ops;
 extern struct OPS *record_left_right_ops;
@@ -122,27 +113,23 @@ extern struct OPS *record_name_parms_type__ops;
 extern struct OPS *real_ops;
 extern struct OPS *record_idn_parms_ops;
 extern struct OPS *record_fields_type__ops;
-struct OPS  *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
-struct OPS  *oneof_down__force__type_of__up__ops;
-struct OPS  *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
-struct OPS  *oneof_applytype__cluster__rep__selector__ops;
+struct OPS *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
+struct OPS *oneof_down__force__type_of__up__ops;
+struct OPS *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
+struct OPS *oneof_applytype__cluster__rep__selector__ops;
 extern struct OPS *oneof_applytype__cluster__iter__proc__selector__ops;
 extern struct OPS *struct_neg_op_prec_ops;
 extern struct OPS *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
 extern struct OPS *oneof_down__force__type_of__up__ops;
 extern struct OPS *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
 extern struct OPS *oneof_applytype__cluster__rep__selector__ops;
-struct OPS  *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
+struct OPS *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
 extern const struct REQS * const table_of_key_reqs;
 extern const struct REQS * const table_of_val_reqs;
 extern struct OPS *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
 extern const OWN_req table_ownreqs;
 extern struct OPS *table_ops;
-struct OPS *table_of_string_table;
-struct OPS *table_of_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__table;
 struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static CLUREF STR_begin;
 static CLUREF STR_break;
 static CLUREF STR_cand;
@@ -443,42 +430,29 @@ tokentab_own_init_proc(void)
 
 /**** BEGIN PROCEDURE create ****/
 
-struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
-struct OPS  *struct_neg_op_prec_ops;
-struct OPS *sequence_of_expr_table;
+struct OPS *oneof_applytype__cluster__iter__proc__selector__ops;
+struct OPS *struct_neg_op_prec_ops;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *oneof_none_one_ops;
-struct OPS  *record_elts_low_type__ops;
-struct OPS  *record_gen_parms_ops;
-struct OPS  *record_left_right_ops;
-struct OPS  *record_index_object_ops;
-struct OPS  *record_object_sel_ops;
-struct OPS  *record_left_neg_op_right_ops;
-struct OPS  *record_apply_args_ops;
-struct OPS  *record_name_parms_type__ops;
-struct OPS  *record_idn_parms_ops;
-struct OPS *sequence_of_string_table;
+struct OPS *oneof_none_one_ops;
+struct OPS *record_elts_low_type__ops;
+struct OPS *record_gen_parms_ops;
+struct OPS *record_left_right_ops;
+struct OPS *record_index_object_ops;
+struct OPS *record_object_sel_ops;
+struct OPS *record_left_neg_op_right_ops;
+struct OPS *record_apply_args_ops;
+struct OPS *record_name_parms_type__ops;
+struct OPS *record_idn_parms_ops;
 struct OPS *sequence_of_string_ops;
-struct OPS *sequence_of_string_ops;
-OWNPTR sequence_of_string_owns;
-struct OPS  *record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_table;
+struct OPS *record_line_sels_val_ops;
 struct OPS *sequence_of_record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_ops;
-OWNPTR sequence_of_record_line_sels_val_owns;
-struct OPS  *record_fields_type__ops;
-struct OPS  *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
-struct OPS  *oneof_down__force__type_of__up__ops;
-struct OPS  *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
-struct OPS  *oneof_applytype__cluster__rep__selector__ops;
-struct OPS  *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_table;
-struct OPS *table_of_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__table;
+struct OPS *record_fields_type__ops;
+struct OPS *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
+struct OPS *oneof_down__force__type_of__up__ops;
+struct OPS *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
+struct OPS *oneof_applytype__cluster__rep__selector__ops;
+struct OPS *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
 struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPcreate_own_init = 0;
 
 errcode
@@ -997,15 +971,15 @@ tokentabOPcreate(CLUREF e, CLUREF *ret_1)
     ret_1->num = t.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE create ****/
@@ -1013,42 +987,29 @@ tokentabOPcreate(CLUREF e, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE reset ****/
 
-struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
-struct OPS  *struct_neg_op_prec_ops;
-struct OPS *sequence_of_expr_table;
+struct OPS *oneof_applytype__cluster__iter__proc__selector__ops;
+struct OPS *struct_neg_op_prec_ops;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *oneof_none_one_ops;
-struct OPS  *record_elts_low_type__ops;
-struct OPS  *record_gen_parms_ops;
-struct OPS  *record_left_right_ops;
-struct OPS  *record_index_object_ops;
-struct OPS  *record_object_sel_ops;
-struct OPS  *record_left_neg_op_right_ops;
-struct OPS  *record_apply_args_ops;
-struct OPS  *record_name_parms_type__ops;
-struct OPS  *record_idn_parms_ops;
-struct OPS *sequence_of_string_table;
+struct OPS *oneof_none_one_ops;
+struct OPS *record_elts_low_type__ops;
+struct OPS *record_gen_parms_ops;
+struct OPS *record_left_right_ops;
+struct OPS *record_index_object_ops;
+struct OPS *record_object_sel_ops;
+struct OPS *record_left_neg_op_right_ops;
+struct OPS *record_apply_args_ops;
+struct OPS *record_name_parms_type__ops;
+struct OPS *record_idn_parms_ops;
 struct OPS *sequence_of_string_ops;
-struct OPS *sequence_of_string_ops;
-OWNPTR sequence_of_string_owns;
-struct OPS  *record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_table;
+struct OPS *record_line_sels_val_ops;
 struct OPS *sequence_of_record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_ops;
-OWNPTR sequence_of_record_line_sels_val_owns;
-struct OPS  *record_fields_type__ops;
-struct OPS  *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
-struct OPS  *oneof_down__force__type_of__up__ops;
-struct OPS  *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
-struct OPS  *oneof_applytype__cluster__rep__selector__ops;
-struct OPS  *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_table;
-struct OPS *table_of_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__table;
+struct OPS *record_fields_type__ops;
+struct OPS *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
+struct OPS *oneof_down__force__type_of__up__ops;
+struct OPS *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
+struct OPS *oneof_applytype__cluster__rep__selector__ops;
+struct OPS *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
 struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPreset_own_init = 0;
 
 errcode
@@ -1384,14 +1345,14 @@ tokentabOPreset(CLUREF t, CLUREF e)
     err = tableOPalter(t, STR_variant, T_1_3);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE reset ****/
@@ -1399,42 +1360,29 @@ tokentabOPreset(CLUREF t, CLUREF e)
 
 /**** BEGIN PROCEDURE hack ****/
 
-struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
-struct OPS  *struct_neg_op_prec_ops;
-struct OPS *sequence_of_expr_table;
+struct OPS *oneof_applytype__cluster__iter__proc__selector__ops;
+struct OPS *struct_neg_op_prec_ops;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *oneof_none_one_ops;
-struct OPS  *record_elts_low_type__ops;
-struct OPS  *record_gen_parms_ops;
-struct OPS  *record_left_right_ops;
-struct OPS  *record_index_object_ops;
-struct OPS  *record_object_sel_ops;
-struct OPS  *record_left_neg_op_right_ops;
-struct OPS  *record_apply_args_ops;
-struct OPS  *record_name_parms_type__ops;
-struct OPS  *record_idn_parms_ops;
-struct OPS *sequence_of_string_table;
+struct OPS *oneof_none_one_ops;
+struct OPS *record_elts_low_type__ops;
+struct OPS *record_gen_parms_ops;
+struct OPS *record_left_right_ops;
+struct OPS *record_index_object_ops;
+struct OPS *record_object_sel_ops;
+struct OPS *record_left_neg_op_right_ops;
+struct OPS *record_apply_args_ops;
+struct OPS *record_name_parms_type__ops;
+struct OPS *record_idn_parms_ops;
 struct OPS *sequence_of_string_ops;
-struct OPS *sequence_of_string_ops;
-OWNPTR sequence_of_string_owns;
-struct OPS  *record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_table;
+struct OPS *record_line_sels_val_ops;
 struct OPS *sequence_of_record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_ops;
-OWNPTR sequence_of_record_line_sels_val_owns;
-struct OPS  *record_fields_type__ops;
-struct OPS  *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
-struct OPS  *oneof_down__force__type_of__up__ops;
-struct OPS  *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
-struct OPS  *oneof_applytype__cluster__rep__selector__ops;
-struct OPS  *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_table;
-struct OPS *table_of_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__table;
+struct OPS *record_fields_type__ops;
+struct OPS *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
+struct OPS *oneof_down__force__type_of__up__ops;
+struct OPS *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
+struct OPS *oneof_applytype__cluster__rep__selector__ops;
+struct OPS *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
 struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPhack_own_init = 0;
 
 errcode
@@ -1501,14 +1449,14 @@ tokentabOPhack(CLUREF t)
     err = tableOPalter(t, STR_monitor, T_1_2);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE hack ****/
@@ -1558,14 +1506,14 @@ tokentabOPunhack(CLUREF t)
     err = tokentabOPident(t, STR_monitor, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE unhack ****/
@@ -1573,42 +1521,29 @@ tokentabOPunhack(CLUREF t)
 
 /**** BEGIN PROCEDURE ident ****/
 
-struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
-struct OPS  *struct_neg_op_prec_ops;
-struct OPS *sequence_of_expr_table;
+struct OPS *oneof_applytype__cluster__iter__proc__selector__ops;
+struct OPS *struct_neg_op_prec_ops;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *oneof_none_one_ops;
-struct OPS  *record_elts_low_type__ops;
-struct OPS  *record_gen_parms_ops;
-struct OPS  *record_left_right_ops;
-struct OPS  *record_index_object_ops;
-struct OPS  *record_object_sel_ops;
-struct OPS  *record_left_neg_op_right_ops;
-struct OPS  *record_apply_args_ops;
-struct OPS  *record_name_parms_type__ops;
-struct OPS  *record_idn_parms_ops;
-struct OPS *sequence_of_string_table;
+struct OPS *oneof_none_one_ops;
+struct OPS *record_elts_low_type__ops;
+struct OPS *record_gen_parms_ops;
+struct OPS *record_left_right_ops;
+struct OPS *record_index_object_ops;
+struct OPS *record_object_sel_ops;
+struct OPS *record_left_neg_op_right_ops;
+struct OPS *record_apply_args_ops;
+struct OPS *record_name_parms_type__ops;
+struct OPS *record_idn_parms_ops;
 struct OPS *sequence_of_string_ops;
-struct OPS *sequence_of_string_ops;
-OWNPTR sequence_of_string_owns;
-struct OPS  *record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_table;
+struct OPS *record_line_sels_val_ops;
 struct OPS *sequence_of_record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_ops;
-OWNPTR sequence_of_record_line_sels_val_owns;
-struct OPS  *record_fields_type__ops;
-struct OPS  *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
-struct OPS  *oneof_down__force__type_of__up__ops;
-struct OPS  *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
-struct OPS  *oneof_applytype__cluster__rep__selector__ops;
-struct OPS  *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_table;
-struct OPS *table_of_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__table;
+struct OPS *record_fields_type__ops;
+struct OPS *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
+struct OPS *oneof_down__force__type_of__up__ops;
+struct OPS *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
+struct OPS *oneof_applytype__cluster__rep__selector__ops;
+struct OPS *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
 struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPident_own_init = 0;
 
 errcode
@@ -1653,15 +1588,15 @@ tokentabOPident(CLUREF t, CLUREF s, CLUREF *ret_1)
     ret_1->num = id.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE ident ****/
@@ -1669,42 +1604,29 @@ tokentabOPident(CLUREF t, CLUREF s, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE get_token ****/
 
-struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
-struct OPS  *struct_neg_op_prec_ops;
-struct OPS *sequence_of_expr_table;
+struct OPS *oneof_applytype__cluster__iter__proc__selector__ops;
+struct OPS *struct_neg_op_prec_ops;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *oneof_none_one_ops;
-struct OPS  *record_elts_low_type__ops;
-struct OPS  *record_gen_parms_ops;
-struct OPS  *record_left_right_ops;
-struct OPS  *record_index_object_ops;
-struct OPS  *record_object_sel_ops;
-struct OPS  *record_left_neg_op_right_ops;
-struct OPS  *record_apply_args_ops;
-struct OPS  *record_name_parms_type__ops;
-struct OPS  *record_idn_parms_ops;
-struct OPS *sequence_of_string_table;
+struct OPS *oneof_none_one_ops;
+struct OPS *record_elts_low_type__ops;
+struct OPS *record_gen_parms_ops;
+struct OPS *record_left_right_ops;
+struct OPS *record_index_object_ops;
+struct OPS *record_object_sel_ops;
+struct OPS *record_left_neg_op_right_ops;
+struct OPS *record_apply_args_ops;
+struct OPS *record_name_parms_type__ops;
+struct OPS *record_idn_parms_ops;
 struct OPS *sequence_of_string_ops;
-struct OPS *sequence_of_string_ops;
-OWNPTR sequence_of_string_owns;
-struct OPS  *record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_table;
+struct OPS *record_line_sels_val_ops;
 struct OPS *sequence_of_record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_ops;
-OWNPTR sequence_of_record_line_sels_val_owns;
-struct OPS  *record_fields_type__ops;
-struct OPS  *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
-struct OPS  *oneof_down__force__type_of__up__ops;
-struct OPS  *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
-struct OPS  *oneof_applytype__cluster__rep__selector__ops;
-struct OPS  *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_table;
-struct OPS *table_of_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__table;
+struct OPS *record_fields_type__ops;
+struct OPS *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
+struct OPS *oneof_down__force__type_of__up__ops;
+struct OPS *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
+struct OPS *oneof_applytype__cluster__rep__selector__ops;
+struct OPS *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
 struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPget_token_own_init = 0;
 
 errcode
@@ -1770,15 +1692,15 @@ tokentabOPget_token(CLUREF t, CLUREF s, CLUREF *ret_1)
     ret_1->num = k.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_token ****/
@@ -1786,42 +1708,29 @@ tokentabOPget_token(CLUREF t, CLUREF s, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE add_token ****/
 
-struct OPS  *oneof_applytype__cluster__iter__proc__selector__ops;
-struct OPS  *struct_neg_op_prec_ops;
-struct OPS *sequence_of_expr_table;
+struct OPS *oneof_applytype__cluster__iter__proc__selector__ops;
+struct OPS *struct_neg_op_prec_ops;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *oneof_none_one_ops;
-struct OPS  *record_elts_low_type__ops;
-struct OPS  *record_gen_parms_ops;
-struct OPS  *record_left_right_ops;
-struct OPS  *record_index_object_ops;
-struct OPS  *record_object_sel_ops;
-struct OPS  *record_left_neg_op_right_ops;
-struct OPS  *record_apply_args_ops;
-struct OPS  *record_name_parms_type__ops;
-struct OPS  *record_idn_parms_ops;
-struct OPS *sequence_of_string_table;
+struct OPS *oneof_none_one_ops;
+struct OPS *record_elts_low_type__ops;
+struct OPS *record_gen_parms_ops;
+struct OPS *record_left_right_ops;
+struct OPS *record_index_object_ops;
+struct OPS *record_object_sel_ops;
+struct OPS *record_left_neg_op_right_ops;
+struct OPS *record_apply_args_ops;
+struct OPS *record_name_parms_type__ops;
+struct OPS *record_idn_parms_ops;
 struct OPS *sequence_of_string_ops;
-struct OPS *sequence_of_string_ops;
-OWNPTR sequence_of_string_owns;
-struct OPS  *record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_table;
+struct OPS *record_line_sels_val_ops;
 struct OPS *sequence_of_record_line_sels_val_ops;
-struct OPS *sequence_of_record_line_sels_val_ops;
-OWNPTR sequence_of_record_line_sels_val_owns;
-struct OPS  *record_fields_type__ops;
-struct OPS  *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
-struct OPS  *oneof_down__force__type_of__up__ops;
-struct OPS  *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
-struct OPS  *oneof_applytype__cluster__rep__selector__ops;
-struct OPS  *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_table;
-struct OPS *table_of_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__table;
+struct OPS *record_fields_type__ops;
+struct OPS *oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops;
+struct OPS *oneof_down__force__type_of__up__ops;
+struct OPS *oneof_begin__break__continue__exit__for__if__own__return__signal__tagcase__while__yield__ops;
+struct OPS *oneof_applytype__cluster__rep__selector__ops;
+struct OPS *oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
 struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-struct OPS *table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__ops;
-OWNPTR table_of_string_oneof_assn_colon_comma_defnkey_do__dollar_else__elseif__end__eof_equal_except__expr_exprkey_has__idn_in__is__l_bkt_l_curly_l_paren_not_op_others__period_r_bkt_r_curly_r_paren_resignal__returns__semi_sharp_signals__stmtkey_tag__then__type__typekey_when__where__yields__owns;
 static int tokentabOPadd_token_own_init = 0;
 
 errcode
@@ -1845,14 +1754,14 @@ tokentabOPadd_token(CLUREF t, CLUREF s, CLUREF k)
     err = tableOPalter(t, s, k);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE add_token ****/
@@ -1864,14 +1773,14 @@ typedef struct{
     struct OP_ENTRY entry[6];
 } tokentab_OPS;
 
-CLU_proc tokentab_oe_add_token = { .proc = tokentabOPadd_token };
-CLU_proc tokentab_oe_create = { .proc = tokentabOPcreate };
-CLU_proc tokentab_oe_get_token = { .proc = tokentabOPget_token };
-CLU_proc tokentab_oe_hack = { .proc = tokentabOPhack };
-CLU_proc tokentab_oe_reset = { .proc = tokentabOPreset };
-CLU_proc tokentab_oe_unhack = { .proc = tokentabOPunhack };
+static CLU_proc tokentab_oe_add_token = { .proc = tokentabOPadd_token };
+static CLU_proc tokentab_oe_create = { .proc = tokentabOPcreate };
+static CLU_proc tokentab_oe_get_token = { .proc = tokentabOPget_token };
+static CLU_proc tokentab_oe_hack = { .proc = tokentabOPhack };
+static CLU_proc tokentab_oe_reset = { .proc = tokentabOPreset };
+static CLU_proc tokentab_oe_unhack = { .proc = tokentabOPunhack };
 
-tokentab_OPS tokentab_ops_actual = {6, (OWNPTR)&tokentab_own_init, (OWNPTR)&tokentab_own_init, {
+static tokentab_OPS tokentab_ops_actual = {6, (OWNPTR)&tokentab_own_init, (OWNPTR)&tokentab_own_init, {
     {&tokentab_oe_add_token, "add_token"},
     {&tokentab_oe_create, "create"},
     {&tokentab_oe_get_token, "get_token"},

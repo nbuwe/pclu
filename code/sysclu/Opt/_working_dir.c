@@ -22,7 +22,6 @@ extern errcode connected_dir();
 extern errcode file_nameOPunparse();
 extern errcode _fixup_file_name();
 extern errcode file_nameOPcreate();
-static CLUREF STR_;
 static int _working_dir_own_init = 0;
 CLUREF _working_dirOPwrkdir;
 
@@ -32,10 +31,9 @@ _working_dir(CLUREF s, CLUREF update, CLUREF *ret_1)
     errcode err;
     CLUREF z;
     if (_working_dir_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         _working_dir_own_init = 1;
         {
-            {_working_dirOPwrkdir = STR_;
+            {_working_dirOPwrkdir = CLU_empty_string;
             }
             }
     }
@@ -202,7 +200,7 @@ _working_dir(CLUREF s, CLUREF update, CLUREF *ret_1)
     CLUREF T_2_1;
     CLUREF T_2_2;
     CLUREF T_2_3;
-    err = file_nameOPcreate(s, STR_, STR_, STR_, &T_2_1);
+    err = file_nameOPcreate(s, CLU_empty_string, CLU_empty_string, CLU_empty_string, &T_2_1);
     if (err != ERR_ok) goto ex_2;
     err = _fixup_file_name(T_2_1, CLU_0, &T_2_2);
     if (err != ERR_ok) goto ex_2;
@@ -223,15 +221,15 @@ _working_dir(CLUREF s, CLUREF update, CLUREF *ret_1)
     ret_1->num = _working_dirOPwrkdir.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _working_dir ****/

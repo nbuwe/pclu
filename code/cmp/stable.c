@@ -56,7 +56,6 @@ extern errcode stringOPconcat();
 extern const struct REQS * const stable_of_value_t_reqs;
 extern const OWN_req stable_ownreqs;
 extern struct OPS *stable_ops;
-static CLUREF STR_;
 static CLUREF STR__072_040;
 static CLUREF STR__012;
 
@@ -75,9 +74,7 @@ typedef struct {
     long empty_own_init;
     long unparse_own_init;
     const stable_of_value_t_OPS * const value_t_ops;
-    struct OPS *stable_of_value_t_table;
     struct OPS *stable_of_value_t_ops;
-    OWNPTR stable_of_value_t_owns;
 } stable_OWN_DEFN;
 
 const OWN_req stable_ownreqs = { sizeof(stable_OWN_DEFN), 12 };
@@ -93,7 +90,6 @@ stable_own_init_proc()
     if (type_own_ptr->stable_own_init == 0) {
         add_parm_info_type(0, (const struct OPS *)type_own_ptr->value_t_ops, stable_of_value_t_reqs);
         find_type_instance(stable_ops, 1, &stable_ownreqs, &(type_own_ptr->stable_of_value_t_ops));
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons(": ", CLU_1, CLUREF_make_num(2), &STR__072_040);
         stringOPcons("\n", CLU_1, CLUREF_make_num(1), &STR__012);
     }
@@ -129,15 +125,15 @@ stableOPcreate(CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE create ****/
@@ -194,15 +190,15 @@ stableOPlookup(CLUREF tbl, CLUREF name, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE lookup ****/
@@ -210,7 +206,7 @@ stableOPlookup(CLUREF tbl, CLUREF name, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE completions ****/
 
-extern errcode stableOPcompletions_IB_1();
+static errcode stableOPcompletions_IB_1();
 typedef struct {
     errcode ecode2;
     errcode err;
@@ -278,15 +274,15 @@ stableOPcompletions(CLUREF tbl, CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = locals.completion.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE completions ****/
@@ -294,7 +290,7 @@ stableOPcompletions(CLUREF tbl, CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
 
 /**** BEGIN ITERATOR BODIES for completions ****/
 
-errcode
+static errcode
 stableOPcompletions_IB_1(CLUREF iv_1, CLUREF iv_2, stableOPcompletions_LOCALS_t *locals, errcode *iecode)
 {
     locals->key.num = iv_1.num;
@@ -320,13 +316,14 @@ stableOPcompletions_IB_1(CLUREF iv_1, CLUREF iv_2, stableOPcompletions_LOCALS_t 
         locals->completion.tf = true;
         }
         }}/* end if */
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end stableOPcompletions_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for completions ****/
 
@@ -438,14 +435,14 @@ stableOPmatch(CLUREF tbl, CLUREF ms, errcode (*proc)(), void *user_locals, errco
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END ITERATOR match ****/
@@ -600,14 +597,14 @@ stableOPinsert(CLUREF tbl, CLUREF name, CLUREF val)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE insert ****/
@@ -653,14 +650,14 @@ stableOPchange(CLUREF tbl, CLUREF name, CLUREF new_val)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE change ****/
@@ -837,15 +834,15 @@ stableOPfind_index(CLUREF tbl, CLUREF look_for, CLUREF exact, CLUREF *ret_1)
             }/* end if */
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE find_index ****/
@@ -936,14 +933,14 @@ stableOPdelete(CLUREF tbl, CLUREF name)
     err = arrayOPremh(tbl, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE delete ****/
@@ -999,14 +996,14 @@ stableOPentries(CLUREF tbl, errcode (*proc)(), void *user_locals, errcode *iecod
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END ITERATOR entries ****/
@@ -1035,15 +1032,15 @@ stableOPempty(CLUREF tbl, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE empty ****/
@@ -1051,7 +1048,7 @@ stableOPempty(CLUREF tbl, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE unparse ****/
 
-extern errcode stableOPunparse_IB_1();
+static errcode stableOPunparse_IB_1();
 typedef struct {
     errcode ecode2;
     errcode err;
@@ -1071,7 +1068,6 @@ stableOPunparse(CLUREF tbl, CLUREF *ret_1)
     if (locals.type_own_ptr->unparse_own_init == 0) {
         add_parm_info_type(0, (const struct OPS *)locals.type_own_ptr->value_t_ops, stable_of_value_t_reqs);
         find_type_instance(stable_ops, 1, &stable_ownreqs, &(locals.type_own_ptr->stable_of_value_t_ops));
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons(": ", CLU_1, CLUREF_make_num(2), &STR__072_040);
         stringOPcons("\n", CLU_1, CLUREF_make_num(1), &STR__012);
     }
@@ -1083,7 +1079,7 @@ stableOPunparse(CLUREF tbl, CLUREF *ret_1)
 
   LINE(149);
     {
-        {locals.string_to_return = STR_;
+        {locals.string_to_return = CLU_empty_string;
         }
         }
 
@@ -1109,15 +1105,15 @@ stableOPunparse(CLUREF tbl, CLUREF *ret_1)
     ret_1->num = locals.string_to_return.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE unparse ****/
@@ -1125,7 +1121,7 @@ stableOPunparse(CLUREF tbl, CLUREF *ret_1)
 
 /**** BEGIN ITERATOR BODIES for unparse ****/
 
-errcode
+static errcode
 stableOPunparse_IB_1(CLUREF iv_1, CLUREF iv_2, stableOPunparse_LOCALS_t *locals, errcode *iecode)
 {
     locals->key.num = iv_1.num;
@@ -1154,13 +1150,14 @@ stableOPunparse_IB_1(CLUREF iv_1, CLUREF iv_2, stableOPunparse_LOCALS_t *locals,
     if (locals->err != ERR_ok) goto ex_0;
     locals->string_to_return.num = T_1_6.num;
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end stableOPunparse_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for unparse ****/
 
@@ -1171,18 +1168,18 @@ typedef struct{
     struct OP_ENTRY entry[10];
 } stable_OPS;
 
-CLU_proc stable_oe_change = { .proc = stableOPchange };
-CLU_proc stable_oe_completions = { .proc = stableOPcompletions };
-CLU_proc stable_oe_create = { .proc = stableOPcreate };
-CLU_proc stable_oe_delete = { .proc = stableOPdelete };
-CLU_proc stable_oe_empty = { .proc = stableOPempty };
-CLU_proc stable_oe_entries = { .proc = stableOPentries };
-CLU_proc stable_oe_insert = { .proc = stableOPinsert };
-CLU_proc stable_oe_lookup = { .proc = stableOPlookup };
-CLU_proc stable_oe_match = { .proc = stableOPmatch };
-CLU_proc stable_oe_unparse = { .proc = stableOPunparse };
+static CLU_proc stable_oe_change = { .proc = stableOPchange };
+static CLU_proc stable_oe_completions = { .proc = stableOPcompletions };
+static CLU_proc stable_oe_create = { .proc = stableOPcreate };
+static CLU_proc stable_oe_delete = { .proc = stableOPdelete };
+static CLU_proc stable_oe_empty = { .proc = stableOPempty };
+static CLU_proc stable_oe_entries = { .proc = stableOPentries };
+static CLU_proc stable_oe_insert = { .proc = stableOPinsert };
+static CLU_proc stable_oe_lookup = { .proc = stableOPlookup };
+static CLU_proc stable_oe_match = { .proc = stableOPmatch };
+static CLU_proc stable_oe_unparse = { .proc = stableOPunparse };
 
-stable_OPS stable_ops_actual = {10, (OWNPTR)&stable_own_init, (OWNPTR)&stable_own_init, {
+static stable_OPS stable_ops_actual = {10, (OWNPTR)&stable_own_init, (OWNPTR)&stable_own_init, {
     {&stable_oe_change, "change"},
     {&stable_oe_completions, "completions"},
     {&stable_oe_create, "create"},

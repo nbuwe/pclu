@@ -93,15 +93,15 @@ maybeOPnone(CLUREF *ret_1)
     ret_1->num = -2147483648;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE none ****/
@@ -150,15 +150,15 @@ maybeOPmake(CLUREF x, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE make ****/
@@ -191,15 +191,15 @@ maybeOPexists(CLUREF m, CLUREF *ret_1)
     ret_1->num = T_1_3.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE exists ****/
@@ -242,15 +242,15 @@ maybeOPvalue(CLUREF m, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE value ****/
@@ -333,15 +333,15 @@ maybeOPequal(CLUREF m1, CLUREF m2, CLUREF *ret_1)
     ret_1->num = T_1_3.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE equal ****/
@@ -424,15 +424,15 @@ maybeOPsimilar(CLUREF m1, CLUREF m2, CLUREF *ret_1)
     ret_1->num = T_1_3.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE similar ****/
@@ -484,15 +484,15 @@ maybeOPcopy(CLUREF m, CLUREF *ret_1)
     ret_1->num = T_1_4.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE copy ****/
@@ -545,15 +545,15 @@ maybeOP_gcd(CLUREF m, CLUREF tab, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _gcd ****/
@@ -565,16 +565,16 @@ typedef struct{
     struct OP_ENTRY entry[8];
 } maybe_OPS;
 
-CLU_proc maybe_oe__gcd = { .proc = maybeOP_gcd };
-CLU_proc maybe_oe_copy = { .proc = maybeOPcopy };
-CLU_proc maybe_oe_equal = { .proc = maybeOPequal };
-CLU_proc maybe_oe_exists = { .proc = maybeOPexists };
-CLU_proc maybe_oe_make = { .proc = maybeOPmake };
-CLU_proc maybe_oe_none = { .proc = maybeOPnone };
-CLU_proc maybe_oe_similar = { .proc = maybeOPsimilar };
-CLU_proc maybe_oe_value = { .proc = maybeOPvalue };
+static CLU_proc maybe_oe__gcd = { .proc = maybeOP_gcd };
+static CLU_proc maybe_oe_copy = { .proc = maybeOPcopy };
+static CLU_proc maybe_oe_equal = { .proc = maybeOPequal };
+static CLU_proc maybe_oe_exists = { .proc = maybeOPexists };
+static CLU_proc maybe_oe_make = { .proc = maybeOPmake };
+static CLU_proc maybe_oe_none = { .proc = maybeOPnone };
+static CLU_proc maybe_oe_similar = { .proc = maybeOPsimilar };
+static CLU_proc maybe_oe_value = { .proc = maybeOPvalue };
 
-maybe_OPS maybe_ops_actual = {8, (OWNPTR)&maybe_own_init, (OWNPTR)&maybe_own_init, {
+static maybe_OPS maybe_ops_actual = {8, (OWNPTR)&maybe_own_init, (OWNPTR)&maybe_own_init, {
     {&maybe_oe__gcd, "_gcd"},
     {&maybe_oe_copy, "copy"},
     {&maybe_oe_equal, "equal"},

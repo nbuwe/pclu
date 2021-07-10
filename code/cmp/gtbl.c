@@ -104,31 +104,21 @@ extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *idn_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_idn_table;
 struct OPS *sequence_of_idn_ops;
-struct OPS *sequence_of_idn_ops;
-OWNPTR sequence_of_idn_owns;
 extern struct OPS *expr_ops;
-struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
 extern struct OPS *string_ops;
 extern struct OPS *typespec_ops;
-struct OPS  *record_sel_type__ops;
+struct OPS *record_sel_type__ops;
 extern struct OPS *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__table;
 struct OPS *sequence_of_record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
-OWNPTR sequence_of_record_sel_type__owns;
 static CLUREF STR_find_137tbl_137type_137_072_040others;
-static CLUREF STR_;
 static CLUREF STR_find_137tbl_137exprs_072_040s_137cons_040not_040select;
 static CLUREF STR_type_137_072_040unhandled_040typespec;
 static CLUREF STR_type_137of_137;
 static CLUREF STR__137;
 static CLUREF STR__137ops;
-static CLUREF STR_struct_040OPS_040_040_052;
+static CLUREF STR_struct_040OPS_040_052;
 static CLUREF STR__073;
 static CLUREF STR_extern_040struct_040OPS_040_052;
 static CLUREF STR_test_137pb_072_040others;
@@ -167,13 +157,12 @@ g_tbl_own_init_proc(void)
         add_parm_info_type(0, (const struct OPS *)record_sel_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_sel_type__ops));
         stringOPcons("find_tbl_type_: others", CLU_1, CLUREF_make_num(22), &STR_find_137tbl_137type_137_072_040others);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("find_tbl_exprs: s_cons not select", CLU_1, CLUREF_make_num(33), &STR_find_137tbl_137exprs_072_040s_137cons_040not_040select);
         stringOPcons("type_: unhandled typespec", CLU_1, CLUREF_make_num(25), &STR_type_137_072_040unhandled_040typespec);
         stringOPcons("type_of_", CLU_1, CLUREF_make_num(8), &STR_type_137of_137);
         stringOPcons("_", CLU_1, CLUREF_make_num(1), &STR__137);
         stringOPcons("_ops", CLU_1, CLUREF_make_num(4), &STR__137ops);
-        stringOPcons("struct OPS  *", CLU_1, CLUREF_make_num(13), &STR_struct_040OPS_040_040_052);
+        stringOPcons("struct OPS *", CLU_1, CLUREF_make_num(12), &STR_struct_040OPS_040_052);
         stringOPcons(";", CLU_1, CLUREF_make_num(1), &STR__073);
         stringOPcons("extern struct OPS *", CLU_1, CLUREF_make_num(19), &STR_extern_040struct_040OPS_040_052);
         stringOPcons("test_pb: others", CLU_1, CLUREF_make_num(15), &STR_test_137pb_072_040others);
@@ -246,15 +235,15 @@ g_tblOPexist(CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE exist ****/
@@ -363,14 +352,14 @@ g_tblOPfind_tables(CLUREF e, CLUREF bod, CLUREF d)
   LINE(41);
     {
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_tables ****/
@@ -437,14 +426,14 @@ g_tblOPfind_tbls_in_signature(CLUREF ap, CLUREF pbl)
         end_inline_for_1:;
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_tbls_in_signature ****/
@@ -988,14 +977,14 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_tbls ****/
@@ -1033,14 +1022,14 @@ g_tblOPfind_tbl_decllist(CLUREF dl, CLUREF pbl)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_tbl_decllist ****/
@@ -1066,14 +1055,14 @@ g_tblOPfind_tbl_decl(CLUREF d, CLUREF pbl)
     err = g_tblOPfind_tbl_type_(T_1_1, pbl);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_tbl_decl ****/
@@ -1111,14 +1100,14 @@ g_tblOPfind_tbl_typelist(CLUREF tys, CLUREF pbl)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_tbl_typelist ****/
@@ -1322,14 +1311,14 @@ g_tblOPfind_tbl_type_(CLUREF type_, CLUREF pbl)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_tbl_type_ ****/
@@ -1367,14 +1356,14 @@ g_tblOPfind_tbl_exprlist(CLUREF el, CLUREF pbl)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_tbl_exprlist ****/
@@ -1412,14 +1401,14 @@ g_tblOPfind_tbl_fieldspeclist(CLUREF fl, CLUREF pbl)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_tbl_fieldspeclist ****/
@@ -1620,7 +1609,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                     CLUREF T_3_1;
                     CLUREF T_3_2;
                     T_3_1.num = a.vec->data[1];
-                    err = parmd_op(T_3_1, STR_, &T_3_2);
+                    err = parmd_op(T_3_1, CLU_empty_string, &T_3_2);
                     if (err != ERR_ok) goto ex_0;
                     if (T_3_2.num == true) {
 
@@ -2265,14 +2254,14 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_tbl_exprs ****/
@@ -2434,14 +2423,14 @@ g_tblOPfind_tbl_field(CLUREF f, CLUREF pbl)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_tbl_field ****/
@@ -2449,19 +2438,10 @@ g_tblOPfind_tbl_field(CLUREF f, CLUREF pbl)
 
 /**** BEGIN PROCEDURE tbl_uniq ****/
 
-struct OPS *sequence_of_idn_table;
 struct OPS *sequence_of_idn_ops;
-struct OPS *sequence_of_idn_ops;
-OWNPTR sequence_of_idn_owns;
-struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__table;
+struct OPS *record_sel_type__ops;
 struct OPS *sequence_of_record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
-OWNPTR sequence_of_record_sel_type__owns;
 static int g_tblOPtbl_uniq_own_init = 0;
 
 errcode
@@ -2910,15 +2890,15 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
     ret_1->num = newpbl.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE tbl_uniq ****/
@@ -3061,14 +3041,14 @@ g_tblOPg_field_tables(CLUREF e, CLUREF pass)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_field_tables ****/
@@ -3134,7 +3114,7 @@ g_tblOPg_sel_table(CLUREF e, CLUREF fn, CLUREF fl)
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
-        err = stringOPconcat(STR_struct_040OPS_040_040_052, nm, &T_2_1);
+        err = stringOPconcat(STR_struct_040OPS_040_052, nm, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         err = stringOPconcat(T_2_1, STR__073, &T_2_2);
         if (err != ERR_ok) goto ex_0;
@@ -3143,14 +3123,14 @@ g_tblOPg_sel_table(CLUREF e, CLUREF fn, CLUREF fl)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_sel_table ****/
@@ -3251,14 +3231,14 @@ g_tblOPg_sel_extern(CLUREF e, CLUREF each_fl)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_sel_extern ****/
@@ -3398,14 +3378,14 @@ g_tblOPbuild_tables(CLUREF e, CLUREF pass)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE build_tables ****/
@@ -3694,15 +3674,15 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE test_pb ****/
@@ -3963,15 +3943,15 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE test_pb_exprs_asst ****/
@@ -4072,15 +4052,15 @@ g_tblOPtest_pb_exprs_type_asst(CLUREF ty, CLUREF *ret_1)
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE test_pb_exprs_type_asst ****/
@@ -4170,15 +4150,15 @@ g_tblOPbase_cluster_test(CLUREF cop, CLUREF ct, CLUREF *ret_1)
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE base_cluster_test ****/
@@ -4228,15 +4208,15 @@ g_tblOPbase_apply_test(CLUREF ct, CLUREF *ret_1)
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE base_apply_test ****/
@@ -4384,15 +4364,15 @@ g_tblOPtest_pb_fields_asst(CLUREF fl, CLUREF *ret_1)
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE test_pb_fields_asst ****/
@@ -4550,14 +4530,14 @@ g_tblOPbuild_one_selector_table(CLUREF e, CLUREF each_fn, CLUREF each_fl)
     err = g_envOPputl(e, T_1_11);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE build_one_selector_table ****/
@@ -4933,14 +4913,14 @@ g_tblOPprune()
     {
     g_tblOPcum_pbl.num = new.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE prune ****/
@@ -4952,13 +4932,13 @@ typedef struct{
     struct OP_ENTRY entry[5];
 } g_tbl_OPS;
 
-CLU_proc g_tbl_oe_build_tables = { .proc = g_tblOPbuild_tables };
-CLU_proc g_tbl_oe_exist = { .proc = g_tblOPexist };
-CLU_proc g_tbl_oe_find_tables = { .proc = g_tblOPfind_tables };
-CLU_proc g_tbl_oe_g_field_tables = { .proc = g_tblOPg_field_tables };
-CLU_proc g_tbl_oe_prune = { .proc = g_tblOPprune };
+static CLU_proc g_tbl_oe_build_tables = { .proc = g_tblOPbuild_tables };
+static CLU_proc g_tbl_oe_exist = { .proc = g_tblOPexist };
+static CLU_proc g_tbl_oe_find_tables = { .proc = g_tblOPfind_tables };
+static CLU_proc g_tbl_oe_g_field_tables = { .proc = g_tblOPg_field_tables };
+static CLU_proc g_tbl_oe_prune = { .proc = g_tblOPprune };
 
-g_tbl_OPS g_tbl_ops_actual = {5, (OWNPTR)&g_tbl_own_init, (OWNPTR)&g_tbl_own_init, {
+static g_tbl_OPS g_tbl_ops_actual = {5, (OWNPTR)&g_tbl_own_init, (OWNPTR)&g_tbl_own_init, {
     {&g_tbl_oe_build_tables, "build_tables"},
     {&g_tbl_oe_exist, "exist"},
     {&g_tbl_oe_find_tables, "find_tables"},
@@ -4975,11 +4955,8 @@ struct OPS *g_tbl_ops = (struct OPS *)&g_tbl_ops_actual;
 extern errcode arrayOPpredict();
 extern errcode sequenceOPindexes();
 extern errcode sequenceOPfetch();
-struct OPS  *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__table;
+struct OPS *record_sel_type__ops;
 struct OPS *sequence_of_record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
-OWNPTR sequence_of_record_sel_type__owns;
 static int make_sel_name_own_init = 0;
 CLUREF make_sel_nameOPtable;
 
@@ -5000,7 +4977,6 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
         find_selector_ops("record", 2, &(record_sel_type__ops));
         add_parm_info_type(0, (const struct OPS *)record_sel_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_sel_type__ops));
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("_", CLU_1, CLUREF_make_num(1), &STR__137);
         make_sel_name_own_init = 1;
         {
@@ -5174,7 +5150,7 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
 
   LINE(827);
     {
-        {nm = STR_;
+        {nm = CLU_empty_string;
         }
         }
 
@@ -5253,15 +5229,15 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
     ret_1->num = nm.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE make_sel_name ****/
@@ -5321,7 +5297,6 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
     CLUREF ex;
     CLUREF ty;
     if (g_own_build_one_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("_op_", CLU_1, CLUREF_make_num(4), &STR__137op_137);
         stringOPcons("_of", CLU_1, CLUREF_make_num(3), &STR__137of);
         stringOPcons("_", CLU_1, CLUREF_make_num(1), &STR__137);
@@ -5404,7 +5379,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
 
   LINE(853);
                         {
-                            {op_name = STR_;
+                            {op_name = CLU_empty_string;
                             }
                             }
 
@@ -5878,14 +5853,14 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_own_build_one ****/
@@ -5954,14 +5929,14 @@ own_defnOPstart()
   LINE(952);
     {
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE start ****/
@@ -6043,15 +6018,15 @@ own_defnOPtest(CLUREF s, CLUREF *ret_1)
     ret_1->tf = true;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE test ****/
@@ -6074,14 +6049,14 @@ own_defnOPstop()
     {
     own_defnOPactive.tf = false;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE stop ****/
@@ -6093,11 +6068,11 @@ typedef struct{
     struct OP_ENTRY entry[3];
 } own_defn_OPS;
 
-CLU_proc own_defn_oe_start = { .proc = own_defnOPstart };
-CLU_proc own_defn_oe_stop = { .proc = own_defnOPstop };
-CLU_proc own_defn_oe_test = { .proc = own_defnOPtest };
+static CLU_proc own_defn_oe_start = { .proc = own_defnOPstart };
+static CLU_proc own_defn_oe_stop = { .proc = own_defnOPstop };
+static CLU_proc own_defn_oe_test = { .proc = own_defnOPtest };
 
-own_defn_OPS own_defn_ops_actual = {3, (OWNPTR)&own_defn_own_init, (OWNPTR)&own_defn_own_init, {
+static own_defn_OPS own_defn_ops_actual = {3, (OWNPTR)&own_defn_own_init, (OWNPTR)&own_defn_own_init, {
     {&own_defn_oe_start, "start"},
     {&own_defn_oe_stop, "stop"},
     {&own_defn_oe_test, "test"}}};
@@ -6190,15 +6165,15 @@ base_cluster_test(CLUREF cop, CLUREF ct, CLUREF *ret_1)
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE base_cluster_test ****/
@@ -6246,15 +6221,15 @@ base_apply_test(CLUREF ct, CLUREF *ret_1)
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE base_apply_test ****/

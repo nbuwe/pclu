@@ -45,6 +45,7 @@ extern errcode stringOPequal();
 extern errcode oneofOPvalue_2();
 extern errcode g_constOPg_str_decl();
 extern errcode g_constOPg_str_cons();
+extern errcode stringOPempty();
 extern errcode g_envOPadd_str();
 extern errcode g_envOPputl();
 extern errcode stringOPconcat();
@@ -133,15 +134,15 @@ g_constOPexist(CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE exist ****/
@@ -198,14 +199,14 @@ g_constOPfind_consts(CLUREF e, CLUREF bod)
   LINE(31);
     {
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_consts ****/
@@ -685,14 +686,14 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_consts2 ****/
@@ -730,14 +731,14 @@ g_constOPfind_const_exprlist(CLUREF el, CLUREF const_UNIQ)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_const_exprlist ****/
@@ -775,14 +776,14 @@ g_constOPfind_const_fieldspeclist(CLUREF fl, CLUREF const_UNIQ)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_const_fieldspeclist ****/
@@ -1163,14 +1164,14 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_const_exprs ****/
@@ -1263,14 +1264,14 @@ g_constOPfind_const_field(CLUREF f, CLUREF const_UNIQ)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE find_const_field ****/
@@ -1468,15 +1469,15 @@ g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
     ret_1->num = newconst.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE const_uniq ****/
@@ -1562,14 +1563,14 @@ g_constOPg_consts(CLUREF e, CLUREF pass)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_consts ****/
@@ -1595,11 +1596,22 @@ g_constOPg_str_decl(CLUREF e, CLUREF s)
   LINE(331);
     {
     CLUREF T_1_1;
+    err = stringOPempty(s, &T_1_1);
+    if (err != ERR_ok) goto ex_0;
+    if (T_1_1.num == true) {
+        {
+        {signal (ERR_ok);}}
+        }
+        }/* end if */
+
+  LINE(332);
+    {
+    CLUREF T_1_1;
     err = g_envOPadd_str(s, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(332);
+  LINE(333);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -1615,14 +1627,14 @@ g_constOPg_str_decl(CLUREF e, CLUREF s)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_str_decl ****/
@@ -1643,27 +1655,38 @@ g_constOPg_str_cons(CLUREF e, CLUREF s)
         }
         g_constOPg_str_cons_own_init = 1;
     }
-    enter_proc(336);
+    enter_proc(337);
 
-  LINE(337);
+  LINE(338);
+    {
+    CLUREF T_1_1;
+    err = stringOPempty(s, &T_1_1);
+    if (err != ERR_ok) goto ex_0;
+    if (T_1_1.num == true) {
+        {
+        {signal (ERR_ok);}}
+        }
+        }/* end if */
+
+  LINE(339);
     {
     err = g_envOPputs(e, STR_stringOPcons_050);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(338);
+  LINE(340);
     {
     err = g_string(e, s);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(339);
+  LINE(341);
     {
     err = g_envOPputs(e, STR__054_040CLU_1371);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(340);
+  LINE(342);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1681,7 +1704,7 @@ g_constOPg_str_cons(CLUREF e, CLUREF s)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(341);
+  LINE(343);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1695,14 +1718,14 @@ g_constOPg_str_cons(CLUREF e, CLUREF s)
     err = g_envOPputl(e, T_1_3);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_str_cons ****/
@@ -1714,11 +1737,11 @@ typedef struct{
     struct OP_ENTRY entry[3];
 } g_const_OPS;
 
-CLU_proc g_const_oe_exist = { .proc = g_constOPexist };
-CLU_proc g_const_oe_find_consts = { .proc = g_constOPfind_consts };
-CLU_proc g_const_oe_g_consts = { .proc = g_constOPg_consts };
+static CLU_proc g_const_oe_exist = { .proc = g_constOPexist };
+static CLU_proc g_const_oe_find_consts = { .proc = g_constOPfind_consts };
+static CLU_proc g_const_oe_g_consts = { .proc = g_constOPg_consts };
 
-g_const_OPS g_const_ops_actual = {3, (OWNPTR)&g_const_own_init, (OWNPTR)&g_const_own_init, {
+static g_const_OPS g_const_ops_actual = {3, (OWNPTR)&g_const_own_init, (OWNPTR)&g_const_own_init, {
     {&g_const_oe_exist, "exist"},
     {&g_const_oe_find_consts, "find_consts"},
     {&g_const_oe_g_consts, "g_consts"}}};
@@ -1772,9 +1795,9 @@ const_defnOPstart()
         err = const_defn_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(480);
+    enter_proc(482);
 
-  LINE(481);
+  LINE(483);
     {
     CLUREF T_1_1;
     err = arrayOPnew(&T_1_1);
@@ -1782,22 +1805,22 @@ const_defnOPstart()
     const_defnOPold.num = T_1_1.num;
     }
 
-  LINE(482);
+  LINE(484);
     {
     const_defnOPactive.tf = true;
     }
 
-  LINE(483);
+  LINE(485);
     {
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE start ****/
@@ -1815,9 +1838,9 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
         err = const_defn_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(486);
+    enter_proc(488);
 
-  LINE(487);
+  LINE(489);
     {
     CLUREF T_1_1;
     T_1_1.num = const_defnOPactive.num ^ 1;
@@ -1830,7 +1853,7 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
         }
         }/* end if */
 
-  LINE(488);
+  LINE(490);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1844,7 +1867,7 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
                 goto ex_0;}
             each_s.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
-  LINE(489);
+  LINE(491);
             {
             CLUREF T_2_1;
             T_2_1.num = ((each_s.str->size != s.str->size)? false :
@@ -1861,7 +1884,7 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(491);
+  LINE(493);
     {
     {
     if ((const_defnOPold.array->int_low + const_defnOPold.array->ext_size + 1) < const_defnOPold.array->int_size) {
@@ -1873,21 +1896,21 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
     }
     }
 
-  LINE(492);
+  LINE(494);
     {
     {
     ret_1->tf = true;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE test ****/
@@ -1904,20 +1927,20 @@ const_defnOPstop()
         err = const_defn_own_init_proc();
         if (err != ERR_ok) goto ex_0;
     }
-    enter_proc(495);
+    enter_proc(497);
 
-  LINE(496);
+  LINE(498);
     {
     const_defnOPactive.tf = false;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE stop ****/
@@ -1929,11 +1952,11 @@ typedef struct{
     struct OP_ENTRY entry[3];
 } const_defn_OPS;
 
-CLU_proc const_defn_oe_start = { .proc = const_defnOPstart };
-CLU_proc const_defn_oe_stop = { .proc = const_defnOPstop };
-CLU_proc const_defn_oe_test = { .proc = const_defnOPtest };
+static CLU_proc const_defn_oe_start = { .proc = const_defnOPstart };
+static CLU_proc const_defn_oe_stop = { .proc = const_defnOPstop };
+static CLU_proc const_defn_oe_test = { .proc = const_defnOPtest };
 
-const_defn_OPS const_defn_ops_actual = {3, (OWNPTR)&const_defn_own_init, (OWNPTR)&const_defn_own_init, {
+static const_defn_OPS const_defn_ops_actual = {3, (OWNPTR)&const_defn_own_init, (OWNPTR)&const_defn_own_init, {
     {&const_defn_oe_start, "start"},
     {&const_defn_oe_stop, "stop"},
     {&const_defn_oe_test, "test"}}};

@@ -314,15 +314,15 @@ i_hparse(CLUREF s, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_5:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE i_hparse ****/
@@ -339,7 +339,6 @@ extern errcode stringOPconcat();
 extern errcode intOPge();
 extern errcode stringOPc2s();
 extern errcode charOPi2c();
-static CLUREF STR_;
 static CLUREF STR__055;
 static CLUREF STR_0;
 static int i_hunparse_own_init = 0;
@@ -352,7 +351,6 @@ i_hunparse(CLUREF i, CLUREF *ret_1)
     CLUREF s;
     CLUREF j;
     if (i_hunparse_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("-", CLU_1, CLUREF_make_num(1), &STR__055);
         stringOPcons("0", CLU_1, CLUREF_make_num(1), &STR_0);
         i_hunparse_own_init = 1;
@@ -361,7 +359,7 @@ i_hunparse(CLUREF i, CLUREF *ret_1)
 
   LINE(39);
     {
-        {sign = STR_;
+        {sign = CLU_empty_string;
         }
         }
 
@@ -389,7 +387,7 @@ i_hunparse(CLUREF i, CLUREF *ret_1)
 
   LINE(44);
     {
-        {s = STR_;
+        {s = CLU_empty_string;
         }
         }
 
@@ -521,15 +519,15 @@ i_hunparse(CLUREF i, CLUREF *ret_1)
             }/* end if */
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE i_hunparse ****/

@@ -419,15 +419,15 @@ g_qinv_test(CLUREF exp, CLUREF *ret_1)
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE g_qinv_test ****/
@@ -678,14 +678,14 @@ g_qinv(CLUREF e, CLUREF exp, CLUREF args, CLUREF results)
   LINE(99);
     {
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_qinv ****/
@@ -817,14 +817,14 @@ g_qiinv(CLUREF e, CLUREF exp, CLUREF args, CLUREF ibname)
   LINE(123);
     {
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_qiinv ****/
@@ -863,15 +863,15 @@ g_inline_iter_test(CLUREF exp, CLUREF *ret_1)
     ret_1->num = ans.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE g_inline_iter_test ****/
@@ -881,7 +881,6 @@ g_inline_iter_test(CLUREF exp, CLUREF *ret_1)
 /**** BEGIN PROCEDURE g_inline_iter_test_and_info ****/
 
 extern errcode g_envOPmin_inline();
-static CLUREF STR_;
 static CLUREF STR_indexes;
 static CLUREF STR_elements;
 static CLUREF STR_int;
@@ -898,7 +897,6 @@ g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *re
     CLUREF ct;
     CLUREF gen;
     if (g_inline_iter_test_and_info_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("array", CLU_1, CLUREF_make_num(5), &STR_array);
         stringOPcons("indexes", CLU_1, CLUREF_make_num(7), &STR_indexes);
         stringOPcons("elements", CLU_1, CLUREF_make_num(8), &STR_elements);
@@ -921,10 +919,10 @@ g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *re
         ret_1->tf = false;
         }
         {
-        ret_2->str = STR_.str;
+        ret_2->str = CLU_empty_string.str;
         }
         {
-        ret_3->str = STR_.str;
+        ret_3->str = CLU_empty_string.str;
         }
         {signal (ERR_ok);}}
         }
@@ -1130,10 +1128,10 @@ g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *re
         ret_1->tf = false;
         }
         {
-        ret_2->str = STR_.str;
+        ret_2->str = CLU_empty_string.str;
         }
         {
-        ret_3->str = STR_.str;
+        ret_3->str = CLU_empty_string.str;
         }
         {signal (ERR_ok);}}
     }
@@ -1146,21 +1144,21 @@ g_inline_iter_test_and_info(CLUREF exp, CLUREF *ret_1, CLUREF *ret_2, CLUREF *re
     ret_1->tf = false;
     }
     {
-    ret_2->str = STR_.str;
+    ret_2->str = CLU_empty_string.str;
     }
     {
-    ret_3->str = STR_.str;
+    ret_3->str = CLU_empty_string.str;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE g_inline_iter_test_and_info ****/
@@ -1198,10 +1196,7 @@ extern errcode loop_contextOPleave();
 extern const struct REQS * const seq_extend_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req seq_extend_ownreqs;
-struct OPS *seq_extend_of_expr_table;
 struct OPS *seq_extend_of_expr_ops;
-struct OPS *seq_extend_of_expr_ops;
-OWNPTR seq_extend_of_expr_owns;
 static CLUREF STR__173;
 static CLUREF STR_for_040_050;
 static CLUREF STR__073_040;
@@ -2658,15 +2653,15 @@ g_inline_iter(CLUREF e, CLUREF fstmt, CLUREF *ret_1)
     ret_1->tf = true;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE g_inline_iter ****/
@@ -2795,15 +2790,15 @@ g_qselop(CLUREF nm, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE g_qselop ****/
@@ -2930,15 +2925,15 @@ g_qapply(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE g_qapply ****/
@@ -6607,15 +6602,15 @@ g_qop(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}}}}}}}}}}}}}}}}}}}}}}}}}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE g_qop ****/
@@ -7245,15 +7240,15 @@ g_qsel(CLUREF e, CLUREF exp, CLUREF args, CLUREF results, CLUREF *ret_1)
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE g_qsel ****/
@@ -7333,15 +7328,15 @@ is_temp(CLUREF i, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE is_temp ****/
@@ -7877,15 +7872,15 @@ g_qtagcase(CLUREF e, CLUREF stmt, CLUREF *ret_1)
     ret_1->tf = true;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE g_qtagcase ****/
@@ -7972,14 +7967,14 @@ g_expr_plain(CLUREF e, CLUREF exp)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_expr_plain ****/
@@ -8036,14 +8031,14 @@ g_expr2a(CLUREF e, CLUREF exp)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_expr2a ****/

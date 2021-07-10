@@ -16,7 +16,6 @@ extern errcode intOPequal();
 extern errcode stringOPsubstr();
 extern errcode intOPsub();
 extern errcode stringOPrest();
-static CLUREF STR_;
 static int _split_name_part_own_init = 0;
 
 errcode
@@ -28,7 +27,6 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     CLUREF name;
     CLUREF suffix;
     if (_split_name_part_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         _split_name_part_own_init = 1;
     }
     enter_proc(3);
@@ -113,10 +111,10 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         ret_1->num = s.num;
         }
         {
-        ret_2->str = STR_.str;
+        ret_2->str = CLU_empty_string.str;
         }
         {
-        ret_3->str = STR_.str;
+        ret_3->str = CLU_empty_string.str;
         }
         {signal (ERR_ok);}}
         }
@@ -227,7 +225,7 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
 
   LINE(23);
         {
-        s = STR_;
+        s = CLU_empty_string;
         }
         }
     else {
@@ -273,15 +271,15 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
     ret_3->num = s.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _split_name_part ****/

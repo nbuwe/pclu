@@ -101,15 +101,15 @@ heapOPcreate(CLUREF p, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE create ****/
@@ -153,15 +153,15 @@ heapOPtop(CLUREF x, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE top ****/
@@ -192,15 +192,15 @@ heapOPsize(CLUREF x, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE size ****/
@@ -233,15 +233,15 @@ heapOPempty(CLUREF x, CLUREF *ret_1)
     ret_1->num = T_1_3.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE empty ****/
@@ -366,14 +366,14 @@ heapOPinsert(CLUREF x, CLUREF v)
     a.array->store->data[son.num + a.array->int_low - a.array->ext_low] = v.num;
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE insert ****/
@@ -601,15 +601,15 @@ heapOPremove(CLUREF x, CLUREF *ret_1)
     ret_1->num = r.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE remove ****/
@@ -657,15 +657,15 @@ heapOPcopy(CLUREF x, CLUREF *ret_1)
     ret_1->num = x.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE copy ****/
@@ -677,15 +677,15 @@ typedef struct{
     struct OP_ENTRY entry[7];
 } heap_OPS;
 
-CLU_proc heap_oe_copy = { .proc = heapOPcopy };
-CLU_proc heap_oe_create = { .proc = heapOPcreate };
-CLU_proc heap_oe_empty = { .proc = heapOPempty };
-CLU_proc heap_oe_insert = { .proc = heapOPinsert };
-CLU_proc heap_oe_remove = { .proc = heapOPremove };
-CLU_proc heap_oe_size = { .proc = heapOPsize };
-CLU_proc heap_oe_top = { .proc = heapOPtop };
+static CLU_proc heap_oe_copy = { .proc = heapOPcopy };
+static CLU_proc heap_oe_create = { .proc = heapOPcreate };
+static CLU_proc heap_oe_empty = { .proc = heapOPempty };
+static CLU_proc heap_oe_insert = { .proc = heapOPinsert };
+static CLU_proc heap_oe_remove = { .proc = heapOPremove };
+static CLU_proc heap_oe_size = { .proc = heapOPsize };
+static CLU_proc heap_oe_top = { .proc = heapOPtop };
 
-heap_OPS heap_ops_actual = {7, (OWNPTR)&heap_own_init, (OWNPTR)&heap_own_init, {
+static heap_OPS heap_ops_actual = {7, (OWNPTR)&heap_own_init, (OWNPTR)&heap_own_init, {
     {&heap_oe_copy, "copy"},
     {&heap_oe_create, "create"},
     {&heap_oe_empty, "empty"},

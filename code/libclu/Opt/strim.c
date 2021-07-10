@@ -15,7 +15,6 @@ extern errcode charOPequal();
 extern errcode stringOPrest();
 extern errcode intOPadd();
 extern errcode intOPgt();
-static CLUREF STR_;
 static int trim_head_own_init = 0;
 
 errcode
@@ -26,7 +25,6 @@ trim_head(CLUREF s, CLUREF *ret_1)
     CLUREF idx;
     CLUREF c;
     if (trim_head_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         trim_head_own_init = 1;
     }
     enter_proc(4);
@@ -123,7 +121,7 @@ trim_head(CLUREF s, CLUREF *ret_1)
         if (T_2_1.num == true) {
             {
             {
-            ret_1->str = STR_.str;
+            ret_1->str = CLU_empty_string.str;
             }
             {signal (ERR_ok);}}
             }
@@ -138,15 +136,15 @@ trim_head(CLUREF s, CLUREF *ret_1)
         }
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE trim_head ****/
@@ -167,7 +165,6 @@ trim_tail(CLUREF s, CLUREF *ret_1)
     CLUREF idx;
     CLUREF c;
     if (trim_tail_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         trim_tail_own_init = 1;
     }
     enter_proc(19);
@@ -264,7 +261,7 @@ trim_tail(CLUREF s, CLUREF *ret_1)
         if (T_2_1.num == true) {
             {
             {
-            ret_1->str = STR_.str;
+            ret_1->str = CLU_empty_string.str;
             }
             {signal (ERR_ok);}}
             }
@@ -279,15 +276,15 @@ trim_tail(CLUREF s, CLUREF *ret_1)
         }
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE trim_tail ****/
@@ -306,7 +303,6 @@ trim_both(CLUREF s, CLUREF *ret_1)
     CLUREF idx;
     CLUREF c;
     if (trim_both_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         trim_both_own_init = 1;
     }
     enter_proc(34);
@@ -394,7 +390,7 @@ trim_both(CLUREF s, CLUREF *ret_1)
         if (T_2_1.num == true) {
             {
             {
-            ret_1->str = STR_.str;
+            ret_1->str = CLU_empty_string.str;
             }
             {signal (ERR_ok);}}
             }
@@ -480,15 +476,15 @@ trim_both(CLUREF s, CLUREF *ret_1)
         }
         }
         end_while_2:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE trim_both ****/

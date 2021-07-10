@@ -181,15 +181,15 @@ tableOPcreate(CLUREF size, CLUREF hasher, CLUREF comper, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE create ****/
@@ -252,14 +252,14 @@ tableOPflush(CLUREF t)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE flush ****/
@@ -403,14 +403,14 @@ tableOPcond_flush(CLUREF t, CLUREF pred)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE cond_flush ****/
@@ -578,14 +578,14 @@ tableOPpcond_flush(CLUREF t, CLUREF pred, CLUREF thing)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE pcond_flush ****/
@@ -783,14 +783,14 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
     err = _vecOPstore(T_1_1, T_1_2, T_1_4);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE bind ****/
@@ -1007,15 +1007,15 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
     ret_1->num = v.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE mbind ****/
@@ -1196,14 +1196,14 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
     err = _vecOPstore(T_1_1, T_1_2, T_1_4);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE alter ****/
@@ -1394,15 +1394,15 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
   LINE(215);
     {
     {signal (ERR_not_found);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE lookup ****/
@@ -1599,15 +1599,15 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
     ret_1->num = defv.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE mlookup ****/
@@ -1806,15 +1806,15 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
   LINE(266);
     {
     {signal (ERR_not_found);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_pair ****/
@@ -1994,15 +1994,15 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
     ret_1->tf = false;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE exists ****/
@@ -2169,15 +2169,15 @@ tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
   LINE(314);
     {
     {signal (ERR_not_found);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE remove ****/
@@ -2335,14 +2335,14 @@ tableOPdelete(CLUREF t, CLUREF k)
         }
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE delete ****/
@@ -2561,14 +2561,14 @@ tableOPrehash(CLUREF t, CLUREF hasher)
         }
         }
         end_while_2:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE rehash ****/
@@ -2676,14 +2676,14 @@ tableOPelements(CLUREF t, errcode (*proc)(), void *user_locals, errcode *iecode)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END ITERATOR elements ****/
@@ -2791,15 +2791,15 @@ tableOPcount(CLUREF t, CLUREF *ret_1)
     ret_1->num = cnt.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE count ****/
@@ -2880,15 +2880,15 @@ tableOPempty(CLUREF t, CLUREF *ret_1)
     ret_1->tf = true;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE empty ****/
@@ -3069,15 +3069,15 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
     ret_1->num = z.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE sizes ****/
@@ -3089,26 +3089,26 @@ typedef struct{
     struct OP_ENTRY entry[18];
 } table_OPS;
 
-CLU_proc table_oe_alter = { .proc = tableOPalter };
-CLU_proc table_oe_bind = { .proc = tableOPbind };
-CLU_proc table_oe_cond_flush = { .proc = tableOPcond_flush };
-CLU_proc table_oe_count = { .proc = tableOPcount };
-CLU_proc table_oe_create = { .proc = tableOPcreate };
-CLU_proc table_oe_delete = { .proc = tableOPdelete };
-CLU_proc table_oe_elements = { .proc = tableOPelements };
-CLU_proc table_oe_empty = { .proc = tableOPempty };
-CLU_proc table_oe_exists = { .proc = tableOPexists };
-CLU_proc table_oe_flush = { .proc = tableOPflush };
-CLU_proc table_oe_get_pair = { .proc = tableOPget_pair };
-CLU_proc table_oe_lookup = { .proc = tableOPlookup };
-CLU_proc table_oe_mbind = { .proc = tableOPmbind };
-CLU_proc table_oe_mlookup = { .proc = tableOPmlookup };
-CLU_proc table_oe_pcond_flush = { .proc = tableOPpcond_flush };
-CLU_proc table_oe_rehash = { .proc = tableOPrehash };
-CLU_proc table_oe_remove = { .proc = tableOPremove };
-CLU_proc table_oe_sizes = { .proc = tableOPsizes };
+static CLU_proc table_oe_alter = { .proc = tableOPalter };
+static CLU_proc table_oe_bind = { .proc = tableOPbind };
+static CLU_proc table_oe_cond_flush = { .proc = tableOPcond_flush };
+static CLU_proc table_oe_count = { .proc = tableOPcount };
+static CLU_proc table_oe_create = { .proc = tableOPcreate };
+static CLU_proc table_oe_delete = { .proc = tableOPdelete };
+static CLU_proc table_oe_elements = { .proc = tableOPelements };
+static CLU_proc table_oe_empty = { .proc = tableOPempty };
+static CLU_proc table_oe_exists = { .proc = tableOPexists };
+static CLU_proc table_oe_flush = { .proc = tableOPflush };
+static CLU_proc table_oe_get_pair = { .proc = tableOPget_pair };
+static CLU_proc table_oe_lookup = { .proc = tableOPlookup };
+static CLU_proc table_oe_mbind = { .proc = tableOPmbind };
+static CLU_proc table_oe_mlookup = { .proc = tableOPmlookup };
+static CLU_proc table_oe_pcond_flush = { .proc = tableOPpcond_flush };
+static CLU_proc table_oe_rehash = { .proc = tableOPrehash };
+static CLU_proc table_oe_remove = { .proc = tableOPremove };
+static CLU_proc table_oe_sizes = { .proc = tableOPsizes };
 
-table_OPS table_ops_actual = {18, (OWNPTR)&table_own_init, (OWNPTR)&table_own_init, {
+static table_OPS table_ops_actual = {18, (OWNPTR)&table_own_init, (OWNPTR)&table_own_init, {
     {&table_oe_alter, "alter"},
     {&table_oe_bind, "bind"},
     {&table_oe_cond_flush, "cond_flush"},

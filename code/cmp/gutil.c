@@ -223,14 +223,14 @@ pb_print(CLUREF p)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE pb_print ****/
@@ -729,14 +729,14 @@ typespec_print(CLUREF a)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE typespec_print ****/
@@ -867,14 +867,14 @@ restrictkind_print(CLUREF r)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE restrictkind_print ****/
@@ -896,10 +896,7 @@ extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *equate_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_equate_table;
 struct OPS *sequence_of_equate_ops;
-struct OPS *sequence_of_equate_ops;
-OWNPTR sequence_of_equate_owns;
 static int restrictkind_similar_own_init = 0;
 
 errcode
@@ -1078,15 +1075,15 @@ restrictkind_similar(CLUREF r1, CLUREF r2, CLUREF *ret_1)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE restrictkind_similar ****/
@@ -1101,10 +1098,7 @@ extern errcode sequenceOPfetch();
 extern errcode stringOPequal();
 extern errcode typespec_similar();
 extern struct OPS *expr_ops;
-struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
 static int operdecllist_similar_own_init = 0;
 
 errcode
@@ -1352,15 +1346,15 @@ operdecllist_similar(CLUREF o1, CLUREF o2, CLUREF *ret_1)
     ret_1->tf = true;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE operdecllist_similar ****/
@@ -1382,18 +1376,12 @@ extern errcode oneofOPis_11();
 extern errcode oneofOPis_5();
 extern errcode oneofOPvalue_5();
 extern errcode oneofOPis_9();
-struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
 extern struct OPS *string_ops;
 extern struct OPS *typespec_ops;
-struct OPS  *record_sel_type__ops;
+struct OPS *record_sel_type__ops;
 extern struct OPS *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__table;
 struct OPS *sequence_of_record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
-OWNPTR sequence_of_record_sel_type__owns;
 static int typespec_similar_own_init = 0;
 
 errcode
@@ -2056,15 +2044,15 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE typespec_similar ****/
@@ -2147,15 +2135,15 @@ typelist_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     ret_1->tf = true;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE typelist_similar ****/
@@ -2272,15 +2260,15 @@ exceptionlist_similar(CLUREF e1, CLUREF e2, CLUREF *ret_1)
     ret_1->tf = true;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE exceptionlist_similar ****/
@@ -2442,14 +2430,14 @@ idnkind_print(CLUREF i)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE idnkind_print ****/
@@ -2607,14 +2595,14 @@ duspec_print(CLUREF d, CLUREF short_UNIQ)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE duspec_print ****/
@@ -2748,14 +2736,14 @@ ti_print(CLUREF t)
     err = streamOPputs(po, STR__012);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE ti_print ****/
@@ -2875,14 +2863,14 @@ ti_print_1(CLUREF t)
     err = streamOPputs(po, STR__012);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE ti_print_1 ****/
@@ -3166,14 +3154,14 @@ stmt_print(CLUREF s)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE stmt_print ****/
@@ -3711,14 +3699,14 @@ expr_print(CLUREF exp, CLUREF stage)
     err = typespec_print(T_1_1);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE expr_print ****/
@@ -3794,14 +3782,14 @@ other_print(CLUREF o)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE other_print ****/
@@ -3862,14 +3850,14 @@ compiler_logit(CLUREF code, CLUREF s)
         if (err != ERR_ok) goto ex_0;
         }
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE compiler_logit ****/
@@ -3894,15 +3882,15 @@ get_stream(CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_stream ****/
@@ -3972,14 +3960,14 @@ array_extend(CLUREF a, CLUREF b)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE array_extend ****/
@@ -4053,14 +4041,14 @@ array_concat(CLUREF a, CLUREF b)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE array_concat ****/
@@ -4094,9 +4082,7 @@ extern errcode sequenceOPaddh();
 typedef struct {
     long seq_extend_own_init;
     const seq_extend_of_t_OPS * const t_ops;
-    struct OPS *sequence_of_t_table;
     struct OPS *sequence_of_t_ops;
-    OWNPTR sequence_of_t_owns;
 } seq_extend_OWN_DEFN;
 const OWN_req seq_extend_ownreqs = { sizeof(seq_extend_OWN_DEFN), 1 };
 
@@ -4158,15 +4144,15 @@ seq_extend(CLUREF a, CLUREF b, CLUREF *ret_1)
     ret_1->num = c.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE seq_extend ****/
@@ -4294,15 +4280,15 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
     ret_1->num = s.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE initlist_to_stmtlist ****/
@@ -4346,7 +4332,7 @@ typedef struct {
     } g_commalist_of_elt_OPS;
 
 extern errcode g_envOPputs();
-extern errcode g_commalist_IB_1();
+static errcode g_commalist_IB_1();
 
 typedef struct {
     long g_commalist_own_init;
@@ -4403,14 +4389,14 @@ g_commalist(CLUREF e, CLUREF l, CLUREF eltproc)
         if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
         if (locals.err != ERR_ok) goto ex_0;
         }
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_commalist ****/
@@ -4418,7 +4404,7 @@ g_commalist(CLUREF e, CLUREF l, CLUREF eltproc)
 
 /**** BEGIN ITERATOR BODIES for g_commalist ****/
 
-errcode
+static errcode
 g_commalist_IB_1(CLUREF iv_1, g_commalist_LOCALS_t *locals, errcode *iecode)
 {
     locals->x.num = iv_1.num;
@@ -4450,13 +4436,14 @@ g_commalist_IB_1(CLUREF iv_1, g_commalist_LOCALS_t *locals, errcode *iecode)
     locals->err = locals->eltproc.proc->proc(locals->e, locals->x);
     if (locals->err != ERR_ok) goto ex_0;
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end g_commalist_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for g_commalist ****/
 
@@ -4498,7 +4485,7 @@ typedef struct {
     OWNPTR op_owns;
     } g_next_commalist_of_elt_OPS;
 
-extern errcode g_next_commalist_IB_1();
+static errcode g_next_commalist_IB_1();
 
 typedef struct {
     long g_next_commalist_own_init;
@@ -4550,14 +4537,14 @@ g_next_commalist(CLUREF e, CLUREF l, CLUREF eltproc, CLUREF cont)
         if (locals.err == ERR_iterbodyexit) locals.err = locals.ecode2;
         if (locals.err != ERR_ok) goto ex_0;
         }
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE g_next_commalist ****/
@@ -4565,7 +4552,7 @@ g_next_commalist(CLUREF e, CLUREF l, CLUREF eltproc, CLUREF cont)
 
 /**** BEGIN ITERATOR BODIES for g_next_commalist ****/
 
-errcode
+static errcode
 g_next_commalist_IB_1(CLUREF iv_1, g_next_commalist_LOCALS_t *locals, errcode *iecode)
 {
     locals->x.num = iv_1.num;
@@ -4599,13 +4586,14 @@ g_next_commalist_IB_1(CLUREF iv_1, g_next_commalist_LOCALS_t *locals, errcode *i
     locals->err = locals->eltproc.proc->proc(locals->e, locals->x);
     if (locals->err != ERR_ok) goto ex_0;
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end g_next_commalist_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for g_next_commalist ****/
 
@@ -4646,15 +4634,15 @@ bool_unparse(CLUREF b, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE bool_unparse ****/

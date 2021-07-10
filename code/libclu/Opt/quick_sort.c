@@ -39,9 +39,7 @@ extern const OWN_req quick_sort_ownreqs;
 typedef struct {
     long quick_sort_own_init;
     const quick_sort_of_t_OPS * const t_ops;
-    struct OPS *quick_sort_of_t_table;
     struct OPS *quick_sort_of_t_ops;
-    OWNPTR quick_sort_of_t_owns;
 } quick_sort_OWN_DEFN;
 const OWN_req quick_sort_ownreqs = { sizeof(quick_sort_OWN_DEFN), 1 };
 
@@ -430,14 +428,14 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
     err = quick_sort(a, T_1_1, ohigh, less, equal);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE quick_sort ****/

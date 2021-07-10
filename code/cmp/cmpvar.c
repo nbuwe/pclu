@@ -23,7 +23,6 @@ extern errcode intOPsub();
 extern errcode stringOPrest();
 extern errcode intOPadd();
 extern errcode streamOPclose();
-static CLUREF STR_;
 static CLUREF STR__077_077_077;
 static CLUREF STR_opt;
 static CLUREF STR_dbg;
@@ -57,7 +56,6 @@ cmpvar_own_init_proc(void)
     errcode err;
     enter_own_init_proc();
     if (cmpvar_own_init == 0) {
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons("???", CLU_1, CLUREF_make_num(3), &STR__077_077_077);
         stringOPcons("opt", CLU_1, CLUREF_make_num(3), &STR_opt);
         stringOPcons("dbg", CLU_1, CLUREF_make_num(3), &STR_dbg);
@@ -80,7 +78,7 @@ cmpvar_own_init_proc(void)
             }
             }
         {
-            {cmpvarOPbinary_dir = STR_;
+            {cmpvarOPbinary_dir = CLU_empty_string;
             }
             }
         {
@@ -99,7 +97,7 @@ cmpvar_own_init_proc(void)
             }
             }
         {
-            {cmpvarOPreserved_modules = STR_;
+            {cmpvarOPreserved_modules = CLU_empty_string;
             }
             }
         {
@@ -164,15 +162,15 @@ cmpvarOPlocals(CLUREF *ret_1)
     ret_1->num = cmpvarOPlocal_vars.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE locals ****/
@@ -195,14 +193,14 @@ cmpvarOPset_locals(CLUREF b)
     {
     cmpvarOPlocal_vars.num = b.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_locals ****/
@@ -227,15 +225,15 @@ cmpvarOPforce_(CLUREF *ret_1)
     ret_1->num = cmpvarOPdo_force.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE force_ ****/
@@ -258,14 +256,14 @@ cmpvarOPset_force_(CLUREF b)
     {
     cmpvarOPdo_force.num = b.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_force_ ****/
@@ -290,15 +288,15 @@ cmpvarOPexternals(CLUREF *ret_1)
     ret_1->num = cmpvarOPlist_externals.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE externals ****/
@@ -321,14 +319,14 @@ cmpvarOPset_externals(CLUREF b)
     {
     cmpvarOPlist_externals.num = b.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_externals ****/
@@ -353,15 +351,15 @@ cmpvarOPdir(CLUREF *ret_1)
     ret_1->num = cmpvarOPbinary_dir.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE dir ****/
@@ -384,14 +382,14 @@ cmpvarOPset_dir(CLUREF s)
     {
     cmpvarOPbinary_dir.num = s.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_dir ****/
@@ -416,15 +414,15 @@ cmpvarOPsuffix(CLUREF *ret_1)
     ret_1->num = cmpvarOPbin_suffix.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE suffix ****/
@@ -464,14 +462,14 @@ cmpvarOPset_suffix(CLUREF s)
     {
     cmpvarOPbin_suffix.num = s.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_suffix ****/
@@ -496,15 +494,15 @@ cmpvarOPallow(CLUREF *ret_1)
     ret_1->num = cmpvarOPallow_errors.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE allow ****/
@@ -527,14 +525,14 @@ cmpvarOPset_allow(CLUREF b)
     {
     cmpvarOPallow_errors.num = b.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_allow ****/
@@ -559,15 +557,15 @@ cmpvarOPexpunge(CLUREF *ret_1)
     ret_1->num = cmpvarOPexpunge_specs.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE expunge ****/
@@ -590,14 +588,14 @@ cmpvarOPset_expunge(CLUREF b)
     {
     cmpvarOPexpunge_specs.num = b.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_expunge ****/
@@ -622,15 +620,15 @@ cmpvarOPmodules(CLUREF *ret_1)
     ret_1->num = cmpvarOPreserved_modules.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE modules ****/
@@ -653,14 +651,14 @@ cmpvarOPset_modules(CLUREF s)
     {
     cmpvarOPreserved_modules.num = s.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_modules ****/
@@ -685,15 +683,15 @@ cmpvarOPversion(CLUREF *ret_1)
     ret_1->num = cmpvarOPcompiler_version.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE version ****/
@@ -716,14 +714,14 @@ cmpvarOPset_version(CLUREF s)
     {
     cmpvarOPcompiler_version.num = s.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_version ****/
@@ -748,15 +746,15 @@ cmpvarOPdate(CLUREF *ret_1)
     ret_1->num = cmpvarOPcompiler_save_date.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE date ****/
@@ -779,14 +777,14 @@ cmpvarOPset_date(CLUREF s)
     {
     cmpvarOPcompiler_save_date.num = s.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_date ****/
@@ -811,15 +809,15 @@ cmpvarOPstuffs(CLUREF *ret_1)
     ret_1->num = cmpvarOPcompiler_stuff.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE stuffs ****/
@@ -842,14 +840,14 @@ cmpvarOPset_stuffs(CLUREF s)
     {
     cmpvarOPcompiler_stuff.num = s.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_stuffs ****/
@@ -874,15 +872,15 @@ cmpvarOPsave_c(CLUREF *ret_1)
     ret_1->num = cmpvarOPsave_c_files.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE save_c ****/
@@ -905,14 +903,14 @@ cmpvarOPset_save_c(CLUREF save)
     {
     cmpvarOPsave_c_files.num = save.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_save_c ****/
@@ -937,15 +935,15 @@ cmpvarOPcc_opt_cmd(CLUREF *ret_1)
     ret_1->num = cmpvarOPcc_opt_cmd_string.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE cc_opt_cmd ****/
@@ -970,15 +968,15 @@ cmpvarOPcc_dbg_cmd(CLUREF *ret_1)
     ret_1->num = cmpvarOPcc_dbg_cmd_string.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE cc_dbg_cmd ****/
@@ -1014,14 +1012,14 @@ cmpvarOPset_cc_opt_cmd(CLUREF cmd)
         cmpvarOPcc_opt_cmd_string.num = cmd.num;
         }
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_cc_opt_cmd ****/
@@ -1057,14 +1055,14 @@ cmpvarOPset_cc_dbg_cmd(CLUREF cmd)
         cmpvarOPcc_dbg_cmd_string.num = cmd.num;
         }
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_cc_dbg_cmd ****/
@@ -1106,7 +1104,7 @@ cmpvarOPinit_base_cmd(CLUREF ty, CLUREF *ret_1)
             if (err != ERR_ok) goto ex_1;
             err = stringOPconcat(STR_cc, ty, &T_3_3);
             if (err != ERR_ok) goto ex_1;
-            err = file_nameOPcreate(T_3_2, T_3_3, STR_cmd, STR_, &T_3_4);
+            err = file_nameOPcreate(T_3_2, T_3_3, STR_cmd, CLU_empty_string, &T_3_4);
             if (err != ERR_ok) goto ex_1;
             fn.num = T_3_4.num;
             }
@@ -1201,20 +1199,20 @@ cmpvarOPinit_base_cmd(CLUREF ty, CLUREF *ret_1)
   LINE(169);
                 {
                 {
-                ret_1->str = STR_.str;
+                ret_1->str = CLU_empty_string.str;
                 }
                 {signal (ERR_ok);}}
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE init_base_cmd ****/
@@ -1226,36 +1224,36 @@ typedef struct{
     struct OP_ENTRY entry[28];
 } cmpvar_OPS;
 
-CLU_proc cmpvar_oe_allow = { .proc = cmpvarOPallow };
-CLU_proc cmpvar_oe_cc_dbg_cmd = { .proc = cmpvarOPcc_dbg_cmd };
-CLU_proc cmpvar_oe_cc_opt_cmd = { .proc = cmpvarOPcc_opt_cmd };
-CLU_proc cmpvar_oe_date = { .proc = cmpvarOPdate };
-CLU_proc cmpvar_oe_dir = { .proc = cmpvarOPdir };
-CLU_proc cmpvar_oe_expunge = { .proc = cmpvarOPexpunge };
-CLU_proc cmpvar_oe_externals = { .proc = cmpvarOPexternals };
-CLU_proc cmpvar_oe_force_ = { .proc = cmpvarOPforce_ };
-CLU_proc cmpvar_oe_locals = { .proc = cmpvarOPlocals };
-CLU_proc cmpvar_oe_modules = { .proc = cmpvarOPmodules };
-CLU_proc cmpvar_oe_save_c = { .proc = cmpvarOPsave_c };
-CLU_proc cmpvar_oe_set_allow = { .proc = cmpvarOPset_allow };
-CLU_proc cmpvar_oe_set_cc_dbg_cmd = { .proc = cmpvarOPset_cc_dbg_cmd };
-CLU_proc cmpvar_oe_set_cc_opt_cmd = { .proc = cmpvarOPset_cc_opt_cmd };
-CLU_proc cmpvar_oe_set_date = { .proc = cmpvarOPset_date };
-CLU_proc cmpvar_oe_set_dir = { .proc = cmpvarOPset_dir };
-CLU_proc cmpvar_oe_set_expunge = { .proc = cmpvarOPset_expunge };
-CLU_proc cmpvar_oe_set_externals = { .proc = cmpvarOPset_externals };
-CLU_proc cmpvar_oe_set_force_ = { .proc = cmpvarOPset_force_ };
-CLU_proc cmpvar_oe_set_locals = { .proc = cmpvarOPset_locals };
-CLU_proc cmpvar_oe_set_modules = { .proc = cmpvarOPset_modules };
-CLU_proc cmpvar_oe_set_save_c = { .proc = cmpvarOPset_save_c };
-CLU_proc cmpvar_oe_set_stuffs = { .proc = cmpvarOPset_stuffs };
-CLU_proc cmpvar_oe_set_suffix = { .proc = cmpvarOPset_suffix };
-CLU_proc cmpvar_oe_set_version = { .proc = cmpvarOPset_version };
-CLU_proc cmpvar_oe_stuffs = { .proc = cmpvarOPstuffs };
-CLU_proc cmpvar_oe_suffix = { .proc = cmpvarOPsuffix };
-CLU_proc cmpvar_oe_version = { .proc = cmpvarOPversion };
+static CLU_proc cmpvar_oe_allow = { .proc = cmpvarOPallow };
+static CLU_proc cmpvar_oe_cc_dbg_cmd = { .proc = cmpvarOPcc_dbg_cmd };
+static CLU_proc cmpvar_oe_cc_opt_cmd = { .proc = cmpvarOPcc_opt_cmd };
+static CLU_proc cmpvar_oe_date = { .proc = cmpvarOPdate };
+static CLU_proc cmpvar_oe_dir = { .proc = cmpvarOPdir };
+static CLU_proc cmpvar_oe_expunge = { .proc = cmpvarOPexpunge };
+static CLU_proc cmpvar_oe_externals = { .proc = cmpvarOPexternals };
+static CLU_proc cmpvar_oe_force_ = { .proc = cmpvarOPforce_ };
+static CLU_proc cmpvar_oe_locals = { .proc = cmpvarOPlocals };
+static CLU_proc cmpvar_oe_modules = { .proc = cmpvarOPmodules };
+static CLU_proc cmpvar_oe_save_c = { .proc = cmpvarOPsave_c };
+static CLU_proc cmpvar_oe_set_allow = { .proc = cmpvarOPset_allow };
+static CLU_proc cmpvar_oe_set_cc_dbg_cmd = { .proc = cmpvarOPset_cc_dbg_cmd };
+static CLU_proc cmpvar_oe_set_cc_opt_cmd = { .proc = cmpvarOPset_cc_opt_cmd };
+static CLU_proc cmpvar_oe_set_date = { .proc = cmpvarOPset_date };
+static CLU_proc cmpvar_oe_set_dir = { .proc = cmpvarOPset_dir };
+static CLU_proc cmpvar_oe_set_expunge = { .proc = cmpvarOPset_expunge };
+static CLU_proc cmpvar_oe_set_externals = { .proc = cmpvarOPset_externals };
+static CLU_proc cmpvar_oe_set_force_ = { .proc = cmpvarOPset_force_ };
+static CLU_proc cmpvar_oe_set_locals = { .proc = cmpvarOPset_locals };
+static CLU_proc cmpvar_oe_set_modules = { .proc = cmpvarOPset_modules };
+static CLU_proc cmpvar_oe_set_save_c = { .proc = cmpvarOPset_save_c };
+static CLU_proc cmpvar_oe_set_stuffs = { .proc = cmpvarOPset_stuffs };
+static CLU_proc cmpvar_oe_set_suffix = { .proc = cmpvarOPset_suffix };
+static CLU_proc cmpvar_oe_set_version = { .proc = cmpvarOPset_version };
+static CLU_proc cmpvar_oe_stuffs = { .proc = cmpvarOPstuffs };
+static CLU_proc cmpvar_oe_suffix = { .proc = cmpvarOPsuffix };
+static CLU_proc cmpvar_oe_version = { .proc = cmpvarOPversion };
 
-cmpvar_OPS cmpvar_ops_actual = {28, (OWNPTR)&cmpvar_own_init, (OWNPTR)&cmpvar_own_init, {
+static cmpvar_OPS cmpvar_ops_actual = {28, (OWNPTR)&cmpvar_own_init, (OWNPTR)&cmpvar_own_init, {
     {&cmpvar_oe_allow, "allow"},
     {&cmpvar_oe_cc_dbg_cmd, "cc_dbg_cmd"},
     {&cmpvar_oe_cc_opt_cmd, "cc_opt_cmd"},

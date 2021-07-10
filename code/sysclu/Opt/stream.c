@@ -192,7 +192,6 @@ static CLUREF STR_cannot_040read_040from_040this_040stream;
 static CLUREF STR_null;
 static CLUREF STR_tty;
 static CLUREF STR_modify;
-static CLUREF STR_;
 static CLUREF STR__072co_043;
 static CLUREF STR__072li_043;
 static CLUREF STR__072hc_072;
@@ -243,7 +242,6 @@ stream_own_init_proc(void)
         stringOPcons("null", CLU_1, CLUREF_make_num(4), &STR_null);
         stringOPcons("tty", CLU_1, CLUREF_make_num(3), &STR_tty);
         stringOPcons("modify", CLU_1, CLUREF_make_num(6), &STR_modify);
-        stringOPcons("", CLU_1, CLUREF_make_num(0), &STR_);
         stringOPcons(":co#", CLU_1, CLUREF_make_num(4), &STR__072co_043);
         stringOPcons(":li#", CLU_1, CLUREF_make_num(4), &STR__072li_043);
         stringOPcons(":hc:", CLU_1, CLUREF_make_num(4), &STR__072hc_072);
@@ -644,13 +642,13 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
             T_2_1.vec->data[7] = false;
             T_2_1.vec->data[8] = true;
             T_2_1.vec->data[13] = 1;
-            T_2_1.vec->data[17] = STR_.num;
+            T_2_1.vec->data[17] = CLU_empty_string.num;
             T_2_1.vec->data[6] = false;
             T_2_1.vec->data[14] = 0;
             T_2_1.vec->data[16] = 0;
-            T_2_1.vec->data[0] = STR_.num;
-            T_2_1.vec->data[12] = STR_.num;
-            T_2_1.vec->data[3] = STR_.num;
+            T_2_1.vec->data[0] = CLU_empty_string.num;
+            T_2_1.vec->data[12] = CLU_empty_string.num;
+            T_2_1.vec->data[3] = CLU_empty_string.num;
             tb.num = T_2_1.num;
             }
             }
@@ -671,7 +669,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
 
   LINE(148);
             {
-            err = streamOPtermcap(tb, STR_);
+            err = streamOPtermcap(tb, CLU_empty_string);
             if (err != ERR_ok) goto ex_0;
             }
             }
@@ -749,15 +747,15 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
     ret_1->num = st.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE open ****/
@@ -794,15 +792,15 @@ streamOPopen_streams(CLUREF *ret_1)
     ret_1->num = streamOPopen_streamsOPlist.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE open_streams ****/
@@ -842,15 +840,15 @@ streamOPprimary_input(CLUREF *ret_1)
     ret_1->num = streamOPprimary_inputOPpri.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE primary_input ****/
@@ -890,15 +888,15 @@ streamOPprimary_output(CLUREF *ret_1)
     ret_1->num = streamOPprimary_outputOPpro.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE primary_output ****/
@@ -1008,15 +1006,15 @@ streamOPerror_output(CLUREF *ret_1)
     ret_1->num = streamOPerror_outputOPero.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE error_output ****/
@@ -1125,13 +1123,13 @@ streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
             T_2_1.vec->data[7] = false;
             T_2_1.vec->data[8] = true;
             T_2_1.vec->data[13] = 1;
-            T_2_1.vec->data[17] = STR_.num;
+            T_2_1.vec->data[17] = CLU_empty_string.num;
             T_2_1.vec->data[6] = false;
             T_2_1.vec->data[14] = 0;
             T_2_1.vec->data[16] = 0;
-            T_2_1.vec->data[0] = STR_.num;
-            T_2_1.vec->data[12] = STR_.num;
-            T_2_1.vec->data[3] = STR_.num;
+            T_2_1.vec->data[0] = CLU_empty_string.num;
+            T_2_1.vec->data[12] = CLU_empty_string.num;
+            T_2_1.vec->data[3] = CLU_empty_string.num;
             tb.num = T_2_1.num;
             }
             }
@@ -1179,7 +1177,7 @@ streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
 
   LINE(238);
         {
-        err = streamOPtermcap(tb, STR_);
+        err = streamOPtermcap(tb, CLU_empty_string);
         if (err != ERR_ok) goto ex_0;
         }
 
@@ -1305,15 +1303,15 @@ streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
     ret_2->num = streamOPget_primsOPpro.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_prims ****/
@@ -1639,14 +1637,14 @@ streamOPtermcap(CLUREF b, CLUREF term)
         b.vec->data[6] = true;
         }
         }}/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE termcap ****/
@@ -1654,8 +1652,8 @@ streamOPtermcap(CLUREF b, CLUREF term)
 
 /**** BEGIN PROCEDURE add_script ****/
 
-extern errcode streamOPadd_script_IB_1();
-extern errcode streamOPadd_script_IB_2();
+static errcode streamOPadd_script_IB_1();
+static errcode streamOPadd_script_IB_2();
 typedef struct {
     errcode ecode2;
     errcode err;
@@ -1734,14 +1732,14 @@ streamOPadd_script(CLUREF st1, CLUREF st2)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE add_script ****/
@@ -1749,7 +1747,7 @@ streamOPadd_script(CLUREF st1, CLUREF st2)
 
 /**** BEGIN ITERATOR BODIES for add_script ****/
 
-errcode
+static errcode
 streamOPadd_script_IB_1(CLUREF iv_1, streamOPadd_script_LOCALS_t *locals, errcode *iecode)
 {
     locals->scr.num = iv_1.num;
@@ -1768,15 +1766,16 @@ streamOPadd_script_IB_1(CLUREF iv_1, streamOPadd_script_LOCALS_t *locals, errcod
         }
         }
         }/* end if */
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end streamOPadd_script_IB_1 */
 
-errcode
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
+
+static errcode
 streamOPadd_script_IB_2(CLUREF iv_1, streamOPadd_script_LOCALS_t *locals, errcode *iecode)
 {
     locals->scr.num = iv_1.num;
@@ -1795,20 +1794,21 @@ streamOPadd_script_IB_2(CLUREF iv_1, streamOPadd_script_LOCALS_t *locals, errcod
         }
         }
         }/* end if */
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end streamOPadd_script_IB_2 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for add_script ****/
 
 
 /**** BEGIN ITERATOR all_scripts ****/
 
-extern errcode streamOPall_scripts_IB_1();
+static errcode streamOPall_scripts_IB_1();
 typedef struct {
     void *user_locals;
     errcode (*proc)();
@@ -1886,14 +1886,14 @@ streamOPall_scripts(CLUREF st, errcode (*proc)(), void *user_locals, errcode *ie
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END ITERATOR all_scripts ****/
@@ -1901,7 +1901,7 @@ streamOPall_scripts(CLUREF st, errcode (*proc)(), void *user_locals, errcode *ie
 
 /**** BEGIN ITERATOR BODIES for all_scripts ****/
 
-errcode
+static errcode
 streamOPall_scripts_IB_1(CLUREF iv_1, streamOPall_scripts_LOCALS_t *locals, errcode *iecode)
 {
     locals->scr2.num = iv_1.num;
@@ -1917,14 +1917,15 @@ streamOPall_scripts_IB_1(CLUREF iv_1, streamOPall_scripts_LOCALS_t *locals, errc
     signal(locals->err);
     }
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            locals->body_ctrl_req = true;
-            {signal(ERR_iteriterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end streamOPall_scripts_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    locals->body_ctrl_req = true;
+    signal(ERR_iteriterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for all_scripts ****/
 
@@ -1971,14 +1972,14 @@ streamOPscripts(CLUREF st, errcode (*proc)(), void *user_locals, errcode *iecode
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END ITERATOR scripts ****/
@@ -2075,14 +2076,14 @@ streamOPrem_script(CLUREF st1, CLUREF st2)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE rem_script ****/
@@ -2113,14 +2114,14 @@ streamOPunscript(CLUREF st)
     {
     st.vec->data[2] = false;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE unscript ****/
@@ -2168,15 +2169,15 @@ streamOPcan_read(CLUREF st, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE can_read ****/
@@ -2224,15 +2225,15 @@ streamOPcan_write(CLUREF st, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE can_write ****/
@@ -2520,15 +2521,15 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
     ret_1->num = c.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE getc ****/
@@ -2810,15 +2811,15 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
     ret_1->num = c.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE getc_image ****/
@@ -3101,15 +3102,15 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE peekc ****/
@@ -3201,15 +3202,15 @@ streamOPpending(CLUREF st, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE pending ****/
@@ -3397,15 +3398,15 @@ streamOPempty(CLUREF st, CLUREF *ret_1)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE empty ****/
@@ -3559,14 +3560,14 @@ streamOPputc(CLUREF st, CLUREF c)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE putc ****/
@@ -3720,14 +3721,14 @@ streamOPputc_image(CLUREF st, CLUREF c)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE putc_image ****/
@@ -3812,15 +3813,15 @@ streamOPget_lineno(CLUREF st, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_lineno ****/
@@ -3838,14 +3839,14 @@ streamOPset_lineno(CLUREF st, CLUREF ln)
         if (err != ERR_ok) goto ex_0;
     }
     enter_proc(577);
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_lineno ****/
@@ -4100,14 +4101,14 @@ streamOPreset(CLUREF st)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE reset ****/
@@ -4255,14 +4256,14 @@ streamOPflush(CLUREF st)
         end_2:;
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE flush ****/
@@ -4320,15 +4321,15 @@ streamOPget_line_length(CLUREF st, CLUREF *ret_1)
   LINE(642);
     {
     {signal (ERR_no_limit);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_line_length ****/
@@ -4386,15 +4387,15 @@ streamOPget_page_length(CLUREF st, CLUREF *ret_1)
   LINE(652);
     {
     {signal (ERR_no_limit);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_page_length ****/
@@ -4475,15 +4476,15 @@ streamOPget_date(CLUREF st, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_date ****/
@@ -4510,14 +4511,14 @@ streamOPset_date(CLUREF st, CLUREF ndate)
     {
     elist[0] = STR_cannot_040set_040date;
     {signal (ERR_not_possible);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_date ****/
@@ -4568,15 +4569,15 @@ streamOPget_name(CLUREF st, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_name ****/
@@ -4807,14 +4808,14 @@ streamOPclose(CLUREF st)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE close ****/
@@ -5028,14 +5029,14 @@ streamOPabort(CLUREF st)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE abort ****/
@@ -5064,15 +5065,15 @@ streamOPis_closed(CLUREF st, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE is_closed ****/
@@ -5101,15 +5102,15 @@ streamOPis_terminal(CLUREF st, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE is_terminal ****/
@@ -5374,15 +5375,15 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
     ret_1->num = line.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE getl ****/
@@ -5424,14 +5425,14 @@ streamOPputl(CLUREF st, CLUREF line)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE putl ****/
@@ -5682,15 +5683,15 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
     ret_1->num = s.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE gets ****/
@@ -5892,15 +5893,15 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
     ret_1->num = s.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE gets_image ****/
@@ -6084,15 +6085,15 @@ streamOPtty_get1(CLUREF tb, CLUREF image, CLUREF *ret_1)
   LINE(882);
     {
     {signal (ERR_end_of_file);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE tty_get1 ****/
@@ -6290,15 +6291,15 @@ streamOPtty_get(CLUREF tb, CLUREF term, CLUREF image, CLUREF *ret_1)
     ret_1->num = s.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE tty_get ****/
@@ -6466,7 +6467,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
   LINE(935);
             {
             {
-            ret_1->str = STR_.str;
+            ret_1->str = CLU_empty_string.str;
             }
             {signal (ERR_ok);}}
             }
@@ -6564,15 +6565,15 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
     ret_1->num = s.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE str_get ****/
@@ -6580,7 +6581,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE puts ****/
 
-extern errcode streamOPputs_IB_1();
+static errcode streamOPputs_IB_1();
 static int streamOPputs_own_init = 0;
 typedef struct {
     errcode ecode2;
@@ -6735,14 +6736,14 @@ streamOPputs(CLUREF st, CLUREF s)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE puts ****/
@@ -6750,7 +6751,7 @@ streamOPputs(CLUREF st, CLUREF s)
 
 /**** BEGIN ITERATOR BODIES for puts ****/
 
-errcode
+static errcode
 streamOPputs_IB_1(CLUREF iv_1, streamOPputs_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
@@ -6767,20 +6768,21 @@ streamOPputs_IB_1(CLUREF iv_1, streamOPputs_LOCALS_t *locals, errcode *iecode)
         if (locals->err != ERR_ok) goto ex_0;}
     }
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end streamOPputs_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for puts ****/
 
 
 /**** BEGIN PROCEDURE puts_image ****/
 
-extern errcode streamOPputs_image_IB_1();
+static errcode streamOPputs_image_IB_1();
 static int streamOPputs_image_own_init = 0;
 typedef struct {
     errcode ecode2;
@@ -6927,14 +6929,14 @@ streamOPputs_image(CLUREF st, CLUREF s)
         }
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE puts_image ****/
@@ -6942,7 +6944,7 @@ streamOPputs_image(CLUREF st, CLUREF s)
 
 /**** BEGIN ITERATOR BODIES for puts_image ****/
 
-errcode
+static errcode
 streamOPputs_image_IB_1(CLUREF iv_1, streamOPputs_image_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
@@ -6959,13 +6961,14 @@ streamOPputs_image_IB_1(CLUREF iv_1, streamOPputs_image_LOCALS_t *locals, errcod
         if (locals->err != ERR_ok) goto ex_0;}
     }
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end streamOPputs_image_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for puts_image ****/
 
@@ -7060,14 +7063,14 @@ streamOPtty_put1(CLUREF tb, CLUREF c)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE tty_put1 ****/
@@ -7199,14 +7202,14 @@ streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
     {
     tb.vec->data[4] = disp.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE tty_put ****/
@@ -7214,7 +7217,7 @@ streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
 
 /**** BEGIN PROCEDURE putzero ****/
 
-extern errcode streamOPputzero_IB_1();
+static errcode streamOPputzero_IB_1();
 typedef struct {
     errcode ecode2;
     errcode err;
@@ -7328,14 +7331,14 @@ streamOPputzero(CLUREF st, CLUREF s, CLUREF size)
         end_2:;
         }
         }/* end if */
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE putzero ****/
@@ -7343,7 +7346,7 @@ streamOPputzero(CLUREF st, CLUREF s, CLUREF size)
 
 /**** BEGIN ITERATOR BODIES for putzero ****/
 
-errcode
+static errcode
 streamOPputzero_IB_1(CLUREF iv_1, streamOPputzero_LOCALS_t *locals, errcode *iecode)
 {
     locals->c.num = iv_1.num;
@@ -7421,13 +7424,14 @@ streamOPputzero_IB_1(CLUREF iv_1, streamOPputzero_LOCALS_t *locals, errcode *iec
     locals->err = streamOPputc(locals->st, locals->c);
     if (locals->err != ERR_ok) goto ex_0;
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end streamOPputzero_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for putzero ****/
 
@@ -7502,14 +7506,14 @@ streamOPputleft(CLUREF st, CLUREF s, CLUREF size)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE putleft ****/
@@ -7585,14 +7589,14 @@ streamOPputright(CLUREF st, CLUREF s, CLUREF size)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE putright ****/
@@ -7655,14 +7659,14 @@ streamOPputspace(CLUREF st, CLUREF len)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE putspace ****/
@@ -7736,7 +7740,7 @@ streamOPcreate_input(CLUREF s, CLUREF *ret_1)
     CLUREF T_1_4;
     CLUREF T_1_5;
     RecordAlloc(4, T_1_1);
-    err = file_nameOPparse(STR_, &T_1_2);
+    err = file_nameOPparse(CLU_empty_string, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_1.vec->data[1] = T_1_2.num;
     err = sequenceOPnew(&T_1_3);
@@ -7753,15 +7757,15 @@ streamOPcreate_input(CLUREF s, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE create_input ****/
@@ -7793,7 +7797,7 @@ streamOPcreate_output(CLUREF *ret_1)
     CLUREF T_1_4;
     CLUREF T_1_5;
     RecordAlloc(4, T_1_1);
-    err = file_nameOPparse(STR_, &T_1_2);
+    err = file_nameOPparse(CLU_empty_string, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     T_1_1.vec->data[1] = T_1_2.num;
     err = sequenceOPnew(&T_1_3);
@@ -7807,15 +7811,15 @@ streamOPcreate_output(CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE create_output ****/
@@ -7869,15 +7873,15 @@ streamOPget_contents(CLUREF st, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_contents ****/
@@ -8111,15 +8115,15 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
     ret_1->num = s.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE getbuf ****/
@@ -8188,15 +8192,15 @@ streamOPlines(CLUREF s, CLUREF i, CLUREF *ret_1)
     ret_1->num = cnt.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE lines ****/
@@ -8257,14 +8261,14 @@ streamOPscript(CLUREF st, CLUREF s, CLUREF image)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE script ****/
@@ -8905,7 +8909,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
 
   LINE(1262);
     {
-        {s = STR_;
+        {s = CLU_empty_string;
         }
         }
 
@@ -9108,15 +9112,15 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
     ret_1->num = s.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE edit ****/
@@ -9302,14 +9306,14 @@ streamOPecho(CLUREF ch, CLUREF c)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE echo ****/
@@ -9567,15 +9571,15 @@ streamOPrubout(CLUREF tb, CLUREF *ret_1)
     ret_1->num = 0;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE rubout ****/
@@ -10013,15 +10017,15 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
     ret_1->num = redisp.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE erase ****/
@@ -10173,15 +10177,15 @@ streamOPcalc_pos(CLUREF tb, CLUREF *ret_1)
     ret_1->num = pos.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE calc_pos ****/
@@ -10264,15 +10268,15 @@ streamOPdisplay(CLUREF st, CLUREF s, CLUREF *ret_1)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE display ****/
@@ -10313,17 +10317,17 @@ streamOPmodify_display(CLUREF st, CLUREF term)
 
   LINE(1420);
             {
-            tb.vec->data[0] = STR_.num;
+            tb.vec->data[0] = CLU_empty_string.num;
             }
 
   LINE(1421);
             {
-            tb.vec->data[12] = STR_.num;
+            tb.vec->data[12] = CLU_empty_string.num;
             }
 
   LINE(1422);
             {
-            tb.vec->data[3] = STR_.num;
+            tb.vec->data[3] = CLU_empty_string.num;
             }
 
   LINE(1423);
@@ -10342,14 +10346,14 @@ streamOPmodify_display(CLUREF st, CLUREF term)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE modify_display ****/
@@ -10571,15 +10575,15 @@ streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
     ret_1->tf = true;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE ttydsp ****/
@@ -10628,21 +10632,21 @@ streamOPget_prompt(CLUREF st, CLUREF *ret_1)
   LINE(1462);
         {
         {
-        ret_1->str = STR_.str;
+        ret_1->str = CLU_empty_string.str;
         }
         {signal (ERR_ok);}}
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_prompt ****/
@@ -10682,14 +10686,14 @@ streamOPset_prompt(CLUREF st, CLUREF prompt)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_prompt ****/
@@ -10764,21 +10768,21 @@ streamOPget_rescan(CLUREF st, CLUREF *ret_1)
   LINE(1482);
         {
         {
-        ret_1->str = STR_.str;
+        ret_1->str = CLU_empty_string.str;
         }
         {signal (ERR_ok);}}
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_rescan ****/
@@ -10856,14 +10860,14 @@ streamOPset_rescan(CLUREF st, CLUREF s)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_rescan ****/
@@ -10931,15 +10935,15 @@ streamOPget_input_buffered(CLUREF st, CLUREF *ret_1)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_input_buffered ****/
@@ -11011,14 +11015,14 @@ streamOPset_input_buffered(CLUREF st, CLUREF flag)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_input_buffered ****/
@@ -11101,15 +11105,15 @@ streamOPget_output_buffered(CLUREF st, CLUREF *ret_1)
             }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_output_buffered ****/
@@ -11232,14 +11236,14 @@ streamOPset_output_buffered(CLUREF st, CLUREF flag)
         else {
             goto ex_0;}
     end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_output_buffered ****/
@@ -11303,15 +11307,15 @@ streamOPget_eof_flag(CLUREF st, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_eof_flag ****/
@@ -11385,14 +11389,14 @@ streamOPset_eof_flag(CLUREF st, CLUREF eofok)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_eof_flag ****/
@@ -11419,15 +11423,15 @@ streamOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE equal ****/
@@ -11454,15 +11458,15 @@ streamOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE similar ****/
@@ -11487,15 +11491,15 @@ streamOPcopy(CLUREF x, CLUREF *ret_1)
     ret_1->num = x.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE copy ****/
@@ -11620,14 +11624,14 @@ streamOPprint(CLUREF x, CLUREF ps)
     err = pstreamOPtextc(ps, T_1_1, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE print ****/
@@ -11712,15 +11716,15 @@ streamOPget_chan(CLUREF st, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_chan ****/
@@ -11781,14 +11785,14 @@ streamOP_open_streams(errcode (*proc)(), void *user_locals, errcode *iecode)
                 goto ex_0;
             }
         end_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END ITERATOR _open_streams ****/
@@ -11955,14 +11959,14 @@ streamOP_close_all()
                 goto ex_0;
             }
         end_2:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE _close_all ****/
@@ -11974,70 +11978,70 @@ typedef struct{
     struct OP_ENTRY entry[62];
 } stream_OPS;
 
-CLU_proc stream_oe__close_all = { .proc = streamOP_close_all };
-CLU_proc stream_oe__open_streams = { .proc = streamOP_open_streams };
-CLU_proc stream_oe_abort = { .proc = streamOPabort };
-CLU_proc stream_oe_add_script = { .proc = streamOPadd_script };
-CLU_proc stream_oe_can_read = { .proc = streamOPcan_read };
-CLU_proc stream_oe_can_write = { .proc = streamOPcan_write };
-CLU_proc stream_oe_close = { .proc = streamOPclose };
-CLU_proc stream_oe_copy = { .proc = streamOPcopy };
-CLU_proc stream_oe_create_input = { .proc = streamOPcreate_input };
-CLU_proc stream_oe_create_output = { .proc = streamOPcreate_output };
-CLU_proc stream_oe_display = { .proc = streamOPdisplay };
-CLU_proc stream_oe_empty = { .proc = streamOPempty };
-CLU_proc stream_oe_equal = { .proc = streamOPequal };
-CLU_proc stream_oe_error_output = { .proc = streamOPerror_output };
-CLU_proc stream_oe_flush = { .proc = streamOPflush };
-CLU_proc stream_oe_get_contents = { .proc = streamOPget_contents };
-CLU_proc stream_oe_get_date = { .proc = streamOPget_date };
-CLU_proc stream_oe_get_eof_flag = { .proc = streamOPget_eof_flag };
-CLU_proc stream_oe_get_input_buffered = { .proc = streamOPget_input_buffered };
-CLU_proc stream_oe_get_line_length = { .proc = streamOPget_line_length };
-CLU_proc stream_oe_get_lineno = { .proc = streamOPget_lineno };
-CLU_proc stream_oe_get_name = { .proc = streamOPget_name };
-CLU_proc stream_oe_get_output_buffered = { .proc = streamOPget_output_buffered };
-CLU_proc stream_oe_get_page_length = { .proc = streamOPget_page_length };
-CLU_proc stream_oe_get_prompt = { .proc = streamOPget_prompt };
-CLU_proc stream_oe_get_rescan = { .proc = streamOPget_rescan };
-CLU_proc stream_oe_getbuf = { .proc = streamOPgetbuf };
-CLU_proc stream_oe_getc = { .proc = streamOPgetc };
-CLU_proc stream_oe_getc_image = { .proc = streamOPgetc_image };
-CLU_proc stream_oe_getl = { .proc = streamOPgetl };
-CLU_proc stream_oe_gets = { .proc = streamOPgets };
-CLU_proc stream_oe_gets_image = { .proc = streamOPgets_image };
-CLU_proc stream_oe_is_closed = { .proc = streamOPis_closed };
-CLU_proc stream_oe_is_terminal = { .proc = streamOPis_terminal };
-CLU_proc stream_oe_modify_display = { .proc = streamOPmodify_display };
-CLU_proc stream_oe_open = { .proc = streamOPopen };
-CLU_proc stream_oe_peekc = { .proc = streamOPpeekc };
-CLU_proc stream_oe_pending = { .proc = streamOPpending };
-CLU_proc stream_oe_primary_input = { .proc = streamOPprimary_input };
-CLU_proc stream_oe_primary_output = { .proc = streamOPprimary_output };
-CLU_proc stream_oe_print = { .proc = streamOPprint };
-CLU_proc stream_oe_putc = { .proc = streamOPputc };
-CLU_proc stream_oe_putc_image = { .proc = streamOPputc_image };
-CLU_proc stream_oe_putl = { .proc = streamOPputl };
-CLU_proc stream_oe_putleft = { .proc = streamOPputleft };
-CLU_proc stream_oe_putright = { .proc = streamOPputright };
-CLU_proc stream_oe_puts = { .proc = streamOPputs };
-CLU_proc stream_oe_puts_image = { .proc = streamOPputs_image };
-CLU_proc stream_oe_putspace = { .proc = streamOPputspace };
-CLU_proc stream_oe_putzero = { .proc = streamOPputzero };
-CLU_proc stream_oe_rem_script = { .proc = streamOPrem_script };
-CLU_proc stream_oe_reset = { .proc = streamOPreset };
-CLU_proc stream_oe_scripts = { .proc = streamOPscripts };
-CLU_proc stream_oe_set_date = { .proc = streamOPset_date };
-CLU_proc stream_oe_set_eof_flag = { .proc = streamOPset_eof_flag };
-CLU_proc stream_oe_set_input_buffered = { .proc = streamOPset_input_buffered };
-CLU_proc stream_oe_set_lineno = { .proc = streamOPset_lineno };
-CLU_proc stream_oe_set_output_buffered = { .proc = streamOPset_output_buffered };
-CLU_proc stream_oe_set_prompt = { .proc = streamOPset_prompt };
-CLU_proc stream_oe_set_rescan = { .proc = streamOPset_rescan };
-CLU_proc stream_oe_similar = { .proc = streamOPsimilar };
-CLU_proc stream_oe_unscript = { .proc = streamOPunscript };
+static CLU_proc stream_oe__close_all = { .proc = streamOP_close_all };
+static CLU_proc stream_oe__open_streams = { .proc = streamOP_open_streams };
+static CLU_proc stream_oe_abort = { .proc = streamOPabort };
+static CLU_proc stream_oe_add_script = { .proc = streamOPadd_script };
+static CLU_proc stream_oe_can_read = { .proc = streamOPcan_read };
+static CLU_proc stream_oe_can_write = { .proc = streamOPcan_write };
+static CLU_proc stream_oe_close = { .proc = streamOPclose };
+static CLU_proc stream_oe_copy = { .proc = streamOPcopy };
+static CLU_proc stream_oe_create_input = { .proc = streamOPcreate_input };
+static CLU_proc stream_oe_create_output = { .proc = streamOPcreate_output };
+static CLU_proc stream_oe_display = { .proc = streamOPdisplay };
+static CLU_proc stream_oe_empty = { .proc = streamOPempty };
+static CLU_proc stream_oe_equal = { .proc = streamOPequal };
+static CLU_proc stream_oe_error_output = { .proc = streamOPerror_output };
+static CLU_proc stream_oe_flush = { .proc = streamOPflush };
+static CLU_proc stream_oe_get_contents = { .proc = streamOPget_contents };
+static CLU_proc stream_oe_get_date = { .proc = streamOPget_date };
+static CLU_proc stream_oe_get_eof_flag = { .proc = streamOPget_eof_flag };
+static CLU_proc stream_oe_get_input_buffered = { .proc = streamOPget_input_buffered };
+static CLU_proc stream_oe_get_line_length = { .proc = streamOPget_line_length };
+static CLU_proc stream_oe_get_lineno = { .proc = streamOPget_lineno };
+static CLU_proc stream_oe_get_name = { .proc = streamOPget_name };
+static CLU_proc stream_oe_get_output_buffered = { .proc = streamOPget_output_buffered };
+static CLU_proc stream_oe_get_page_length = { .proc = streamOPget_page_length };
+static CLU_proc stream_oe_get_prompt = { .proc = streamOPget_prompt };
+static CLU_proc stream_oe_get_rescan = { .proc = streamOPget_rescan };
+static CLU_proc stream_oe_getbuf = { .proc = streamOPgetbuf };
+static CLU_proc stream_oe_getc = { .proc = streamOPgetc };
+static CLU_proc stream_oe_getc_image = { .proc = streamOPgetc_image };
+static CLU_proc stream_oe_getl = { .proc = streamOPgetl };
+static CLU_proc stream_oe_gets = { .proc = streamOPgets };
+static CLU_proc stream_oe_gets_image = { .proc = streamOPgets_image };
+static CLU_proc stream_oe_is_closed = { .proc = streamOPis_closed };
+static CLU_proc stream_oe_is_terminal = { .proc = streamOPis_terminal };
+static CLU_proc stream_oe_modify_display = { .proc = streamOPmodify_display };
+static CLU_proc stream_oe_open = { .proc = streamOPopen };
+static CLU_proc stream_oe_peekc = { .proc = streamOPpeekc };
+static CLU_proc stream_oe_pending = { .proc = streamOPpending };
+static CLU_proc stream_oe_primary_input = { .proc = streamOPprimary_input };
+static CLU_proc stream_oe_primary_output = { .proc = streamOPprimary_output };
+static CLU_proc stream_oe_print = { .proc = streamOPprint };
+static CLU_proc stream_oe_putc = { .proc = streamOPputc };
+static CLU_proc stream_oe_putc_image = { .proc = streamOPputc_image };
+static CLU_proc stream_oe_putl = { .proc = streamOPputl };
+static CLU_proc stream_oe_putleft = { .proc = streamOPputleft };
+static CLU_proc stream_oe_putright = { .proc = streamOPputright };
+static CLU_proc stream_oe_puts = { .proc = streamOPputs };
+static CLU_proc stream_oe_puts_image = { .proc = streamOPputs_image };
+static CLU_proc stream_oe_putspace = { .proc = streamOPputspace };
+static CLU_proc stream_oe_putzero = { .proc = streamOPputzero };
+static CLU_proc stream_oe_rem_script = { .proc = streamOPrem_script };
+static CLU_proc stream_oe_reset = { .proc = streamOPreset };
+static CLU_proc stream_oe_scripts = { .proc = streamOPscripts };
+static CLU_proc stream_oe_set_date = { .proc = streamOPset_date };
+static CLU_proc stream_oe_set_eof_flag = { .proc = streamOPset_eof_flag };
+static CLU_proc stream_oe_set_input_buffered = { .proc = streamOPset_input_buffered };
+static CLU_proc stream_oe_set_lineno = { .proc = streamOPset_lineno };
+static CLU_proc stream_oe_set_output_buffered = { .proc = streamOPset_output_buffered };
+static CLU_proc stream_oe_set_prompt = { .proc = streamOPset_prompt };
+static CLU_proc stream_oe_set_rescan = { .proc = streamOPset_rescan };
+static CLU_proc stream_oe_similar = { .proc = streamOPsimilar };
+static CLU_proc stream_oe_unscript = { .proc = streamOPunscript };
 
-stream_OPS stream_ops_actual = {62, (OWNPTR)&stream_own_init, (OWNPTR)&stream_own_init, {
+static stream_OPS stream_ops_actual = {62, (OWNPTR)&stream_own_init, (OWNPTR)&stream_own_init, {
     {&stream_oe__close_all, "_close_all"},
     {&stream_oe__open_streams, "_open_streams"},
     {&stream_oe_abort, "abort"},

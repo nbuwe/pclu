@@ -35,11 +35,7 @@ extern struct OPS *_obj_ops;
 extern const struct REQS * const table_of_val_reqs;
 extern const OWN_req table_ownreqs;
 extern struct OPS *table_ops;
-struct OPS *table_of__obj_table;
-struct OPS *table_of__obj_table;
 struct OPS *table_of__obj__obj_ops;
-struct OPS *table_of__obj__obj_ops;
-OWNPTR table_of__obj__obj_owns;
 
 typedef struct {
     long gc_copy_own_init;
@@ -120,15 +116,15 @@ gc_copy(CLUREF x, CLUREF *ret_1)
     ret_1->num = x.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE gc_copy ****/
@@ -154,11 +150,7 @@ typedef struct {
 
 extern errcode arrayOPelements();
 extern errcode tableOPalter();
-struct OPS *table_of__obj_table;
-struct OPS *table_of__obj_table;
 struct OPS *table_of__obj__obj_ops;
-struct OPS *table_of__obj__obj_ops;
-OWNPTR table_of__obj__obj_owns;
 
 typedef struct {
     long gc_copy_to_own_init;
@@ -273,15 +265,15 @@ gc_copy_to(CLUREF x, CLUREF leaves, CLUREF *ret_1)
     ret_1->num = x.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE gc_copy_to ****/
@@ -316,18 +308,11 @@ extern errcode _objOPis_anyize();
 extern errcode _tagcellOPcopy();
 extern errcode _tagcellOPget();
 extern errcode _tagcellOPset_value();
-struct OPS *table_of__obj_table;
-struct OPS *table_of__obj_table;
 struct OPS *table_of__obj__obj_ops;
-struct OPS *table_of__obj__obj_ops;
-OWNPTR table_of__obj__obj_owns;
 extern const struct REQS * const _tagcell_of_t_reqs;
 extern const OWN_req _tagcell_ownreqs;
 extern struct OPS *_tagcell_ops;
-struct OPS *_tagcell_of__obj_table;
 struct OPS *_tagcell_of__obj_ops;
-struct OPS *_tagcell_of__obj_ops;
-OWNPTR _tagcell_of__obj_owns;
 static int _gc_copy_own_init = 0;
 
 errcode
@@ -675,15 +660,15 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
     ret_1->num = nx.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _gc_copy ****/

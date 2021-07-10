@@ -59,15 +59,15 @@ p_type1(CLUREF e, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_type1 ****/
@@ -250,15 +250,15 @@ p_type(CLUREF e, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_type ****/
@@ -308,15 +308,15 @@ p_seltype(CLUREF e, CLUREF gen, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_seltype ****/
@@ -331,10 +331,7 @@ extern errcode oneofOPmake_3();
 extern const struct REQS * const p_blist_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req p_blist_ownreqs;
-struct OPS *p_blist_of_expr_table;
 struct OPS *p_blist_of_expr_ops;
-struct OPS *p_blist_of_expr_ops;
-OWNPTR p_blist_of_expr_owns;
 static CLUREF STR_constant;
 static int p_clutype_own_init = 0;
 
@@ -392,15 +389,15 @@ p_clutype(CLUREF e, CLUREF gen, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_clutype ****/
@@ -419,10 +416,7 @@ extern errcode oneofOPmake_2();
 extern const struct REQS * const p_plist_of_t_reqs;
 extern struct OPS *typespec_ops;
 extern const OWN_req p_plist_ownreqs;
-struct OPS *p_plist_of_typespec_table;
 struct OPS *p_plist_of_typespec_ops;
-struct OPS *p_plist_of_typespec_ops;
-OWNPTR p_plist_of_typespec_owns;
 static CLUREF STR_itertype;
 static int p_applytype_own_init = 0;
 
@@ -511,15 +505,15 @@ p_applytype(CLUREF e, CLUREF gen, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_applytype ****/
@@ -531,10 +525,7 @@ p_applytype(CLUREF e, CLUREF gen, CLUREF *ret_1)
 extern errcode p_is_seltype();
 extern errcode oneofOPmake_11();
 extern errcode oneofOPmake_5();
-struct OPS *p_blist_of_expr_table;
 struct OPS *p_blist_of_expr_ops;
-struct OPS *p_blist_of_expr_ops;
-OWNPTR p_blist_of_expr_owns;
 static int p_idn_type_own_init = 0;
 
 errcode
@@ -642,15 +633,15 @@ p_idn_type(CLUREF e, CLUREF id, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_idn_type ****/
@@ -752,15 +743,15 @@ p_is_seltype(CLUREF e, CLUREF *ret_1)
         }
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_is_seltype ****/
@@ -773,14 +764,11 @@ extern errcode p_order();
 extern errcode p_fieldspec();
 extern errcode recordOPget_1();
 extern struct OPS *string_ops;
-struct OPS  *record_sel_type__ops;
+struct OPS *record_sel_type__ops;
 extern const struct REQS * const p_order_of_t_reqs;
 extern struct OPS *record_sel_type__ops;
 extern const OWN_req p_order_ownreqs;
-struct OPS *p_order_of_record_sel_type__table;
 struct OPS *p_order_of_record_sel_type__ops;
-struct OPS *p_order_of_record_sel_type__ops;
-OWNPTR p_order_of_record_sel_type__owns;
 static CLUREF STR__133field_137spec_137list_135;
 static CLUREF STR_fieldspec;
 static CLUREF STR__135_040in_040_133fieldspec_137list_135;
@@ -899,15 +887,15 @@ p_fieldspeclist(CLUREF e, CLUREF *ret_1)
     ret_1->num = specs.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_fieldspeclist ****/
@@ -922,10 +910,7 @@ extern errcode p_type1();
 extern errcode sequenceOPelements();
 extern const struct REQS * const p_clist_of_t_reqs;
 extern const OWN_req p_clist_ownreqs;
-struct OPS *p_clist_of_string_table;
 struct OPS *p_clist_of_string_ops;
-struct OPS *p_clist_of_string_ops;
-OWNPTR p_clist_of_string_owns;
 static CLUREF STR_name;
 static CLUREF STR__072_040type_040in_040field_137spec;
 static int p_fieldspec_own_init = 0;
@@ -1058,14 +1043,14 @@ p_fieldspec(CLUREF e, errcode (*proc)(), void *user_locals, errcode *iecode)
         }
     }
     end_inline_for_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END ITERATOR p_fieldspec ****/
@@ -1075,10 +1060,7 @@ p_fieldspec(CLUREF e, errcode (*proc)(), void *user_locals, errcode *iecode)
 /**** BEGIN PROCEDURE p_values ****/
 
 extern errcode p_envOPerr();
-struct OPS *p_plist_of_typespec_table;
 struct OPS *p_plist_of_typespec_ops;
-struct OPS *p_plist_of_typespec_ops;
-OWNPTR p_plist_of_typespec_owns;
 static CLUREF STR_use_040of_040returns_040instead_040of_040yields;
 static CLUREF STR_use_040of_040yields_040instead_040of_040returns;
 static int p_values_own_init = 0;
@@ -1178,15 +1160,15 @@ p_values(CLUREF e, CLUREF procdef, CLUREF *ret_1)
     ret_1->num = T_1_2.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_values ****/
@@ -1244,15 +1226,15 @@ p_signals(CLUREF e, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_signals ****/
@@ -1265,17 +1247,11 @@ extern errcode p_exception();
 extern const struct REQS * const sequence_of_t_reqs;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_typespec_table;
 struct OPS *sequence_of_typespec_ops;
-struct OPS *sequence_of_typespec_ops;
-OWNPTR sequence_of_typespec_owns;
 extern struct OPS *sequence_of_typespec_ops;
-struct OPS  *record_name_types_ops;
+struct OPS *record_name_types_ops;
 extern struct OPS *record_name_types_ops;
-struct OPS *p_order_of_record_name_types_table;
 struct OPS *p_order_of_record_name_types_ops;
-struct OPS *p_order_of_record_name_types_ops;
-OWNPTR p_order_of_record_name_types_owns;
 static CLUREF STR__050exception_137list_051;
 static CLUREF STR_exception;
 static CLUREF STR__051_040in_040_050exception_137list_051;
@@ -1396,15 +1372,15 @@ p_exceptionlist(CLUREF e, CLUREF *ret_1)
     ret_1->num = sigs.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_exceptionlist ****/
@@ -1413,10 +1389,7 @@ p_exceptionlist(CLUREF e, CLUREF *ret_1)
 
 /**** BEGIN ITERATOR p_exception ****/
 
-struct OPS *p_plist_of_typespec_table;
 struct OPS *p_plist_of_typespec_ops;
-struct OPS *p_plist_of_typespec_ops;
-OWNPTR p_plist_of_typespec_owns;
 static int p_exception_own_init = 0;
 
 errcode
@@ -1490,14 +1463,14 @@ p_exception(CLUREF e, errcode (*proc)(), void *user_locals, errcode *iecode)
     {signal(err);
         }}
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END ITERATOR p_exception ****/
@@ -1552,15 +1525,15 @@ p_name(CLUREF e, CLUREF *ret_1)
     }
     }
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_name ****/
@@ -1594,7 +1567,7 @@ extern errcode arrayOPstore();
 extern errcode arrayOPaddh();
 extern errcode intOPequal();
 extern errcode sequenceOPa2s();
-extern errcode p_order_IB_1();
+static errcode p_order_IB_1();
 static CLUREF STR_duplicate_040name_040_047;
 static CLUREF STR__047_040in_040;
 static CLUREF STR__137list;
@@ -1765,15 +1738,15 @@ p_order(CLUREF e, CLUREF p_t, CLUREF get, CLUREF what, CLUREF *ret_1)
         }
         }
         end_while_1:;
+
     goto end_0;
-    ex_0:
-        {
-            if (locals.err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(locals.err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (locals.err != ERR_failure)
+        elist[0] = _pclu_erstr(locals.err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE p_order ****/
@@ -1781,7 +1754,7 @@ p_order(CLUREF e, CLUREF p_t, CLUREF get, CLUREF what, CLUREF *ret_1)
 
 /**** BEGIN ITERATOR BODIES for p_order ****/
 
-errcode
+static errcode
 p_order_IB_1(CLUREF iv_1, p_order_LOCALS_t *locals, errcode *iecode)
 {
     locals->x.num = iv_1.num;
@@ -1950,13 +1923,14 @@ p_order_IB_1(CLUREF iv_1, p_order_LOCALS_t *locals, errcode *iecode)
         goto ex_0;}
     locals->high.num = T_1_1.num;
     }
-    {signal(ERR_ok);}
-    ex_0:
-        {
-            *iecode = locals->err;
-            {signal(ERR_iterbodyexit);}}
-    end_0: {signal(ERR_ok);}
-}   /* end p_order_IB_1 */
+
+    signal(ERR_ok);
+  ex_0:
+    *iecode = locals->err;
+    signal(ERR_iterbodyexit);
+  end_0:
+    signal(ERR_ok);
+}
 
 /**** END ITERATOR BODIES for p_order ****/
 

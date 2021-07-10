@@ -19,35 +19,29 @@ extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
 extern struct OPS *string_ops;
 extern struct OPS *sequence_of_expr_ops;
 extern struct OPS *typespec_ops;
-struct OPS  *record_name_parms_type__ops;
+struct OPS *record_name_parms_type__ops;
 extern struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__table;
 struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-OWNPTR sequence_of_record_name_parms_type__owns;
 extern struct OPS *sequence_of_record_name_parms_type__ops;
 extern struct OPS *idn_ops;
-struct OPS  *record_opers_parm_ops;
+struct OPS *record_opers_parm_ops;
 extern struct OPS *du_ops;
 extern struct OPS *record_opers_parm_ops;
 extern struct OPS *null_ops;
-struct OPS  *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
 extern struct OPS *int_ops;
-struct OPS  *oneof_ref_val_ops;
-struct OPS  *struct_disp_reg_ops;
+struct OPS *oneof_ref_val_ops;
+struct OPS *struct_disp_reg_ops;
 extern struct OPS *oneof_ref_val_ops;
 extern struct OPS *struct_disp_reg_ops;
-struct OPS  *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops;
+struct OPS *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops;
 extern struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
 extern struct OPS *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops;
-struct OPS  *record_kind_str_val_ops;
+struct OPS *record_kind_str_val_ops;
 static int idn_own_init = 0;
 const OWN_req idn_ownreqs = { 0, 0 };
 
@@ -139,15 +133,15 @@ idnOPcreate(CLUREF s, CLUREF k, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE create ****/
@@ -174,15 +168,15 @@ idnOPget_str(CLUREF i, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_str ****/
@@ -205,14 +199,14 @@ idnOPset_kind(CLUREF i, CLUREF k)
     {
     i.vec->data[0] = k.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_kind ****/
@@ -239,15 +233,15 @@ idnOPget_kind(CLUREF i, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_kind ****/
@@ -274,15 +268,15 @@ idnOPget_val(CLUREF i, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE get_val ****/
@@ -305,14 +299,14 @@ idnOPset_val(CLUREF i, CLUREF val)
     {
     i.vec->data[2] = val.num;
     }
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: {signal(ERR_ok);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    signal(ERR_ok);
 }
 
 /**** END PROCEDURE set_val ****/
@@ -337,15 +331,15 @@ idnOPcopy(CLUREF i, CLUREF *ret_1)
     ret_1->num = i.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE copy ****/
@@ -372,15 +366,15 @@ idnOPequal(CLUREF i1, CLUREF i2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE equal ****/
@@ -407,15 +401,15 @@ idnOPsimilar(CLUREF i1, CLUREF i2, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE similar ****/
@@ -423,21 +417,15 @@ idnOPsimilar(CLUREF i1, CLUREF i2, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-struct OPS *sequence_of_expr_table;
 struct OPS *sequence_of_expr_ops;
-struct OPS *sequence_of_expr_ops;
-OWNPTR sequence_of_expr_owns;
-struct OPS  *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__table;
+struct OPS *record_name_parms_type__ops;
 struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-OWNPTR sequence_of_record_name_parms_type__owns;
-struct OPS  *record_opers_parm_ops;
-struct OPS  *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
-struct OPS  *oneof_ref_val_ops;
-struct OPS  *struct_disp_reg_ops;
-struct OPS  *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops;
-struct OPS  *record_kind_str_val_ops;
+struct OPS *record_opers_parm_ops;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
+struct OPS *oneof_ref_val_ops;
+struct OPS *struct_disp_reg_ops;
+struct OPS *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops;
+struct OPS *record_kind_str_val_ops;
 static int idnOP_gcd_own_init = 0;
 
 errcode
@@ -466,15 +454,15 @@ idnOP_gcd(CLUREF i, CLUREF tab, CLUREF *ret_1)
     ret_1->num = T_1_1.num;
     }
     {signal (ERR_ok);}}
+
     goto end_0;
-    ex_0:
-        {
-            if (err == ERR_failure) {signal(ERR_failure);}
-            elist[0] = _pclu_erstr(err);
-            {signal(ERR_failure);}
-        }
-    end_0: elist[0] = no_return_values_STRING;
-        {signal(ERR_failure);}
+  ex_0:
+    if (err != ERR_failure)
+        elist[0] = _pclu_erstr(err);
+    signal(ERR_failure);
+  end_0:
+    elist[0] = no_return_values_STRING;
+    signal(ERR_failure);
 }
 
 /**** END PROCEDURE _gcd ****/
@@ -486,18 +474,18 @@ typedef struct{
     struct OP_ENTRY entry[10];
 } idn_OPS;
 
-CLU_proc idn_oe__gcd = { .proc = idnOP_gcd };
-CLU_proc idn_oe_copy = { .proc = idnOPcopy };
-CLU_proc idn_oe_create = { .proc = idnOPcreate };
-CLU_proc idn_oe_equal = { .proc = idnOPequal };
-CLU_proc idn_oe_get_kind = { .proc = idnOPget_kind };
-CLU_proc idn_oe_get_str = { .proc = idnOPget_str };
-CLU_proc idn_oe_get_val = { .proc = idnOPget_val };
-CLU_proc idn_oe_set_kind = { .proc = idnOPset_kind };
-CLU_proc idn_oe_set_val = { .proc = idnOPset_val };
-CLU_proc idn_oe_similar = { .proc = idnOPsimilar };
+static CLU_proc idn_oe__gcd = { .proc = idnOP_gcd };
+static CLU_proc idn_oe_copy = { .proc = idnOPcopy };
+static CLU_proc idn_oe_create = { .proc = idnOPcreate };
+static CLU_proc idn_oe_equal = { .proc = idnOPequal };
+static CLU_proc idn_oe_get_kind = { .proc = idnOPget_kind };
+static CLU_proc idn_oe_get_str = { .proc = idnOPget_str };
+static CLU_proc idn_oe_get_val = { .proc = idnOPget_val };
+static CLU_proc idn_oe_set_kind = { .proc = idnOPset_kind };
+static CLU_proc idn_oe_set_val = { .proc = idnOPset_val };
+static CLU_proc idn_oe_similar = { .proc = idnOPsimilar };
 
-idn_OPS idn_ops_actual = {10, (OWNPTR)&idn_own_init, (OWNPTR)&idn_own_init, {
+static idn_OPS idn_ops_actual = {10, (OWNPTR)&idn_own_init, (OWNPTR)&idn_own_init, {
     {&idn_oe__gcd, "_gcd"},
     {&idn_oe_copy, "copy"},
     {&idn_oe_create, "create"},
