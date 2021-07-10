@@ -9,8 +9,6 @@
     GCD_REF_SIZE = CLUREFSZ * 2
 
     pagesz  = 1024
-    pagesz2 = pagesz - 2
-    pagesz5 = pagesz - 5
     bpagesz = CLUREFSZ * pagesz
 
 
