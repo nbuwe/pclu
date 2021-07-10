@@ -81,7 +81,7 @@ _wordvecOPfetch(CLUREF wv, CLUREF i, CLUREF *ans)
     int bi;
     /* 1/10/91 : modified wrt gc_dump */
 
-    bi = (i.num - 1) * 4;
+    bi = (i.num - 1) * CLUREFSZ;
     if (bi < 0)
 	signal(ERR_bounds);
     if (bi > wv.str->size)
@@ -104,7 +104,7 @@ _wordvecOPstore(CLUREF wv, CLUREF i, CLUREF w)
     int bi;
     /* 1/10/91 : modified wrt gc_dump */
 
-    bi = (i.num - 1) * 4;
+    bi = (i.num - 1) * CLUREFSZ;
     if (bi < 0)
 	signal(ERR_bounds);
     if (bi > wv.str->size)
@@ -126,7 +126,7 @@ _wordvecOPfetch2(CLUREF wv, CLUREF i, CLUREF *ans1, CLUREF *ans2)
 {
     int bi;
 
-    bi = (i.num - 1) * 4;
+    bi = (i.num - 1) * CLUREFSZ;
     if (bi < 0)
 	signal(ERR_bounds);
     if (bi > wv.str->size)
@@ -148,7 +148,7 @@ _wordvecOPstore2(CLUREF wv, CLUREF i, CLUREF l, CLUREF r)
 {
     int bi;
 
-    bi = (i.num - 1) * 4;
+    bi = (i.num - 1) * CLUREFSZ;
     if (bi < 0)
 	signal(ERR_bounds);
     if (bi > wv.str->size)
@@ -170,7 +170,7 @@ _wordvecOPxstore(CLUREF wv, CLUREF i, CLUREF b, CLUREF l)
 {
     int bi;
 
-    bi = (i.num - 1) * 4;
+    bi = (i.num - 1) * CLUREFSZ;
     if (bi < 0)
 	signal(ERR_bounds);
     if (bi > wv.str->size)
@@ -197,8 +197,8 @@ _wordvecOPbfetch(CLUREF wv, CLUREF i, CLUREF *ans)
     if (bi > wv.str->size)
 	signal(ERR_bounds);
 #if 1
-    int wi = bi/4;
-    int sub_index = bi - (wi * 4) + 1;
+    int wi = bi / CLUREFSZ;
+    int sub_index = bi - (wi * CLUREFSZ) + 1;
 
     int temp = wv.vec->data[wi];
     switch (sub_index) {
@@ -239,8 +239,8 @@ _wordvecOPbstore(CLUREF wv, CLUREF i, CLUREF c)
 
 #if 1
     c.num = c.num & 0xff;
-    int wi = bi / 4;
-    int sub_index = bi - (wi * 4) + 1;
+    int wi = bi / CLUREFSZ;
+    int sub_index = bi - (wi * CLUREFSZ) + 1;
 
     int temp = wv.vec->data[wi];
     switch (sub_index) {
@@ -282,8 +282,8 @@ _wordvecOPwfetch(CLUREF wv, CLUREF i, CLUREF *ans)
 	signal(ERR_bounds);
 #if 1
     int temp, temp2;
-    int wi = bi / 4;
-    int sub_index = bi - (wi * 4) + 1;
+    int wi = bi / CLUREFSZ;
+    int sub_index = bi - (wi * CLUREFSZ) + 1;
 
     temp = wv.vec->data[wi];
     switch (sub_index) {
@@ -331,8 +331,8 @@ _wordvecOPwstore(CLUREF wv, CLUREF i, CLUREF n)
 #if 1
     int temp;
     n.num = n.num & 0xffff;
-    int wi = bi/4;
-    int sub_index = bi - (wi * 4) + 1;
+    int wi = bi / CLUREFSZ;
+    int sub_index = bi - (wi * CLUREFSZ) + 1;
 
     temp = wv.vec->data[wi];
     switch (sub_index) {
@@ -381,8 +381,8 @@ _wordvecOPlfetch(CLUREF wv, CLUREF i, CLUREF *ans)
 	signal(ERR_bounds);
 
     int temp, temp2;
-    int wi = bi / 4;
-    int sub_index = bi - (wi * 4) + 1;
+    int wi = bi / CLUREFSZ;
+    int sub_index = bi - (wi * CLUREFSZ) + 1;
 
     temp = wv.vec->data[wi];
     switch (sub_index) {
@@ -427,8 +427,8 @@ _wordvecOPlstore(CLUREF wv, CLUREF i, CLUREF n)
 	signal(ERR_bounds);
 
     int temp;
-    int wi = bi/4;
-    int sub_index = bi - (wi * 4) + 1;
+    int wi = bi / CLUREFSZ;
+    int sub_index = bi - (wi * CLUREFSZ) + 1;
 
     temp = wv.vec->data[wi];
     switch (sub_index) {
@@ -470,7 +470,7 @@ _wordvecOPlstore(CLUREF wv, CLUREF i, CLUREF n)
 errcode
 _wordvecOPsize(CLUREF wv, CLUREF *ans)
 {
-    ans->num = wv.str->size / 4;
+    ans->num = wv.str->size / CLUREFSZ;
     signal(ERR_ok);
 }
 
@@ -721,7 +721,7 @@ _wordvecOPset_byte(CLUREF wv, CLUREF byte, CLUREF wrd, CLUREF bit, CLUREF len)
 errcode
 _wordvecOPbyte_size(CLUREF *ans)
 {
-    ans->num = 8;
+    ans->num = CHAR_BIT;
     signal(ERR_ok);
 }
 
@@ -729,7 +729,7 @@ _wordvecOPbyte_size(CLUREF *ans)
 errcode
 _wordvecOPword_size(CLUREF *ans)
 {
-    ans->num = 32;
+    ans->num = CLUREFSZ * CHAR_BIT;
     signal(ERR_ok);
 }
 
@@ -737,7 +737,7 @@ _wordvecOPword_size(CLUREF *ans)
 errcode
 _wordvecOPbytes_per_word(CLUREF *ans)
 {
-    ans->num = 4;
+    ans->num = CLUREFSZ;
     signal(ERR_ok);
 }
 
