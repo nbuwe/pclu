@@ -3,8 +3,6 @@
 gc_read = proc[t:type](fn:file_name) returns (t)
 	    signals(not_possible(string))
 
-    wvec = _wordvec
-    b2w = _cvt[bvec, wvec]
     b2s = _cvt[bvec, string]
 
     ch: _chan
@@ -15,26 +13,27 @@ gc_read = proc[t:type](fn:file_name) returns (t)
 	   except when not_possible(why: string):
 		       signal not_possible(why)
 		  end
-	bv8: bvec := _bytevec$create(2*CLUREFSZ)
-	wv2: wvec := b2w(bv8)
+
+	wv2: wvec := wvec$create(2)
+	buf: bvec := w2b(wv2)
 
 	% read and check header
-	_chan$getb(ch, bv8)
-	%log_bytevec(bv8)
-	  
+	_chan$getb(ch, buf)
+	%log_bytevec(buf)
+
 	%logit("gc_read: checking header")
-	%logit("  found " || b2s(bv8))
-	if (bv8[1] ~= 'D' cor
-	    bv8[2] ~= 'W' cor
-	    bv8[3] ~= 'C' cor
-	    bv8[4] ~= '1')
+	%logit("  found " || b2s(buf))
+	if (buf[1] ~= 'D' cor
+	    buf[2] ~= 'W' cor
+	    buf[3] ~= 'C' cor
+	    buf[4] ~= '1')
 	   then
 		signal not_possible("bad file format")
 	   end
 
 	% if first item is a constant, return it to caller
-	_chan$getb(ch, bv8)
-	%log_bytevec(bv8)
+	_chan$getb(ch, buf)
+	%log_bytevec(buf)
 
 	%logit("gc_read: checking for const")
 	if wv2[1] = GCD_CONST
@@ -65,8 +64,8 @@ gc_read = proc[t:type](fn:file_name) returns (t)
 
 	% reopen file (could just do a seek)
 	ch := _chan$open(fn, "read", 0)
-	_chan$getb(ch, bv8)
-	_chan$getb(ch, bv8)
+	_chan$getb(ch, buf)
+	_chan$getb(ch, buf)
 
 	% grovel over file for the 2nd time
 	%logit("starting pass 2")
