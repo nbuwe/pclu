@@ -32,12 +32,10 @@ _wordvecOPcreate(CLUREF sz, CLUREF *ans)
 
     rounded_size = sizeof(CLU_string) + CLU_roundup(size, 4);
     clu_alloc(rounded_size, &wv);
+    CLUTYPE_set(wv.str->typ, CT_STRING);
     wv.str->size = size;
-    wv.str->typ.val = CT_STRING;
-    wv.str->typ.mark = 0;
-    wv.str->typ.refp = 0;
 
-    ans->str = wv.str;
+    *ans = wv;
     signal(ERR_ok);
 }
 
@@ -49,16 +47,14 @@ _wordvecOPcopy(CLUREF wv1, CLUREF *ans)
     long i;
 
     clu_alloc(sizeof(CLU_string) + CLU_roundup(wv1.str->size, 4), &wv2);
+    CLUTYPE_set(wv2.str->typ, CT_STRING);
     wv2.str->size = wv1.str->size;
-    wv2.str->typ.val = CT_STRING;
-    wv2.str->typ.mark = 0;
-    wv2.str->typ.refp = 0;
 
     for (i = 0; i < wv1.str->size; ++i)
 	wv2.str->data[i] = wv1.str->data[i];
     wv2.str->data[i] = '\0';
 
-    ans->str = wv2.str;
+    *ans = wv2;
     signal(ERR_ok);
 }
 
