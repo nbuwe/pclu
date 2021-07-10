@@ -322,7 +322,7 @@ _wordvecOPwstore(CLUREF wv, CLUREF i, CLUREF n)
 {
     int bi;
 
-    bi = i.num-1;
+    bi = i.num - 1;
     if (bi < 0)
 	signal(ERR_bounds);
     if (bi >= wv.str->size - 1)
@@ -439,7 +439,7 @@ _wordvecOPlstore(CLUREF wv, CLUREF i, CLUREF n)
 	temp = temp & ~0xffffff00;
 	temp = temp | (n.num << 8);
 	wv.vec->data[wi] = temp;
-	temp = wv.vec->data[wi+1];
+	temp = wv.vec->data[wi + 1];
 	temp = temp & ~0xff;
 	temp = temp | ((n.num & 0xff000000) >> 24);
 	wv.vec->data[wi + 1] = temp;
@@ -448,7 +448,7 @@ _wordvecOPlstore(CLUREF wv, CLUREF i, CLUREF n)
 	temp = temp & ~0xffff0000;
 	temp = temp | (n.num << 16);
 	wv.vec->data[wi] = temp;
-	temp = wv.vec->data[wi+1];
+	temp = wv.vec->data[wi + 1];
 	temp = temp & ~0xffff;
 	temp = temp | ((n.num & 0xffff0000) >> 16);
 	wv.vec->data[wi + 1] = temp;
@@ -457,7 +457,7 @@ _wordvecOPlstore(CLUREF wv, CLUREF i, CLUREF n)
 	temp = temp & ~0xff000000;
 	temp = temp | (n.num << 24);
 	wv.vec->data[wi] = temp;
-	temp = wv.vec->data[wi+1];
+	temp = wv.vec->data[wi + 1];
 	temp = temp & ~0x00ffffff;
 	temp = temp | ((n.num & 0xffffff00) >> 8);
 	wv.vec->data[wi + 1] = temp;
@@ -509,7 +509,7 @@ _wordvecOPindexc(CLUREF c, CLUREF wv, CLUREF first, CLUREF *ans)
 /*
  * Find wv1 in wv2; start looking at wv2[first].
  * Some way to use matchc and/or locc?
-*/
+ */
 errcode
 _wordvecOPindexv(CLUREF wv1, CLUREF wv2, CLUREF first, CLUREF *ans)
 {
@@ -745,7 +745,8 @@ _wordvecOPbytes_per_word(CLUREF *ans)
 /*
  * Moves bytes from a _bytevec to a wordvec.
  */
-errcode _wordvecOPmove_b2w(CLUREF b, CLUREF bpos, CLUREF w, CLUREF wpos, CLUREF n)
+errcode
+_wordvecOPmove_b2w(CLUREF b, CLUREF bpos, CLUREF w, CLUREF wpos, CLUREF n)
 {
     if (n.num < 0)
 	signal(ERR_negative_size); /* interface change */
