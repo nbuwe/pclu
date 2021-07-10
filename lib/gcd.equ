@@ -5,11 +5,11 @@
     GCD_REF   = 33
     GCD_FILL  = 47
 
-    CLUREFSZ = 4
-    GCD_REF_SIZE = CLUREFSZ * 2
+    % CLUREFSZ = 4
+    % GCD_REF_SIZE = CLUREFSZ * 2
 
     pagesz  = 1024
-    bpagesz = CLUREFSZ * pagesz
+    % bpagesz = CLUREFSZ * pagesz
 
 
     _seqhd =  4096                 % sequence header 0x1000

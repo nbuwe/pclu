@@ -89,6 +89,8 @@ gcr = cluster is pass1, pass2
 
     rep = null
 
+    own CLUREFSZ: int := wvec$bytes_per_word()
+
     pass1 = proc(ch:_chan) signals(not_possible(string))
 
 	while true do
@@ -241,6 +243,9 @@ gcb = cluster is init, get_next_hdr, get_size, get_array_info, getb,
 		 get_next_obj, geti, skip, skip_obj
 
     rep = null
+
+    own CLUREFSZ: int := wvec$bytes_per_word()
+    own bpagesz: int := pagesz * CLUREFSZ
 
     own lookahead: wvec := wvec$create(bpagesz)
     own look_index: int := 0
