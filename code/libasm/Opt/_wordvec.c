@@ -19,21 +19,35 @@ errcode gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ans)
 errcode stringOPprint(CLUREF s, CLUREF pst);
 
 
+static inline size_t
+_wordvecOPOPmemsize(size_t size)
+{
+    /*
+     * string header w/out the "inflexible" data[] array
+     * and extra space for NUL at the end
+     */
+    size += offsetof(CLU_string, data) + 1;
+
+    /* round up to word size */
+    size = CLU_roundup(size, CLUREFSZ);
+
+    return size;
+}
+
 
 errcode
 _wordvecOPcreate(CLUREF sz, CLUREF *ans)
 {
-    CLUREF wv;
-    int size = sz.num * 4;
-    int rounded_size;
-
-    if (size > MAX_STR)
+    int bsize = sz.num * CLUREFSZ; /* size of data in bytes */
+    if (bsize > MAX_STR)
 	signal(ERR_toobig);
 
-    rounded_size = sizeof(CLU_string) + CLU_roundup(size, 4);
-    clu_alloc(rounded_size, &wv);
+    int bufsz = _wordvecOPOPmemsize(bsize);
+
+    CLUREF wv;
+    clu_alloc(bufsz, &wv);
     CLUTYPE_set(wv.str->typ, CT_STRING);
-    wv.str->size = size;
+    wv.str->size = bsize;
 
     *ans = wv;
     signal(ERR_ok);
@@ -43,16 +57,18 @@ _wordvecOPcreate(CLUREF sz, CLUREF *ans)
 errcode
 _wordvecOPcopy(CLUREF wv1, CLUREF *ans)
 {
+    size_t bsize = wv1.str->size; /* size of data in bytes */
+    size_t bufsz = _wordvecOPOPmemsize(bsize);
+
     CLUREF wv2;
-    long i;
-
-    clu_alloc(sizeof(CLU_string) + CLU_roundup(wv1.str->size, 4), &wv2);
+    clu_alloc(bufsz, &wv2);
     CLUTYPE_set(wv2.str->typ, CT_STRING);
-    wv2.str->size = wv1.str->size;
+    wv2.str->size = bsize;
 
-    for (i = 0; i < wv1.str->size; ++i)
-	wv2.str->data[i] = wv1.str->data[i];
-    wv2.str->data[i] = '\0';
+    memcpy(wv2.str->data, wv1.str->data, bsize);
+#if 0 // zeroed on alloc
+    wv2.str->data[bsize] = '\0';
+#endif
 
     *ans = wv2;
     signal(ERR_ok);
