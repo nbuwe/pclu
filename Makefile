@@ -88,6 +88,23 @@ FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 
 all: clu
 
+# uwe: a temporary workaround, run this once to set things up
+# assumes you have installed gc
+symlinks:
+	# the bootstrapped compiler
+	(cd exe && ln -sf ../code/cmp/pclu)
+	# things compiler consults
+	(cd cmp && ln -sf ../../code/cmp/basic.types)
+	(cd cmp && ln -sf ../../code/cmp/ccdbg.cmd)
+	(cd cmp && ln -sf ../../code/cmp/ccopt.cmd)
+	# to compile the C output
+	(cd include && ln -sf ../code/include/pclu_err.h)
+	(cd include && ln -sf ../code/include/pclu_sys.h)
+	# to link the compiled programs
+	(cd code && ln -sf gc/lib/libgc.a)
+	# to build the library
+	(cd code/include && ln -sf ../gc/include/gc)
+
 clu: libpclu compiler clulibs cludent # PCLU debugger
 
 libpclu:
