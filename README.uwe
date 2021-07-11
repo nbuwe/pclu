@@ -3,7 +3,7 @@
 This repository has as its base the latest pclu release fetched from
 ftp://ftp.lcs.mit.edu/pub/pclu/CLU/DEBIAN/pclu-debian.tar.gz
 
-It didn't work.
+It didn't work b/c of what looks like a last minute 32/64-bit mixup.
 
 I fixed it and cleaned it up to use C99, both in the "asm" C sources
 and in the compiler output.  I took the liberty of reformatting the
