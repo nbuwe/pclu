@@ -1,0 +1,297 @@
+The CLU compiler currently exists as ~CLU/exe/clu.
+
+When CLU starts up, it prompts with
+
+	command(s):
+
+One line of text may be  entered,  terminated  by  newline  (carriage  return).
+Rubout  deletes  a  character  typed  in error, ^U deletes the current line, ^W
+deletes the last word on the line, ^R redisplays the current line, ^X starts  a
+new  blank  line,  ^L clears the screen and redisplays the current line, and ^\
+causes line continuation.
+
+The following commands are available:
+
+?					% print this file
+BINDIR	  [ directory ]			% set/reset directory for binary files
+BINSUF	  [ suffix ]			% set/reset suffix for binary files
+CE	  [ input { , input } ]		% create new CE
+CHECK	  input { , input }		% check for semantic errors
+CLU	  input { , input }		% produce binary
+COMPILE   input { , input }		% produce binary
+DIR	  [ directory ]			% set/reset default directory
+DUMP	  filename			% dump in-core library to file
+ESCAPE					% temporarily exit CLU
+EXPUNGE	  [ TRUE | FALSE ]		% do/don't remember non-cluster specs
+EXTERNALS [ TRUE | FALSE ]		% do/don't list external references
+FORGET	  module { , module }		% forget DU specs of modules
+HELP					% print this file
+KILL					% kill CLU
+LOCALS	  [ TRUE | FALSE ]		% do/don't generate local var names
+MERGE	  input { , input }		% merge libraries with in-core one
+NEWLIB					% flush in-core library
+OPTIMIZE  [ TIME | SPACE | FALSE ]	% set/clear optimization mode
+PARSE	  input { , input }		% check for syntactic errors
+QUIT					% kill CLU
+SAFE	  [ TRUE | FALSE ]		% do/don't check if idns used in system
+SPECS	  input { , input }		% create DU specs
+UNMERGE	  input { , input }		% forget DU specs of library modules
+XCE	  input { , input }		% add to existing CE
+XFILE	  input { , input }		% execute commands in files
+
+input:	  filespec  |  @ filename	% *'s allowed in filespec
+
+A command line has the form:    cmnd args { # cmnd args } [ ^ [ filename ] ]
+Commands and command arguments can be specified with unambiguous prefixes.
+
+Character case is ignored except in filenames. Do not type {}'s and []'s, just
+what's inside them.  Things in {}'s may be repeated zero or more times. Things
+in []'s are optional.
+
+Errors, etc. go to primary output unless ^ is specified.
+Default filename after ^ is clu.junk.
+
+Default suffix for PARSE, CHECK, COMPILE, and CLU input files is "clu".
+Default suffix for SPECS input files is "spc" or "clu".
+Default suffix for CE and XCE input files is "equ".
+Default suffix for XFILE input files is "xfile".
+Default suffix for DUMP, MERGE, and UNMERGE files is "lib".
+Default suffix for input files to other commands is "clu".
+Default suffix for an @-file (input) is "xload".
+
+For TRUE/FALSE commands, the default is TRUE. Initial settings are given below.
+For the OPTIMIZE command, the default is TIME. Initial setting is FALSE.
+
+An @-file contains a sequence of input specifications, separated by newlines.
+An @-file may reference @-files.
+
+CLU source files may contain any number of modules, separated by equates.
+
+Note that CLU can take jcl of the form:
+
+	[ # cmnd ] args { # cmnd args } [ ^ [ filename ] ]
+
+The default cmnd is CLU.
+
+
+?
+
+	Prints ~CLU/clu.order, a brief summary of the commands.
+
+
+BINDIR	  [ directory ]
+
+	Sets  the  directory to which binary files are written.  The default is
+	to write to the directory in which the  source  file  resides.   If  no
+	argument is given, resets to the default.
+
+
+BINSUF	  [ suffix ]
+
+	Sets  the  suffix  for  binary  files.   The  default  is "bin".  If no
+	argument is given, resets to the default.  If "*" is given,  no  suffix
+	will be used.  This is useful when creating library binaries.
+
+
+CE	  [ input { , input } ]
+
+	A new CE (compilation environment) is  created  with  the  CE  command.
+	Each  file  can only contain equates.  The processing starts with a new
+	(empty) CE.  The equates in one file are added to the CE, and the CE is
+	then  used  to  process the next file.  The CE is left as the "current"
+	CE.
+
+	There is a problem with equates to routines in a CE.  If the  interface
+	of  a  routine is unknown at the time it is equated to in a CE, a later
+	definition of the routine will not propagate to the equate, so uses  of
+	the  equate  will  fail  to  be  type-checked.   Similarly, even if the
+	interface is known, a later redefinition of the  routine,  with  a  new
+	interface,  will  not propagate, so uses of the equate will continue to
+	be checked from the original interface.  If you want to have equates to
+	routines  in a CE, you should do a SPECS on those routines before doing
+	the CE.  If the routine interfaces depend on equates in the CE, you can
+	split  the  CE  into  two  parts,  with only equates to routines in the
+	second part, and use XCE to add the second part.
+
+
+CHECK	  input { , input }
+
+	CHECK does type- and legality- checking.
+
+
+CLU	  input { , input }
+
+	CLU produces binary output.  A binary file is produced  only  if  there
+	are  no  errors.  Hence, if a binary file is produced, any messages are
+	warnings, not errors.
+
+
+COMPILE   input { , input }
+
+	COMPILE produces binary output, just like CLU.
+
+
+DIR	  [ directory ]
+
+	Sets the default working directory.  Can be  relative  to  the  current
+	working  directory.   If  no argument is given, resets to the connected
+	directory.
+
+
+DUMP	  filename
+
+	The compiler remembers the interface of every  module  it  sees  in  an
+	in-core  library.   This  library  may  be  dumped to a file, and later
+	re-loaded with the MERGE command.  Libraries are reasonably  small  and
+	very  fast to load, and can make complete type-checking much easier and
+	faster, particularly for very large programs.
+
+
+ESCAPE
+	Temporarily exits the CLU process (like ^Z).
+
+
+EXPUNGE	  [ TRUE | FALSE ]
+
+	In EXPUNGE mode, only the interfaces of clusters  are  remembered;  the
+	interfaces of external routines are not.
+
+
+EXTERNALS [ TRUE | FALSE ]
+
+	The compiler  normally  outputs  a  cross-reference  of  references  to
+	external modules.  This command can be used to stop that output.
+
+
+FORGET	  module { , module }
+
+	When using libraries, as programs change over time, various modules may
+	no longer be used, so there is no reason to  keep  their  specs.   This
+	command  allows  you to remove their specs from the in-core library, so
+	that they will not be included in a subsequent DUMP.
+
+HELP
+
+	Prints ~CLU/clu.order, a brief summary of the commands.
+
+
+KILL
+
+	Kills the CLU process.
+
+
+LOCALS	  [ TRUE | FALSE ]
+
+	The compiler normally includes the names of all local and own variables
+	in the binary file for use by the listen loop, frame printer, etc.  For
+	production programs these names are often useless and make binary files
+	somewhat larger than necessary.  This command can be used to stop  such
+	names  from  being  output.   In addition, when optimizing, turning off
+	locals allows the compiler to generate more efficient code.   Detection
+	of uses of uninitialized local variables by the debugger cannot be done
+	unless the names are produced.
+
+
+MERGE	  input { , input }
+
+	Loads  libraries from the given files and merges them with the existing
+	in-core library.  If the in-core library already contains an  interface
+	for a given module, a library interface for it will be ignored.
+
+
+NEWLIB
+
+	If you use one instantiation of the compiler for a long  time  on  many
+	different  modules,  the  in-core  library will get quite large and the
+	compiler will begin to garbage collect frequently.  You can either  get
+	a  new  compiler  at this point, or use the NEWLIB command to reset the
+	in-core library back to its initial state.
+
+
+OPTIMIZE  [ TIME | SPACE | FALSE ]
+
+	If  no  argument  is  specified, the default is TIME.  The optimization
+	mode  affects  all  subsequent   compilations.    SPACE   causes   only
+	optimizations  that  do  not increase the code size.  TIME additionally
+	performs optimizations that can increase the code  size.   Optimization
+	eliminates  many traceable routine calls, and so should only be used on
+	well-debugged programs.  See also the LOCALS command.
+
+
+PARSE	  input { , input }
+
+	PARSE  just  parses  the files, checking for syntactic errors.
+
+
+QUIT
+
+	Kills the CLU process.
+
+
+SAFE	  [ TRUE | FALSE ]
+
+	In  SAFE  mode,  each module to be compiled is checked to make sure its
+	name does not clash with an existing module name  in  the  CLU  system.
+	This  is  done  by  looking in the file ~CLU/system.names.  The initial
+	mode is FALSE.
+
+
+SPECS	  input { , input }
+
+	This command is used for entering new abstractions  into  the  library.
+	Each  file  can  contain  any  number  of  specifications, separated by
+	equates.  A specification looks like an implementation, except that  no
+	"body"  is given to the module.  (The specs for a data abstraction must
+	have REP equated to; "REP = ANY" will do just fine.)
+
+	Normally the compiler keeps only an in-core library, which  starts  out
+	with  the  interfaces  for the modules defined in the reference manual.
+	As  modules  are  checked  (via  CHECK,  SPECS,  CLU,  COMPILE),  their
+	interfaces  are  added  to  this  in-core library, but are not normally
+	saved anywhere else.  Further, the compiler only makes  a  single  pass
+	over  a  file,  so  references  within one module of a file to a module
+	defined later in the file will  not  be  type-checked.   Hence  to  get
+	complete type-checking, it is generally necessary to SPECS or CHECK all
+	modules/files of a program before compiling them.
+
+
+UNMERGE	  input { , input }
+
+	Generally, when working on a program, if the specs of some modules have
+	changed or new modules have been defined, you will want to DUMP  out  a
+	new version of the library.  However, often you will also have loaded a
+	number of static, utility libraries, and the specs from these libraries
+	should not be included in the DUMP.  This command allows you to expunge
+	the in-core library specs that came from the specified libraries.
+
+
+XCE	  input { , input }
+
+	The  XCE  command  is similar to CE, except that processing starts with
+	the "current" CE instead of a new one.
+
+
+XFILE	  input { , input }
+
+	Each  (non @-file) input file must be a list of commands, terminated by
+	newlines.
+
+
+The following commands are also available, but are not recommended:
+
+ALLOW	  [ TRUE | FALSE ]
+
+	In  ALLOW  mode,  code  will  be generated and DU specs created even if
+	there are errors.  This is not a recommended mode.
+
+
+FORCE	  [ TRUE | FALSE ]
+
+	In  certain  hack  situations  it  is useful to have FORCE[t] be a NOP.
+	This command can be used to achieve it.
+
+
+See ~CLU/clu.hacks for additional features of the compiler.
+See ~CLU/clu.opts for optimization details.
+See ~CLU/system.intro for system details.
+Send complaints, etc. to Bob Scheifler (RWS at MIT-XX or MIT-BOLD).

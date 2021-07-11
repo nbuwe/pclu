@@ -1,0 +1,219 @@
+Compiler directives
+
+	Compiler directives can occur between modules, in any non-include file.
+	Compiler directives start with the # character.
+
+	# include "filename"
+
+		The  filename  must  be  in  quotes.   If no directory name is
+		specified, the directory of the enclosing source file is used.
+		The specified file can only contain equates.  The effect is as
+		if the text of the file replaced the directive.
+
+	# extend
+
+		Allows various extensions to the CLU language (see below).
+
+	# normal
+
+		Disallows the various extensions to CLU.
+
+	# signal
+
+		Forces operations of built-in types when compiled inline to
+		still signal instead of exit.
+
+_______________________________________________________________________________
+
+The following extensions have been made to the CLU language, via the  compiler.
+These  are  not  part  of  the  language  proper,  and should not appear in any
+publications.
+
+
+Routine type inclusion.
+
+	The  definition of type inclusion has been extended slightly.  If X and
+	Y are procedure (iterator) types, then X includes  Y  if  the  argument
+	type  lists are equal, the return (yield) type lists are equal, and the
+	exceptions listed in Y are a subset of  the  exceptions  listed  in  X.
+	This allows to write, for instance,
+
+	add = proc [t: type] (x, y: t) returns (t)
+				       signals (underflow, overflow)
+		where t has add: proctype (t, t) returns (t)
+					signals (underflow, overflow)
+		return(x + y)
+		    except when underflow: signal underflow
+			   when overflow: signal overflow
+			   end
+		end add
+
+	and use both add[int] and add[real] legally.
+
+
+General selector-type typespecs.
+
+	An identifier can be used in the same way as RECORD and ONEOF, e.g.
+
+		foo[a: int, b: bool]
+
+	The identifier must be bound to a selector-type DU, such as  record  or
+	oneof.
+
+
+Equates to DUs.
+
+	Equates of the following form are legal:
+
+		idn = PATHNAME string
+
+	The string is assumed to be a pathname in the library.  (At the moment,
+	a pathname is simply a DU name.)
+
+	Example uses:
+
+		seq = pathname "sequence"
+		qi = seq[int]
+
+		int_ = pathname "int";
+		int_ = cluster is ... end int_;
+
+
+The rest of the extensions require use of the special compiler directive:
+	# extend
+to make them legal.
+	# normal
+makes them illegal.  Since these can only appear between  modules,  not  within
+modules, you cannot extend for one operation of a cluster.
+
+
+Octal numbers.
+
+	Any number which start with '0' is considered to be  an  octal  number.
+	Octal numbers are always positive.
+
+
+Control character escape sequences.
+
+	An escape sequence of the form \^* where * is any character in the  set
+	{@,  A-Z,  a-z,  [,  \,  ], ^, _, ?} corresponds to the obvious control
+	character.  For example, \^@ is control-@, and \^A is  control-A.   \^?
+	is delete (\177).
+
+
+Array-like constructors.
+
+	The array/sequence constructor form can be used for user-defined types,
+	with the following desugarings:
+
+	T$[]			expands to	T$new()
+	T$[E0:]			expands to	T$create(E0)
+	T$[E1,...,En]		expands to	T$cons(S$[E1,...,En])
+					where S = sequence[type_of(E1)]
+	T$[E0: E1,...,En]	expands to	T$cons2(E0, S$[E1,...,En])
+					where S = sequence[type_of(En)]
+
+	In the  last  two  cases  there  is  an  unfortunate  interaction  with
+	type-checking.   If  the  compiler "knows" the interface of the cons or
+	cons2 operation (specifically, if you have compiled the cluster  for  T
+	previously  in  the  same  compiler  process),  then  the exact type of
+	expression E1 must also be  determinable,  or  a  type  error  will  be
+	reported.   For  example,  if  E1 is an invocation of a procedure whose
+	interface the compiler does not know, the  exact  type  of  E1  is  not
+	determinable.
+
+	Cons and cons2 operations have been added for arrays, as well as a cons
+	operation for sequences.  This allows fully general use of constructors
+	in conjunction with type parameters:
+
+		p = proc [t: type] ... where t has cons: proctype ...
+			... t$[x, y, z] ...
+			end p
+
+
+Record-like constructors.
+
+	The record/struct constructor form can be used for user-defined  types,
+	with the following desugaring:
+
+	T${I1:E1,...,In:En}	expands to	T$create(S${I1:E1,...,In:En})
+		where S = struct[I1: type_of(E1), ..., In: type_of(En)]
+
+	There  is  an  unfortunate  interaction  with  type-checking.   If  the
+	compiler  "knows"  the interface of the create operation (specifically,
+	if you have compiled the cluster for T previously in the same  compiler
+	process),  then  the  exact  type  of  each  expression Ei must also be
+	determinable, or a type error will be reported.  For example,  if  some
+	Ei  is  an  invocation of a procedure whose interface the compiler does
+	not know, the exact type of that Ei is not determinable.
+
+	Create operations have been added for records and structs.  This allows
+	fully general use of constructors in conjunction with type parameters:
+
+		p = proc [t: type] ... where t has create: proctype ...
+			... t${a: x, b: y, c: z} ...
+			end p
+
+Tagcase statement.
+
+	The  tagcase  statement  can be used for objects of user-defined types.
+	The desugaring goes as follows:
+
+	tagcase E			temp: T := E
+	   tag a:			if T$is_a(temp)
+		body1		=>	   then body1
+	   tag b (y: S):		elseif T$is_b(temp)
+		body2			   then y: S := T$value_b(temp)
+	   end					body2
+					else signal failure("no matching tags")
+					end
+
+	tagcase E			temp: T := E
+	   tag a, b, c:			if T$is_a(temp)  cor
+		body1		=>	   T$is_b(temp)  cor
+	   others:			   T$is_c(temp)
+		body2			   then body1
+	   end				   else body2
+					   end
+
+
+Types as objects.
+
+	Types can be used as objects, and typespecs can be used as expressions.
+	The operations on types are equal, similar, and copy.
+
+
+TYPE_OF.
+
+	The type of an object may be obtained (as an object) with the procedure
+	TYPE_OF.
+
+
+New modules.
+
+	The keywords SELECTOR, APPLYTYPE can  be  used  in  place  of  CLUSTER.
+	SELECTOR  and  APPLYTYPE modules exists only for the purpose of writing
+	(in CLU) the specifications of the proctype  and  itertype  generators,
+	and of selector-type generators such as record and oneof; as such, they
+	can be type-checked, but cannot be compiled.
+
+
+Force statement.
+
+	There is a new statement of the form:
+
+		FORCE idn1 : idn2 = expression where ;
+
+	where  "where"  is  a  standard  WHERE  clause.   The  meaning  of this
+	statement is roughly equivalent to
+
+		idn3: any := expression;
+		idn2: type := TYPE_OF(expression);
+		idn1: idn2 := FORCE[idn2](idn3);
+
+	except that the type (idn2) is dynamically checked to insure  that  the
+	appropriate  operations  exist,  and  idn2  can  actually  be used as a
+	typespec in the remainder  of  the  scope.   If  the  force  fails,  an
+	"illegal_force" condition is raised.
+
+	Currently this statement can only be type-checked, not compiled.
