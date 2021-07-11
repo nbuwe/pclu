@@ -10,17 +10,10 @@ public installation of gc cannot be used.
 
 Get a copy of gc-7.2f and configure it with something like:
 
-    CC='cc -m32' CXX='c++ -m32' \
     ./configure \
         --enable-static=yes --enable-shared=no \
         --enable-threads=no --with-libatomic-ops=no \
         --prefix=$CLUHOME/code/gc
-
-The CC and CXX need to be set if you are building on amd64 (which I
-currently do).  While this pclu-debian release claimed to support
-64-bit it actually didn't because of a bug, so for now you have to
-stick to 32-bit.
-
 
 Build it then run make install to get the headers in code/gc/include
 the libraries in code/gc/lib (and some docs in code/gc/share/gc).
