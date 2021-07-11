@@ -94,9 +94,9 @@ symlinks:
 	# the bootstrapped compiler
 	(cd exe && ln -sf ../code/cmp/pclu)
 	# things compiler consults
-	(cd cmp && ln -sf ../../code/cmp/basic.types)
-	(cd cmp && ln -sf ../../code/cmp/ccdbg.cmd)
-	(cd cmp && ln -sf ../../code/cmp/ccopt.cmd)
+	(cd cmp && ln -sf ../code/cmp/basic.types)
+	(cd cmp && ln -sf ../code/cmp/ccdbg.cmd)
+	(cd cmp && ln -sf ../code/cmp/ccopt.cmd)
 	# to compile the C output
 	(cd include && ln -sf ../code/include/pclu_err.h)
 	(cd include && ln -sf ../code/include/pclu_sys.h)
