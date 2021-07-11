@@ -161,9 +161,9 @@ fictitious_file:
 clean:
 	for i in ${CLEANDIRS}; do (cd $$i && ${MAKE} clean); done
 	${RM} ${FLUFF}
-	cd ${EXEDOR}; ${RM} ${FLUFF}
+	(cd ${EXEDIR} && ${RM} ${FLUFF})
 
 veryclean:
 	${RM} ${FLUFF}
 	for i in ${CLEANDIRS}; do (cd $$i && ${MAKE} veryclean); done
-	cd ${EXEDIR}; ${RM} pclu cludent liblst PCLU ${FLUFF}
+	(cd ${EXEDIR} && ${RM} pclu cludent liblst PCLU ${FLUFF})
