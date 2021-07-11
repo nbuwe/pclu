@@ -11,8 +11,7 @@ FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 
 CFLAGS	 = -I../include
 #CFLAGS	+= -g
-CFLAGS	+= -O2
-CFLAGS	+= -w
+CFLAGS	+= $(OPT_FLAGS)
 
 
 LFLAGS = -L${CLUHOME}/code -lpclu_opt -lm -lgc
