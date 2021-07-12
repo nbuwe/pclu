@@ -477,7 +477,7 @@ pb_inst_parms_count = proc(p: pb) returns (int) signals (a_cons)
 
 midn = oneof[idn:idn, none:null]
 
-g_parm_table = proc(e: g_env, each_pb: pb)
+g_parm_table = proc(e: g_env, each_pb: pb, pass: int)
     index: int
     % pb_print(each_pb)
     tagcase each_pb
@@ -500,10 +500,7 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 		  nm := nm ||  "_" || s_expr4(each_parm)
 		  end
 	      nm := nm || "_ops"
-	      if own_defn$test(nm) then
-		 % logit(98, "12 " || nm)
-		 dbg_info$add_own(nm)
-		 g_env$putl(e, "struct OPS *" || nm ||";") end
+	      g_def_opsptr(e, nm, pass, "12")
 	      end
 
 	   pcount: int := cluster_parm_count(gen)
@@ -513,11 +510,7 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 		  nm := nm || "_" || s_expr4(actuals[index2])
 		  end
 	      nm := nm || "_ops"
-	      if own_defn$test(nm) then
-		 % logit(98, "13 " || nm)
-		 dbg_info$add_own(nm)
-		 g_env$putl(e, "struct OPS *" || nm || ";")
-		 end
+	      g_def_opsptr(e, nm, pass, "13")
 	      end
 
        tag a_cons(a:arraycons):
@@ -527,10 +520,7 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 		  for each_expr:expr in exprlist$elements(ct.parms) do
 		      nm: string := ct.gen.common || "_of_" 
 				      || s_expr4(each_expr) || "_table"
-		      if own_defn$test(nm) then
-			 % logit(98, "15 " || nm)
-			 dbg_info$add_own(nm)
-			 g_env$putl(e, "struct OPS *" || nm || ";") end
+		      g_def_opsptr(e, nm, pass, "15")
 		      end % for
 
 		  % INSTANTIATED OPS
@@ -539,15 +529,13 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 		      nm := nm || "_" || s_expr4(each_expr)
 		      end
 		  nm := nm || "_ops"
-		  if own_defn$test(nm) then
-		     % logit(98, "16 " || nm)
-		     dbg_info$add_own(nm)
-		     g_env$putl(e, "struct OPS *" || nm || ";") end
+		  g_def_opsptr(e, nm, pass, "16")
 
 	      others:
 		  logit(619, "g_parm_blocks array type unhandled")
 		  typespec_print(a.type_)
 	      end % tag
+
        tag any_(ex: expr):
 	   %	   nm: string := "_anyize_of_" || s_expr4(ex) || "_table"
 	   %	   if own_defn$test(nm) then
@@ -555,25 +543,33 @@ g_parm_table = proc(e: g_env, each_pb: pb)
 
 	   % INSTANTIATED OPS
 	   nm: string := "_anyize_of_" || s_name_typespec(ex.typespec) || "_ops"
-	   % logit (nm)
-	   if own_defn$test(nm) then
-	      % logit(98, "18 " || nm)
-	      dbg_info$add_own(nm)
-	      g_env$putl(e, "struct OPS *" || nm || ";") end
+	   g_def_opsptr(e, nm, pass, "18")
 
        tag force_(ty: typespec):
-
 	   % INSTANTIATED OPS
 	   nm: string := "_anyize_of_" || s_name_typespec(ty) || "_ops"
-	   if own_defn$test(nm) then
-	      % logit(98, "20 " || nm)
-	      dbg_info$add_own(nm)
-	      g_env$putl(e, "struct OPS *" || nm || ";") end
+	   g_def_opsptr(e, nm, pass, "20")
 
        others:
 	   logit(620, "g_parm_blocks: t/ainfo 1")
        end % tag
     end g_parm_table
+
+
+g_def_opsptr = proc (e: g_env, nm: string, pass: int, caller: string)
+    if ~own_defn$test(nm)	% already defined
+      then return end
+    % logit(98, caller || " " || nm)
+    dbg_info$add_own(nm)
+    g_env$puts(e, "struct OPS *")
+    g_env$puts(e, nm)
+    % declare global opsptr variables as common since they are defined
+    % in each file that instantiates this type
+    if pass = static then
+	g_env$puts(e, " __CLU_COMMON")
+      end
+    g_env$putl(e, ";")
+  end g_def_opsptr
 
 % declare instance information tables as locals & static
 

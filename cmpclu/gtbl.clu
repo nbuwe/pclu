@@ -498,21 +498,17 @@ g_tbl = cluster is Find_Tables, Build_Tables, G_Field_Tables, Exist, Prune
 	    if ~test cand pass = dynamic then continue end
 	    tagcase each_pb
 	       tag selinfo (s: selectinfo):
-		   g_sel_table(e, s.name, s.fields)
+		   g_sel_table(e, s.name, s.fields, pass)
 	       others:
-		   g_parm_table(e, each_pb)
+		   g_parm_table(e, each_pb, pass)
 	       end
 	    end % for
 	end g_field_tables
 
-    g_sel_table = proc(e: g_env, fn: name, fl: fieldspeclist)
+    g_sel_table = proc(e: g_env, fn: name, fl: fieldspeclist, pass: int)
 	sel_name: string := make_sel_name(fl)
 	nm: string := fn || "_" || sel_name || "_ops"
-	if own_defn$test(nm) then
-	   % logit(98, "g_sel_table " || nm)
-	   dbg_info$add_own(nm)
-	   g_env$putl(e, "struct OPS *" || nm || ";")
-	   end
+	g_def_opsptr(e, nm, pass, "g_sel_table")
 	end g_sel_table
 
     % generates extern statements
