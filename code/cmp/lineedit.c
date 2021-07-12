@@ -740,7 +740,7 @@ extern const struct REQS * const stable_of_value_t_reqs;
 extern struct OPS *int_ops;
 extern const OWN_req stable_ownreqs;
 extern struct OPS *stable_ops;
-struct OPS *stable_of_int_ops;
+struct OPS *stable_of_int_ops __CLU_COMMON;
 static int get_key_press_own_init = 0;
 CLUREF get_key_pressOPbindings;
 
@@ -1086,7 +1086,7 @@ get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
 
 extern errcode stableOPcreate();
 extern errcode stableOPinsert();
-struct OPS *stable_of_int_ops;
+struct OPS *stable_of_int_ops __CLU_COMMON;
 static CLUREF STR__001;
 static CLUREF STR__002;
 static CLUREF STR__004;
@@ -1382,7 +1382,7 @@ extern errcode overload_keytable_file();
 extern errcode file_nameOPparse();
 extern errcode _system_root();
 extern errcode setup_default_keytable();
-struct OPS *stable_of_int_ops;
+struct OPS *stable_of_int_ops __CLU_COMMON;
 static CLUREF STR__057lineedit_056keys;
 static CLUREF STR__057_056inputrc;
 static CLUREF STR__057_056lineedit_056keys;
@@ -1530,7 +1530,7 @@ extern errcode upper_case();
 extern errcode stringOPindexs();
 extern errcode stableOPdelete();
 extern errcode streamOPclose();
-struct OPS *stable_of_int_ops;
+struct OPS *stable_of_int_ops __CLU_COMMON;
 static CLUREF STR_read;
 static CLUREF STR__011;
 static CLUREF STR_format_040error_040in_040;

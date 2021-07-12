@@ -2288,12 +2288,12 @@ extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *string_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_string_ops;
+struct OPS *sequence_of_string_ops __CLU_COMMON;
 extern const struct REQS * const g_commalist_of_ltype_reqs;
 extern struct OPS *sequence_of_string_ops;
 extern const struct REQS * const g_commalist_of_elt_reqs;
 extern const OWN_req g_commalist_ownreqs;
-struct OPS *g_commalist_of_sequence_of_string_string_ops;
+struct OPS *g_commalist_of_sequence_of_string_string_ops __CLU_COMMON;
 static int g_namelist_own_init = 0;
 
 errcode
@@ -2340,9 +2340,9 @@ g_namelist(CLUREF e, CLUREF nlist)
 /**** BEGIN PROCEDURE g_idnlist ****/
 
 extern struct OPS *idn_ops;
-struct OPS *sequence_of_idn_ops;
+struct OPS *sequence_of_idn_ops __CLU_COMMON;
 extern struct OPS *sequence_of_idn_ops;
-struct OPS *g_commalist_of_sequence_of_idn_idn_ops;
+struct OPS *g_commalist_of_sequence_of_idn_idn_ops __CLU_COMMON;
 static int g_idnlist_own_init = 0;
 
 errcode
@@ -2391,8 +2391,8 @@ g_idnlist(CLUREF e, CLUREF ilist)
 /**** BEGIN PROCEDURE g_idnlitlist ****/
 
 extern errcode g_idnlit();
-struct OPS *sequence_of_idn_ops;
-struct OPS *g_commalist_of_sequence_of_idn_idn_ops;
+struct OPS *sequence_of_idn_ops __CLU_COMMON;
+struct OPS *g_commalist_of_sequence_of_idn_idn_ops __CLU_COMMON;
 static int g_idnlitlist_own_init = 0;
 
 errcode
@@ -2546,7 +2546,7 @@ extern errcode intOPunparse();
 extern const struct REQS * const seq_extend_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req seq_extend_ownreqs;
-struct OPS *seq_extend_of_expr_ops;
+struct OPS *seq_extend_of_expr_ops __CLU_COMMON;
 static CLUREF STR_generic_137CLU_137proc;
 static CLUREF STR_generic_137CLU_137proc_056type_137owns_040_075_0400_073;
 static CLUREF STR_generic_137CLU_137proc_056op_137owns_040_075_040;
@@ -5719,7 +5719,7 @@ extern errcode g_inv();
 extern errcode g_expr_arg();
 extern errcode g_envOPnewline();
 extern errcode exOPget_current_ex_label();
-struct OPS *seq_extend_of_expr_ops;
+struct OPS *seq_extend_of_expr_ops __CLU_COMMON;
 static CLUREF STR__044;
 static CLUREF STR_g_137einvoke_072_040unhandled_040invoke_056apply_056typespec_056other_040;
 static CLUREF STR_specifications_040missing;
@@ -6708,7 +6708,7 @@ g_apply1(CLUREF e, CLUREF exp, CLUREF ct, CLUREF *ret_1)
 /**** BEGIN PROCEDURE g_op1 ****/
 
 extern errcode base_cluster_test();
-struct OPS *seq_extend_of_expr_ops;
+struct OPS *seq_extend_of_expr_ops __CLU_COMMON;
 static CLUREF STR_g_137op1_072_040can_047t_040find_040du;
 static CLUREF STR_g_137op1_072_040wrong_137tag_0401;
 static CLUREF STR__056proc_055_076type_137owns_040_075_040;

@@ -164,11 +164,11 @@ extern const struct REQS * const _tagcell_of_t_reqs;
 extern struct OPS *_obj_ops;
 extern const OWN_req _tagcell_ownreqs;
 extern struct OPS *_tagcell_ops;
-struct OPS *_tagcell_of__obj_ops;
+struct OPS *_tagcell_of__obj_ops __CLU_COMMON;
 extern const struct REQS * const _adv_of_t_reqs;
 extern const OWN_req _adv_ownreqs;
 extern struct OPS *_adv_ops;
-struct OPS *_adv_of__obj_ops;
+struct OPS *_adv_of__obj_ops __CLU_COMMON;
 static CLUREF STR_write;
 static CLUREF STR_gcd_137tab_072_040array_040store_040not_040a_040ref;
 static int gcd_tab_own_init = 0;
@@ -764,8 +764,8 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
 
 /**** BEGIN PROCEDURE pgrind ****/
 
-struct OPS *_tagcell_of__obj_ops;
-struct OPS *_adv_of__obj_ops;
+struct OPS *_tagcell_of__obj_ops __CLU_COMMON;
+struct OPS *_adv_of__obj_ops __CLU_COMMON;
 
 typedef struct {
     long pgrind_own_init;
@@ -1161,8 +1161,8 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
 
 /**** BEGIN PROCEDURE mgrind ****/
 
-struct OPS *_tagcell_of__obj_ops;
-struct OPS *_adv_of__obj_ops;
+struct OPS *_tagcell_of__obj_ops __CLU_COMMON;
+struct OPS *_adv_of__obj_ops __CLU_COMMON;
 
 typedef struct {
     long mgrind_own_init;
@@ -2192,7 +2192,7 @@ extern errcode intOPmin();
 extern errcode _wordvecOPmove_b2w();
 extern errcode intOPequal();
 extern errcode intOPle();
-struct OPS *_adv_of__obj_ops;
+struct OPS *_adv_of__obj_ops __CLU_COMMON;
 static int gcd_store_own_init = 0;
 const OWN_req gcd_store_ownreqs = { 0, 0 };
 CLUREF gcd_storeOPclurefsz;
@@ -2614,7 +2614,7 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
 
 /**** BEGIN PROCEDURE store_array_desc ****/
 
-struct OPS *_adv_of__obj_ops;
+struct OPS *_adv_of__obj_ops __CLU_COMMON;
 static int gcd_storeOPstore_array_desc_own_init = 0;
 
 errcode

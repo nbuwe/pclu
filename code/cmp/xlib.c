@@ -43,49 +43,49 @@ extern const struct REQS * const table_of_val_reqs;
 extern struct OPS *du_ops;
 extern const OWN_req table_ownreqs;
 extern struct OPS *table_ops;
-struct OPS *table_of_string_du_ops;
+struct OPS *table_of_string_du_ops __CLU_COMMON;
 extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *idn_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_idn_ops;
+struct OPS *sequence_of_idn_ops __CLU_COMMON;
 extern struct OPS *sequence_of_idn_ops;
 extern struct OPS *typespec_ops;
-struct OPS *record_parms_type__ops;
+struct OPS *record_parms_type__ops __CLU_COMMON;
 extern struct OPS *expr_ops;
-struct OPS *sequence_of_expr_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
 extern struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
 extern struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
 extern struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
 extern struct OPS *record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_ops;
+struct OPS *sequence_of_record_opers_parm_ops __CLU_COMMON;
 extern struct OPS *record_parms_type__ops;
 extern struct OPS *sequence_of_record_opers_parm_ops;
-struct OPS *record_info_name_where__ops;
+struct OPS *record_info_name_where__ops __CLU_COMMON;
 extern struct OPS *record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__ops;
+struct OPS *sequence_of_record_info_name_where__ops __CLU_COMMON;
 extern struct OPS *sequence_of_record_info_name_where__ops;
-struct OPS *record_opers_parms_ops;
+struct OPS *record_opers_parms_ops __CLU_COMMON;
 extern struct OPS *record_opers_parms_ops;
 extern struct OPS *null_ops;
-struct OPS *oneof_apply_atype_cluster__none_select_ops;
+struct OPS *oneof_apply_atype_cluster__none_select_ops __CLU_COMMON;
 extern struct OPS *oneof_apply_atype_cluster__none_select_ops;
-struct OPS *record_name_path_specs_ops;
+struct OPS *record_name_path_specs_ops __CLU_COMMON;
 extern const struct REQS * const array_of_t_reqs;
 extern struct OPS *record_name_path_specs_ops;
 extern const OWN_req array_ownreqs;
 extern struct OPS *array_ops;
-struct OPS *array_of_record_name_path_specs_ops;
+struct OPS *array_of_record_name_path_specs_ops __CLU_COMMON;
 extern const struct REQS * const gc_dump_of_t_reqs;
 extern struct OPS *array_of_record_name_path_specs_ops;
 extern const OWN_req gc_dump_ownreqs;
-struct OPS *gc_dump_of_array_of_record_name_path_specs_ops;
+struct OPS *gc_dump_of_array_of_record_name_path_specs_ops __CLU_COMMON;
 extern const struct REQS * const gc_read_of_t_reqs;
 extern const OWN_req gc_read_ownreqs;
-struct OPS *gc_read_of_array_of_record_name_path_specs_ops;
+struct OPS *gc_read_of_array_of_record_name_path_specs_ops __CLU_COMMON;
 static CLUREF STR_null;
 static CLUREF STR_bool;
 static CLUREF STR_int;
@@ -374,7 +374,7 @@ xlibOPinit()
 
 /**** BEGIN PROCEDURE lookup ****/
 
-struct OPS *table_of_string_du_ops;
+struct OPS *table_of_string_du_ops __CLU_COMMON;
 static int xlibOPlookup_own_init = 0;
 
 errcode
@@ -424,7 +424,7 @@ xlibOPlookup(CLUREF path, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE bind ****/
 
-struct OPS *table_of_string_du_ops;
+struct OPS *table_of_string_du_ops __CLU_COMMON;
 static int xlibOPbind_own_init = 0;
 
 errcode
@@ -469,7 +469,7 @@ xlibOPbind(CLUREF path, CLUREF d)
 
 /**** BEGIN PROCEDURE get_du ****/
 
-struct OPS *table_of_string_du_ops;
+struct OPS *table_of_string_du_ops __CLU_COMMON;
 static int xlibOPget_du_own_init = 0;
 
 errcode
@@ -548,21 +548,21 @@ xlibOPget_du(CLUREF n, CLUREF *ret_1)
 /**** BEGIN PROCEDURE dump ****/
 
 static errcode xlibOPdump_IB_1();
-struct OPS *table_of_string_du_ops;
-struct OPS *sequence_of_idn_ops;
-struct OPS *record_parms_type__ops;
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_ops;
-struct OPS *record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__ops;
-struct OPS *record_opers_parms_ops;
-struct OPS *oneof_apply_atype_cluster__none_select_ops;
-struct OPS *record_name_path_specs_ops;
-struct OPS *array_of_record_name_path_specs_ops;
-struct OPS *gc_dump_of_array_of_record_name_path_specs_ops;
+struct OPS *table_of_string_du_ops __CLU_COMMON;
+struct OPS *sequence_of_idn_ops __CLU_COMMON;
+struct OPS *record_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *sequence_of_record_opers_parm_ops __CLU_COMMON;
+struct OPS *record_info_name_where__ops __CLU_COMMON;
+struct OPS *sequence_of_record_info_name_where__ops __CLU_COMMON;
+struct OPS *record_opers_parms_ops __CLU_COMMON;
+struct OPS *oneof_apply_atype_cluster__none_select_ops __CLU_COMMON;
+struct OPS *record_name_path_specs_ops __CLU_COMMON;
+struct OPS *array_of_record_name_path_specs_ops __CLU_COMMON;
+struct OPS *gc_dump_of_array_of_record_name_path_specs_ops __CLU_COMMON;
 static int xlibOPdump_own_init = 0;
 typedef struct {
     errcode ecode2;
@@ -804,21 +804,21 @@ xlibOPdump_IB_1(CLUREF iv_1, CLUREF iv_2, xlibOPdump_LOCALS_t *locals, errcode *
 
 /**** BEGIN PROCEDURE merge ****/
 
-struct OPS *sequence_of_idn_ops;
-struct OPS *record_parms_type__ops;
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_ops;
-struct OPS *record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__ops;
-struct OPS *record_opers_parms_ops;
-struct OPS *oneof_apply_atype_cluster__none_select_ops;
-struct OPS *record_name_path_specs_ops;
-struct OPS *array_of_record_name_path_specs_ops;
-struct OPS *gc_read_of_array_of_record_name_path_specs_ops;
-struct OPS *table_of_string_du_ops;
+struct OPS *sequence_of_idn_ops __CLU_COMMON;
+struct OPS *record_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *sequence_of_record_opers_parm_ops __CLU_COMMON;
+struct OPS *record_info_name_where__ops __CLU_COMMON;
+struct OPS *sequence_of_record_info_name_where__ops __CLU_COMMON;
+struct OPS *record_opers_parms_ops __CLU_COMMON;
+struct OPS *oneof_apply_atype_cluster__none_select_ops __CLU_COMMON;
+struct OPS *record_name_path_specs_ops __CLU_COMMON;
+struct OPS *array_of_record_name_path_specs_ops __CLU_COMMON;
+struct OPS *gc_read_of_array_of_record_name_path_specs_ops __CLU_COMMON;
+struct OPS *table_of_string_du_ops __CLU_COMMON;
 static int xlibOPmerge_own_init = 0;
 
 errcode
@@ -960,21 +960,21 @@ xlibOPmerge(CLUREF fn)
 
 /**** BEGIN PROCEDURE unmerge ****/
 
-struct OPS *sequence_of_idn_ops;
-struct OPS *record_parms_type__ops;
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *sequence_of_record_opers_parm_ops;
-struct OPS *record_info_name_where__ops;
-struct OPS *sequence_of_record_info_name_where__ops;
-struct OPS *record_opers_parms_ops;
-struct OPS *oneof_apply_atype_cluster__none_select_ops;
-struct OPS *record_name_path_specs_ops;
-struct OPS *array_of_record_name_path_specs_ops;
-struct OPS *gc_read_of_array_of_record_name_path_specs_ops;
-struct OPS *table_of_string_du_ops;
+struct OPS *sequence_of_idn_ops __CLU_COMMON;
+struct OPS *record_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *sequence_of_record_opers_parm_ops __CLU_COMMON;
+struct OPS *record_info_name_where__ops __CLU_COMMON;
+struct OPS *sequence_of_record_info_name_where__ops __CLU_COMMON;
+struct OPS *record_opers_parms_ops __CLU_COMMON;
+struct OPS *oneof_apply_atype_cluster__none_select_ops __CLU_COMMON;
+struct OPS *record_name_path_specs_ops __CLU_COMMON;
+struct OPS *array_of_record_name_path_specs_ops __CLU_COMMON;
+struct OPS *gc_read_of_array_of_record_name_path_specs_ops __CLU_COMMON;
+struct OPS *table_of_string_du_ops __CLU_COMMON;
 static int xlibOPunmerge_own_init = 0;
 
 errcode

@@ -32,7 +32,7 @@ extern errcode stringOPequal();
 extern errcode recordOP_gcd();
 extern struct OPS *int_ops;
 extern struct OPS *string_ops;
-struct OPS *record_index_name_ops;
+struct OPS *record_index_name_ops __CLU_COMMON;
 static int du_own_init = 0;
 const OWN_req du_ownreqs = { 0, 0 };
 CLUREF duOPstore;
@@ -916,7 +916,7 @@ duOPcopy(CLUREF d, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-struct OPS *record_index_name_ops;
+struct OPS *record_index_name_ops __CLU_COMMON;
 static int duOP_gcd_own_init = 0;
 
 errcode

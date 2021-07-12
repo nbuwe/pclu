@@ -29,7 +29,7 @@ extern errcode sequenceOPfill();
 extern const struct REQS * const addh_if_new_of_ty_reqs;
 extern struct OPS *string_ops;
 extern const OWN_req addh_if_new_ownreqs;
-struct OPS *addh_if_new_of_string_ops;
+struct OPS *addh_if_new_of_string_ops __CLU_COMMON;
 static CLUREF STR_OP;
 static CLUREF STR_is_137;
 static int g_expr_proc_names_own_init = 0;
@@ -677,7 +677,7 @@ extern errcode parmOPmember_op();
 extern errcode idnOPget_str();
 extern errcode parmOPmember_base();
 extern errcode stringOPequal();
-struct OPS *addh_if_new_of_string_ops;
+struct OPS *addh_if_new_of_string_ops __CLU_COMMON;
 static int g_proc_exprs_own_init = 0;
 
 errcode
@@ -1306,14 +1306,14 @@ extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *idn_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_idn_ops;
+struct OPS *sequence_of_idn_ops __CLU_COMMON;
 extern struct OPS *sequence_of_idn_ops;
 extern struct OPS *typespec_ops;
-struct OPS *record_idns_type__ops;
+struct OPS *record_idns_type__ops __CLU_COMMON;
 extern const struct REQS * const array_extend_of_t_reqs;
 extern struct OPS *record_idns_type__ops;
 extern const OWN_req array_extend_ownreqs;
-struct OPS *array_extend_of_record_idns_type__ops;
+struct OPS *array_extend_of_record_idns_type__ops __CLU_COMMON;
 static int g_lvs_stmts_own_init = 0;
 
 errcode

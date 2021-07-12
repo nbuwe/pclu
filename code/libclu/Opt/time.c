@@ -60,7 +60,7 @@ extern errcode timeOPparse();
 extern errcode stringOPdecode();
 extern errcode structOP_gcd();
 extern struct OPS *int_ops;
-struct OPS *struct_days_hours_micros_millis_mins_secs_ops;
+struct OPS *struct_days_hours_micros_millis_mins_secs_ops __CLU_COMMON;
 static CLUREF STR_bad_040format;
 static int time_own_init = 0;
 const OWN_req time_ownreqs = { 0, 0 };
@@ -2918,7 +2918,7 @@ timeOPprint(CLUREF t, CLUREF pst)
 
 /**** BEGIN PROCEDURE equal ****/
 
-struct OPS *struct_days_hours_micros_millis_mins_secs_ops;
+struct OPS *struct_days_hours_micros_millis_mins_secs_ops __CLU_COMMON;
 static int timeOPequal_own_init = 0;
 
 errcode
@@ -3139,7 +3139,7 @@ timeOPdecode(CLUREF ist, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-struct OPS *struct_days_hours_micros_millis_mins_secs_ops;
+struct OPS *struct_days_hours_micros_millis_mins_secs_ops __CLU_COMMON;
 static int timeOP_gcd_own_init = 0;
 
 errcode

@@ -44,7 +44,7 @@ extern errcode file_nameOPparse();
 extern errcode stringOPdecode();
 extern errcode recordOP_gcd();
 extern struct OPS *string_ops;
-struct OPS *record_dir_name_other_suffix_ops;
+struct OPS *record_dir_name_other_suffix_ops __CLU_COMMON;
 static CLUREF STR__057;
 static CLUREF STR_output;
 static CLUREF STR__137;
@@ -995,7 +995,7 @@ file_nameOPmake_temp(CLUREF tdir, CLUREF prog, CLUREF kind, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE equal ****/
 
-struct OPS *record_dir_name_other_suffix_ops;
+struct OPS *record_dir_name_other_suffix_ops __CLU_COMMON;
 static int file_nameOPequal_own_init = 0;
 
 errcode
@@ -1040,7 +1040,7 @@ file_nameOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE similar ****/
 
-struct OPS *record_dir_name_other_suffix_ops;
+struct OPS *record_dir_name_other_suffix_ops __CLU_COMMON;
 static int file_nameOPsimilar_own_init = 0;
 
 errcode
@@ -1376,7 +1376,7 @@ file_nameOPdecode(CLUREF ist, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-struct OPS *record_dir_name_other_suffix_ops;
+struct OPS *record_dir_name_other_suffix_ops __CLU_COMMON;
 static int file_nameOP_gcd_own_init = 0;
 
 errcode

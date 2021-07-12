@@ -739,7 +739,7 @@ extern errcode oneofOPmake_4();
 extern const struct REQS * const p_blist_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req p_blist_ownreqs;
-struct OPS *p_blist_of_expr_ops;
+struct OPS *p_blist_of_expr_ops __CLU_COMMON;
 static CLUREF STR_constant;
 static int p_idn_primary_own_init = 0;
 
@@ -959,7 +959,7 @@ extern errcode p_s_cons();
 extern errcode p_a_cons();
 extern errcode oneofOPmake_20();
 extern errcode idnOPget_str();
-struct OPS *p_blist_of_expr_ops;
+struct OPS *p_blist_of_expr_ops __CLU_COMMON;
 static CLUREF STR_constructor_040or_040name_040after_040type_137spec_044;
 static int p_type_primary_own_init = 0;
 
@@ -1146,7 +1146,7 @@ extern errcode p_envOPerr();
 extern errcode exprOPget_abs();
 extern const struct REQS * const p_plist_of_t_reqs;
 extern const OWN_req p_plist_ownreqs;
-struct OPS *p_plist_of_expr_ops;
+struct OPS *p_plist_of_expr_ops __CLU_COMMON;
 static CLUREF STR__135_040in_040primary_133expression_135;
 static CLUREF STR_missing_040name_040_055_040_047_056_047_040ignored;
 static int p_more_primary_own_init = 0;
@@ -1373,14 +1373,14 @@ extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *string_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_string_ops;
+struct OPS *sequence_of_string_ops __CLU_COMMON;
 extern struct OPS *int_ops;
 extern struct OPS *sequence_of_string_ops;
-struct OPS *record_line_sels_val_ops;
+struct OPS *record_line_sels_val_ops __CLU_COMMON;
 extern const struct REQS * const p_clist_of_t_reqs;
 extern struct OPS *record_line_sels_val_ops;
 extern const OWN_req p_clist_ownreqs;
-struct OPS *p_clist_of_record_line_sels_val_ops;
+struct OPS *p_clist_of_record_line_sels_val_ops __CLU_COMMON;
 static CLUREF STR_field;
 static CLUREF STR__175_040in_040constructor;
 static int p_s_cons_own_init = 0;
@@ -1489,7 +1489,7 @@ p_s_cons(CLUREF e, CLUREF t, CLUREF *ret_1)
 /**** BEGIN PROCEDURE p_field ****/
 
 extern errcode p_envOPget_line();
-struct OPS *p_clist_of_string_ops;
+struct OPS *p_clist_of_string_ops __CLU_COMMON;
 static CLUREF STR_name;
 static CLUREF STR__072_040expression_040in_040field_040of_040constructor;
 static int p_field_own_init = 0;
@@ -1633,7 +1633,7 @@ extern errcode oneofOPmake_1();
 extern errcode sequenceOPnew();
 extern errcode oneofOPmake_2();
 extern errcode sequenceOPaddl();
-struct OPS *p_clist_of_expr_ops;
+struct OPS *p_clist_of_expr_ops __CLU_COMMON;
 static CLUREF STR__135_040in_040constructor;
 static int p_a_cons_own_init = 0;
 

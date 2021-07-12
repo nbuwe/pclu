@@ -90,60 +90,60 @@ extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_expr_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
 extern struct OPS *string_ops;
 extern struct OPS *sequence_of_expr_ops;
 extern struct OPS *typespec_ops;
-struct OPS *record_name_parms_type__ops;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
 extern struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
 extern struct OPS *sequence_of_record_name_parms_type__ops;
 extern struct OPS *idn_ops;
-struct OPS *record_opers_parm_ops;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
 extern struct OPS *du_ops;
 extern struct OPS *record_opers_parm_ops;
 extern struct OPS *null_ops;
-struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops __CLU_COMMON;
 extern struct OPS *int_ops;
 extern struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
-struct OPS *record_code_kind_ops;
+struct OPS *record_code_kind_ops __CLU_COMMON;
 extern const struct REQS * const table_of_key_reqs;
 extern const struct REQS * const table_of_val_reqs;
 extern struct OPS *record_code_kind_ops;
 extern const OWN_req table_ownreqs;
 extern struct OPS *table_ops;
-struct OPS *table_of_string_record_code_kind_ops;
-struct OPS *sequence_of_typespec_ops;
+struct OPS *table_of_string_record_code_kind_ops __CLU_COMMON;
+struct OPS *sequence_of_typespec_ops __CLU_COMMON;
 extern struct OPS *sequence_of_typespec_ops;
-struct OPS *record_name_types_ops;
+struct OPS *record_name_types_ops __CLU_COMMON;
 extern struct OPS *record_name_types_ops;
-struct OPS *sequence_of_record_name_types_ops;
+struct OPS *sequence_of_record_name_types_ops __CLU_COMMON;
 extern struct OPS *sequence_of_record_name_types_ops;
-struct OPS *record_args_gen_sigs_vals_ops;
-struct OPS *record_gen_parms_ops;
+struct OPS *record_args_gen_sigs_vals_ops __CLU_COMMON;
+struct OPS *record_gen_parms_ops __CLU_COMMON;
 extern struct OPS *record_gen_parms_ops;
-struct OPS *oneof_du_op_return__ops;
-struct OPS *record_sel_type__ops;
+struct OPS *oneof_du_op_return__ops __CLU_COMMON;
+struct OPS *record_sel_type__ops __CLU_COMMON;
 extern struct OPS *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
+struct OPS *sequence_of_record_sel_type__ops __CLU_COMMON;
 extern struct OPS *sequence_of_record_sel_type__ops;
-struct OPS *record_gen_parms_1_ops;
-struct OPS *record_idn_parms_ops;
-struct OPS *record_idn_parms_1_ops;
+struct OPS *record_gen_parms_1_ops __CLU_COMMON;
+struct OPS *record_idn_parms_ops __CLU_COMMON;
+struct OPS *record_idn_parms_1_ops __CLU_COMMON;
 extern struct OPS *record_args_gen_sigs_vals_ops;
 extern struct OPS *oneof_du_op_return__ops;
 extern struct OPS *record_gen_parms_1_ops;
 extern struct OPS *record_idn_parms_ops;
 extern struct OPS *record_idn_parms_1_ops;
-struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops;
+struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops __CLU_COMMON;
 extern struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops;
-struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops;
+struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops __CLU_COMMON;
 extern struct OPS *bool_ops;
-struct OPS *table_of_du_bool_ops;
+struct OPS *table_of_du_bool_ops __CLU_COMMON;
 extern const struct REQS * const table_op_pcond_flush_of_u_reqs;
 extern const OWN_req table_op_pcond_flush_ownreqs;
-struct OPS *table_op_pcond_flush_of_string_record_code_kind_bool_ops;
-struct OPS *table_op_pcond_flush_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_int_ops;
+struct OPS *table_op_pcond_flush_of_string_record_code_kind_bool_ops __CLU_COMMON;
+struct OPS *table_op_pcond_flush_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_int_ops __CLU_COMMON;
 static CLUREF STR_null;
 static CLUREF STR_bool;
 static CLUREF STR_int;
@@ -284,27 +284,27 @@ ce_own_init_proc(void)
 
 /**** BEGIN PROCEDURE create ****/
 
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
-struct OPS *record_code_kind_ops;
-struct OPS *table_of_string_record_code_kind_ops;
-struct OPS *sequence_of_typespec_ops;
-struct OPS *record_name_types_ops;
-struct OPS *sequence_of_record_name_types_ops;
-struct OPS *record_args_gen_sigs_vals_ops;
-struct OPS *record_gen_parms_ops;
-struct OPS *oneof_du_op_return__ops;
-struct OPS *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
-struct OPS *record_gen_parms_1_ops;
-struct OPS *record_idn_parms_ops;
-struct OPS *record_idn_parms_1_ops;
-struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops;
-struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops;
-struct OPS *table_of_du_bool_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops __CLU_COMMON;
+struct OPS *record_code_kind_ops __CLU_COMMON;
+struct OPS *table_of_string_record_code_kind_ops __CLU_COMMON;
+struct OPS *sequence_of_typespec_ops __CLU_COMMON;
+struct OPS *record_name_types_ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_types_ops __CLU_COMMON;
+struct OPS *record_args_gen_sigs_vals_ops __CLU_COMMON;
+struct OPS *record_gen_parms_ops __CLU_COMMON;
+struct OPS *oneof_du_op_return__ops __CLU_COMMON;
+struct OPS *record_sel_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_sel_type__ops __CLU_COMMON;
+struct OPS *record_gen_parms_1_ops __CLU_COMMON;
+struct OPS *record_idn_parms_ops __CLU_COMMON;
+struct OPS *record_idn_parms_1_ops __CLU_COMMON;
+struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops __CLU_COMMON;
+struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops __CLU_COMMON;
+struct OPS *table_of_du_bool_ops __CLU_COMMON;
 static int ceOPcreate_own_init = 0;
 
 errcode
@@ -790,14 +790,14 @@ ceOPcreate(CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE reset_entries ****/
 
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
-struct OPS *record_code_kind_ops;
-struct OPS *table_of_string_record_code_kind_ops;
-struct OPS *table_op_pcond_flush_of_string_record_code_kind_bool_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops __CLU_COMMON;
+struct OPS *record_code_kind_ops __CLU_COMMON;
+struct OPS *table_of_string_record_code_kind_ops __CLU_COMMON;
+struct OPS *table_op_pcond_flush_of_string_record_code_kind_bool_ops __CLU_COMMON;
 static int ceOPreset_entries_own_init = 0;
 
 errcode
@@ -843,13 +843,13 @@ ceOPreset_entries(CLUREF e, CLUREF lasting)
 
 /**** BEGIN PROCEDURE flush_entries ****/
 
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
-struct OPS *record_code_kind_ops;
-struct OPS *table_of_string_record_code_kind_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops __CLU_COMMON;
+struct OPS *record_code_kind_ops __CLU_COMMON;
+struct OPS *table_of_string_record_code_kind_ops __CLU_COMMON;
 static int ceOPflush_entries_own_init = 0;
 
 errcode
@@ -982,21 +982,21 @@ ceOPpflush_id(CLUREF ent, CLUREF lasting, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE reset_types ****/
 
-struct OPS *sequence_of_typespec_ops;
-struct OPS *record_name_types_ops;
-struct OPS *sequence_of_record_name_types_ops;
-struct OPS *record_args_gen_sigs_vals_ops;
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_gen_parms_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *oneof_du_op_return__ops;
-struct OPS *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
-struct OPS *record_gen_parms_1_ops;
-struct OPS *record_idn_parms_ops;
-struct OPS *record_idn_parms_1_ops;
-struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops;
-struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops;
+struct OPS *sequence_of_typespec_ops __CLU_COMMON;
+struct OPS *record_name_types_ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_types_ops __CLU_COMMON;
+struct OPS *record_args_gen_sigs_vals_ops __CLU_COMMON;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_gen_parms_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *oneof_du_op_return__ops __CLU_COMMON;
+struct OPS *record_sel_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_sel_type__ops __CLU_COMMON;
+struct OPS *record_gen_parms_1_ops __CLU_COMMON;
+struct OPS *record_idn_parms_ops __CLU_COMMON;
+struct OPS *record_idn_parms_1_ops __CLU_COMMON;
+struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops __CLU_COMMON;
+struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops __CLU_COMMON;
 static int ceOPreset_types_own_init = 0;
 
 errcode
@@ -1078,28 +1078,28 @@ ceOPreset_types(CLUREF e, CLUREF types)
 /**** BEGIN PROCEDURE reset ****/
 
 static errcode ceOPreset_IB_1();
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
-struct OPS *record_code_kind_ops;
-struct OPS *table_of_string_record_code_kind_ops;
-struct OPS *sequence_of_typespec_ops;
-struct OPS *record_name_types_ops;
-struct OPS *sequence_of_record_name_types_ops;
-struct OPS *record_args_gen_sigs_vals_ops;
-struct OPS *record_gen_parms_ops;
-struct OPS *oneof_du_op_return__ops;
-struct OPS *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
-struct OPS *record_gen_parms_1_ops;
-struct OPS *record_idn_parms_ops;
-struct OPS *record_idn_parms_1_ops;
-struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops;
-struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops;
-struct OPS *table_op_pcond_flush_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_int_ops;
-struct OPS *table_of_du_bool_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops __CLU_COMMON;
+struct OPS *record_code_kind_ops __CLU_COMMON;
+struct OPS *table_of_string_record_code_kind_ops __CLU_COMMON;
+struct OPS *sequence_of_typespec_ops __CLU_COMMON;
+struct OPS *record_name_types_ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_types_ops __CLU_COMMON;
+struct OPS *record_args_gen_sigs_vals_ops __CLU_COMMON;
+struct OPS *record_gen_parms_ops __CLU_COMMON;
+struct OPS *oneof_du_op_return__ops __CLU_COMMON;
+struct OPS *record_sel_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_sel_type__ops __CLU_COMMON;
+struct OPS *record_gen_parms_1_ops __CLU_COMMON;
+struct OPS *record_idn_parms_ops __CLU_COMMON;
+struct OPS *record_idn_parms_1_ops __CLU_COMMON;
+struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops __CLU_COMMON;
+struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops __CLU_COMMON;
+struct OPS *table_op_pcond_flush_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_int_ops __CLU_COMMON;
+struct OPS *table_of_du_bool_ops __CLU_COMMON;
 static int ceOPreset_own_init = 0;
 typedef struct {
     errcode ecode2;
@@ -1251,28 +1251,28 @@ ceOPreset_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPreset_LOCALS_t *locals, errcode *ie
 /**** BEGIN PROCEDURE reset1 ****/
 
 static errcode ceOPreset1_IB_1();
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
-struct OPS *record_code_kind_ops;
-struct OPS *table_of_string_record_code_kind_ops;
-struct OPS *sequence_of_typespec_ops;
-struct OPS *record_name_types_ops;
-struct OPS *sequence_of_record_name_types_ops;
-struct OPS *record_args_gen_sigs_vals_ops;
-struct OPS *record_gen_parms_ops;
-struct OPS *oneof_du_op_return__ops;
-struct OPS *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
-struct OPS *record_gen_parms_1_ops;
-struct OPS *record_idn_parms_ops;
-struct OPS *record_idn_parms_1_ops;
-struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops;
-struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops;
-struct OPS *table_op_pcond_flush_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_int_ops;
-struct OPS *table_of_du_bool_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops __CLU_COMMON;
+struct OPS *record_code_kind_ops __CLU_COMMON;
+struct OPS *table_of_string_record_code_kind_ops __CLU_COMMON;
+struct OPS *sequence_of_typespec_ops __CLU_COMMON;
+struct OPS *record_name_types_ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_types_ops __CLU_COMMON;
+struct OPS *record_args_gen_sigs_vals_ops __CLU_COMMON;
+struct OPS *record_gen_parms_ops __CLU_COMMON;
+struct OPS *oneof_du_op_return__ops __CLU_COMMON;
+struct OPS *record_sel_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_sel_type__ops __CLU_COMMON;
+struct OPS *record_gen_parms_1_ops __CLU_COMMON;
+struct OPS *record_idn_parms_ops __CLU_COMMON;
+struct OPS *record_idn_parms_1_ops __CLU_COMMON;
+struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops __CLU_COMMON;
+struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops __CLU_COMMON;
+struct OPS *table_op_pcond_flush_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_int_ops __CLU_COMMON;
+struct OPS *table_of_du_bool_ops __CLU_COMMON;
 static int ceOPreset1_own_init = 0;
 typedef struct {
     errcode ecode2;
@@ -1525,7 +1525,7 @@ ceOPpflush_type(CLUREF t, CLUREF max, CLUREF *ret_1)
 /**** BEGIN PROCEDURE keep ****/
 
 static errcode ceOPkeep_IB_1();
-struct OPS *table_of_du_bool_ops;
+struct OPS *table_of_du_bool_ops __CLU_COMMON;
 static int ceOPkeep_own_init = 0;
 typedef struct {
     errcode ecode2;
@@ -1635,13 +1635,13 @@ ceOPkeep_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPkeep_LOCALS_t *locals, errcode *ieco
 
 /**** BEGIN PROCEDURE lookup ****/
 
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
-struct OPS *record_code_kind_ops;
-struct OPS *table_of_string_record_code_kind_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops __CLU_COMMON;
+struct OPS *record_code_kind_ops __CLU_COMMON;
+struct OPS *table_of_string_record_code_kind_ops __CLU_COMMON;
 static int ceOPlookup_own_init = 0;
 
 errcode
@@ -1782,13 +1782,13 @@ ceOPlookup(CLUREF e, CLUREF s, CLUREF line, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE local ****/
 
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
-struct OPS *record_code_kind_ops;
-struct OPS *table_of_string_record_code_kind_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops __CLU_COMMON;
+struct OPS *record_code_kind_ops __CLU_COMMON;
+struct OPS *table_of_string_record_code_kind_ops __CLU_COMMON;
 static int ceOPlocal_own_init = 0;
 
 errcode
@@ -1881,13 +1881,13 @@ ceOPlocal(CLUREF e, CLUREF s, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE add_entry ****/
 
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
-struct OPS *record_code_kind_ops;
-struct OPS *table_of_string_record_code_kind_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops __CLU_COMMON;
+struct OPS *record_code_kind_ops __CLU_COMMON;
+struct OPS *table_of_string_record_code_kind_ops __CLU_COMMON;
 static int ceOPadd_entry_own_init = 0;
 
 errcode
@@ -2574,21 +2574,21 @@ ceOPget_iter_(CLUREF e, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE get_type ****/
 
-struct OPS *sequence_of_typespec_ops;
-struct OPS *record_name_types_ops;
-struct OPS *sequence_of_record_name_types_ops;
-struct OPS *record_args_gen_sigs_vals_ops;
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_gen_parms_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *oneof_du_op_return__ops;
-struct OPS *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
-struct OPS *record_gen_parms_1_ops;
-struct OPS *record_idn_parms_ops;
-struct OPS *record_idn_parms_1_ops;
-struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops;
-struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops;
+struct OPS *sequence_of_typespec_ops __CLU_COMMON;
+struct OPS *record_name_types_ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_types_ops __CLU_COMMON;
+struct OPS *record_args_gen_sigs_vals_ops __CLU_COMMON;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_gen_parms_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *oneof_du_op_return__ops __CLU_COMMON;
+struct OPS *record_sel_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_sel_type__ops __CLU_COMMON;
+struct OPS *record_gen_parms_1_ops __CLU_COMMON;
+struct OPS *record_idn_parms_ops __CLU_COMMON;
+struct OPS *record_idn_parms_1_ops __CLU_COMMON;
+struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops __CLU_COMMON;
+struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops __CLU_COMMON;
 static int ceOPget_type_own_init = 0;
 
 errcode
@@ -2684,21 +2684,21 @@ ceOPget_type(CLUREF e, CLUREF ta, CLUREF *ret_1, CLUREF *ret_2)
 
 /**** BEGIN PROCEDURE fixup ****/
 
-struct OPS *sequence_of_typespec_ops;
-struct OPS *record_name_types_ops;
-struct OPS *sequence_of_record_name_types_ops;
-struct OPS *record_args_gen_sigs_vals_ops;
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_gen_parms_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *oneof_du_op_return__ops;
-struct OPS *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
-struct OPS *record_gen_parms_1_ops;
-struct OPS *record_idn_parms_ops;
-struct OPS *record_idn_parms_1_ops;
-struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops;
-struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops;
+struct OPS *sequence_of_typespec_ops __CLU_COMMON;
+struct OPS *record_name_types_ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_types_ops __CLU_COMMON;
+struct OPS *record_args_gen_sigs_vals_ops __CLU_COMMON;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_gen_parms_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *oneof_du_op_return__ops __CLU_COMMON;
+struct OPS *record_sel_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_sel_type__ops __CLU_COMMON;
+struct OPS *record_gen_parms_1_ops __CLU_COMMON;
+struct OPS *record_idn_parms_ops __CLU_COMMON;
+struct OPS *record_idn_parms_1_ops __CLU_COMMON;
+struct OPS *oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_ops __CLU_COMMON;
+struct OPS *table_of_oneof_any__apply_cluster__cvt__idn_other_select_type__unknown_xclu_xsel_typespec_ops __CLU_COMMON;
 static int ceOPfixup_own_init = 0;
 
 errcode
@@ -2857,7 +2857,7 @@ ceOPfixup(CLUREF e, CLUREF t)
 
 /**** BEGIN PROCEDURE add_du ****/
 
-struct OPS *table_of_du_bool_ops;
+struct OPS *table_of_du_bool_ops __CLU_COMMON;
 static int ceOPadd_du_own_init = 0;
 
 errcode
@@ -2956,7 +2956,7 @@ ceOPadd_du(CLUREF e, CLUREF mod, CLUREF *ret_1)
 /**** BEGIN ITERATOR all_dus ****/
 
 static errcode ceOPall_dus_IB_1();
-struct OPS *table_of_du_bool_ops;
+struct OPS *table_of_du_bool_ops __CLU_COMMON;
 static int ceOPall_dus_own_init = 0;
 typedef struct {
     void *user_locals;

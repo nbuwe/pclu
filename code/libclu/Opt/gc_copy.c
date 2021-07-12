@@ -35,7 +35,7 @@ extern struct OPS *_obj_ops;
 extern const struct REQS * const table_of_val_reqs;
 extern const OWN_req table_ownreqs;
 extern struct OPS *table_ops;
-struct OPS *table_of__obj__obj_ops;
+struct OPS *table_of__obj__obj_ops __CLU_COMMON;
 
 typedef struct {
     long gc_copy_own_init;
@@ -150,7 +150,7 @@ typedef struct {
 
 extern errcode arrayOPelements();
 extern errcode tableOPalter();
-struct OPS *table_of__obj__obj_ops;
+struct OPS *table_of__obj__obj_ops __CLU_COMMON;
 
 typedef struct {
     long gc_copy_to_own_init;
@@ -308,11 +308,11 @@ extern errcode _objOPis_anyize();
 extern errcode _tagcellOPcopy();
 extern errcode _tagcellOPget();
 extern errcode _tagcellOPset_value();
-struct OPS *table_of__obj__obj_ops;
+struct OPS *table_of__obj__obj_ops __CLU_COMMON;
 extern const struct REQS * const _tagcell_of_t_reqs;
 extern const OWN_req _tagcell_ownreqs;
 extern struct OPS *_tagcell_ops;
-struct OPS *_tagcell_of__obj_ops;
+struct OPS *_tagcell_of__obj_ops __CLU_COMMON;
 static int _gc_copy_own_init = 0;
 
 errcode

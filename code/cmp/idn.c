@@ -19,29 +19,29 @@ extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_expr_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
 extern struct OPS *string_ops;
 extern struct OPS *sequence_of_expr_ops;
 extern struct OPS *typespec_ops;
-struct OPS *record_name_parms_type__ops;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
 extern struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
 extern struct OPS *sequence_of_record_name_parms_type__ops;
 extern struct OPS *idn_ops;
-struct OPS *record_opers_parm_ops;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
 extern struct OPS *du_ops;
 extern struct OPS *record_opers_parm_ops;
 extern struct OPS *null_ops;
-struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops __CLU_COMMON;
 extern struct OPS *int_ops;
-struct OPS *oneof_ref_val_ops;
-struct OPS *struct_disp_reg_ops;
+struct OPS *oneof_ref_val_ops __CLU_COMMON;
+struct OPS *struct_disp_reg_ops __CLU_COMMON;
 extern struct OPS *oneof_ref_val_ops;
 extern struct OPS *struct_disp_reg_ops;
-struct OPS *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops;
+struct OPS *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops __CLU_COMMON;
 extern struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
 extern struct OPS *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops;
-struct OPS *record_kind_str_val_ops;
+struct OPS *record_kind_str_val_ops __CLU_COMMON;
 static int idn_own_init = 0;
 const OWN_req idn_ownreqs = { 0, 0 };
 
@@ -417,15 +417,15 @@ idnOPsimilar(CLUREF i1, CLUREF i2, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-struct OPS *sequence_of_expr_ops;
-struct OPS *record_name_parms_type__ops;
-struct OPS *sequence_of_record_name_parms_type__ops;
-struct OPS *record_opers_parm_ops;
-struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops;
-struct OPS *oneof_ref_val_ops;
-struct OPS *struct_disp_reg_ops;
-struct OPS *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops;
-struct OPS *record_kind_str_val_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
+struct OPS *record_name_parms_type__ops __CLU_COMMON;
+struct OPS *sequence_of_record_name_parms_type__ops __CLU_COMMON;
+struct OPS *record_opers_parm_ops __CLU_COMMON;
+struct OPS *oneof_expr_gen_opgen_ownvar_tconst_tparm_typeset_unknown_var_vparm_ops __CLU_COMMON;
+struct OPS *oneof_ref_val_ops __CLU_COMMON;
+struct OPS *struct_disp_reg_ops __CLU_COMMON;
+struct OPS *oneof_a_cown_cparm_disp_index_ivar_pcown_prown_reg_rown_rparm_tos_var_ops __CLU_COMMON;
+struct OPS *record_kind_str_val_ops __CLU_COMMON;
 static int idnOP_gcd_own_init = 0;
 
 errcode

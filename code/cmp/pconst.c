@@ -331,7 +331,7 @@ extern errcode oneofOPmake_3();
 extern const struct REQS * const p_blist_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req p_blist_ownreqs;
-struct OPS *p_blist_of_expr_ops;
+struct OPS *p_blist_of_expr_ops __CLU_COMMON;
 static CLUREF STR_constant;
 static int p_clutype_own_init = 0;
 
@@ -416,7 +416,7 @@ extern errcode oneofOPmake_2();
 extern const struct REQS * const p_plist_of_t_reqs;
 extern struct OPS *typespec_ops;
 extern const OWN_req p_plist_ownreqs;
-struct OPS *p_plist_of_typespec_ops;
+struct OPS *p_plist_of_typespec_ops __CLU_COMMON;
 static CLUREF STR_itertype;
 static int p_applytype_own_init = 0;
 
@@ -525,7 +525,7 @@ p_applytype(CLUREF e, CLUREF gen, CLUREF *ret_1)
 extern errcode p_is_seltype();
 extern errcode oneofOPmake_11();
 extern errcode oneofOPmake_5();
-struct OPS *p_blist_of_expr_ops;
+struct OPS *p_blist_of_expr_ops __CLU_COMMON;
 static int p_idn_type_own_init = 0;
 
 errcode
@@ -764,11 +764,11 @@ extern errcode p_order();
 extern errcode p_fieldspec();
 extern errcode recordOPget_1();
 extern struct OPS *string_ops;
-struct OPS *record_sel_type__ops;
+struct OPS *record_sel_type__ops __CLU_COMMON;
 extern const struct REQS * const p_order_of_t_reqs;
 extern struct OPS *record_sel_type__ops;
 extern const OWN_req p_order_ownreqs;
-struct OPS *p_order_of_record_sel_type__ops;
+struct OPS *p_order_of_record_sel_type__ops __CLU_COMMON;
 static CLUREF STR__133field_137spec_137list_135;
 static CLUREF STR_fieldspec;
 static CLUREF STR__135_040in_040_133fieldspec_137list_135;
@@ -910,7 +910,7 @@ extern errcode p_type1();
 extern errcode sequenceOPelements();
 extern const struct REQS * const p_clist_of_t_reqs;
 extern const OWN_req p_clist_ownreqs;
-struct OPS *p_clist_of_string_ops;
+struct OPS *p_clist_of_string_ops __CLU_COMMON;
 static CLUREF STR_name;
 static CLUREF STR__072_040type_040in_040field_137spec;
 static int p_fieldspec_own_init = 0;
@@ -1060,7 +1060,7 @@ p_fieldspec(CLUREF e, errcode (*proc)(), void *user_locals, errcode *iecode)
 /**** BEGIN PROCEDURE p_values ****/
 
 extern errcode p_envOPerr();
-struct OPS *p_plist_of_typespec_ops;
+struct OPS *p_plist_of_typespec_ops __CLU_COMMON;
 static CLUREF STR_use_040of_040returns_040instead_040of_040yields;
 static CLUREF STR_use_040of_040yields_040instead_040of_040returns;
 static int p_values_own_init = 0;
@@ -1247,11 +1247,11 @@ extern errcode p_exception();
 extern const struct REQS * const sequence_of_t_reqs;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_typespec_ops;
+struct OPS *sequence_of_typespec_ops __CLU_COMMON;
 extern struct OPS *sequence_of_typespec_ops;
-struct OPS *record_name_types_ops;
+struct OPS *record_name_types_ops __CLU_COMMON;
 extern struct OPS *record_name_types_ops;
-struct OPS *p_order_of_record_name_types_ops;
+struct OPS *p_order_of_record_name_types_ops __CLU_COMMON;
 static CLUREF STR__050exception_137list_051;
 static CLUREF STR_exception;
 static CLUREF STR__051_040in_040_050exception_137list_051;
@@ -1389,7 +1389,7 @@ p_exceptionlist(CLUREF e, CLUREF *ret_1)
 
 /**** BEGIN ITERATOR p_exception ****/
 
-struct OPS *p_plist_of_typespec_ops;
+struct OPS *p_plist_of_typespec_ops __CLU_COMMON;
 static int p_exception_own_init = 0;
 
 errcode

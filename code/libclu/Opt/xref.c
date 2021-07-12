@@ -46,16 +46,16 @@ extern const struct REQS * const array_of_t_reqs;
 extern struct OPS *string_ops;
 extern const OWN_req array_ownreqs;
 extern struct OPS *array_ops;
-struct OPS *array_of_string_ops;
+struct OPS *array_of_string_ops __CLU_COMMON;
 extern struct OPS *array_of_string_ops;
-struct OPS *record_key_users_ops;
+struct OPS *record_key_users_ops __CLU_COMMON;
 extern const OWN_req xref_ownreqs;
 extern struct OPS *xref_ops;
 extern const struct REQS * const xref_op_find_index_of_etype_reqs;
 extern struct OPS *record_key_users_ops;
 extern const OWN_req xref_op_find_index_ownreqs;
-struct OPS *xref_op_find_index_of_record_key_users_ops;
-struct OPS *xref_op_find_index_of_string_ops;
+struct OPS *xref_op_find_index_of_record_key_users_ops __CLU_COMMON;
+struct OPS *xref_op_find_index_of_string_ops __CLU_COMMON;
 static CLUREF STR__137_137_137_137_137_137_137_137_137_137;
 static CLUREF STR__012_012;
 static int xref_own_init = 0;
@@ -126,10 +126,10 @@ xrefOPcreate(CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE add_ref ****/
 
-struct OPS *array_of_string_ops;
-struct OPS *record_key_users_ops;
-struct OPS *xref_op_find_index_of_record_key_users_ops;
-struct OPS *xref_op_find_index_of_string_ops;
+struct OPS *array_of_string_ops __CLU_COMMON;
+struct OPS *record_key_users_ops __CLU_COMMON;
+struct OPS *xref_op_find_index_of_record_key_users_ops __CLU_COMMON;
+struct OPS *xref_op_find_index_of_string_ops __CLU_COMMON;
 static int xrefOPadd_ref_own_init = 0;
 
 errcode
@@ -238,10 +238,10 @@ xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
 
 /**** BEGIN PROCEDURE add_refs ****/
 
-struct OPS *array_of_string_ops;
-struct OPS *record_key_users_ops;
-struct OPS *xref_op_find_index_of_record_key_users_ops;
-struct OPS *xref_op_find_index_of_string_ops;
+struct OPS *array_of_string_ops __CLU_COMMON;
+struct OPS *record_key_users_ops __CLU_COMMON;
+struct OPS *xref_op_find_index_of_record_key_users_ops __CLU_COMMON;
+struct OPS *xref_op_find_index_of_string_ops __CLU_COMMON;
 static int xrefOPadd_refs_own_init = 0;
 
 errcode
@@ -385,9 +385,9 @@ xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
 
 /**** BEGIN PROCEDURE rem_refs ****/
 
-struct OPS *array_of_string_ops;
-struct OPS *record_key_users_ops;
-struct OPS *xref_op_find_index_of_record_key_users_ops;
+struct OPS *array_of_string_ops __CLU_COMMON;
+struct OPS *record_key_users_ops __CLU_COMMON;
+struct OPS *xref_op_find_index_of_record_key_users_ops __CLU_COMMON;
 static int xrefOPrem_refs_own_init = 0;
 
 errcode

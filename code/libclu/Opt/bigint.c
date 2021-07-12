@@ -66,7 +66,7 @@ extern const struct REQS * const array_of_t_reqs;
 extern struct OPS *int_ops;
 extern const OWN_req array_ownreqs;
 extern struct OPS *array_ops;
-struct OPS *array_of_int_ops;
+struct OPS *array_of_int_ops __CLU_COMMON;
 static int bigint_own_init = 0;
 const OWN_req bigint_ownreqs = { 0, 0 };
 
@@ -1993,7 +1993,7 @@ bigintOPcopy(CLUREF a, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE encode ****/
 
-struct OPS *array_of_int_ops;
+struct OPS *array_of_int_ops __CLU_COMMON;
 static int bigintOPencode_own_init = 0;
 
 errcode
@@ -2038,7 +2038,7 @@ bigintOPencode(CLUREF v, CLUREF i)
 
 /**** BEGIN PROCEDURE decode ****/
 
-struct OPS *array_of_int_ops;
+struct OPS *array_of_int_ops __CLU_COMMON;
 static int bigintOPdecode_own_init = 0;
 
 errcode

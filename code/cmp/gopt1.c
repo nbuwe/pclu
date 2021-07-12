@@ -1196,7 +1196,7 @@ extern errcode loop_contextOPleave();
 extern const struct REQS * const seq_extend_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req seq_extend_ownreqs;
-struct OPS *seq_extend_of_expr_ops;
+struct OPS *seq_extend_of_expr_ops __CLU_COMMON;
 static CLUREF STR__173;
 static CLUREF STR_for_040_050;
 static CLUREF STR__073_040;

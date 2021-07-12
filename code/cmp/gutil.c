@@ -896,7 +896,7 @@ extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *equate_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_equate_ops;
+struct OPS *sequence_of_equate_ops __CLU_COMMON;
 static int restrictkind_similar_own_init = 0;
 
 errcode
@@ -1098,7 +1098,7 @@ extern errcode sequenceOPfetch();
 extern errcode stringOPequal();
 extern errcode typespec_similar();
 extern struct OPS *expr_ops;
-struct OPS *sequence_of_expr_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
 static int operdecllist_similar_own_init = 0;
 
 errcode
@@ -1376,12 +1376,12 @@ extern errcode oneofOPis_11();
 extern errcode oneofOPis_5();
 extern errcode oneofOPvalue_5();
 extern errcode oneofOPis_9();
-struct OPS *sequence_of_expr_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
 extern struct OPS *string_ops;
 extern struct OPS *typespec_ops;
-struct OPS *record_sel_type__ops;
+struct OPS *record_sel_type__ops __CLU_COMMON;
 extern struct OPS *record_sel_type__ops;
-struct OPS *sequence_of_record_sel_type__ops;
+struct OPS *sequence_of_record_sel_type__ops __CLU_COMMON;
 static int typespec_similar_own_init = 0;
 
 errcode

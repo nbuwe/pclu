@@ -221,7 +221,7 @@ extern errcode oneofOPmake_1();
 extern const struct REQS * const p_clist_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req p_clist_ownreqs;
-struct OPS *p_clist_of_expr_ops;
+struct OPS *p_clist_of_expr_ops __CLU_COMMON;
 static CLUREF STR_expression;
 static CLUREF STR_only_0401_040expression_040allowed_040after_040_072_075_040in_040a_040multiple_040declaration;
 static int p_assn_rhs_own_init = 0;
@@ -367,7 +367,7 @@ extern errcode p_name();
 extern errcode p_plist();
 extern const struct REQS * const p_plist_of_t_reqs;
 extern const OWN_req p_plist_ownreqs;
-struct OPS *p_plist_of_expr_ops;
+struct OPS *p_plist_of_expr_ops __CLU_COMMON;
 static CLUREF STR_exceptional_040condition;
 static int p_condition_own_init = 0;
 
@@ -702,37 +702,37 @@ extern errcode p_cbody();
 extern errcode recordOPset_2();
 extern errcode p_end();
 extern struct OPS *string_ops;
-struct OPS *p_clist_of_string_ops;
+struct OPS *p_clist_of_string_ops __CLU_COMMON;
 extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *equate_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_equate_ops;
+struct OPS *sequence_of_equate_ops __CLU_COMMON;
 extern struct OPS *stmt_ops;
-struct OPS *sequence_of_stmt_ops;
+struct OPS *sequence_of_stmt_ops __CLU_COMMON;
 extern struct OPS *sequence_of_equate_ops;
 extern struct OPS *sequence_of_stmt_ops;
-struct OPS *record_equates_stmts_ops;
-struct OPS *sequence_of_string_ops;
+struct OPS *record_equates_stmts_ops __CLU_COMMON;
+struct OPS *sequence_of_string_ops __CLU_COMMON;
 extern struct OPS *idn_ops;
-struct OPS *sequence_of_idn_ops;
+struct OPS *sequence_of_idn_ops __CLU_COMMON;
 extern struct OPS *sequence_of_idn_ops;
 extern struct OPS *typespec_ops;
-struct OPS *record_idns_type__ops;
+struct OPS *record_idns_type__ops __CLU_COMMON;
 extern struct OPS *record_idns_type__ops;
-struct OPS *sequence_of_record_idns_type__ops;
+struct OPS *sequence_of_record_idns_type__ops __CLU_COMMON;
 extern struct OPS *sequence_of_record_idns_type__ops;
 extern struct OPS *null_ops;
-struct OPS *oneof_decls_none_star_ops;
+struct OPS *oneof_decls_none_star_ops __CLU_COMMON;
 extern struct OPS *record_equates_stmts_ops;
 extern struct OPS *int_ops;
 extern struct OPS *sequence_of_string_ops;
 extern struct OPS *oneof_decls_none_star_ops;
-struct OPS *record_body_line_names_vars_ops;
+struct OPS *record_body_line_names_vars_ops __CLU_COMMON;
 extern const struct REQS * const p_list_of_t_reqs;
 extern struct OPS *record_body_line_names_vars_ops;
 extern const OWN_req p_list_ownreqs;
-struct OPS *p_list_of_record_body_line_names_vars_ops;
+struct OPS *p_list_of_record_body_line_names_vars_ops __CLU_COMMON;
 static CLUREF STR_name;
 static CLUREF STR_WHEN_040arm;
 static CLUREF STR__072_040in_040OTHERS_056_056_056_072_040body;
@@ -1027,7 +1027,7 @@ p_except(CLUREF e, CLUREF st, CLUREF *ret_1)
 /**** BEGIN PROCEDURE p_whenarm ****/
 
 extern errcode p_whendecl();
-struct OPS *p_clist_of_string_ops;
+struct OPS *p_clist_of_string_ops __CLU_COMMON;
 static CLUREF STR__072_040in_040WHEN_056_056_056_072_040body;
 static int p_whenarm_own_init = 0;
 
@@ -1362,8 +1362,8 @@ extern errcode p_stmt();
 extern errcode p_envOPend_body();
 extern const struct REQS * const p_slist_of_t_reqs;
 extern const OWN_req p_slist_ownreqs;
-struct OPS *p_slist_of_equate_ops;
-struct OPS *p_slist_of_stmt_ops;
+struct OPS *p_slist_of_equate_ops __CLU_COMMON;
+struct OPS *p_slist_of_stmt_ops __CLU_COMMON;
 static int p_body_own_init = 0;
 
 errcode
@@ -1463,9 +1463,9 @@ extern errcode structOPget_2();
 extern errcode boolOPnot();
 extern errcode structOPget_1();
 extern errcode oneofOPmake_3();
-struct OPS *sequence_of_idn_ops;
-struct OPS *record_idns_type__ops;
-struct OPS *p_clist_of_record_idns_type__ops;
+struct OPS *sequence_of_idn_ops __CLU_COMMON;
+struct OPS *record_idns_type__ops __CLU_COMMON;
+struct OPS *p_clist_of_record_idns_type__ops __CLU_COMMON;
 static CLUREF STR_mul;
 static CLUREF STR_declaration;
 static CLUREF STR__051_040in_040_050declaration_137list_051_040or_040_050_052_051;
@@ -1904,9 +1904,9 @@ p_ownstmt(CLUREF e, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE p_owninit ****/
 
-struct OPS *sequence_of_idn_ops;
-struct OPS *record_idns_type__ops;
-struct OPS *p_clist_of_record_idns_type__ops;
+struct OPS *sequence_of_idn_ops __CLU_COMMON;
+struct OPS *record_idns_type__ops __CLU_COMMON;
+struct OPS *p_clist_of_record_idns_type__ops __CLU_COMMON;
 static CLUREF STR_initialization_040in_040OWN_040statement;
 static int p_owninit_own_init = 0;
 

@@ -32,7 +32,7 @@ extern errcode dateOPcreate();
 extern errcode intOPdecode();
 extern errcode structOP_gcd();
 extern struct OPS *int_ops;
-struct OPS *struct_day_hour_minute_month_second_year_ops;
+struct OPS *struct_day_hour_minute_month_second_year_ops __CLU_COMMON;
 static CLUREF STR__040;
 static CLUREF STR_January;
 static CLUREF STR_February;
@@ -758,7 +758,7 @@ dateOPunparse_time(CLUREF d, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE equal ****/
 
-struct OPS *struct_day_hour_minute_month_second_year_ops;
+struct OPS *struct_day_hour_minute_month_second_year_ops __CLU_COMMON;
 static int dateOPequal_own_init = 0;
 
 errcode
@@ -807,7 +807,7 @@ dateOPequal(CLUREF date1, CLUREF date2, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE similar ****/
 
-struct OPS *struct_day_hour_minute_month_second_year_ops;
+struct OPS *struct_day_hour_minute_month_second_year_ops __CLU_COMMON;
 static int dateOPsimilar_own_init = 0;
 
 errcode
@@ -1501,7 +1501,7 @@ dateOPdecode(CLUREF ist, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-struct OPS *struct_day_hour_minute_month_second_year_ops;
+struct OPS *struct_day_hour_minute_month_second_year_ops __CLU_COMMON;
 static int dateOP_gcd_own_init = 0;
 
 errcode

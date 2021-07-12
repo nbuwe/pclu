@@ -701,7 +701,7 @@ extern errcode seq_extend();
 extern const struct REQS * const seq_extend_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req seq_extend_ownreqs;
-struct OPS *seq_extend_of_expr_ops;
+struct OPS *seq_extend_of_expr_ops __CLU_COMMON;
 static CLUREF STR__040_075_040;
 static CLUREF STR__073;
 static int g_assn_own_init = 0;
@@ -1438,7 +1438,7 @@ extern errcode g_err();
 extern errcode exOPget_current_ex_label();
 extern errcode current_applyOPget_val_count();
 extern errcode intOPsub();
-struct OPS *seq_extend_of_expr_ops;
+struct OPS *seq_extend_of_expr_ops __CLU_COMMON;
 static CLUREF STR_body_137ctrl_137req_040_075_040false_073;
 static CLUREF STR__054_040;
 static CLUREF STR__054_040locals_054_040iecode_051_073;
@@ -4578,7 +4578,7 @@ g_return(CLUREF e, CLUREF exp)
 
 extern errcode g_proc();
 extern errcode g_user_locals();
-struct OPS *seq_extend_of_expr_ops;
+struct OPS *seq_extend_of_expr_ops __CLU_COMMON;
 static CLUREF STR_iecode_051_073;
 static CLUREF STR_if_040_050_050;
 static CLUREF STR_body_137ctrl_137req_040_075_075_040true_051_040_046_046_040_050;
@@ -5243,7 +5243,7 @@ g_signal(CLUREF e, CLUREF cond)
 
 extern errcode charOPequal();
 extern errcode stringOPfetch();
-struct OPS *seq_extend_of_expr_ops;
+struct OPS *seq_extend_of_expr_ops __CLU_COMMON;
 static CLUREF STR__135_056num_040_075_040;
 static CLUREF STR__050long_051;
 static int g_exit_own_init = 0;

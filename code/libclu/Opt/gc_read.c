@@ -431,11 +431,11 @@ extern const struct REQS * const _tagcell_of_t_reqs;
 extern struct OPS *_obj_ops;
 extern const OWN_req _tagcell_ownreqs;
 extern struct OPS *_tagcell_ops;
-struct OPS *_tagcell_of__obj_ops;
+struct OPS *_tagcell_of__obj_ops __CLU_COMMON;
 extern const struct REQS * const _adv_of_t_reqs;
 extern const OWN_req _adv_ownreqs;
 extern struct OPS *_adv_ops;
-struct OPS *_adv_of__obj_ops;
+struct OPS *_adv_of__obj_ops __CLU_COMMON;
 static int gcr_own_init = 0;
 const OWN_req gcr_ownreqs = { 0, 0 };
 CLUREF gcrOPclurefsz;
@@ -787,7 +787,7 @@ gcrOPmake_vec1(CLUREF ch, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE make_cell1 ****/
 
-struct OPS *_tagcell_of__obj_ops;
+struct OPS *_tagcell_of__obj_ops __CLU_COMMON;
 static int gcrOPmake_cell1_own_init = 0;
 
 errcode
@@ -1181,7 +1181,7 @@ gcrOPmake_vec2(CLUREF ch, CLUREF o)
 
 /**** BEGIN PROCEDURE make_cell2 ****/
 
-struct OPS *_tagcell_of__obj_ops;
+struct OPS *_tagcell_of__obj_ops __CLU_COMMON;
 static int gcrOPmake_cell2_own_init = 0;
 
 errcode
@@ -1242,7 +1242,7 @@ gcrOPmake_cell2(CLUREF ch, CLUREF o)
 
 /**** BEGIN PROCEDURE make_adv2 ****/
 
-struct OPS *_adv_of__obj_ops;
+struct OPS *_adv_of__obj_ops __CLU_COMMON;
 static int gcrOPmake_adv2_own_init = 0;
 
 errcode

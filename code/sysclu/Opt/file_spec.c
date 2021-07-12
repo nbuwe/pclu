@@ -36,7 +36,7 @@ extern errcode file_specOPparse();
 extern errcode stringOPdecode();
 extern errcode recordOP_gcd();
 extern struct OPS *string_ops;
-struct OPS *record_dir_name_other_suffix_ops;
+struct OPS *record_dir_name_other_suffix_ops __CLU_COMMON;
 static CLUREF STR__057;
 static CLUREF STR_bad_040format;
 static int file_spec_own_init = 0;
@@ -712,7 +712,7 @@ file_specOPget_other(CLUREF x, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE equal ****/
 
-struct OPS *record_dir_name_other_suffix_ops;
+struct OPS *record_dir_name_other_suffix_ops __CLU_COMMON;
 static int file_specOPequal_own_init = 0;
 
 errcode
@@ -757,7 +757,7 @@ file_specOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE similar ****/
 
-struct OPS *record_dir_name_other_suffix_ops;
+struct OPS *record_dir_name_other_suffix_ops __CLU_COMMON;
 static int file_specOPsimilar_own_init = 0;
 
 errcode
@@ -1093,7 +1093,7 @@ file_specOPdecode(CLUREF ist, CLUREF *ret_1)
 
 /**** BEGIN PROCEDURE _gcd ****/
 
-struct OPS *record_dir_name_other_suffix_ops;
+struct OPS *record_dir_name_other_suffix_ops __CLU_COMMON;
 static int file_specOP_gcd_own_init = 0;
 
 errcode

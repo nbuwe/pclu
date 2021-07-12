@@ -1164,7 +1164,7 @@ extern const struct REQS * const sequence_of_t_reqs;
 extern struct OPS *expr_ops;
 extern const OWN_req sequence_ownreqs;
 extern struct OPS *sequence_ops;
-struct OPS *sequence_of_expr_ops;
+struct OPS *sequence_of_expr_ops __CLU_COMMON;
 static CLUREF STR__047_040does_040not_040exist_0403;
 static int c_idn_op_own_init = 0;
 

@@ -60,7 +60,7 @@ extern const struct REQS * const _adv_of_t_reqs;
 extern struct OPS *char_ops;
 extern const OWN_req _adv_ownreqs;
 extern struct OPS *_adv_ops;
-struct OPS *_adv_of_char_ops;
+struct OPS *_adv_of_char_ops __CLU_COMMON;
 static CLUREF STR__057dev;
 static CLUREF STR_null;
 static CLUREF STR_random;
@@ -404,7 +404,7 @@ code_chanOPwrite(CLUREF cc, CLUREF base, CLUREF code, CLUREF eblock, CLUREF *ret
 
 /**** BEGIN PROCEDURE boutput ****/
 
-struct OPS *_adv_of_char_ops;
+struct OPS *_adv_of_char_ops __CLU_COMMON;
 static int code_chanOPboutput_own_init = 0;
 
 errcode
