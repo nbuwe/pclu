@@ -10,6 +10,11 @@
 #include "pclu_sys.h"
 
 #ifdef LINUX
+/*
+ * Work around a bug in gc-7.x that defines GC_jmp_buf in gc_priv.h
+ * instead of declaring it.  Make it work with -fno-common.
+ */
+#define GC_jmp_buf GC_jmp_buf_libasm__heap_size
 #include <gc/private/gc_priv.h>
 #else
 extern int composite_in_use;
