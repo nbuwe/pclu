@@ -47,14 +47,9 @@ INSTALL_FILES	+= ./lib/*.lib		# dumped type libraries
 INSTALL_FILES	+= ./lib/*.spc		# source specs
 INSTALL_FILES	+= ./lib/short.help
 
-# this is where compiler really looks for the next three files, but in
-# the original distribution cmp is a symlink to code/cmp ...
-INSTALL_FILES	+= ./cmp
-
-# ... hence we need to get the real files too
-INSTALL_FILES	+= ./code/cmp/basic.types	# spec for the built-in types
-INSTALL_FILES	+= ./code/cmp/ccdbg.cmd*	# cc invocation temlate(s)
-INSTALL_FILES	+= ./code/cmp/ccopt.cmd*	# cc invocation temlate(s)
+INSTALL_FILES	+= ./cmp/basic.types	# spec for the built-in types
+INSTALL_FILES	+= ./cmp/ccdbg.cmd*	# cc invocation temlate(s)
+INSTALL_FILES	+= ./cmp/ccopt.cmd*	# cc invocation temlate(s)
 
 # this is where cc*.cmd templates search for the includes to compile
 # the C output from pclu.  it's a symlink to code/include in the
@@ -93,10 +88,6 @@ all: clu
 symlinks:
 	# the bootstrapped compiler
 	(cd exe && ln -sf ../code/cmp/pclu)
-	# things compiler consults
-	(cd cmp && ln -sf ../code/cmp/basic.types)
-	(cd cmp && ln -sf ../code/cmp/ccdbg.cmd)
-	(cd cmp && ln -sf ../code/cmp/ccopt.cmd)
 	# to compile the C output
 	(cd include && ln -sf ../code/include/pclu_err.h)
 	(cd include && ln -sf ../code/include/pclu_sys.h)
