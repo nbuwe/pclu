@@ -450,7 +450,7 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
     long slot = *pcount;
     if (slot == MAX_SELECTORS) {
 	fprintf(stderr,
-		"%s: too many %s instantiations: increase MAX_INSTS\n",
+		"%s: too many %s instantiations: increase MAX_SELECTORS\n",
 		__func__, selname);
 	exit(-10);
     }
