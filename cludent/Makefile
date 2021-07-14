@@ -24,7 +24,7 @@ $(CLUOBJS): _buffered_read.clu _io_buf.clu buf.clu case.clu \
 	$(CLU) -ce *.equ -merge ${LIBS} -spec *.spc *.clu -dump cludent.lib
 	${CLU} -ce *.equ -merge $(LIBS) cludent.lib -opt -compile *.clu
 
-clean: 
+clean:
 	${RM} ${CFILES} cludent.lib *.o pclu.xref ${FLUFF}
 
 veryclean: clean
