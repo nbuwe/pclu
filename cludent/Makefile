@@ -3,7 +3,8 @@
 INCLUDEDIR = $(CLUHOME)/include
 LIBDIR	   = $(CLUHOME)/code
 LIBS       = $(CLUHOME)/lib/lowlev.lib $(CLUHOME)/lib/useful.lib $(CLUHOME)/lib/misc.lib
-CFLAGS     = -I$(INCLUDEDIR) -c
+CFLAGS     = -I$(INCLUDEDIR)
+CFLAGS    += ${OPT_FLAGS}
 
 CLU	   = ${CLUHOME}/exe/pclu
 LINK	   = ${CLUHOME}/exe/plink
