@@ -1,4 +1,4 @@
-* Introduction
+# Introduction
 
 This repository has as its base the latest pclu release fetched from
 ftp://ftp.lcs.mit.edu/pub/pclu/CLU/DEBIAN/pclu-debian.tar.gz
@@ -16,7 +16,7 @@ This is still a work in progress, but in the current state it should
 have a good chance of working on any Unix where Boehm GC works.
 
 
-* Building Boehm GC
+# Building Boehm GC
 
 pclu came with its own copy of Boehm GC sources.  It was stock gc-7.2f
 with two trivial wrappers added, clu_alloc_atomic() and clu_alloc().
@@ -52,7 +52,7 @@ and, similarly, for the library:
     cd code && ln -s gc/lib/libgc.a
 
 
-* Symlinks
+# Symlinks
 
 To be able to run the compiler out of the workspace you will need some
 symlinks in place.  I don't want to commit them, at least not yet, so
@@ -64,7 +64,7 @@ once after checkout to set things up.  Among other things it takes
 care of the symlinks for gc mentioned above.
 
 
-* Bootstrapping the compiler
+# Bootstrapping the compiler
 
 Check howto.install but bear in mind that some things might be out of
 date or not work.  Makefiles need more updates and clean ups.  Here's
@@ -99,7 +99,7 @@ what I do for now:
     hg diff .
 
 
-* Random remarks
+# Random remarks
 
 I've tested this procedure on Ubuntu/amd64 and NetBSD/macppc.
 
@@ -108,4 +108,4 @@ distribution had a rather old gc-7.2f.  It worked for me on Ubuntu, so
 I stuck with it, upgrading to gc-7.2g eventually.
 
 On NetBSD you will need to use gmake.  On my 8-STABLE macppc I could
-only get gc-7.2g to work and only with -O1.
+only get gc-7.2g to work and only with `-O1`.
