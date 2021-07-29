@@ -1,3 +1,5 @@
+https://hg.sr.ht/~nbuwe/pclu
+
 # Introduction
 
 This repository has as its base the latest pclu release fetched from
