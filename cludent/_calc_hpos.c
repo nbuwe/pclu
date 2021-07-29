@@ -3,10 +3,10 @@
 
 
 errcode
-_calc_hpos(CLUREF s, CLUREF max, CLUREF *ret, errlist elist)
+_calc_hpos(CLUREF s, CLUREF max, CLUREF *ret)
 {
-    register signed char *n1, n2;
-    register int n3, rr;
+    signed char *n1, n2;
+    int n3, rr;
 
     n3 = max.num - 1;
     if (n3 <= 0) {
