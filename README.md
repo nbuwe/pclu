@@ -19,9 +19,9 @@ have a good chance of working on any Unix where Boehm GC works.
 # Building Boehm GC
 
 pclu came with its own copy of Boehm GC sources.  It was stock gc-7.2f
-with two trivial wrappers added, clu_alloc_atomic() and clu_alloc().
-These two wrappers are now moved to code/sysasm/Opt/alloc.c and we can
-remove all gc includes from pclu_sys.h.
+with two trivial wrappers added, `clu_alloc_atomic()` and `clu_alloc()`.
+These two wrappers are now moved to `code/sysasm/Opt/alloc.c` and we can
+remove all gc includes from `pclu_sys.h`.
 
 Unfortunately some C code still *does* peek into the gc internals so a
 public installation of gc cannot be used.
@@ -35,14 +35,14 @@ Get a copy of gc-7.2f and configure it with something like:
 
 Build it.  Making and running gctest is a good idea if you are on
 something non-mainstream.  Run make install to get the headers in
-code/gc/include the libraries in code/gc/lib (and some docs in
-code/gc/share/gc).
+`code/gc/include` the libraries in `code/gc/lib` (and some docs in
+`code/gc/share/gc`).
 
 Since the code needs private headers you then need to either create a
-symlink code/gc/include/private that points to gc-7.2f/include/private
+symlink `code/gc/include/private` that points to `gc-7.2f/include/private`
 or create that directory and copy over the headers.
 
-To avoid touching -I flags in the makefiles, at least for the initial
+To avoid touching `-I` flags in the makefiles, at least for the initial
 attempts, it might be handy to create a symlink:
 
     cd code/include && ln -s ../gc/include/gc
@@ -66,7 +66,7 @@ care of the symlinks for gc mentioned above.
 
 # Bootstrapping the compiler
 
-Check howto.install but bear in mind that some things might be out of
+Check `howto.install` but bear in mind that some things might be out of
 date or not work.  Makefiles need more updates and clean ups.  Here's
 what I do for now:
 
