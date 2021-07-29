@@ -1,47 +1,46 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
-errcode _calc_hpos(s, max, ret, elist)
-CLUREF s, max, *ret;
-errlist elist;
+
+errcode
+_calc_hpos(CLUREF s, CLUREF max, CLUREF *ret, errlist elist)
 {
-#ifdef sparc
-  register char *n1, n2;
-#else
-  register signed char *n1, n2;
-#endif
-  register int n3, rr;
+    register signed char *n1, n2;
+    register int n3, rr;
 
-  n3 = max.num - 1;
+    n3 = max.num - 1;
+    if (n3 <= 0) {
+	ret->num = 0;
+	signal (ERR_ok);
+    }
 
-  if (n3 <= 0) {
-    ret->num = 0;
-    signal (ERR_ok);
-  }
-  rr = 0;
-  if (n3 > s.str->size) n3 = s.str->size;
-#ifdef sparc
-  n1 = (char *) &s.str->data[0];
-#else
-  n1 = (signed char *) &s.str->data[0];
-#endif
-  while (1) {
-    n2 = *(n1++);
-    if ((n2 >= ' ') && (n2 < '\177')) {
-      rr++;
-      if (--n3 > 0) continue;
-      ret->num = rr;
-      signal (ERR_ok);
+    rr = 0;
+    if (n3 > s.str->size)
+	n3 = s.str->size;
+    n1 = (signed char *)&s.str->data[0];
+    for (;;) {
+	n2 = *(n1++);
+
+	if ((n2 >= ' ') && (n2 < '\177')) {
+	    ++rr;
+	    if (--n3 > 0)
+		continue;
+
+	    ret->num = rr;
+	    signal (ERR_ok);
+	}
+
+	rr += 2;
+	if (n2 == '\t') {
+	    rr += 6;
+	    rr -= rr & 7; /* What's the right way to clear low order bits in C? */
+	}
+	if (--n3 > 0)
+	    continue;
+
+	ret->num = rr;
+	signal (ERR_ok);
     }
-    rr += 2;
-    if (n2 == '\t') {
-      rr += 6;
-      rr -= rr & 7;    /* What's the right way to clear low order bits in C? */
-    }
-    if (--n3 > 0) continue;
-    ret->num = rr;
-    signal (ERR_ok);
-  }
 }
 
 /*
