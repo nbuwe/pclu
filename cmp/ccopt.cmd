@@ -1,1 +1,1 @@
-${CLUCC-${CC-cc}} -I~CLU/include -O2 -c
+${CLUCC-${CC-cc}} -I~CLU/include ${CLUCFLAGS--O2} -c
