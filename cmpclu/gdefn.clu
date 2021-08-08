@@ -401,9 +401,11 @@ g_powninit = proc (e: g_env, ilist:initlist)
 	g_env$putl(e, "struct {")
 	g_env$indent(e)
       end
+
     g_tbl$build_tables(e, 0)
     g_env$putl(e, "errcode err;")
     g_env$putl(e, own_defn_name || " *type_own_ptr;")
+
     if dbg_info$active() then
 	g_env$outdent(e)
 	g_env$putl(e, "} locals;")
