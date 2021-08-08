@@ -429,33 +429,40 @@ g_powninit = proc (e: g_env, ilist:initlist)
 %	unparameterized type
 
 g_owninit = proc (e: g_env, ilist:initlist) returns (bool)
-    if g_tbl$exist() cor g_const$exist() cor own_init(ilist) then
-       g_env$blankline(e)
-       g_env$putl(e, "errcode")
-       g_env$putl(e, current_type$get_name() || "_own_init_proc(void)")
-       g_env$putl(e, "{")
-       g_env$indent(e)
-       if dbg_info$active() then
-	  g_env$putl(e, "struct {")
-	  g_env$indent(e)
-	  end
-       g_tbl$build_tables(e, 0)
-       g_env$putl(e, "errcode err;")
-       if dbg_info$active() then
-	  g_env$outdent(e)
-	  g_env$putl(e, "} locals;")
-	  end
-       g_env$putl(e, "enter_own_init_proc();")
-       % its g_ownvars_decl is in g_typedefn
-       g_ownvars_init(e, ilist)
-       g_env$putl(e, "signal(ERR_ok);")
-       g_env$outdent(e)
-       g_env$putl(e, "}")
-       g_env$blankline(e)
-       return (true)
-       end
-    return (false)
+    owns: bool := g_tbl$exist() cor g_const$exist() cor own_init(ilist)
+
+    if ~owns then return (false) end
+
+    g_env$blankline(e)
+    g_env$putl(e, "errcode")
+    g_env$putl(e, current_type$get_name() || "_own_init_proc(void)")
+    g_env$putl(e, "{")
+    g_env$indent(e)
+
+    if dbg_info$active() then
+	g_env$putl(e, "struct {")
+	g_env$indent(e)
+        end
+
+    g_tbl$build_tables(e, 0)
+    g_env$putl(e, "errcode err;")
+
+    if dbg_info$active() then
+	g_env$outdent(e)
+	g_env$putl(e, "} locals;")
+        end
+
+    g_env$putl(e, "enter_own_init_proc();")
+    % its g_ownvars_decl is in g_typedefn
+    g_ownvars_init(e, ilist)
+
+    g_env$putl(e, "signal(ERR_ok);")
+    g_env$outdent(e)
+    g_env$putl(e, "}")
+    g_env$blankline(e)
+    return (true)
     end g_owninit
+
 
 % see if any of the owns in ilist need to be initialized => return true
 %	no owns need initialization => false
