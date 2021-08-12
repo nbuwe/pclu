@@ -1,3 +1,7 @@
+*.clu			linguist-language=CLU
+*.equ			linguist-language=CLU
+*.spc			linguist-language=CLU
+
 cmp/basic.types		linguist-language=CLU
 
 # the compiler, precompiled from cmpclu
