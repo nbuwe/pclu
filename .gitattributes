@@ -1,0 +1,8 @@
+cmp/basic.types		linguist-language=CLU
+
+# the compiler, precompiled from cmpclu
+code/cmp/*.c		linguist-generated
+
+# the library, precompiled from lib/clu and sys/clu respectively
+code/libclu/Opt/*.c	linguist-generated
+code/sysclu/Opt/*.c	linguist-generated
