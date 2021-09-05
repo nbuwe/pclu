@@ -9,36 +9,43 @@ an = array[name]
 %%%
 
 g_expr_proc_names = proc(a: an, bod: stmtlist)
-
     for s: stmt in stmtlist$elements(bod) do
 	tagcase s.abs
+
 	   tag declinit(di: declinit):
 	       g_proc_exprs(a, di.expr)
+
 	   tag invoke (inv: invoke):
 	       g_proc_exprs(a, inv.apply)
 	       g_proc_exprlist(a, inv.args)
+
 	   tag assn (as: assn):
 	       g_proc_exprlist(a, as.right)
+
 	   tag sugarassn (as: sugarassn):
 	       g_proc_exprs(a, as.right)
 	       g_proc_exprs(a, as.left)
+
 	   tag while_ (w: whilestmt):
 	       g_proc_exprs(a, w.test)
 	       g_expr_proc_names(a, w.body.stmts)
+
 	   tag for_ (f: forstmt):
 	       g_proc_exprs(a, f.call.apply)
 	       g_proc_exprlist(a, f.call.args)
 	       g_expr_proc_names(a, f.body.stmts)
+
 	   tag if_ (i: ifstmt):
 	       for arm: ifarm in ifarmlist$elements (i.arms) do
 	           g_proc_exprs(a, arm.test)
 		   g_expr_proc_names (a, arm.body.stmts)
 		   end % for
 	       tagcase i.else_
-		  tag body (b:body):
+		  tag body (b: body):
 		      g_expr_proc_names(a, b.stmts)
 		  others:
 		  end
+
            tag tag_ (t: tagstmt):
 	       g_proc_exprs(a, t.obj)
 	       % if t.obj is not a oneof or variant set a flag
@@ -52,10 +59,10 @@ g_expr_proc_names = proc(a: an, bod: stmtlist)
 		   % if flag set, look at arm.tags which is a namelist
 		   %	and cause type$is_each_name to be an external
 		   if ~string$empty(nm) then
-			for each_nm: name in namelist$elements(arm.tags) do
-				addh_if_new[name](a, nm || sep ||"is_" || each_nm)
-				end
-			end
+		      for each_nm: name in namelist$elements(arm.tags) do
+			  addh_if_new[name](a, nm || sep ||"is_" || each_nm)
+			  end
+		      end
 		   g_expr_proc_names(a, arm.body.stmts)
 		   end % for
 	       tagcase t.others_
@@ -63,16 +70,22 @@ g_expr_proc_names = proc(a: an, bod: stmtlist)
 		      g_expr_proc_names(a, b.stmts)
 		  others:
 		  end
+
 	   tag return_ (el: exprlist):
 	       g_proc_exprlist(a, el)
+
 	   tag yield_ (el: exprlist):
 	       g_proc_exprlist(a, el)
+
 	   tag signal_ (c: condition):
 	       g_proc_exprlist(a, c.args)
+
 	   tag exit_ (c: condition):
 	       g_proc_exprlist(a, c.args)
+
 	   tag body (b: body):
 	       g_expr_proc_names (a, b.stmts)
+
 	   tag except_ (e: exceptstmt):
 	       g_expr_proc_names(a, stmtlist$fill(1, e.stmt))
 	       for ah: handler in handlerlist$elements(e.arms) do
@@ -83,45 +96,61 @@ g_expr_proc_names = proc(a: an, bod: stmtlist)
 		      g_expr_proc_names(a, o.body.stmts)
 		  others:
 		  end
+
 	   tag force_ (f: forcestmt):
 	       g_proc_exprs(a, f.expr)
+
 	   tag resignal_ (r: resignalstmt):
-		g_expr_proc_names(a, stmtlist$fill(1, r.stmt))
+	       g_expr_proc_names(a, stmtlist$fill(1, r.stmt))
+
 	   tag decl, break_, continue_, bad:
+	       % nothing
+
 	   end
 	end % for
     end g_expr_proc_names
 
-g_proc_exprlist = proc(a:an, el: exprlist)
+
+g_proc_exprlist = proc(a: an, el: exprlist)
     for each_expr: expr in exprlist$elements(el) do
 	g_proc_exprs(a, each_expr)
 	end
     end g_proc_exprlist
 
-g_proc_exprs = proc(a:an, ex:expr)
+
+g_proc_exprs = proc(a: an, ex: expr)
     tagcase ex.abs
-       tag any_ (e:expr):
+
+       tag any_ (e: expr):
 	   g_proc_exprs(a, e)
-       tag cand_, cor_ (c:condop):
+
+       tag cand_, cor_ (c: condop):
 	   g_proc_exprs(a, c.left)
 	   g_proc_exprs(a, c.right)
+
        tag invoke (inv: invoke):
 	   g_proc_exprs(a, inv.apply)
 	   g_proc_exprlist(a, inv.args)
+
        tag a_cons (ar: arraycons):
 	   if mexpr$is_one(ar.low) then
 	      g_proc_exprs(a, mexpr$value_one(ar.low)) end
 	   for each_elt: expr in exprlist$elements(ar.elts) do
 	       g_proc_exprs(a, each_elt)
 	       end
+
        tag s_cons (xa: selectcons):
 	   for each_field: field in fieldlist$elements(xa.fields) do
 	       g_proc_exprs(a, each_field.val)
 	       end
-       tag apply (ct:clutype):
+
+       tag apply (ct: clutype):
 	   addh_if_new[name](a, ct.gen.common)
-       tag op (cop:clusterop):
+
+       tag op (cop: clusterop):
 	   nm: string := c_fixup_opname(cop.name)
+
+	   % deal with selectors serpately
 	   if typeabs$is_select(cop.type_.abs) then
 	      ta: seltype := typeabs$value_select(cop.type_.abs)
 	      op: string, ind: int := field_index(nm, ta.parms)
@@ -134,50 +163,58 @@ g_proc_exprs = proc(a:an, ex:expr)
 		      return
 		 end
 	      end
+
 	   prefix: string := ""
-         skip: bool := false
+	   skip: bool := false
 	   tagcase (cop.type_.abs)
 	      tag cluster_ (ct: clutype):
 		  prefix := ct.gen.common
-	      tag apply (at:applytype):
+	      tag apply (at: applytype):
 		  prefix := at.gen.common
-            % skipping is new behavior 3/10/98 dwc
-            % suppresses "extern errcode div()"
-            % needed for RedHat 5.0
-            tag idn (id: idn):
-              if parm$member_op(id.str) cor parm$member_base(id.str) then
-                      skip := true
-                      end
+	      tag idn (id: idn):
+		  % skipping is new behavior 3/10/98 dwc
+		  % suppresses "extern errcode div()"
+		  % needed for RedHat 5.0
+		  if parm$member_op(id.str) cor parm$member_base(id.str) then
+		     skip := true
+		     end
 	      others:
 	      end
-      if skip then
-      else
-	   if prefix ~= "" then
-	      addh_if_new[name](a, prefix || sep || nm)
+	   if skip then
 	      else
-		   addh_if_new[name](a, nm)
+		   if prefix ~= "" then
+		      addh_if_new[name](a, prefix || sep || nm)
+		      else
+			   addh_if_new[name](a, nm)
+		      end
 	      end
-      end
+
        tag type_of_ (e: expr):
 	   g_proc_exprs(a, e)
+
        tag up_ (e: expr):
 	   g_proc_exprs(a, e)
+
        tag down_ (e: expr):
 	   g_proc_exprs(a, e)
+
        others:
+	   % nothing
+
        end
     end g_proc_exprs
 
-addh_if_new = proc[ty: type](a:array[ty], elt:ty)
-		where ty has equal: proctype(ty,ty) returns(bool)
-	for each_elt:ty in array[ty]$elements(a) do
-		if ty$equal(each_elt, elt) then
-			return
-		end
+
+addh_if_new = proc[ty: type](a: array[ty], elt: ty)
+	    where ty has equal: proctype(ty, ty) returns(bool)
+    for each_elt: ty in array[ty]$elements(a) do
+	if ty$equal(each_elt, elt) then
+	   return
+	   end
 	end
-	array[ty]$addh(a, elt)
-	return
-end addh_if_new
+    array[ty]$addh(a, elt)
+    end addh_if_new
+
 
 %%%
 %%% Local Variables
