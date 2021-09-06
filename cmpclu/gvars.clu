@@ -151,17 +151,17 @@ g_proc_exprs = proc(a: an, ex: expr)
 	   nm: string := c_fixup_opname(cop.name)
 
 	   % deal with selectors serpately
+	   % (might be easier to just predeclare all of them)
 	   if typeabs$is_select(cop.type_.abs) then
 	      ta: seltype := typeabs$value_select(cop.type_.abs)
 	      op: string, ind: int := field_index(nm, ta.parms)
+	      % map field name, if present, to field index
+	      nm := ta.gen.common || sep || op
 	      if ind ~= 0 then
-		 indstr: string := int$unparse(ind)
-		 addh_if_new[name](a, ta.gen.common || sep ||op||indstr)
-		 return
-		 else
-		      addh_if_new[name](a, ta.gen.common || sep || op)
-		      return
+		 nm := nm || int$unparse(ind)
 		 end
+	      addh_if_new[name](a, nm)
+	      return
 	      end
 
 	   prefix: string := ""
@@ -180,13 +180,11 @@ g_proc_exprs = proc(a: an, ex: expr)
 		     end
 	      others:
 	      end
-	   if skip then
-	      else
-		   if prefix ~= "" then
-		      addh_if_new[name](a, prefix || sep || nm)
-		      else
-			   addh_if_new[name](a, nm)
-		      end
+	   if ~skip then
+	      if ~string$empty(prefix) then
+		 nm := prefix || sep || nm
+		 end
+	      addh_if_new[name](a, nm)
 	      end
 
        tag type_of_ (e: expr):
