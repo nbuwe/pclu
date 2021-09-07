@@ -167,10 +167,16 @@ g_proc_exprs = proc(a: an, ex: expr)
 	   direct: bool := true
 	   prefix: string := ""
 	   tagcase (cop.type_.abs)
+	      % normal cluster op
 	      tag cluster_ (ct: clutype):
 		  prefix := ct.gen.common
+
+	      % op from the internal "applytype" meta-type of which
+	      % there are two instances: "proctype" or "itertype".
+	      % (cf. cmp/basic.types and implementations in sysasm)
 	      tag apply (at: applytype):
 		  prefix := at.gen.common
+
 	      tag idn (id: idn):
 		  % for "where" restrictions we use function pointers
 		  % in the instantiated OPS, not a direct function
