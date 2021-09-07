@@ -32,6 +32,35 @@
 (defvar clu-font-lock-keywords-3 nil
   "Gaudy level highlighting for Clu mode.")
 
+
+(defun clu-font-lock-match-namelist-item-and-skip-to-next (limit)
+  "Font Lock MATCH-ANCHORED matcher that iterates over the comma
+separated list of names in Clu synax constructs.
+
+See `font-lock-keywords' for description."
+  ;; ;; debugging
+  ;; (let* ((pt (point))
+  ;; 	 (sz (buffer-size)))
+  ;;   (message ">>> Called at %s with limit %s = \"%s\"+\"%s\""
+  ;; 	     pt limit
+  ;; 	     (buffer-substring (max (point-min) (- pt 15)) pt)
+  ;; 	     (buffer-substring pt (min (point-max) (+ pt 15)))))
+  (when (looking-at "\\s-*\\_<\\(\\sw+\\)\\_>")
+    (prog1 t
+      (goto-char (match-end 1))
+      (save-match-data
+	(when (looking-at "\\s-*,")
+	  (goto-char (match-end 0)))))))
+
+(defun clu-font-lock-namelist (&rest highlight)
+  "Syntactic sugar for ANCHORED-HIGHLIGHTER that iterates over a
+namelist."
+  `(clu-font-lock-match-namelist-item-and-skip-to-next ; anchored-matcher
+    (goto-char (match-beginning 1))		       ; pre-form
+    (goto-char (match-end 0))			       ; post-form
+    (1 ,@highlight)))				       ; subexp-highlighter
+
+
 (let* ((clu-keywords
 	(eval-when-compile
 	  (regexp-opt
@@ -56,7 +85,13 @@
 	  (regexp-opt
 	   '("any" "array" "bool" "char" "int" "itertype" "null" "oneof"
 	     "real" "record" "sequence" "string" "struct"
-	     "variant")))))
+	     "variant"))))
+
+       (comma-list-regexp
+	"\\_<\\(\\sw+\\)\\(\\s-*,\\s-*\\sw+\\)*\\_>\\s-*")
+
+       (comma-list-regexp-depth
+	(regexp-opt-depth comma-list-regexp)))
 
   ;;;
   ;;; Subdued level highlighting for Clu mode.
@@ -95,9 +130,8 @@
 	 0 font-lock-negation-char-face) ; default face by default
 
        ;; tags in tagscase
-       '("\\_<tag\\_>\\s-+\\(\\sw+\\)\\_>"
-	 1 font-lock-constant-face))))
-
+       `(,(concat "\\_<tag\\s-+" comma-list-regexp)
+	 ,(clu-font-lock-namelist 'font-lock-constant-face)))))
 
   ;;;
   ;;; Gaudy level highlighting for Clu mode.
