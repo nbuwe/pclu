@@ -164,23 +164,23 @@ g_proc_exprs = proc(a: an, ex: expr)
 	      return
 	      end
 
+	   direct: bool := true
 	   prefix: string := ""
-	   skip: bool := false
 	   tagcase (cop.type_.abs)
 	      tag cluster_ (ct: clutype):
 		  prefix := ct.gen.common
 	      tag apply (at: applytype):
 		  prefix := at.gen.common
 	      tag idn (id: idn):
-		  % skipping is new behavior 3/10/98 dwc
-		  % suppresses "extern errcode div()"
-		  % needed for RedHat 5.0
-		  if parm$member_op(id.str) cor parm$member_base(id.str) then
-		     skip := true
+		  % for "where" restrictions we use function pointers
+		  % in the instantiated OPS, not a direct function
+		  % call, so no direct extern dependecy to declare
+		  if parm$member_base(id.str) cor parm$member_op(id.str) then
+		     direct := false
 		     end
 	      others:
 	      end
-	   if ~skip then
+	   if direct then
 	      if ~string$empty(prefix) then
 		 nm := prefix || sep || nm
 		 end
