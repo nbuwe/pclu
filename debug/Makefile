@@ -24,7 +24,7 @@ CLU_SOURCES = parse.clu debug.clu debug2.clu
 .SUFFIXES: .o .c .clu
 
 .clu.c:
-	$(PCLU) -cfiles -ccdbg 0 -xf debug.xfile -spec *.clu -opt time -co $*.clu
+	$(PCLU) -xf debug.xfile -spec *.clu -opt time -cfiles -ccopt 0 -co $*.clu
 
 it: $(OBJECTS) libinfo.h $(CFILES)
 
