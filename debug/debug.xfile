@@ -1,5 +1,5 @@
 externals false
-me ~CLU/lib/*.lib
+merge ~CLU/lib/lowlev.lib ~CLU/lib/misc.lib  ~CLU/lib/useful.lib
 specs ~CLU/cmpclu/stable
 specs ~CLU/cmpclu/lineedit
 ce debug
