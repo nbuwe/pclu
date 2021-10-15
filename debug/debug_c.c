@@ -1027,7 +1027,7 @@ CLUREF nm,n,ops;
 char *nmc;
 
 	nmc = nm.str->data;
-	add_selector_info(nmc, n, ops);
+	add_selector_info(nmc, n.num, ops.ref);
 	signal(ERR_ok);
 	}
 
@@ -1037,7 +1037,7 @@ CLUREF typ, nfields, *ans;
 char *typc;
 
 	typc = typ.str->data;
-	find_selector_ops(typc, nfields, ans);
+	find_selector_ops(typc, nfields.num, ans);
 	signal(ERR_ok);
 	}
 /*
