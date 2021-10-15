@@ -2,7 +2,7 @@
 
 # Creates libraries of PCLU system code for the C linker
 
-# To create a pclu library for debugging ,you need to compile stream with
+# To create a pclu library for debugging, you need to compile stream with
 # compiler debugging on and cc debugging off.  Without compiler debugging on,
 # dbg_info stuff will be lost and you can't eval system operations.  With cc
 # debugging on, system operations enter the debugger on signals, etc., and
@@ -31,7 +31,7 @@ debuglib: debugfiles libpclu_debug.a
 
 cdebuglib: cdebugfiles libpclu_g.a
 
-optfiles: 
+optfiles:
 	for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} opt); done
 
 libpclu_opt.a:
