@@ -108,6 +108,7 @@ long sp = 0;
 
 extern errcode debugOPcli(CLUREF source, CLUREF opt1, CLUREF opt2, CLUREF opt3, CLUREF *_int);
 
+void
 save_elist(ind)
 long ind;
 {
@@ -116,6 +117,9 @@ long i;
 		saved_elist[ind][i] = elist[i];
 		}
 	}
+
+
+void
 restore_elist(ind)
 long ind;
 {
@@ -791,6 +795,8 @@ framep fp, *fpp;
 	signal(ERR_ok);
 	}
 
+
+errcode
 debugopget_name(riref, ans)
 CLUREF riref;
 CLUREF *ans;
@@ -805,6 +811,8 @@ errcode err;
 	signal(ERR_ok);
 	}
 
+
+errcode
 debugopget_fname(riref, ans)
 CLUREF riref;
 CLUREF *ans;
@@ -819,6 +827,8 @@ errcode err;
 	signal(ERR_ok);
 	}
 
+
+errcode
 debugopget_count_formals(ref, ans)
 CLUREF ref;
 CLUREF *ans;
@@ -828,6 +838,8 @@ Slist1 *sl = (Slist1*)ref.ref;
 	signal(ERR_ok);
 	}
 
+
+errcode
 debugopget_nth_formal(ref, n, ans)
 CLUREF ref;
 CLUREF n;
@@ -845,6 +857,8 @@ char *nm;
 	signal(ERR_ok);
 	}
 
+
+errcode
 debugopget_nth_type_formal(riref, n, ans)
 CLUREF riref;
 CLUREF n;
@@ -862,6 +876,8 @@ char *nm;
 	signal(ERR_ok);
 	}
 
+
+errcode
 debugopget_nth_op_formal(riref, n, ans)
 CLUREF riref, n;
 CLUREF *ans;
@@ -878,6 +894,8 @@ char *nm;
 	signal(ERR_ok);
 	}
 
+
+errcode
 debugopget_nth_op(vals, n, info_ref, type_ops_ref, op_ops_ref, ans)
 CLUREF vals;
 CLUREF n;
@@ -931,6 +949,8 @@ CLUREF *ans;
 	signal(ERR_ok);
 	}
 
+
+errcode
 debugopcmp_sig(s1, s2, ans)
 CLUREF s1;
 char *s2;
@@ -957,6 +977,8 @@ CLUREF temp;
 	signal(ERR_ok);
 	}
 
+
+errcode
 debugopget_sigvalcount(sd, ans)
 CLUREF sd;
 CLUREF *ans;
@@ -967,6 +989,8 @@ sig_desc *temp = (sig_desc*)sd.num;
 	signal(ERR_ok);
 }
 
+
+errcode
 debugopget_nth_sigvalops(sd, n, info_ref, type_ops_ref, op_ops_ref, ans)
 CLUREF sd;
 CLUREF n;
