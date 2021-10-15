@@ -37,11 +37,6 @@ libpclu_opt.a:
 	ar cruv libpclu_opt.a ${OPT}
 	ranlib libpclu_opt.a
 
-libpclu_debugG4.a: ${OPT}
-	${RM} libpclu_debugG4.a
-	ar cruv libpclu_debugG4.a ${DEBUG1}
-	ranlib libpclu_debugG4.a
-
 debugfiles:
 	for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} debugger); done
 	cd ../debug && ${MAKE}
