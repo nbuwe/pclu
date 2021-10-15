@@ -21,40 +21,20 @@
 typedef struct {
 	long	hdr;
 	long	count;
-	var_desc vds[1];
-	} Vlist;
-typedef struct {
-	long     hdr;
-	long	count;
-	sig_desc asig[1];
-	} sig_list1;
-typedef struct {
-	long     hdr;
-	long	count;
-	sig_desc asig[1];
-	} siglist;
-typedef struct {
-	long	hdr;
-	long	count;
-	char	*nm[1];
-	} Slist;
-typedef struct {
-	long	hdr;
-	long	count;
 	char  * name;
 	char  * fname;
 	bool   	is_iter;
 	long    	is_parmd;
 	long    	addr;
 	long	nargs;
-	Vlist *	vals;
-	siglist *sigs;
-	Vlist *	locals;
-	Vlist *	owns;
-	Vlist *	ptowns;
-	Vlist *	popowns;
-	Slist * type_formals;
-	Slist * op_formals;
+	Vlist1 *	vals;
+	siglist1 *sigs;
+	Vlist1 *	locals;
+	Vlist1 *	owns;
+	Vlist1 *	ptowns;
+	Vlist1 *	popowns;
+	Slist1 * type_formals;
+	Slist1 * op_formals;
 	} frame;
 typedef frame * framep;
 
@@ -906,7 +886,7 @@ CLUREF info_ref;
 CLUREF type_ops_ref, op_ops_ref;
 CLUREF *ans;
 {
-Vlist *temp = (Vlist*)vals.num;
+Vlist1 *temp = (Vlist1*)vals.num;
 struct OPS**ptr;
 char *opnm;
 CLUREF opname, sz;
