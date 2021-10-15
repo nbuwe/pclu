@@ -783,126 +783,116 @@ long *addr;
 	signal(ERR_not_found);
 	}
 
-errcode debugopframe_count(ans)
-CLUREF *ans;
-{
-	ans->num = sp;
-	signal(ERR_ok);
-	}
 
-errcode debugopframe_info(nth, info, line)
-CLUREF nth, *info, *line;
+errcode
+debugopframe_count(CLUREF *ans)
 {
-char *cnm;
-CLUREF newnm;
-framep fp, *fpp;
-	
-	fpp = (framep*)stack[nth.num - 1];
-	if (fpp == (framep*)-1) signal(ERR_none);	/* own_init_proc */
-	fp = (framep)stack[nth.num - 1][0];
-	info->num = (long)fp;
-	line->num = stack[nth.num - 1][1];
-	signal(ERR_ok);
-	}
+    ans->num = sp;
+    signal(ERR_ok);
+}
 
 
 errcode
-debugopget_name(riref, ans)
-CLUREF riref;
-CLUREF *ans;
+debugopframe_info(CLUREF nth, CLUREF *info, CLUREF *line)
 {
-CLUREF temp, size;
-framep ri = (framep)riref.ref;
-errcode err;
+    char *cnm;
+    CLUREF newnm;
+    framep fp, *fpp;
 
-	size.num = strlen(ri->name);
-	err = stringOPcons(ri->name, CLU_1, size, &temp);
-	ans->str = temp.str;
-	signal(ERR_ok);
-	}
+    fpp = (framep *)stack[nth.num - 1];
+    if (fpp == (framep *)-1)	/* own_init_proc */
+	signal(ERR_none);
+
+    fp = (framep)stack[nth.num - 1][0];
+    info->num = (long)fp;
+    line->num = stack[nth.num - 1][1];
+    signal(ERR_ok);
+}
 
 
 errcode
-debugopget_fname(riref, ans)
-CLUREF riref;
-CLUREF *ans;
+debugopget_name(CLUREF riref, CLUREF *ans)
 {
-CLUREF temp, size;
-framep ri = (framep)riref.ref;
-errcode err;
+    CLUREF temp, size;
+    framep ri = (framep)riref.ref;
+    errcode err;
 
-	size.num = strlen(ri->fname);
-	err = stringOPcons(ri->fname, CLU_1, size, &temp);
-	ans->str = temp.str;
-	signal(ERR_ok);
-	}
+    size.num = strlen(ri->name);
+    err = stringOPcons(ri->name, CLU_1, size, &temp);
+    ans->str = temp.str;
+    signal(ERR_ok);
+}
 
 
 errcode
-debugopget_count_formals(ref, ans)
-CLUREF ref;
-CLUREF *ans;
+debugopget_fname(CLUREF riref, CLUREF *ans)
 {
-Slist1 *sl = (Slist1*)ref.ref;
-	ans->num = sl->count;
-	signal(ERR_ok);
-	}
+    CLUREF temp, size;
+    framep ri = (framep)riref.ref;
+    errcode err;
+
+    size.num = strlen(ri->fname);
+    err = stringOPcons(ri->fname, CLU_1, size, &temp);
+    ans->str = temp.str;
+    signal(ERR_ok);
+}
 
 
 errcode
-debugopget_nth_formal(ref, n, ans)
-CLUREF ref;
-CLUREF n;
-CLUREF *ans;
+debugopget_count_formals(CLUREF ref, CLUREF *ans)
 {
-CLUREF temp, size;
-Slist1 *sl  = (Slist1*)ref.ref;
-errcode err;
-char *nm;
-
-	nm = sl->nm[n.num - 1];
-	size.num = strlen(nm);
-	err = stringOPcons(nm, CLU_1, size, &temp);
-	ans->str = temp.str;
-	signal(ERR_ok);
-	}
+    Slist1 *sl = (Slist1 *)ref.ref;
+    ans->num = sl->count;
+    signal(ERR_ok);
+}
 
 
 errcode
-debugopget_nth_type_formal(riref, n, ans)
-CLUREF riref;
-CLUREF n;
-CLUREF *ans;
+debugopget_nth_formal(CLUREF ref, CLUREF n, CLUREF *ans)
 {
-CLUREF temp, size;
-framep ri  = (framep)riref.ref;
-errcode err;
-char *nm;
+    CLUREF temp, size;
+    Slist1 *sl  = (Slist1 *)ref.ref;
+    errcode err;
+    char *nm;
 
-	nm = ri->type_formals->nm[n.num-1];
-	size.num = strlen(nm);
-	err = stringOPcons(nm, CLU_1, size, &temp);
-	ans->str = temp.str;
-	signal(ERR_ok);
-	}
+    nm = sl->nm[n.num - 1];
+    size.num = strlen(nm);
+    err = stringOPcons(nm, CLU_1, size, &temp);
+    ans->str = temp.str;
+    signal(ERR_ok);
+}
 
 
 errcode
-debugopget_nth_op_formal(riref, n, ans)
-CLUREF riref, n;
-CLUREF *ans;
+debugopget_nth_type_formal(CLUREF riref, CLUREF n, CLUREF *ans)
 {
-CLUREF temp, size;
-framep ri = (framep)riref.ref;
-errcode err;
-char *nm;
+    CLUREF temp, size;
+    framep ri  = (framep)riref.ref;
+    errcode err;
+    char *nm;
 
-	nm = ri->op_formals->nm[n.num-1];
-	size.num = strlen(nm);
-	err = stringOPcons(nm, CLU_1, size, &temp);
-	ans->str = temp.str;
-	signal(ERR_ok);
-	}
+    nm = ri->type_formals->nm[n.num - 1];
+    size.num = strlen(nm);
+    err = stringOPcons(nm, CLU_1, size, &temp);
+    ans->str = temp.str;
+    signal(ERR_ok);
+}
+
+
+errcode
+debugopget_nth_op_formal(CLUREF riref, CLUREF n, CLUREF *ans)
+{
+    CLUREF temp, size;
+    framep ri = (framep)riref.ref;
+    errcode err;
+    char *nm;
+
+    nm = ri->op_formals->nm[n.num - 1];
+    size.num = strlen(nm);
+    err = stringOPcons(nm, CLU_1, size, &temp);
+    ans->str = temp.str;
+    signal(ERR_ok);
+}
 
 
 errcode
@@ -951,52 +941,46 @@ OWNPTR op_own_ptr = (OWNPTR)0;
 	}
 }
 
-errcode debugopget_nth_sigval(i, ans)
-CLUREF i;
-CLUREF *ans;
+
+errcode
+debugopget_nth_sigval(CLUREF i, CLUREF *ans)
 {
-	ans->ref = saved_elist[sp-1][i.num-1].ref;
-	signal(ERR_ok);
-	}
+    ans->ref = saved_elist[sp - 1][i.num - 1].ref;
+    signal(ERR_ok);
+}
 
 
 errcode
-debugopcmp_sig(s1, s2, ans)
-CLUREF s1;
-char *s2;
-CLUREF *ans;
+debugopcmp_sig(CLUREF s1, char *s2, CLUREF *ans)
 {
-long size = strlen(s2);
+    long size = strlen(s2);
 
-	if (size != s1.str->size) {
-		ans->tf = false;
-		signal(ERR_ok);
-		}
-	ans->tf = !bcmp(s1.str->data, s2, size);
+    if (size != s1.str->size) {
+	ans->tf = false;
 	signal(ERR_ok);
-	}
+    }
+    ans->tf = !bcmp(s1.str->data, s2, size);
+    signal(ERR_ok);
+}
+
 
 /* convert a raw signal to a CLUREF string */
-errcode debugopcvt_sig(sig, ans)
-CLUREF sig, *ans;
+errcode
+debugopcvt_sig(CLUREF sig, CLUREF *ans)
 {
-CLUREF temp;
-
-	temp = _pclu_erstr(sig.num);
-	ans->num = temp.num;
-	signal(ERR_ok);
-	}
+    CLUREF temp = _pclu_erstr(sig.num);
+    ans->num = temp.num;
+    signal(ERR_ok);
+}
 
 
 errcode
-debugopget_sigvalcount(sd, ans)
-CLUREF sd;
-CLUREF *ans;
+debugopget_sigvalcount(CLUREF sd, CLUREF *ans)
 {
-sig_desc *temp = (sig_desc*)sd.num;
+    sig_desc *temp = (sig_desc *)sd.num;
 
-	ans->num = temp->vals.count;
-	signal(ERR_ok);
+    ans->num = temp->vals.count;
+    signal(ERR_ok);
 }
 
 
@@ -1034,25 +1018,25 @@ OWNPTR op_own_ptr = (OWNPTR)0;
 	signal(ERR_ok);
 }
 
-errcode add_selector_info2(nm, n, ops)
-CLUREF nm,n,ops;
+
+errcode
+add_selector_info2(CLUREF nm, CLUREF n, CLUREF ops)
 {
-char *nmc;
+    char *nmc = nm.str->data;
+    add_selector_info(nmc, n.num, ops.ref);
+    signal(ERR_ok);
+}
 
-	nmc = nm.str->data;
-	add_selector_info(nmc, n.num, ops.ref);
-	signal(ERR_ok);
-	}
 
-errcode find_selector_ops2(typ, nfields, ans)
-CLUREF typ, nfields, *ans;
+errcode
+find_selector_ops2(CLUREF typ, CLUREF nfields, CLUREF *ans)
 {
-char *typc;
+    char *typc = typ.str->data;
+    find_selector_ops(typc, nfields.num, ans);
+    signal(ERR_ok);
+}
 
-	typc = typ.str->data;
-	find_selector_ops(typc, nfields.num, ans);
-	signal(ERR_ok);
-	}
+
 /*
 static char *uninit_var1 = "Uninitialized variable ";
 static char *uninit_var2 = " in entry point ";
