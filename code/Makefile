@@ -16,8 +16,12 @@ DEBUG1 = libclu/Debugger/*.o sysclu/Debugger/*.o libasm/Debugger/*.o \
 DEBUG2 = ../debug/*.o
 G      = libclu/Debug/*.o sysclu/Debug/*.o libasm/Debug/*.o sysasm/Debug/*.o
 
+
+CLEANDIRS = ${CLIBDIRS} cmp
+
 RM     = /bin/rm -f
 FLUFF  = *~ *.old *.bak .*~ .*.old .*.bak
+
 
 optlib: optfiles libpclu_opt.a
 
@@ -68,10 +72,10 @@ libpclu_g.a: ${G}
 	ranlib libpclu_g.a
 
 clean:
-	for i in ${CLIBDIRS} cmp; do (cd $$i && ${MAKE} clean); done
+	for i in ${CLEANDIRS}; do (cd $$i && ${MAKE} clean); done
 	${RM} ${FLUFF}
 
 veryclean: clean
-	for i in ${CLIBDIRS} cmp; do (cd $$i && ${MAKE} veryclean); done
+	for i in ${CLEANDIRS} cmp; do (cd $$i && ${MAKE} veryclean); done
 	${RM} libpclu_opt.a libpclu_debug.a libpclu_g.a ${FLUFF}
 
