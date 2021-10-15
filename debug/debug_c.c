@@ -144,7 +144,7 @@ CLUREF argnm;
 		nmstack[sp] = CLU_empty_string;
 		forbodystack[sp] = false;
 		sp++;
-		return;
+		return ERR_ok;
 		}
 	fp = (framep) localsp[0];
 	/* printf("enter: nm = %s sp = %X\n", fp->name, sp); */
@@ -167,11 +167,12 @@ CLUREF argnm;
 			stringOPcons(fp->locals->vds[i].nm, CLU_1, size, &argnm);
 			code.num = ENTER_PROC_FAULT;
 			debugOPcli(code, spref, nm, argnm, &mode);
-			return;
+			return ERR_ok;
 			}
 		}
 	code.num = ENTER_PROC;
 	debugOPcli(code, spref, nm, CLU_empty_string, &mode);
+	return ERR_ok;
 	}
 
 errcode debugOPenter_forbody(localsp)
@@ -192,6 +193,7 @@ CLUREF nm, code, spref, size;
 	spref.num = sp;
 	code.num = ENTER_FORBODY;
 	debugOPcli(code, spref, nm, CLU_empty_string, &mode);
+	return ERR_ok;
 	}
 
 errcode debugOPleave_proc(sig)
@@ -218,6 +220,7 @@ CLUREF nm, code, sigref;
 			}
 		}
 	stack[sp] = 0; sp--;
+	return ERR_ok;
 	}
 
 errcode debugOPbegin_line(n)
@@ -229,6 +232,7 @@ CLUREF mode, code, nref;
 	code.num = BEGIN_LINE;
 	nref.num = n;
 	debugOPcli(code, nref, nmstack[sp-1], CLU_empty_string, &mode);
+	return ERR_ok;
 	}
 
 errcode debugopline_stop(mod, n)
