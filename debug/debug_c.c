@@ -2,6 +2,13 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+extern errcode debugOPcli(CLUREF source, CLUREF opt1, CLUREF opt2, CLUREF opt3, CLUREF *_int);
+extern errcode missing_print_fcn(CLUREF val, CLUREF pst);
+extern errcode opown2typeown(CLUREF nm, CLUREF *_string);
+extern errcode print_uninit(CLUREF po, CLUREF v);
+extern errcode symOPget_address(CLUREF s, CLUREF *_int);
+
+
 /* values for return from debugOPcli */
 
 #define CONT 0
@@ -37,9 +44,6 @@ typedef struct {
 	Slist1 * op_formals;
 	} frame;
 typedef frame * framep;
-
-extern errcode symOPget_address(CLUREF s, CLUREF *_int);
-extern errcode opown2typeown(CLUREF nm, CLUREF *_string);
 
 extern char *mystrcat(const char *s1, const char *s2);
 errlist saved_elist[1000];
@@ -106,7 +110,6 @@ long sp = 0;
 		output windowing
 */
 
-extern errcode debugOPcli(CLUREF source, CLUREF opt1, CLUREF opt2, CLUREF opt3, CLUREF *_int);
 
 void
 save_elist(ind)
