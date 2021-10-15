@@ -106,7 +106,7 @@ long sp = 0;
 		output windowing
 */
 
-extern debugOPcli();
+extern errcode debugOPcli(CLUREF source, CLUREF opt1, CLUREF opt2, CLUREF opt3, CLUREF *_int);
 
 save_elist(ind)
 long ind;
