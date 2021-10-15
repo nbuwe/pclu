@@ -13,21 +13,21 @@ call_clu = proc(addr: int, type_ops: int, op_ops: int, stck: _vec[_obj], sp: int
 		is_iter, is_sel: bool, nargs, nvals: int)
 	end call_clu
 
-CLU_add_parm_info_const = proc(nth: int, val: _obj)
-	end CLU_add_parm_info_const
+clu_add_parm_info_const = proc(nth: int, val: _obj)
+	end clu_add_parm_info_const
 
-CLU_add_parm_info_type = proc(nth: int, ops: int, reqs: int)
-	end CLU_add_parm_info_type
+clu_add_parm_info_type = proc(nth: int, ops: int, reqs: int)
+	end clu_add_parm_info_type
 
-CLU_find_type_instance = proc(ops: int, nparms: int, ownreqs: int) returns (int)
-	end CLU_find_type_instance
+clu_find_type_instance = proc(ops: int, nparms: int, ownreqs: int) returns (int)
+	end clu_find_type_instance
 
-CLU_find_typeop_instance = proc(ops: int, op: int, nparms: int, ntparms: int,
+clu_find_typeop_instance = proc(ops: int, op: int, nparms: int, ntparms: int,
 			op_own_reqs: int, type_own_reqs: int) returns (int)
-	end CLU_find_typeop_instance
+	end clu_find_typeop_instance
 
-CLU_find_prociter_instance = proc(op: int, nparms: int, ownreqs: int) returns (int)
-	end CLU_find_prociter_instance
+clu_find_prociter_instance = proc(op: int, nparms: int, ownreqs: int) returns (int)
+	end clu_find_prociter_instance
 
 add_selector_info2 = proc(field_name: string, n: int, ops: int)
 	end add_selector_info2
