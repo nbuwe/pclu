@@ -38,8 +38,8 @@ typedef struct {
 	} frame;
 typedef frame * framep;
 
-extern errcode symOPget_address();
-extern errcode opown2typeown();
+extern errcode symOPget_address(CLUREF s, CLUREF *_int);
+extern errcode opown2typeown(CLUREF nm, CLUREF *_string);
 
 extern char *mystrcat(const char *s1, const char *s2);
 errlist saved_elist[1000];
