@@ -111,3 +111,8 @@ I stuck with it, upgrading to gc-7.2g eventually.
 
 On NetBSD you will need to use gmake.  On my 8-STABLE macppc I could
 only get gc-7.2g to work and only with `-O1`.
+
+The common idiom to compile Clu to C but don't compile the C output is
+to use `-ccopt 0` (bzw. `-ccdbg 0`).  What makes the magic value `0`
+magic is ... its length.  See `cc_one` in top2.clu - it won't do
+anything if the command length is less than 4.
