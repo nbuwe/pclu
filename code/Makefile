@@ -25,8 +25,6 @@ FLUFF  = *~ *.old *.bak .*~ .*.old .*.bak
 
 optlib: optfiles libpclu_opt.a
 
-athenalib: debugfiles libpclu_athena.a
-
 debuglib: debugfiles libpclu_debug.a
 
 cdebuglib: cdebugfiles libpclu_g.a
@@ -43,13 +41,6 @@ libpclu_debugG4.a: ${OPT}
 	${RM} libpclu_debugG4.a
 	ar cruv libpclu_debugG4.a ${DEBUG1}
 	ranlib libpclu_debugG4.a
-
-libpclu_athena.a: ${DEBUG1}
-	${RM} libpclu_athena.a
-	ar cruv libpclu_athena.a ${DEBUG1}
-	ar d libpclu_athena.a util.o _signal.o new_parm_util.o new_selector.o
-	ar q libpclu_athena.a ${DEBUG2}
-	ranlib libpclu_athena.a
 
 debugfiles:
 	for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} debugger); done
