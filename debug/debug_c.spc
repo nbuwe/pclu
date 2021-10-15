@@ -9,8 +9,8 @@
 %		or an empty string for the normal case
 %
 
-call_clu = proc(addr: int, type_ops: int, op_ops: int, stck: _vec[_obj], sp: int, 
-		is_iter, is_sel: bool, nargs, nvals: int) 
+call_clu = proc(addr: int, type_ops: int, op_ops: int, stck: _vec[_obj], sp: int,
+		is_iter, is_sel: bool, nargs, nvals: int)
 	end call_clu
 
 CLU_add_parm_info_const = proc(nth: int, val: _obj)
@@ -44,7 +44,7 @@ find_valops = proc(typ: string, op: string, tops: int) returns (int, ops, int)
 rep_find_valops = proc(op: string, tops: int) returns (string, int, ops, int)
 	end rep_find_valops
 
-% given the address of an instantiated type, 
+% given the address of an instantiated type,
 %	return abstract ops for that type, the number of parameters, and the index of the instantiation
 
 find_tgen = proc(tops: ops) returns (ops, int, int) signals (not_found)
@@ -145,7 +145,7 @@ debugOPget_nth_type_formal = proc(ri: rtn_info, n: int) returns (string)
 debugOPget_nth_op_formal = proc(ri: rtn_info, n: int) returns (string)
 	end debugOPget_nth_op_formal
 
-debugOPget_nth_op = proc(vals:ops, n:int, info: rtn_info, tops, oops: int) returns (anop) 
+debugOPget_nth_op = proc(vals:ops, n:int, info: rtn_info, tops, oops: int) returns (anop)
 				signals (not_found (string))
 	end debugOPget_nth_op
 
