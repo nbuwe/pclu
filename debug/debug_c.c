@@ -40,7 +40,7 @@ typedef frame * framep;
 
 extern errcode symOPget_address();
 extern errcode opown2typeown();
-extern errcode stringOPcons();
+
 extern char *mystrcat(const char *s1, const char *s2);
 errlist saved_elist[1000];
 
