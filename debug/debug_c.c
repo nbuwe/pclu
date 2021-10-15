@@ -38,7 +38,6 @@ typedef struct {
 	} frame;
 typedef frame * framep;
 
-extern CLUREF empty_string;
 extern errcode symOPget_address();
 extern errcode opown2typeown();
 extern errcode stringOPcons();
@@ -138,7 +137,7 @@ CLUREF argnm;
 	if (localsp == (long*)-1) {
 		/* printf("enter: nm = UNKNOWN sp = %X\n", sp); */
 		stack[sp] = localsp;
-		nmstack[sp] = empty_string;
+		nmstack[sp] = CLU_empty_string;
 		forbodystack[sp] = false;
 		sp++;
 		return;
@@ -168,7 +167,7 @@ CLUREF argnm;
 			}
 		}
 	code.num = ENTER_PROC;
-	debugOPcli(code, spref, nm, empty_string, &mode);
+	debugOPcli(code, spref, nm, CLU_empty_string, &mode);
 	}
 
 errcode debugOPenter_forbody(localsp)
@@ -188,7 +187,7 @@ CLUREF nm, code, spref, size;
 	sp++;
 	spref.num = sp;
 	code.num = ENTER_FORBODY;
-	debugOPcli(code, spref, nm, empty_string, &mode);
+	debugOPcli(code, spref, nm, CLU_empty_string, &mode);
 	}
 
 errcode debugOPleave_proc(sig)
@@ -198,12 +197,12 @@ CLUREF mode;
 CLUREF nm, code, sigref;
 
 	nm = nmstack[sp-1];
-	if (nm.str != empty_string.str) {
+	if (nm.str != CLU_empty_string.str) {
 		if (forbodystack[sp-1]) {
 			code.num = LEAVE_FORBODY;
 			sigref.num = sig;
 			save_elist(sp-1);
-			debugOPcli(code, sigref, nmstack[sp-1], empty_string, &mode);
+			debugOPcli(code, sigref, nmstack[sp-1], CLU_empty_string, &mode);
 			restore_elist(sp-1);
 			}
 		else {
@@ -225,7 +224,7 @@ CLUREF mode, code, nref;
 	/* printf("line: nm = %s, line = %d\n", nmstack[sp-1], n); */
 	code.num = BEGIN_LINE;
 	nref.num = n;
-	debugOPcli(code, nref, nmstack[sp-1], empty_string, &mode);
+	debugOPcli(code, nref, nmstack[sp-1], CLU_empty_string, &mode);
 	}
 
 errcode debugopline_stop(mod, n)
