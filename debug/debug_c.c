@@ -1,4 +1,3 @@
-
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
@@ -8,14 +7,14 @@ extern errcode opown2typeown(CLUREF nm, CLUREF *_string);
 extern errcode print_uninit(CLUREF po, CLUREF v);
 extern errcode symOPget_address(CLUREF s, CLUREF *_int);
 
+extern char *mystrcat(const char *s1, const char *s2);
+
 
 /* values for return from debugOPcli */
-
 #define CONT 0
 #define STEP 1
 
 /* values for input to debugOPcli */
-
 #define ENTER_PROC 0
 #define LEAVE_PROC 1
 #define BEGIN_LINE 2
@@ -26,33 +25,31 @@ extern errcode symOPget_address(CLUREF s, CLUREF *_int);
 
 
 typedef struct {
-	long	hdr;
-	long	count;
-	char  * name;
-	char  * fname;
-	bool   	is_iter;
-	long    	is_parmd;
-	long    	addr;
-	long	nargs;
-	Vlist1 *	vals;
-	siglist1 *sigs;
-	Vlist1 *	locals;
-	Vlist1 *	owns;
-	Vlist1 *	ptowns;
-	Vlist1 *	popowns;
-	Slist1 * type_formals;
-	Slist1 * op_formals;
-	} frame;
-typedef frame * framep;
+    long hdr;
+    long count;
+    char  *name;
+    char  *fname;
+    bool is_iter;
+    long is_parmd;
+    long addr;
+    long nargs;
+    Vlist1 *vals;
+    siglist1 *sigs;
+    Vlist1 *locals;
+    Vlist1 *owns;
+    Vlist1 *ptowns;
+    Vlist1 *popowns;
+    Slist1 *type_formals;
+    Slist1 *op_formals;
+} frame, *framep;
 
-extern char *mystrcat(const char *s1, const char *s2);
 errlist saved_elist[1000];
 
 long CLU_TRACE = 1;
 
-long   *stack[1000];        /* pointers to locals data structures */
-CLUREF nmstack[1000];      /* names of procs on stack */
-bool   forbodystack[1000]; /* is the corresponding entry the body of a for stmt */
+long *stack[1000];	      /* pointers to locals data structures */
+CLUREF nmstack[1000];	      /* names of procs on stack */
+bool forbodystack[1000]; /* is the corresponding entry the body of a for stmt */
 long sp = 0;
 
 /*
@@ -112,165 +109,171 @@ long sp = 0;
 
 
 void
-save_elist(ind)
-long ind;
+save_elist(long ind)
 {
-long i;
-	for (i = 0 ; i < MAX_SIG_VALS ; i++) {
-		saved_elist[ind][i] = elist[i];
-		}
-	}
+    for (long i = 0; i < MAX_SIG_VALS; ++i)
+	saved_elist[ind][i] = elist[i];
+}
 
 
 void
-restore_elist(ind)
-long ind;
+restore_elist(long ind)
 {
-long i;
-	for (i = 0 ; i < MAX_SIG_VALS ; i++) {
-		elist[i] = saved_elist[ind][i];
-		}
-	}
+    for (long i = 0; i < MAX_SIG_VALS; ++i)
+	elist[i] = saved_elist[ind][i];
+}
 
-errcode debugOPenter_proc(localsp)
-long *localsp;
+
+errcode
+debugOPenter_proc(long *localsp)
 {
-CLUREF mode;
-framep fp;
-CLUREF nm, code, spref, size;
-long i;
-CLUREF argnm;
+    CLUREF mode;
+    framep fp;
+    CLUREF nm, code, spref, size;
+    long i;
+    CLUREF argnm;
 
-	if (localsp == (long*)-1) {
-		/* printf("enter: nm = UNKNOWN sp = %X\n", sp); */
-		stack[sp] = localsp;
-		nmstack[sp] = CLU_empty_string;
-		forbodystack[sp] = false;
-		sp++;
-		return ERR_ok;
-		}
-	fp = (framep) localsp[0];
-	/* printf("enter: nm = %s sp = %X\n", fp->name, sp); */
+    if (localsp == (long *)-1) {
+	/* printf("enter: nm = UNKNOWN sp = %X\n", sp); */
 	stack[sp] = localsp;
-	size.num = strlen(fp->name);
-	stringOPcons(fp->name, CLU_1, size, &nm);
-	nmstack[sp] = nm;
+	nmstack[sp] = CLU_empty_string;
 	forbodystack[sp] = false;
-	sp++;
-	spref.num = sp;
-
-	/* check for uninitialized arguments */
-	for (i = fp->locals->count - fp->nargs; i < fp->locals->count ; i++) {
-		if (localsp[i+2] == UNINIT) {
-			/* printf(" uninitialized argument %s to proc %s\n",
-				fp->locals->vds[i].nm,
-				fp->name);
-			*/
-			size.num = strlen(fp->locals->vds[i].nm);
-			stringOPcons(fp->locals->vds[i].nm, CLU_1, size, &argnm);
-			code.num = ENTER_PROC_FAULT;
-			debugOPcli(code, spref, nm, argnm, &mode);
-			return ERR_ok;
-			}
-		}
-	code.num = ENTER_PROC;
-	debugOPcli(code, spref, nm, CLU_empty_string, &mode);
+	++sp;
 	return ERR_ok;
-	}
+    }
 
-errcode debugOPenter_forbody(localsp)
-long *localsp;
+    fp = (framep) localsp[0];
+    /* printf("enter: nm = %s sp = %X\n", fp->name, sp); */
+    stack[sp] = localsp;
+    size.num = strlen(fp->name);
+    stringOPcons(fp->name, CLU_1, size, &nm);
+    nmstack[sp] = nm;
+    forbodystack[sp] = false;
+    ++sp;
+    spref.num = sp;
+
+    /* check for uninitialized arguments */
+    for (i = fp->locals->count - fp->nargs; i < fp->locals->count; ++i) {
+	if (localsp[i+2] == UNINIT) {
+            /* printf(" uninitialized argument %s to proc %s\n",
+                    fp->locals->vds[i].nm,
+                    fp->name);
+            */
+	    size.num = strlen(fp->locals->vds[i].nm);
+	    stringOPcons(fp->locals->vds[i].nm, CLU_1, size, &argnm);
+	    code.num = ENTER_PROC_FAULT;
+	    debugOPcli(code, spref, nm, argnm, &mode);
+	    return ERR_ok;
+	}
+    }
+
+    code.num = ENTER_PROC;
+    debugOPcli(code, spref, nm, CLU_empty_string, &mode);
+    return ERR_ok;
+}
+
+
+errcode
+debugOPenter_forbody(long *localsp)
 {
-CLUREF mode;
-framep fp;
-CLUREF nm, code, spref, size;
+    CLUREF mode;
+    framep fp;
+    CLUREF nm, code, spref, size;
 
-	fp = (framep) localsp[0];
-	/* printf("enter: nm = %s sp = %X\n", fp->name, sp); */
-	stack[sp] = localsp;
-	size.num = strlen(fp->name);
-	stringOPcons(fp->name, CLU_1, size, &nm);
-	nmstack[sp] = nm;
-	forbodystack[sp] = true;
-	sp++;
-	spref.num = sp;
-	code.num = ENTER_FORBODY;
-	debugOPcli(code, spref, nm, CLU_empty_string, &mode);
-	return ERR_ok;
-	}
+    fp = (framep) localsp[0];
+    /* printf("enter: nm = %s sp = %X\n", fp->name, sp); */
+    stack[sp] = localsp;
+    size.num = strlen(fp->name);
+    stringOPcons(fp->name, CLU_1, size, &nm);
+    nmstack[sp] = nm;
+    forbodystack[sp] = true;
+    ++sp;
+    spref.num = sp;
 
-errcode debugOPleave_proc(sig)
-errcode sig;
+    code.num = ENTER_FORBODY;
+    debugOPcli(code, spref, nm, CLU_empty_string, &mode);
+    return ERR_ok;
+}
+
+
+errcode
+debugOPleave_proc(errcode sig)
 {
-CLUREF mode;
-CLUREF nm, code, sigref;
+    CLUREF mode;
+    CLUREF nm, code, sigref;
 
-	nm = nmstack[sp-1];
-	if (nm.str != CLU_empty_string.str) {
-		if (forbodystack[sp-1]) {
-			code.num = LEAVE_FORBODY;
-			sigref.num = sig;
-			save_elist(sp-1);
-			debugOPcli(code, sigref, nmstack[sp-1], CLU_empty_string, &mode);
-			restore_elist(sp-1);
-			}
-		else {
-			code.num = LEAVE_PROC;
-			sigref.num = sig;
-			save_elist(sp-1);
-			debugOPcli(code, sigref, nmstack[sp-1], elist[0], &mode);
-			restore_elist(sp-1);
-			}
-		}
-	stack[sp] = 0; sp--;
-	return ERR_ok;
+    nm = nmstack[sp - 1];
+    if (nm.str != CLU_empty_string.str) {
+	if (forbodystack[sp - 1]) {
+	    code.num = LEAVE_FORBODY;
+	    sigref.num = sig;
+	    save_elist(sp - 1);
+	    debugOPcli(code, sigref, nmstack[sp-1], CLU_empty_string, &mode);
+	    restore_elist(sp - 1);
 	}
+	else {
+	    code.num = LEAVE_PROC;
+	    sigref.num = sig;
+	    save_elist(sp - 1);
+	    debugOPcli(code, sigref, nmstack[sp - 1], elist[0], &mode);
+	    restore_elist(sp - 1);
+	}
+    }
+    stack[sp] = 0;
+    --sp;
+    return ERR_ok;
+}
 
-errcode debugOPbegin_line(n)
-long n;
+
+errcode
+debugOPbegin_line(long n)
 {
-CLUREF mode, code, nref;
+    CLUREF mode, code, nref;
 
-	/* printf("line: nm = %s, line = %d\n", nmstack[sp-1], n); */
-	code.num = BEGIN_LINE;
-	nref.num = n;
-	debugOPcli(code, nref, nmstack[sp-1], CLU_empty_string, &mode);
-	return ERR_ok;
-	}
+    /* printf("line: nm = %s, line = %d\n", nmstack[sp-1], n); */
+    code.num = BEGIN_LINE;
+    nref.num = n;
+    debugOPcli(code, nref, nmstack[sp - 1], CLU_empty_string, &mode);
+    return ERR_ok;
+}
 
-errcode debugopline_stop(mod, n)
-CLUREF mod, n;
+
+errcode
+debugopline_stop(CLUREF mod, CLUREF n)
 {
-	signal(ERR_ok);
-	}
+    signal(ERR_ok);
+}
 
-errcode debugopclear_line_stop(mod, n)
-CLUREF mod, n;
+
+errcode
+debugopclear_line_stop(CLUREF mod, CLUREF n)
 {
-	signal(ERR_ok);
-	}
+    signal(ERR_ok);
+}
 
-errcode debugopfunc_stop(nm)
-CLUREF nm;
+
+errcode
+debugopfunc_stop(CLUREF nm)
 {
-	signal(ERR_ok);
-	}
+    signal(ERR_ok);
+}
 
-errcode debugopclear_func_stop(nm)
-CLUREF nm;
+
+errcode
+debugopclear_func_stop(CLUREF nm)
 {
-	signal(ERR_ok);
-	}
+    signal(ERR_ok);
+}
 
-errcode debugopassign(addr, val)
-CLUREF addr, val;
+
+errcode
+debugopassign(CLUREF addr, CLUREF val)
 {
-long *a;
+    long *a = (long *)addr.num;
+    *a = val.num;
+    signal(ERR_ok);
+}
 
-	a = (long*)addr.num;
-	*a = val.num;
-	signal(ERR_ok);
-	}
 
 CLUPROC find_print(opsp)
 struct OPS **opsp;
