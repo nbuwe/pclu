@@ -10,15 +10,27 @@ FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 
 PCLU = ../exe/pclu
 
-OBJECTS = debug.o debug2.o parse.o debug_c.o util.o stable.o \
-	  lineedit.o libinfo.o _signal.o call_clu.o new_selector.o \
-	  new_parm_util.o
+CLU_SOURCES = debug.clu debug2.clu parse.clu
 
-CFILES = debug.c debug2.c parse.c debug_c.c util.c \
-	 libinfo.c _signal.c call_clu.c new_selector.c \
-	 new_parm_util.c
 
-CLU_SOURCES = parse.clu debug.clu debug2.clu
+CFILES  = $(CLU_SOURCES:.clu=.c)
+FLUFF  += $(CLU_SOURCES:.clu=.c)
+
+# native code, overrides for libasm and sysasm
+CFILES += debug_c.c call_clu.c
+CFILES += _signal.c
+CFILES += new_parm_util.c new_selector.c util.c
+
+# debug info for the "builtin" stuff
+CFILES += libinfo.c
+
+
+OBJECTS  = $(CFILES:.c=.o)
+FLUFF   += $(CFILES:.c=.o)
+
+# in the original these were symlinks to ../cmp
+OBJECTS += lineedit.o stable.o
+
 
 .SUFFIXES:
 .SUFFIXES: .o .c .clu
@@ -32,9 +44,7 @@ all:
 	$(PCLU) -xf debug.xfile -spec *.clu -opt time -co *.clu -dump debug
 
 clean:
-	${RM} debug_c.o new_selector.o new_parm_util.o libinfo.o \
-		_signal.o util.o \
-		call_clu.o parse.o debug.o debug2.o parse.c debug.c debug2.c ${FLUFF}
+	${RM} ${FLUFF}
 
 veryclean: clean
 	${RM} debug.lib
