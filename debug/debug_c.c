@@ -275,109 +275,145 @@ debugopassign(CLUREF addr, CLUREF val)
 }
 
 
-CLUPROC find_print(opsp)
-struct OPS **opsp;
+CLUPROC
+find_print(opsp)
+  struct OPS **opsp;
 {
-long i;
-struct OPS *ops;
+    long i;
+    struct OPS *ops;
 
-	if (opsp == (struct OPS**)NULL) return(0);
-	if (*(long*)(opsp) < 1000) ops = (struct OPS*)opsp;
-	else ops = *opsp;
-	if (ops == (struct OPS*)NULL) return(0);
-	for (i = 0 ; i < ops->count ; i++) {
-	        if (ops->entry[i].name == NULL) continue;
-		if (!strcmp("debug_print", ops->entry[i].name)) {
-			return (ops->entry[i].fcn);
-			}
-		}
-	return (0);
-	}
+    if (opsp == NULL)
+	return NULL;
 
-long find_op_own_ptr(fp, i)
-framep fp;
-long i;
+    if (*(long*)opsp < 1000)
+	ops = (struct OPS *)opsp;
+    else
+	ops = *opsp;
+
+    if (ops == NULL)
+	return NULL;
+
+    for (i = 0 ; i < ops->count; ++i) {
+	if (ops->entry[i].name == NULL)
+	    continue;
+
+	if (strcmp("debug_print", ops->entry[i].name) == 0)
+	    return ops->entry[i].fcn;
+    }
+
+    return NULL;
+}
+
+
+long
+find_op_own_ptr(fp, i)
+  framep fp;
+  long i;
 {
-long k;
-	for (k = 0; k < fp->locals->count; k++) {
-		if (!strcmp("op_own_ptr", fp->locals->vds[k].nm)) {
-				return (stack[i][k+2]) ;
-				}
-		}
-	return(0);
-	}
+    for (long k = 0; k < fp->locals->count; ++k) {
+	if (strcmp("op_own_ptr", fp->locals->vds[k].nm) == 0)
+	    return stack[i][k + 2];
+    }
 
-long find_type_own_ptr(fp, i)
-framep fp;
-long i;
+    return 0;
+}
+
+
+long
+find_type_own_ptr(fp, i)
+  framep fp;
+  long i;
 {
-long k;
-	for (k = 0; k < fp->locals->count; k++) {
-		if (!strcmp("type_own_ptr", fp->locals->vds[k].nm)) {
-				return (stack[i][k+2]) ;
-				}
-		}
-	return(0);
-	}
+    for (long k = 0; k < fp->locals->count; ++k) {
+	if (strcmp("type_own_ptr", fp->locals->vds[k].nm) == 0)
+	    return stack[i][k + 2];
+    }
+
+    return 0;
+}
 
 
-struct OPS**alt_find_ops(fp, i, opnm)
-framep fp;
-long i;
-char *opnm;
+struct OPS**
+alt_find_ops(fp, i, opnm)
+  framep fp;
+  long i;
+  char *opnm;
 {
-long k;
-CLUREF op_own_ptr, type_own_ptr;
+    long k;
+    CLUREF op_own_ptr, type_own_ptr;
 
-	/* printf("checking op info\n"); */
-	op_own_ptr.num = find_op_own_ptr(fp, i);
-	for (k = 0; k < fp->popowns->count; k++) {
-		/* printf("%s\n", fp->popowns->vds[k].nm); */
-		if (!strcmp(opnm, fp->popowns->vds[k].nm)) {
-			return ((struct OPS**)(op_own_ptr.num)) + (k);
-			}
-		}
-	/* printf("checking type info\n"); */
-	type_own_ptr.num = find_type_own_ptr(fp, i);
-	for (k = 0; k < fp->ptowns->count; k++) {
-		/* printf("%s\n", fp->ptowns->vds[k].nm); */
-		if (!strcmp(opnm, fp->ptowns->vds[k].nm)) {
-			return ((struct OPS**)(type_own_ptr.num)) + (k);
-			}
-		}
-	/* printf("not found\n"); */
-	return (0);
+#if 0
+    printf("checking op info\n");
+#endif
+    op_own_ptr.num = find_op_own_ptr(fp, i);
+    for (k = 0; k < fp->popowns->count; ++k) {
+#if 0
+	printf("%s\n", fp->popowns->vds[k].nm);
+#endif
+	if (strcmp(opnm, fp->popowns->vds[k].nm) == 0) {
+	    return (struct OPS **)op_own_ptr.num + k;
 	}
+    }
 
-struct OPS**alt_find_ops2(opnm, info, type_own_ptr, op_own_ptr)
-char *opnm;
-framep info;
-OWNPTR op_own_ptr, type_own_ptr;
+#if 0
+    printf("checking type info\n");
+#endif
+    type_own_ptr.num = find_type_own_ptr(fp, i);
+    for (k = 0; k < fp->ptowns->count; ++k) {
+#if 0
+	printf("%s\n", fp->ptowns->vds[k].nm);
+#endif
+	if (strcmp(opnm, fp->ptowns->vds[k].nm) == 0)
+	    return (struct OPS **)type_own_ptr.num + k;
+    }
+
+#if 0
+    printf("not found\n");
+#endif
+    return (0);
+}
+
+
+struct OPS **
+alt_find_ops2(opnm, info, type_own_ptr, op_own_ptr)
+  char *opnm;
+  framep info;
+  OWNPTR type_own_ptr, op_own_ptr;
 {
-long k;
+    long k;
 
-	/* printf("checking op info\n"); */
-	if (op_own_ptr != (OWNPTR)0) {
-	for (k = 0; k < info->popowns->count; k++) {
-		/* printf("%s\n", info->popowns->vds[k].nm); */
-		if (!strcmp(opnm, info->popowns->vds[k].nm)) {
-			return ((struct OPS**)op_own_ptr + k);
-			}
-		}
-		}
-	/* printf("checking type info\n"); */
-	if (type_own_ptr != (OWNPTR)0) {
-	for (k = 0; k < info->ptowns->count; k++) {
-		/* printf("%s\n", info->ptowns->vds[k].nm); */
-		if (!strcmp(opnm, info->ptowns->vds[k].nm)) {
-			return ((struct OPS**)type_own_ptr + k);
-			}
-		}
-		}
-	/* printf("not found\n"); */
-	return (0);
+#if 0
+    printf("checking op info\n");
+#endif
+    if (op_own_ptr != NULL) {
+	for (k = 0; k < info->popowns->count; ++k) {
+#if 0
+	    printf("%s\n", info->popowns->vds[k].nm);
+#endif
+	    if (strcmp(opnm, info->popowns->vds[k].nm) == 0) {
+		return (struct OPS **)op_own_ptr + k;
+	    }
 	}
+    }
 
+#if 0
+    printf("checking type info\n");
+#endif
+    if (type_own_ptr != NULL) {
+	for (k = 0; k < info->ptowns->count; ++k) {
+#if 0
+	    printf("%s\n", info->ptowns->vds[k].nm);
+#endif
+	    if (strcmp(opnm, info->ptowns->vds[k].nm) == 0)
+		return (struct OPS **)type_own_ptr + k;
+	}
+    }
+
+#if 0
+    printf("not found\n");
+#endif
+    return 0;
+}
 
 
 errcode
