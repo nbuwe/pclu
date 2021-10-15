@@ -379,409 +379,525 @@ long k;
 	}
 
 
-errcode debugopprint_val2(po, val, ops)
-CLUREF po, val, ops;
-{
-long i, j, len;
-struct OPS **opsp = (struct OPS**)ops.num;
-CLUPROC cluprc;
-errcode err;
 
-	if (val.num == UNINIT) {
-		err = print_uninit(po, val);
-		resignal(err);
-		}
-	CUR_PROC_VAR.proc = find_print(opsp);
-	if (CUR_PROC_VAR.num == 0) {
-		signal(ERR_not_possible);
-		}
-	err = CUR_PROC_VAR.proc->proc(val, po);
+errcode
+debugopprint_val2(CLUREF po, CLUREF val, CLUREF ops)
+{
+    long i, j, len;
+    struct OPS **opsp = (struct OPS **)ops.num;
+    CLUPROC cluprc;
+    errcode err;
+
+    if (val.num == UNINIT) {
+	err = print_uninit(po, val);
 	resignal(err);
-	}
+    }
+
+    CUR_PROC_VAR.proc = find_print(opsp);
+    if (CUR_PROC_VAR.proc == NULL) {
+	signal(ERR_not_possible);
+    }
+
+    err = (*CUR_PROC_VAR.proc->proc)(val, po);
+    resignal(err);
+}
+
 
 /* 1/19/93: started searching in locals at index 1, rather than 0, to
 	avoid matchine err */
-
-errcode debugopprint_val(po, ind, mod, nm)
-CLUREF po, ind, mod, nm;
+errcode
+debugopprint_val(CLUREF po, CLUREF ind, CLUREF mod, CLUREF nm)
 {
-long i, j, k, len;
-CLUREF value;
-framep fp;
-struct OPS **ops;
-CLUPROC cluprc;
-errcode err;
-long *addr;
-char *fullnm, *opnm;
-CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
+    long i, j, k, len;
+    CLUREF value;
+    framep fp;
+    struct OPS **ops;
+    CLUPROC cluprc;
+    errcode err;
+    long *addr;
+    char *fullnm, *opnm;
+    CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
 
-	i = ind.num - 1;
-	if (i < 0 || i >  (sp - 1)) signal(ERR_not_found);
-	fp = (framep)stack[i][0];
-	/* SEARCH LOCALS */
-	/* printf("LOCALS %d %s\n",  
-		fp->locals->count, nm.str->data); */
-	for (j = 1; j < fp->locals->count ; j++) {
-		/* printf("%s\n", fp->locals->vds[j].nm); */
-		if (!strcmp(nm.str->data, fp->locals->vds[j].nm)) {
-			value.num = stack[i][j+2];
-			if (value.num == UNINIT) {
-				err = print_uninit(po, value);
-				resignal(err);
-				}
-			ops = fp->locals->vds[j].ops;
-			if (ops == (struct OPS **)-1) {
-				err = missing_print_fcn(value, po);
-				resignal(err);
-				}
-			if (ops == (struct OPS **)0) {
-				/* printf("finding %s\n", fp->locals->vds[j].nm_ops); */
-				opnm = fp->locals->vds[j].nm_ops;
-				ops = alt_find_ops(fp, i, opnm);
-				}
-			CUR_PROC_VAR.proc = find_print(ops);
-			if (CUR_PROC_VAR.num == 0) {
-				signal(ERR_not_possible);
-				}
-			err = CUR_PROC_VAR.proc->proc(value, po);
-			resignal(err);
-			}
-		}
-	/* SEARCH STATIC OWNS */
-	/* printf("STATIC OWNS %d %s\n", 
-		fp->owns->count, nm.str->data); */
-	for (j = 0; j < fp->owns->count ; j++) {
-		/* printf("%s\n", fp->owns->vds[j].nm); */
-		if (!strcmp(nm.str->data, fp->owns->vds[j].nm)) {
-			fullnm = mystrcat(mod.str->data, "OP");
-			fullnm = mystrcat(fullnm, nm.str->data);
-			size.num = strlen(fullnm);
-			err = stringOPcons(fullnm, CLU_1, size,
-					&clu_fullnm);
-			err = symOPget_address(clu_fullnm, &addr);
-			if (err != ERR_ok) {
-				/* check cluster owns */
-				err = opown2typeown(clu_fullnm, &clu_fullnm);
-				if (err != ERR_ok) continue;
-				err = symOPget_address(clu_fullnm, &addr);
-				if (err != ERR_ok) continue;
-				}
-			value.num = *addr;
-			if (value.num == UNINIT) {
-				err = print_uninit(po, value);
-				resignal(err);
-				}
-			ops = fp->owns->vds[j].ops;
-			if (ops == (struct OPS **)-1) {
-				err = missing_print_fcn(value, po);
-				resignal(err);
-				}
-			if (ops == (struct OPS **)0) {
-				opnm = fp->locals->vds[j].nm_ops;
-				ops = alt_find_ops(fp, i, opnm);
-				}
-			CUR_PROC_VAR.proc = find_print(ops);
-			if (CUR_PROC_VAR.num == 0) {
-				signal(ERR_not_possible);
-				}
-			err = CUR_PROC_VAR.proc->proc(value, po);
-			resignal(err);
-			}
-		}
-/* 9/29/93 dwc: changed order of search: do popowns before type owns */
-	/* SEARCH PARAMETERIZED OPERATION OWNS */
-	for (j = 0; j < fp->popowns->count ; j++) {
-		if (!strcmp(nm.str->data, fp->popowns->vds[j].nm)) { 
-			/* have index (j) of var within owns */
-			/* now find op_own_ptr in locals */
-			op_own_ptr.num = find_op_own_ptr(fp, i);
-			addr = ((long*)(op_own_ptr.num)) + (j);
-			value.num = *addr;
-			if (value.num == UNINIT) {
-				err = print_uninit(po, value);
-				resignal(err);
-				}
-			ops = fp->popowns->vds[j].ops;
-			if (ops == (struct OPS **)-1) {
-				err = missing_print_fcn(value, po);
-				resignal(err);
-				}
-			if (ops == (struct OPS **)0) {
-				opnm = fp->locals->vds[j].nm_ops;
-				ops = alt_find_ops(fp, i, opnm);
-				}
-			CUR_PROC_VAR.proc = find_print(ops);
-			if (CUR_PROC_VAR.num == 0) {
-				signal(ERR_not_possible);
-				}
-			err = CUR_PROC_VAR.proc->proc(value, po);
-			resignal(err);
-			}
-		}
-	/* SEARCH PARAMETERIZED TYPE OWNS */
-	/* printf("PARAMD TYPE OWNS %d %s\n", 
-		fp->ptowns->count, nm.str->data); */
-	for (j = 0; j < fp->ptowns->count ; j++) {
-		/* printf("%s\n", fp->ptowns->vds[j].nm); */
-		if (!strcmp(nm.str->data, fp->ptowns->vds[j].nm)) {
-			type_own_ptr.num = find_type_own_ptr(fp, i);
-			addr = ((long*)(type_own_ptr.num)) + (j);
-			value.num = *addr;
-			if (value.num == UNINIT) {
-				err = print_uninit(po, value);
-				resignal(err);
-				}
-			ops = fp->ptowns->vds[j].ops;
-			if (ops == (struct OPS **)-1) {
-			err = missing_print_fcn(value, po);
-				resignal(err);
-				}
-			if (ops == (struct OPS **)0) {
-				opnm = fp->locals->vds[j].nm_ops;
-				ops = alt_find_ops(fp, i, opnm);
-				}
-			CUR_PROC_VAR.proc = find_print(ops);
-			if (CUR_PROC_VAR.num == 0) {
-				signal(ERR_not_possible);
-				}
-			err = CUR_PROC_VAR.proc->proc(value, po);
-			resignal(err);
-			}
-		}
+    i = ind.num - 1;
+    if (i < 0 || i >  (sp - 1))
 	signal(ERR_not_found);
+    fp = (framep)stack[i][0];
+
+
+    /*
+     * SEARCH LOCALS
+     */
+#if 0
+    printf("LOCALS %d %s\n", fp->locals->count, nm.str->data);
+#endif
+    for (j = 1; j < fp->locals->count; ++j) {
+#if 0
+	printf("%s\n", fp->locals->vds[j].nm);
+#endif
+	if (strcmp(nm.str->data, fp->locals->vds[j].nm) == 0) {
+	    value.num = stack[i][j + 2];
+	    if (value.num == UNINIT) {
+		err = print_uninit(po, value);
+		resignal(err);
+	    }
+
+	    ops = fp->locals->vds[j].ops;
+	    if (ops == (struct OPS **)-1) {
+		err = missing_print_fcn(value, po);
+		resignal(err);
+	    }
+
+	    if (ops == NULL) {
+#if 0
+		printf("finding %s\n", fp->locals->vds[j].nm_ops);
+#endif
+		opnm = fp->locals->vds[j].nm_ops;
+		ops = alt_find_ops(fp, i, opnm);
+	    }
+
+	    CUR_PROC_VAR.proc = find_print(ops);
+	    if (CUR_PROC_VAR.proc == NULL) {
+		signal(ERR_not_possible);
+	    }
+	    err = (*CUR_PROC_VAR.proc->proc)(value, po);
+	    resignal(err);
+	}
+    }
+
+
+    /*
+     * SEARCH STATIC OWNS
+     */
+#if 0
+    printf("STATIC OWNS %d %s\n", fp->owns->count, nm.str->data);
+#endif
+    for (j = 0; j < fp->owns->count ; ++j) {
+#if 0
+	printf("%s\n", fp->owns->vds[j].nm);
+#endif
+	if (strcmp(nm.str->data, fp->owns->vds[j].nm) == 0) {
+	    fullnm = mystrcat(mod.str->data, "OP");
+	    fullnm = mystrcat(fullnm, nm.str->data);
+	    size.num = strlen(fullnm);
+	    err = stringOPcons(fullnm, CLU_1, size, &clu_fullnm);
+
+	    err = symOPget_address(clu_fullnm, &addr);
+	    if (err != ERR_ok) {
+		/* check cluster owns */
+		err = opown2typeown(clu_fullnm, &clu_fullnm);
+		if (err != ERR_ok)
+		    continue;
+		err = symOPget_address(clu_fullnm, &addr);
+		if (err != ERR_ok)
+		    continue;
+	    }
+
+	    value.num = *addr;
+	    if (value.num == UNINIT) {
+		err = print_uninit(po, value);
+		resignal(err);
+	    }
+
+	    ops = fp->owns->vds[j].ops;
+	    if (ops == (struct OPS **)-1) {
+		err = missing_print_fcn(value, po);
+		resignal(err);
+	    }
+
+	    if (ops == NULL) {
+		opnm = fp->locals->vds[j].nm_ops;
+		ops = alt_find_ops(fp, i, opnm);
+	    }
+
+	    CUR_PROC_VAR.proc = find_print(ops);
+	    if (CUR_PROC_VAR.num == 0) {
+		signal(ERR_not_possible);
+	    }
+	    err = (*CUR_PROC_VAR.proc->proc)(value, po);
+	    resignal(err);
+	}
+    }
+
+    /* 9/29/93 dwc: changed order of search: do popowns before type owns */
+    /*
+     * SEARCH PARAMETERIZED OPERATION OWNS
+     */
+    for (j = 0; j < fp->popowns->count; ++j) {
+	if (strcmp(nm.str->data, fp->popowns->vds[j].nm) == 0) {
+	    /* have index (j) of var within owns */
+	    /* now find op_own_ptr in locals */
+	    op_own_ptr.num = find_op_own_ptr(fp, i);
+	    addr = ((long*)(op_own_ptr.num)) + (j);
+
+	    value.num = *addr;
+	    if (value.num == UNINIT) {
+		err = print_uninit(po, value);
+		resignal(err);
+	    }
+
+	    ops = fp->popowns->vds[j].ops;
+	    if (ops == (struct OPS **)-1) {
+		err = missing_print_fcn(value, po);
+		resignal(err);
+	    }
+
+	    if (ops == NULL) {
+		opnm = fp->locals->vds[j].nm_ops;
+		ops = alt_find_ops(fp, i, opnm);
+	    }
+
+	    CUR_PROC_VAR.proc = find_print(ops);
+	    if (CUR_PROC_VAR.proc == NULL) {
+		signal(ERR_not_possible);
+	    }
+	    err = (*CUR_PROC_VAR.proc->proc)(value, po);
+	    resignal(err);
+	}
+    }
+
+
+    /*
+     * SEARCH PARAMETERIZED TYPE OWNS
+     */
+#if 0
+    printf("PARAMD TYPE OWNS %d %s\n", fp->ptowns->count, nm.str->data);
+#endif
+    for (j = 0; j < fp->ptowns->count; ++j) {
+#if 0
+	printf("%s\n", fp->ptowns->vds[j].nm);
+#endif
+	if (strcmp(nm.str->data, fp->ptowns->vds[j].nm) == 0) {
+	    type_own_ptr.num = find_type_own_ptr(fp, i);
+	    addr = ((long*)(type_own_ptr.num)) + (j);
+
+	    value.num = *addr;
+	    if (value.num == UNINIT) {
+		err = print_uninit(po, value);
+		resignal(err);
+	    }
+
+	    ops = fp->ptowns->vds[j].ops;
+	    if (ops == (struct OPS **)-1) {
+		err = missing_print_fcn(value, po);
+		resignal(err);
+	    }
+
+	    if (ops == NULL) {
+		opnm = fp->locals->vds[j].nm_ops;
+		ops = alt_find_ops(fp, i, opnm);
+	    }
+
+	    CUR_PROC_VAR.proc = find_print(ops);
+	    if (CUR_PROC_VAR.proc == NULL) {
+		signal(ERR_not_possible);
+	    }
+	    err = (*CUR_PROC_VAR.proc->proc)(value, po);
+	    resignal(err);
+	}
+    }
+
+    signal(ERR_not_found);
+}
+
+
+errcode
+debugopnm2val_ops(CLUREF ind, CLUREF mod, CLUREF nm,
+		  CLUREF *ansval, CLUREF *ansops)
+{
+    long i, j, k, len;
+    CLUREF value;
+    framep fp;
+    struct OPS **ops;
+    CLUPROC cluprc;
+    errcode err;
+    long *addr;
+    char *fullnm, *opnm;
+    CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
+
+    i = ind.num - 1;
+    if (i < 0 || i >  (sp - 1))
+	signal(ERR_not_found);
+    fp = (framep)stack[i][0];
+
+
+    /*
+     * SEARCH LOCALS
+     */
+    for (j = 1; j < fp->locals->count; ++j) {
+	if (strcmp(nm.str->data, fp->locals->vds[j].nm) == 0) {
+	    value.num = stack[i][j + 2];
+	    if (value.num == UNINIT)
+		signal(ERR_undefined);
+
+	    ops = fp->locals->vds[j].ops;
+	    if (ops == (struct OPS **)-1)
+		signal(ERR_bad_code);
+
+	    if (ops == NULL) {
+		opnm = fp->locals->vds[j].nm_ops;
+		ops = alt_find_ops(fp, i, opnm);
+	    }
+
+	    ansval->num = value.num;
+	    ansops->num = *((long *)ops);
+	    signal(ERR_ok);
+	}
+    }
+
+
+    /*
+     * SEARCH STATIC OWNS
+     */
+    for (j = 0; j < fp->owns->count; ++j) {
+	if (strcmp(nm.str->data, fp->owns->vds[j].nm) == 0) {
+	    fullnm = mystrcat(mod.str->data, "OP");
+	    fullnm = mystrcat(fullnm, nm.str->data);
+	    size.num = strlen(fullnm);
+	    err = stringOPcons(fullnm, CLU_1, size, &clu_fullnm);
+
+	    err = symOPget_address(clu_fullnm, &addr);
+	    if (err != ERR_ok) {
+		/* check cluster owns */
+		err = opown2typeown(clu_fullnm, &clu_fullnm);
+		if (err != ERR_ok)
+		    continue;
+		err = symOPget_address(clu_fullnm, &addr);
+		if (err != ERR_ok)
+		    continue;
+	    }
+
+	    value.num = *addr;
+	    if (value.num == UNINIT)
+		signal(ERR_undefined);
+
+	    ops = fp->owns->vds[j].ops;
+	    if (ops == (struct OPS **)-1)
+		signal(ERR_bad_code);
+
+	    if (ops == NULL) {
+		opnm = fp->locals->vds[j].nm_ops;
+		ops = alt_find_ops(fp, i, opnm);
+	    }
+
+	    ansval->num = value.num;
+	    ansops->num = *((long *)ops);
+	    signal(ERR_ok);
+	}
+    }
+
+
+    /* 9/29/93 dwc: changed order of search: do popowns before type owns */
+    /*
+     * SEARCH PARAMETERIZED OPERATION OWNS
+     */
+    for (j = 0; j < fp->popowns->count ; j++) {
+	if (strcmp(nm.str->data, fp->popowns->vds[j].nm) == 0) {
+	    /* have index (j) of var within owns */
+	    /* now find op_own_ptr in locals */
+	    op_own_ptr.num = find_op_own_ptr(fp, i);
+	    addr = ((long *)(op_own_ptr.num)) + (j);
+
+	    value.num = *addr;
+	    if (value.num == UNINIT)
+		signal(ERR_undefined);
+
+	    ops = fp->popowns->vds[j].ops;
+	    if (ops == (struct OPS **)-1)
+		signal(ERR_bad_code);
+
+	    if (ops == NULL) {
+		opnm = fp->locals->vds[j].nm_ops;
+		ops = alt_find_ops(fp, i, opnm);
+	    }
+
+	    ansval->num = value.num;
+	    ansops->num = *((long*)ops);
+	    signal(ERR_ok);
+	}
+    }
+
+
+    /*
+     * SEARCH PARAMETERIZED TYPE OWNS
+     */
+    for (j = 0; j < fp->ptowns->count; ++j) {
+#if 0
+	printf("%s\n", fp->ptowns->vds[j].nm);
+#endif
+	if (strcmp(nm.str->data, fp->ptowns->vds[j].nm) == 0) {
+	    type_own_ptr.num = find_type_own_ptr(fp, i);
+	    addr = ((long*)(type_own_ptr.num)) + (j);
+
+	    value.num = *addr;
+	    if (value.num == UNINIT)
+		signal(ERR_undefined);
+
+	    ops = fp->ptowns->vds[j].ops;
+	    if (ops == (struct OPS **)-1)
+		signal(ERR_bad_code);
+
+	    if (ops == NULL) {
+		opnm = fp->locals->vds[j].nm_ops;
+		ops = alt_find_ops(fp, i, opnm);
+	    }
+
+	    ansval->num = value.num;
+	    ansops->num = *((long *)ops);
+	    signal(ERR_ok);
+	}
+    }
+
+    signal(ERR_not_found);
+}
+
+
+errcode
+debugopget_val(CLUREF ind, CLUREF mod, CLUREF nm, CLUREF *val)
+{
+    long i, j, k, len;
+    framep fp;
+    struct OPS **ops;
+    CLUPROC cluprc;
+    errcode err;
+    char *fullnm;
+    CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
+    long *addr;
+
+    /* 3/10/94: dwc: don't search the stack!!! */
+    /*	for (i = sp - 1; i > -1; --i) ... */
+    i = ind.num - 1;
+    if (i < 0 || i >  (sp - 1))
+	signal(ERR_not_found);
+    fp = (framep)stack[i][0];
+
+    if (strcmp(mod.str->data, fp->name) == 0) {
+	for (j = 1; j < fp->locals->count; ++j) {
+	    if (strcmp(nm.str->data, fp->locals->vds[j].nm) == 0) {
+		val->num = stack[i][j+2];
+		signal(ERR_ok);
+	    }
 	}
 
-errcode debugopnm2val_ops(ind, mod, nm, ansval, ansops)
-CLUREF ind, mod, nm;
-CLUREF *ansval, *ansops;
-{
-long i, j, k, len;
-CLUREF value;
-framep fp;
-struct OPS **ops;
-CLUPROC cluprc;
-errcode err;
-long *addr;
-char *fullnm, *opnm;
-CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
+	for (j = 0; j < fp->owns->count; ++j) {
+	    if (strcmp(nm.str->data, fp->owns->vds[j].nm) == 0) {
+		fullnm = mystrcat(mod.str->data, "OP");
+		fullnm = mystrcat(fullnm, nm.str->data);
+		size.num = strlen(fullnm);
+		err = stringOPcons(fullnm, CLU_1, size, &clu_fullnm);
 
-	i = ind.num - 1;
-	if (i < 0 || i >  (sp - 1)) signal(ERR_not_found);
-	fp = (framep)stack[i][0];
-	/* SEARCH LOCALS */
-	for (j = 1; j < fp->locals->count ; j++) {
-		if (!strcmp(nm.str->data, fp->locals->vds[j].nm)) {
-			value.num = stack[i][j+2];
-			if (value.num == UNINIT) signal(ERR_undefined);
-			ops = fp->locals->vds[j].ops;
-			if (ops == (struct OPS **)-1) signal(ERR_bad_code);
-			if (ops == (struct OPS **)0) {
-				opnm = fp->locals->vds[j].nm_ops;
-				ops = alt_find_ops(fp, i, opnm);
-				}
-			ansval->num = value.num;
-			ansops->num = *((long*)ops);
-			signal(ERR_ok);
-			}
+		err = symOPget_address(clu_fullnm, &addr);
+		if (err != ERR_ok) {
+		    /* check cluster owns */
+		    err = opown2typeown(clu_fullnm, &clu_fullnm);
+		    if (err != ERR_ok)
+			continue;
+		    err = symOPget_address(clu_fullnm, &addr);
+		    if (err != ERR_ok)
+			continue;
 		}
-	/* SEARCH STATIC OWNS */
-	for (j = 0; j < fp->owns->count ; j++) {
-		if (!strcmp(nm.str->data, fp->owns->vds[j].nm)) {
-			fullnm = mystrcat(mod.str->data, "OP");
-			fullnm = mystrcat(fullnm, nm.str->data);
-			size.num = strlen(fullnm);
-			err = stringOPcons(fullnm, CLU_1, size,
-					&clu_fullnm);
-			err = symOPget_address(clu_fullnm, &addr);
-			if (err != ERR_ok) {
-				/* check cluster owns */
-				err = opown2typeown(clu_fullnm, &clu_fullnm);
-				if (err != ERR_ok) continue;
-				err = symOPget_address(clu_fullnm, &addr);
-				if (err != ERR_ok) continue;
-				}
-			value.num = *addr;
-			if (value.num == UNINIT) signal(ERR_undefined);
-			ops = fp->owns->vds[j].ops;
-			if (ops == (struct OPS **)-1) signal(ERR_bad_code);
-			if (ops == (struct OPS **)0) {
-				opnm = fp->locals->vds[j].nm_ops;
-				ops = alt_find_ops(fp, i, opnm);
-				}
-			ansval->num = value.num;
-			ansops->num = *((long*)ops);
-			signal(ERR_ok);
-			}
-		}
-/* 9/29/93 dwc: changed order of search: do popowns before type owns */
-	/* SEARCH PARAMETERIZED OPERATION OWNS */
-	for (j = 0; j < fp->popowns->count ; j++) {
-		if (!strcmp(nm.str->data, fp->popowns->vds[j].nm)) { 
-			/* have index (j) of var within owns */
-			/* now find op_own_ptr in locals */
-			op_own_ptr.num = find_op_own_ptr(fp, i);
-			addr = ((long*)(op_own_ptr.num)) + (j);
-			value.num = *addr;
-			if (value.num == UNINIT) signal(ERR_undefined);
-			ops = fp->popowns->vds[j].ops;
-			if (ops == (struct OPS **)-1) signal(ERR_bad_code);
-			if (ops == (struct OPS **)0) {
-				opnm = fp->locals->vds[j].nm_ops;
-				ops = alt_find_ops(fp, i, opnm);
-				}
-			ansval->num = value.num;
-			ansops->num = *((long*)ops);
-			signal(ERR_ok);
-			}
-		}
-	/* SEARCH PARAMETERIZED TYPE OWNS */
-	for (j = 0; j < fp->ptowns->count ; j++) {
-		/* printf("%s\n", fp->ptowns->vds[j].nm); */
-		if (!strcmp(nm.str->data, fp->ptowns->vds[j].nm)) {
-			type_own_ptr.num = find_type_own_ptr(fp, i);
-			addr = ((long*)(type_own_ptr.num)) + (j);
-			value.num = *addr;
-			if (value.num == UNINIT) signal(ERR_undefined);
-			ops = fp->ptowns->vds[j].ops;
-			if (ops == (struct OPS **)-1) signal(ERR_bad_code);
-			if (ops == (struct OPS **)0) {
-				opnm = fp->locals->vds[j].nm_ops;
-				ops = alt_find_ops(fp, i, opnm);
-				}
-			ansval->num = value.num;
-			ansops->num = *((long*)ops);
-			signal(ERR_ok);
-			}
-		}
-	signal(ERR_not_found);
+
+		val->num = *addr;
+		signal(ERR_ok);
+	    }
 	}
 
-errcode debugopget_val(ind, mod, nm, val)
-CLUREF ind, mod, nm, *val;
-{
-long i, j, k, len;
-framep fp;
-struct OPS **ops;
-CLUPROC cluprc;
-errcode err;
-char *fullnm;
-CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
-long *addr;
+	/* 9/29/93 dwc: changed order of search: do popowns before type owns */
+	for (j = 0; j < fp->popowns->count; ++j) {
+	    if (strcmp(nm.str->data, fp->popowns->vds[j].nm) == 0) {
+		/* have index (j) of var within owns */
+		/* now find op_own_ptr in locals */
+		op_own_ptr.num = find_op_own_ptr(fp, i);
+		addr = ((long *)(op_own_ptr.num)) + (j);
 
-/* 3/10/94: dwc: don't search the stack!!! */
-/*	for (i = sp-1; i > -1; i--) { */
-        i = ind.num - 1;
-	if (i < 0 || i >  (sp - 1)) signal(ERR_not_found);
-		fp = (framep)stack[i][0];
-		if (!strcmp(mod.str->data, fp->name)) {
-			for (j = 1; j < fp->locals->count ; j++) {
-				if (!strcmp(nm.str->data, fp->locals->vds[j].nm)) {
-					val->num = stack[i][j+2];
-					signal(ERR_ok);
-					}
-				}
-
-			for (j = 0; j < fp->owns->count ; j++) {
-				if (!strcmp(nm.str->data, fp->owns->vds[j].nm)) {
-					fullnm = mystrcat(mod.str->data, "OP");
-					fullnm = mystrcat(fullnm, nm.str->data);
-					size.num = strlen(fullnm);
-					err = stringOPcons(fullnm, CLU_1, size,
-							&clu_fullnm);
-					err = symOPget_address(clu_fullnm, &addr);
-					if (err != ERR_ok) {
-						/* check cluster owns */
-						err = opown2typeown(clu_fullnm, &clu_fullnm);
-						if (err != ERR_ok) continue;
-						err = symOPget_address(clu_fullnm, &addr);
-						if (err != ERR_ok) continue;
-						}
-					val->num = *addr;
-					signal(ERR_ok);
-					}
-				}
-/* 9/29/93 dwc: changed order of search: do popowns before type owns */
-			for (j = 0; j < fp->popowns->count ; j++) {
-				if (!strcmp(nm.str->data, fp->popowns->vds[j].nm)) {
-					/* have index (j) of var within owns */
-					/* now find op_own_ptr in locals */
-					op_own_ptr.num = find_op_own_ptr(fp, i);
-					addr = ((long*)(op_own_ptr.num)) + (j);
-					val->num = *addr;
-					signal(ERR_ok);
-					}
-				}
-			for (j = 0; j < fp->ptowns->count ; j++) {
-				if (!strcmp(nm.str->data, fp->ptowns->vds[j].nm)) {
-					type_own_ptr.num = find_type_own_ptr(fp, i);
-					addr = ((long*)(type_own_ptr.num)) + (j);
-					val->num = *addr;
-					signal(ERR_ok);
-					}
-				}
-			}
-	signal(ERR_not_found);
+		val->num = *addr;
+		signal(ERR_ok);
+	    }
 	}
 
-errcode debugopset_val(ind, mod, nm, val)
-CLUREF ind, mod, nm, val;
-{
-long i, j, k, len;
-framep fp;
-struct OPS **ops;
-CLUPROC cluprc;
-errcode err;
-char *fullnm;
-CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
-long *addr;
+	for (j = 0; j < fp->ptowns->count; ++j) {
+	    if (strcmp(nm.str->data, fp->ptowns->vds[j].nm) == 0) {
+		type_own_ptr.num = find_type_own_ptr(fp, i);
+		addr = ((long *)(type_own_ptr.num)) + (j);
 
-/* 3/10/94: dwc: don't search the stack!!! */
-/*	for (i = sp-1; i > -1; i--) { */
-	i = ind.num - 1;
-	if (i < 0 || i >  (sp - 1)) signal(ERR_not_found);
-		fp = (framep)stack[i][0];
-		if (!strcmp(mod.str->data, fp->name)) {
-			for (j = 1; j < fp->locals->count ; j++) {
-				if (!strcmp(nm.str->data, fp->locals->vds[j].nm)) {
-					stack[i][j+2] = val.num;
-					signal(ERR_ok);
-					}
-				}
-			for (j = 0; j < fp->owns->count ; j++) {
-				if (!strcmp(nm.str->data, fp->owns->vds[j].nm)) {
-					fullnm = mystrcat(mod.str->data, "OP");
-					fullnm = mystrcat(fullnm, nm.str->data);
-					size.num = strlen(fullnm);
-					err = stringOPcons(fullnm, CLU_1, size,
-							&clu_fullnm);
-					err = symOPget_address(clu_fullnm, &addr);
-					if (err != ERR_ok) continue;
-					*addr = val.num;
-					signal(ERR_ok);
-					}
-				}
-/* 9/29/93 dwc: changed order of search: do popowns before type owns */
-			for (j = 0; j < fp->popowns->count ; j++) {
-				if (!strcmp(nm.str->data, fp->popowns->vds[j].nm)) {
-					/* have index (j) of var within owns */
-					/* now find op_own_ptr in locals */
-					op_own_ptr.num = find_op_own_ptr(fp, i);
-					addr = ((long*)(op_own_ptr.num)) + (j);
-					*addr = val.num;
-					signal(ERR_ok);
-					}
-				}
-			for (j = 0; j < fp->ptowns->count ; j++) {
-				if (!strcmp(nm.str->data, fp->ptowns->vds[j].nm)) {
-					type_own_ptr.num = find_type_own_ptr(fp, i);
-					addr = ((long*)(type_own_ptr.num)) + (j);
-					*addr = val.num;
-					signal(ERR_ok);
-					}
-				}
-			}
-	signal(ERR_not_found);
+		val->num = *addr;
+		signal(ERR_ok);
+	    }
 	}
+    }
+
+    signal(ERR_not_found);
+}
+
+
+errcode
+debugopset_val(CLUREF ind, CLUREF mod, CLUREF nm, CLUREF val)
+{
+    long i, j, k, len;
+    framep fp;
+    struct OPS **ops;
+    CLUPROC cluprc;
+    errcode err;
+    char *fullnm;
+    CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
+    long *addr;
+
+    /* 3/10/94: dwc: don't search the stack!!! */
+    /* for (i = sp - 1 ; i > -1; --i) ... */
+    i = ind.num - 1;
+    if (i < 0 || i >  (sp - 1))
+	signal(ERR_not_found);
+    fp = (framep)stack[i][0];
+
+    if (strcmp(mod.str->data, fp->name) == 0) {
+	for (j = 1; j < fp->locals->count; ++j) {
+	    if (!strcmp(nm.str->data, fp->locals->vds[j].nm)) {
+		stack[i][j + 2] = val.num;
+		signal(ERR_ok);
+	    }
+	}
+
+	for (j = 0; j < fp->owns->count; ++j) {
+	    if (strcmp(nm.str->data, fp->owns->vds[j].nm) == 0) {
+		fullnm = mystrcat(mod.str->data, "OP");
+		fullnm = mystrcat(fullnm, nm.str->data);
+		size.num = strlen(fullnm);
+		err = stringOPcons(fullnm, CLU_1, size, &clu_fullnm);
+
+		err = symOPget_address(clu_fullnm, &addr);
+		if (err != ERR_ok)
+		    continue;
+
+		*addr = val.num;
+		signal(ERR_ok);
+	    }
+	}
+
+	/* 9/29/93 dwc: changed order of search: do popowns before type owns */
+	for (j = 0; j < fp->popowns->count; ++j) {
+	    if (strcmp(nm.str->data, fp->popowns->vds[j].nm) == 0) {
+		/* have index (j) of var within owns */
+		/* now find op_own_ptr in locals */
+		op_own_ptr.num = find_op_own_ptr(fp, i);
+		addr = ((long *)(op_own_ptr.num)) + (j);
+
+		*addr = val.num;
+		signal(ERR_ok);
+	    }
+	}
+
+	for (j = 0; j < fp->ptowns->count; ++j) {
+	    if (strcmp(nm.str->data, fp->ptowns->vds[j].nm) == 0) {
+		type_own_ptr.num = find_type_own_ptr(fp, i);
+		addr = ((long *)(type_own_ptr.num)) + (j);
+
+		*addr = val.num;
+		signal(ERR_ok);
+	    }
+	}
+    }
+
+    signal(ERR_not_found);
+}
 
 
 errcode
@@ -896,49 +1012,50 @@ debugopget_nth_op_formal(CLUREF riref, CLUREF n, CLUREF *ans)
 
 
 errcode
-debugopget_nth_op(vals, n, info_ref, type_ops_ref, op_ops_ref, ans)
-CLUREF vals;
-CLUREF n;
-CLUREF info_ref;
-CLUREF type_ops_ref, op_ops_ref;
-CLUREF *ans;
+debugopget_nth_op(CLUREF vals, CLUREF n, CLUREF info_ref,
+		  CLUREF type_ops_ref, CLUREF op_ops_ref,
+		  CLUREF *ans)
 {
-Vlist1 *temp = (Vlist1*)vals.num;
-struct OPS**ptr;
-char *opnm;
-CLUREF opname, sz;
-struct OPS *type_ops = (struct OPS*)type_ops_ref.ref;
-struct OPS *op_ops = (struct OPS*)op_ops_ref.ref;
-framep info = (framep)info_ref.ref;
-OWNPTR type_own_ptr = (OWNPTR)0;
-OWNPTR op_own_ptr = (OWNPTR)0;
+    Vlist1 *temp = (Vlist1 *)vals.num;
+    struct OPS**ptr;
+    char *opnm;
+    CLUREF opname, sz;
+    struct OPS *type_ops = (struct OPS *)type_ops_ref.ref;
+    struct OPS *op_ops = (struct OPS *)op_ops_ref.ref;
+    framep info = (framep)info_ref.ref;
+    OWNPTR type_own_ptr = NULL;
+    OWNPTR op_own_ptr = NULL;
 
-	ptr = (struct OPS**)(temp->vds[n.num-1].ops);
-	if (ptr != (zero_ops)) {
-		ans->num = (long)temp->vds[n.num-1].ops;
-		signal(ERR_ok);
-		}
-	else {
-		opnm = temp->vds[n.num - 1].nm_ops;
-		if (type_ops != (struct OPS*)0) type_own_ptr = type_ops->type_owns;
-		if (op_ops != (struct OPS*)0) op_own_ptr = op_ops->op_owns;
-		ptr = alt_find_ops2(opnm, info, type_own_ptr, op_own_ptr);
-		if (ptr == (struct OPS**)0) {
-			sz.num = strlen(opnm);
-			stringOPcons(opnm, CLU_1, sz, &opname);
-			elist[0] = opname;
-			signal(ERR_not_found);
-			}
-		ans->num = (long)ptr;
-		signal(ERR_ok);
-/*
-		nm = temp->vds[n.num-1].nm_ops;
-		sz.num = strlen(nm);
-		stringOPcons(nm, CLU_1, sz, &opname);
-		elist[0] = opname;
-		signal(ERR_not_found);
-*/
+    ptr = (struct OPS **)temp->vds[n.num - 1].ops;
+    if (ptr != (zero_ops)) {
+	ans->num = (long)temp->vds[n.num - 1].ops;
+	signal(ERR_ok);
+    }
+    else {
+	opnm = temp->vds[n.num - 1].nm_ops;
+	if (type_ops != NULL)
+	    type_own_ptr = type_ops->type_owns;
+	if (op_ops != NULL)
+	    op_own_ptr = op_ops->op_owns;
+
+	ptr = alt_find_ops2(opnm, info, type_own_ptr, op_own_ptr);
+	if (ptr == (struct OPS**)0) {
+	    sz.num = strlen(opnm);
+	    stringOPcons(opnm, CLU_1, sz, &opname);
+	    elist[0] = opname;
+	    signal(ERR_not_found);
 	}
+
+	ans->num = (long)ptr;
+	signal(ERR_ok);
+#if 0
+	nm = temp->vds[n.num-1].nm_ops;
+	sz.num = strlen(nm);
+	stringOPcons(nm, CLU_1, sz, &opname);
+	elist[0] = opname;
+	signal(ERR_not_found);
+#endif
+    }
 }
 
 
@@ -985,37 +1102,37 @@ debugopget_sigvalcount(CLUREF sd, CLUREF *ans)
 
 
 errcode
-debugopget_nth_sigvalops(sd, n, info_ref, type_ops_ref, op_ops_ref, ans)
-CLUREF sd;
-CLUREF n;
-CLUREF info_ref;
-CLUREF type_ops_ref, op_ops_ref;
-CLUREF *ans;
+debugopget_nth_sigvalops(CLUREF sd, CLUREF n, CLUREF info_ref,
+			 CLUREF type_ops_ref, CLUREF op_ops_ref,
+			 CLUREF *ans)
 {
-sig_desc1 *temp = (sig_desc1*)sd.num;
-char *opnm;
-struct OPS **ops;
-struct OPS *type_ops = (struct OPS*)type_ops_ref.ref;
-struct OPS *op_ops = (struct OPS*)op_ops_ref.ref;
-framep info = (framep)info_ref.ref;
-OWNPTR type_own_ptr = (OWNPTR)0;
-OWNPTR op_own_ptr = (OWNPTR)0;
+    sig_desc1 *temp = (sig_desc1 *)sd.num;
+    char *opnm;
+    struct OPS **ops;
+    struct OPS *type_ops = (struct OPS *)type_ops_ref.ref;
+    struct OPS *op_ops = (struct OPS *)op_ops_ref.ref;
+    framep info = (framep)info_ref.ref;
+    OWNPTR type_own_ptr = NULL;
+    OWNPTR op_own_ptr = NULL;
 
-	ops = temp->vals.vds[n.num - 1].ops;
-	if (ops == (struct OPS **)0) {
-		opnm = temp->vals.vds[n.num - 1].nm_ops;
-		if (type_ops == (struct OPS*)-1) {
-			type_own_ptr = (OWNPTR)find_type_own_ptr((framep)stack[sp-1][0], sp-1);
-			op_own_ptr = (OWNPTR)find_op_own_ptr((framep)stack[sp-1][0], sp-1);
-			}
-		else {
-			if (type_ops != (struct OPS*)0) type_own_ptr = type_ops->type_owns;
-			if (op_ops != (struct OPS*)0) op_own_ptr = op_ops->op_owns;
-			}
-		ops = alt_find_ops2(opnm, info, type_own_ptr, op_own_ptr);
-		}
-	ans->ref = (char*)ops;
-	signal(ERR_ok);
+    ops = temp->vals.vds[n.num - 1].ops;
+    if (ops == NULL) {
+	opnm = temp->vals.vds[n.num - 1].nm_ops;
+	if (type_ops == (struct OPS *)-1) {
+	    type_own_ptr = (OWNPTR)find_type_own_ptr((framep)stack[sp - 1][0], sp - 1);
+	    op_own_ptr = (OWNPTR)find_op_own_ptr((framep)stack[sp - 1][0], sp - 1);
+	}
+	else {
+	    if (type_ops != NULL)
+		type_own_ptr = type_ops->type_owns;
+	    if (op_ops != NULL)
+		op_own_ptr = op_ops->op_owns;
+	}
+	ops = alt_find_ops2(opnm, info, type_own_ptr, op_own_ptr);
+    }
+
+    ans->ref = (char *)ops;
+    signal(ERR_ok);
 }
 
 
