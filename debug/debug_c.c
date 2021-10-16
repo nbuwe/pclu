@@ -1182,8 +1182,11 @@ add_selector_info2(CLUREF nm, CLUREF n, CLUREF ops)
 errcode
 find_selector_ops2(CLUREF typ, CLUREF nfields, CLUREF *ans)
 {
+    struct OPS *ops;
+
     char *typc = typ.str->data;
-    find_selector_ops(typc, nfields.num, ans);
+    find_selector_ops(typc, nfields.num, &ops);
+    ans->ref = (char *)ops;
     signal(ERR_ok);
 }
 
