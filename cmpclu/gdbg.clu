@@ -479,9 +479,15 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$puts(e, "static siglist" || int$unparse(nsigs) || " sigs_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nsigs))
-	for i: int in exceptionlist$indexes(ap.sigs) do
-	    g_env$puts(e, ", (sig_desc *)&sig_" || nm || "_" || int$unparse(i))
-	    end
+	if nsigs > 0 then
+	   g_env$puts(e, ", {")
+	   sep: string := ""
+	   for i: int in exceptionlist$indexes(ap.sigs) do
+	       g_env$puts(e, sep || " (sig_desc *)&sig_" || nm || "_" || int$unparse(i))
+	       sep := ","
+	       end
+	   g_env$puts(e, " }")
+	   end
 	g_env$putl(e, "};")
 
 	% locals
