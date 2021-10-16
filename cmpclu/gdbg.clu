@@ -64,7 +64,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		   ntypeformals := 0
 	      end
 	   end
-	if ~current_type$exists() then 
+	if ~current_type$exists() then
 	   emit_own_decl(e)
 	   end
 	set_own_context(e, "op", ~decllist$empty(a.parms))
@@ -89,7 +89,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	end active
 
     set_own_context = proc(e: g_env, context: string, parmd: bool)
-	if context = "type" then 
+	if context = "type" then
 	   is_type_parmd := parmd
 	   yes := ~(e.space cor e.time)
 	   owns := an$new()	% chuck ops found so far (static ones)
@@ -465,7 +465,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	    g_env$putl(e, "static sig_desc" || int$unparse(tsz) ||
 			  " sig_" || nm || "_" || int$unparse(i) || " = {0, " ||
 			  int$unparse(3+tsz) || ", "
-			    || "\"" || ap.sigs[i].name || "\", {0, " 
+			    || "\"" || ap.sigs[i].name || "\", {0, "
 			    || int$unparse(tsz))
 	    if tsz ~= 0 then g_env$puts(e, ", {") end
 	    first := true
@@ -475,7 +475,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	    if tsz ~= 0 then g_env$puts(e, "}") end
 	    g_env$putl(e, "}};")
 	    end
-	
+
 	g_env$puts(e, "static siglist" || int$unparse(nsigs) || " sigs_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nsigs))
@@ -532,7 +532,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	%	g_env$puts(e, int$unparse(nowns))
 	%	if current_type$exists() cand ~current_type$parmd()
 	%	   then tyinit := current_type$get().init tyexists := true end
-	%	if (current_type$exists() cand ~current_type$parmd() cand 
+	%	if (current_type$exists() cand ~current_type$parmd() cand
 	%	    ~current_apply$parmd()) cor
 	%	   (~current_type$exists() cand ~current_apply$parmd())
 	%	   then opinit := ap.init end
@@ -557,7 +557,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$putl(e, "};")
 
 	% type formals
-	g_env$puts(e, "Slist" || int$unparse(ntypeformals) || 
+	g_env$puts(e, "Slist" || int$unparse(ntypeformals) ||
 		      " tformals_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(ntypeformals))
@@ -569,7 +569,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$putl(e, "};")
 
 	% op formals
-	g_env$puts(e, "Slist" || int$unparse(nopformals) || 
+	g_env$puts(e, "Slist" || int$unparse(nopformals) ||
 		      " opformals_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nopformals))
@@ -623,7 +623,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	for each_item: anown in an$elements(list) do
 	    tagcase each_item
 	       tag ilist (il: initlist):
-		   if first_pass 
+		   if first_pass
 		      then
 			   process_initlists(e, true, il, initlist$new(), first)
 			   first_pass := false
@@ -645,11 +645,11 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	oname: string
 	if first then first := false
 	   else g_env$puts(e, ",") end
-	if tyexists 
+	if tyexists
 	   then
-		g_env$putl(e, " {0, 2, \"" || current_type$get_name() || "_init\", &int_ops}") 
+		g_env$putl(e, " {0, 2, \"" || current_type$get_name() || "_init\", &int_ops}")
 	   else
-		g_env$putl(e, " {0, 2, \"" || nm || "_init\", &int_ops}") 
+		g_env$putl(e, " {0, 2, \"" || nm || "_init\", &int_ops}")
 	   end
 	for each_init: init in initlist$elements(tylist) do
 	    each_val: initform := each_init.stmt
@@ -667,7 +667,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 			   end
 		       end
 	       end
-	    %	    g_env$putl(e, ", {0, 2, \"" || nm || "init\", &int_ops}") 
+	    %	    g_env$putl(e, ", {0, 2, \"" || nm || "init\", &int_ops}")
 	    end
 	for each_init: init in initlist$elements(oplist) do
 	    each_val: initform := each_init.stmt
@@ -793,7 +793,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$puts(e, nm)
 	if current_type$exists()
 	   then
-		if current_type$parmd() 
+		if current_type$parmd()
 		   then
 			g_env$puts(e, ", &NO_VALS")
 		   else
@@ -801,7 +801,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 			g_env$puts(e, current_type$get().idn.str)
 		   end
 	   else
-		if current_apply$parmd() 
+		if current_apply$parmd()
 		   then
 			g_env$puts(e, ", &NO_VALS")
 		   else
@@ -931,4 +931,4 @@ escape_ckeyword = proc(nm: string) returns (string)
            end
         end
     return(nm)
-	end escape_ckeyword
+    end escape_ckeyword
