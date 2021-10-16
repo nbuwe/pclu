@@ -276,8 +276,7 @@ debugopassign(CLUREF addr, CLUREF val)
 
 
 CLUPROC
-find_print(opsp)
-  struct OPS **opsp;
+find_print(struct OPS **opsp)
 {
     long i;
     struct OPS *ops;
@@ -306,9 +305,7 @@ find_print(opsp)
 
 
 long
-find_op_own_ptr(fp, i)
-  framep fp;
-  long i;
+find_op_own_ptr(framep fp, long i)
 {
     for (long k = 0; k < fp->locals->count; ++k) {
 	if (strcmp("op_own_ptr", fp->locals->vds[k].nm) == 0)
@@ -320,9 +317,7 @@ find_op_own_ptr(fp, i)
 
 
 long
-find_type_own_ptr(fp, i)
-  framep fp;
-  long i;
+find_type_own_ptr(framep fp, long i)
 {
     for (long k = 0; k < fp->locals->count; ++k) {
 	if (strcmp("type_own_ptr", fp->locals->vds[k].nm) == 0)
@@ -333,11 +328,8 @@ find_type_own_ptr(fp, i)
 }
 
 
-struct OPS**
-alt_find_ops(fp, i, opnm)
-  framep fp;
-  long i;
-  char *opnm;
+struct OPS **
+alt_find_ops(framep fp, long i, char *opnm)
 {
     long k;
     CLUREF op_own_ptr, type_own_ptr;
@@ -375,10 +367,8 @@ alt_find_ops(fp, i, opnm)
 
 
 struct OPS **
-alt_find_ops2(opnm, info, type_own_ptr, op_own_ptr)
-  char *opnm;
-  framep info;
-  OWNPTR type_own_ptr, op_own_ptr;
+alt_find_ops2(char *opnm, framep info,
+	      OWNPTR type_own_ptr, OWNPTR op_own_ptr)
 {
     long k;
 
