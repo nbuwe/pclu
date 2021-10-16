@@ -70,10 +70,10 @@ long sp = 0;
 				breakpoint could stop or just log
 		  look at stack
 		  continue
-		  single step  
+		  single step
 				(n turns on single stepping, c turns off ss)
 		  run (see above/issues)
-		  move up/down stack 
+		  move up/down stack
 				(set current frame for var printing, listing)
 		  list relevant source code
 		  print/set variable
