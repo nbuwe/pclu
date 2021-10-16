@@ -1016,6 +1016,7 @@ static Vlist1 vals__get_version = {0, 1, {0, 2, "", &int_ops, ""}};
 static siglist0 sigs__get_version = {0, 0};
 dbg_info_generic dbg_info__get_version_data = {0, 14, "_get_version", "_get_version", 0, 0, _get_version, 0, (Vlist0*)&vals__get_version, (siglist0*)&sigs__get_version,&NO_VALS,&NO_VALS,&NO_VALS,&NO_VALS,&NO_PARMS,&NO_PARMS};
 struct dbg_info* dbg_info__get_version = (struct dbg_info*)&dbg_info__get_version_data;
+extern errcode sleep();
 static Vlist0 vals_sleep = {0, 0};
 static siglist0 sigs_sleep = {0, 0};
 dbg_info_generic dbg_info_sleep_data = {0, 14, "sleep", "sleep", 0, 0, sleep, 1, (Vlist0*)&vals_sleep, (siglist0*)&sigs_sleep,&NO_VALS,&NO_VALS,&NO_VALS,&NO_VALS,&NO_PARMS,&NO_PARMS};
