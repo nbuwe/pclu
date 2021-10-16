@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include "pclu_err.h"
 #include "pclu_sys.h"
@@ -101,7 +100,7 @@ va_dcl
       ind = debug_alloc();
       if (ind == NO_SPACE) signal( ERR_failure );
       dv[ind].val.num = temp;
-/*      printf( "Iter Pass %d, Yield value %d: %d\n", 
+/*      printf( "Iter Pass %d, Yield value %d: %d\n",
 		iter_count, i, dv[ind].val.num); */
       iter_yieldOPprint(temp, i);
       temp = va_arg( ap, long );
@@ -126,7 +125,7 @@ extern bool errcmp();
 extern errcode errcmp2();
 extern errcode _pclu_erstr2();
 
-errcode call_clu( proc_ptr_ref, type_ops_ref, op_ops_ref, stack, sp, 
+errcode call_clu( proc_ptr_ref, type_ops_ref, op_ops_ref, stack, sp,
 		is_iter, is_sel, num_args, num_ret)
 CLUREF proc_ptr_ref;
 CLUREF type_ops_ref, op_ops_ref;
@@ -201,9 +200,9 @@ struct OPS *op_ops = (struct OPS*)op_ops_ref.ref;
 		case 1: err = proc_ptr( ca[0], &ca[1] ); break;
 		case 2: err = proc_ptr( ca[0], &ca[1], &ca[2] ); break;
 		case 3: err = proc_ptr( ca[0], &ca[1], &ca[2], &ca[3] ); break;
-		case 4: err = proc_ptr( ca[0], &ca[1], &ca[2], &ca[3], 
+		case 4: err = proc_ptr( ca[0], &ca[1], &ca[2], &ca[3],
 				&ca[4] ); break;
-		case 5: err = proc_ptr( ca[0], &ca[1], &ca[2], &ca[3], 
+		case 5: err = proc_ptr( ca[0], &ca[1], &ca[2], &ca[3],
 				&ca[4], &ca[5] ); break;
 		default: printf("Too many return values\n"); break;
 		} break;
@@ -212,11 +211,11 @@ struct OPS *op_ops = (struct OPS*)op_ops_ref.ref;
 		case 0: err = proc_ptr( ca[0], ca[1] ); break;
 		case 1: err = proc_ptr( ca[0], ca[1], &ca[2] ); break;
 		case 2: err = proc_ptr( ca[0], ca[1], &ca[2], &ca[3] ); break;
-		case 3: err = proc_ptr( ca[0], ca[1], &ca[2], &ca[3], 
+		case 3: err = proc_ptr( ca[0], ca[1], &ca[2], &ca[3],
 				&ca[4] ); break;
-		case 4: err = proc_ptr( ca[0], ca[1], &ca[2], &ca[3], 
+		case 4: err = proc_ptr( ca[0], ca[1], &ca[2], &ca[3],
 				&ca[4], &ca[5] ); break;
-		case 5: err = proc_ptr( ca[0], ca[1], &ca[2], &ca[3], 
+		case 5: err = proc_ptr( ca[0], ca[1], &ca[2], &ca[3],
 				&ca[4], &ca[5], &ca[6] ); break;
 		default: printf("Too many return values\n"); break;
 		} break;
@@ -224,45 +223,45 @@ struct OPS *op_ops = (struct OPS*)op_ops_ref.ref;
 		switch (num_ret.num) {
 		case 0: err = proc_ptr( ca[0], ca[1], ca[2] ); break;
 		case 1: err = proc_ptr( ca[0], ca[1], ca[2], &ca[3] ); break;
-		case 2: err = proc_ptr( ca[0], ca[1], ca[2], &ca[3], 
+		case 2: err = proc_ptr( ca[0], ca[1], ca[2], &ca[3],
 				&ca[4] ); break;
-		case 3: err = proc_ptr( ca[0], ca[1], ca[2], &ca[3], 
+		case 3: err = proc_ptr( ca[0], ca[1], ca[2], &ca[3],
 				&ca[4], &ca[5] ); break;
-		case 4: err = proc_ptr( ca[0], ca[1], ca[2], &ca[3], 
+		case 4: err = proc_ptr( ca[0], ca[1], ca[2], &ca[3],
 				&ca[4], &ca[5], &ca[6] ); break;
-		case 5: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], 
+		case 5: err = proc_ptr( ca[0], ca[1], ca[2], ca[3],
 				&ca[4], &ca[5], &ca[6], &ca[7] ); break;
 		default: printf("Too many return values\n"); break;
 		} break;
 	case 4:
 		switch (num_ret.num) {
 		case 0: err = proc_ptr( ca[0], ca[1], ca[2], ca[3] ); break;
-		case 1: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], &ca[4] ); 
+		case 1: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], &ca[4] );
 					break;
-		case 2: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], &ca[4], 
+		case 2: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], &ca[4],
 					&ca[5] ); break;
-		case 3: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], &ca[4], 
+		case 3: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], &ca[4],
 					&ca[5], &ca[6] ); break;
-		case 4: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], &ca[4], 
+		case 4: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], &ca[4],
 					&ca[5], &ca[6], &ca[7] ); break;
-		case 5: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], &ca[4], 
+		case 5: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], &ca[4],
 					&ca[5], &ca[6], &ca[7], &ca[8] ); break;
 		default: printf("Too many return values\n"); break;
 		} break;
 	case 5:
 		switch (num_ret.num) {
-		case 0: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4] ); 
+		case 0: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4] );
 					break;
-		case 1: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4], 
+		case 1: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4],
 					&ca[5] ); break;
-		case 2: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4], 
+		case 2: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4],
 					&ca[5], &ca[6] ); break;
-		case 3: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4], 
+		case 3: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4],
 					&ca[5], &ca[6], &ca[7] ); break;
-		case 4: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4], 
+		case 4: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4],
 					&ca[5], &ca[6], &ca[7], &ca[8] ); break;
-		case 5: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4], 
-					&ca[5], &ca[6], &ca[7], &ca[8], 
+		case 5: err = proc_ptr( ca[0], ca[1], ca[2], ca[3], ca[4],
+					&ca[5], &ca[6], &ca[7], &ca[8],
 					&ca[9]); break;
 		default: printf("Too many return values\n"); break;
 		} break;
@@ -321,18 +320,18 @@ struct OPS *op_ops = (struct OPS*)op_ops_ref.ref;
 		}
 	    }
 	    stack.vec->data[sp.num-1] = ERR_ok;
-	    signal(ERR_ok);	
+	    signal(ERR_ok);
 	}
 	else{
 	    stack.vec->data[sp.num-1] = err;
 	    for (i = 0; i < MAX_SIG_VALS ; i++) {
 		stack.vec->data[sp.num+i] = elist[i].num;
-		}	
+		}
 		signal( ERR_ok );
 	      }
 
 def_err_hdlr:
-	
+
 	printf( "In call_clu, at def_err_hdlr...\n" );
 	/* NOTE: Should give a description of why the failure occurred. */
 /*	printf( "Press Return to Continue..." );  */
@@ -378,7 +377,7 @@ long num_args, num_ret;
 
 	/ * Need to test parameters, and look into error signals much more * /
 
-	/ *  Below is, as far as I can tell, an outdate way of calling 
+	/ *  Below is, as far as I can tell, an outdate way of calling
 	    parameterized routines
 	if (num_params > 0){
 	  printf("In call_clu, about to get parameter info...\n" );
@@ -504,18 +503,18 @@ long num_args, num_ret;
 		      }
 	      }
 	    stack.vec->data[sp-1] = ERR_ok;
-	    signal(ERR_ok);	
+	    signal(ERR_ok);
 	}
 	else{
 	    stack.vec->data[sp-1] = err;
 	    for (i = 0; i < MAX_SIG_VALS ; i++) {
 		stack.vec->data[sp+i] = elist[i].num;
-		}	
+		}
 		signal( ERR_ok );
 	      }
 
 def_err_hdlr:
-	
+
 	printf( "In call_clu, at def_err_hdlr...\n" );
 	/ * NOTE: Should give a description of why the failure occurred. * /
 	printf( "Press Return to Continue..." );
