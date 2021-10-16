@@ -741,11 +741,11 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 			  then
 			       g_env$puts(e, "zero_ops, \"" || oname || "_ops\"}")
 			  else
-			       g_env$puts(e, "&" || oname || "_ops}")
+			       g_env$puts(e, "&" || oname || "_ops, NULL}")
 			  end
 		  end
 	   tag apply:
-	       g_env$puts(e, "m1_ops}")
+	       g_env$puts(e, "m1_ops, NULL}")
 	       % logit("apply in emit_sub_decl_typespec")
 	       % return
 	   tag select (xt: seltype):
@@ -754,14 +754,14 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		       g_env$puts(e, "zero_ops, \"")
 		       g_env$puts(e, xt.gen.common || "_" || make_sel_name(xt.parms) || "_ops\"}")
 		  else
-		       g_env$puts(e, "&" || xt.gen.common || "_" || make_sel_name(xt.parms) || "_ops}")
+		       g_env$puts(e, "&" || xt.gen.common || "_" || make_sel_name(xt.parms) || "_ops, NULL}")
 		  end
 	   tag idn(i: idn):
 	       tagcase i.kind
 		  tag tparm:
 		      g_env$puts(e, "zero_ops, \"" || i.str || "_ops\"}")
 		  others:
-		      g_env$puts(e, "&" || i.str || "_ops}")
+		      g_env$puts(e, "&" || i.str || "_ops, NULL}")
 		  end
 	   tag any_:
 	       g_env$puts(e, "zero_ops, \"\"}")
