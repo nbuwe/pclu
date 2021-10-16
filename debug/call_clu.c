@@ -138,7 +138,7 @@ CLUREF is_iter;
 CLUREF is_sel;
 CLUREF num_args, num_ret;
 {
-errcode (*proc_ptr)() = proc_ptr_ref.proc;
+PROC *proc_ptr = (PROC *)proc_ptr_ref.num;
 struct OPS *type_ops = (struct OPS*)type_ops_ref.ref;
 struct OPS *op_ops = (struct OPS*)op_ops_ref.ref;
 	CLUREF ca[MAX_ARGS];
