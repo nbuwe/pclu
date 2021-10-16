@@ -1,7 +1,8 @@
-#include <stdio.h>
 #include "pclu_err.h"
 #include "pclu_sys.h"
-#include <varargs.h>
+
+#include <stdarg.h>
+#include <stdio.h>
 
 #define MAX_ARGS 15
 #define MAX_DBG_VARS 30
@@ -87,13 +88,15 @@ debugger_variable *address;
 extern errcode iter_yieldOPprint();
 static long iter_count = 0;
 static long iter_val_count = 0;
-iterbody_proc( va_alist )
-va_dcl
+
+errcode
+iterbody_proc(long first, ...)
 {
   va_list ap;
   long temp, i, ind;
-  va_start(ap);
-  temp = va_arg( ap, long );
+
+  va_start(ap, first);
+  temp = first;
 
   for (i=1; i <= iter_val_count ; i++)     /* formerly limited by HIGHLY_UNLIKELY */
     {
@@ -103,7 +106,7 @@ va_dcl
 /*      printf( "Iter Pass %d, Yield value %d: %d\n",
 		iter_count, i, dv[ind].val.num); */
       iter_yieldOPprint(temp, i);
-      temp = va_arg( ap, long );
+      temp = va_arg(ap, long);
     }
 
   /* We can just ignore the rest of the parameters, since we won't need to
@@ -112,12 +115,12 @@ va_dcl
      ecode2 = va_arg( ap, errcode );
      */
 
-  va_end( ap );
+  va_end(ap);
   iter_count++;
 
   /* Here, need to do an input or something so you don't continue execution
      until the pclu debugger is ready for you again. */
-
+  return ERR_ok;
 }
 
 #undef errcmp
