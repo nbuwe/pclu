@@ -538,7 +538,7 @@ debugopprint_val(CLUREF po, CLUREF ind, CLUREF mod, CLUREF nm)
 	    }
 
 	    CUR_PROC_VAR.proc = find_print(ops);
-	    if (CUR_PROC_VAR.num == 0) {
+	    if (CUR_PROC_VAR.proc == NULL) {
 		signal(ERR_not_possible);
 	    }
 	    err = (*CUR_PROC_VAR.proc->proc)(value, po);
