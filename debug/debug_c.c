@@ -1174,7 +1174,7 @@ errcode
 add_selector_info2(CLUREF nm, CLUREF n, CLUREF ops)
 {
     char *nmc = nm.str->data;
-    add_selector_info(nmc, n.num, ops.ref);
+    add_selector_info(nmc, n.num, (struct OPS *)ops.ref);
     signal(ERR_ok);
 }
 
