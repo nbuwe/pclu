@@ -443,6 +443,10 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$blankline(e)
 	end emit_typedef
 
+    emit_internal_var_desc_init = proc (e: g_env, varname: string)
+	g_env$puts(e, "{0, 2, \"" || varname || "\", &int_ops, NULL}")
+	end emit_internal_var_desc_init
+
     % declare and initialize sub structures (varying length)
     emit_sub_decls = proc(e: g_env)
 	if ~yes then return end
@@ -494,12 +498,12 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$puts(e, "static Vlist" || int$unparse(nlocals) || " locals_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nlocals))
-	if nlocals ~= 0 then g_env$puts(e, ",{") end
+	if nlocals ~= 0 then g_env$puts(e, ",{ ") end
 	first := true
 	for each_val: string in as$elements(internal_locals) do
 	    if first then first := false
 	       else g_env$puts(e, ", ") end
-	    g_env$puts(e, " {0, 2, \"" || each_val || "\", &int_ops}")
+	    emit_internal_var_desc_init(e, each_val)
 	    end
 	for each_val: decl in ad$elements(locals) do
 	    for each_idn: idn in idnlist$elements(each_val.idns) do
@@ -641,7 +645,9 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	       tag internal(s: string):
 		   if first then first := false
 		      else g_env$puts(e, ",") end
-		   g_env$putl(e, "{0, 2, \"" || s || "\", &int_ops}")
+		   g_env$puts(e, " ")
+		   emit_internal_var_desc_init(e, s)
+		   g_env$newline(e)
 	       end
 	    end
 	end process_mixedlist
@@ -651,12 +657,14 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	oname: string
 	if first then first := false
 	   else g_env$puts(e, ",") end
+	g_env$puts(e, " ")
 	if tyexists
 	   then
-		g_env$putl(e, " {0, 2, \"" || current_type$get_name() || "_init\", &int_ops}")
+		emit_internal_var_desc_init(e, current_type$get_name() || "_init")
 	   else
-		g_env$putl(e, " {0, 2, \"" || nm || "_init\", &int_ops}")
+		emit_internal_var_desc_init(e, nm || "_init")
 	   end
+	g_env$newline(e)
 	for each_init: init in initlist$elements(tylist) do
 	    each_val: initform := each_init.stmt
 	    tagcase each_val
@@ -673,7 +681,9 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 			   end
 		       end
 	       end
-	    %	    g_env$putl(e, ", {0, 2, \"" || nm || "init\", &int_ops}")
+	    %	    g_env$puts(e, ", ")
+	    %	    emit_internal_var_desc_init(e, nm || "init")
+	    %	    g_env$newline(e)
 	    end
 	for each_init: init in initlist$elements(oplist) do
 	    each_val: initform := each_init.stmt
