@@ -507,17 +507,19 @@ debugopprint_val(CLUREF po, CLUREF ind, CLUREF mod, CLUREF nm)
 	    size.num = strlen(fullnm);
 	    err = stringOPcons(fullnm, CLU_1, size, &clu_fullnm);
 
-	    err = symOPget_address(clu_fullnm, &addr);
+	    CLUREF aref;
+	    err = symOPget_address(clu_fullnm, &aref);
 	    if (err != ERR_ok) {
 		/* check cluster owns */
 		err = opown2typeown(clu_fullnm, &clu_fullnm);
 		if (err != ERR_ok)
 		    continue;
-		err = symOPget_address(clu_fullnm, &addr);
+		err = symOPget_address(clu_fullnm, &aref);
 		if (err != ERR_ok)
 		    continue;
 	    }
 
+	    addr = (long *)aref.ref;
 	    value.num = *addr;
 	    if (value.num == UNINIT) {
 		err = print_uninit(po, value);
@@ -681,17 +683,19 @@ debugopnm2val_ops(CLUREF ind, CLUREF mod, CLUREF nm,
 	    size.num = strlen(fullnm);
 	    err = stringOPcons(fullnm, CLU_1, size, &clu_fullnm);
 
-	    err = symOPget_address(clu_fullnm, &addr);
+	    CLUREF aref;
+	    err = symOPget_address(clu_fullnm, &aref);
 	    if (err != ERR_ok) {
 		/* check cluster owns */
 		err = opown2typeown(clu_fullnm, &clu_fullnm);
 		if (err != ERR_ok)
 		    continue;
-		err = symOPget_address(clu_fullnm, &addr);
+		err = symOPget_address(clu_fullnm, &aref);
 		if (err != ERR_ok)
 		    continue;
 	    }
 
+	    addr = (long *)aref.ref;
 	    value.num = *addr;
 	    if (value.num == UNINIT)
 		signal(ERR_undefined);
@@ -811,17 +815,19 @@ debugopget_val(CLUREF ind, CLUREF mod, CLUREF nm, CLUREF *val)
 		size.num = strlen(fullnm);
 		err = stringOPcons(fullnm, CLU_1, size, &clu_fullnm);
 
-		err = symOPget_address(clu_fullnm, &addr);
+		CLUREF aref;
+		err = symOPget_address(clu_fullnm, &aref);
 		if (err != ERR_ok) {
 		    /* check cluster owns */
 		    err = opown2typeown(clu_fullnm, &clu_fullnm);
 		    if (err != ERR_ok)
 			continue;
-		    err = symOPget_address(clu_fullnm, &addr);
+		    err = symOPget_address(clu_fullnm, &aref);
 		    if (err != ERR_ok)
 			continue;
 		}
 
+		addr = (long *)aref.ref;
 		val->num = *addr;
 		signal(ERR_ok);
 	    }
@@ -889,10 +895,12 @@ debugopset_val(CLUREF ind, CLUREF mod, CLUREF nm, CLUREF val)
 		size.num = strlen(fullnm);
 		err = stringOPcons(fullnm, CLU_1, size, &clu_fullnm);
 
-		err = symOPget_address(clu_fullnm, &addr);
+		CLUREF aref;
+		err = symOPget_address(clu_fullnm, &aref);
 		if (err != ERR_ok)
 		    continue;
 
+		addr = (long *)aref.ref;
 		*addr = val.num;
 		signal(ERR_ok);
 	    }
