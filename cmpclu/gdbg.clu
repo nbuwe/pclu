@@ -715,7 +715,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	       oname := ct.gen.common
 	       if exprlist$empty(ct.parms)
 		  then
-		       g_env$puts(e, "&" || oname || "_ops}")
+		       g_env$puts(e, "&" || oname || "_ops, NULL}")
 		  else
 		       oname := oname || "_of"
 		       for each_parm:expr in exprlist$elements(ct.parms) do
