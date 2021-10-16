@@ -342,7 +342,8 @@ def_err_hdlr:
 	elist[0].num = -33;
 	signal( ERR_failure );
       }
-/*
+
+#if 0
 errcode call_clu_general( proc_ptr, stack, sp, applytype, num_args, num_ret)
 errcode (*proc_ptr)();
 CLUREF stack;
@@ -378,10 +379,11 @@ long num_args, num_ret;
 	num_params = 0;
 	is_iter = 0;
 
-	/ * Need to test parameters, and look into error signals much more * /
+	/* Need to test parameters, and look into error signals much more */
 
-	/ *  Below is, as far as I can tell, an outdate way of calling
-	    parameterized routines
+#if 0
+	/*  Below is, as far as I can tell, an outdate way of calling
+	    parameterized routines */
 	if (num_params > 0){
 	  printf("In call_clu, about to get parameter info...\n" );
 	  for (i = 0; i < num_params; i++){
@@ -405,12 +407,13 @@ long num_args, num_ret;
 
 	  generic_CLU_proc.proc = proc_ptr;
 	  CUR_PROC_VAR.proc = &generic_CLU_proc;
-	} * /
+	}
+#endif	/* 0 */ /* old call convention */
 
-	/ * Below is, as far as I can tell, the "modern" way to call
-	   parameterized routines * /
+	/* Below is, as far as I can tell, the "modern" way to call
+	   parameterized routines */
 	if (num_params > 0){
-	  / * printf("In call_clu, about to get parameter info...\n" ); * /
+	  /* printf("In call_clu, about to get parameter info...\n" ); */
 	  for (i = 0; i < num_params; i++){
 		printf("Enter addr of <proc>_of_<param%d>_table: ", i+1 );
 		scanf("%d", &proc_of_tn_table[i] );
@@ -421,24 +424,24 @@ long num_args, num_ret;
 	  CUR_PROC_VAR.ref = (char*)&generic_CLU_proc;
 	}
 
-	/ * printf("In call_clu, about to copy args...%d\n", num_args ); * /
+	/* printf("In call_clu, about to copy args...%d\n", num_args ); */
 	for (i = 0; i < num_args; i++){
 		ca[i].num  = stack.vec->data[sp+i-1];
 	      }
-	/ * Copy each of the following arguments into ca[0..num_args-1] * /
+	/* Copy each of the following arguments into ca[0..num_args-1] */
 
 	if (is_iter != 1){
-	  / * printf("In call_clu, about to allocate return values...%d\n", num_ret ); * /
+	  /* printf("In call_clu, about to allocate return values...%d\n", num_ret ); */
 	  ind = 0;
 	  for (i = num_args; i < num_args + num_ret; i++, ind++){
-		/ * ind = debug_alloc(); * /
-		/ * if (ind == NO_SPACE) goto def_err_hdlr; * /
+		/* ind = debug_alloc(); */
+		/* if (ind == NO_SPACE) goto def_err_hdlr; */
 		ca[i].ref = (char*)&dv[ind].val;
-		/ * printf("In call_clu, allocated mem loc 0x%x for ret[%d].\n",
-		       ca[i].ref, i+1-num_args ); * /
+		/* printf("In call_clu, allocated mem loc 0x%x for ret[%d].\n",
+		       ca[i].ref, i+1-num_args ); */
 	      }
-	  / * Allocate new CLUREFs, putting Address of the new CLUREF in
-	     ca[num_args..num_args+num_ret-1], ready to call addr with * /
+	  /* Allocate new CLUREFs, putting Address of the new CLUREF in
+	     ca[num_args..num_args+num_ret-1], ready to call addr with */
 	  ca[ num_args + num_ret ].ref = (char*)elist;
 	  total_args = num_args + num_ret + 1;
 	}
@@ -451,7 +454,7 @@ long num_args, num_ret;
 	}
 
 
-	/ * printf("In call_clu, about to do the call...%X\n", proc_ptr ); * /
+	/* printf("In call_clu, about to do the call...%X\n", proc_ptr ); */
 	switch (total_args) {
 	case 0: err = proc_ptr( ); break;
 	case 1: err = proc_ptr( ca[0] ); break;
@@ -490,19 +493,19 @@ long num_args, num_ret;
 
 	}
 
-	/ * printf("In call_clu, about to check err value...\n" ); * /
+	/* printf("In call_clu, about to check err value...\n" ); */
 	if (err == ERR_ok) {
 	  if (is_iter != 1){
 	        long j = 0;
 		stack.vec->data[sp-1] = ERR_ok;
 		for (i = num_args; i < num_args + num_ret; i++){
-			/ * printf( "Return value %d: 0x%x (%d)\n",
+			/* printf( "Return value %d: 0x%x (%d)\n",
 				i - num_args + 1, ca[i].ref,
-			        *(long *)ca[i].ref ); * /
+			        *(long *)ca[i].ref ); */
 			stack.vec->data[sp+j] = *(long*)ca[i].ref;
 			j += 1;
-			/ * printf( "Return value %d: %d\n",
-				i - num_args + 1, ca[i].num ); * /
+			/* printf( "Return value %d: %d\n",
+				i - num_args + 1, ca[i].num ); */
 		      }
 	      }
 	    stack.vec->data[sp-1] = ERR_ok;
@@ -519,12 +522,12 @@ long num_args, num_ret;
 def_err_hdlr:
 
 	printf( "In call_clu, at def_err_hdlr...\n" );
-	/ * NOTE: Should give a description of why the failure occurred. * /
+	/* NOTE: Should give a description of why the failure occurred. */
 	printf( "Press Return to Continue..." );
 	scanf( "%s", temp_str );
 	signal( ERR_failure );
       }
-*/
+#endif /* 0 */ /* call_clu_general */
 
 errcode errcmp2(str1, str2, ans)
 CLUREF str1, str2;
