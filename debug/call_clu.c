@@ -304,7 +304,7 @@ struct OPS *op_ops = (struct OPS*)op_ops_ref.ref;
 				ca[12], ca[13], ca[14] ); break;
 
 	default:
-	    printf( "Can't handle more than %d call args and return vals: %d\n",
+	    printf( "Can't handle more than %d call args and return vals: %ld\n",
 							MAX_ARGS, total_args );
 
 	}
