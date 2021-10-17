@@ -1128,7 +1128,7 @@ debugopcvt_sig(CLUREF sig, CLUREF *ans)
 errcode
 debugopget_sigvalcount(CLUREF sd, CLUREF *ans)
 {
-    sig_desc *temp = (sig_desc *)sd.num;
+    const sig_desc *temp = (sig_desc *)sd.num;
 
     ans->num = temp->vals.count;
     signal(ERR_ok);
@@ -1140,7 +1140,7 @@ debugopget_nth_sigvalops(CLUREF sd, CLUREF n, CLUREF info_ref,
 			 CLUREF type_ops_ref, CLUREF op_ops_ref,
 			 CLUREF *ans)
 {
-    sig_desc1 *temp = (sig_desc1 *)sd.num;
+    const sig_desc1 *temp = (sig_desc1 *)sd.num;
     const char *opnm;
     struct OPS **ops;
     struct OPS *type_ops = (struct OPS *)type_ops_ref.ref;
