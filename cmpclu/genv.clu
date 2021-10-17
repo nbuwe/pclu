@@ -342,7 +342,7 @@ g_env = cluster is create, reset, end_all, force_signal, reset_err, set_space,
 
     add_siglist = proc(n: int) returns (bool)
 	if n < MAXSIGLIST then return (false) end
-	for each_n: int in intlist$elements(vlist) do
+	for each_n: int in intlist$elements(siglist) do
 	    if each_n = n then return (false) end
 	    end
 	siglist := intlist$addh(siglist, n)
