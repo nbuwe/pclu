@@ -724,7 +724,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 
     process_ownlists = proc(e:g_env, own_list: as)
 	for each_own: string in as$elements(own_list) do
-	    g_env$puts(e, ", {0, 2, \"" || each_own || "\", &NULL_OPS}")
+	    g_env$puts(e, ", {0, 2, \"" || each_own || "\", &NULL_OPS, NULL}")
 	    end
 	end process_ownlists
 
