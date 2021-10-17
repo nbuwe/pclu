@@ -411,16 +411,17 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
     emit_typedef = proc(e: g_env)
 	if ~yes then return end
 	% emit fixed stuff
-	g_env$putl(e, "typedef struct {")
+	dbg_info_name: string := "dbg_info_" || nm || "_actual"
+	g_env$putl(e, "typedef struct " || dbg_info_name || " {")
 	g_env$indent(e)
 	% header field
 	g_env$putl(e, "long hdr;")
 	% header field continued (count)
 	g_env$putl(e, "long count;")
 	% name
-	g_env$putl(e, "char *name;")
+	g_env$putl(e, "const char *name;")
 	% file name
-	g_env$putl(e, "char *fname;")
+	g_env$putl(e, "const char *fname;")
 	% is_iter, is_parmd
 	g_env$putl(e, "bool is_iter;")
 	g_env$putl(e, "long is_parmd;")
@@ -430,16 +431,16 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$putl(e, "long nargs;")
 	% emit vals, sigs, locals, static_owns, ptype_owns, pop_owns,
 	%	type_formals, op_formals
-	g_env$putl(e, "Vlist" || int$unparse(nvals) || " *vals;")
-	g_env$putl(e, "siglist" || int$unparse(nsigs) || " *sigs;")
-	g_env$putl(e, "Vlist" || int$unparse(nlocals) || " *locals;")
-	g_env$putl(e, "Vlist" || int$unparse(nowns)  || " *owns;")
-	g_env$putl(e, "Vlist" || int$unparse(nptowns) || " *ptowns;")
-	g_env$putl(e, "Vlist" || int$unparse(npopowns) || " *popowns;")
-	g_env$putl(e, "Slist" || int$unparse(ntypeformals) || " *type_formals;")
-	g_env$putl(e, "Slist" || int$unparse(nopformals) || " *op_formals;")
+	g_env$putl(e, "const Vlist" || int$unparse(nvals) || " *vals;")
+	g_env$putl(e, "const siglist" || int$unparse(nsigs) || " *sigs;")
+	g_env$putl(e, "const Vlist" || int$unparse(nlocals) || " *locals;")
+	g_env$putl(e, "const Vlist" || int$unparse(nowns)  || " *owns;")
+	g_env$putl(e, "const Vlist" || int$unparse(nptowns) || " *ptowns;")
+	g_env$putl(e, "const Vlist" || int$unparse(npopowns) || " *popowns;")
+	g_env$putl(e, "const Slist" || int$unparse(ntypeformals) || " *type_formals;")
+	g_env$putl(e, "const Slist" || int$unparse(nopformals) || " *op_formals;")
 	g_env$outdent(e)
-	g_env$putl(e, "} dbg_info_" || nm || "_actual;")
+	g_env$putl(e, "} " || dbg_info_name || ";")
 	g_env$blankline(e)
 	end emit_typedef
 
