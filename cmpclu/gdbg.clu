@@ -571,11 +571,18 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		      " tformals_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(ntypeformals))
-	for each_formal: string in as$elements(typeformals) do
-	    g_env$puts(e, ", \"")
-	    g_env$puts(e, each_formal)
-	    g_env$puts(e, "\"")
-	    end
+	if ntypeformals > 0 then
+	   g_env$puts(e, ", {")
+	   sep: string := ""
+	   for each_formal: string in as$elements(typeformals) do
+	       g_env$puts(e, sep)
+	       g_env$puts(e, " \"")
+	       g_env$puts(e, each_formal)
+	       g_env$puts(e, "\"")
+	       sep := ","
+	       end
+	   g_env$puts(e, " }")
+	   end
 	g_env$putl(e, "};")
 
 	% op formals
@@ -583,11 +590,18 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		      " opformals_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nopformals))
-	for each_formal: string in as$elements(opformals) do
-	    g_env$puts(e, ", \"")
-	    g_env$puts(e, each_formal)
-	    g_env$puts(e, "\"")
-	    end
+	if nopformals > 0 then
+	   g_env$puts(e, ", {")
+	   sep: string := ""
+	   for each_formal: string in as$elements(opformals) do
+	       g_env$puts(e, sep)
+	       g_env$puts(e, " \"")
+	       g_env$puts(e, each_formal)
+	       g_env$puts(e, "\"")
+	       sep := ","
+	       end
+	   g_env$puts(e, " }")
+	   end
 	g_env$putl(e, "};")
 
 
