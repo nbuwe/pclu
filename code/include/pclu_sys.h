@@ -667,7 +667,7 @@ typedef struct {
     typedef struct siglist ## N {		\
 	long hdr;				\
 	long count;				\
-	sig_desc *asig[N];			\
+	const sig_desc *asig[N];		\
     } siglist ## N
 
 defsiglist(1);			/* siglist1 */

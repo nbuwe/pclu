@@ -405,7 +405,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	   g_env$indent(e)
 	   g_env$putl(e, "long hdr;")
 	   g_env$putl(e, "long count;")
-	   g_env$puts(e, "sig_desc *asig[")
+	   g_env$puts(e, "const sig_desc *asig[")
 	   g_env$puts(e, nstr)
 	   g_env$putl(e, "];")
 	   g_env$outdent(e)
