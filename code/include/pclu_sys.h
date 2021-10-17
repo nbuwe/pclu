@@ -544,448 +544,141 @@ errcode find_prociter_instance(errcode (*procaddr)(),
 
 
 typedef struct {
-	long hdr;
-	long count;
-	} Slist0;
+    long hdr;
+    long count;
+} Slist0;
+
 extern Slist0 NO_PARMS;
 
-typedef struct {
-	long hdr;
-	long count;
-	char *nm[1];
-	} Slist1;
+#define defslist(N)				\
+    typedef struct Slist ## N {			\
+        long hdr;				\
+        long count;				\
+        const char *nm[N];			\
+    } Slist ## N
+
+defslist(1);			/* Slist1 */
+defslist(2);			/* Slist2 */
+defslist(3);			/* Slist3 */
+defslist(4);			/* Slist4 */
+
+
+typedef struct var_desc {
+    long hdr;
+    long count;
+    const char *nm;
+    struct OPS **ops;
+    const char *nm_ops;
+} var_desc;
 
 typedef struct {
-	long hdr;
-	long count;
-	char *nm[2];
-	} Slist2;
+    long hdr;
+    long count;
+} Vlist0;
 
-typedef struct {
-	long hdr;
-	long count;
-	char *nm[3];
-	} Slist3;
-
-typedef struct {
-	long hdr;
-	long count;
-	char *nm[4];
-	} Slist4;
-
-typedef struct {
-	long  hdr;
-	long  count;
-	char *nm;
-	struct OPS **ops;
-	char *nm_ops;
-	} var_desc;
-
-typedef struct {
-	long hdr;
-	long count;
-	} Vlist0;
 extern Vlist0 NO_VALS;
 
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[1];
-	} Vlist1;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[2];
-	} Vlist2;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[3];
-	} Vlist3;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[4];
-	} Vlist4;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[5];
-	} Vlist5;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[6];
-	} Vlist6;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[7];
-	} Vlist7;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[8];
-	} Vlist8;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[9];
-	} Vlist9;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[10];
-	} Vlist10;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[11];
-	} Vlist11;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[12];
-	} Vlist12;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[13];
-	} Vlist13;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[14];
-	} Vlist14;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[15];
-	} Vlist15;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[16];
-	} Vlist16;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[17];
-	} Vlist17;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[18];
-	} Vlist18;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[19];
-	} Vlist19;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[20];
-	} Vlist20;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[21];
-	} Vlist21;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[22];
-	} Vlist22;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[23];
-	} Vlist23;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[24];
-	} Vlist24;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[25];
-	} Vlist25;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[26];
-	} Vlist26;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[27];
-	} Vlist27;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[28];
-	} Vlist28;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[29];
-	} Vlist29;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[30];
-	} Vlist30;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[31];
-	} Vlist31;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[32];
-	} Vlist32;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[33];
-	} Vlist33;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[34];
-	} Vlist34;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[35];
-	} Vlist35;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[36];
-	} Vlist36;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[37];
-	} Vlist37;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[38];
-	} Vlist38;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[39];
-	} Vlist39;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[40];
-	} Vlist40;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[41];
-	} Vlist41;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[42];
-	} Vlist42;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[43];
-	} Vlist43;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[44];
-	} Vlist44;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[45];
-	} Vlist45;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[46];
-	} Vlist46;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[47];
-	} Vlist47;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[48];
-	} Vlist48;
-
-typedef struct {
-	long hdr;
-	long count;
-	var_desc vds[49];
-	} Vlist49;
-
-typedef struct {
-	long hdr;
-	long count;
-	char *nm;
-	Vlist0 vals;
-	} sig_desc;
-
-typedef struct {
-	long hdr;
-	long count;
-	char *nm;
-	Vlist0 vals;
-	} sig_desc0;
-
-typedef struct {
-	long hdr;
-	long count;
-	char *nm;
-	Vlist1 vals;
-	} sig_desc1;
-
-typedef struct {
-	long hdr;
-	long count;
-	char *nm;
-	Vlist2 vals;
-	} sig_desc2;
-
-typedef struct {
-	long hdr;
-	long count;
-	char *nm;
-	Vlist3 vals;
-	} sig_desc3;
-
-typedef struct {
-	long hdr;
-	long count;
-	char *nm;
-	Vlist4 vals;
-	} sig_desc4;
-
-typedef struct {
-	long hdr;
-	long count;
-	} siglist0;
-
-typedef struct {
-	long hdr;
-	long count;
-	sig_desc *asig[1];
-	} siglist1;
-
-typedef struct {
-	long hdr;
-	long count;
-	sig_desc *asig[2];
-	} siglist2;
-
-typedef struct {
-	long hdr;
-	long count;
-	sig_desc *asig[3];
-	} siglist3;
-
-typedef struct {
-	long hdr;
-	long count;
-	sig_desc *asig[4];
-	} siglist4;
-
-typedef struct {
-	long hdr;
-	long count;
-	sig_desc *asig[5];
-	} siglist5;
-
-typedef struct {
-	long hdr;
-	long count;
-	sig_desc *asig[6];
-	} siglist6;
-
-typedef struct {
-        int hdr;
-        int count;
-        sig_desc *asig[7];
-        } siglist7;
-
-typedef struct {
-        int hdr;
-        int count;
-        sig_desc *asig[8];
-        } siglist8;
-
-typedef struct {
-        int hdr;
-        int count;
-        sig_desc *asig[9];
-        } siglist9;
-
-typedef struct {
-        int hdr;
-        int count;
-        sig_desc *asig[10];
-        } siglist10;
+#define defvlist(N)				\
+    typedef struct Vlist ## N {			\
+	long hdr;				\
+	long count;				\
+	var_desc vds[N];			\
+    } Vlist ## N
+
+defvlist(1);			/* Vlist1 */
+defvlist(2);			/* Vlist2 */
+defvlist(3);			/* Vlist3 */
+defvlist(4);			/* Vlist4 */
+defvlist(5);			/* Vlist5 */
+defvlist(6);			/* Vlist6 */
+defvlist(7);			/* Vlist7 */
+defvlist(8);			/* Vlist8 */
+defvlist(9);			/* Vlist9 */
+defvlist(10);			/* Vlist10 */
+defvlist(11);			/* Vlist11 */
+defvlist(12);			/* Vlist12 */
+defvlist(13);			/* Vlist13 */
+defvlist(14);			/* Vlist14 */
+defvlist(15);			/* Vlist15 */
+defvlist(16);			/* Vlist16 */
+defvlist(17);			/* Vlist17 */
+defvlist(18);			/* Vlist18 */
+defvlist(19);			/* Vlist19 */
+defvlist(20);			/* Vlist20 */
+defvlist(21);			/* Vlist21 */
+defvlist(22);			/* Vlist22 */
+defvlist(23);			/* Vlist23 */
+defvlist(24);			/* Vlist24 */
+defvlist(25);			/* Vlist25 */
+defvlist(26);			/* Vlist26 */
+defvlist(27);			/* Vlist27 */
+defvlist(28);			/* Vlist28 */
+defvlist(29);			/* Vlist29 */
+defvlist(30);			/* Vlist30 */
+defvlist(31);			/* Vlist31 */
+defvlist(32);			/* Vlist32 */
+defvlist(33);			/* Vlist33 */
+defvlist(34);			/* Vlist34 */
+defvlist(35);			/* Vlist35 */
+defvlist(36);			/* Vlist36 */
+defvlist(37);			/* Vlist37 */
+defvlist(38);			/* Vlist38 */
+defvlist(39);			/* Vlist39 */
+defvlist(40);			/* Vlist40 */
+defvlist(41);			/* Vlist41 */
+defvlist(42);			/* Vlist42 */
+defvlist(43);			/* Vlist43 */
+defvlist(44);			/* Vlist44 */
+defvlist(45);			/* Vlist45 */
+defvlist(46);			/* Vlist46 */
+defvlist(47);			/* Vlist47 */
+defvlist(48);			/* Vlist48 */
+defvlist(49);			/* Vlist49 */
+
+
+typedef struct {
+    long hdr;
+    long count;
+    const char *nm;
+    Vlist0 vals;
+} sig_desc;
+
+#define defsig_desc(N)				\
+    typedef struct sig_desc ## N {		\
+	long hdr;				\
+	long count;				\
+	const char *nm;				\
+	Vlist ## N vals;			\
+    } sig_desc ## N
+
+defsig_desc(0);			/* sig_desc0 */
+defsig_desc(1);			/* sig_desc1 */
+defsig_desc(2);			/* sig_desc2 */
+defsig_desc(3);			/* sig_desc3 */
+defsig_desc(4);			/* sig_desc4 */
+
+
+typedef struct {
+    long hdr;
+    long count;
+} siglist0;
+
+#define defsiglist(N)				\
+    typedef struct siglist ## N {		\
+	long hdr;				\
+	long count;				\
+	sig_desc *asig[N];			\
+    } siglist ## N
+
+defsiglist(1);			/* siglist1 */
+defsiglist(2);			/* siglist2 */
+defsiglist(3);			/* siglist3 */
+defsiglist(4);			/* siglist4 */
+defsiglist(5);			/* siglist5 */
+defsiglist(6);			/* siglist6 */
+defsiglist(7);			/* siglist7 */
+defsiglist(8);			/* siglist8 */
+defsiglist(9);			/* siglist9 */
+defsiglist(10);			/* siglist10 */
 
 #endif	/* !PCLU_SYS */

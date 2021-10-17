@@ -329,7 +329,7 @@ find_type_own_ptr(framep fp, long i)
 
 
 struct OPS **
-alt_find_ops(framep fp, long i, char *opnm)
+alt_find_ops(framep fp, long i, const char *opnm)
 {
     long k;
     CLUREF op_own_ptr, type_own_ptr;
@@ -367,7 +367,7 @@ alt_find_ops(framep fp, long i, char *opnm)
 
 
 struct OPS **
-alt_find_ops2(char *opnm, framep info,
+alt_find_ops2(const char *opnm, framep info,
 	      OWNPTR type_own_ptr, OWNPTR op_own_ptr)
 {
     long k;
@@ -441,7 +441,7 @@ debugopprint_val(CLUREF po, CLUREF ind, CLUREF mod, CLUREF nm)
     CLUPROC cluprc;
     errcode err;
     long *addr;
-    char *fullnm, *opnm;
+    const char *fullnm, *opnm;
     CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
 
     i = ind.num - 1;
@@ -639,7 +639,7 @@ debugopnm2val_ops(CLUREF ind, CLUREF mod, CLUREF nm,
     CLUPROC cluprc;
     errcode err;
     long *addr;
-    char *fullnm, *opnm;
+    const char *fullnm, *opnm;
     CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
 
     i = ind.num - 1;
@@ -789,7 +789,7 @@ debugopget_val(CLUREF ind, CLUREF mod, CLUREF nm, CLUREF *val)
     struct OPS **ops;
     CLUPROC cluprc;
     errcode err;
-    char *fullnm;
+    const char *fullnm;
     CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
     long *addr;
 
@@ -869,7 +869,7 @@ debugopset_val(CLUREF ind, CLUREF mod, CLUREF nm, CLUREF val)
     struct OPS **ops;
     CLUPROC cluprc;
     errcode err;
-    char *fullnm;
+    const char *fullnm;
     CLUREF clu_fullnm, op_own_ptr, type_own_ptr, size;
     long *addr;
 
@@ -945,7 +945,7 @@ debugopframe_count(CLUREF *ans)
 errcode
 debugopframe_info(CLUREF nth, CLUREF *info, CLUREF *line)
 {
-    char *cnm;
+    const char *cnm;
     CLUREF newnm;
     framep fp, *fpp;
 
@@ -1003,7 +1003,7 @@ debugopget_nth_formal(CLUREF ref, CLUREF n, CLUREF *ans)
     CLUREF temp, size;
     Slist1 *sl  = (Slist1 *)ref.ref;
     errcode err;
-    char *nm;
+    const char *nm;
 
     nm = sl->nm[n.num - 1];
     size.num = strlen(nm);
@@ -1019,7 +1019,7 @@ debugopget_nth_type_formal(CLUREF riref, CLUREF n, CLUREF *ans)
     CLUREF temp, size;
     framep ri  = (framep)riref.ref;
     errcode err;
-    char *nm;
+    const char *nm;
 
     nm = ri->type_formals->nm[n.num - 1];
     size.num = strlen(nm);
@@ -1035,7 +1035,7 @@ debugopget_nth_op_formal(CLUREF riref, CLUREF n, CLUREF *ans)
     CLUREF temp, size;
     framep ri = (framep)riref.ref;
     errcode err;
-    char *nm;
+    const char *nm;
 
     nm = ri->op_formals->nm[n.num - 1];
     size.num = strlen(nm);
@@ -1052,7 +1052,7 @@ debugopget_nth_op(CLUREF vals, CLUREF n, CLUREF info_ref,
 {
     Vlist1 *temp = (Vlist1 *)vals.num;
     struct OPS**ptr;
-    char *opnm;
+    const char *opnm;
     CLUREF opname, sz;
     struct OPS *type_ops = (struct OPS *)type_ops_ref.ref;
     struct OPS *op_ops = (struct OPS *)op_ops_ref.ref;
@@ -1102,7 +1102,7 @@ debugopget_nth_sigval(CLUREF i, CLUREF *ans)
 
 
 errcode
-debugopcmp_sig(CLUREF s1, char *s2, CLUREF *ans)
+debugopcmp_sig(CLUREF s1, const char *s2, CLUREF *ans)
 {
     long size = strlen(s2);
 
@@ -1141,7 +1141,7 @@ debugopget_nth_sigvalops(CLUREF sd, CLUREF n, CLUREF info_ref,
 			 CLUREF *ans)
 {
     sig_desc1 *temp = (sig_desc1 *)sd.num;
-    char *opnm;
+    const char *opnm;
     struct OPS **ops;
     struct OPS *type_ops = (struct OPS *)type_ops_ref.ref;
     struct OPS *op_ops = (struct OPS *)op_ops_ref.ref;
@@ -1173,7 +1173,7 @@ debugopget_nth_sigvalops(CLUREF sd, CLUREF n, CLUREF info_ref,
 errcode
 add_selector_info2(CLUREF nm, CLUREF n, CLUREF ops)
 {
-    char *nmc = nm.str->data;
+    const char *nmc = nm.str->data;
     add_selector_info(nmc, n.num, (struct OPS *)ops.ref);
     signal(ERR_ok);
 }
@@ -1184,7 +1184,7 @@ find_selector_ops2(CLUREF typ, CLUREF nfields, CLUREF *ans)
 {
     struct OPS *ops;
 
-    char *typc = typ.str->data;
+    const char *typc = typ.str->data;
     find_selector_ops(typc, nfields.num, &ops);
     ans->ref = (char *)ops;
     signal(ERR_ok);
@@ -1192,8 +1192,8 @@ find_selector_ops2(CLUREF typ, CLUREF nfields, CLUREF *ans)
 
 
 /*
-static char *uninit_var1 = "Uninitialized variable ";
-static char *uninit_var2 = " in entry point ";
+static const char *uninit_var1 = "Uninitialized variable ";
+static const char *uninit_var2 = " in entry point ";
 
 			size.num = strlen(uninit_var1);
 			stringOPcons(uninit_var1, CLU_1, size, &str1);
