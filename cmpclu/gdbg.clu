@@ -131,7 +131,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
     % forward pointer to dbg_info structure
     emit_extern = proc(e: g_env)
 	if ~yes then return end
-	g_env$putl(e, "extern struct dbg_info* dbg_info_" || nm || ";")
+	g_env$putl(e, "extern const struct dbg_info * const dbg_info_" || nm || ";")
 	g_env$putl(e, "#undef MY_TRACE_FLAG")
 	g_env$putl(e, "#define MY_TRACE_FLAG " || nm || "_TRACE")
 	g_env$putl(e, "long " || nm || "_TRACE;")
@@ -140,7 +140,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 
     emit_local_entry = proc(e: g_env)
 	if ~yes then return end
-	g_env$putl(e, "struct dbg_info *DBG_INFO;")
+	g_env$putl(e, "const struct dbg_info *DBG_INFO;")
 	g_env$putl(e, "long DBG_LINE;")
 	end emit_local_entry
 
@@ -461,7 +461,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	if ~yes then return end
 	oname: string
 	% vals
-	g_env$puts(e, "static Vlist" || int$unparse(nvals) || " vals_" || nm || " = {")
+	g_env$puts(e, "static const Vlist" || int$unparse(nvals) || " vals_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nvals))
 	if nvals ~= 0 then g_env$puts(e, ", {") end
@@ -475,7 +475,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	% sigs
 	for i: int in exceptionlist$indexes(ap.sigs) do
 	    tsz: int := typelist$size(ap.sigs[i].types)
-	    g_env$putl(e, "static sig_desc" || int$unparse(tsz) ||
+	    g_env$putl(e, "static const sig_desc" || int$unparse(tsz) ||
 			  " sig_" || nm || "_" || int$unparse(i) || " = {0, " ||
 			  int$unparse(3+tsz) || ", "
 			    || "\"" || ap.sigs[i].name || "\", {0, "
@@ -489,14 +489,14 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	    g_env$putl(e, "}};")
 	    end
 
-	g_env$puts(e, "static siglist" || int$unparse(nsigs) || " sigs_" || nm || " = {")
+	g_env$puts(e, "static const siglist" || int$unparse(nsigs) || " sigs_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nsigs))
 	if nsigs > 0 then
 	   g_env$puts(e, ", {")
 	   sep: string := ""
 	   for i: int in exceptionlist$indexes(ap.sigs) do
-	       g_env$puts(e, sep || " (sig_desc *)&sig_" || nm || "_" || int$unparse(i))
+	       g_env$puts(e, sep || " (const sig_desc *)&sig_" || nm || "_" || int$unparse(i))
 	       sep := ","
 	       end
 	   g_env$puts(e, " }")
@@ -504,7 +504,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$putl(e, "};")
 
 	% locals
-	g_env$puts(e, "static Vlist" || int$unparse(nlocals) || " locals_" || nm || " = {")
+	g_env$puts(e, "static const Vlist" || int$unparse(nlocals) || " locals_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nlocals))
 	if nlocals ~= 0 then g_env$puts(e, ",{ ") end
@@ -546,7 +546,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	tyinit: initlist := initlist$new()
 	opinit: initlist := initlist$new()
 	tyexists: bool := false
-	%	g_env$puts(e, "Vlist" || int$unparse(nowns) || " owns_" || nm || " = {")
+	%	g_env$puts(e, "const Vlist" || int$unparse(nowns) || " owns_" || nm || " = {")
 	%	g_env$puts(e, "0, ")
 	%	g_env$puts(e, int$unparse(nowns))
 	%	if current_type$exists() cand ~current_type$parmd()
@@ -559,7 +559,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	%	g_env$putl(e, "};")
 
 	% op owns (parameterized op)
-	g_env$puts(e, "static Vlist" || int$unparse(npopowns) || " popowns_" || nm || " = {")
+	g_env$puts(e, "static const Vlist" || int$unparse(npopowns) || " popowns_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(npopowns))
 	if npopowns > 0 then
@@ -576,7 +576,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$putl(e, "};")
 
 	% type formals
-	g_env$puts(e, "Slist" || int$unparse(ntypeformals) ||
+	g_env$puts(e, "const Slist" || int$unparse(ntypeformals) ||
 		      " tformals_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(ntypeformals))
@@ -595,7 +595,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$putl(e, "};")
 
 	% op formals
-	g_env$puts(e, "Slist" || int$unparse(nopformals) ||
+	g_env$puts(e, "const Slist" || int$unparse(nopformals) ||
 		      " opformals_" || nm || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nopformals))
@@ -621,7 +621,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	emit_own_externs(e)
 	nptowns := owns_in_mixedlist(ptowns)
 	emit_vlist_typedef(e, nptowns)
-	g_env$puts(e, "static Vlist" || int$unparse(nptowns) || " ptowns_" || current_type$get().idn.str || " = {")
+	g_env$puts(e, "static const Vlist" || int$unparse(nptowns) || " ptowns_" || current_type$get().idn.str || " = {")
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nptowns))
 	g_env$puts(e, ",{")
@@ -636,9 +636,9 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	emit_vlist_typedef(e, nowns)
 	if current_type$exists()
 	   then
-		g_env$puts(e, "static Vlist" || int$unparse(nowns) || " owns_" || current_type$get().idn.str || " = {")
+		g_env$puts(e, "static const Vlist" || int$unparse(nowns) || " owns_" || current_type$get().idn.str || " = {")
 	   else
-		g_env$puts(e, "static Vlist" || int$unparse(nowns) || " owns_" || nm || " = {")
+		g_env$puts(e, "static const Vlist" || int$unparse(nowns) || " owns_" || nm || " = {")
 	   end
 	g_env$puts(e, "0, ")
 	g_env$puts(e, int$unparse(nowns))
@@ -800,7 +800,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
     emit_decl = proc(e: g_env)
 	if ~yes then return end
 	% emit header
-	g_env$putl(e, "dbg_info_" || nm || "_actual dbg_info_"
+	g_env$putl(e, "const dbg_info_" || nm || "_actual dbg_info_"
 			|| nm || "_data = {0, 12, ")
 	g_env$indent(e)
 	% emit fixed stuff
@@ -879,8 +879,8 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	% emit trailer
 	g_env$putl(e, "};")
 	g_env$outdent(e)
-	g_env$putl(e, "struct dbg_info *dbg_info_" || nm
-			|| " = (struct dbg_info *)&dbg_info_" || nm || "_data;")
+	g_env$putl(e, "const struct dbg_info * const dbg_info_" || nm
+			|| " = (const struct dbg_info *)&dbg_info_" || nm || "_data;")
 	end emit_decl
 
     idns_in_decls = proc(a: ad) returns (int)
