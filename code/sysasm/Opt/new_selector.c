@@ -45,11 +45,11 @@ extern errcode missing_print_fcn();
 #define MAX_FIELDS    50
 
 static const char *sel_inst_fieldname[MAX_FIELDS];
-static struct OPS *sel_inst_fieldops[MAX_FIELDS];
+static const struct OPS *sel_inst_fieldops[MAX_FIELDS];
 
 
 errcode
-add_selector_info(const char *field_name, long index, struct OPS *ops)
+add_selector_info(const char *field_name, long index, const struct OPS *ops)
 {
     sel_inst_fieldname[index] = field_name;
     sel_inst_fieldops[index] = ops;

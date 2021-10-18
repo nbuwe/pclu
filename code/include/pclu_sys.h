@@ -523,7 +523,7 @@ typedef struct OPS {
 typedef struct OPS *OPSPTR;
 
 
-errcode add_selector_info(const char *field_name, long index, OPSPTR ops);
+errcode add_selector_info(const char *field_name, long index, const struct OPS *ops);
 errcode find_selector_ops(const char *selname, long nfields, OPSPTR *table);
 
 
