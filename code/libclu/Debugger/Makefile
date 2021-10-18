@@ -26,7 +26,7 @@ c_files:
 		\#co \*
 
 clean:
-	${RM} *.o *.c ${FLUFF}
+	${RM} *.o ${FLUFF}
 
 veryclean: clean
-
+	${RM} *.c

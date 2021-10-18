@@ -6,6 +6,7 @@ FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
 all: ${OBJS}
 
 clean:
-	${RM} *.o *.c *.h ${FLUFF}
+	${RM} *.o ${FLUFF}
 
 veryclean: clean
+	${RM} *.c *.h
