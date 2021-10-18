@@ -358,7 +358,7 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
     /* defs calculated number of fcns missing vs reqs */
     *defs += reqs->count + 1;
     /* checked ops before use 11/12/91 */
-    if (ops == 0) {
+    if (ops == NULL) {
 	temp->type_owns = 0;
 	temp->op_owns = 0;
 	*table = temp;
@@ -371,7 +371,7 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 	name = reqs->entry[i].name;
 	for (j = 0; j < ops->count; ++j) {
 	    name1 = ops->entry[j].name;
-	    if (name1 == 0 || name1[0] != name[0])
+	    if (name1 == NULL || name1[0] != name[0])
 		continue;
 	    if (strcmp(name1, name) == 0) {
 		temp->entry[i].name = name1;
@@ -385,7 +385,7 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
     /* add in debug_print function for debugger 11/12/91 */
     for (j = 0; j < ops->count; ++j) {
 	name1 = ops->entry[j].name;
-	if (name1 == 0)
+	if (name1 == NULL)
 	    continue;
 	if (strcmp(name1, "debug_print") == 0) {
 	    temp->entry[i].name = name1;
@@ -457,7 +457,7 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
     /* increment to cover print function for debugger 11/12/91*/
     temp->count = reqs->count + 1;     /* count sb ok already */
     /* checked ops before use 11/12/91 */
-    if (ops == 0) {
+    if (ops == NULL) {
 	*table = temp;
 	signal(ERR_ok);
     }
@@ -471,7 +471,7 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 	name = reqs->entry[i].name;
 	for (j = 0; j < ops->count; ++j) {
 	    name1 = ops->entry[j].name;
-	    if (name1 == 0 || name1[0] != name[0])
+	    if (name1 == NULL || name1[0] != name[0])
 		continue;
 	    if (strcmp(name1, name) == 0) {
 		temp->entry[i].name = name1;
@@ -485,7 +485,7 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
     /* add in debug_print function for debugger 11/12/91 */
     for (j = 0; j < ops->count; ++j) {
 	name1 = ops->entry[j].name;
-	if (name1 == 0)
+	if (name1 == NULL)
 	    continue;
 	if (strcmp(name1, "debug_print") == 0) {
 	    temp->entry[i].name = name1;
