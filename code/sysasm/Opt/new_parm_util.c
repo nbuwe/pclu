@@ -367,9 +367,9 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 
     temp->type_owns = ops->type_owns;
     temp->op_owns = ops->op_owns;
-    for (i = 0; i < reqs->count; i++) {
+    for (i = 0; i < reqs->count; ++i) {
 	name = reqs->entry[i].name;
-	for (j = 0; j < ops->count; j++) {
+	for (j = 0; j < ops->count; ++j) {
 	    name1 = ops->entry[j].name;
 	    if (name1 == 0 || name1[0] != name[0])
 		continue;
@@ -383,7 +383,7 @@ build_parm_table2(const struct REQS *reqs, struct OPS *ops,
     }
 
     /* add in debug_print function for debugger 11/12/91 */
-    for (j = 0; j < ops->count; j++) {
+    for (j = 0; j < ops->count; ++j) {
 	name1 = ops->entry[j].name;
 	if (name1 == 0)
 	    continue;
@@ -464,12 +464,12 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 
     temp->type_owns = ops->type_owns;  /* type owns sb ok already */
     temp->op_owns = ops->op_owns;      /* op owns sb ok already */
-    for (i = 0; i < reqs->count; i++) {
+    for (i = 0; i < reqs->count; ++i) {
 	if (temp->entry[i].fcn != (CLUPROC)0)
 	    continue; /* entry already ok */
 
 	name = reqs->entry[i].name;
-	for (j = 0; j < ops->count; j++) {
+	for (j = 0; j < ops->count; ++j) {
 	    name1 = ops->entry[j].name;
 	    if (name1 == 0 || name1[0] != name[0])
 		continue;
@@ -483,7 +483,7 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
     }
 
     /* add in debug_print function for debugger 11/12/91 */
-    for (j = 0; j < ops->count; j++) {
+    for (j = 0; j < ops->count; ++j) {
 	name1 = ops->entry[j].name;
 	if (name1 == 0)
 	    continue;
@@ -518,11 +518,11 @@ void
 find_ops_init(OWNPTR *ans1, OWNREQ *ans2, void **ans3)
 {
 #if 0 /* removed 1/28/91 to speed up start_up dwc */
-    for (size_t i = 0; i < MAX_INSTS; i++) {
+    for (size_t i = 0; i < MAX_INSTS; ++i) {
 	opsptr_arr[i] = 0;
 	ops_arr[i] = 0;
 	ops_proc[i] = 0;
-	for (size_t j = 0; j < MAX_PARMS; j++) {
+	for (size_t j = 0; j < MAX_PARMS; ++j) {
 	    parm_vals[i][j] = 0;
 	    parm_reqs[i][j] = NULL;
 	}
@@ -552,12 +552,12 @@ find_ops(const struct OPS *aops, errcode (*procaddr)(), long nparm,
     }
 
     /* first match ownreqs to ownreq_arr entries */
-    for (i = 0; i < num_entries; i++) {
+    for (i = 0; i < num_entries; ++i) {
 	if (aops == ops_arr[i] && procaddr == ops_proc[i]) {
 	    found = true;
 
 	    /* ownreqs matches: see if instance information lines up */
-	    for (j = 0 ; j < nparm; j++) {
+	    for (j = 0; j < nparm; ++j) {
 		if (parm_reqs[i][j] == NULL) {
 		    /* make sure instance is a constant */
 		    /* and check constant value equality */
@@ -622,7 +622,7 @@ add_ops(const struct OPS *aops, errcode (*procaddr)(), long nparm,
     opsptr_arr[slot] = instance;
     parm_types_defs[slot] = tdefs;
     parm_ops_defs[slot] = odefs;
-    for (long j = 0 ; j < nparm; ++j) {
+    for (long j = 0; j < nparm; ++j) {
 	parm_vals[slot][j] = inst_parm_value[j];
 	parm_reqs[slot][j] = inst_parm_reqs[j];
     }
