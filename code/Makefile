@@ -22,7 +22,7 @@ optlib: optfiles libpclu_opt.a
 OPT = libclu/Opt/*.o sysclu/Opt/*.o libasm/Opt/*.o sysasm/Opt/*.o
 
 optfiles:
-	for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} opt); done
+	set -e; for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} opt); done
 
 libpclu_opt.a:
 	${RM} libpclu_opt.a
@@ -39,7 +39,7 @@ DEBUG1 = libclu/Debugger/*.o sysclu/Debugger/*.o libasm/Debugger/*.o \
 DEBUG2 = ../debug/*.o
 
 debugfiles:
-	for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} debugger); done
+	set -e; for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} debugger); done
 	cd ../debug && ${MAKE}
 
 #libpclu_debug.a: ${DEBUG1} ${DEBUG2}
@@ -60,7 +60,7 @@ cdebuglib: cdebugfiles libpclu_g.a
 G = libclu/Debug/*.o sysclu/Debug/*.o libasm/Debug/*.o sysasm/Debug/*.o
 
 cdebugfiles:
-	for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} debug); done
+	set -e; for i in ${CLIBDIRS}; do (cd $$i && ${MAKE} debug); done
 
 libpclu_g.a: ${G}
 	${RM} libpclu_g.a
