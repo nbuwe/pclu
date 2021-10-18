@@ -46,13 +46,13 @@ CLU       = $(CLUHOME)/exe/pclu
 regen-sysclu:
 	for file in ${SYS_SOURCES}; do \
 	    echo '===>' $${file}; \
-	    $(CLU) \#opt \
-		\#cfiles TRUE \#ccopt 0 \
-		\#merge ../../lib/lowlev.lib \
-		\#merge ../../lib/misc.lib \
-		\#merge ../../lib/useful.lib \
-		\#spec ../../lib/_gprof.spc \
-		\#bindir ${CLUHOME}/code/sysclu/Opt \
-		\#clu $${file} \
+	    $(CLU) -opt \
+		-cfiles TRUE -ccopt 0 \
+		-merge ../../lib/lowlev.lib \
+		-merge ../../lib/misc.lib \
+		-merge ../../lib/useful.lib \
+		-spec ../../lib/_gprof.spc \
+		-bindir ${CLUHOME}/code/sysclu/Opt \
+		-clu $${file} \
 	    || echo FAILED: $${file}; \
 	done

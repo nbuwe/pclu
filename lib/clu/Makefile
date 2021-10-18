@@ -68,13 +68,13 @@ default: regen
 all: regen rebuild
 
 regen:
-	$(CLU) \#opt \#cfiles TRUE \
-	    \#spec ${MISC_SOURCES} \
-            \#ce ${LOW_EQU} \
-	    \#spec ${LOWLIB_SOURCES} ${LOW_SPECS} \
-	    \#spec ${LOWSYS_SOURCES} \
-            \#spec ${USE_SPECS} ${USELIB_SOURCES} ${USESYS_SOURCES} \
-	    \#clu gc_read, gcd_tab, gc_dump, test_gcd
+	$(CLU) -opt -cfiles TRUE \
+	    -spec ${MISC_SOURCES} \
+            -ce ${LOW_EQU} \
+	    -spec ${LOWLIB_SOURCES} ${LOW_SPECS} \
+	    -spec ${LOWSYS_SOURCES} \
+            -spec ${USE_SPECS} ${USELIB_SOURCES} ${USESYS_SOURCES} \
+	    -clu gc_read, gcd_tab, gc_dump, test_gcd
 	cp gcd_tab.c gc_read.c gc_dump.c ${CLUHOME}/code/libclu/Opt
 
 rebuild:
@@ -100,16 +100,16 @@ EXTRA_SOURCES += table.clu
 regen-libclu:
 	for file in ${LOWLIB_SOURCES} ${MISC_SOURCES} ${USELIB_SOURCES} ${EXTRA_SOURCES}; do \
 	    echo '===>' $${file}; \
-	    $(CLU) \#opt \
-		\#cfiles TRUE \#ccopt 0 \
-		\#merge ../lowlev.lib \
-		\#merge ../misc.lib \
-		\#merge ../useful.lib \
-		\#spec ../_all_dir_entries_.spc \
-		\#spec ../_host_address.spc \
-		\#ce ${LIB_DIR}/gcd.equ \
-		\#spec gc_read.clu \
-		\#bindir ${CLUHOME}/code/libclu/Opt \
-		\#clu $${file} \
+	    $(CLU) -opt \
+		-cfiles TRUE -ccopt 0 \
+		-merge ../lowlev.lib \
+		-merge ../misc.lib \
+		-merge ../useful.lib \
+		-spec ../_all_dir_entries_.spc \
+		-spec ../_host_address.spc \
+		-ce ${LIB_DIR}/gcd.equ \
+		-spec gc_read.clu \
+		-bindir ${CLUHOME}/code/libclu/Opt \
+		-clu $${file} \
 	    || echo FAILED: $${file}; \
 	done
