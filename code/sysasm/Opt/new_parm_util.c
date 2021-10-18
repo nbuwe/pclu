@@ -541,8 +541,6 @@ find_ops(const struct OPS *aops, errcode (*procaddr)(), long nparm,
 	 struct OPS **instance)
 {
     long i, j;
-    bool found = false;
-    struct OPS *ops1, *ops2;
 
     /* if too many parms, then die */
     if (nparm >= MAX_PARMS) {
@@ -551,46 +549,46 @@ find_ops(const struct OPS *aops, errcode (*procaddr)(), long nparm,
 	exit(-10);
     }
 
-    /* first match ownreqs to ownreq_arr entries */
-    for (i = 0; i < num_entries; ++i) {
-	if (aops == ops_arr[i] && procaddr == ops_proc[i]) {
-	    found = true;
+    bool found = false;
+    for (i = 0; !found && i < num_entries; ++i) {
 
-	    /* ownreqs matches: see if instance information lines up */
-	    for (j = 0; j < nparm; ++j) {
-		if (parm_reqs[i][j] == NULL) {
-		    /* make sure instance is a constant */
-		    /* and check constant value equality */
-		    if (inst_parm_reqs[j] == NULL
-			&& inst_parm_value[j] == parm_vals[i][j])
-			continue;
+	/* same type/op template? */
+	if (aops != ops_arr[i] || procaddr != ops_proc[i])
+	    continue;		/* next template */
+
+	/* type/op match: see if parameters line up */
+	found = true;	/* tentatively */
+	for (j = 0; j < nparm; ++j) {
+	    if (parm_reqs[i][j] == NULL) {
+		/* make sure instance parm is a constant */
+		/* and check constant value equality */
+		if (inst_parm_reqs[j] == NULL
+		    && inst_parm_value[j] == parm_vals[i][j])
+		    continue;	/* next parm */
+		else {
+		    found = false;
+		    break;
+		}
+	    }
+	    else {
+		/* make sure isntance parm is a type */
+		/* and check type match via type_owns */
+		if (inst_parm_reqs[j] != NULL) {
+		    const struct OPS *ops1 = (const struct OPS *)inst_parm_value[j];
+		    const struct OPS *ops2 = (const struct OPS *)parm_vals[i][j];
+		    if (ops1->type_owns == ops2->type_owns)
+			continue; /* next parm */
 		    else {
 			found = false;
 			break;
 		    }
 		}
 		else {
-		    /* make sure isntance is a type */
-		    /* and check type match via type_owns */
-		    if (inst_parm_reqs[j] != NULL) {
-			ops1 = (struct OPS*)inst_parm_value[j];
-			ops2 = (struct OPS*)parm_vals[i][j];
-			if (ops1->type_owns == ops2->type_owns)
-			    continue;
-			else {
-			    found = false;
-			    break;
-			}
-		    }
-		    else {
-			found = false;
-			break;
-		    }
+		    found = false;
+		    break;
 		}
 	    }
 	}
-	if (found)
-	    break;
     }
 
     if (found) {
