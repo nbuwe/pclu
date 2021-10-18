@@ -6,7 +6,8 @@ CFLAGS         = -I../../include
 
 OPT_FLAGS      = -O2
 DEBUG_FLAGS    = -g
-DEBUGGER_FLAGS = -O2
+DEBUGGER_FLAGS ?= ${OPT_FLAGS}
+DEBUGGER_FLAGS += -DCLU_DEBUG
 
 LN             = /bin/ln -s
 RM             = /bin/rm -f
