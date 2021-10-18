@@ -75,8 +75,8 @@ struct {
 struct OPS NO_OPS = { .count = 0, .type_owns = NULL, .op_owns = NULL };
 struct OPS *NULL_OPS = NULL;
 
-Vlist0 NO_VALS =  { .hdr = 0, .count = 0 };
-Slist0 NO_PARMS = { .hdr = 0, .count = 0 };
+const Vlist0 NO_VALS =  { .hdr = 0, .count = 0 };
+const Slist0 NO_PARMS = { .hdr = 0, .count = 0 };
 
 
 long maxheapsize = 0;

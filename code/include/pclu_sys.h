@@ -548,7 +548,7 @@ typedef struct {
     long count;
 } Slist0;
 
-extern Slist0 NO_PARMS;
+extern const Slist0 NO_PARMS;
 
 #define defslist(N)				\
     typedef struct Slist ## N {			\
@@ -576,7 +576,7 @@ typedef struct {
     long count;
 } Vlist0;
 
-extern Vlist0 NO_VALS;
+extern const Vlist0 NO_VALS;
 
 #define defvlist(N)				\
     typedef struct Vlist ## N {			\
