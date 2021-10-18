@@ -45,7 +45,7 @@ static bool find_ops(const struct OPS *aops, errcode (*procaddr)(), long nparm,
 
 static errcode build_type_ops(const struct OPS *aops, long nparm, OWNPTR owns,
 			      struct OPS **instance);
-static errcode build_parm_table2(const struct REQS *reqs, struct OPS *ops,
+static errcode build_parm_table2(const struct REQS *reqs, const struct OPS *ops,
 				 struct OPS **table, long *defs);
 static errcode update_parm_table2(const struct REQS *reqs, const struct OPS *ops,
 				  struct OPS **table, long *defs);
@@ -150,7 +150,8 @@ find_type_instance(const struct OPS *aops,
 	}
 	else {
 	    /* a type parameter */
-	    struct OPS *parm_ops = (struct OPS *)inst_parm_value[i];
+	    const struct OPS *parm_ops
+		= (const struct OPS *)inst_parm_value[i];
 
 	    /* extract from parm_ops what's required of them */
 	    build_parm_table2(inst_parm_reqs[i], parm_ops,
@@ -227,7 +228,9 @@ find_typeop_instance(const struct OPS *aops,
 	}
 	else {
 	    /* a type parameter */
-	    struct OPS *parm_ops = (struct OPS *)inst_parm_value[ntparm + i];
+	    const struct OPS *parm_ops
+		= (const struct OPS *)inst_parm_value[ntparm + i];
+
 	    build_parm_table2(inst_parm_reqs[ntparm + i], parm_ops,
 			      (struct OPS **)fieldp,
 			      &odefs);
@@ -287,7 +290,8 @@ find_prociter_instance(errcode (*procaddr)(),
 	}
 	else {
 	    /* a type parameter */
-	    struct OPS *parm_ops = (struct OPS *)inst_parm_value[i];
+	    const struct OPS *parm_ops
+		= (const struct OPS *)inst_parm_value[i];
 
 	    build_parm_table2(inst_parm_reqs[i], parm_ops,
 			      (struct OPS **)fieldp,
@@ -343,7 +347,7 @@ build_type_ops(const struct OPS *aops, long nparm, OWNPTR owns,
 
 
 static errcode
-build_parm_table2(const struct REQS *reqs, struct OPS *ops,
+build_parm_table2(const struct REQS *reqs, const struct OPS *ops,
 		  struct OPS **table, long *defs)
 {
     long i,j;
@@ -415,8 +419,10 @@ update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **instance)
 	if (inst_parm_reqs[i] == NULL) /* a constant parameter */
 	    continue;
 
-	update_parm_table2(inst_parm_reqs[i],
-			   (const struct OPS *)inst_parm_value[i],
+	const struct OPS *parm_ops
+	    = (const struct OPS *)inst_parm_value[i];
+
+	update_parm_table2(inst_parm_reqs[i], parm_ops,
 			   (struct OPS **)&owns[ownreqp->own_count + i],
 			   &tdefs);
     }
@@ -436,8 +442,10 @@ update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
 	if (inst_parm_reqs[ntparm + i] == NULL) /* a constant parameter */
 	    continue;
 
-	update_parm_table2(inst_parm_reqs[ntparm + i],
-			   (const struct OPS *)inst_parm_value[ntparm + i],
+	const struct OPS *parm_ops
+	    = (const struct OPS *)inst_parm_value[ntparm + i];
+
+	update_parm_table2(inst_parm_reqs[ntparm + i], parm_ops,
 			   (struct OPS **)&owns[ownreqp->own_count + i],
 			   &odefs);
     }
