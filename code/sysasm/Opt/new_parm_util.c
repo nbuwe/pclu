@@ -417,7 +417,7 @@ update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **instance)
 
 	update_parm_table2(inst_parm_reqs[i],
 			   (struct OPS *)inst_parm_value[i],
-			   (struct OPS **)&owns[i + ownreqp->own_count],
+			   (struct OPS **)&owns[ownreqp->own_count + i],
 			   &tdefs);
     }
     current_tdefs = tdefs;
@@ -438,7 +438,7 @@ update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
 
 	update_parm_table2(inst_parm_reqs[ntparm + i],
 			   (struct OPS *)inst_parm_value[ntparm + i],
-			   (struct OPS **)&owns[i + ownreqp->own_count],
+			   (struct OPS **)&owns[ownreqp->own_count + i],
 			   &odefs);
     }
     current_odefs = odefs;
