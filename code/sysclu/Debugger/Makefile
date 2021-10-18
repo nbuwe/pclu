@@ -15,7 +15,7 @@ FLUFF   = *~ *.old *.bak .*~ .*.old .*.bak
 .c.o:
 	cc -c ${CFLAGS} $<
 
-all: c_files ${OBJS}
+all: ${OBJS}
 
 c_files:
 	$(CLU)  \#ext false \#dir ${LIB_DIR} \#me ${LIBS}       \
