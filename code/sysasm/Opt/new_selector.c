@@ -287,10 +287,10 @@ long 	struct_field_count [MAX_SELECTORS];
 long 	variant_field_count [MAX_SELECTORS];
 long 	oneof_field_count [MAX_SELECTORS];
 
-OPSPTR	record_field_vals [MAX_SELECTORS][MAX_FIELDS];
-OPSPTR	struct_field_vals [MAX_SELECTORS][MAX_FIELDS];
-OPSPTR	variant_field_vals [MAX_SELECTORS][MAX_FIELDS];
-OPSPTR	oneof_field_vals [MAX_SELECTORS][MAX_FIELDS];
+const struct OPS *record_field_vals[MAX_SELECTORS][MAX_FIELDS];
+const struct OPS *struct_field_vals[MAX_SELECTORS][MAX_FIELDS];
+const struct OPS *variant_field_vals[MAX_SELECTORS][MAX_FIELDS];
+const struct OPS *oneof_field_vals[MAX_SELECTORS][MAX_FIELDS];
 
 static long record_num_entries = 0;
 static long struct_num_entries = 0;
@@ -337,7 +337,7 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
     bool found = false;
     long *pcount;
     OPSPTR *table;
-    OPSPTR (*parm_vals)[MAX_FIELDS];
+    const struct OPS *(*parm_vals)[MAX_FIELDS];
     long *parm_count;
 
 
@@ -413,7 +413,7 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 {
     long *pcount;
     OPSPTR *table;
-    OPSPTR (*parm_vals)[MAX_FIELDS];
+    const struct OPS *(*parm_vals)[MAX_FIELDS];
     long *parm_count;
 
     /* first select which table */
