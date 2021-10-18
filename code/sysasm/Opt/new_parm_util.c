@@ -47,7 +47,7 @@ static errcode build_type_ops(const struct OPS *aops, long nparm, OWNPTR owns,
 			      struct OPS **instance);
 static errcode build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 				 struct OPS **table, long *defs);
-static errcode update_parm_table2(const struct REQS *reqs, struct OPS *ops,
+static errcode update_parm_table2(const struct REQS *reqs, const struct OPS *ops,
 				  struct OPS **table, long *defs);
 static void update_type_ops(long nparm, const OWN_req *ownreqp,
 			    struct OPS **instance);
@@ -416,7 +416,7 @@ update_type_ops(long nparm, const OWN_req *ownreqp, struct OPS **instance)
 	    continue;
 
 	update_parm_table2(inst_parm_reqs[i],
-			   (struct OPS *)inst_parm_value[i],
+			   (const struct OPS *)inst_parm_value[i],
 			   (struct OPS **)&owns[ownreqp->own_count + i],
 			   &tdefs);
     }
@@ -437,7 +437,7 @@ update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
 	    continue;
 
 	update_parm_table2(inst_parm_reqs[ntparm + i],
-			   (struct OPS *)inst_parm_value[ntparm + i],
+			   (const struct OPS *)inst_parm_value[ntparm + i],
 			   (struct OPS **)&owns[ownreqp->own_count + i],
 			   &odefs);
     }
@@ -446,7 +446,7 @@ update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
 
 
 static errcode
-update_parm_table2(const struct REQS *reqs, struct OPS *ops,
+update_parm_table2(const struct REQS *reqs, const struct OPS *ops,
 		   struct OPS **table, long *defs)
 {
     struct OPS *temp;
