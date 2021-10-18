@@ -3,8 +3,8 @@
 # Compilation flags for subdirectories of this directory
 
 CFLAGS         = -I../../include -DLINUX
-OPT_FLAGS      = -O2 
-DEBUG_FLAGS    = -g 
+OPT_FLAGS      = -O2
+DEBUG_FLAGS    = -g
 DEBUGGER_FLAGS = -O2
 
 # _job.c not currently supported
