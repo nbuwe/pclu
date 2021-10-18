@@ -352,25 +352,27 @@ build_parm_table2(const struct REQS *reqs, const struct OPS *ops,
 {
     long i,j;
     const char *name, *name1;
-    struct OPS * temp;
 
-    /* REQS -> OPS          \/          3/29/90 */
+    struct OPS *temp;
     clu_alloc(sizeof(struct OPS) +
-	      sizeof(struct OP_ENTRY) * (reqs->count), &temp);
+	      sizeof(struct OP_ENTRY) * reqs->count, &temp);
+
     /* increment to cover print function for debugger 11/12/91*/
     temp->count = reqs->count + 1;
     /* defs calculated number of fcns missing vs reqs */
-    *defs += reqs->count + 1;
+    *defs += temp->count;
+
     /* checked ops before use 11/12/91 */
     if (ops == NULL) {
-	temp->type_owns = 0;
-	temp->op_owns = 0;
+	temp->type_owns = NULL;
+	temp->op_owns = NULL;
 	*table = temp;
 	signal(ERR_ok);
     }
 
     temp->type_owns = ops->type_owns;
     temp->op_owns = ops->op_owns;
+
     for (i = 0; i < reqs->count; ++i) {
 	name = reqs->entry[i].name;
 	for (j = 0; j < ops->count; ++j) {
@@ -398,6 +400,7 @@ build_parm_table2(const struct REQS *reqs, const struct OPS *ops,
 	    break;
 	}
     }
+
     *table = temp;
     signal(ERR_ok);
 }
