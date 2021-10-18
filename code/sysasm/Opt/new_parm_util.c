@@ -465,7 +465,7 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
     temp->type_owns = ops->type_owns;  /* type owns sb ok already */
     temp->op_owns = ops->op_owns;      /* op owns sb ok already */
     for (i = 0; i < reqs->count; ++i) {
-	if (temp->entry[i].fcn != (CLUPROC)0)
+	if (temp->entry[i].fcn != NULL)
 	    continue; /* entry already ok */
 
 	name = reqs->entry[i].name;
