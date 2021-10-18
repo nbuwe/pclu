@@ -42,17 +42,28 @@ SYS_SOURCES += user_name.clu
 SYS_SOURCES += working_dir.clu
 
 CLU       = $(CLUHOME)/exe/pclu
+CLUFLAGS  = -cfiles true
+CLUFLAGS += -merge ../../lib/lowlev.lib
+CLUFLAGS += -merge ../../lib/misc.lib
+CLUFLAGS += -merge ../../lib/useful.lib
+CLUFLAGS += -spec ../../lib/_gprof.spc
 
 regen-sysclu:
 	for file in ${SYS_SOURCES}; do \
 	    echo '===>' $${file}; \
-	    $(CLU) -opt \
-		-cfiles TRUE -ccopt 0 \
-		-merge ../../lib/lowlev.lib \
-		-merge ../../lib/misc.lib \
-		-merge ../../lib/useful.lib \
-		-spec ../../lib/_gprof.spc \
+	    $(CLU) $(CLUFLAGS) \
+		-opt -ccopt 0 \
 		-bindir ${CLUHOME}/code/sysclu/Opt \
+		-clu $${file} \
+	    || echo FAILED: $${file}; \
+	done
+
+regen-sysclu-debug:
+	for file in ${SYS_SOURCES}; do \
+	    echo '===>' $${file}; \
+	    $(CLU) $(CLUFLAGS) \
+		-ccdbg 0 \
+		-bindir ${CLUHOME}/code/sysclu/Debugger \
 		-clu $${file} \
 	    || echo FAILED: $${file}; \
 	done

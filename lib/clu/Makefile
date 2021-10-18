@@ -97,19 +97,36 @@ EXTRA_SOURCES += maybe.clu
 EXTRA_SOURCES += pstream.clu
 EXTRA_SOURCES += table.clu
 
+
+CLUFLAGS  = -cfiles true
+CLUFLAGS += -merge ../lowlev.lib
+CLUFLAGS += -merge ../misc.lib
+CLUFLAGS += -merge ../useful.lib
+CLUFLAGS += -ce ${LIB_DIR}/gcd.equ
+CLUFLAGS += -spec ../_all_dir_entries_.spc
+CLUFLAGS += -spec ../_host_address.spc
+CLUFLAGS += -spec gc_read.clu
+
 regen-libclu:
-	for file in ${LOWLIB_SOURCES} ${MISC_SOURCES} ${USELIB_SOURCES} ${EXTRA_SOURCES}; do \
+	for file in ${LOWLIB_SOURCES} ${MISC_SOURCES} ${USELIB_SOURCES} \
+		    ${EXTRA_SOURCES}; \
+	do \
 	    echo '===>' $${file}; \
-	    $(CLU) -opt \
-		-cfiles TRUE -ccopt 0 \
-		-merge ../lowlev.lib \
-		-merge ../misc.lib \
-		-merge ../useful.lib \
-		-spec ../_all_dir_entries_.spc \
-		-spec ../_host_address.spc \
-		-ce ${LIB_DIR}/gcd.equ \
-		-spec gc_read.clu \
+	    $(CLU) $(CLUFLAGS) \
+		-opt -ccopt 0 \
 		-bindir ${CLUHOME}/code/libclu/Opt \
+		-clu $${file} \
+	    || echo FAILED: $${file}; \
+	done
+
+regen-libclu-debug:
+	for file in ${LOWLIB_SOURCES} ${MISC_SOURCES} ${USELIB_SOURCES} \
+		    ${EXTRA_SOURCES}; \
+	do \
+	    echo '===>' $${file}; \
+	    $(CLU) $(CLUFLAGS) \
+		-ccdbg 0 \
+		-bindir ${CLUHOME}/code/libclu/Debugger \
 		-clu $${file} \
 	    || echo FAILED: $${file}; \
 	done
