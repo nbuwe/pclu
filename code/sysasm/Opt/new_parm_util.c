@@ -221,7 +221,7 @@ find_typeop_instance(const struct OPS *aops,
 	/* Pointer to a field in the instance's _OWN_DEFN structure */
 	long *fieldp = owns->info + (ownreqp->own_count - 1) + i;
 
-	if (inst_parm_reqs[ntparm+i] == NULL) {
+	if (inst_parm_reqs[ntparm + i] == NULL) {
 	    /* a constant parameter */
 	    *fieldp = inst_parm_value[ntparm + i];
 	}
@@ -432,7 +432,7 @@ update_op_ops(long nparm, long ntparm, const OWN_req *ownreqp,
     long *owns = (long *)(*instance)->op_owns;
 
     long odefs = current_odefs;
-    for (long i = 0; i < nparm-ntparm; ++i) {
+    for (long i = 0; i < nparm - ntparm; ++i) {
 	if (inst_parm_reqs[ntparm + i] == NULL) /* a constant parameter */
 	    continue;
 
