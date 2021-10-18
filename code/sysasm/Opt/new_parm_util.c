@@ -38,12 +38,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
+static void add_ops(const struct OPS *aops, errcode (*procaddr)(), long nparm,
 		    struct OPS *instance, long tdefs, long odefs);
-static bool find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
+static bool find_ops(const struct OPS *aops, errcode (*procaddr)(), long nparm,
 		     struct OPS **instance);
 
-static errcode build_type_ops(struct OPS *aops, long nparm, OWNPTR owns,
+static errcode build_type_ops(const struct OPS *aops, long nparm, OWNPTR owns,
 			      struct OPS **instance);
 static errcode build_parm_table2(const struct REQS *reqs, struct OPS *ops,
 				 struct OPS **table, long *defs);
@@ -116,7 +116,7 @@ owns_alloc(const OWN_req *ownreqp)
  * (abstract ops) parameterized with "nparm" inst_parm_*[] parameters.
  */
 errcode
-find_type_instance(struct OPS *aops,
+find_type_instance(const struct OPS *aops,
 		   long nparm, const OWN_req *ownreqp,
 		   struct OPS **result)
 {
@@ -179,7 +179,7 @@ find_type_instance(struct OPS *aops,
  * first "ntparm" are the parameters for the type (may be 0).
  */
 errcode
-find_typeop_instance(struct OPS *aops,
+find_typeop_instance(const struct OPS *aops,
 		     errcode (*procaddr)(),
 		     long nparm, long ntparm,
 		     const OWN_req *ownreqp, const OWN_req *townreqp,
@@ -310,7 +310,8 @@ find_prociter_instance(errcode (*procaddr)(),
  * "nparm" is only used as input to proctype$new, to be obsoleted.
  */
 static errcode
-build_type_ops(struct OPS *aops, long nparm, OWNPTR owns, struct OPS **instance)
+build_type_ops(const struct OPS *aops, long nparm, OWNPTR owns,
+	       struct OPS **instance)
 {
     errcode err;
 
@@ -501,9 +502,9 @@ update_parm_table2(const struct REQS *reqs, struct OPS *ops,
 
 /* storage for following routine */
 
-static OPSPTR ops_arr[MAX_INSTS];	 /* abstract ops */
-static errcode (*ops_proc[MAX_INSTS])(); /* abstract proc */
-static OPSPTR opsptr_arr[MAX_INSTS];	 /* instantiated ops */
+static const struct OPS *ops_arr[MAX_INSTS]; /* abstract ops */
+static errcode (*ops_proc[MAX_INSTS])();     /* abstract proc */
+static OPSPTR opsptr_arr[MAX_INSTS];	     /* instantiated ops */
 
 static long parm_vals[MAX_INSTS][MAX_PARMS];
 static const struct REQS *parm_reqs[MAX_INSTS][MAX_PARMS]; /* NULL => const */
@@ -536,7 +537,7 @@ find_ops_init(OWNPTR *ans1, OWNREQ *ans2, void **ans3)
 /* routine to find ops given type and instance information */
 
 static bool
-find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
+find_ops(const struct OPS *aops, errcode (*procaddr)(), long nparm,
 	 struct OPS **instance)
 {
     long i, j;
@@ -606,7 +607,7 @@ find_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
 
 
 static void
-add_ops(struct OPS *aops, errcode (*procaddr)(), long nparm,
+add_ops(const struct OPS *aops, errcode (*procaddr)(), long nparm,
 	struct OPS *instance, long tdefs, long odefs)
 {
     long slot = num_entries++;

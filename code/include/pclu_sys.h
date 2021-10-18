@@ -530,10 +530,10 @@ errcode find_selector_ops(const char *selname, long nfields, OPSPTR *table);
 void add_parm_info_type(long index, const struct OPS *ops, const struct REQS *reqs);
 void add_parm_info_const(long index, CLUREF value);
 
-errcode find_type_instance(struct OPS *aops,
+errcode find_type_instance(const struct OPS *aops,
 			   long nparm, const OWN_req *ownreqp,
 			   struct OPS **result);
-errcode find_typeop_instance(struct OPS *aops,
+errcode find_typeop_instance(const struct OPS *aops,
 			     errcode (*procaddr)(),
 			     long nparm, long ntparm,
 			     const OWN_req *ownreqp, const OWN_req *townreqp,
