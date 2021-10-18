@@ -733,6 +733,7 @@ g_tbl = cluster is Find_Tables, Build_Tables, G_Field_Tables, Exist, Prune
 	    g_env$puts(e, int$unparse(ind) || ", ")
 
 	    % TYPE OPERATIONS TABLE
+	    g_env$puts(e, "(struct OPS *)")
 	    g_ref_name_typespec(e, each_field.type_)                            %%% refer to ops in owns if appropriate
 	    g_env$putl(e, "_ops);")
 
