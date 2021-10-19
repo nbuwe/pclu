@@ -10,7 +10,6 @@
 #include <signal.h>
 #undef signal
 
-#define CLU_sysasm_util_impl
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
@@ -63,14 +62,8 @@ bool print_stat = false;
 extern errcode string_anal(void);
 #endif
 
-#undef generic_CLU_proc
-
-struct {
-    CLUTYPE typ;
-    errcode (*proc)();
-    OWNPTR	type_owns;
-    OWNPTR  op_owns;
-} generic_CLU_proc;
+/* used by the compiler as storage for CUR_PROC_VAR to point to */
+CLU_proc generic_CLU_proc;
 
 struct OPS NO_OPS = { .count = 0, .type_owns = NULL, .op_owns = NULL };
 struct OPS *NULL_OPS = NULL;

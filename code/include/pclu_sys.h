@@ -342,19 +342,26 @@ extern errcode sequenceOPnew2(CLUREF size, CLUREF *ans);
 extern errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
 
 
-extern CLUREF CUR_PROC_VAR;
 extern long CLU_TRACE;
 extern errcode debugOPenter_proc();
 extern errcode debugOPenter_forbody();
 extern errcode debugOPleave_proc();
 extern errcode debugOPbegin_line();
+
 extern errcode force();
+
+extern struct obj **NewObjPtr;
+
+/*
+ * Calling convention for parmd applies is to set CUR_PROC_VAR pointer
+ * in the caller to supply type and op owns for the callee and the
+ * compiler uses generic_CLU_proc as global storage for that.
+ */
+extern CLU_proc generic_CLU_proc;
+extern CLUREF CUR_PROC_VAR; /* usually = { .proc = &generic_CLU_proc } */
+
 extern struct OPS NO_OPS;
 extern struct OPS *NULL_OPS;
-extern struct obj **NewObjPtr;
-#ifndef CLU_sysasm_util_impl
-extern CLU_proc generic_CLU_proc;
-#endif
 #define zero_ops (struct OPS**)0
 #define m1_ops (struct OPS**)-1
 
