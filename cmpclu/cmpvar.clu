@@ -33,8 +33,8 @@ cmpvar = cluster is locals, set_locals,
     own cc_opt_cmd_string: string := base_cc_opt_cmd_string
     own cc_dbg_cmd_string: string := base_cc_dbg_cmd_string
 
-    % "cc -I" || _system_root() || "/include -w -c -G 4 -O2"
-    % "cc -I" || _system_root() || "/include/debug -w -c -G 4"
+    % "cc -I" || _system_root() || "/include -w -O2 -G 4 -c"
+    % "cc -I" || _system_root() || "/include -DCLU_DEBUG=1 -w -G 4 -c"
 
     locals = proc () returns (bool)
 	return(local_vars)
