@@ -342,11 +342,13 @@ extern errcode sequenceOPnew2(CLUREF size, CLUREF *ans);
 extern errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
 
 
+#ifdef CLU_DEBUG
 extern long CLU_TRACE;
 extern errcode debugOPenter_proc();
 extern errcode debugOPenter_forbody();
 extern errcode debugOPleave_proc();
 extern errcode debugOPbegin_line();
+#endif
 
 extern errcode force();
 
