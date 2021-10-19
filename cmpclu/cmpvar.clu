@@ -158,8 +158,10 @@ cmpvar = cluster is locals, set_locals,
 					"cc" || ty, "cmd", "")
 	    st: stream := stream$open(fn, "read")
 	    line: string := stream$getl(st)
-	    pos: int := string$indexs("~CLU", line)
-	    if (pos ~= 0) then
+	    while true do
+		pos: int := string$indexs("~CLU", line)
+		if pos = 0 then break end
+
 		line := string$substr(line, 1, pos-1) || _system_root() ||
 			string$rest(line, pos+4)
 		end
