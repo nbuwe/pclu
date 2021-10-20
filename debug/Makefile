@@ -2,6 +2,7 @@
 
 # Generates .o files for debugging.
 
+OPT_FLAGS ?= -O2
 CFLAGS = -I${CLUHOME}/code/include ${OPT_FLAGS}
 
 RM    = /bin/rm -f
