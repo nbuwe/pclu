@@ -26,7 +26,7 @@ opt: fictitious_file
 	cd Opt && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS} ${OPT_FLAGS}" OBJS="${OBJS}"
 
 debugger: fictitious_file
-	cd Debugger && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}" c_files
+	#cd Debugger && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}" c_files
 	cd Debugger && ${MAKE} CC="${CC}" CFLAGS="${CFLAGS} ${DEBUGGER_FLAGS}" OBJS="${OBJS}" all
 
 debug: fictitious_file
