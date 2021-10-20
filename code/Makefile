@@ -10,7 +10,8 @@
 
 CLIBDIRS = sysasm libasm sysclu libclu
 
-CLEANDIRS = ${CLIBDIRS} cmp
+CLEANDIRS  = ${CLIBDIRS}
+CLEANDIRS += cmp
 
 RM     = /bin/rm -f
 FLUFF  = *~ *.old *.bak .*~ .*.old .*.bak
