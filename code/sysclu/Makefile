@@ -35,13 +35,9 @@ debug: fictitious_file
 fictitious_file:
 
 clean:
-	${RM} */*.o Debugger/*.c Debug/*.c ${FLUFF}
+	${RM} ${FLUFF}
 	# cd Debug && ${MAKE} clean
 	cd Debugger && ${MAKE} clean
 	cd Opt && ${MAKE} clean
 
 veryclean: clean
-
-clean: clean
-
-
