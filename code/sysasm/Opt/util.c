@@ -13,6 +13,12 @@
 #include "pclu_err.h"
 #include "pclu_sys.h"
 
+#undef  signal
+#define signal(x)	break if used
+#undef  resignal
+#define resignal(x)	break if used
+
+
 #include <sys/resource.h>
 #include <sys/time.h>
 
@@ -544,7 +550,7 @@ clu_err_string_init(void)
 
 	stringOPcons(src, CLU_1, CLUREF_make_num(len), dst);
     }
-    signal(ERR_ok);
+    return ERR_ok;
 }
 
 
