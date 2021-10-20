@@ -52,7 +52,7 @@ extern int unlink ARGS((char*));
 #define CLU_INCLUDE "include"
 #endif
 #ifndef CLU_DEBUG_INCLUDE
-#define CLU_DEBUG_INCLUDE "include/debug"
+#define CLU_DEBUG_INCLUDE CLU_INCLUDE
 #endif
 #ifndef CLU_LIBDIR
 #define CLU_LIBDIR "code"
@@ -697,7 +697,7 @@ Buffer* cc_compile_command(options)
 
     /* Debug/Optimize options */
     if (options->debug) {
-	Buffer_append(buffer, " ");
+	Buffer_append(buffer, " -DCLU_DEBUG=1 ");
 	Buffer_append(buffer, CFLAGS_DEBUG);
 	Buffer_append(buffer, " -I");
 	Buffer_append(buffer, options->cluhome);
