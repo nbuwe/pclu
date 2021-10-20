@@ -563,7 +563,8 @@ gcd_store = cluster is init, store_id, store_lit, store_ref, store_hdr,
 %	wvec$xstore(buf, pos + 4, _userlo, val + 4 * lcnt)
 %	pos := pos + 5
 %	buf[pos] := lcnt
-logit = proc(s:string)
-    po: stream := stream$error_output()
-    stream$puts(po, s||"\n")
-    end logit
+
+%logit = proc(s:string)
+%    po: stream := stream$error_output()
+%    stream$puts(po, s||"\n")
+%    end logit
