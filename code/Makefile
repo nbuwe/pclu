@@ -47,7 +47,7 @@ libpclu_debug.a:
 	${RM} libpclu_debug.a
 	ar cruv libpclu_debug.a ${DEBUG1}
 	# drop stuff that the debugger provides overrides for
-	ar d libpclu_debug.a util.o _signal.o new_parm_util.o new_selector.o
+	ar d libpclu_debug.a _signal.o new_parm_util.o new_selector.o
 	# add the debugger and its overrides
 	ar q libpclu_debug.a ${DEBUG2}
 	ranlib libpclu_debug.a

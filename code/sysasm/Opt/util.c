@@ -35,6 +35,13 @@ errcode streamOP_close_all(void);
 errcode stringOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans);
 errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
 
+#ifdef CLU_DEBUG
+/* cf. debug/debug.clu */
+#define CLU_DEBUG_GENESIS CLU_4
+extern errcode debugOPcli(CLUREF source, CLUREF opt1, CLUREF opt2, CLUREF opt3,
+			  CLUREF *ans);
+#endif
+
 
 #ifndef LINUX
 extern void expand_hp();
@@ -203,10 +210,36 @@ main_2(int _argc, char **_argv, char **_envp)
     }
 
     /* invoke the user's program */
-    pgmerr = start_up();
-    if (pgmerr != ERR_ok) {
-	fflush(stdout);
-	fprintf(stderr, "failure: %s\n", elist[0].str->data);
+    {
+#ifdef CLU_DEBUG
+	/*
+	 * This bit of code is, more or less the only diff that
+	 * pclu-LINUX-RH7 had between Opt and Debugger versions.
+	 *
+	 * Fold it in here under an ifdef.  It also had this block in
+	 * an infinite loop, but I'm not sure about it.  It's nice to
+	 * keep the breakpoints and whatever, but since we are in the
+	 * same old process, the global state is modified by the
+	 * previous run.
+	 *
+	 * In the more recent pclu-debian this code is not there and
+	 * Opt and Debugger versions are practically identicall.
+	 */
+	CLUREF ignored_result;
+	err = debugOPcli(CLU_DEBUG_GENESIS,
+			 CLU_0, CLU_empty_string, CLU_empty_string,
+			 &ignored_result);
+	if (err != ERR_ok) {
+	    CLUREF erstr = _pclu_erstr(err);
+	    fprintf(stderr, "unhandled exception: %s\n", erstr.str->data);
+	}
+#endif	/* CLU_DEBUG */
+
+	pgmerr = start_up();
+	if (pgmerr != ERR_ok) {
+	    fflush(stdout);
+	    fprintf(stderr, "failure: %s\n", elist[0].str->data);
+	}
     }
 
     /* collect statistics on user's program */
