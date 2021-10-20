@@ -2,8 +2,7 @@
 
 # Generates .o files for debugging.
 
-CFLAGS = -I${CLUHOME}/code/include -w -O2
-#CFLAGS = -I${CLUHOME/code/include -w -g
+CFLAGS = -I${CLUHOME}/code/include ${OPT_FLAGS}
 
 RM    = /bin/rm -f
 FLUFF = *~ *.old *.bak .*~ .*.old .*.bak
