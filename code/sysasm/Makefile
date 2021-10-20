@@ -6,7 +6,7 @@ CFLAGS         = -I../../include -DLINUX
 OPT_FLAGS      = -O2
 DEBUG_FLAGS    = -g
 DEBUGGER_FLAGS ?= ${OPT_FLAGS}
-DEBUGGER_FLAGS += -DCLU_DEBUG
+DEBUGGER_FLAGS += -DCLU_DEBUG=1
 
 LN             = /bin/ln -s
 RM             = /bin/rm -f
