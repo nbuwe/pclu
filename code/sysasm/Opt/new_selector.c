@@ -483,6 +483,226 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 }
 
 
+#ifdef CLU_DEBUG
+/********************************************************/
+/*							*/
+/*	given the ops corresponding to a selector       */
+/*		and an op on that type                  */
+/*							*/
+/*	find name of selector                           */
+/*	find the number of values for that operation    */
+/*	find ops for the result of that operation       */
+/*							*/
+/*	these ops may be NULL_OPS, (e.g. print)		*/
+/*                       bool_ops, (e.g. equal)		*/
+/*                       input ops, (e.g. copy)		*/
+/*	                 per field ops, (e.g. get_)	*/
+/*                    or equivalent ops (e.g. o2v)	*/
+/*							*/
+/********************************************************/
+
+errcode rep_find_valops(opname, opsptr, anstyp, ansnum, ansops, ansnfield)
+CLUREF opname, opsptr;
+CLUREF *anstyp, *ansnum, *ansops, *ansnfield;
+{
+static bool init = false;
+static CLUREF rec, str, one, var;
+errcode err;
+CLUREF ops;
+
+	if (init == false) {
+		stringOPcons("record", CLU_1, CLU_6, &rec);
+		stringOPcons("struct", CLU_1, CLU_6, &str);
+		stringOPcons("oneof", CLU_1, CLU_5, &one);
+		stringOPcons("variant", CLU_1, CLU_7, &var);
+		init = true;
+		}
+/*	ops.num = *((long*)(opsptr.ref)); */
+	ops.num = opsptr.num;
+	err = find_valops(rec, opname, ops, ansnum, ansops, ansnfield);
+	if (err == ERR_ok) {
+		anstyp->str = rec.str;
+		signal(ERR_ok);
+		}
+	err = find_valops(str, opname, ops, ansnum, ansops, ansnfield);
+	if (err == ERR_ok) {
+		anstyp->str = str.str;
+		signal(ERR_ok);
+		}
+	err = find_valops(one, opname, ops, ansnum, ansops, ansnfield);
+	if (err == ERR_ok) {
+		anstyp->str = one.str;
+		signal(ERR_ok);
+		}
+	err = find_valops(var, opname, ops, ansnum, ansops, ansnfield);
+	if (err == ERR_ok) {
+		anstyp->str = var.str;
+		signal(ERR_ok);
+		}
+	signal(ERR_not_found);
+	}
+
+/********************************************************/
+/*							*/
+/*	given the ops corresponding to a selector       */
+/*		and an op on that selector type         */
+/*							*/
+/*	find # of results for that operation            */
+/*	find ops for the result of that operation       */
+/*	find ordinal of field if relevant		*/
+/*							*/
+/*	these ops may be NULL_OPS, (e.g. print)		*/
+/*                       bool_ops, (e.g. equal)		*/
+/*                       input ops, (e.g. copy)		*/
+/*	                 per field ops, (e.g. get_)	*/
+/*                    or equivalent ops (e.g. o2v)	*/
+/*							*/
+/*	signals are ignored for the time being		*/
+/*	equivalent ops are also ignored 		*/
+/*		(input ops are used)                    */
+/********************************************************/
+
+extern struct OPS *int_ops;
+extern struct OPS *bool_ops;
+errcode find_valops(selname, opname, ops, ans1, ans2, ans3)
+CLUREF selname, ops, opname;
+CLUREF *ans1, *ans2, *ans3;
+{
+long i, j;
+bool found;
+long *pcount;
+OWNPTR *table;
+long *(*parm_vals)[MAX_FIELDS];
+char *(*parm_names)[MAX_FIELDS];
+long *parm_count;
+char *field;
+long oplen;
+bool pfo = false;
+bool pfo_known_ops = false;
+bool ans_known = false;
+char *nm = opname.str->data;
+char *selnm = selname.str->data;
+
+
+	/* look at operation and decide how to find valops */
+	/* dispense with easy albeit unlikely operations */
+	if (nm[0] == '_') {    			  /* _gcd */
+		ans1->num = 1;
+		ans2->num = (long)int_ops;
+		ans3->num = 0;
+		ans_known = true;
+		}
+	if ((nm[0] == 'i') ||			  /* is_ */
+		(nm[0] == 'e' && nm[1] == 'q') || /* equal */
+		(nm[0] == 's' && nm[1] == 'i')    /* similar, similar1 */
+		) {
+		ans1->num = 1;
+		ans2->num = (long)bool_ops;
+		if (nm[0] == 'i') {
+			pfo_known_ops = true;
+			}
+		else {
+			ans3->num = 0;
+			ans_known = true;
+			}
+		}
+	if ((nm[0] == 's' && nm[1] == '2') ||	  /* s2r */
+		(nm[0] == 'o' && nm[1] == '2')    /* o2v */
+		) {
+		/* actually equivalent ops: should do instantiation */
+		ans1->num = 1;
+		ans2->num = (long)ops.num;
+		ans3->num = 0;
+		ans_known = true;
+		}
+	if ((nm[0] == 'g') ||			  /* get_ */
+		(nm[0] == 'v' && nm[1] == 'a'))   /* value_ */
+		{pfo = true;}
+	if ((nm[0] == 'd') ||			  /* decode */
+		(nm[1] == '2') ||		  /* v20, r2s */
+		(nm[0] == 'c' && nm[1] == 'o')    /* copy, copy1 */
+		) {
+		ans1->num = 1;
+		ans2->num = (long)ops.num;
+		ans3->num = 0;
+		ans_known = true;
+		}
+	if ((nm[0] == 'm') ||			  /* make_ */
+		(nm[0] == 'r' && nm[1] == 'e')    /* replace_ */
+		) {
+		ans1->num = 1;
+		ans2->num = (long)ops.num;
+		pfo_known_ops = true;
+		}
+	if (!pfo && !pfo_known_ops && !ans_known) {
+		ans1->num = 0;
+		ans2->num = (long)NULL_OPS;
+		if ((nm[0] == 'c') || (nm[0] == 's')) {
+			pfo_known_ops = true;
+			}
+		else {
+			ans3->num = 0;
+			ans_known = true;
+			}
+		}
+	
+
+	/* we have a postfixable operation & need to look up valops in table */
+	/* get field name (postfix) */
+	field = index(nm, '_') + 1;
+
+	/* decide what type we have and get corresponding tables */
+	if (selnm[0] == 'r') {
+		pcount = &record_num_entries;
+		table = record_opsptr_arr;
+		parm_count = record_field_count;
+		parm_vals = record_field_vals;
+		parm_names = record_field_names;
+		}
+	if (selnm[0] == 's') {
+		pcount = &struct_num_entries;
+		table = struct_opsptr_arr;
+		parm_count = struct_field_count;
+		parm_vals = struct_field_vals;
+		parm_names = struct_field_names;
+		}
+	if (selnm[0] == 'v') {
+		pcount = &variant_num_entries;
+		table = variant_opsptr_arr;
+		parm_count = variant_field_count;
+		parm_vals = variant_field_vals;
+		parm_names = variant_field_names;
+		}
+	if (selnm[0] == 'o') {
+		pcount = &oneof_num_entries;
+		table = oneof_opsptr_arr;
+		parm_count = oneof_field_count;
+		parm_vals = oneof_field_vals;
+		parm_names = oneof_field_names;
+		}
+
+	/* get number of such instantiations and list */
+	found = false;
+	for (i = 0 ; i < *pcount ; i++) {
+		if ((OWNPTR)ops.num == table[i]) {found = true; break;}
+		}
+	if (found == false) signal(ERR_not_found);
+	if (ans_known) signal(ERR_ok);
+	found = false;
+	for (j = 0; j < parm_count[i]; j++) {
+		if (!strcmp(field,parm_names[i][j])) {found = true; break;}
+		}
+	if (found == false) signal(ERR_not_found);
+	if (pfo) {
+		ans1->num = 1;
+		ans2->num = parm_vals[i][j];
+		}
+	ans3->num = j+1;
+	signal(ERR_ok);
+	}
+#endif	/* CLU_DEBUG */
+
+
 /********************************************************/
 /*							*/
 /*	selectors have three types of operations	*/
