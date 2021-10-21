@@ -41,7 +41,16 @@ extern errcode pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1);
 extern char *mystrcat(const char *s1, const char *s2);
 extern errcode missing_print_fcn();
 
+/*
+ * For the normal case we merge selectors that have the same field
+ * types but different field names.  For the debugger we don't ignore
+ * the names, so allow for more instances.
+ */
+#ifdef CLU_DEBUG
+#define MAX_SELECTORS 1000
+#else
 #define MAX_SELECTORS 500
+#endif
 #define MAX_FIELDS    50
 
 static const char *sel_inst_fieldname[MAX_FIELDS];
@@ -292,6 +301,13 @@ const struct OPS *struct_field_vals[MAX_SELECTORS][MAX_FIELDS];
 const struct OPS *variant_field_vals[MAX_SELECTORS][MAX_FIELDS];
 const struct OPS *oneof_field_vals[MAX_SELECTORS][MAX_FIELDS];
 
+#ifdef CLU_DEBUG
+const char *record_field_names[MAX_SELECTORS][MAX_FIELDS];
+const char *struct_field_names[MAX_SELECTORS][MAX_FIELDS];
+const char *variant_field_names[MAX_SELECTORS][MAX_FIELDS];
+const char *oneof_field_names[MAX_SELECTORS][MAX_FIELDS];
+#endif
+
 static long record_num_entries = 0;
 static long struct_num_entries = 0;
 static long variant_num_entries = 0;
@@ -338,6 +354,9 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
     long *pcount;
     OPSPTR *table;
     const struct OPS *(*parm_vals)[MAX_FIELDS];
+#ifdef CLU_DEBUG
+    const char *(*parm_names)[MAX_FIELDS];
+#endif
     long *parm_count;
 
 
@@ -354,24 +373,36 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
 	table = record_opsptr_arr;
 	parm_count = record_field_count;
 	parm_vals = record_field_vals;
+#ifdef CLU_DEBUG
+	parm_names = record_field_names;
+#endif
     }
     else if (selname[0] == 's') { /* struct */
 	pcount = &struct_num_entries;
 	table = struct_opsptr_arr;
 	parm_count = struct_field_count;
 	parm_vals = struct_field_vals;
+#ifdef CLU_DEBUG
+	parm_names = struct_field_names;
+#endif
     }
     else if (selname[0] == 'v') { /* variant */
 	pcount = &variant_num_entries;
 	table = variant_opsptr_arr;
 	parm_count = variant_field_count;
 	parm_vals = variant_field_vals;
+#ifdef CLU_DEBUG
+	parm_names = variant_field_names;
+#endif
     }
     else if (selname[0] == 'o') { /* oneof */
 	pcount = &oneof_num_entries;
 	table = oneof_opsptr_arr;
 	parm_count = oneof_field_count;
 	parm_vals = oneof_field_vals;
+#ifdef CLU_DEBUG
+	parm_names = oneof_field_names;
+#endif
     }
     else {
 	fprintf(stderr, "%s: bad name %s\n", __func__, selname);
@@ -388,7 +419,10 @@ find_sel_ops(const char *selname, long count, struct OPS **result)
 	found = true;
 	for (long i = 0; i < count; ++i) {
 	    if (parm_vals[slot][i] == sel_inst_fieldops[i])
-		continue;
+#ifdef CLU_DEBUG
+		if (strcmp(parm_names[slot][i], sel_inst_fieldname[i]) == 0)
+#endif
+		    continue;
 
 	    found = false;
 	    break;
@@ -414,6 +448,9 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
     long *pcount;
     OPSPTR *table;
     const struct OPS *(*parm_vals)[MAX_FIELDS];
+#ifdef CLU_DEBUG
+    const char *(*parm_names)[MAX_FIELDS];
+#endif
     long *parm_count;
 
     /* first select which table */
@@ -422,24 +459,36 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 	table = record_opsptr_arr;
 	parm_count = record_field_count;
 	parm_vals = record_field_vals;
+#ifdef CLU_DEBUG
+	parm_names = record_field_names;
+#endif
     }
     else if (selname[0] == 's') { /* struct */
 	pcount = &struct_num_entries;
 	table = struct_opsptr_arr;
 	parm_count = struct_field_count;
 	parm_vals = struct_field_vals;
+#ifdef CLU_DEBUG
+	parm_names = struct_field_names;
+#endif
     }
     else if (selname[0] == 'v') { /* variant */
 	pcount = &variant_num_entries;
 	table = variant_opsptr_arr;
 	parm_count = variant_field_count;
 	parm_vals = variant_field_vals;
+#ifdef CLU_DEBUG
+	parm_names = variant_field_names;
+#endif
     }
     else if (selname[0] == 'o') { /* oneof */
 	pcount = &oneof_num_entries;
 	table = oneof_opsptr_arr;
 	parm_count = oneof_field_count;
 	parm_vals = oneof_field_vals;
+#ifdef CLU_DEBUG
+	parm_names = oneof_field_names;
+#endif
     }
     else {
 	fprintf(stderr, "%s: bad name %s\n", __func__, selname);
@@ -459,6 +508,9 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
     parm_count[slot] = count;
     for (long i = 0 ; i < count; ++i) {
 	parm_vals[slot][i] = sel_inst_fieldops[i];
+#ifdef CLU_DEBUG
+	parm_names[slot][i] = sel_inst_fieldname[i];
+#endif
     }
 
     *pcount = slot + 1;
