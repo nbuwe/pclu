@@ -485,7 +485,7 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 
 #ifdef CLU_DEBUG
 errcode find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
-		    CLUREF *ans1, CLUREF *ans2, CLUREF *ans3);
+		    CLUREF *ansnum, CLUREF *ansops, CLUREF *ansnfield);
 
 
 /********************************************************/
@@ -579,7 +579,7 @@ extern struct OPS *bool_ops;
 
 errcode
 find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
-	    CLUREF *ans1, CLUREF *ans2, CLUREF *ans3)
+	    CLUREF *ansnum, CLUREF *ansops, CLUREF *ansnfield)
 {
     long i, j;
     bool found;
@@ -603,9 +603,9 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
      */
 
     if (opname[0] == '_') {			   /* _gcd */
-	ans1->num = 1;
-	ans2->num = (long)int_ops;
-	ans3->num = 0;
+	ansnum->num = 1;
+	ansops->num = (long)int_ops;
+	ansnfield->num = 0;
 	ans_known = true;
     }
 
@@ -613,13 +613,13 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 	|| (opname[0] == 'e' && opname[1] == 'q')  /* equal */
 	|| (opname[0] == 's' && opname[1] == 'i')) /* similar, similar1 */
     {
-	ans1->num = 1;
-	ans2->num = (long)bool_ops;
+	ansnum->num = 1;
+	ansops->num = (long)bool_ops;
 	if (opname[0] == 'i') {
 	    pfo_known_ops = true;
 	}
 	else {
-	    ans3->num = 0;
+	    ansnfield->num = 0;
 	    ans_known = true;
 	}
     }
@@ -628,9 +628,9 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 	|| (opname[0] == 'o' && opname[1] == '2')) /* o2v */
     {
 	/* actually equivalent ops: should do instantiation */
-	ans1->num = 1;
-	ans2->num = (long)ops.num;
-	ans3->num = 0;
+	ansnum->num = 1;
+	ansops->num = ops.num;
+	ansnfield->num = 0;
 	ans_known = true;
     }
 
@@ -644,28 +644,28 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 	|| (opname[1] == '2')			   /* v2o, r2s */
 	|| (opname[0] == 'c' && opname[1] == 'o')) /* copy, copy1 */
     {
-	ans1->num = 1;
-	ans2->num = (long)ops.num;
-	ans3->num = 0;
+	ansnum->num = 1;
+	ansops->num = ops.num;
+	ansnfield->num = 0;
 	ans_known = true;
     }
 
     if ((opname[0] == 'm')			   /* make_ */
 	|| (opname[0] == 'r' && opname[1] == 'e')) /* replace_ */
     {
-	ans1->num = 1;
-	ans2->num = (long)ops.num;
+	ansnum->num = 1;
+	ansops->num = ops.num;
 	pfo_known_ops = true;
     }
 
     if (!pfo && !pfo_known_ops && !ans_known) {
-	ans1->num = 0;
-	ans2->num = (long)NULL_OPS;
+	ansnum->num = 0;
+	ansops->num = (long)NULL_OPS;
 	if (opname[0] == 'c' || opname[0] == 's') {
 	    pfo_known_ops = true;
 	}
 	else {
-	    ans3->num = 0;
+	    ansnfield->num = 0;
 	    ans_known = true;
 	}
     }
@@ -736,10 +736,10 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 	signal(ERR_not_found);
 
     if (pfo) {
-	ans1->num = 1;
-	ans2->num = (long)parm_vals[i][j];
+	ansnum->num = 1;
+	ansops->num = (long)parm_vals[i][j];
     }
-    ans3->num = j+1;
+    ansnfield->num = j+1;
     signal(ERR_ok);
 }
 #endif	/* CLU_DEBUG */
