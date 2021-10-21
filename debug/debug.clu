@@ -391,22 +391,24 @@ debug = cluster is cli, teval
 	end quit_cmd
 
     restart_cmd = proc(args: string)
-	arglist: as := parse_line(args)
-	if as$size(arglist) ~= 0 then
-	   stream$putl(tyo, "\nToo many arguments to restart command\n") end
-	save: sequence[_chan] := sequence[_chan]$[]
-	fn: file_name := file_name$create("/bin/", "csh", "", "")
-	_job$exec(fn, "-f -e -c " || _get_xjname(), save)
+	signal failure("restart not implemented")
+	%arglist: as := parse_line(args)
+	%if as$size(arglist) ~= 0 then
+	%   stream$putl(tyo, "\nToo many arguments to restart command\n") end
+	%save: sequence[_chan] := sequence[_chan]$[]
+	%fn: file_name := file_name$create("/bin/", "csh", "", "")
+	%_job$exec(fn, "-f -e -c " || _get_xjname(), save)
 	end restart_cmd
 
     rebuild_cmd = proc(args: string)
-	arglist: as := parse_line(args)
-	if as$size(arglist) ~= 0 then
-	   stream$putl(tyo, "\nToo many arguments to quit command\n") end
-	save: sequence[_chan] := sequence[_chan]$[]
-	fn: file_name := file_name$create("/bin/", "csh", "", "")
-	%	_job$exec(fn, "-f -e -c 'make ; " || _get_xjname() || "'", save)
-	_job$exec(fn, "-f -e -c make;" || _get_xjname(), save)
+	signal failure("rebuild not implemented")
+	%arglist: as := parse_line(args)
+	%if as$size(arglist) ~= 0 then
+	%   stream$putl(tyo, "\nToo many arguments to quit command\n") end
+	%save: sequence[_chan] := sequence[_chan]$[]
+	%fn: file_name := file_name$create("/bin/", "csh", "", "")
+	%% _job$exec(fn, "-f -e -c 'make ; " || _get_xjname() || "'", save)
+	%_job$exec(fn, "-f -e -c make;" || _get_xjname(), save)
 	end rebuild_cmd
 
     reset_cmd = proc(args: string)
