@@ -591,16 +591,19 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
      */
     const char *opname = opnm.str->data;
 
-    if (opname[0] == '_') {			   /* _gcd */
+    /* _gcd */
+    if (opname[0] == '_')
+    {
 	ansnum->num = 1;
 	ansops->num = (long)int_ops;
 	ansnfield->num = 0;
 	ans_known = true;
     }
 
-    if ((opname[0] == 'i')			   /* is_ */
-	|| (opname[0] == 'e' && opname[1] == 'q')  /* equal */
-	|| (opname[0] == 's' && opname[1] == 'i')) /* similar, similar1 */
+    /* is_<field>, equal, similar, similar1 */
+    else if ((opname[0] == 'i')
+	     || (opname[0] == 'e' && opname[1] == 'q')
+	     || (opname[0] == 's' && opname[1] == 'i'))
     {
 	ansnum->num = 1;
 	ansops->num = (long)bool_ops;
@@ -613,8 +616,9 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 	}
     }
 
-    if ((opname[0] == 's' && opname[1] == '2')	   /* s2r */
-	|| (opname[0] == 'o' && opname[1] == '2')) /* o2v */
+    /* s2r, o2v */
+    else if ((opname[0] == 's' && opname[1] == '2')
+	     || (opname[0] == 'o' && opname[1] == '2'))
     {
 	/* actually equivalent ops: should do instantiation */
 	ansnum->num = 1;
@@ -623,15 +627,17 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 	ans_known = true;
     }
 
-    if ((opname[0] == 'g')			   /* get_ */
-	|| (opname[0] == 'v' && opname[1] == 'a')) /* value_ */
+    /* get_<field>, value_<field> */
+    else if ((opname[0] == 'g')
+	     || (opname[0] == 'v' && opname[1] == 'a'))
     {
 	pfo = true;
     }
 
-    if ((opname[0] == 'd')			   /* decode */
-	|| (opname[1] == '2')			   /* v2o, r2s */
-	|| (opname[0] == 'c' && opname[1] == 'o')) /* copy, copy1 */
+    /* decode, v2o, r2s, copy, copy1 */
+    else if ((opname[0] == 'd')
+	     || (opname[1] == '2') /* ruled out the other /^.2/ ops above */
+	     || (opname[0] == 'c' && opname[1] == 'o'))
     {
 	ansnum->num = 1;
 	ansops->num = ops.num;
@@ -639,8 +645,9 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 	ans_known = true;
     }
 
-    if ((opname[0] == 'm')			   /* make_ */
-	|| (opname[0] == 'r' && opname[1] == 'e')) /* replace_ */
+    /* make_<field>, replace_<field> */
+    else if ((opname[0] == 'm')
+	     || (opname[0] == 'r' && opname[1] == 'e'))
     {
 	ansnum->num = 1;
 	ansops->num = ops.num;
