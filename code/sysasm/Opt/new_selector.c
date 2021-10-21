@@ -583,18 +583,11 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 {
     long i, j;
     bool found;
-    long *pcount;
-    OPSPTR *table;
-    const struct OPS *(*parm_vals)[MAX_FIELDS];
-    const char *(*parm_names)[MAX_FIELDS];
-    long *parm_count;
     char *field;
     bool pfo = false;
     bool pfo_known_ops = false;
     bool ans_known = false;
     const char *opname = opnm.str->data;
-    const char *selname = selnm.str->data;
-
 
     /*
      * Look at operation and decide how to find valops.
@@ -677,29 +670,36 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
     field = strchr(opname, '_') + 1;
 
     /* decide what type we have and get corresponding tables */
+    const char *selname = selnm.str->data;
+    long count;
+    OPSPTR *table;
+    const struct OPS *(*parm_vals)[MAX_FIELDS];
+    const char *(*parm_names)[MAX_FIELDS];
+    long *parm_count;
+
     if (selname[0] == 'r') {
-	pcount = &record_num_entries;
+	count = record_num_entries;
 	table = record_opsptr_arr;
 	parm_count = record_field_count;
 	parm_vals = record_field_vals;
 	parm_names = record_field_names;
     }
     else if (selname[0] == 's') {
-	pcount = &struct_num_entries;
+	count = struct_num_entries;
 	table = struct_opsptr_arr;
 	parm_count = struct_field_count;
 	parm_vals = struct_field_vals;
 	parm_names = struct_field_names;
     }
     else if (selname[0] == 'v') {
-	pcount = &variant_num_entries;
+	count = variant_num_entries;
 	table = variant_opsptr_arr;
 	parm_count = variant_field_count;
 	parm_vals = variant_field_vals;
 	parm_names = variant_field_names;
     }
     else if (selname[0] == 'o') {
-	pcount = &oneof_num_entries;
+	count = oneof_num_entries;
 	table = oneof_opsptr_arr;
 	parm_count = oneof_field_count;
 	parm_vals = oneof_field_vals;
@@ -712,7 +712,7 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 
     /* get number of such instantiations and list */
     found = false;
-    for (i = 0 ; i < *pcount ; ++i) {
+    for (i = 0 ; i < count ; ++i) {
 	if ((OPSPTR)ops.num == table[i]) {
 	    found = true;
 	    break;
