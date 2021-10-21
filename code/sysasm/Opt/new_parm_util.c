@@ -346,6 +346,18 @@ build_type_ops(const struct OPS *aops, long nparm, OWNPTR owns,
 }
 
 
+/*
+ * Instantiate "cluster C [..., T: type, ...] ... where T has ..."
+ * template, building the part for the specific parm type T.  Here
+ * specific T used for this instance is represented by its "ops", and
+ * the "where" clause of the template is described by "reqs".
+ *
+ * The output ops is the C's "view" of T (<c>_of_<t>_OPS) and is
+ * stored in the <c>_OWN_DEFN::<t>_ops, pointed to by "table".
+ *
+ * XXX: The "defs" and the incremental updates it's used for is
+ * probably no longer relevant, but I'm not entirely sure yet.
+ */
 static errcode
 build_parm_table2(const struct REQS *reqs, const struct OPS *ops,
 		  struct OPS **table, long *defs)
