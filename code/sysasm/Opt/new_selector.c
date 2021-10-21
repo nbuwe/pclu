@@ -581,18 +581,15 @@ errcode
 find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 	    CLUREF *ansnum, CLUREF *ansops, CLUREF *ansnfield)
 {
-    long i, j;
-    bool found;
-    char *field;
     bool pfo = false;
     bool pfo_known_ops = false;
     bool ans_known = false;
-    const char *opname = opnm.str->data;
 
     /*
      * Look at operation and decide how to find valops.
      * Dispense with easy albeit unlikely operations first.
      */
+    const char *opname = opnm.str->data;
 
     if (opname[0] == '_') {			   /* _gcd */
 	ansnum->num = 1;
@@ -667,7 +664,7 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
      * We have a postfixable operation and need to look up valops in
      * table.  Get the field name from the postfix.
      */
-    field = strchr(opname, '_') + 1;
+    char *field = strchr(opname, '_') + 1;
 
     /* decide what type we have and get corresponding tables */
     const char *selname = selnm.str->data;
@@ -709,6 +706,9 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 	fprintf(stderr, "%s: bad name %s\n", __func__, selname);
 	exit(-1);
     }
+
+    long i, j;
+    bool found;
 
     /* get number of such instantiations and list */
     found = false;
