@@ -505,7 +505,7 @@ errcode find_valops(CLUREF selname, CLUREF opname, CLUREF ops,
 /*							*/
 /********************************************************/
 errcode
-rep_find_valops(CLUREF opname, CLUREF opsptr,
+rep_find_valops(CLUREF opname, CLUREF ops,
 		CLUREF *anstyp,
 		CLUREF *ansnum, CLUREF *ansops, CLUREF *ansnfield)
 {
@@ -520,10 +520,6 @@ rep_find_valops(CLUREF opname, CLUREF opsptr,
 	stringOPcons("variant", CLU_1, CLU_7, &var);
 	init = true;
     }
-
-    CLUREF ops;
-    /* ops.num = *((long*)(opsptr.ref)); */
-    ops.num = opsptr.num;
 
     err = find_valops(rec, opname, ops,
 		      ansnum, ansops, ansnfield);
