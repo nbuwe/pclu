@@ -484,7 +484,7 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 
 
 #ifdef CLU_DEBUG
-errcode find_valops(CLUREF selname, CLUREF opname, CLUREF ops,
+errcode find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 		    CLUREF *ans1, CLUREF *ans2, CLUREF *ans3);
 
 
@@ -578,7 +578,7 @@ extern struct OPS *bool_ops;
 
 
 errcode
-find_valops(CLUREF selname, CLUREF opname, CLUREF ops,
+find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 	    CLUREF *ans1, CLUREF *ans2, CLUREF *ans3)
 {
     long i, j;
@@ -593,8 +593,8 @@ find_valops(CLUREF selname, CLUREF opname, CLUREF ops,
     bool pfo = false;
     bool pfo_known_ops = false;
     bool ans_known = false;
-    char *nm = opname.str->data;
-    char *selnm = selname.str->data;
+    const char *opname = opnm.str->data;
+    const char *selname = selnm.str->data;
 
 
     /*
@@ -602,20 +602,20 @@ find_valops(CLUREF selname, CLUREF opname, CLUREF ops,
      * Dispense with easy albeit unlikely operations first.
      */
 
-    if (nm[0] == '_') {				/* _gcd */
+    if (opname[0] == '_') {			   /* _gcd */
 	ans1->num = 1;
 	ans2->num = (long)int_ops;
 	ans3->num = 0;
 	ans_known = true;
     }
 
-    if ((nm[0] == 'i')				/* is_ */
-	|| (nm[0] == 'e' && nm[1] == 'q')	/* equal */
-	|| (nm[0] == 's' && nm[1] == 'i'))	/* similar, similar1 */
+    if ((opname[0] == 'i')			   /* is_ */
+	|| (opname[0] == 'e' && opname[1] == 'q')  /* equal */
+	|| (opname[0] == 's' && opname[1] == 'i')) /* similar, similar1 */
     {
 	ans1->num = 1;
 	ans2->num = (long)bool_ops;
-	if (nm[0] == 'i') {
+	if (opname[0] == 'i') {
 	    pfo_known_ops = true;
 	}
 	else {
@@ -624,8 +624,8 @@ find_valops(CLUREF selname, CLUREF opname, CLUREF ops,
 	}
     }
 
-    if ((nm[0] == 's' && nm[1] == '2')		/* s2r */
-	|| (nm[0] == 'o' && nm[1] == '2'))	/* o2v */
+    if ((opname[0] == 's' && opname[1] == '2')	   /* s2r */
+	|| (opname[0] == 'o' && opname[1] == '2')) /* o2v */
     {
 	/* actually equivalent ops: should do instantiation */
 	ans1->num = 1;
@@ -634,15 +634,15 @@ find_valops(CLUREF selname, CLUREF opname, CLUREF ops,
 	ans_known = true;
     }
 
-    if ((nm[0] == 'g')				/* get_ */
-	|| (nm[0] == 'v' && nm[1] == 'a'))	/* value_ */
+    if ((opname[0] == 'g')			   /* get_ */
+	|| (opname[0] == 'v' && opname[1] == 'a')) /* value_ */
     {
 	pfo = true;
     }
 
-    if ((nm[0] == 'd')				/* decode */
-	|| (nm[1] == '2')			/* v2o, r2s */
-	|| (nm[0] == 'c' && nm[1] == 'o'))	/* copy, copy1 */
+    if ((opname[0] == 'd')			   /* decode */
+	|| (opname[1] == '2')			   /* v2o, r2s */
+	|| (opname[0] == 'c' && opname[1] == 'o')) /* copy, copy1 */
     {
 	ans1->num = 1;
 	ans2->num = (long)ops.num;
@@ -650,8 +650,8 @@ find_valops(CLUREF selname, CLUREF opname, CLUREF ops,
 	ans_known = true;
     }
 
-    if ((nm[0] == 'm')				/* make_ */
-	|| (nm[0] == 'r' && nm[1] == 'e'))	/* replace_ */
+    if ((opname[0] == 'm')			   /* make_ */
+	|| (opname[0] == 'r' && opname[1] == 'e')) /* replace_ */
     {
 	ans1->num = 1;
 	ans2->num = (long)ops.num;
@@ -661,7 +661,7 @@ find_valops(CLUREF selname, CLUREF opname, CLUREF ops,
     if (!pfo && !pfo_known_ops && !ans_known) {
 	ans1->num = 0;
 	ans2->num = (long)NULL_OPS;
-	if ((nm[0] == 'c') || (nm[0] == 's')) {
+	if (opname[0] == 'c' || opname[0] == 's') {
 	    pfo_known_ops = true;
 	}
 	else {
@@ -675,36 +675,40 @@ find_valops(CLUREF selname, CLUREF opname, CLUREF ops,
      * We have a postfixable operation and need to look up valops in
      * table.  Get the field name from the postfix.
      */
-    field = index(nm, '_') + 1;
+    field = strchr(opname, '_') + 1;
 
     /* decide what type we have and get corresponding tables */
-    if (selnm[0] == 'r') {
+    if (selname[0] == 'r') {
 	pcount = &record_num_entries;
 	table = record_opsptr_arr;
 	parm_count = record_field_count;
 	parm_vals = record_field_vals;
 	parm_names = record_field_names;
     }
-    if (selnm[0] == 's') {
+    else if (selname[0] == 's') {
 	pcount = &struct_num_entries;
 	table = struct_opsptr_arr;
 	parm_count = struct_field_count;
 	parm_vals = struct_field_vals;
 	parm_names = struct_field_names;
     }
-    if (selnm[0] == 'v') {
+    else if (selname[0] == 'v') {
 	pcount = &variant_num_entries;
 	table = variant_opsptr_arr;
 	parm_count = variant_field_count;
 	parm_vals = variant_field_vals;
 	parm_names = variant_field_names;
     }
-    if (selnm[0] == 'o') {
+    else if (selname[0] == 'o') {
 	pcount = &oneof_num_entries;
 	table = oneof_opsptr_arr;
 	parm_count = oneof_field_count;
 	parm_vals = oneof_field_vals;
 	parm_names = oneof_field_names;
+    }
+    else {
+	fprintf(stderr, "%s: bad name %s\n", __func__, selname);
+	exit(-1);
     }
 
     /* get number of such instantiations and list */
