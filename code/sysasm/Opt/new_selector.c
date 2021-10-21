@@ -589,7 +589,6 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
     const char *(*parm_names)[MAX_FIELDS];
     long *parm_count;
     char *field;
-    long oplen;
     bool pfo = false;
     bool pfo_known_ops = false;
     bool ans_known = false;
