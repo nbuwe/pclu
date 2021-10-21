@@ -19,7 +19,7 @@ FLUFF  += $(CLU_SOURCES:.clu=.c)
 # native code, overrides for libasm and sysasm
 CFILES += debug_c.c call_clu.c
 CFILES += _signal.c
-CFILES += new_parm_util.c new_selector.c
+CFILES += new_parm_util.c
 
 # debug info for the "builtin" stuff
 CFILES += libinfo.c
