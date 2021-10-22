@@ -201,27 +201,26 @@ _signalOPget_message(CLUREF sig, CLUREF *ans)
 }
 
 
-#ifdef CLU_DEBUG
-errcode _signalOPprint()
+#if 0 && defined(CLU_DEBUG)	/* disable for now */
+errcode
+_signalOPprint(void)
 {
-int i;
-CLUREF msgs;
+    if (_signalOPmsgs.vec == NULL) {
+	write(1, "table empty\n", 12);
+	return ERR_ok;
+    }
 
-	if (_signalOPmsgs == 0) {
-		write(1, "table empty\n", 1);
-		signal(ERR_ok);
-		}
-	msgs.num = _signalOPmsgs;
-	for(i = 0; i < 32; i++) {
-		if (msgs.vec->data[i] == 0) {
-			write(1, "slot empty\n", 11);
-			}
-		else {
-			write(1, "slot full\n", 10);
-			}
-		}
-	signal(ERR_ok);
+    CLUREF msgs = _signalOPmsgs;
+    for (int i = 0; i < 32; ++i) {
+	if (msgs.vec->data[i] == 0) {
+	    write(1, "slot empty\n", 11);
 	}
+	else {
+	    write(1, "slot full\n", 10);
+	}
+    }
+    return ERR_ok;
+}
 #endif	/* CLU_DEBUG */
 
 
