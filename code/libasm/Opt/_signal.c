@@ -201,6 +201,30 @@ _signalOPget_message(CLUREF sig, CLUREF *ans)
 }
 
 
+#ifdef CLU_DEBUG
+errcode _signalOPprint()
+{
+int i;
+CLUREF msgs;
+
+	if (_signalOPmsgs == 0) {
+		write(1, "table empty\n", 1);
+		signal(ERR_ok);
+		}
+	msgs.num = _signalOPmsgs;
+	for(i = 0; i < 32; i++) {
+		if (msgs.vec->data[i] == 0) {
+			write(1, "slot empty\n", 11);
+			}
+		else {
+			write(1, "slot full\n", 10);
+			}
+		}
+	signal(ERR_ok);
+	}
+#endif	/* CLU_DEBUG */
+
+
 void
 sigfixmask(sigset_t *setp, int m)
 {
