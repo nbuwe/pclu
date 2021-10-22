@@ -660,3 +660,117 @@ update_ops(void)
     parm_types_defs[num_entries] = current_tdefs;
     parm_ops_defs[num_entries] = current_odefs;
 }
+
+
+
+#ifdef CLU_DEBUG
+/*
+ * Give the debugger access to this from Clu code.
+ */
+
+
+errcode clu_add_parm_info_type(nth_entry, ptr_to_ops, ptr_to_reqs)
+CLUREF nth_entry;
+CLUREF ptr_to_ops;
+CLUREF ptr_to_reqs;
+{
+	inst_info_value[nth_entry.num] = ptr_to_ops.num; 
+	inst_info_reqs[nth_entry.num] = ptr_to_reqs.num; 
+	signal(ERR_ok);
+}
+
+
+errcode clu_add_parm_info_const(nth_entry, value)
+CLUREF nth_entry;
+CLUREF value;
+{
+	inst_info_value[nth_entry.num] = value.num; 
+	inst_info_reqs[nth_entry.num] = 0; 
+	signal(ERR_ok);
+}
+
+
+errcode clu_find_type_instance(aops, nparm, ownreqp, result)
+CLUREF aops, nparm, ownreqp, *result;
+{
+struct OPS *a;
+long n;
+OWNREQ o;
+struct OPS**r;
+
+	a = (struct OPS*)aops.ref;
+	n = nparm.num;
+	o = (OWNREQ)ownreqp.ref;
+	find_type_instance(a, n, o, &r);
+	result->ref = (char*)r;
+	signal(ERR_ok);
+	}
+
+
+errcode clu_find_typeop_instance(aops, procaddr, nparm, ownreqp, result)
+CLUREF aops, procaddr, nparm, ownreqp, *result;
+{
+struct OPS *a;
+errcode (*p)();
+long n;
+OWNREQ o;
+struct OPS**r;
+
+	a = (struct OPS*)aops.ref;
+	p = (errcode (*)())procaddr.ref;
+	n = nparm.num;
+	o = (OWNREQ)ownreqp.ref;
+	find_typeop_instance(a, p, n, o, &r);
+	result->ref = (char*)r;
+	signal(ERR_ok);
+	}
+
+
+errcode clu_find_prociter_instance(procaddr, nparm, ownreqp, result)
+CLUREF procaddr, nparm, ownreqp, *result;
+{
+errcode (*p)();
+long n;
+OWNREQ o;
+struct OPS**r;
+
+	p = (errcode (*)())procaddr.ref;
+	n = nparm.num;
+	o = (OWNREQ)ownreqp.ref;
+	find_prociter_instance(p, n, o, &r);
+	result->ref = (char*)r;
+	signal(ERR_ok);
+	}
+
+
+errcode find_tgen(tops, ansops, ansnparm, ansindex)
+CLUREF tops;
+CLUREF *ansops, *ansnparm, *ansindex;
+{
+long i, j;
+bool found;
+
+	/* search for tops in table of instantiated ops */
+	for (i = 0 ; i < num_entries ; i++) {
+		if (opsptr_arr[i] == (OWNPTR)tops.num) {
+			ansops->num = (long)ops_arr[i];
+			ansindex->num = i;
+			for (j = 0; j < MAX_PARMS ; j++) {
+				if (parm_types[i][j] == NULL) break;
+				}
+			ansnparm->num = j;
+			signal(ERR_ok);
+			}
+		}
+	signal(ERR_not_found);
+	}
+
+
+errcode find_tgen_parm(index, ith, ansops)
+CLUREF index, ith;
+CLUREF *ansops;
+{
+	ansops->num = (long)parm_vals[index.num][ith.num];
+	signal(ERR_ok);
+	}
+#endif	/* CLU_DEBUG */
