@@ -52,19 +52,19 @@
 #endif
 
 #ifdef CLU_DEBUG
-#define enter_proc(x) locals.DBG_LINE = x; if (CLU_TRACE) debugOPenter_proc(&locals)
+#define enter_proc(x) locals.DBG_LINE = x; if (CLU_TRACE) debugOPenter_proc((long *)&locals)
 #else
 #define enter_proc(x)
 #endif
 
 #ifdef CLU_DEBUG
-#define enter_own_init_proc() if (CLU_TRACE) debugOPenter_proc(-1)
+#define enter_own_init_proc() if (CLU_TRACE) debugOPenter_proc((long *)-1)
 #else
 #define enter_own_init_proc()
 #endif
 
 #ifdef CLU_DEBUG
-#define enter_iter_body_proc(x) locals->DBG_LINE = x; if (CLU_TRACE) debugOPenter_forbody(locals)
+#define enter_iter_body_proc(x) locals->DBG_LINE = x; if (CLU_TRACE) debugOPenter_forbody((long *)locals)
 #else
 #define enter_iter_body_proc(x)
 #endif
@@ -348,10 +348,10 @@ extern errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *a
 
 #ifdef CLU_DEBUG
 extern long CLU_TRACE;
-extern errcode debugOPenter_proc();
-extern errcode debugOPenter_forbody();
-extern errcode debugOPleave_proc();
-extern errcode debugOPbegin_line();
+extern errcode debugOPenter_proc(long *localsp);
+extern errcode debugOPenter_forbody(long *localsp);
+extern errcode debugOPleave_proc(errcode sig);
+extern errcode debugOPbegin_line(long n);
 #endif
 
 extern errcode force();
