@@ -368,7 +368,7 @@ g_xref = cluster is add_ent, lookup, flush
 	    stream$putl(outst, ":")
 	    for each_nm: name in an$elements(each_entry.refs) do
 		stream$puts(outst, "\t")
-		stream$putl(outst, externalize(each_nm))
+		stream$putl(outst, s_externalize(each_nm))
 		end
 	    stream$putl(outst, "")
 	    end
@@ -384,14 +384,14 @@ g_xref = cluster is add_ent, lookup, flush
 
     end g_xref
 
-externalize = proc(nm: string) returns (string)
+s_externalize = proc(nm: string) returns (string)
     own sep_size: int := string$size(sep)
     off: int := string$indexs(sep, nm)
     if off = 0 then return (nm) end
     head: string := string$substr(nm,1,off-1)
     tail: string := string$rest(nm, off+sep_size)
     return(head || "$" || tail )
-    end externalize
+    end s_externalize
 
 % check for uncaught exceptions and for except statements
 %	that catch non-existent signals
