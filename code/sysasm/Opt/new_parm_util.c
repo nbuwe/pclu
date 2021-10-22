@@ -666,111 +666,130 @@ update_ops(void)
 #ifdef CLU_DEBUG
 /*
  * Give the debugger access to this from Clu code.
+ *
+ * Note that we should not use signal() macro here as with CLU_DEBUG
+ * it includes the debugger hooks and we don't want them.
  */
 
 
-errcode clu_add_parm_info_type(nth_entry, ptr_to_ops, ptr_to_reqs)
-CLUREF nth_entry;
-CLUREF ptr_to_ops;
-CLUREF ptr_to_reqs;
+errcode
+clu_add_parm_info_type(CLUREF nth_entry, CLUREF ptr_to_ops, CLUREF ptr_to_reqs)
 {
-	inst_info_value[nth_entry.num] = ptr_to_ops.num; 
-	inst_info_reqs[nth_entry.num] = ptr_to_reqs.num; 
-	signal(ERR_ok);
+    long index = nth_entry.num;
+    const struct OPS *ops = (const struct OPS *)ptr_to_ops.num;
+    const struct REQS *reqs = (const struct REQS *)ptr_to_reqs.num;
+
+    add_parm_info_type(index, ops, reqs);
+    return ERR_ok;
 }
 
 
-errcode clu_add_parm_info_const(nth_entry, value)
-CLUREF nth_entry;
-CLUREF value;
+errcode
+clu_add_parm_info_const(CLUREF nth_entry, CLUREF value)
 {
-	inst_info_value[nth_entry.num] = value.num; 
-	inst_info_reqs[nth_entry.num] = 0; 
-	signal(ERR_ok);
+    long index = nth_entry.num;
+
+    add_parm_info_const(index, value);
+    return ERR_ok;
 }
 
 
-errcode clu_find_type_instance(aops, nparm, ownreqp, result)
-CLUREF aops, nparm, ownreqp, *result;
+errcode
+clu_find_type_instance(CLUREF aops_, CLUREF nparm_, CLUREF ownreqp_,
+		       CLUREF *ansops)
 {
-struct OPS *a;
-long n;
-OWNREQ o;
-struct OPS**r;
+    const struct OPS *aops = (const struct OPS *)aops_.num;
+    long nparm = nparm_.num;
+    const OWN_req *ownreqp = (const OWN_req *)ownreqp_.num;
 
-	a = (struct OPS*)aops.ref;
-	n = nparm.num;
-	o = (OWNREQ)ownreqp.ref;
-	find_type_instance(a, n, o, &r);
-	result->ref = (char*)r;
-	signal(ERR_ok);
-	}
+    struct OPS *ops;
+    find_type_instance(aops, nparm, ownreqp, &ops);
+
+    ansops->num = (long)ops;
+    return ERR_ok;
+}
 
 
-errcode clu_find_typeop_instance(aops, procaddr, nparm, ownreqp, result)
-CLUREF aops, procaddr, nparm, ownreqp, *result;
+errcode
+clu_find_typeop_instance(CLUREF aops_, CLUREF procaddr_,
+			 CLUREF nparm_, CLUREF ntparm_,
+			 CLUREF ownreqp_, CLUREF townreqp_,
+			 CLUREF *ansops)
 {
-struct OPS *a;
-errcode (*p)();
-long n;
-OWNREQ o;
-struct OPS**r;
+    const struct OPS *aops = (const struct OPS *)aops_.num;
+    PROC *procaddr = (PROC *)procaddr_.num;
+    long nparm = nparm_.num;
+    long ntparm = ntparm_.num;
+    const OWN_req *ownreqp = (const OWN_req *)ownreqp_.num;
+    const OWN_req *townreqp = (const OWN_req *)townreqp_.num;
 
-	a = (struct OPS*)aops.ref;
-	p = (errcode (*)())procaddr.ref;
-	n = nparm.num;
-	o = (OWNREQ)ownreqp.ref;
-	find_typeop_instance(a, p, n, o, &r);
-	result->ref = (char*)r;
-	signal(ERR_ok);
-	}
+    struct OPS *ops;
+    find_typeop_instance(aops, procaddr, nparm, ntparm,
+			 ownreqp, townreqp, &ops);
+
+    ansops->num = (long)ops;
+    return ERR_ok;
+}
 
 
-errcode clu_find_prociter_instance(procaddr, nparm, ownreqp, result)
-CLUREF procaddr, nparm, ownreqp, *result;
+errcode
+clu_find_prociter_instance(CLUREF procaddr_, CLUREF nparm_, CLUREF ownreqp_,
+			   CLUREF *ansops)
 {
-errcode (*p)();
-long n;
-OWNREQ o;
-struct OPS**r;
+    PROC *procaddr = (PROC *)procaddr_.num;
+    long nparm = nparm_.num;
+    const OWN_req *ownreqp = (const OWN_req *)ownreqp_.num;
 
-	p = (errcode (*)())procaddr.ref;
-	n = nparm.num;
-	o = (OWNREQ)ownreqp.ref;
-	find_prociter_instance(p, n, o, &r);
-	result->ref = (char*)r;
-	signal(ERR_ok);
-	}
+    struct OPS *ops;
+    find_prociter_instance(procaddr, nparm, ownreqp, &ops);
+
+    ansops->num = (long)ops;
+    return ERR_ok;
+}
 
 
-errcode find_tgen(tops, ansops, ansnparm, ansindex)
-CLUREF tops;
-CLUREF *ansops, *ansnparm, *ansindex;
+/*
+ * Given the address of an instantiated type, return abstract ops for
+ * that type, the number of parameters, and the index of the
+ * instantiation.
+ */
+errcode
+find_tgen(CLUREF tops,
+	  CLUREF *ansaops, CLUREF *ansnparm, CLUREF *ansindex)
 {
-long i, j;
-bool found;
+    const struct OPS *ops = (const struct OPS *)tops.num;
 
-	/* search for tops in table of instantiated ops */
-	for (i = 0 ; i < num_entries ; i++) {
-		if (opsptr_arr[i] == (OWNPTR)tops.num) {
-			ansops->num = (long)ops_arr[i];
-			ansindex->num = i;
-			for (j = 0; j < MAX_PARMS ; j++) {
-				if (parm_types[i][j] == NULL) break;
-				}
-			ansnparm->num = j;
-			signal(ERR_ok);
-			}
+    for (long i = 0; i < num_entries; ++i) {
+	if (opsptr_arr[i] == ops) {
+	    ansaops->num = (long)ops_arr[i];
+	    ansindex->num = i;
+
+	    /*
+	     * XXX: uwe: this seems wrong in the presence of constant
+	     * parameters.
+	     */
+	    for (long j = 0; j < MAX_PARMS; ++j) {
+		if (parm_reqs[i][j] == NULL) {
+		    ansnparm->num = j;
+		    break;
 		}
-	signal(ERR_not_found);
+	    }
+	    return ERR_ok;
 	}
+    }
+
+    return ERR_not_found;
+}
 
 
-errcode find_tgen_parm(index, ith, ansops)
-CLUREF index, ith;
-CLUREF *ansops;
+/*
+ * Given the index of an instantiation and the index of the parameter
+ * for that instantiation return ops for that parameter.
+ */
+errcode
+find_tgen_parm(CLUREF index, CLUREF ith, CLUREF *ansops)
 {
-	ansops->num = (long)parm_vals[index.num][ith.num];
-	signal(ERR_ok);
-	}
+    ansops->num = (long)parm_vals[index.num][ith.num];
+    return ERR_ok;
+}
 #endif	/* CLU_DEBUG */
