@@ -42,9 +42,13 @@
 #define log OPlog
 
 #ifdef CLU_DEBUG
-#define signal(x) if (CLU_TRACE) debugOPleave_proc(x) ; return((long)x)
+#define signal(x) do {				\
+    if (CLU_TRACE)				\
+	debugOPleave_proc((errcode)(x));	\
+    return ((errcode)x);			\
+} while (0)
 #else
-#define signal(x) return((long)x)
+#define signal(x) return ((errcode)(x))
 #endif
 
 #ifdef CLU_DEBUG
