@@ -663,7 +663,7 @@ update_ops(void)
 
 
 
-#ifdef CLU_DEBUG
+#ifdef CLU_DEBUG_IMPL
 /*
  * Give the debugger access to this from Clu code.
  *
@@ -792,4 +792,4 @@ find_tgen_parm(CLUREF index, CLUREF ith, CLUREF *ansops)
     ansops->num = (long)parm_vals[index.num][ith.num];
     return ERR_ok;
 }
-#endif	/* CLU_DEBUG */
+#endif	/* CLU_DEBUG_IMPL */

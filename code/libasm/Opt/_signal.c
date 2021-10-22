@@ -28,7 +28,7 @@ extern int gcflag;
 #endif
 
 errcode sequenceOPfill(CLUREF length, CLUREF x, CLUREF *ans);
-#ifdef CLU_DEBUG
+#ifdef CLU_DEBUG_IMPL
 extern errcode debugOPwhere_cmd(CLUREF args);
 #endif
 
@@ -106,7 +106,7 @@ int sig;
 	write(1, str.str->data, str.str->size);
     }
 
-#ifdef CLU_DEBUG
+#ifdef CLU_DEBUG_IMPL
     /* print backtrace on a fatal error */
     if (sig == SIGBUS || sig == SIGSEGV) {
 	debugOPwhere_cmd(CLU_empty_string);
@@ -201,7 +201,7 @@ _signalOPget_message(CLUREF sig, CLUREF *ans)
 }
 
 
-#if 0 && defined(CLU_DEBUG)	/* disable for now */
+#if 0 && defined(CLU_DEBUG_IMPL)	/* disable for now */
 errcode
 _signalOPprint(void)
 {
@@ -221,7 +221,7 @@ _signalOPprint(void)
     }
     return ERR_ok;
 }
-#endif	/* CLU_DEBUG */
+#endif	/* CLU_DEBUG_IMPL */
 
 
 void

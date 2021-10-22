@@ -483,7 +483,7 @@ add_sel_ops(const char *selname, long count, struct OPS *new_ops)
 }
 
 
-#ifdef CLU_DEBUG
+#ifdef CLU_DEBUG_IMPL
 errcode find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
 		    CLUREF *ansnum, CLUREF *ansops, CLUREF *ansnfield);
 
@@ -748,7 +748,7 @@ find_valops(CLUREF selnm, CLUREF opnm, CLUREF ops,
     ansnfield->num = j+1;
     signal(ERR_ok);
 }
-#endif	/* CLU_DEBUG */
+#endif	/* CLU_DEBUG_IMPL */
 
 
 /********************************************************/

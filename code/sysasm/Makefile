@@ -6,7 +6,12 @@ CFLAGS         = -I../../include -DLINUX
 OPT_FLAGS      = -O2
 DEBUG_FLAGS    = -g
 DEBUGGER_FLAGS ?= ${OPT_FLAGS}
-DEBUGGER_FLAGS += -DCLU_DEBUG=1
+
+# NB: Don't compile this with CLU_DEBUG.  Native code uses signal() in
+#   an (IMHO) misguided attempt to look more like Clu, but
+#   debug$leave_proc that signal() calls with CLU_DEBUG doesn't have
+#   the matching debug$enter* call at the beginning, wreaking havoc.
+DEBUGGER_FLAGS += -DCLU_DEBUG_IMPL=1
 
 LN             = /bin/ln -s
 RM             = /bin/rm -f

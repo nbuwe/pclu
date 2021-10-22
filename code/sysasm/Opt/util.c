@@ -35,7 +35,7 @@ errcode streamOP_close_all(void);
 errcode stringOPconcat(CLUREF s1, CLUREF s2, CLUREF *ans);
 errcode stringOPcons(const char *buf, CLUREF start, CLUREF len, CLUREF *ans);
 
-#ifdef CLU_DEBUG
+#ifdef CLU_DEBUG_IMPL
 /* cf. debug/debug.clu */
 #define CLU_DEBUG_GENESIS CLU_4
 extern errcode debugOPcli(CLUREF source, CLUREF opt1, CLUREF opt2, CLUREF opt3,
@@ -211,7 +211,7 @@ main_2(int _argc, char **_argv, char **_envp)
 
     /* invoke the user's program */
     {
-#ifdef CLU_DEBUG
+#ifdef CLU_DEBUG_IMPL
 	/*
 	 * This bit of code is, more or less the only diff that
 	 * pclu-LINUX-RH7 had between Opt and Debugger versions.
@@ -233,7 +233,7 @@ main_2(int _argc, char **_argv, char **_envp)
 	    CLUREF erstr = _pclu_erstr(err);
 	    fprintf(stderr, "unhandled exception: %s\n", erstr.str->data);
 	}
-#endif	/* CLU_DEBUG */
+#endif	/* CLU_DEBUG_IMPL */
 
 	pgmerr = start_up();
 	if (pgmerr != ERR_ok) {
