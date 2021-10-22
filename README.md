@@ -101,6 +101,15 @@ what I do for now:
     hg diff .
 
 
+# Debugger
+
+Clu debugger is in-process and is compiled and linked directly into
+the program.  It should now be in the state where it compiles and the
+debug version of hello world can actually run.  Since debugger relies
+on nm(1) to get the symbol addresses, it doesn't actually work b/c of
+ASLR.  Need to tweak the debug code to compile in non-PIE mode.
+
+
 # Random remarks
 
 I've tested this procedure on Ubuntu/amd64 and NetBSD/macppc.
