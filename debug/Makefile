@@ -13,12 +13,12 @@ PCLU = ../exe/pclu
 CLU_SOURCES = debug.clu debug2.clu parse.clu
 
 
+# debugger Clu code
 CFILES  = $(CLU_SOURCES:.clu=.c)
 FLUFF  += $(CLU_SOURCES:.clu=.c)
 
-# native code, overrides for libasm and sysasm
+# debugger native code
 CFILES += debug_c.c call_clu.c
-CFILES += _signal.c
 
 # debug info for the "builtin" stuff
 CFILES += libinfo.c
