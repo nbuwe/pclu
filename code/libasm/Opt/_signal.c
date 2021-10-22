@@ -28,7 +28,9 @@ extern int gcflag;
 #endif
 
 errcode sequenceOPfill(CLUREF length, CLUREF x, CLUREF *ans);
-
+#ifdef CLU_DEBUG
+extern errcode debugOPwhere_cmd(CLUREF args);
+#endif
 
 typedef void (VPROC)();
 
@@ -103,6 +105,15 @@ int sig;
 	CLUREF str = { .num = msgs.vec->data[sig - 1] };
 	write(1, str.str->data, str.str->size);
     }
+
+#ifdef CLU_DEBUG
+    /* print backtrace on a fatal error */
+    if (sig == SIGBUS || sig == SIGSEGV) {
+	debugOPwhere_cmd(CLU_empty_string);
+	_exit(-1);
+    }
+#endif
+
     return;
 }
 
