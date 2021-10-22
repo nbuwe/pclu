@@ -469,12 +469,12 @@ gco = cluster is init, save_new_obj, get_obj, reset
 %    end gco
 %
 
-log_bytevec = proc(bv: _bytevec)
-    logit("gc_read: next _bytevec")
-    for i: int in int$from_to(1, _bytevec$size(bv)) do
-      c: char := bv[i]
-      s : string := "  " || int$unparse(i) || ": " || int$unparse(char$c2i(c))
-      if ' ' <= c cand c <= 'z' then s := s ||  ", '" ||  string$c2s(c) || "'" end
-      logit(s)
-    end
-end log_bytevec
+%log_bytevec = proc(bv: _bytevec)
+%    logit("gc_read: next _bytevec")
+%    for i: int in int$from_to(1, _bytevec$size(bv)) do
+%      c: char := bv[i]
+%      s : string := "  " || int$unparse(i) || ": " || int$unparse(char$c2i(c))
+%      if ' ' <= c cand c <= 'z' then s := s ||  ", '" ||  string$c2s(c) || "'" end
+%      logit(s)
+%    end
+%end log_bytevec
