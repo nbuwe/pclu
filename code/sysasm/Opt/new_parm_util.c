@@ -573,7 +573,7 @@ find_ops(const struct OPS *aops, errcode (*procaddr)(), long nparm,
     }
 
     bool found = false;
-    for (i = 0; !found && i < num_entries; ++i) {
+    for (i = 0; i < num_entries; ++i) {
 
 	/* same type/op template? */
 	if (aops != ops_arr[i] || procaddr != ops_proc[i])
@@ -612,6 +612,9 @@ find_ops(const struct OPS *aops, errcode (*procaddr)(), long nparm,
 		}
 	    }
 	}
+
+	if (found)
+	    break;
     }
 
     if (found) {
