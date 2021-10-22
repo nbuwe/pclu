@@ -48,7 +48,7 @@ libpclu_debug.a:
 	${RM} libpclu_debug.a
 	ar cruv libpclu_debug.a ${DEBUG1}
 	# add the debugger
-	ar q libpclu_debug.a ${DEBUG2}
+	ar qv libpclu_debug.a ${DEBUG2}
 	ranlib libpclu_debug.a
 
 
