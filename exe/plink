@@ -3,8 +3,6 @@
 # let the compiler be set in the environment
 cc=${CLUCC-${CC-cc}}
 
-output=
-files=
 verbose=
 opt=
 lflags=
@@ -12,7 +10,7 @@ libpclu=-lpclu_opt
 
 usage() {
     cat 1>&2 <<'//GO.SYSIN DD *'
-Usage: plink [-o output] [-opt|-debug] [-v] objfile ...
+Usage: plink [-v] [-opt|-debug] [--] linker args ...
 //GO.SYSIN DD *
     exit 2
 }
@@ -44,29 +42,21 @@ do
 	    opt=opt
 	    ;;
 
-	-o)
-	    if [ "$output" ]; then
-		usage
-	    fi
-
-	    shift
-	    output="$1"
-	    if [ -z "$output" ]; then
-		usage
-	    fi
-	    ;;
-
 	-v|-verbose|--verbose)
 	    verbose=y
 	    ;;
 
-	-*)
-	    echo unknown option "$1" 1>&2
-	    usage
+	--) # pass the remaining args to cc/ld
+	    shift
+	    break
 	    ;;
 
-	*)
-	    files="$files $1"
+	-*) # unknown option - pass it and the remaining args to cc/ld
+	    break
+	    ;;
+
+	*)  # non-option - pass it and the remaining args to cc/ld
+	    break
 	    ;;
     esac
 
@@ -77,4 +67,4 @@ if [ "$verbose" ]; then
     PS4=''			# suppress '+' prefix from set -x
     set -x
 fi
-$cc $lflags ${output:+-o "$output"} $files -L"${CLUHOME}"/code $libpclu -lm -lgc
+$cc $lflags "$@" -L"${CLUHOME}"/code $libpclu -lm -lgc
