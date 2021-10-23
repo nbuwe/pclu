@@ -24,11 +24,11 @@ fi
 while [ $# != 0 ];
 do
     case "$1" in
-	-debug)
+	-debug|--debug)
 	    lflag=-lpclu_debug
 	    ;;
 
-	-opt)
+	-opt|--opt)
 	    lflag=-lpclu_opt
 	    ;;
 
@@ -40,7 +40,7 @@ do
 	    fi
 	    ;;
 
-	-v*)
+	-v|-verbose|--verbose)
 	    verbose=y
 	    ;;
 
