@@ -63,7 +63,8 @@ do
     if [ $# -ge 1 ]; then shift; fi
 done
 
-if [ -n "$verbose" ]; then
-    echo $cc $syms -o $output $files -L$CLUHOME/code $lflag -lm  -lgc
+if [ "$verbose" ]; then
+    PS4=''			# suppress '+' prefix from set -x
+    set -x
 fi
 $cc $syms -o $output $files -L$CLUHOME/code $lflag -lm -lgc
