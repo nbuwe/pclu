@@ -25,11 +25,21 @@ while [ $# != 0 ];
 do
     case "$1" in
 	-debug|--debug)
+	    if [ "$opt" ] && [ "$opt" != "debug" ]; then
+		echo "$1": conflicts with preceding options 1>&2
+		usage
+	    fi
 	    lflag=-lpclu_debug
+	    opt=debug
 	    ;;
 
 	-opt|--opt)
+	    if [ "$opt" ] && [ "$opt" != "opt" ]; then
+		echo "$1": conflicts with preceding options 1>&2
+		usage
+	    fi
 	    lflag=-lpclu_opt
+	    opt=opt
 	    ;;
 
 	-o)
