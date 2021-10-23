@@ -7,7 +7,8 @@ output=
 files=
 verbose=
 opt=
-lflag=-lpclu_opt
+lflags=
+libpclu=-lpclu_opt
 
 usage() {
     cat 1>&2 <<'//GO.SYSIN DD *'
@@ -29,7 +30,8 @@ do
 		echo "$1": conflicts with preceding options 1>&2
 		usage
 	    fi
-	    lflag=-lpclu_debug
+	    lflags=-no-pie
+	    libpclu=-lpclu_debug
 	    opt=debug
 	    ;;
 
@@ -38,7 +40,7 @@ do
 		echo "$1": conflicts with preceding options 1>&2
 		usage
 	    fi
-	    lflag=-lpclu_opt
+	    libpclu=-lpclu_opt
 	    opt=opt
 	    ;;
 
@@ -75,4 +77,4 @@ if [ "$verbose" ]; then
     PS4=''			# suppress '+' prefix from set -x
     set -x
 fi
-$cc ${output:+-o "$output"} $files -L"${CLUHOME}"/code $lflag -lm -lgc
+$cc $lflags ${output:+-o "$output"} $files -L"${CLUHOME}"/code $libpclu -lm -lgc
