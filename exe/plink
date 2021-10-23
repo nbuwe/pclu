@@ -11,7 +11,7 @@ syms=
 lflag=-lpclu_opt
 
 usage="Usage: plink <object file> ... <Option>*\n\
-Options: -debug, -opt,  -prof, -o outputfile, ^outputfile, -v"
+Options: -debug, -opt,  -prof, -o outputfile, -v"
 
 if [ $# = 0 ]; then
     echo $usage
@@ -21,10 +21,6 @@ fi
 while [ $# != 0 ];
 do
     case "$1" in
-	\^*)
-	    output=`echo "$1" | sed 's/^\\^//'`
-	    ;;
-
 	-debug)
 	    lflag=-lpclu_debug
 	    ;;
