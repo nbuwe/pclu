@@ -9,12 +9,16 @@ verbose=
 opt=
 lflag=-lpclu_opt
 
-usage="Usage: plink <object file> ... <Option>*\n\
-Options: -debug, -opt, -o outputfile, -v"
+usage() {
+    cat 1>&2 <<'//GO.SYSIN DD *'
+Usage: plink [-o output] [-opt|-debug] [-v] objfile ...
+//GO.SYSIN DD *
+    exit 2
+}
+
 
 if [ $# = 0 ]; then
-    echo $usage
-    exit 2
+    usage
 fi
 
 while [ $# != 0 ];
@@ -42,8 +46,7 @@ do
 	    ;;
 
 	-*)
-	    echo $usage
-	    exit 2
+	    usage
 	    ;;
 
 	*)
