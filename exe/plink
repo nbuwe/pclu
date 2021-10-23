@@ -3,7 +3,7 @@
 # let the compiler be set in the environment
 cc=${CLUCC-${CC-cc}}
 
-output=a.out
+output=
 files=
 verbose=
 opt=
@@ -43,6 +43,10 @@ do
 	    ;;
 
 	-o)
+	    if [ "$output" ]; then
+		usage
+	    fi
+
 	    shift
 	    output="$1"
 	    if [ -z "$output" ]; then
@@ -71,4 +75,4 @@ if [ "$verbose" ]; then
     PS4=''			# suppress '+' prefix from set -x
     set -x
 fi
-$cc -o $output $files -L$CLUHOME/code $lflag -lm -lgc
+$cc ${output:+-o "$output"} $files -L$CLUHOME/code $lflag -lm -lgc
