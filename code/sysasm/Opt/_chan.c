@@ -2227,23 +2227,25 @@ _chanOPbind(CLUREF chref, CLUREF name, CLUREF len)
 errcode
 _chanOPconnect(CLUREF chref, CLUREF name, CLUREF len)
 {
-    int fd, uerr;
-    _chan *ch = (_chan *)chref.ref;
+    int status;
 
-    if (ch->rd.num < 0 && ch->wr.num < 0) {
+    _chan *ch = (_chan *)chref.ref;
+    int fd = ch->rd.num;
+    if (fd < 0) {
+	fd = ch->wr.num;
+    }
+    if (fd < 0) {
 	elist[0] = _chan_is_closed_STRING;
 	signal(ERR_not_possible);
     }
 
-    fd = ch->rd.num;
-    if (fd < 0)
-	fd = ch->wr.num;
-
+    if (len.num < 0)
+	signal(ERR_bounds);	/* XXX: TODO: ERR_negative_size? */
     if (len.num > name.vec->size)
 	signal(ERR_bounds);
 
-    uerr = connect(fd, name.vec->data, len.num);
-    if (uerr == 0)
+    status = connect(fd, (struct sockaddr *)name.vec->data, (socklen_t)len.num);
+    if (status == 0)
 	signal(ERR_ok);
 
     elist[0] = _unix_erstr(errno);
