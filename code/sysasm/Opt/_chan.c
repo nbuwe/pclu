@@ -40,11 +40,11 @@ void sigfixmask(sigset_t *setp, int m);
 
 errcode _chanOP_open(CLUREF fn, CLUREF flags, CLUREF fmode, CLUREF *uchan);
 
-extern int _chanOPtstop();
-extern int _chanOPtdie();
-extern errcode _chanOPOPset_tty();
-extern errcode _chanOPOP_put_doit(bool lit, int fd, CLUREF bv, int low, int size);
-extern errcode _chanOPOPreadit();
+static int _chanOPtstop(void);
+static int _chanOPtdie(int sig);
+static errcode _chanOPOPset_tty(CLUREF chref, CLUREF *newch);
+static errcode _chanOPOP_put_doit(bool lit, int fd, CLUREF bv, int low, int size);
+static errcode _chanOPOPreadit(int s, CLUREF bv, int start, int *count);
 
 typedef struct {
     CLUREF fn;			/* file name */
@@ -568,7 +568,7 @@ _chanOP_restore_tty(/* void */)
 }
 
 
-errcode
+static errcode
 _chanOPOPset_tty(CLUREF chref, CLUREF *newch)
 {
     int result;
@@ -685,7 +685,7 @@ _chanOPOPset_tty(CLUREF chref, CLUREF *newch)
 }
 
 
-int
+static int
 _chanOPtstop(void)
 {
     struct sigaction temp;
@@ -719,7 +719,7 @@ _chanOPtstop(void)
 }
 
 
-int
+static int
 _chanOPtdie(int sig)
 {
     struct sigaction temp;
@@ -1089,7 +1089,7 @@ _chanOPput(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
 }
 
 
-errcode
+static errcode
 _chanOPOP_put_doit(bool lit, int fd, CLUREF bv, int low, int size)
 {
     int result;
@@ -1802,7 +1802,7 @@ _chanOPget(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
 }
 
 
-errcode
+static errcode
 _chanOPOPreadit(int s, CLUREF bv, int start, int *count)
 {
     int result;
