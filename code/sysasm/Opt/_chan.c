@@ -64,8 +64,8 @@ typedef struct {
 #define SIGNAL_MASK 0xff7bf0e0
 
 static long _chan_defmode;
-long wrpipe = 0; 
-static long rdpipe = 0; 
+long wrpipe = 0;
+static long rdpipe = 0;
 static _chan * _chan_pri = NULL;
 static _chan * _chan_pro = NULL;
 static _chan * _chan_ero = NULL;
@@ -135,7 +135,7 @@ _chanOP_open(CLUREF fn, CLUREF flags, CLUREF fmode, CLUREF *uchan)
     err = file_name_fill(fn, temp_str, &fullname);
     if (err != ERR_ok) goto def_err_hdlr;
     newch->fn = fullname;
-    err = file_nameOPunparse(newch->fn, &fname);	
+    err = file_nameOPunparse(newch->fn, &fname);
     /* assume fname is zero terminated */
     newch->new.tf = false;
     if (flags.num & O_WRONLY || flags.num & O_RDWR) {
@@ -162,7 +162,7 @@ _chanOP_open(CLUREF fn, CLUREF flags, CLUREF fmode, CLUREF *uchan)
     newch->typ.num = oth;
     err = tcgetattr(fd, &obuf);
     if (err == 0) {
-	newch->typ.num = tty;	
+	newch->typ.num = tty;
 	if (newch->rd.num == newch->wr.num) {
 	    obuf.c_iflag |= ICRNL;
 	    obuf.c_oflag |= OPOST + ONLCR;
@@ -223,7 +223,7 @@ errcode _chanOPpipe(ans1, ans2)
     elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
 }
- 
+
 errcode _chanOPsocket(family, socktype, protocol, ans)
     CLUREF family, socktype, protocol;
 CLUREF *ans;
@@ -1043,7 +1043,7 @@ _chanOPput(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
 	}
 	else {
 	    force = true;
-	    string_chars_to_newline = 
+	    string_chars_to_newline =
 		newline_addr - &(s.str->data[string_offset]);
 	    string_chars_to_newline += 1;
 	}
@@ -1643,14 +1643,14 @@ _chanOPget(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
 /*** CONVERT LOW AND HIGH FROM CLU INDEXES (STARTING AT 1) TO C ****/
 /*** INDEXES (STARTING AT 0)                                    ****/
     low.num = low.num - 1;
-    high.num = high.num - 1; 
+    high.num = high.num - 1;
 
 /* guarantee that there is some data to search through */
 /**** MODIFICATION:    V--------------------V 2/13/91 */
     if (count == 0 || high.num < low.num) {
 
 /**** MODIFICATION: ---V   From strt = 1;  *****/
-	strt = 0;  
+	strt = 0;
 	err = _chanOPOPreadit(ch->rd.num, bv, strt, &count);
 	if (err == ERR_end_of_file) signal(err);
 	if (err != ERR_ok) signal(err); /* propagate */
@@ -1693,8 +1693,8 @@ _chanOPget(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
 /* the following case appears impossible */
 
 		if (newlow->num > newhigh->num) {
-		    strt = 0;  
-		    err = _chanOPOPreadit(ch->rd.num, bv, strt, 
+		    strt = 0;
+		    err = _chanOPOPreadit(ch->rd.num, bv, strt,
 					  &count);
 		    if ((err != ERR_ok)&&(err != ERR_end_of_file))
 			signal(err); /* propagate */
@@ -1736,7 +1736,7 @@ _chanOPget(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
     else {
 
 
-/***** MODIFICATION: THE REMAINDER OF GET IS ENTIRELY REWRITTEN ****/	
+/***** MODIFICATION: THE REMAINDER OF GET IS ENTIRELY REWRITTEN ****/
 /* search for multi character terminator string in bv */
 /* substantially reworked 8/12/92 (dwc)  (used by clucc):
    redefine multi-character terminator string: any char in it will terminate the read
@@ -1766,8 +1766,8 @@ _chanOPget(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
 /****               returning.  Also return cleanly if EOF. *****/
 
 		    if (newlow->num > newhigh->num) {
-			strt = 0;  
-			err = _chanOPOPreadit(ch->rd.num, bv, strt, 
+			strt = 0;
+			err = _chanOPOPreadit(ch->rd.num, bv, strt,
 					      &count);
 			if ((err != ERR_ok)&&(err != ERR_end_of_file))
 			    signal(err); /* propagate */
@@ -1779,7 +1779,7 @@ _chanOPget(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
 		    signal (ERR_ok);
 		    /** End If done **/}
 		/** End For i **/}
-	
+
 	    beg.num = low.num + 1;
 	    len.num = i - low.num;
 	    err = stringOPsubstr (bv, beg, len, &newchars);
@@ -1863,7 +1863,7 @@ _chanOPrecvfrom(CLUREF chref, CLUREF bv, CLUREF flags, CLUREF addr,
 
     fromlen = addr.str->size;
     for (;;) {
-	result = recvfrom(ch->rd.num, bv.str->data, bv.str->size, 
+	result = recvfrom(ch->rd.num, bv.str->data, bv.str->size,
 			  flags.num, addr.str->data, &fromlen);
 	if (result == -1 && errno == EINTR)
 	    continue;
