@@ -131,8 +131,8 @@ Note that:
 
   (make-local-variable 'comment-column)
   (setq comment-column 41)
-  (make-local-variable 'end-comment-column)
-  (setq end-comment-column 75)
+  (make-local-variable 'comment-fill-column)
+  (setq comment-fill-column 75)
   (make-local-variable 'paragraph-start)
   (setq paragraph-start (concat "^$\\|" page-delimiter))
   (make-local-variable 'paragraph-separate)
@@ -148,7 +148,7 @@ Note that:
   (make-local-variable 'comment-column)
   (setq comment-column 41)
   (make-local-variable 'comment-start-skip)
-  (setq comment-start-skip "%* *")
+  (setq comment-start-skip "%+ *")
 
   ;; Necessary since comments are terminated by newlines
   (make-local-variable 'parse-sexp-ignore-comments)
