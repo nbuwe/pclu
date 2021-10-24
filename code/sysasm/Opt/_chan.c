@@ -537,7 +537,6 @@ errcode
 _chanOP_save_tty(void)
 {
     int err;
-    int zcnt = 0;
 
     /*
      * added the following cbreak so that ctrl-c would not hang the shell
@@ -547,11 +546,14 @@ _chanOP_save_tty(void)
     */
     if (_chan_pri != NULL && _chan_pri->typ.num == tty && wrpipe <= 0) {
 	err = tcgetattr(0, &isbuf);
+	CLU_NOREF(err);		/* XXX */
+
 	sbuf.c_lflag |= (ICANON + ECHO);
-	err = tcsetattr(0, TCSANOW, &sbuf);
+	tcsetattr(0, TCSANOW, &sbuf);
 	printf("\n");
 #if 0
-	err = ioctl(0, TIOCFLUSH, zcnt);
+	int zcnt = 0;
+	ioctl(0, TIOCFLUSH, zcnt);
 #endif
     }
     signal(ERR_ok);
