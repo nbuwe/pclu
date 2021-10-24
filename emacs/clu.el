@@ -24,7 +24,7 @@
 	(modify-syntax-entry ?% "<    ")
 	(modify-syntax-entry ?\n ">    "))
        (set-syntax-table st))))
-	
+
 (defvar clu-mode-map nil
   "keymap used in clu-mode")
 
@@ -113,7 +113,7 @@ Variables controlling indentation style:
     (beginning-of-line)
     (setq id
 	  (buffer-substring (point)
-			    (progn 
+			    (progn
 			      (skip-chars-forward "^ \t$")
 			      (point))))
     (end-of-line)
@@ -121,7 +121,7 @@ Variables controlling indentation style:
     (clu-indent-line)
     (insert-string (concat "end " id)))
   (skip-chars-backward "^\("))
-  
+
 (defun clu-tab (&optional argp)
   "Indent current line if point is at beginning of line, else insert tab."
   (interactive "P")
@@ -184,7 +184,7 @@ rigidly with this line."
 		( (= (following-char) ?\))
 		  (setq count (1- count)))
 		( (looking-at "=[ \t]*")
-		  (progn 
+		  (progn
 		    (skip-chars-forward "= \t")
 		    (if (or (looking-at "iter")
 			    (looking-at "proc")
@@ -217,7 +217,7 @@ rigidly with this line."
 	      ((looking-at "else") (setq col (+ col -2)))
 	      ((looking-at "when") (setq col (+ col clu-when-offset)))))
 	(+ col (* count clu-indent-size))))))
-  
+
 (defun clu-compile ()
   "Compile the CLU program in the current buffer"
   (interactive)
@@ -271,7 +271,7 @@ rigidly with this line."
 		 (skip-chars-backward "^ \n")
 		 (setq last-filename
 		       (buffer-substring (point)
-					 (progn 
+					 (progn
 					   (skip-chars-forward "^\$")
 					   (point))))))))
       ;remove \r before \n
@@ -329,14 +329,14 @@ rigidly with this line."
     ;  (beginning-of-line)
     ;  (set-window-start
     ;   (get-buffer-window (current-buffer)) (point)))
-    (send-string compilation-process 
+    (send-string compilation-process
 		 (concat command "\n"))))
 
 (defun clu-compilation-go-end ()
   "This gets called on ESC-&"
   (interactive)
   (goto-char (point-max)))
-				  
+
 
 ; (setq compile-command "clu #externals false #locals false #optimize time\n")
 
@@ -346,5 +346,3 @@ rigidly with this line."
    (interactive)
    (shell-command-on-region (point-min) (point-max) "cludent" t)
    (goto-char (point-min)))
-
-
