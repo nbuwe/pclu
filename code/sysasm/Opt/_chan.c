@@ -1795,35 +1795,11 @@ _chanOPget(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
 		newhigh->num = 0;
 		signal(ERR_ok);
 	    }
-	    if (err != ERR_ok) signal (err); /* propagate */
-	    /** End while **/}
-	/** end else **/}
-    /** end get **/}
-
-/* OBSOLETE ...
-   {if ((i+j+1) >= count) {
-
-   / ** PULL PARTIAL TERMINATOR TO START OF BUFFER ** /
-   beg.num = low.num + 1;
-   len.num = i - j;
-   err = stringOPsubstr(bv, beg, len, 
-   &newchars);
-   if (err != ERR_ok) resignal (err);
-   err = stringOPconcat(temp, newchars, &temp);
-   if (err != ERR_ok) resignal(err);
-   for (offset = 0;  (offset <= j); offset++) {
-   bv.str->data[offset] = 
-   bv.str->data[offset + i];
-   }
-   strt = j + 1;
-   err = _chanOPOPreadit(ch->rd.num, bv, strt, 
-   &count);
-   if (err == ERR_end_of_file) signal (err);
-   if (err != ERR_ok) signal (err); / * propagate * /
-   i = 0;
-   low.num = 0;
-   / ** End If ** /}
-*/
+	    if (err != ERR_ok)
+		signal (err); /* propagate */
+	}
+    }
+}
 
 
 errcode
