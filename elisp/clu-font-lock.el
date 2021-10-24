@@ -97,55 +97,53 @@ namelist."
   ;;; Subdued level highlighting for Clu mode.
   ;;;
   (setq clu-font-lock-keywords-1
-    (list
-     ;; keywords
-     (concat "\\_<\\(" clu-keywords "\\)\\_>")
+    `(
+      ;; keywords
+      ,(concat "\\_<\\(" clu-keywords "\\)\\_>")
 
-     ;; types
-     (list
-      (concat "\\_<\\(" clu-type-names "\\)\\_>")
-      1 'font-lock-type-face)
+      ;; types
+      (,(concat "\\_<\\(" clu-type-names "\\)\\_>")
+       1 font-lock-type-face)
 
-     ;; rep and cvt
-     '("\\_<\\(rep\\|cvt\\)\\_>"
+      ;; rep and cvt
+      ("\\_<\\(rep\\|cvt\\)\\_>"
        1 font-lock-builtin-face)
 
-     ;; functions
-     '("\\_<\\(\\sw+\\)\\_>\\s-*=\\s-*\\(proc\\|iter\\)\\_>"
+      ;; functions
+      ("\\_<\\(\\sw+\\)\\_>\\s-*=\\s-*\\(proc\\|iter\\)\\_>"
        1 font-lock-function-name-face)
 
-     ;; clusters
-     '("\\_<\\(\\sw+\\)\\_>\\s-*=\\s-*\\(cluster\\)\\_>"
+      ;; clusters
+      ("\\_<\\(\\sw+\\)\\_>\\s-*=\\s-*\\(cluster\\)\\_>"
        1 font-lock-type-face)))
-
 
   ;;;
   ;;; Medium level highlighting for Clu mode.
   ;;;
   (setq clu-font-lock-keywords-2
-    (append clu-font-lock-keywords-1
-      (list
-       ;; negation
-       '("~"
-	 0 font-lock-negation-char-face) ; default face by default
+    `(,@clu-font-lock-keywords-1
 
-       ;; tags in tagscase
-       `(,(concat "\\_<tag\\s-+" comma-list-regexp)
-	 ,(clu-font-lock-namelist 'font-lock-constant-face)))))
+      ;; negation
+      ("~"
+       0 font-lock-negation-char-face) ; default face by default
+
+      ;; tags in tagscase
+      (,(concat "\\_<tag\\s-+" comma-list-regexp)
+       ,(clu-font-lock-namelist 'font-lock-constant-face))))
 
   ;;;
   ;;; Gaudy level highlighting for Clu mode.
   ;;;
   (setq clu-font-lock-keywords-3
-    (append clu-font-lock-keywords-2
-      (list
-       ;; type$foo
-       '("\\_<\\(\\sw+\\)\\_>\\(\\$\\)"
-	 (1 font-lock-type-face) (2 font-lock-builtin-face))
+    `(,@clu-font-lock-keywords-2
 
-       ;; constants
-       '("\\_<nil\\|false\\|true\\_>"
-	 0 font-lock-constant-face)))))
+      ;; type$foo
+      ("\\_<\\(\\sw+\\)\\_>\\(\\$\\)"
+       (1 font-lock-type-face) (2 font-lock-builtin-face))
+
+      ;; constants
+      ("\\_<nil\\|false\\|true\\_>"
+       0 font-lock-constant-face))))
 
 
 (defvar clu-font-lock-keywords clu-font-lock-keywords-1
