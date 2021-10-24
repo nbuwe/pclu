@@ -98,7 +98,7 @@
 You can get help on CLU by using the emacs help key (normaly
 Control-h) followed by one of the keys:
 
-1. 'd' -- for help on Clu symbols (types or operations. Examples: int$mul, 
+1. 'd' -- for help on Clu symbols (types or operations. Examples: int$mul,
 	  array, ARRAY$FILL, FILE_NAME, stream$primary_output, string$s2ac)
 2. 'g' -- for general Clu documentation topics (Examples: TERMINAL_I/O, FILE,
 	  own_variables, CLUSTERS, syntactic_sugar).
@@ -107,19 +107,19 @@ Control-h) followed by one of the keys:
 
 EXAMPLE:
   You type  		 C-h d
-  Emacs prompts with	 Describe CLU symbol: 
+  Emacs prompts with	 Describe CLU symbol:
   You type		 oneof$make_  <RETURN>
   Emacs splits your screen and gives help about the operation ONEOF$MAKE_
 
 Note that:
-- case is unimportant. 
+- case is unimportant.
 - The help text is taken from the Clu manual (Appendix A in the 6.170 book).
 - Symbol completion works (hit the TAB key); for example, if you type  ARRAY$
-  followed by TAB, you'll get a list of possible completions (all the 
+  followed by TAB, you'll get a list of possible completions (all the
   operations of ARRAY in this case).
-- If the cursor is placed on a Clu symbol when you call C-h d, emacs would 
-  propose that symbol as default; for example, if your cursor is placed 
-  someplace on \"ARRAY[foo]$FILL\" in your file, and you type C-h d , emacs 
+- If the cursor is placed on a Clu symbol when you call C-h d, emacs would
+  propose that symbol as default; for example, if your cursor is placed
+  someplace on \"ARRAY[foo]$FILL\" in your file, and you type C-h d , emacs
   would prompt:   \"Describe CLU symbol (default ARRAY$FILL): \", typing RETURN
   would select this default."
   (interactive)
@@ -314,7 +314,7 @@ Note that:
 	))
     )
   )
-      
+
 ;;;
 ;;; Indent the current line as Clu code.
 ;;;
@@ -381,7 +381,7 @@ Note that:
 	     nil)
 	    )
 
-      ;; Check if we are done yet	    
+      ;; Check if we are done yet
       (if (save-excursion (skip-chars-backward " \t") (bolp))
 	  ;; At beginning of line. Use this as indentation point
 	  (setq done t)
