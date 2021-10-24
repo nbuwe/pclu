@@ -43,7 +43,7 @@ errcode _chanOP_open(CLUREF fn, CLUREF flags, CLUREF fmode, CLUREF *uchan);
 extern int _chanOPtstop();
 extern int _chanOPtdie();
 extern errcode _chanOPOPset_tty();
-extern errcode _chanOPOP_put_doit();
+extern errcode _chanOPOP_put_doit(bool lit, int fd, CLUREF bv, int low, int size);
 extern errcode _chanOPOPreadit();
 
 typedef struct {
@@ -72,8 +72,6 @@ static _chan * _chan_ero = NULL;
 static _chan * _chan_nul = NULL;
 static struct termios isbuf;
 static struct termios sbuf;
-static long ilbuf;
-static long lbuf;
 
 int speeds[16] = {50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400, 4800,
 		  9600, 19200, 38400};
@@ -692,7 +690,6 @@ _chanOPtstop(void)
 {
     struct sigaction temp;
     int pid;
-    int result, mask;
 
     temp.sa_handler = NULL;
     sigemptyset(&temp.sa_mask);
@@ -703,7 +700,7 @@ _chanOPtstop(void)
     _chanOP_save_tty();
     sigaction(SIGTSTP, &temp, 0);
     pid = getpid();
-    result = kill(pid, SIGTSTP);
+    kill(pid, SIGTSTP);
 
     sigset_t eset, oset;
     sigemptyset(&eset);
@@ -727,7 +724,6 @@ _chanOPtdie(int sig)
 {
     struct sigaction temp;
     int pid;
-    int result;
 
     temp.sa_handler = NULL;
     sigemptyset(&temp.sa_mask);
@@ -737,7 +733,7 @@ _chanOPtdie(int sig)
     temp.sa_flags = 0;
     sigaction(sig, &temp, 0);
     pid = getpid();
-    result = kill(pid, sig);
+    kill(pid, sig);
     _chanOP_save_tty();
     return 0;
 }
@@ -746,7 +742,6 @@ _chanOPtdie(int sig)
 errcode
 _chanOPputc(CLUREF chref, CLUREF c, CLUREF image)
 {
-    int lit;
     int result;
     _chan *ch = (_chan *)chref.ref;
 
@@ -755,14 +750,12 @@ _chanOPputc(CLUREF chref, CLUREF c, CLUREF image)
 	signal(ERR_not_possible);
     }
 
-    if (image.tf == true && ch->typ.num == tty)
-	lit = true;
-    else
-	lit = false;
-
 #ifndef LINUX
+    bool lit = (image.tf && ch->typ.num == tty);
     if (lit)
-	result = ioctl(ch->wr.num, TIOCLBIS, LLITOUT);
+	ioctl(ch->wr.num, TIOCLBIS, LLITOUT);
+#else
+    CLU_NOREF(image);
 #endif
 
     for (;;) {
@@ -782,7 +775,7 @@ _chanOPputc(CLUREF chref, CLUREF c, CLUREF image)
 
 #ifndef LINUX
     if (lit)
-	result = ioctl(ch->wr.num, TIOCLBIC, LLITOUT);
+	ioctl(ch->wr.num, TIOCLBIC, LLITOUT);
 #endif
     signal(ERR_ok);
 }
@@ -791,7 +784,6 @@ _chanOPputc(CLUREF chref, CLUREF c, CLUREF image)
 errcode
 _chanOPputi(CLUREF chref, CLUREF i, CLUREF image)
 {
-    int lit;
     int result;
     _chan *ch = (_chan *)chref.ref;
 
@@ -800,14 +792,12 @@ _chanOPputi(CLUREF chref, CLUREF i, CLUREF image)
 	signal(ERR_not_possible);
     }
 
-    if (image.tf == true && ch->typ.num == tty)
-	lit = true;
-    else
-	lit = false;
-
 #ifndef LINUX
+    bool lit = (image.tf && ch->typ.num == tty);
     if (lit)
-	result = ioctl(ch->wr.num, TIOCLBIS, LLITOUT);
+	ioctl(ch->wr.num, TIOCLBIS, LLITOUT);
+#else
+    CLU_NOREF(image);
 #endif
 
     for (;;) {
@@ -827,7 +817,7 @@ _chanOPputi(CLUREF chref, CLUREF i, CLUREF image)
 
 #ifndef LINUX
     if (lit)
-	result = ioctl(ch->wr.num, TIOCLBIC, LLITOUT);
+	ioctl(ch->wr.num, TIOCLBIC, LLITOUT);
 #endif
     signal(ERR_ok);
 }
@@ -836,7 +826,6 @@ _chanOPputi(CLUREF chref, CLUREF i, CLUREF image)
 errcode
 _chanOPputs(CLUREF chref, CLUREF s, CLUREF image)
 {
-    int lit;
     int result;
     _chan *ch = (_chan *)chref.ref;
 
@@ -845,14 +834,12 @@ _chanOPputs(CLUREF chref, CLUREF s, CLUREF image)
 	signal(ERR_not_possible);
     }
 
-    if (image.tf == true && ch->typ.num == tty)
-	lit = true;
-    else
-	lit = false;
-
 #ifndef LINUX
+    bool lit = (image.tf && ch->typ.num == tty);
     if (lit)
-	result = ioctl(ch->wr.num, TIOCLBIS, LLITOUT);
+	ioctl(ch->wr.num, TIOCLBIS, LLITOUT);
+#else
+    CLU_NOREF(image);
 #endif
 
     for (;;) {
@@ -873,7 +860,7 @@ _chanOPputs(CLUREF chref, CLUREF s, CLUREF image)
 
 #ifndef LINUX
     if (lit)
-	result = ioctl(ch->wr.num, TIOCLBIC, LLITOUT);
+	ioctl(ch->wr.num, TIOCLBIC, LLITOUT);
 #endif
     signal(ERR_ok);
 }
@@ -882,7 +869,6 @@ _chanOPputs(CLUREF chref, CLUREF s, CLUREF image)
 errcode
 _chanOPputb(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high, CLUREF image)
 {
-    int lit;
     int result;
     int top;
     int size;
@@ -900,14 +886,12 @@ _chanOPputb(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high, CLUREF image)
     if (high.num < top)
 	top = high.num;
 
-    if (image.tf == true && ch->typ.num == tty)
-	lit = true;
-    else
-	lit = false;
-
 #ifndef LINUX
+    bool lit = (image.tf && ch->typ.num == tty);
     if (lit)
-	result = ioctl(ch->wr.num, TIOCLBIS, LLITOUT);
+	ioctl(ch->wr.num, TIOCLBIS, LLITOUT);
+#else
+    CLU_NOREF(image);
 #endif
 
     size = top - low.num + 1;
@@ -931,7 +915,7 @@ _chanOPputb(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high, CLUREF image)
 
 #ifndef LINUX
     if (lit)
-	result = ioctl(ch->wr.num, TIOCLBIC, LLITOUT);
+	ioctl(ch->wr.num, TIOCLBIC, LLITOUT);
 #endif
     signal(ERR_ok);
 }
@@ -940,7 +924,6 @@ _chanOPputb(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high, CLUREF image)
 errcode
 _chanOPputw(CLUREF chref, CLUREF wv, CLUREF low, CLUREF high, CLUREF image)
 {
-    int lit;
     int result;
     int top;
     int size;
@@ -958,14 +941,12 @@ _chanOPputw(CLUREF chref, CLUREF wv, CLUREF low, CLUREF high, CLUREF image)
     if (high.num < top)
 	top = high.num;
 
-    if (image.tf == true && ch->typ.num == tty) 
-	lit = true;
-    else
-	lit = false;
-
 #ifndef LINUX
+    bool lit = (image.tf && ch->typ.num == tty);
     if (lit)
-	result = ioctl(ch->wr.num, TIOCLBIS, LLITOUT);
+	ioctl(ch->wr.num, TIOCLBIS, LLITOUT);
+#else
+    CLU_NOREF(image);
 #endif
 
     size = top - low.num + 1;
@@ -989,7 +970,7 @@ _chanOPputw(CLUREF chref, CLUREF wv, CLUREF low, CLUREF high, CLUREF image)
 
 #ifndef LINUX
     if (lit)
-	result = ioctl(ch->wr.num, TIOCLBIC, LLITOUT);
+	ioctl(ch->wr.num, TIOCLBIC, LLITOUT);
 #endif
     signal(ERR_ok);
 }
@@ -1001,7 +982,6 @@ _chanOPput(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
 	   CLUREF s, CLUREF image,
 	   CLUREF *ans1, CLUREF *ans2)
 {
-    int lit;
     int bv_space_left, string_chars_left;
     int string_chars_to_newline;
     int bv_offset, string_offset;
@@ -1027,10 +1007,13 @@ _chanOPput(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
     if (high.num < low.num - 1)
 	signal(ERR_bounds);
 
-    if (image.tf == true && ch->typ.num == tty) 
-	lit = true;
-    else
-	lit = false;
+    bool lit;
+#ifndef LINUX
+    lit = (image.tf && ch->typ.num == tty);
+#else
+    CLU_NOREF(image);
+    lit = false;
+#endif
 
     if (s.str->size <= 0) {
 	ans1->num = low.num;
@@ -1107,13 +1090,17 @@ _chanOPput(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
 
 
 errcode
-_chanOPOP_put_doit(int lit, int fd, CLUREF bv, int low, int size)
+_chanOPOP_put_doit(bool lit, int fd, CLUREF bv, int low, int size)
 {
     int result;
 
 #ifndef LINUX
-    if (lit) result = ioctl(fd, TIOCLBIS, LLITOUT);
+    if (lit)
+	ioctl(fd, TIOCLBIS, LLITOUT);
+#else
+    CLU_NOREF(lit);
 #endif
+
     for (;;) {
 	result = write(fd, &bv.str->data[low], size);
 	if (result == -1 && errno == EINTR) continue;
@@ -1127,8 +1114,10 @@ _chanOPOP_put_doit(int lit, int fd, CLUREF bv, int low, int size)
 	}
 	break;
     }
+
 #ifndef LINUX
-    if (lit) result = ioctl(fd, TIOCLBIC, LLITOUT);
+    if (lit)
+	ioctl(fd, TIOCLBIC, LLITOUT);
 #endif
     signal(ERR_ok);
 }
@@ -1245,6 +1234,8 @@ _chanOPpending(CLUREF chref, CLUREF image, CLUREF *ans)
     int obuf;
     _chan *ch = (_chan *)chref.ref;
 
+    CLU_NOREF(image);
+
     if (ch->rd.num < 0) {
 	elist[0] = cannot_read_from_this__chan_STRING;
 	signal(ERR_not_possible);
@@ -1345,7 +1336,7 @@ _chanOPgetc(CLUREF chref, CLUREF image, CLUREF *ans)
 
     /* temp &= 0xff; */
     /* check for no echo */
-    if (ch->typ.num != 0 || image.tf == true) {
+    if (ch->typ.num != 0 || image.tf) {
 	/* printf("no echo %d %d %x\n", ch->typ.num, image.tf, temp); */
 	ans->ch = temp;
 	signal(ERR_ok);
@@ -1423,7 +1414,7 @@ _chanOPgeti(CLUREF chref, CLUREF image, CLUREF *ans)
 
     temp &= 0xff;
     /* check for no echo */
-    if (ch->typ.num != 0 || image.tf == true) {
+    if (ch->typ.num != 0 || image.tf) {
 	ans->num = temp;
 	signal(ERR_ok);
     }
@@ -1581,7 +1572,6 @@ _chanOPgetbv(CLUREF chref, CLUREF bv, CLUREF strt, CLUREF n, CLUREF *ans)
 {
     int count;
     int result;
-    errcode err;
     _chan *ch = (_chan *)chref.ref;
 
     if (strt.num < 1)
@@ -1628,11 +1618,12 @@ _chanOPget(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
     bool done;
     CLUREF temp, newchars, beg, len;
     int count;
-    int newcount;
     int strt;
-    int i, j, offset, found;
+    int i, j, found;
     char target;
     _chan *ch = (_chan *)chref.ref;
+
+    CLU_NOREF(image);
 
 /* check arguments */
 /*	printf("low = %d, high = %d\n", low.num, high.num); */
@@ -2673,9 +2664,10 @@ _chanOPcopy(CLUREF ch, CLUREF *ans)
 
 
 errcode
-_chanOPget_read_channel(CLUREF chref, CLUREF img, CLUREF *ans)
+_chanOPget_read_channel(CLUREF chref, CLUREF image, CLUREF *ans)
 {
     _chan *ch = (_chan *)chref.ref;
+    CLU_NOREF(image);
 
     if (ch->rd.num >= 0) {
 	ans->num = ch->rd.num;
@@ -2689,9 +2681,10 @@ _chanOPget_read_channel(CLUREF chref, CLUREF img, CLUREF *ans)
 
 
 errcode
-_chanOPget_write_channel(CLUREF chref, CLUREF img, CLUREF *ans)
+_chanOPget_write_channel(CLUREF chref, CLUREF image, CLUREF *ans)
 {
     _chan *ch = (_chan *)chref.ref;
+    CLU_NOREF(image);
 
     if (ch->wr.num >= 0) {
 	ans->num = ch->wr.num;
