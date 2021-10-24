@@ -2141,52 +2141,55 @@ errcode
 _chanOPaccept(CLUREF chref, CLUREF addr, CLUREF *ans1, CLUREF *ans2)
 {
     errcode err;
-    int fd, result, s, z;
-    socklen_t len;
-    _chan *newch;
-    CLUREF temp_str, fn;
-    _chan *ch = (_chan *)chref.ref;
 
-    if (ch->rd.num < 0 && ch->wr.num < 0) {
+    _chan *ch = (_chan *)chref.ref;
+    int fd = ch->rd.num;
+    if (fd < 0) {
+	fd = ch->wr.num;
+    }
+    if (fd < 0) {
 	elist[0] = _chan_is_closed_STRING;
 	signal(ERR_not_possible);
     }
 
-    fd = ch->rd.num;
-    if (fd < 0)
-	fd = ch->wr.num;
-
-    len = addr.vec->size;
+    int sock = -1;
+    socklen_t addrlen = addr.vec->size;
     for (;;) {
-	result = accept(fd, addr.vec->data, &len);
-	if (result == -1 && errno == EINTR)
-	    continue;
-	if (result == -1) {
+	sock = accept(fd, (struct sockaddr *)addr.vec->data, &addrlen);
+
+	if (sock != -1)
+	    break;
+
+	if (errno != EINTR) {
 	    elist[0] = _unix_erstr(errno);
 	    signal(ERR_not_possible);
 	}
-	break;
+
+	/* retry interrupted syscall */
     }
-    s = result;
-    z = len;
 
-    err = stringOPcons("/dev/socket", CLU_1, CLU_11, &temp_str);
-    if (err != ERR_ok)
-	resignal(err);
+    /* fake file name.  encode the address plan9 style? */
+    CLUREF temp_str;
+    stringOPcons("/dev/socket", CLU_1, CLU_11, &temp_str);
 
+    CLUREF fn;
     err = file_nameOPparse(temp_str, &fn);
-    if (err != ERR_ok)
+    if (err != ERR_ok) {
+	close(sock);
 	resignal(err);
+    }
 
+    _chan *newch;
     clu_alloc(sizeof(_chan), &newch);
     newch->fn = fn;
-    newch->rd.num = s;
-    newch->wr.num = s;
+    newch->rd.num = sock;
+    newch->wr.num = sock;
     newch->typ.num = oth;
     newch->new.tf = true;
     newch->perm.tf = false;
+
     ans1->ref = (char *)newch;
-    ans2->num = z;
+    ans2->num = (long)addrlen;
     signal(ERR_ok);
 }
 
