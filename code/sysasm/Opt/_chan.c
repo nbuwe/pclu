@@ -1852,31 +1852,31 @@ errcode
 _chanOPrecvfrom(CLUREF chref, CLUREF bv, CLUREF flags, CLUREF addr,
 		CLUREF *ans1, CLUREF *ans2)
 {
-    int result;
-    socklen_t fromlen;
     _chan *ch = (_chan *)chref.ref;
-
     if (ch->rd.num < 0) {
 	elist[0] = cannot_read_from_this__chan_STRING;
 	signal(ERR_not_possible);
     }
 
-    fromlen = addr.str->size;
     for (;;) {
-	result = recvfrom(ch->rd.num, bv.str->data, bv.str->size,
-			  flags.num, addr.str->data, &fromlen);
-	if (result == -1 && errno == EINTR)
-	    continue;
-	if (result >= 0)
-	    break;
+	socklen_t fromlen = addr.str->size;
+	ssize_t nread
+	    = recvfrom(ch->rd.num, bv.str->data, bv.str->size, flags.num,
+		       (struct sockaddr *)addr.str->data, &fromlen);
 
-	elist[0] = _unix_erstr(errno);
-	signal(ERR_not_possible);
+	if (nread >= 0) {
+	    ans1->num = nread;
+	    ans2->num = fromlen;
+	    signal(ERR_ok);
+	}
+
+	if (errno != EINTR) {
+	    elist[0] = _unix_erstr(errno);
+	    signal(ERR_not_possible);
+	}
+
+	/* retry interrupted syscall */
     }
-
-    ans1->num = result;
-    ans2->num = fromlen;
-    signal(ERR_ok);
 }
 
 
