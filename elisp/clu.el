@@ -85,7 +85,8 @@
 (if clu-mode-map ()
   (let ((map (make-sparse-keymap)))
     (define-key map "\^i"		'clu-indent-line)
-    (define-key map "\r"		'clu-newline)
+    ;; This is handled by newline and electric-indent-chars now
+    ;; (define-key map "\r"		'clu-newline)
     (setq clu-mode-map map)))
 
 ;;; Start clu mode
@@ -329,6 +330,9 @@ Note that:
 
 ;;;
 ;;; Re-indent current line and then make new line.
+;;;
+;;; XXX: No longer used.  This is handled by newline and
+;;; electric-indent-chars now.
 ;;;
 (defun clu-newline ()
   (interactive)
