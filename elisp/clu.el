@@ -144,7 +144,7 @@ Note that:
   (make-local-variable 'comment-start)
   (setq comment-start "% ")
   (make-local-variable 'comment-end)
-  (setq comment-end "\n")
+  (setq comment-end "")
   (make-local-variable 'comment-column)
   (setq comment-column 41)
   (make-local-variable 'comment-start-skip)
