@@ -1917,41 +1917,49 @@ errcode
 _chanOPsendto(CLUREF chref, CLUREF buf, CLUREF len,
 	      CLUREF flags, CLUREF addr, CLUREF alen)
 {
-    int result;
-    int size, asize;
     _chan *ch = (_chan *)chref.ref;
-
     if (ch->wr.num < 0) {
 	elist[0] = cannot_write_to_this__chan_STRING;
 	signal(ERR_not_possible);
     }
 
-    size = buf.vec->size;
-    asize = addr.vec->size;
+    /* XXX: TODO: ERR_negative_size? */
+    if (len.num < 0)
+	signal(ERR_bounds);
 
-    if (len.num <= size)
+    size_t size = buf.vec->size;
+    if ((size_t)len.num <= size)
 	size = len.num;
     else
 	signal(ERR_bounds);
 
-    if (alen.num <= asize)
+    /* XXX: TODO: ERR_negative_size? */
+    if (alen.num < 0)
+	signal(ERR_bounds);
+
+    size_t asize = addr.vec->size;
+    if ((size_t)alen.num <= asize)
 	asize = alen.num;
     else
 	signal(ERR_bounds);
 
     for (;;) {
-	result = sendto(ch->wr.num, buf.vec->data, size, flags.num,
-			addr.vec->data, asize);
-	if (result == -1 && errno == EINTR)
-	    continue;
+	ssize_t nsent
+	    = sendto(ch->wr.num, buf.vec->data, size, flags.num,
+		     (struct sockaddr *)addr.vec->data, asize);
 
-	if (result == -1) {
+	/* XXX: TODO: partial sends? */
+	if (nsent >= 0) {
+	    signal(ERR_ok);
+	}
+
+	if (errno != EINTR) {
 	    elist[0] = _unix_erstr(errno);
 	    signal(ERR_not_possible);
 	}
-	break;
+
+	/* retry interrupted syscall */
     }
-    signal(ERR_ok);
 }
 
 
