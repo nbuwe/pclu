@@ -2280,23 +2280,22 @@ _chanOPshutdown(CLUREF chref, CLUREF how)
 errcode
 _chanOPpeername(CLUREF chref, CLUREF name, CLUREF *ans)
 {
-    int fd, uerr;
-    socklen_t size;
-    _chan *ch = (_chan *)chref.ref;
+    int status;
 
-    if (ch->rd.num < 0 && ch->wr.num < 0) {
+    _chan *ch = (_chan *)chref.ref;
+    int fd = ch->rd.num;
+    if (fd < 0) {
+	fd = ch->wr.num;
+    }
+    if (fd < 0) {
 	elist[0] = _chan_is_closed_STRING;
 	signal(ERR_not_possible);
     }
 
-    fd = ch->rd.num;
-    if (fd < 0)
-	fd = ch->wr.num;
-
-    size = name.vec->size;
-    uerr = getpeername(fd, name.vec->data, &size);
-    if (uerr == 0) {
-	ans->num = size;
+    socklen_t addrlen = name.vec->size;
+    status = getpeername(fd, (struct sockaddr *)name.vec->data, &addrlen);
+    if (status == 0) {
+	ans->num = addrlen;
 	signal(ERR_ok);
     }
 
