@@ -104,10 +104,31 @@ what I do for now:
 # Debugger
 
 Clu debugger is in-process and is compiled and linked directly into
-the program.  It should now be in the state where it compiles and the
+the program.  It should now be in the state where it compiles, and the
 debug version of hello world can actually run.  Since debugger relies
-on nm(1) to get the symbol addresses, it doesn't actually work b/c of
-ASLR.  Need to tweak the debug code to compile in non-PIE mode.
+on nm(1) to get the symbol addresses, it doesn't work with ASLR and
+plink uses `-no-pie` to link debug code.
+
+Simple stuff seems to work, but there are quite a few problems.
+E.g. while `debug/libinfo.h` has debug info for builtin stuff, it's
+not actually available to the program/debugger as in the naive link
+nothing refers debug info symbols and so they are not linked.
+
+
+# Emacs
+
+There are two emacs-related directories in the original distribution:
+`emacs` and `elisp`.  The latter seems to contain a bit more modern
+`clu-mode`, but the older version in `emacs` has support for running
+the compiler interactively.
+
+Both versions have identical `clu-doc.el` and `CLU-DOC`, but I didn't
+get about to actually try it.
+
+I fixed `elisp/clu.el` to work with modern emacs and added `font-lock`
+support.  I actually like its indentation style more, but Clu code in
+the distribution uses `cludent` style.  It would be nice to make the
+style selectable, akin to `c-set-style`.
 
 
 # Random remarks
