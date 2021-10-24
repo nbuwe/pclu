@@ -98,6 +98,10 @@ namelist."
   ;;;
   (setq clu-font-lock-keywords-1
     `(
+      ;; directives (see clu.hacks), do this first b/c of "signal"
+      ("^\\s-*\\(#\\)\\s-*\\(include\\|extend\\|normal\\|signal\\)\\_>"
+       (1 font-lock-preprocessor-face) (2 font-lock-preprocessor-face))
+
       ;; keywords
       ,(concat "\\_<\\(" clu-keywords "\\)\\_>")
 
