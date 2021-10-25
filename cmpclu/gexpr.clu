@@ -1403,7 +1403,7 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
 	    g_err(e)
 	    g_env$puts(e, " = " || nm || sep || "new(")
        end
-    g_env$puts(e, " &")
+    g_env$puts(e, "&")
     g_expr_arg(e, arr)
     g_env$puts(e, ");")
     g_env$newline(e)
