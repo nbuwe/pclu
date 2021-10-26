@@ -543,9 +543,9 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$putl(e, "};")
 
 	% owns (static)
-	tyinit: initlist := initlist$new()
-	opinit: initlist := initlist$new()
-	tyexists: bool := false
+	tyexists: bool   % := false
+	tyinit: initlist % := initlist$new()
+	opinit: initlist % := initlist$new()
 	%	g_env$puts(e, "const Vlist" || int$unparse(nowns) || " owns_" || nm || " = {")
 	%	g_env$puts(e, "0, ")
 	%	g_env$puts(e, int$unparse(nowns))
@@ -559,21 +559,22 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	%	g_env$putl(e, "};")
 
 	% op owns (parameterized op)
-	g_env$puts(e, "static const Vlist" || int$unparse(npopowns) || " popowns_" || nm || " = {")
-	g_env$puts(e, "0, ")
-	g_env$puts(e, int$unparse(npopowns))
-	if npopowns > 0 then
-	   g_env$puts(e, ",{")
-	   tyinit := initlist$new()
-	   opinit := initlist$new()
-	   tyexists := false
-	   if current_apply$parmd()
-	      then opinit := ap.init end
-	   process_initlists(e, tyexists, tyinit, opinit, true)
-	   process_ownlists(e, popowns)
-	   g_env$puts(e, "}")
+	if current_apply$parmd() then	 % otherwise NO_VALS
+	   nstr: string := int$unparse(npopowns)
+	   g_env$puts(e, "static const Vlist" || nstr || " popowns_" || nm || " = {")
+	   g_env$puts(e, "0, ")
+	   g_env$puts(e, nstr)
+	   if npopowns > 0 then		 %  XXX: always true for parmd ops
+	      g_env$puts(e, ",{")
+	      tyexists := false
+	      tyinit := initlist$new()
+	      opinit := ap.init
+	      process_initlists(e, tyexists, tyinit, opinit, true)
+	      process_ownlists(e, popowns)
+	      g_env$puts(e, "}")
+	      end
+	   g_env$putl(e, "};")
 	   end
-	g_env$putl(e, "};")
 
 	% type formals
 	g_env$puts(e, "const Slist" || int$unparse(ntypeformals) ||
