@@ -64,7 +64,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		   ntypeformals := 0
 	      end
 	   end
-	if ~current_type$exists() then
+	if ~current_type$exists() cand ~current_apply$parmd() then
 	   emit_own_decl(e)
 	   end
 	set_own_context(e, "op", ~decllist$empty(a.parms))
@@ -635,7 +635,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	end emit_ptown_decl
 
     emit_own_decl = proc(e: g_env)
-	% type owns (parameterized type)
+	% type owns (unparameterized type)
 	emit_own_externs(e)
 	nowns := owns_in_mixedlist(owns)
 	emit_vlist_typedef(e, nowns)
@@ -859,6 +859,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	   then
 		if current_type$parmd()
 		   then
+			% owns for this instance are in ptowns
 			g_env$puts(e, "&NO_VALS")
 		   else
 			g_env$puts(e, "&owns_")
@@ -867,6 +868,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	   else
 		if current_apply$parmd()
 		   then
+			% owns for this instance are in popowns
 			g_env$puts(e, "&NO_VALS")
 		   else
 			g_env$puts(e, "&owns_")
