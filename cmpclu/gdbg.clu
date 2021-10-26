@@ -741,6 +741,26 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	    end
 	end process_ownlists
 
+
+    % emit_sub_decl_typespec helper to emit a reference to var_desc
+    % ops (i.e. variable type) that can be resolved at link time
+    emit_var_desc_ops_static = proc (e: g_env, oname: string)
+ 	% (var_desc){ ..., .ops = &<oname>_ops, .nm_ops = NULL }
+	g_env$puts(e, "&")
+	g_env$puts(e, oname)
+	g_env$puts(e, "_ops, NULL")
+	end emit_var_desc_ops_static
+
+    % emit_sub_decl_typespec helper to emit a reference to var_desc
+    % ops (i.e. variable type) that need to be looked up by the
+    % debugger by name at run time
+    emit_var_desc_ops_lookup = proc (e: g_env, oname: string)
+ 	% (var_desc){ ..., .ops = zero_ops, .nm_ops = "<oname>_ops" }
+	g_env$puts(e, "zero_ops, \"")
+	g_env$puts(e, oname)
+	g_env$puts(e, "_ops\"")
+	end emit_var_desc_ops_lookup
+
     emit_sub_decl_typespec = proc(e: g_env, id: string, each_val: typespec,
 				  first: bool) returns (bool)
 	tagcase each_val.abs
@@ -752,13 +772,14 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	oname: string
 	if first then first := false
 	   else g_env$puts(e, ", ") end
-	g_env$puts(e, " {0, 2, \"" || id || "\", ")
+	g_env$puts(e, "{ 0, 2, \"" || id || "\", ")
 	tagcase each_val.abs
+
 	   tag cluster_, type_ (ct: clutype):
 	       oname := ct.gen.common
 	       if exprlist$empty(ct.parms)
 		  then
-		       g_env$puts(e, "&" || oname || "_ops, NULL}")
+		       emit_var_desc_ops_static(e, oname)
 		  else
 		       oname := oname || "_of"
 		       for each_parm:expr in exprlist$elements(ct.parms) do
@@ -766,37 +787,42 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 			   end
 		       if el_cont_type_parm(ct.parms) cor el_cont_op_parm(ct.parms)
 			  then
-			       g_env$puts(e, "zero_ops, \"" || oname || "_ops\"}")
+			       emit_var_desc_ops_lookup(e, oname)
 			  else
-			       g_env$puts(e, "&" || oname || "_ops, NULL}")
+			       emit_var_desc_ops_static(e, oname)
 			  end
 		  end
+
 	   tag apply:
-	       g_env$puts(e, "m1_ops, NULL}")
+	       g_env$puts(e, "m1_ops, NULL")
 	       % logit("apply in emit_sub_decl_typespec")
-	       % return
+
 	   tag select (xt: seltype):
+	       oname := xt.gen.common || "_" || make_sel_name(xt.parms)
 	       if fl_cont_type_parm(xt.parms) cor fl_cont_op_parm(xt.parms)
 		  then
-		       g_env$puts(e, "zero_ops, \"")
-		       g_env$puts(e, xt.gen.common || "_" || make_sel_name(xt.parms) || "_ops\"}")
+		       emit_var_desc_ops_lookup(e, oname)
 		  else
-		       g_env$puts(e, "&" || xt.gen.common || "_" || make_sel_name(xt.parms) || "_ops, NULL}")
+		       emit_var_desc_ops_static(e, oname)
 		  end
-	   tag idn(i: idn):
+
+	   tag idn (i: idn):
+	       oname := i.str
 	       tagcase i.kind
 		  tag tparm:
-		      g_env$puts(e, "zero_ops, \"" || i.str || "_ops\"}")
+		      emit_var_desc_ops_lookup(e, oname)
 		  others:
-		      g_env$puts(e, "&" || i.str || "_ops, NULL}")
+		      emit_var_desc_ops_static(e, oname)
 		  end
+
 	   tag any_:
-	       g_env$puts(e, "zero_ops, \"\"}")
+	       g_env$puts(e, "zero_ops, NULL")
+
 	   others:
 	       logit(205, "unexpected typeabs values emit_sub_decls vals")
 	       typespec_print(each_val)
-	       return (first)
 	   end
+	g_env$putl(e, " }")
 	return (first)
 	end emit_sub_decl_typespec
 
