@@ -563,22 +563,22 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	   nstr: string := int$unparse(npopowns)
 	   g_env$putl(e, "static const Vlist" || nstr || " popowns_" || nm || " = {")
 	   if npopowns > 0 then		 %  XXX: always true for parmd ops
-	       g_env$indent(e)
-	       g_env$puts(e, "0, ")
-	       g_env$puts(e, nstr)
-	       g_env$putl(e, ", {")
-	       g_env$indent(e)
-	       tyexists := false
-	       tyinit := initlist$new()
-	       opinit := ap.init
-	       process_initlists(e, tyexists, tyinit, opinit, true)
-	       process_ownlists(e, popowns)
-	       g_env$outdent(e)
-	       g_env$putl(e, "}")
-	       g_env$outdent(e)
-	     else
-	       g_env$puts(e, " 0, 0 ")
-	     end
+	      g_env$indent(e)
+	      g_env$puts(e, "0, ")
+	      g_env$puts(e, nstr)
+	      g_env$putl(e, ", {")
+	      g_env$indent(e)
+	      tyexists := false
+	      tyinit := initlist$new()
+	      opinit := ap.init
+	      process_initlists(e, tyexists, tyinit, opinit, true)
+	      process_ownlists(e, popowns)
+	      g_env$outdent(e)
+	      g_env$putl(e, "}")
+	      g_env$outdent(e)
+	      else
+		   g_env$puts(e, " 0, 0 ")
+	      end
 	   g_env$putl(e, "};")
 	   end
 
