@@ -453,20 +453,26 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$puts(e, "{0, 2, \"" || varname || "\", &int_ops, NULL}")
 	end emit_internal_var_desc_init
 
+
     % declare and initialize sub structures (varying length)
     emit_sub_decls = proc(e: g_env)
 	if ~yes then return end
+	first: bool
+
 	% vals
-	g_env$puts(e, "static const Vlist" || int$unparse(nvals) || " vals_" || nm || " = {")
-	g_env$puts(e, "0, ")
-	g_env$puts(e, int$unparse(nvals))
-	if nvals ~= 0 then g_env$puts(e, ", {") end
-	first: bool := true
-	for each_val: typespec in typelist$elements(ap.vals) do
-	    first := emit_sub_decl_typespec(e, "", each_val, first)
-	    end
-	if nvals ~= 0 then g_env$putl(e, "}") end
-	g_env$putl(e, "};")
+	if nvals > 0 then
+	   g_env$puts(e, "static const Vlist" || int$unparse(nvals) || " vals_" || nm)
+	   g_env$puts(e, " = { 0, ")
+	   g_env$puts(e, int$unparse(nvals))
+	   g_env$putl(e, ", {")
+	   g_env$indent(e)
+	   first := true
+	   for each_val: typespec in typelist$elements(ap.vals) do
+	       first := emit_sub_decl_typespec(e, "", each_val, first)
+	       end
+	   g_env$outdent(e)
+	   g_env$putl(e, "}};")
+	   end
 
 	% sigs
 	for i: int in exceptionlist$indexes(ap.sigs) do
@@ -881,9 +887,14 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$puts(e, int$unparse(vars_in_decllist(ap.args)))
 	g_env$putl(e, ",")
 
-	% returns
-	g_env$puts(e, "&vals_")
-	g_env$puts(e, nm)
+	% vals
+	if nvals > 0
+	   then
+		g_env$puts(e, "&vals_")
+		g_env$puts(e, nm)
+	   else
+		g_env$puts(e, "&NO_VALS")
+	   end
 	g_env$putl(e, ",")
 
 	% signals
