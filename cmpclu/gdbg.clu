@@ -625,13 +625,19 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	emit_own_externs(e)
 	nptowns := owns_in_mixedlist(ptowns)
 	emit_vlist_typedef(e, nptowns)
-	g_env$puts(e, "static const Vlist" || int$unparse(nptowns) || " ptowns_" || current_type$get().idn.str || " = {")
-	g_env$puts(e, "0, ")
+	g_env$puts(e, "static const Vlist")
 	g_env$puts(e, int$unparse(nptowns))
-	g_env$puts(e, ",{")
+	g_env$puts(e, " ptowns_")
+	g_env$puts(e, current_type$get().idn.str)
+	g_env$puts(e, " = { 0, ")
+	g_env$puts(e, int$unparse(nptowns))
+	g_env$putl(e, ", {")
+	g_env$indent(e)
 	process_mixedlist(e, ptowns)
+	g_env$outdent(e)
 	g_env$putl(e, "}};")
 	end emit_ptown_decl
+
 
     emit_own_decl = proc(e: g_env)
 	% type owns (unparameterized type)
