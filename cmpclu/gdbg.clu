@@ -489,19 +489,18 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	    g_env$putl(e, "}};")
 	    end
 
-	g_env$puts(e, "static const siglist" || int$unparse(nsigs) || " sigs_" || nm || " = {")
-	g_env$puts(e, "0, ")
-	g_env$puts(e, int$unparse(nsigs))
 	if nsigs > 0 then
-	   g_env$puts(e, ", {")
-	   sep: string := ""
+	   nstr: string := int$unparse(nsigs)
+	   g_env$puts(e, "static const siglist" || nstr || " sigs_" || nm || " = { 0, ")
+	   g_env$puts(e, nstr)
+	   g_env$putl(e, ", {")
+	   g_env$indent(e)
 	   for i: int in exceptionlist$indexes(ap.sigs) do
-	       g_env$puts(e, sep || " (const sig_desc *)&sig_" || nm || "_" || int$unparse(i))
-	       sep := ","
+	       g_env$putl(e,"(const sig_desc *)&sig_" || nm || "_" || int$unparse(i) || ",")
 	       end
-	   g_env$puts(e, " }")
+	   g_env$outdent(e)
+	   g_env$putl(e, "}};")
 	   end
-	g_env$putl(e, "};")
 
 	% locals
 	g_env$puts(e, "static const Vlist" || int$unparse(nlocals) || " locals_" || nm || " = {")
@@ -847,8 +846,13 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$putl(e, ",")
 
 	% signals
-	g_env$puts(e, "&sigs_")
-	g_env$puts(e, nm)
+	if nsigs > 0
+	   then
+		g_env$puts(e, "&sigs_")
+		g_env$puts(e, nm)
+	   else
+		g_env$puts(e, "&NO_SIGS")
+	   end
 	g_env$putl(e, ",")
 
 	% locals

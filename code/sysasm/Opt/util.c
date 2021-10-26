@@ -83,6 +83,7 @@ struct OPS *NULL_OPS = NULL;
 
 const Vlist0 NO_VALS =  { .hdr = 0, .count = 0 };
 const Slist0 NO_PARMS = { .hdr = 0, .count = 0 };
+const siglist0 NO_SIGS = { .hdr = 0, .count = 0 };
 
 
 long maxheapsize = 0;

@@ -671,10 +671,12 @@ defsig_desc(3);			/* sig_desc3 */
 defsig_desc(4);			/* sig_desc4 */
 
 
-typedef struct {
+typedef struct siglist0 {
     long hdr;
     long count;
 } siglist0;
+
+extern const siglist0 NO_SIGS;
 
 #define defsiglist(N)				\
     typedef struct siglist ## N {		\
