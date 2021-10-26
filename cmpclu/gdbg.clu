@@ -803,18 +803,23 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	return (first)
 	end emit_sub_decl_typespec
 
+
     % declare and initialize main structure
     emit_decl = proc(e: g_env)
 	if ~yes then return end
 	% emit header
-	g_env$putl(e, "const dbg_info_" || nm || "_actual dbg_info_"
-			|| nm || "_data = {0, 12, ")
+	g_env$putl(e, "static const "
+			|| "dbg_info_" || nm || "_actual "
+			|| "dbg_info_" || nm || "_data = {")
 	g_env$indent(e)
-	% emit fixed stuff
+	g_env$putl(e, "0, 12,")		 % obsolete/bogus?
+
 	% name
-	g_env$puts(e, "\"" || nm || "\", ")
+	g_env$putl(e, "\"" || nm || "\",")
+
 	% file name
-	g_env$puts(e, "\"" || fnm || "\", ")
+	g_env$putl(e, "\"" || fnm || "\",")
+
 	% is_iter, is_parmd
 	if is_iter then g_env$puts(e, "1, ")
 	   else g_env$puts(e, "0, ") end
@@ -825,70 +830,98 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	   then is_parmd := is_parmd + 1
 	   end
 	g_env$puts(e, int$unparse(is_parmd))
+	g_env$putl(e, ",")
+
 	% addr
-	g_env$puts(e, ", (long)")
+	g_env$puts(e, "(long)")
 	g_env$puts(e, nm)
+	g_env$putl(e, ",")
+
 	% nargs
-	g_env$putl(e, ", " || int$unparse(vars_in_decllist(ap.args)) || ",")
-	% emit vals, sigs, locals, static_owns, ptype_owns, pop_owns
+	g_env$puts(e, int$unparse(vars_in_decllist(ap.args)))
+	g_env$putl(e, ",")
+
+	% returns
 	g_env$puts(e, "&vals_")
 	g_env$puts(e, nm)
-	g_env$puts(e, ", &sigs_")
+	g_env$putl(e, ",")
+
+	% signals
+	g_env$puts(e, "&sigs_")
 	g_env$puts(e, nm)
-	g_env$puts(e, ", &locals_")
+	g_env$putl(e, ",")
+
+	% locals
+	g_env$puts(e, "&locals_")
 	g_env$puts(e, nm)
+	g_env$putl(e, ",")
+
+	% owns
 	if current_type$exists()
 	   then
 		if current_type$parmd()
 		   then
-			g_env$puts(e, ", &NO_VALS")
+			g_env$puts(e, "&NO_VALS")
 		   else
-			g_env$puts(e, ", &owns_")
+			g_env$puts(e, "&owns_")
 			g_env$puts(e, current_type$get().idn.str)
 		   end
 	   else
 		if current_apply$parmd()
 		   then
-			g_env$puts(e, ", &NO_VALS")
+			g_env$puts(e, "&NO_VALS")
 		   else
-			g_env$puts(e, ", &owns_")
+			g_env$puts(e, "&owns_")
 			g_env$puts(e, nm)
 		   end
 	   end
+	g_env$putl(e, ",")
+
+	% ptowns
 	if current_type$exists() cand current_type$parmd()
 	   then
-		g_env$puts(e, ", &ptowns_")
+		g_env$puts(e, "&ptowns_")
 		g_env$puts(e, current_type$get().idn.str)
 	   else
-		g_env$puts(e, ", &NO_VALS")
+		g_env$puts(e, "&NO_VALS")
 	   end
+	g_env$putl(e, ",")
+
+	% popowns
 	if current_apply$parmd()
 	   then
-		g_env$puts(e, ", &popowns_")
+		g_env$puts(e, "&popowns_")
 		g_env$puts(e, nm)
 	   else
-		g_env$puts(e, ", &NO_VALS")
+		g_env$puts(e, "&NO_VALS")
 	   end
+	g_env$putl(e, ",")
+
 	if ntypeformals = 0
 	   then
-		g_env$puts(e, ", &NO_PARMS")
+		g_env$puts(e, "&NO_PARMS")
 	   else
-		g_env$puts(e, ", &tformals_")
+		g_env$puts(e, "&tformals_")
 		g_env$puts(e, nm)
 	   end
+	g_env$putl(e, ",")
+
 	if nopformals = 0
 	   then
-		g_env$puts(e, ", &NO_PARMS")
+		g_env$puts(e, "&NO_PARMS")
 	   else
-		g_env$puts(e, ", &opformals_")
+		g_env$puts(e, "&opformals_")
 		g_env$puts(e, nm)
 	   end
+	g_env$putl(e, ",")
+
 	% emit trailer
-	g_env$putl(e, "};")
 	g_env$outdent(e)
+	g_env$putl(e, "};")
 	g_env$putl(e, "const struct dbg_info * const dbg_info_" || nm
 			|| " = (const struct dbg_info *)&dbg_info_" || nm || "_data;")
 	end emit_decl
+
 
     idns_in_decls = proc(a: ad) returns (int)
 	count: int := 0
