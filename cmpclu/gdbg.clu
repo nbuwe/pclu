@@ -520,8 +520,9 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		       tag vparm (t: typespec):
 			   each_type := t
 		       tag tparm, tconst (o: opspeclist):
-			   g_env$puts(e, ", {0, 2, \"" || each_idn.str || "\", &")
-			   g_env$puts(e, "NULL_OPS, ")
+			   g_env$puts(e, ", { 0, 2, \"")
+			   g_env$puts(e, each_idn.str)
+			   g_env$putl(e, "\", &NULL_OPS, NULL }")
 			   exit done
 		       tag ownvar:
 			   logit (203, "unhandled idnkind in emit_sub_decls (ownvar)")
