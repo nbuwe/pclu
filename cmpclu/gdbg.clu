@@ -583,11 +583,11 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	   end
 
 	% type formals
-	g_env$puts(e, "const Slist" || int$unparse(ntypeformals) ||
-		      " tformals_" || nm || " = {")
-	g_env$puts(e, "0, ")
-	g_env$puts(e, int$unparse(ntypeformals))
 	if ntypeformals > 0 then
+	   nstr: string := int$unparse(ntypeformals)
+	   g_env$puts(e, "static const Slist" || nstr
+		      || " tformals_" || nm || " = {0, ")
+	   g_env$puts(e, int$unparse(ntypeformals))
 	   g_env$puts(e, ", {")
 	   sep: string := ""
 	   for each_formal: string in as$elements(typeformals) do
@@ -597,16 +597,15 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	       g_env$puts(e, "\"")
 	       sep := ","
 	       end
-	   g_env$puts(e, " }")
+	   g_env$putl(e, " }};")
 	   end
-	g_env$putl(e, "};")
 
 	% op formals
-	g_env$puts(e, "const Slist" || int$unparse(nopformals) ||
-		      " opformals_" || nm || " = {")
-	g_env$puts(e, "0, ")
-	g_env$puts(e, int$unparse(nopformals))
 	if nopformals > 0 then
+	   nstr: string := int$unparse(nopformals)
+	   g_env$puts(e, "static const Slist" || nstr
+		      || " opformals_" || nm || " = {0, ")
+	   g_env$puts(e, int$unparse(nopformals))
 	   g_env$puts(e, ", {")
 	   sep: string := ""
 	   for each_formal: string in as$elements(opformals) do
@@ -616,12 +615,11 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	       g_env$puts(e, "\"")
 	       sep := ","
 	       end
-	   g_env$puts(e, " }")
+	   g_env$putl(e, " }};")
 	   end
-	g_env$putl(e, "};")
-
 
 	end emit_sub_decls
+
 
     emit_ptown_decl = proc(e: g_env)
 	% type owns (parameterized type)
