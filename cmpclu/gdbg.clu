@@ -194,24 +194,23 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	% locals
 	for each_val: decl in ad$elements(locals) do
 	    for each_idn: idn in idnlist$elements(each_val.idns) do
-		begin
-		    each_type: typespec
-		    tagcase each_idn.kind
-		       tag var (t: typespec):
-			   each_type := t
-		       tag vparm (t: typespec):
-			   each_type := t
-		       tag tparm, tconst (o: opspeclist):
-			   % looked up dynamically
-			   exit done
-		       tag ownvar:
-			   logit (200, "unhandled idnkind in emit_externs (ownvar)")
-		       others:
-			   logit (201, "unhandled idnkind in emit_externs")
-		       end
-		    emit_extern_typespec(e, each_type)
-		    end
-		   except when done: end
+		each_type: typespec
+		tagcase each_idn.kind
+		   tag var (t: typespec):
+		       each_type := t
+		   tag vparm (t: typespec):
+		       each_type := t
+		   tag tparm, tconst (o: opspeclist):
+		       % looked up dynamically
+		       continue
+		   tag ownvar:
+		       logit (200, "unhandled idnkind in emit_externs (ownvar)")
+		       continue
+		   others:
+		       logit (201, "unhandled idnkind in emit_externs")
+		       continue
+		   end
+		emit_extern_typespec(e, each_type)
 		end
 	    end
 	% type owns
@@ -512,28 +511,25 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	    end
 	for each_val: decl in ad$elements(locals) do
 	    for each_idn: idn in idnlist$elements(each_val.idns) do
-		begin
-		    each_type: typespec
-		    tagcase each_idn.kind
-		       tag var (t: typespec):
-			   each_type := t
-		       tag vparm (t: typespec):
-			   each_type := t
-		       tag tparm, tconst (o: opspeclist):
-			   g_env$puts(e, ", { 0, 2, \"")
-			   g_env$puts(e, each_idn.str)
-			   g_env$putl(e, "\", &NULL_OPS, NULL }")
-			   exit done
-		       tag ownvar:
-			   logit (203, "unhandled idnkind in emit_sub_decls (ownvar)")
-			   continue
-		       others:
-			   logit (204, "unhandled idnkind in emit_sub_decls")
-			   continue
-		       end
-		    first := emit_sub_decl_typespec(e, each_idn.str, each_type, first)
-		    end
-		   except when done: end
+		each_type: typespec
+		tagcase each_idn.kind
+		   tag var (t: typespec):
+		       each_type := t
+		   tag vparm (t: typespec):
+		       each_type := t
+		   tag tparm, tconst (o: opspeclist):
+		       g_env$puts(e, ", { 0, 2, \"")
+		       g_env$puts(e, each_idn.str)
+		       g_env$putl(e, "\", &NULL_OPS, NULL }")
+		       continue
+		   tag ownvar:
+		       logit (203, "unhandled idnkind in emit_sub_decls (ownvar)")
+		       continue
+		   others:
+		       logit (204, "unhandled idnkind in emit_sub_decls")
+		       continue
+		   end
+		first := emit_sub_decl_typespec(e, each_idn.str, each_type, first)
 		end
 	    end
 	if nlocals ~= 0 then g_env$putl(e, "}") end
