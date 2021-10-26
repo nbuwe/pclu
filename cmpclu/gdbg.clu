@@ -450,14 +450,13 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	end emit_typedef
 
     emit_internal_var_desc_init = proc (e: g_env, varname: string)
-	g_env$puts(e, "{0, 2, \"" || varname || "\", &int_ops, NULL}")
+	g_env$putl(e, "{ 0, 2, \"" || varname || "\", &int_ops, NULL },")
 	end emit_internal_var_desc_init
 
 
     % declare and initialize sub structures (varying length)
     emit_sub_decls = proc(e: g_env)
 	if ~yes then return end
-	first: bool
 
 	% vals
 	if nvals > 0 then
@@ -466,9 +465,8 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	   g_env$puts(e, int$unparse(nvals))
 	   g_env$putl(e, ", {")
 	   g_env$indent(e)
-	   first := true
 	   for each_val: typespec in typelist$elements(ap.vals) do
-	       first := emit_sub_decl_typespec(e, "", each_val, first)
+	       emit_sub_decl_typespec(e, "", each_val)
 	       end
 	   g_env$outdent(e)
 	   g_env$putl(e, "}};")
@@ -489,9 +487,8 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	    if tsz > 0 then
 	       g_env$putl(e, ", {")
 	       g_env$indent(e)
-	       first := true
 	       for each_val: typespec in typelist$elements(ap.sigs[i].types) do
-		   first := emit_sub_decl_typespec(e, "", each_val, first)
+		   emit_sub_decl_typespec(e, "", each_val)
 		   end
 	       g_env$outdent(e)
 	       g_env$puts(e, "}")
@@ -524,10 +521,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	   else
 		g_env$puts(e, " ")
 	   end
-	first := true
 	for each_val: string in as$elements(internal_locals) do
-	    if first then first := false
-	       else g_env$puts(e, ", ") end
 	    emit_internal_var_desc_init(e, each_val)
 	    end
 	for each_val: decl in ad$elements(locals) do
@@ -539,9 +533,9 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		   tag vparm (t: typespec):
 		       each_type := t
 		   tag tparm, tconst (o: opspeclist):
-		       g_env$puts(e, ", { 0, 2, \"")
+		       g_env$puts(e, "{ 0, 2, \"")
 		       g_env$puts(e, each_idn.str)
-		       g_env$putl(e, "\", &NULL_OPS, NULL }")
+		       g_env$putl(e, "\", &NULL_OPS, NULL },")
 		       continue
 		   tag ownvar:
 		       logit (203, "unhandled idnkind in emit_sub_decls (ownvar)")
@@ -550,7 +544,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		       logit (204, "unhandled idnkind in emit_sub_decls")
 		       continue
 		   end
-		first := emit_sub_decl_typespec(e, each_idn.str, each_type, first)
+		emit_sub_decl_typespec(e, each_idn.str, each_type)
 		end
 	    end
 	if nlocals > 0 then
@@ -588,7 +582,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	      tyexists := false
 	      tyinit := initlist$new()
 	      opinit := ap.init
-	      process_initlists(e, tyexists, tyinit, opinit, true)
+	      process_initlists(e, tyexists, tyinit, opinit)
 	      process_ownlists(e, popowns)
 	      g_env$outdent(e)
 	      g_env$putl(e, "}")
@@ -678,7 +672,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	    g_env$indent(e)
 	    process_mixedlist(e, owns)
 	    g_env$outdent(e)
-	    g_env$putl(e, "}")
+	    g_env$puts(e, "}")
 	  else
 	    g_env$puts(e, " ")
 	  end
@@ -688,60 +682,47 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 
     process_mixedlist = proc(e: g_env, list: an)
 	first_pass: bool := true
-	first: bool := true
 	for each_item: anown in an$elements(list) do
 	    tagcase each_item
 	       tag ilist (il: initlist):
 		   if first_pass
 		      then
-			   process_initlists(e, true, il, initlist$new(), first)
+			   process_initlists(e, true, il, initlist$new())
 			   first_pass := false
-			   first := false
 		      else
-			   process_initlists(e, false, initlist$new(), il, first)
-			   first := false
+			   process_initlists(e, false, initlist$new(), il)
 		      end
 	       tag internal(s: string):
-		   if first then first := false
-		      else g_env$puts(e, ",") end
-		   g_env$puts(e, " ")
 		   emit_internal_var_desc_init(e, s)
-		   g_env$newline(e)
 	       end
 	    end
 	end process_mixedlist
 
     process_initlists = proc(e: g_env, tyexists: bool, tylist: initlist,
-			     oplist: initlist, first: bool) returns (bool)
-	if first then first := false
-	   else g_env$puts(e, ",") end
-	g_env$puts(e, " ")
+			     oplist: initlist)
 	if tyexists
 	   then
 		emit_internal_var_desc_init(e, current_type$get_name() || "_init")
 	   else
 		emit_internal_var_desc_init(e, nm || "_init")
 	   end
-	g_env$newline(e)
 	for each_init: init in initlist$elements(tylist) do
 	    each_val: initform := each_init.stmt
 	    tagcase each_val
 	       tag decl (d:decl):
 		   each_type: typespec := d.type_
 		   for each_idn: idn in idnlist$elements(d.idns) do
-		       emit_sub_decl_typespec(e, each_idn.str, each_type, false)
+		       emit_sub_decl_typespec(e, each_idn.str, each_type)
 		       end
 	       tag init (di: declinit):
 		   for d: decl in decllist$elements(di.decls) do
 		       each_type: typespec := d.type_
 		       for each_idn: idn in idnlist$elements(d.idns) do
-			   emit_sub_decl_typespec(e, each_idn.str, each_type, false)
+			   emit_sub_decl_typespec(e, each_idn.str, each_type)
 			   end
 		       end
 	       end
-	    %	    g_env$puts(e, ", ")
 	    %	    emit_internal_var_desc_init(e, nm || "init")
-	    %	    g_env$newline(e)
 	    end
 	for each_init: init in initlist$elements(oplist) do
 	    each_val: initform := each_init.stmt
@@ -750,25 +731,23 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		   each_type: typespec := d.type_
 		   for each_idn: idn in idnlist$elements(d.idns) do
 		       % logit(98, "31 " || each_idn.str)
-		       emit_sub_decl_typespec(e, each_idn.str, each_type, false)
+		       emit_sub_decl_typespec(e, each_idn.str, each_type)
 		       end
 	       tag init (di: declinit):
 		   for d: decl in decllist$elements(di.decls) do
 		       each_type: typespec := d.type_
 		       for each_idn: idn in idnlist$elements(d.idns) do
 			   % logit(98, "32 " || each_idn.str)
-			   emit_sub_decl_typespec(e, each_idn.str, each_type, false)
+			   emit_sub_decl_typespec(e, each_idn.str, each_type)
 			   end
 		       end
 	       end
 	    end
-	return (false)
-	% g_env$putl(e, "}")
 	end process_initlists
 
     process_ownlists = proc(e:g_env, own_list: as)
 	for each_own: string in as$elements(own_list) do
-	    g_env$putl(e, ", {0, 2, \"" || each_own || "\", &NULL_OPS, NULL}")
+	    g_env$putl(e, "{ 0, 2, \"" || each_own || "\", &NULL_OPS, NULL },")
 	    end
 	end process_ownlists
 
@@ -792,17 +771,16 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	g_env$puts(e, "_ops\"")
 	end emit_var_desc_ops_lookup
 
-    emit_sub_decl_typespec = proc(e: g_env, id: string, each_val: typespec,
-				  first: bool) returns (bool)
+    emit_sub_decl_typespec = proc (e: g_env, id: string, each_val: typespec)
 	tagcase each_val.abs
 	   tag cvt_:
 	       ty: typespec := current_type$get().down_
-	       return (emit_sub_decl_typespec(e, id, ty, first))
+	       emit_sub_decl_typespec(e, id, ty)
+	       return
 	   others:
 	   end
+
 	oname: string
-	if first then first := false
-	   else g_env$puts(e, ", ") end
 	g_env$puts(e, "{ 0, 2, \"" || id || "\", ")
 	tagcase each_val.abs
 
@@ -853,8 +831,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	       logit(205, "unexpected typeabs values emit_sub_decls vals")
 	       typespec_print(each_val)
 	   end
-	g_env$putl(e, " }")
-	return (first)
+	g_env$putl(e, " },")
 	end emit_sub_decl_typespec
 
 
