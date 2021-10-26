@@ -499,10 +499,15 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	   end
 
 	% locals
-	g_env$puts(e, "static const Vlist" || int$unparse(nlocals) || " locals_" || nm || " = {")
-	g_env$puts(e, "0, ")
+	g_env$puts(e, "static const Vlist" || int$unparse(nlocals) || " locals_" || nm)
+	g_env$puts(e, " = { 0, ")
 	g_env$puts(e, int$unparse(nlocals))
-	if nlocals ~= 0 then g_env$puts(e, ",{ ") end
+	if nlocals > 0 then
+	   g_env$putl(e, ", {")
+	   g_env$indent(e)
+	   else
+		g_env$puts(e, " ")
+	   end
 	first := true
 	for each_val: string in as$elements(internal_locals) do
 	    if first then first := false
@@ -532,7 +537,10 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		first := emit_sub_decl_typespec(e, each_idn.str, each_type, first)
 		end
 	    end
-	if nlocals ~= 0 then g_env$putl(e, "}") end
+	if nlocals > 0 then
+	   g_env$outdent(e)
+	   g_env$puts(e, "}")
+	   end
 	g_env$putl(e, "};")
 
 	% owns (static)
