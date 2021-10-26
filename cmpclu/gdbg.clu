@@ -810,7 +810,9 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 			|| "dbg_info_" || nm || "_actual "
 			|| "dbg_info_" || nm || "_data = {")
 	g_env$indent(e)
-	g_env$putl(e, "0, 12,")		 % obsolete/bogus?
+
+	% hdr, count - not used, as far as I can tell
+	g_env$putl(e, "0, 14,")
 
 	% name
 	g_env$putl(e, "\"" || nm || "\",")
