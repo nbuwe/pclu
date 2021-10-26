@@ -178,7 +178,6 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	end emit_decls
 
     emit_externs = proc(e: g_env)
-	oname: string
 	% vals
 	for each_val: typespec in typelist$elements(ap.vals) do
 	    emit_extern_typespec(e, each_val)
@@ -203,7 +202,7 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		       tag vparm (t: typespec):
 			   each_type := t
 		       tag tparm, tconst (o: opspeclist):
-			   oname := "NULL_OPS"
+			   % looked up dynamically
 			   exit done
 		       tag ownvar:
 			   logit (200, "unhandled idnkind in emit_externs (ownvar)")
@@ -250,7 +249,6 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	end emit_externs
 
     emit_own_externs = proc(e: g_env)
-	oname: string
 	% for safety
 	if g_env$add_extern("int_ops")
 	   then g_env$putl(e, "extern struct OPS *int_ops;") end
@@ -459,7 +457,6 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
     % declare and initialize sub structures (varying length)
     emit_sub_decls = proc(e: g_env)
 	if ~yes then return end
-	oname: string
 	% vals
 	g_env$puts(e, "static const Vlist" || int$unparse(nvals) || " vals_" || nm || " = {")
 	g_env$puts(e, "0, ")
@@ -669,7 +666,6 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 
 
     process_mixedlist = proc(e: g_env, list: an)
-	oname: string
 	first_pass: bool := true
 	first: bool := true
 	for each_item: anown in an$elements(list) do
@@ -696,7 +692,6 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 
     process_initlists = proc(e: g_env, tyexists: bool, tylist: initlist,
 			     oplist: initlist, first: bool) returns (bool)
-	oname: string
 	if first then first := false
 	   else g_env$puts(e, ",") end
 	g_env$puts(e, " ")
