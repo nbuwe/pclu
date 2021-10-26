@@ -638,17 +638,26 @@ dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 	emit_own_externs(e)
 	nowns := owns_in_mixedlist(owns)
 	emit_vlist_typedef(e, nowns)
+	g_env$puts(e, "static const Vlist")
+	g_env$puts(e, int$unparse(nowns))
+	g_env$puts(e, " owns_")
 	if current_type$exists()
 	   then
-		g_env$puts(e, "static const Vlist" || int$unparse(nowns) || " owns_" || current_type$get().idn.str || " = {")
+		g_env$puts(e, current_type$get().idn.str)
 	   else
-		g_env$puts(e, "static const Vlist" || int$unparse(nowns) || " owns_" || nm || " = {")
+		g_env$puts(e, nm)
 	   end
-	g_env$puts(e, "0, ")
+	g_env$puts(e, " = { 0, ")
 	g_env$puts(e, int$unparse(nowns))
-	if nowns ~= 0 then g_env$puts(e, ",{") end
-	process_mixedlist(e, owns)
-	if nowns ~= 0 then g_env$putl(e, "}") end
+	if nowns > 0 then
+	    g_env$putl(e, ", {")
+	    g_env$indent(e)
+	    process_mixedlist(e, owns)
+	    g_env$outdent(e)
+	    g_env$putl(e, "}")
+	  else
+	    g_env$puts(e, " ")
+	  end
 	g_env$putl(e, "};")
 	end emit_own_decl
 
