@@ -65,6 +65,13 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	g_env$putl(e, nm || " ****/")
 	g_env$blankline(e)
 
+	% XXX: uwe: This doesn't do the right thing.  It calls
+	% emit_own_decl internally, but for the first op of a type we
+	% have just stuffed the owns list (dbg_info$add_ilist) with
+	% inits for *all* the ops out of context.  So e.g. for ce.clu
+	% we end up with a vlist of 90+ owns that all get the name
+	% from the first op.
+
 	% prime debugger information generation
 	dbg_info$start(e, a, cname, iterp)
 
