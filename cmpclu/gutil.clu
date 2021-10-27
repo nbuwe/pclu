@@ -480,9 +480,8 @@ other_print = proc(o: othertype)
 
 compiler_logit = proc(code:int, s:string)
     po: stream := get_stream()
-    if debug_logit then stream$puts(po, s||"\n")
-	else stream$puts(po, "Probable compiler bug " || int$unparse(code)
-		|| "\n")
+    if debug_logit then stream$putl(po, s)
+	else stream$putl(po, "Probable compiler bug " || int$unparse(code))
 	end
     end compiler_logit
 
