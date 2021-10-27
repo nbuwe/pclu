@@ -472,11 +472,11 @@ g_owninit = proc (e: g_env, ilist:initlist) returns (bool)
 own_init = proc(ilist: initlist) returns (bool)
     for each_init: init in initlist$elements(ilist) do
 	tagcase each_init.stmt
-	   tag decl:
 	   tag init: return (true)
+	   tag decl: % keep looking
 	   end
 	end
-    return(false)
+    return (false)
     end own_init
 
 
