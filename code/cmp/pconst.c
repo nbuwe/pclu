@@ -780,8 +780,8 @@ p_fieldspeclist(CLUREF e, CLUREF *ret_1)
     errcode err;
     CLUREF specs;
     if (p_fieldspeclist_own_init == 0) {
-        add_selector_info("sel", 0, string_ops);
-        add_selector_info("type_", 1, typespec_ops);
+        add_selector_info("sel", 0, (struct OPS *)string_ops);
+        add_selector_info("type_", 1, (struct OPS *)typespec_ops);
         find_selector_ops("record", 2, &(record_sel_type__ops));
         add_parm_info_type(0, (const struct OPS *)record_sel_type__ops, p_order_of_t_reqs);
         find_prociter_instance(p_order, 1, &p_order_ownreqs, &(p_order_of_record_sel_type__ops));
@@ -1265,8 +1265,8 @@ p_exceptionlist(CLUREF e, CLUREF *ret_1)
     if (p_exceptionlist_own_init == 0) {
         add_parm_info_type(0, (const struct OPS *)typespec_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_typespec_ops));
-        add_selector_info("name", 0, string_ops);
-        add_selector_info("types", 1, sequence_of_typespec_ops);
+        add_selector_info("name", 0, (struct OPS *)string_ops);
+        add_selector_info("types", 1, (struct OPS *)sequence_of_typespec_ops);
         find_selector_ops("record", 2, &(record_name_types_ops));
         add_parm_info_type(0, (const struct OPS *)record_name_types_ops, p_order_of_t_reqs);
         find_prociter_instance(p_order, 1, &p_order_ownreqs, &(p_order_of_record_name_types_ops));

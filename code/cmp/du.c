@@ -46,8 +46,8 @@ du_own_init_proc(void)
     errcode err;
     enter_own_init_proc();
     if (du_own_init == 0) {
-        add_selector_info("index", 0, int_ops);
-        add_selector_info("name", 1, string_ops);
+        add_selector_info("index", 0, (struct OPS *)int_ops);
+        add_selector_info("name", 1, (struct OPS *)string_ops);
         find_selector_ops("record", 2, &(record_index_name_ops));
         du_own_init = 1;
         {

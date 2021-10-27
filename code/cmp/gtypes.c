@@ -1370,7 +1370,7 @@ extern errcode current_typeOPexists();
 extern errcode current_typeOPget_name();
 extern errcode arrayOPsize();
 extern errcode recordOPset_2();
-extern errcode externalize();
+extern errcode s_externalize();
 extern errcode delete_file();
 extern errcode rename_file();
 static CLUREF STR_pclu_056xref;
@@ -2365,7 +2365,7 @@ g_xrefOPflush()
   LINE(371);
                     {
                     CLUREF T_3_1;
-                    err = externalize(each_nm, &T_3_1);
+                    err = s_externalize(each_nm, &T_3_1);
                     if (err != ERR_ok) goto ex_0;
                     err = streamOPputl(outst, T_3_1);
                     if (err != ERR_ok) goto ex_0;
@@ -2448,29 +2448,29 @@ struct OPS *g_xref_ops = (struct OPS *)&g_xref_ops_actual;
 /**** END CLUSTER g_xref ****/
 
 
-/**** BEGIN PROCEDURE externalize ****/
+/**** BEGIN PROCEDURE s_externalize ****/
 
 extern errcode intOPadd();
 static CLUREF STR_OP;
-static int externalize_own_init = 0;
-CLUREF externalizeOPsep_size;
+static int s_externalize_own_init = 0;
+CLUREF s_externalizeOPsep_size;
 
 errcode
-externalize(CLUREF nm, CLUREF *ret_1)
+s_externalize(CLUREF nm, CLUREF *ret_1)
 {
     errcode err;
     CLUREF off;
     CLUREF head;
     CLUREF tail;
-    if (externalize_own_init == 0) {
+    if (s_externalize_own_init == 0) {
         stringOPcons("OP", CLU_1, CLUREF_make_num(2), &STR_OP);
         stringOPcons("$", CLU_1, CLUREF_make_num(1), &STR__044);
-        externalize_own_init = 1;
+        s_externalize_own_init = 1;
         {
             {CLUREF T_0_1;
             err = stringOPsize(STR_OP, &T_0_1);
             if (err != ERR_ok) goto ex_0;
-            externalizeOPsep_size.num = T_0_1.num;
+            s_externalizeOPsep_size.num = T_0_1.num;
             }
             }
     }
@@ -2517,9 +2517,9 @@ externalize(CLUREF nm, CLUREF *ret_1)
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
-        T_1_1.num = off.num + externalizeOPsep_size.num;
-         if ((T_1_1.num > 0 && off.num < 0 && externalizeOPsep_size.num < 0) ||
-             (T_1_1.num < 0 && off.num > 0 && externalizeOPsep_size.num > 0)) {
+        T_1_1.num = off.num + s_externalizeOPsep_size.num;
+         if ((T_1_1.num > 0 && off.num < 0 && s_externalizeOPsep_size.num < 0) ||
+             (T_1_1.num < 0 && off.num > 0 && s_externalizeOPsep_size.num > 0)) {
             err = ERR_overflow;
             goto ex_0;}
         err = stringOPrest(nm, T_1_1, &T_1_2);
@@ -2551,7 +2551,7 @@ externalize(CLUREF nm, CLUREF *ret_1)
     signal(ERR_failure);
 }
 
-/**** END PROCEDURE externalize ****/
+/**** END PROCEDURE s_externalize ****/
 
 
 

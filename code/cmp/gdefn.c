@@ -386,13 +386,13 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(69);
+  LINE(76);
         {
         err = dbg_infoOPstart(e, a, cname, iterp);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(72);
+  LINE(79);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -402,7 +402,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(73);
+  LINE(80);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -412,7 +412,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(82);
+  LINE(89);
         {
         CLUREF T_3_1;
         err = sequenceOPnew(&T_3_1);
@@ -420,7 +420,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         all_stmts.num = T_3_1.num;
         }
 
-  LINE(84);
+  LINE(91);
         {
             {CLUREF T_3_1;
             CLUREF T_3_2;
@@ -431,7 +431,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             }
             }
 
-  LINE(85);
+  LINE(92);
         {
         CLUREF T_3_1;
         generic_CLU_proc.type_owns = 0;
@@ -443,7 +443,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         all_stmts.num = T_3_1.num;
         }
 
-  LINE(86);
+  LINE(93);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -457,7 +457,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         all_stmts.num = T_3_2.num;
         }
 
-  LINE(87);
+  LINE(94);
         {
             {CLUREF T_3_1;
             err = arrayOPpredict(CLU_1, CLU_40, &T_3_1);
@@ -466,37 +466,37 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             }
             }
 
-  LINE(88);
+  LINE(95);
         {
         err = g_expr_proc_names(ext_names, all_stmts);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(89);
+  LINE(96);
         {
         err = g_xrefOPadd_ent(ext_names);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(90);
+  LINE(97);
         {
         err = g_externs(e, ext_names, all_stmts);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(91);
+  LINE(98);
         {
         err = g_check_handlers(e, all_stmts);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(94);
+  LINE(101);
         {
         err = own_defnOPstart();
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(95);
+  LINE(102);
         {
         CLUREF T_3_1;
         CellAlloc(1, a.num, T_3_1);
@@ -504,19 +504,19 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(96);
+  LINE(103);
         {
         err = own_defnOPstop();
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(97);
+  LINE(104);
         {
         err = g_constOPfind_consts(e, all_stmts);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(98);
+  LINE(105);
         {
         CLUREF T_3_1;
         T_3_1.num = a.vec->data[5];
@@ -524,7 +524,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(99);
+  LINE(106);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -549,7 +549,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         T_3_6.num = T_3_1.num ^ 1;
         if (T_3_6.num == true) {
 
-  LINE(101);
+  LINE(108);
             {
             CLUREF T_4_1;
             T_4_1.num = a.vec->data[5];
@@ -563,7 +563,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         if (err != ERR_ok) goto ex_1;
         if (T_3_7.num == true) {
 
-  LINE(103);
+  LINE(110);
             {
             CLUREF T_4_1;
             T_4_1.num = a.vec->data[5];
@@ -573,13 +573,13 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             }
             }}/* end if */
 
-  LINE(107);
+  LINE(114);
         {
         err = ibOPreset();
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(111);
+  LINE(118);
         {
             {CLUREF T_3_1;
             err = arrayOPnew(&T_3_1);
@@ -588,7 +588,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             }
             }
 
-  LINE(112);
+  LINE(119);
         {
         CLUREF T_3_1;
         T_3_1.num = a.vec->data[1];
@@ -596,7 +596,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(113);
+  LINE(120);
         {
         CLUREF T_3_1;
         err = g_lvs_uniq(locals_UNIQ, &T_3_1);
@@ -604,23 +604,23 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         locals_UNIQ.num = T_3_1.num;
         }
 
-  LINE(115);
+  LINE(122);
         {
         err = g_localvars_struct(e, a, locals_UNIQ, iterp);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(118);
+  LINE(125);
         {
         err = g_envOPblankline(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(119);
+  LINE(126);
         {
         if (iterp.num == true) {
 
-  LINE(121);
+  LINE(128);
             {
             err = g_iter_signature(e, a, cname);
             if (err != ERR_ok) goto ex_1;
@@ -628,44 +628,44 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             }
         else {
 
-  LINE(123);
+  LINE(130);
             {
             err = g_proc_signature(e, a, cname);
             if (err != ERR_ok) goto ex_1;
             }
             }}/* end if */
 
-  LINE(127);
+  LINE(134);
         {
         err = g_envOPnewline(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(128);
+  LINE(135);
         {
         err = g_envOPputl(e, STR__173);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(129);
+  LINE(136);
         {
         err = g_envOPindent(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(130);
+  LINE(137);
         {
         err = g_localvars(e, a, locals_UNIQ, iterp);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(131);
+  LINE(138);
         {
         err = g_envOPnewline(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(134);
+  LINE(141);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -690,7 +690,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         T_3_6.num = T_3_1.num ^ 1;
         if (T_3_6.num == true) {
 
-  LINE(137);
+  LINE(144);
             {
             CLUREF T_4_1;
             T_4_1.num = a.vec->data[5];
@@ -700,7 +700,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             }
         else {
 
-  LINE(139);
+  LINE(146);
             {
             CLUREF T_4_1;
             T_4_1.num = a.vec->data[5];
@@ -709,7 +709,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             }
             }}/* end if */
 
-  LINE(142);
+  LINE(149);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -726,7 +726,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(145);
+  LINE(152);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -738,7 +738,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                 s.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(146);
+  LINE(153);
                 {
                 err = g_stmt(e, s);
                 if (err != ERR_ok) goto ex_1;
@@ -747,13 +747,13 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         }
         end_inline_for_1:;
 
-  LINE(150);
+  LINE(157);
         {
         err = g_envOPblankline(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(151);
+  LINE(158);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -768,13 +768,13 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(152);
+  LINE(159);
         {
         err = g_envOPoutdent(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(153);
+  LINE(160);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -789,73 +789,73 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(154);
-        {
-        err = g_envOPindent(e);
-        if (err != ERR_ok) goto ex_1;
-        }
-
-  LINE(155);
-        {
-        err = g_envOPputs(e, STR_if_040_050);
-        if (err != ERR_ok) goto ex_1;
-        }
-
-  LINE(156);
-        {
-        err = g_err(e);
-        if (err != ERR_ok) goto ex_1;
-        }
-
-  LINE(157);
-        {
-        err = g_envOPputl(e, STR__040_041_075_040ERR_137failure_051);
-        if (err != ERR_ok) goto ex_1;
-        }
-
-  LINE(158);
-        {
-        err = g_envOPindent(e);
-        if (err != ERR_ok) goto ex_1;
-        }
-
-  LINE(159);
-        {
-        err = g_envOPputs(e, STR_elist_1330_135_040_075_040_137pclu_137erstr_050);
-        if (err != ERR_ok) goto ex_1;
-        }
-
-  LINE(160);
-        {
-        err = g_err(e);
-        if (err != ERR_ok) goto ex_1;
-        }
-
   LINE(161);
         {
-        err = g_envOPputl(e, STR__051_073);
+        err = g_envOPindent(e);
         if (err != ERR_ok) goto ex_1;
         }
 
   LINE(162);
         {
-        err = g_envOPoutdent(e);
+        err = g_envOPputs(e, STR_if_040_050);
         if (err != ERR_ok) goto ex_1;
         }
 
   LINE(163);
         {
-        err = g_envOPputl(e, STR_signal_050ERR_137failure_051_073);
+        err = g_err(e);
+        if (err != ERR_ok) goto ex_1;
+        }
+
+  LINE(164);
+        {
+        err = g_envOPputl(e, STR__040_041_075_040ERR_137failure_051);
         if (err != ERR_ok) goto ex_1;
         }
 
   LINE(165);
         {
-        err = g_envOPoutdent(e);
+        err = g_envOPindent(e);
         if (err != ERR_ok) goto ex_1;
         }
 
   LINE(166);
+        {
+        err = g_envOPputs(e, STR_elist_1330_135_040_075_040_137pclu_137erstr_050);
+        if (err != ERR_ok) goto ex_1;
+        }
+
+  LINE(167);
+        {
+        err = g_err(e);
+        if (err != ERR_ok) goto ex_1;
+        }
+
+  LINE(168);
+        {
+        err = g_envOPputl(e, STR__051_073);
+        if (err != ERR_ok) goto ex_1;
+        }
+
+  LINE(169);
+        {
+        err = g_envOPoutdent(e);
+        if (err != ERR_ok) goto ex_1;
+        }
+
+  LINE(170);
+        {
+        err = g_envOPputl(e, STR_signal_050ERR_137failure_051_073);
+        if (err != ERR_ok) goto ex_1;
+        }
+
+  LINE(172);
+        {
+        err = g_envOPoutdent(e);
+        if (err != ERR_ok) goto ex_1;
+        }
+
+  LINE(173);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -870,13 +870,13 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(167);
+  LINE(174);
         {
         err = g_envOPindent(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(168);
+  LINE(175);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
@@ -894,7 +894,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
         }
         if (T_3_1.num == true) {
 
-  LINE(169);
+  LINE(176);
             {
             err = g_envOPputl(e, STR_signal_050ERR_137ok_051_073);
             if (err != ERR_ok) goto ex_1;
@@ -902,56 +902,56 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             }
         else {
 
-  LINE(171);
+  LINE(178);
             {
             err = g_envOPputl(e, STR_elist_1330_135_040_075_040no_137return_137values_137STRING_073);
             if (err != ERR_ok) goto ex_1;
             }
 
-  LINE(172);
+  LINE(179);
             {
             err = g_envOPputl(e, STR_signal_050ERR_137failure_051_073);
             if (err != ERR_ok) goto ex_1;
             }
             }}/* end if */
 
-  LINE(174);
+  LINE(181);
         {
         err = g_envOPensure_newline(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(177);
+  LINE(184);
         {
         err = g_envOPoutdent(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(178);
+  LINE(185);
         {
         err = g_envOPputl(e, STR__175);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(179);
+  LINE(186);
         {
         err = g_envOPblankline(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(181);
+  LINE(188);
         {
         err = dbg_infoOPemit_decls(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(183);
+  LINE(190);
         {
         err = g_envOPputs(e, STR__057_052_052_052_052_040END_040);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(184);
+  LINE(191);
         {
         if (iterp.num == true) {
             {
@@ -961,32 +961,32 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             }
         else {
 
-  LINE(185);
+  LINE(192);
             {
             err = g_envOPputs(e, STR_PROCEDURE_040);
             if (err != ERR_ok) goto ex_1;
             }
             }}/* end if */
 
-  LINE(186);
+  LINE(193);
         {
         err = g_envOPputs(e, nm);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(187);
+  LINE(194);
         {
         err = g_envOPputl(e, STR__040_052_052_052_052_057);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(188);
+  LINE(195);
         {
         err = g_envOPblankline(e);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(192);
+  LINE(199);
         {
         CLUREF T_3_1;
         T_3_1.num = a.vec->data[4];
@@ -1000,7 +1000,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             CLUREF s;
             s.num = elist[0].num;
 
-  LINE(195);
+  LINE(202);
                 {
                 CLUREF T_2_1;
                 CLUREF T_2_2;
@@ -1019,7 +1019,7 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
                 }
                 if (T_2_1.num == true) {
 
-  LINE(197);
+  LINE(204);
                     {
                     elist[0] = s;
                     {signal (ERR_failure);}}
@@ -1031,43 +1031,43 @@ g_applydefn(CLUREF e, CLUREF a, CLUREF cname)
             }
         end_1:;
 
-  LINE(198);
+  LINE(205);
     {
     err = parmOPleave();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(199);
+  LINE(206);
     {
     err = current_applyOPreset();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(200);
+  LINE(207);
     {
     err = tvOPreset();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(201);
+  LINE(208);
     {
     err = ownsOPforget();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(202);
+  LINE(209);
     {
     err = typOPundo_local_idn_types();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(203);
+  LINE(210);
     {
     err = ibOPinit();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(204);
+  LINE(211);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1111,9 +1111,9 @@ g_function_name(CLUREF a, CLUREF cname, CLUREF *ret_1)
         stringOPcons("OP", CLU_1, CLUREF_make_num(2), &STR_OP);
         g_function_name_own_init = 1;
     }
-    enter_proc(210);
+    enter_proc(217);
 
-  LINE(212);
+  LINE(219);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -1127,14 +1127,14 @@ g_function_name(CLUREF a, CLUREF cname, CLUREF *ret_1)
         }
         }
 
-  LINE(213);
+  LINE(220);
     {
     CLUREF T_1_1;
     err = stringOPempty(cname, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(214);
+  LINE(221);
         {
         {
         CLUREF T_2_1;
@@ -1146,7 +1146,7 @@ g_function_name(CLUREF a, CLUREF cname, CLUREF *ret_1)
         }
     else {
 
-  LINE(216);
+  LINE(223);
         {
         {
         CLUREF T_2_1;
@@ -1196,15 +1196,15 @@ g_proc_signature(CLUREF e, CLUREF a, CLUREF cname)
         stringOPcons(")", CLU_1, CLUREF_make_num(1), &STR__051);
         g_proc_signature_own_init = 1;
     }
-    enter_proc(222);
+    enter_proc(229);
 
-  LINE(224);
+  LINE(231);
     {
     err = g_envOPputl(e, STR_errcode);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(225);
+  LINE(232);
     {
     CLUREF T_1_1;
     err = g_function_name(a, cname, &T_1_1);
@@ -1213,13 +1213,13 @@ g_proc_signature(CLUREF e, CLUREF a, CLUREF cname)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(226);
+  LINE(233);
     {
     err = g_envOPputs(e, STR__050);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(227);
+  LINE(234);
     {
     CLUREF T_1_1;
     T_1_1.num = a.vec->data[0];
@@ -1227,7 +1227,7 @@ g_proc_signature(CLUREF e, CLUREF a, CLUREF cname)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(228);
+  LINE(235);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1240,7 +1240,7 @@ g_proc_signature(CLUREF e, CLUREF a, CLUREF cname)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(229);
+  LINE(236);
     {
     err = g_envOPputl(e, STR__051);
     if (err != ERR_ok) goto ex_0;
@@ -1280,15 +1280,15 @@ g_iter_signature(CLUREF e, CLUREF a, CLUREF cname)
         stringOPcons(", errcode *iecode)", CLU_1, CLUREF_make_num(18), &STR__054_040errcode_040_052iecode_051);
         g_iter_signature_own_init = 1;
     }
-    enter_proc(234);
+    enter_proc(241);
 
-  LINE(236);
+  LINE(243);
     {
     err = g_envOPputl(e, STR_errcode);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(237);
+  LINE(244);
     {
     CLUREF T_1_1;
     err = g_function_name(a, cname, &T_1_1);
@@ -1297,13 +1297,13 @@ g_iter_signature(CLUREF e, CLUREF a, CLUREF cname)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(238);
+  LINE(245);
     {
     err = g_envOPputs(e, STR__050);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(239);
+  LINE(246);
     {
     CLUREF T_1_1;
     T_1_1.num = a.vec->data[0];
@@ -1311,7 +1311,7 @@ g_iter_signature(CLUREF e, CLUREF a, CLUREF cname)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(240);
+  LINE(247);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1322,7 +1322,7 @@ g_iter_signature(CLUREF e, CLUREF a, CLUREF cname)
     T_1_3.num = T_1_2.num ^ 1;
     if (T_1_3.num == true) {
 
-  LINE(241);
+  LINE(248);
         {
         err = g_envOPputs(e, STR__054_040);
         if (err != ERR_ok) goto ex_0;
@@ -1330,19 +1330,19 @@ g_iter_signature(CLUREF e, CLUREF a, CLUREF cname)
         }
         }/* end if */
 
-  LINE(242);
+  LINE(249);
     {
     err = g_envOPputs(e, STR_errcode_040_050_052proc_051_050_051);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(243);
+  LINE(250);
     {
     err = g_envOPputs(e, STR__054_040void_040_052user_137locals);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(244);
+  LINE(251);
     {
     err = g_envOPputl(e, STR__054_040errcode_040_052iecode_051);
     if (err != ERR_ok) goto ex_0;
@@ -1379,15 +1379,15 @@ g_arglist(CLUREF e, CLUREF args)
         stringOPcons(", ", CLU_1, CLUREF_make_num(2), &STR__054_040);
         g_arglist_own_init = 1;
     }
-    enter_proc(249);
+    enter_proc(256);
 
-  LINE(251);
+  LINE(258);
     {
         {listsep = CLU_empty_string;
         }
         }
 
-  LINE(253);
+  LINE(260);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1397,7 +1397,7 @@ g_arglist(CLUREF e, CLUREF args)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             group.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(254);
+  LINE(261);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -1409,19 +1409,19 @@ g_arglist(CLUREF e, CLUREF args)
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     arg.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(255);
+  LINE(262);
                     {
                     err = g_envOPputs(e, listsep);
                     if (err != ERR_ok) goto ex_0;
                     }
 
-  LINE(256);
+  LINE(263);
                     {
                     err = g_envOPputs(e, STR_CLUREF_040);
                     if (err != ERR_ok) goto ex_0;
                     }
 
-  LINE(257);
+  LINE(264);
                     {
                     CLUREF T_3_1;
                     err = idnlit(arg, &T_3_1);
@@ -1430,7 +1430,7 @@ g_arglist(CLUREF e, CLUREF args)
                     if (err != ERR_ok) goto ex_0;
                     }
 
-  LINE(258);
+  LINE(265);
                     {
                     listsep = STR__054_040;
                     }
@@ -1473,9 +1473,9 @@ g_retlist(CLUREF e, CLUREF rets, CLUREF first)
         stringOPcons("CLUREF *", CLU_1, CLUREF_make_num(8), &STR_CLUREF_040_052);
         g_retlist_own_init = 1;
     }
-    enter_proc(265);
+    enter_proc(272);
 
-  LINE(268);
+  LINE(275);
     {
     if (first.num == true) {
         {
@@ -1484,19 +1484,19 @@ g_retlist(CLUREF e, CLUREF rets, CLUREF first)
         }
     else {
 
-  LINE(269);
+  LINE(276);
         {
         listsep = STR__054_040;
         }
         }}/* end if */
 
-  LINE(271);
+  LINE(278);
     {
     err = fidOPg_fidn_save();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(272);
+  LINE(279);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1506,19 +1506,19 @@ g_retlist(CLUREF e, CLUREF rets, CLUREF first)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             t.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(273);
+  LINE(280);
             {
             err = g_envOPputs(e, listsep);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(274);
+  LINE(281);
             {
             err = g_envOPputs(e, STR_CLUREF_040_052);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(275);
+  LINE(282);
             {
             CLUREF T_2_1;
             err = fidOPg_fid(t, &T_2_1);
@@ -1527,7 +1527,7 @@ g_retlist(CLUREF e, CLUREF rets, CLUREF first)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(276);
+  LINE(283);
             {
             listsep = STR__054_040;
             }
@@ -1535,7 +1535,7 @@ g_retlist(CLUREF e, CLUREF rets, CLUREF first)
     }
     end_inline_for_1:;
 
-  LINE(278);
+  LINE(285);
     {
     err = fidOPg_fidn_restore();
     if (err != ERR_ok) goto ex_0;
@@ -1571,9 +1571,9 @@ g_parmlist(CLUREF e, CLUREF parms)
         stringOPcons(", ", CLU_1, CLUREF_make_num(2), &STR__054_040);
         g_parmlist_own_init = 1;
     }
-    enter_proc(283);
+    enter_proc(290);
 
-  LINE(284);
+  LINE(291);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1583,7 +1583,7 @@ g_parmlist(CLUREF e, CLUREF parms)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_d.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(285);
+  LINE(292);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -1595,19 +1595,19 @@ g_parmlist(CLUREF e, CLUREF parms)
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_idn.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(286);
+  LINE(293);
                     {
                     err = g_idnlit(e, each_idn);
                     if (err != ERR_ok) goto ex_0;
                     }
 
-  LINE(287);
+  LINE(294);
                     {
                     err = g_envOPputs(e, STR__137ops);
                     if (err != ERR_ok) goto ex_0;
                     }
 
-  LINE(288);
+  LINE(295);
                     {
                     err = g_envOPputs(e, STR__054_040);
                     if (err != ERR_ok) goto ex_0;
@@ -1639,7 +1639,7 @@ errcode
 g_parm_types(CLUREF e, CLUREF parms)
 {
     errcode err;
-    enter_proc(293);
+    enter_proc(300);
 
     goto end_0;
   ex_0:
@@ -1687,9 +1687,9 @@ g_parmdecls(CLUREF e, CLUREF a)
         stringOPcons(";", CLU_1, CLUREF_make_num(1), &STR__073);
         g_parmdecls_own_init = 1;
     }
-    enter_proc(305);
+    enter_proc(312);
 
-  LINE(306);
+  LINE(313);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1701,7 +1701,7 @@ g_parmdecls(CLUREF e, CLUREF a)
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             each_d.num = T_1_4.vec->data[T_1_2.num - 1];
 
-  LINE(307);
+  LINE(314);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -1713,19 +1713,19 @@ g_parmdecls(CLUREF e, CLUREF a)
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     each_idn.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(308);
+  LINE(315);
                     {
                     err = g_envOPputl(e, STR_struct_173);
                     if (err != ERR_ok) goto ex_0;
                     }
 
-  LINE(309);
+  LINE(316);
                     {
                     err = g_envOPputl(e, STR_long_040count_073);
                     if (err != ERR_ok) goto ex_0;
                     }
 
-  LINE(310);
+  LINE(317);
                     {
                     CLUREF T_3_1;
                     CLUREF T_3_2;
@@ -1737,7 +1737,7 @@ g_parmdecls(CLUREF e, CLUREF a)
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             each_r.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(311);
+  LINE(318);
                             {
                             CLUREF T_4_1;
                             CLUREF T_4_2;
@@ -1751,7 +1751,7 @@ g_parmdecls(CLUREF e, CLUREF a)
                                 }
                                 }/* end if */
 
-  LINE(313);
+  LINE(320);
                             {
                             CLUREF T_4_1;
                             T_4_1.num = each_r.vec->data[1];
@@ -1761,7 +1761,7 @@ g_parmdecls(CLUREF e, CLUREF a)
                                 T_4_2.num = T_4_1.cell->value;
                                 h.num = T_4_2.num;
 
-  LINE(315);
+  LINE(322);
                                     {
                                     ops.num = h.num;
                                     }
@@ -1776,7 +1776,7 @@ g_parmdecls(CLUREF e, CLUREF a)
                                 T_4_3.num = T_4_1.cell->value;
                                 s.num = T_4_3.num;
 
-  LINE(318);
+  LINE(325);
                                     {
                                     CLUREF T_5_1;
                                     T_5_1.num = s.vec->data[2];
@@ -1787,7 +1787,7 @@ g_parmdecls(CLUREF e, CLUREF a)
                             }
                             }
 
-  LINE(320);
+  LINE(327);
                             {
                             CLUREF T_4_1;
                             CLUREF T_4_2;
@@ -1797,7 +1797,7 @@ g_parmdecls(CLUREF e, CLUREF a)
                                 for (T_4_1.num = 1; T_4_1.num <= T_4_2.num; T_4_1.num++) {
                                     each_opd.num = T_4_3.vec->data[T_4_1.num - 1];
 
-  LINE(321);
+  LINE(328);
                                     {
                                     CLUREF T_5_1;
                                     CLUREF T_5_2;
@@ -1809,7 +1809,7 @@ g_parmdecls(CLUREF e, CLUREF a)
                                         for (T_5_2.num = 1; T_5_2.num <= T_5_3.num; T_5_2.num++) {
                                             each_op.num = T_5_4.vec->data[T_5_2.num - 1];
 
-  LINE(322);
+  LINE(329);
                                             {
                                             CLUREF T_6_1;
                                             CLUREF T_6_2;
@@ -1832,25 +1832,25 @@ g_parmdecls(CLUREF e, CLUREF a)
                     }
                     end_inline_for_3:;
 
-  LINE(326);
+  LINE(333);
                     {
                     err = g_envOPputs(e, STR__175_040_052);
                     if (err != ERR_ok) goto ex_0;
                     }
 
-  LINE(327);
+  LINE(334);
                     {
                     err = g_idnlit(e, each_idn);
                     if (err != ERR_ok) goto ex_0;
                     }
 
-  LINE(328);
+  LINE(335);
                     {
                     err = g_envOPputs(e, STR__137ops);
                     if (err != ERR_ok) goto ex_0;
                     }
 
-  LINE(329);
+  LINE(336);
                     {
                     err = g_envOPputl(e, STR__073);
                     if (err != ERR_ok) goto ex_0;
@@ -1921,15 +1921,15 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
         stringOPcons(" };", CLU_1, CLUREF_make_num(3), &STR__040_175_073);
         g_ptypeownvars_own_init = 1;
     }
-    enter_proc(338);
+    enter_proc(345);
 
-  LINE(339);
+  LINE(346);
     {
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(340);
+  LINE(347);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1944,25 +1944,25 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(342);
+  LINE(349);
     {
     err = g_envOPputl(e, STR_typedef_040struct_040_173);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(343);
+  LINE(350);
     {
     err = g_envOPindent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(344);
+  LINE(351);
     {
         {own_count.num = 0;
         }
         }
 
-  LINE(347);
+  LINE(354);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1977,13 +1977,13 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(348);
+  LINE(355);
     {
     err = dbg_infoOPadd_ilist(ti);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(349);
+  LINE(356);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -1993,13 +1993,13 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(350);
+  LINE(357);
             {
             err = g_pown(e, i, CLU_1);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(351);
+  LINE(358);
             {
             err = g_envOPnewline(e);
             if (err != ERR_ok) goto ex_0;
@@ -2008,7 +2008,7 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
     }
     end_inline_for_1:;
 
-  LINE(353);
+  LINE(360);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2022,7 +2022,7 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
     own_count.num = T_1_2.num;
     }
 
-  LINE(356);
+  LINE(363);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2032,7 +2032,7 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             a.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(357);
+  LINE(364);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -2046,7 +2046,7 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
                 }
                 }/* end if */
 
-  LINE(359);
+  LINE(366);
             {
                 {CLUREF T_2_1;
                 CLUREF T_2_2;
@@ -2060,7 +2060,7 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
                 }
                 }
 
-  LINE(360);
+  LINE(367);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -2072,7 +2072,7 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(362);
+  LINE(369);
             {
             CLUREF T_2_1;
             T_2_1.num = a.vec->data[5];
@@ -2080,7 +2080,7 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(363);
+  LINE(370);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -2092,13 +2092,13 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     i.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(364);
+  LINE(371);
                     {
                     err = g_pown(e, i, CLU_1);
                     if (err != ERR_ok) goto ex_0;
                     }
 
-  LINE(365);
+  LINE(372);
                     {
                     err = g_envOPnewline(e);
                     if (err != ERR_ok) goto ex_0;
@@ -2107,7 +2107,7 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
             }
             end_inline_for_3:;
 
-  LINE(367);
+  LINE(374);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -2126,7 +2126,7 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
     }
     end_inline_for_2:;
 
-  LINE(371);
+  LINE(378);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2138,31 +2138,31 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(372);
+  LINE(379);
     {
     err = own_defnOPstart();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(373);
+  LINE(380);
     {
     err = g_tblOPg_field_tables(e, CLU_2);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(374);
+  LINE(381);
     {
     err = own_defnOPstop();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(376);
+  LINE(383);
     {
     err = g_envOPoutdent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(377);
+  LINE(384);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2177,13 +2177,13 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(381);
+  LINE(388);
     {
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(382);
+  LINE(389);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2219,7 +2219,7 @@ g_ptypeownvars(CLUREF e, CLUREF ti, CLUREF aps)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(385);
+  LINE(392);
     {
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
@@ -2275,15 +2275,15 @@ g_powninit(CLUREF e, CLUREF ilist)
         stringOPcons("}", CLU_1, CLUREF_make_num(1), &STR__175);
         g_powninit_own_init = 1;
     }
-    enter_proc(392);
+    enter_proc(399);
 
-  LINE(393);
+  LINE(400);
     {
     err = g_envOPputl(e, STR_errcode);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(394);
+  LINE(401);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2295,19 +2295,19 @@ g_powninit(CLUREF e, CLUREF ilist)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(395);
+  LINE(402);
     {
     err = g_envOPputl(e, STR__173);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(396);
+  LINE(403);
     {
     err = g_envOPindent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(398);
+  LINE(405);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -2319,48 +2319,6 @@ g_powninit(CLUREF e, CLUREF ilist)
         }
         }
 
-  LINE(400);
-    {
-    CLUREF T_1_1;
-    err = dbg_infoOPactive(&T_1_1);
-    if (err != ERR_ok) goto ex_0;
-    if (T_1_1.num == true) {
-
-  LINE(401);
-        {
-        err = g_envOPputl(e, STR_struct_040_173);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(402);
-        {
-        err = g_envOPindent(e);
-        if (err != ERR_ok) goto ex_0;
-        }
-        }
-        }/* end if */
-
-  LINE(404);
-    {
-    err = g_tblOPbuild_tables(e, CLU_0);
-    if (err != ERR_ok) goto ex_0;
-    }
-
-  LINE(405);
-    {
-    err = g_envOPputl(e, STR_errcode_040err_073);
-    if (err != ERR_ok) goto ex_0;
-    }
-
-  LINE(406);
-    {
-    CLUREF T_1_1;
-    err = stringOPconcat(own_defn_name, STR__040_052type_137own_137ptr_073, &T_1_1);
-    if (err != ERR_ok) goto ex_0;
-    err = g_envOPputl(e, T_1_1);
-    if (err != ERR_ok) goto ex_0;
-    }
-
   LINE(407);
     {
     CLUREF T_1_1;
@@ -2370,13 +2328,13 @@ g_powninit(CLUREF e, CLUREF ilist)
 
   LINE(408);
         {
-        err = g_envOPoutdent(e);
+        err = g_envOPputl(e, STR_struct_040_173);
         if (err != ERR_ok) goto ex_0;
         }
 
   LINE(409);
         {
-        err = g_envOPputl(e, STR__175_040locals_073);
+        err = g_envOPindent(e);
         if (err != ERR_ok) goto ex_0;
         }
         }
@@ -2384,65 +2342,107 @@ g_powninit(CLUREF e, CLUREF ilist)
 
   LINE(412);
     {
-    err = g_locals(e);
+    err = g_tblOPbuild_tables(e, CLU_0);
     if (err != ERR_ok) goto ex_0;
     }
 
   LINE(413);
     {
-    err = g_envOPputs(e, STR_type_137own_137ptr_040_075_040_050);
+    err = g_envOPputl(e, STR_errcode_040err_073);
     if (err != ERR_ok) goto ex_0;
     }
 
   LINE(414);
     {
-    err = g_envOPputs(e, own_defn_name);
+    CLUREF T_1_1;
+    err = stringOPconcat(own_defn_name, STR__040_052type_137own_137ptr_073, &T_1_1);
     if (err != ERR_ok) goto ex_0;
-    }
-
-  LINE(415);
-    {
-    err = g_envOPputl(e, STR__040_052_051CUR_137PROC_137VAR_056proc_055_076type_137owns_073);
+    err = g_envOPputl(e, T_1_1);
     if (err != ERR_ok) goto ex_0;
     }
 
   LINE(416);
     {
-    err = g_envOPblankline(e);
+    CLUREF T_1_1;
+    err = dbg_infoOPactive(&T_1_1);
     if (err != ERR_ok) goto ex_0;
-    }
+    if (T_1_1.num == true) {
+
+  LINE(417);
+        {
+        err = g_envOPoutdent(e);
+        if (err != ERR_ok) goto ex_0;
+        }
 
   LINE(418);
-    {
-    err = g_envOPputl(e, STR_enter_137own_137init_137proc_050_051_073);
-    if (err != ERR_ok) goto ex_0;
-    }
-
-  LINE(419);
-    {
-    err = g_pownvars_init(e, ilist);
-    if (err != ERR_ok) goto ex_0;
-    }
+        {
+        err = g_envOPputl(e, STR__175_040locals_073);
+        if (err != ERR_ok) goto ex_0;
+        }
+        }
+        }/* end if */
 
   LINE(421);
     {
-    err = g_envOPputl(e, STR_signal_050ERR_137ok_051_073);
+    err = g_locals(e);
     if (err != ERR_ok) goto ex_0;
     }
 
   LINE(422);
     {
-    err = g_envOPoutdent(e);
+    err = g_envOPputs(e, STR_type_137own_137ptr_040_075_040_050);
     if (err != ERR_ok) goto ex_0;
     }
 
   LINE(423);
     {
-    err = g_envOPputl(e, STR__175);
+    err = g_envOPputs(e, own_defn_name);
     if (err != ERR_ok) goto ex_0;
     }
 
   LINE(424);
+    {
+    err = g_envOPputl(e, STR__040_052_051CUR_137PROC_137VAR_056proc_055_076type_137owns_073);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(425);
+    {
+    err = g_envOPblankline(e);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(427);
+    {
+    err = g_envOPputl(e, STR_enter_137own_137init_137proc_050_051_073);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(428);
+    {
+    err = g_pownvars_init(e, ilist);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(430);
+    {
+    err = g_envOPputl(e, STR_signal_050ERR_137ok_051_073);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(431);
+    {
+    err = g_envOPoutdent(e);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(432);
+    {
+    err = g_envOPputl(e, STR__175);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(433);
     {
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
@@ -2473,6 +2473,7 @@ errcode
 g_owninit(CLUREF e, CLUREF ilist, CLUREF *ret_1)
 {
     errcode err;
+    CLUREF owns;
     if (g_owninit_own_init == 0) {
         stringOPcons("errcode", CLU_1, CLUREF_make_num(7), &STR_errcode);
         stringOPcons("_own_init_proc(void)", CLU_1, CLUREF_make_num(20), &STR__137own_137init_137proc_050void_051);
@@ -2485,170 +2486,176 @@ g_owninit(CLUREF e, CLUREF ilist, CLUREF *ret_1)
         stringOPcons("}", CLU_1, CLUREF_make_num(1), &STR__175);
         g_owninit_own_init = 1;
     }
-    enter_proc(431);
+    enter_proc(440);
 
-  LINE(432);
+  LINE(441);
     {
-    CLUREF T_1_1;
-    CLUREF T_1_2;
-    CLUREF T_1_3;
-    CLUREF T_1_4;
-    CLUREF T_1_5;
-    err = g_tblOPexist(&T_1_3);
-    if (err != ERR_ok) goto ex_0;
-    T_1_2.num = T_1_3.num;
-    if (!T_1_3.num) {
-        err = g_constOPexist(&T_1_4);
+        {CLUREF T_1_1;
+        CLUREF T_1_2;
+        CLUREF T_1_3;
+        CLUREF T_1_4;
+        CLUREF T_1_5;
+        err = g_tblOPexist(&T_1_3);
         if (err != ERR_ok) goto ex_0;
-        T_1_2.num = T_1_4.num;
-    }
-    T_1_1.num = T_1_2.num;
-    if (!T_1_2.num) {
-        err = own_init(ilist, &T_1_5);
-        if (err != ERR_ok) goto ex_0;
-        T_1_1.num = T_1_5.num;
-    }
-    if (T_1_1.num == true) {
-
-  LINE(433);
-        {
-        err = g_envOPblankline(e);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(434);
-        {
-        err = g_envOPputl(e, STR_errcode);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(435);
-        {
-        CLUREF T_2_1;
-        CLUREF T_2_2;
-        err = current_typeOPget_name(&T_2_1);
-        if (err != ERR_ok) goto ex_0;
-        err = stringOPconcat(T_2_1, STR__137own_137init_137proc_050void_051, &T_2_2);
-        if (err != ERR_ok) goto ex_0;
-        err = g_envOPputl(e, T_2_2);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(436);
-        {
-        err = g_envOPputl(e, STR__173);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(437);
-        {
-        err = g_envOPindent(e);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(438);
-        {
-        CLUREF T_2_1;
-        err = dbg_infoOPactive(&T_2_1);
-        if (err != ERR_ok) goto ex_0;
-        if (T_2_1.num == true) {
-
-  LINE(439);
-            {
-            err = g_envOPputl(e, STR_struct_040_173);
+        T_1_2.num = T_1_3.num;
+        if (!T_1_3.num) {
+            err = g_constOPexist(&T_1_4);
             if (err != ERR_ok) goto ex_0;
-            }
-
-  LINE(440);
-            {
-            err = g_envOPindent(e);
+            T_1_2.num = T_1_4.num;
+        }
+        T_1_1.num = T_1_2.num;
+        if (!T_1_2.num) {
+            err = own_init(ilist, &T_1_5);
             if (err != ERR_ok) goto ex_0;
-            }
-            }
-            }/* end if */
-
-  LINE(442);
-        {
-        err = g_tblOPbuild_tables(e, CLU_0);
-        if (err != ERR_ok) goto ex_0;
+            T_1_1.num = T_1_5.num;
+        }
+        owns.num = T_1_1.num;
+        }
         }
 
   LINE(443);
-        {
-        err = g_envOPputl(e, STR_errcode_040err_073);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(444);
-        {
-        CLUREF T_2_1;
-        err = dbg_infoOPactive(&T_2_1);
-        if (err != ERR_ok) goto ex_0;
-        if (T_2_1.num == true) {
-
-  LINE(445);
-            {
-            err = g_envOPoutdent(e);
-            if (err != ERR_ok) goto ex_0;
-            }
-
-  LINE(446);
-            {
-            err = g_envOPputl(e, STR__175_040locals_073);
-            if (err != ERR_ok) goto ex_0;
-            }
-            }
-            }/* end if */
-
-  LINE(448);
-        {
-        err = g_envOPputl(e, STR_enter_137own_137init_137proc_050_051_073);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(450);
-        {
-        err = g_ownvars_init(e, ilist);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(451);
-        {
-        err = g_envOPputl(e, STR_signal_050ERR_137ok_051_073);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(452);
-        {
-        err = g_envOPoutdent(e);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(453);
-        {
-        err = g_envOPputl(e, STR__175);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(454);
-        {
-        err = g_envOPblankline(e);
-        if (err != ERR_ok) goto ex_0;
-        }
-
-  LINE(455);
+    {
+    CLUREF T_1_1;
+    T_1_1.num = owns.num ^ 1;
+    if (T_1_1.num == true) {
         {
         {
-        ret_1->tf = true;
+        ret_1->tf = false;
         }
         {signal (ERR_ok);}}
         }
         }/* end if */
 
+  LINE(445);
+    {
+    err = g_envOPblankline(e);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(446);
+    {
+    err = g_envOPputl(e, STR_errcode);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(447);
+    {
+    CLUREF T_1_1;
+    CLUREF T_1_2;
+    err = current_typeOPget_name(&T_1_1);
+    if (err != ERR_ok) goto ex_0;
+    err = stringOPconcat(T_1_1, STR__137own_137init_137proc_050void_051, &T_1_2);
+    if (err != ERR_ok) goto ex_0;
+    err = g_envOPputl(e, T_1_2);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(448);
+    {
+    err = g_envOPputl(e, STR__173);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(449);
+    {
+    err = g_envOPindent(e);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(451);
+    {
+    CLUREF T_1_1;
+    err = dbg_infoOPactive(&T_1_1);
+    if (err != ERR_ok) goto ex_0;
+    if (T_1_1.num == true) {
+
+  LINE(452);
+        {
+        err = g_envOPputl(e, STR_struct_040_173);
+        if (err != ERR_ok) goto ex_0;
+        }
+
+  LINE(453);
+        {
+        err = g_envOPindent(e);
+        if (err != ERR_ok) goto ex_0;
+        }
+        }
+        }/* end if */
+
+  LINE(456);
+    {
+    err = g_tblOPbuild_tables(e, CLU_0);
+    if (err != ERR_ok) goto ex_0;
+    }
+
   LINE(457);
     {
+    err = g_envOPputl(e, STR_errcode_040err_073);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(459);
     {
-    ret_1->tf = false;
+    CLUREF T_1_1;
+    err = dbg_infoOPactive(&T_1_1);
+    if (err != ERR_ok) goto ex_0;
+    if (T_1_1.num == true) {
+
+  LINE(460);
+        {
+        err = g_envOPoutdent(e);
+        if (err != ERR_ok) goto ex_0;
+        }
+
+  LINE(461);
+        {
+        err = g_envOPputl(e, STR__175_040locals_073);
+        if (err != ERR_ok) goto ex_0;
+        }
+        }
+        }/* end if */
+
+  LINE(464);
+    {
+    err = g_envOPputl(e, STR_enter_137own_137init_137proc_050_051_073);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(466);
+    {
+    err = g_ownvars_init(e, ilist);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(468);
+    {
+    err = g_envOPputl(e, STR_signal_050ERR_137ok_051_073);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(469);
+    {
+    err = g_envOPoutdent(e);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(470);
+    {
+    err = g_envOPputl(e, STR__175);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(471);
+    {
+    err = g_envOPblankline(e);
+    if (err != ERR_ok) goto ex_0;
+    }
+
+  LINE(472);
+    {
+    {
+    ret_1->tf = true;
     }
     {signal (ERR_ok);}}
 
@@ -2674,9 +2681,9 @@ own_init(CLUREF ilist, CLUREF *ret_1)
 {
     errcode err;
     CLUREF each_init;
-    enter_proc(463);
+    enter_proc(479);
 
-  LINE(464);
+  LINE(480);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2686,24 +2693,24 @@ own_init(CLUREF ilist, CLUREF *ret_1)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_init.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(465);
+  LINE(481);
             {
             CLUREF T_2_1;
             T_2_1.num = each_init.vec->data[1];
             switch (T_2_1.cell->tag) {
-            case 1:
-                 {
-                    break;
-                    }
             case 2:
                  {
 
-  LINE(467);
+  LINE(482);
                     {
                     {
                     ret_1->tf = true;
                     }
                     {signal (ERR_ok);}}
+                    break;
+                    }
+            case 1:
+                 {
                     break;
                     }
             }
@@ -2712,7 +2719,7 @@ own_init(CLUREF ilist, CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(470);
+  LINE(486);
     {
     {
     ret_1->tf = false;
@@ -2759,9 +2766,9 @@ g_pownvars_decl(CLUREF e, CLUREF ilist)
         stringOPcons(" };", CLU_1, CLUREF_make_num(3), &STR__040_175_073);
         g_pownvars_decl_own_init = 1;
     }
-    enter_proc(476);
+    enter_proc(492);
 
-  LINE(477);
+  LINE(493);
     {
         {CLUREF T_1_1;
         err = op_own_name(&T_1_1);
@@ -2770,7 +2777,7 @@ g_pownvars_decl(CLUREF e, CLUREF ilist)
         }
         }
 
-  LINE(479);
+  LINE(495);
     {
         {CLUREF T_1_1;
         err = current_applyOPget_short_name(&T_1_1);
@@ -2779,14 +2786,14 @@ g_pownvars_decl(CLUREF e, CLUREF ilist)
         }
         }
 
-  LINE(480);
+  LINE(496);
     {
     CLUREF T_1_1;
     err = stringOPempty(ref, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(481);
+  LINE(497);
         {
         CLUREF T_2_1;
         err = current_typeOPget_name(&T_2_1);
@@ -2796,25 +2803,25 @@ g_pownvars_decl(CLUREF e, CLUREF ilist)
         }
         }/* end if */
 
-  LINE(483);
+  LINE(499);
     {
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(484);
+  LINE(500);
     {
     err = g_envOPputl(e, STR_typedef_040struct_040_173);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(485);
+  LINE(501);
     {
     err = g_envOPindent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(487);
+  LINE(503);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2826,7 +2833,7 @@ g_pownvars_decl(CLUREF e, CLUREF ilist)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(488);
+  LINE(504);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2836,13 +2843,13 @@ g_pownvars_decl(CLUREF e, CLUREF ilist)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(489);
+  LINE(505);
             {
             err = g_pown(e, i, CLU_1);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(490);
+  LINE(506);
             {
             err = g_envOPnewline(e);
             if (err != ERR_ok) goto ex_0;
@@ -2851,7 +2858,7 @@ g_pownvars_decl(CLUREF e, CLUREF ilist)
     }
     end_inline_for_1:;
 
-  LINE(493);
+  LINE(509);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2865,31 +2872,31 @@ g_pownvars_decl(CLUREF e, CLUREF ilist)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(495);
+  LINE(511);
     {
     err = own_defnOPstart();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(496);
+  LINE(512);
     {
     err = g_tblOPg_field_tables(e, CLU_2);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(497);
+  LINE(513);
     {
     err = own_defnOPstop();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(499);
+  LINE(515);
     {
     err = g_envOPoutdent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(500);
+  LINE(516);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2901,7 +2908,7 @@ g_pownvars_decl(CLUREF e, CLUREF ilist)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(502);
+  LINE(518);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -2934,7 +2941,7 @@ g_pownvars_decl(CLUREF e, CLUREF ilist)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(505);
+  LINE(521);
     {
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
@@ -3021,15 +3028,15 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
         stringOPcons("signal(ERR_failure);", CLU_1, CLUREF_make_num(20), &STR_signal_050ERR_137failure_051_073);
         g_pownvars_init_own_init = 1;
     }
-    enter_proc(512);
+    enter_proc(528);
 
-  LINE(514);
+  LINE(530);
     {
         {ptr = STR_op_137own_137ptr;
         }
         }
 
-  LINE(515);
+  LINE(531);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3046,14 +3053,14 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
     }
     if (T_1_1.num == true) {
 
-  LINE(516);
+  LINE(532);
         {
         ptr = STR_type_137own_137ptr;
         }
         }
         }/* end if */
 
-  LINE(518);
+  LINE(534);
     {
         {CLUREF T_1_1;
         err = current_applyOPget_short_name(&T_1_1);
@@ -3062,14 +3069,14 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
         }
         }
 
-  LINE(519);
+  LINE(535);
     {
     CLUREF T_1_1;
     err = stringOPempty(ref, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(520);
+  LINE(536);
         {
         CLUREF T_2_1;
         err = current_typeOPget_name(&T_2_1);
@@ -3079,7 +3086,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
         }
         }/* end if */
 
-  LINE(522);
+  LINE(538);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -3100,7 +3107,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
         }
         }
 
-  LINE(525);
+  LINE(541);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3115,7 +3122,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
     }
     if (T_1_1.num == true) {
 
-  LINE(526);
+  LINE(542);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -3127,43 +3134,43 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(527);
+  LINE(543);
         {
         err = g_envOPindent(e);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(528);
+  LINE(544);
         {
         err = g_tblOPbuild_tables(e, CLU_1);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(529);
+  LINE(545);
         {
         err = g_constOPg_consts(e, CLU_1);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(531);
+  LINE(547);
         {
         err = g_tblOPbuild_tables(e, CLU_2);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(532);
+  LINE(548);
         {
         err = g_constOPg_consts(e, CLU_2);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(533);
+  LINE(549);
         {
         err = g_envOPoutdent(e);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(534);
+  LINE(550);
         {
         err = g_envOPputl(e, STR__175);
         if (err != ERR_ok) goto ex_0;
@@ -3171,7 +3178,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
         }
         }/* end if */
 
-  LINE(538);
+  LINE(554);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3203,7 +3210,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
     }
     if (T_1_1.num == true) {
 
-  LINE(542);
+  LINE(558);
         {
             {CLUREF T_2_1;
             CLUREF T_2_2;
@@ -3215,7 +3222,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             }
             }
 
-  LINE(543);
+  LINE(559);
         {
             {CLUREF T_2_1;
             err = stringOPconcat(type_own_init, STR__137proc, &T_2_1);
@@ -3224,14 +3231,14 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             }
             }
 
-  LINE(544);
+  LINE(560);
         {
         CLUREF T_2_1;
         err = current_typeOPparmd(&T_2_1);
         if (err != ERR_ok) goto ex_0;
         if (T_2_1.num == true) {
 
-  LINE(545);
+  LINE(561);
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
@@ -3252,13 +3259,13 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(547);
+  LINE(563);
             {
             err = g_envOPindent(e);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(548);
+  LINE(564);
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
@@ -3273,13 +3280,13 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(549);
+  LINE(565);
             {
             err = g_envOPputl(e, STR_generic_137CLU_137proc_056op_137owns_040_075_0400_073);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(550);
+  LINE(566);
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
@@ -3291,7 +3298,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(551);
+  LINE(567);
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
@@ -3309,7 +3316,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(553);
+  LINE(569);
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
@@ -3324,13 +3331,13 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(554);
+  LINE(570);
             {
             err = g_envOPoutdent(e);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(555);
+  LINE(571);
             {
             err = g_envOPputl(e, STR__175);
             if (err != ERR_ok) goto ex_0;
@@ -3338,7 +3345,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             }
         else {
 
-  LINE(558);
+  LINE(574);
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
@@ -3350,13 +3357,13 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(559);
+  LINE(575);
             {
             err = g_envOPindent(e);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(560);
+  LINE(576);
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
@@ -3374,7 +3381,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(562);
+  LINE(578);
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
@@ -3389,13 +3396,13 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(563);
+  LINE(579);
             {
             err = g_envOPoutdent(e);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(564);
+  LINE(580);
             {
             err = g_envOPputl(e, STR__175);
             if (err != ERR_ok) goto ex_0;
@@ -3404,7 +3411,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
         }
         }/* end if */
 
-  LINE(571);
+  LINE(587);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3416,13 +3423,13 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(572);
+  LINE(588);
     {
     err = g_envOPindent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(573);
+  LINE(589);
     {
     CLUREF T_1_1;
     err = stringOPconcat(own_init, STR__040_075_0401_073, &T_1_1);
@@ -3431,14 +3438,14 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(575);
+  LINE(591);
     {
     CLUREF T_1_1;
     err = sequenceOPempty(ilist, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(576);
+  LINE(592);
         {
         err = g_envOPputl(e, STR__057_052_040no_040own_040vars_040to_040init_040_052_057);
         if (err != ERR_ok) goto ex_0;
@@ -3446,7 +3453,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
         }
     else {
 
-  LINE(578);
+  LINE(594);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -3456,13 +3463,13 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                 i.num = T_2_3.vec->data[T_2_1.num - 1];
 
-  LINE(579);
+  LINE(595);
                 {
                 err = g_pown(e, i, CLU_2);
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(580);
+  LINE(596);
                 {
                 err = g_envOPnewline(e);
                 if (err != ERR_ok) goto ex_0;
@@ -3471,7 +3478,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
         }
         end_inline_for_1:;
 
-  LINE(583);
+  LINE(599);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -3486,31 +3493,31 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
         }
         if (T_2_1.num == true) {
 
-  LINE(584);
+  LINE(600);
             {
             err = g_envOPputl(e, STR_signal_050ERR_137ok_051_073);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(585);
+  LINE(601);
             {
             err = g_envOPoutdent(e);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(586);
+  LINE(602);
             {
             err = g_envOPputl(e, STR__040_040ex_1370_072);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(587);
+  LINE(603);
             {
             err = g_envOPindent(e);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(588);
+  LINE(604);
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
@@ -3525,7 +3532,7 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(589);
+  LINE(605);
             {
             err = g_envOPputl(e, STR_signal_050ERR_137failure_051_073);
             if (err != ERR_ok) goto ex_0;
@@ -3534,13 +3541,13 @@ g_pownvars_init(CLUREF e, CLUREF ilist)
             }/* end if */
         }}/* end if */
 
-  LINE(593);
+  LINE(609);
     {
     err = g_envOPoutdent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(594);
+  LINE(610);
     {
     err = g_envOPputl(e, STR__175);
     if (err != ERR_ok) goto ex_0;
@@ -3586,9 +3593,9 @@ g_ownvars_decl(CLUREF e, CLUREF ilist)
         stringOPcons(" = { 0, 0 };", CLU_1, CLUREF_make_num(12), &STR__040_075_040_173_0400_054_0400_040_175_073);
         g_ownvars_decl_own_init = 1;
     }
-    enter_proc(602);
+    enter_proc(618);
 
-  LINE(603);
+  LINE(619);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -3613,11 +3620,11 @@ g_ownvars_decl(CLUREF e, CLUREF ilist)
         }
         }
 
-  LINE(605);
+  LINE(621);
     {
     if (owns.num == true) {
 
-  LINE(606);
+  LINE(622);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -3638,7 +3645,7 @@ g_ownvars_decl(CLUREF e, CLUREF ilist)
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(609);
+  LINE(625);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -3655,14 +3662,14 @@ g_ownvars_decl(CLUREF e, CLUREF ilist)
         }
         }}/* end if */
 
-  LINE(613);
+  LINE(629);
     {
     CLUREF T_1_1;
     err = current_typeOPexists(&T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(614);
+  LINE(630);
         {
             {CLUREF T_2_1;
             CLUREF T_2_2;
@@ -3674,14 +3681,14 @@ g_ownvars_decl(CLUREF e, CLUREF ilist)
             }
             }
 
-  LINE(615);
+  LINE(631);
         {
         CLUREF T_2_1;
         err = g_envOPadd_global(nm, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         if (T_2_1.num == true) {
 
-  LINE(616);
+  LINE(632);
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
@@ -3697,7 +3704,7 @@ g_ownvars_decl(CLUREF e, CLUREF ilist)
         }
         }/* end if */
 
-  LINE(620);
+  LINE(636);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3707,13 +3714,13 @@ g_ownvars_decl(CLUREF e, CLUREF ilist)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(621);
+  LINE(637);
             {
             err = g_own(e, i, CLU_1);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(622);
+  LINE(638);
             {
             err = g_envOPnewline(e);
             if (err != ERR_ok) goto ex_0;
@@ -3763,9 +3770,9 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
         stringOPcons("signal(ERR_failure);", CLU_1, CLUREF_make_num(20), &STR_signal_050ERR_137failure_051_073);
         g_ownvars_init_own_init = 1;
     }
-    enter_proc(630);
+    enter_proc(646);
 
-  LINE(631);
+  LINE(647);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -3790,11 +3797,11 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
         }
         }
 
-  LINE(633);
+  LINE(649);
     {
     if (owns.num == true) {
 
-  LINE(634);
+  LINE(650);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -3809,7 +3816,7 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(635);
+  LINE(651);
         {
         err = g_envOPindent(e);
         if (err != ERR_ok) goto ex_0;
@@ -3817,7 +3824,7 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
         }
         }/* end if */
 
-  LINE(638);
+  LINE(654);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3839,25 +3846,25 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
     }
     if (T_1_1.num == true) {
 
-  LINE(641);
+  LINE(657);
         {
         err = g_tblOPbuild_tables(e, CLU_1);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(642);
+  LINE(658);
         {
         err = g_tblOPbuild_tables(e, CLU_2);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(643);
+  LINE(659);
         {
         err = g_constOPg_consts(e, CLU_1);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(644);
+  LINE(660);
         {
         err = g_constOPg_consts(e, CLU_2);
         if (err != ERR_ok) goto ex_0;
@@ -3865,7 +3872,7 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
         }
         }/* end if */
 
-  LINE(650);
+  LINE(666);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3890,7 +3897,7 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
     }
     if (T_1_1.num == true) {
 
-  LINE(653);
+  LINE(669);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -3905,13 +3912,13 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(654);
+  LINE(670);
         {
         err = g_envOPindent(e);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(656);
+  LINE(672);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -3932,7 +3939,7 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(658);
+  LINE(674);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -3947,13 +3954,13 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(659);
+  LINE(675);
         {
         err = g_envOPoutdent(e);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(660);
+  LINE(676);
         {
         err = g_envOPputl(e, STR__175);
         if (err != ERR_ok) goto ex_0;
@@ -3961,11 +3968,11 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
         }
         }/* end if */
 
-  LINE(663);
+  LINE(679);
     {
     if (owns.num == true) {
 
-  LINE(664);
+  LINE(680);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -3979,7 +3986,7 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
         }
         }/* end if */
 
-  LINE(667);
+  LINE(683);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3989,13 +3996,13 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             i.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(668);
+  LINE(684);
             {
             err = g_own(e, i, CLU_2);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(669);
+  LINE(685);
             {
             err = g_envOPnewline(e);
             if (err != ERR_ok) goto ex_0;
@@ -4004,42 +4011,42 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
     }
     end_inline_for_1:;
 
-  LINE(672);
+  LINE(688);
     {
     if (owns.num == true) {
 
-  LINE(673);
+  LINE(689);
         {
         CLUREF T_2_1;
         err = current_applyOPis_type_own_init(&T_2_1);
         if (err != ERR_ok) goto ex_0;
         if (T_2_1.num == true) {
 
-  LINE(675);
+  LINE(691);
             {
             err = g_envOPputl(e, STR_signal_050ERR_137ok_051_073);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(676);
+  LINE(692);
             {
             err = g_envOPoutdent(e);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(677);
+  LINE(693);
             {
             err = g_envOPputl(e, STR__040_040ex_1370_072);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(678);
+  LINE(694);
             {
             err = g_envOPindent(e);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(679);
+  LINE(695);
             {
             CLUREF T_3_1;
             CLUREF T_3_2;
@@ -4054,7 +4061,7 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(680);
+  LINE(696);
             {
             err = g_envOPputl(e, STR_signal_050ERR_137failure_051_073);
             if (err != ERR_ok) goto ex_0;
@@ -4062,13 +4069,13 @@ g_ownvars_init(CLUREF e, CLUREF ilist)
             }
             }/* end if */
 
-  LINE(682);
+  LINE(698);
         {
         err = g_envOPoutdent(e);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(683);
+  LINE(699);
         {
         err = g_envOPputl(e, STR__175);
         if (err != ERR_ok) goto ex_0;
@@ -4103,15 +4110,15 @@ g_pown(CLUREF e, CLUREF i, CLUREF pass)
 {
     errcode err;
     CLUREF d;
-    enter_proc(688);
+    enter_proc(704);
 
-  LINE(690);
+  LINE(706);
     {
     CLUREF T_1_1;
     T_1_1.num = (pass.num == 1)? true : false;
     if (T_1_1.num == true) {
 
-  LINE(691);
+  LINE(707);
         {
         CLUREF T_2_1;
         T_2_1.num = i.vec->data[1];
@@ -4121,13 +4128,13 @@ g_pown(CLUREF e, CLUREF i, CLUREF pass)
             T_2_2.num = T_2_1.cell->value;
             d.num = T_2_2.num;
 
-  LINE(693);
+  LINE(709);
                 {
                 err = typOPfix_own_type(d);
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(694);
+  LINE(710);
                 {
                 err = g_decl(e, d);
                 if (err != ERR_ok) goto ex_0;
@@ -4139,7 +4146,7 @@ g_pown(CLUREF e, CLUREF i, CLUREF pass)
             T_2_3.num = T_2_1.cell->value;
             d.num = T_2_3.num;
 
-  LINE(696);
+  LINE(712);
                 {
                 CLUREF T_3_1;
                 T_3_1.num = d.vec->data[1];
@@ -4147,7 +4154,7 @@ g_pown(CLUREF e, CLUREF i, CLUREF pass)
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(697);
+  LINE(713);
                 {
                 CLUREF T_3_1;
                 T_3_1.num = d.vec->data[1];
@@ -4161,7 +4168,7 @@ g_pown(CLUREF e, CLUREF i, CLUREF pass)
         }
     else {
 
-  LINE(704);
+  LINE(720);
         {
         CLUREF T_2_1;
         T_2_1.num = i.vec->data[1];
@@ -4171,20 +4178,20 @@ g_pown(CLUREF e, CLUREF i, CLUREF pass)
             T_2_2.num = T_2_1.cell->value;
             d.num = T_2_2.num;
 
-  LINE(706);
+  LINE(722);
                 {
                 err = typOPfix_own_type(d);
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(707);
+  LINE(723);
                 {
                 CLUREF T_3_1;
                 err = dbg_infoOPactive(&T_3_1);
                 if (err != ERR_ok) goto ex_0;
                 if (T_3_1.num == true) {
 
-  LINE(708);
+  LINE(724);
                     {
                     err = g_decl_debug(e, d);
                     if (err != ERR_ok) goto ex_0;
@@ -4198,7 +4205,7 @@ g_pown(CLUREF e, CLUREF i, CLUREF pass)
             T_2_3.num = T_2_1.cell->value;
             d.num = T_2_3.num;
 
-  LINE(711);
+  LINE(727);
                 {
                 CLUREF T_3_1;
                 T_3_1.num = d.vec->data[1];
@@ -4206,7 +4213,7 @@ g_pown(CLUREF e, CLUREF i, CLUREF pass)
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(712);
+  LINE(728);
                 {
                 err = g_declinit(e, d);
                 if (err != ERR_ok) goto ex_0;
@@ -4238,15 +4245,15 @@ g_own(CLUREF e, CLUREF i, CLUREF pass)
 {
     errcode err;
     CLUREF d;
-    enter_proc(717);
+    enter_proc(733);
 
-  LINE(719);
+  LINE(735);
     {
     CLUREF T_1_1;
     T_1_1.num = (pass.num == 1)? true : false;
     if (T_1_1.num == true) {
 
-  LINE(721);
+  LINE(737);
         {
         CLUREF T_2_1;
         T_2_1.num = i.vec->data[1];
@@ -4256,13 +4263,13 @@ g_own(CLUREF e, CLUREF i, CLUREF pass)
             T_2_2.num = T_2_1.cell->value;
             d.num = T_2_2.num;
 
-  LINE(723);
+  LINE(739);
                 {
                 err = typOPfix_own_type(d);
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(724);
+  LINE(740);
                 {
                 err = g_decl(e, d);
                 if (err != ERR_ok) goto ex_0;
@@ -4274,7 +4281,7 @@ g_own(CLUREF e, CLUREF i, CLUREF pass)
             T_2_3.num = T_2_1.cell->value;
             d.num = T_2_3.num;
 
-  LINE(726);
+  LINE(742);
                 {
                 CLUREF T_3_1;
                 T_3_1.num = d.vec->data[1];
@@ -4282,7 +4289,7 @@ g_own(CLUREF e, CLUREF i, CLUREF pass)
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(727);
+  LINE(743);
                 {
                 CLUREF T_3_1;
                 T_3_1.num = d.vec->data[1];
@@ -4296,7 +4303,7 @@ g_own(CLUREF e, CLUREF i, CLUREF pass)
         }
     else {
 
-  LINE(730);
+  LINE(746);
         {
         CLUREF T_2_1;
         T_2_1.num = i.vec->data[1];
@@ -4306,14 +4313,14 @@ g_own(CLUREF e, CLUREF i, CLUREF pass)
             T_2_2.num = T_2_1.cell->value;
             d.num = T_2_2.num;
 
-  LINE(732);
+  LINE(748);
                 {
                 CLUREF T_3_1;
                 err = dbg_infoOPactive(&T_3_1);
                 if (err != ERR_ok) goto ex_0;
                 if (T_3_1.num == true) {
 
-  LINE(733);
+  LINE(749);
                     {
                     err = g_decl_debug(e, d);
                     if (err != ERR_ok) goto ex_0;
@@ -4327,7 +4334,7 @@ g_own(CLUREF e, CLUREF i, CLUREF pass)
             T_2_3.num = T_2_1.cell->value;
             d.num = T_2_3.num;
 
-  LINE(736);
+  LINE(752);
                 {
                 err = g_declinit(e, d);
                 if (err != ERR_ok) goto ex_0;
@@ -4362,15 +4369,15 @@ own_counter(CLUREF i, CLUREF *ret_1)
     CLUREF each_i;
     CLUREF d;
     CLUREF each_d;
-    enter_proc(741);
+    enter_proc(757);
 
-  LINE(743);
+  LINE(759);
     {
         {own_count.num = 1;
         }
         }
 
-  LINE(744);
+  LINE(760);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4380,7 +4387,7 @@ own_counter(CLUREF i, CLUREF *ret_1)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_i.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(745);
+  LINE(761);
             {
             CLUREF T_2_1;
             T_2_1.num = each_i.vec->data[1];
@@ -4390,7 +4397,7 @@ own_counter(CLUREF i, CLUREF *ret_1)
                 T_2_2.num = T_2_1.cell->value;
                 d.num = T_2_2.num;
 
-  LINE(747);
+  LINE(763);
                     {
                     CLUREF T_3_1;
                     CLUREF T_3_2;
@@ -4411,7 +4418,7 @@ own_counter(CLUREF i, CLUREF *ret_1)
                 T_2_3.num = T_2_1.cell->value;
                 d.num = T_2_3.num;
 
-  LINE(749);
+  LINE(765);
                     {
                     CLUREF T_3_1;
                     CLUREF T_3_2;
@@ -4423,7 +4430,7 @@ own_counter(CLUREF i, CLUREF *ret_1)
                         for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                             each_d.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(750);
+  LINE(766);
                             {
                             CLUREF T_4_1;
                             CLUREF T_4_2;
@@ -4448,7 +4455,7 @@ own_counter(CLUREF i, CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(754);
+  LINE(770);
     {
     {
     ret_1->num = own_count.num;
@@ -4500,9 +4507,9 @@ g_localvars_struct(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         stringOPcons("_LOCALS_t;", CLU_1, CLUREF_make_num(10), &STR__137LOCALS_137t_073);
         g_localvars_struct_own_init = 1;
     }
-    enter_proc(759);
+    enter_proc(775);
 
-  LINE(761);
+  LINE(777);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4519,53 +4526,53 @@ g_localvars_struct(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
     T_1_4.num = T_1_1.num ^ 1;
     if (T_1_4.num == true) {
 
-  LINE(762);
+  LINE(778);
         {
         {signal (ERR_ok);}}
         }
         }/* end if */
 
-  LINE(764);
+  LINE(780);
     {
     err = g_envOPputl(e, STR_typedef_040struct_040_173);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(765);
+  LINE(781);
     {
     err = g_envOPindent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(767);
+  LINE(783);
     {
     err = dbg_infoOPemit_local_entry(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(769);
+  LINE(785);
     {
     if (iterp.num == true) {
 
-  LINE(770);
+  LINE(786);
         {
         err = dbg_infoOPadd_local(STR_user_137locals);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(771);
+  LINE(787);
         {
         err = g_envOPputl(e, STR_void_040_052user_137locals_073);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(773);
+  LINE(789);
         {
         err = dbg_infoOPadd_local(STR_proc);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(774);
+  LINE(790);
         {
         err = g_envOPputl(e, STR_errcode_040_050_052proc_051_050_051_073);
         if (err != ERR_ok) goto ex_0;
@@ -4573,20 +4580,20 @@ g_localvars_struct(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         }/* end if */
 
-  LINE(777);
+  LINE(793);
     {
     CLUREF T_1_1;
     err = ibOPexist(&T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(778);
+  LINE(794);
         {
         err = dbg_infoOPadd_local(STR_ecode2);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(779);
+  LINE(795);
         {
         err = g_envOPputl(e, STR_errcode_040ecode2_073);
         if (err != ERR_ok) goto ex_0;
@@ -4594,19 +4601,19 @@ g_localvars_struct(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         }/* end if */
 
-  LINE(782);
+  LINE(798);
     {
     err = g_localvars_vars(e, ap, locals_UNIQ, iterp);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(784);
+  LINE(800);
     {
     err = g_envOPoutdent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(785);
+  LINE(801);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4670,31 +4677,31 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         stringOPcons("_OWN_DEFN *op_own_ptr;", CLU_1, CLUREF_make_num(22), &STR__137OWN_137DEFN_040_052op_137own_137ptr_073);
         g_localvars_vars_own_init = 1;
     }
-    enter_proc(789);
+    enter_proc(805);
 
-  LINE(792);
+  LINE(808);
     {
     err = dbg_infoOPadd_local(STR_err);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(793);
+  LINE(809);
     {
     err = g_envOPputl(e, STR_errcode_040err_073);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(795);
+  LINE(811);
     {
     if (iterp.num == true) {
 
-  LINE(796);
+  LINE(812);
         {
         err = dbg_infoOPadd_local(STR_body_137ctrl_137req);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(797);
+  LINE(813);
         {
         err = g_envOPputl(e, STR_bool_040body_137ctrl_137req_073);
         if (err != ERR_ok) goto ex_0;
@@ -4702,7 +4709,7 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         }/* end if */
 
-  LINE(799);
+  LINE(815);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4717,13 +4724,13 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
     }
     if (T_1_1.num == true) {
 
-  LINE(800);
+  LINE(816);
         {
         err = dbg_infoOPadd_local(STR_type_137own_137ptr);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(801);
+  LINE(817);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -4737,14 +4744,14 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         }/* end if */
 
-  LINE(804);
+  LINE(820);
     {
     CLUREF T_1_1;
     err = current_applyOPparmd(&T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(805);
+  LINE(821);
         {
             {CLUREF T_2_1;
             err = op_own_name(&T_2_1);
@@ -4753,13 +4760,13 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
             }
             }
 
-  LINE(806);
+  LINE(822);
         {
         err = dbg_infoOPadd_local(STR_op_137own_137ptr);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(807);
+  LINE(823);
         {
         CLUREF T_2_1;
         err = stringOPconcat(defn_name, STR__137OWN_137DEFN_040_052op_137own_137ptr_073, &T_2_1);
@@ -4770,13 +4777,13 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         }/* end if */
 
-  LINE(809);
+  LINE(825);
     {
     err = dbg_infoOPadd_locals(locals_UNIQ);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(810);
+  LINE(826);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4790,7 +4797,7 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
                 goto ex_0;}
             lv.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
-  LINE(811);
+  LINE(827);
             {
                 {CLUREF T_2_1;
                 T_2_1.num = lv.vec->data[1];
@@ -4798,7 +4805,7 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
                 }
                 }
 
-  LINE(812);
+  LINE(828);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -4810,7 +4817,7 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
                 for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                     id.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(813);
+  LINE(829);
                     {
                     CLUREF T_3_1;
                     err = idnlit(id, &T_3_1);
@@ -4825,7 +4832,7 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
     }
     end_inline_for_1:;
 
-  LINE(816);
+  LINE(832);
     {
     CLUREF T_1_1;
     err = sequenceOPa2s(locals_UNIQ, &T_1_1);
@@ -4834,7 +4841,7 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(818);
+  LINE(834);
     {
         {CLUREF T_1_1;
         T_1_1.num = ap.vec->data[0];
@@ -4842,7 +4849,7 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         }
 
-  LINE(819);
+  LINE(835);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4857,7 +4864,7 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
     }
     if (T_1_1.num == true) {
 
-  LINE(820);
+  LINE(836);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -4867,13 +4874,13 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
             for (T_2_1.num = 1; T_2_1.num <= T_2_2.num; T_2_1.num++) {
                 a.num = T_2_3.vec->data[T_2_1.num - 1];
 
-  LINE(821);
+  LINE(837);
                 {
                 err = dbg_infoOPextend_locals(a);
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(822);
+  LINE(838);
                 {
                     {CLUREF T_3_1;
                     T_3_1.num = a.vec->data[1];
@@ -4881,7 +4888,7 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
                     }
                     }
 
-  LINE(823);
+  LINE(839);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -4893,7 +4900,7 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         id.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(824);
+  LINE(840);
                         {
                         CLUREF T_4_1;
                         err = idnlit(id, &T_4_1);
@@ -4910,7 +4917,7 @@ g_localvars_vars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         }/* end if */
 
-  LINE(828);
+  LINE(844);
     {
     err = typOPfix_typelist(args);
     if (err != ERR_ok) goto ex_0;
@@ -4968,9 +4975,9 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         stringOPcons("_OWN_DEFN *)CUR_PROC_VAR.proc->op_owns;", CLU_1, CLUREF_make_num(39), &STR__137OWN_137DEFN_040_052_051CUR_137PROC_137VAR_056proc_055_076op_137owns_073);
         g_localvars_own_init = 1;
     }
-    enter_proc(836);
+    enter_proc(852);
 
-  LINE(839);
+  LINE(855);
     {
     if (iterp.num == true) {
         {
@@ -4980,13 +4987,13 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         }/* end if */
 
-  LINE(840);
+  LINE(856);
     {
     err = g_tblOPbuild_tables(e, CLU_0);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(842);
+  LINE(858);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -5001,7 +5008,7 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
     }
     if (T_1_1.num == true) {
 
-  LINE(843);
+  LINE(859);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -5015,21 +5022,21 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
     else {
 
-  LINE(845);
+  LINE(861);
         {
         err = g_localvars_vars(e, ap, locals_UNIQ, iterp);
         if (err != ERR_ok) goto ex_0;
         }
         }}/* end if */
 
-  LINE(851);
+  LINE(867);
     {
     CLUREF T_1_1;
     err = dbg_infoOPactive(&T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(852);
+  LINE(868);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -5043,7 +5050,7 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
                     goto ex_0;}
                 lv.num = T_2_3.array->store->data[T_2_1.num - T_2_3.array->ext_low + T_2_3.array->int_low];
 
-  LINE(853);
+  LINE(869);
                 {
                     {CLUREF T_3_1;
                     T_3_1.num = lv.vec->data[1];
@@ -5051,7 +5058,7 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
                     }
                     }
 
-  LINE(854);
+  LINE(870);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -5063,13 +5070,13 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         id.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(855);
+  LINE(871);
                         {
                         err = g_idn_plain(e, id);
                         if (err != ERR_ok) goto ex_0;
                         }
 
-  LINE(856);
+  LINE(872);
                         {
                         err = g_envOPputl(e, STR__056num_040_075_040UNINIT_073);
                         if (err != ERR_ok) goto ex_0;
@@ -5083,13 +5090,13 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         }/* end if */
 
-  LINE(861);
+  LINE(877);
     {
     err = dbg_infoOPinit_local_entry(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(862);
+  LINE(878);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -5104,7 +5111,7 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
     }
     if (T_1_1.num == true) {
 
-  LINE(863);
+  LINE(879);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -5116,7 +5123,7 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
             for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                 a.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(864);
+  LINE(880);
                 {
                     {CLUREF T_3_1;
                     T_3_1.num = a.vec->data[1];
@@ -5124,7 +5131,7 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
                     }
                     }
 
-  LINE(865);
+  LINE(881);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -5136,31 +5143,31 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         id.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(866);
+  LINE(882);
                         {
                         err = g_locals(e);
                         if (err != ERR_ok) goto ex_0;
                         }
 
-  LINE(867);
+  LINE(883);
                         {
                         err = g_idnlit(e, id);
                         if (err != ERR_ok) goto ex_0;
                         }
 
-  LINE(868);
+  LINE(884);
                         {
                         err = g_envOPputs(e, STR__040_075_040);
                         if (err != ERR_ok) goto ex_0;
                         }
 
-  LINE(869);
+  LINE(885);
                         {
                         err = g_idnlit(e, id);
                         if (err != ERR_ok) goto ex_0;
                         }
 
-  LINE(870);
+  LINE(886);
                         {
                         err = g_envOPputl(e, STR__073);
                         if (err != ERR_ok) goto ex_0;
@@ -5172,29 +5179,29 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         end_inline_for_3:;
 
-  LINE(873);
+  LINE(889);
         {
         if (iterp.num == true) {
 
-  LINE(874);
+  LINE(890);
             {
             err = g_locals(e);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(875);
+  LINE(891);
             {
             err = g_envOPputl(e, STR_proc_040_075_040proc_073);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(876);
+  LINE(892);
             {
             err = g_locals(e);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(877);
+  LINE(893);
             {
             err = g_envOPputl(e, STR_user_137locals_040_075_040user_137locals_073);
             if (err != ERR_ok) goto ex_0;
@@ -5204,7 +5211,7 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         }/* end if */
 
-  LINE(880);
+  LINE(896);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -5219,7 +5226,7 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
     }
     if (T_1_1.num == true) {
 
-  LINE(881);
+  LINE(897);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -5231,7 +5238,7 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(882);
+  LINE(898);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -5243,7 +5250,7 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(883);
+  LINE(899);
         {
         err = g_envOPputl(e, STR__040_052_051_040CUR_137PROC_137VAR_056proc_055_076type_137owns_073);
         if (err != ERR_ok) goto ex_0;
@@ -5251,14 +5258,14 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
         }
         }/* end if */
 
-  LINE(885);
+  LINE(901);
     {
     CLUREF T_1_1;
     err = current_applyOPparmd(&T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(886);
+  LINE(902);
         {
             {CLUREF T_2_1;
             err = op_own_name(&T_2_1);
@@ -5267,7 +5274,7 @@ g_localvars(CLUREF e, CLUREF ap, CLUREF locals_UNIQ, CLUREF iterp)
             }
             }
 
-  LINE(887);
+  LINE(903);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -5347,21 +5354,21 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
         stringOPcons("g_localvars: parm not type or cluster", CLU_1, CLUREF_make_num(37), &STR_g_137localvars_072_040parm_040not_040type_040or_040cluster);
         g_parm_decls_own_init = 1;
     }
-    enter_proc(892);
+    enter_proc(908);
 
-  LINE(893);
+  LINE(909);
     {
     err = typOPfix_parm_typelist(tparms);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(894);
+  LINE(910);
     {
     err = typOPfix_parm_typelist(aparms);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(895);
+  LINE(911);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -5371,7 +5378,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_d.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(896);
+  LINE(912);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -5385,7 +5392,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                 T_2_3.num = T_2_2.cell->value;
                 ct.num = T_2_3.num;
 
-  LINE(898);
+  LINE(914);
                     {
                     CLUREF T_3_1;
                     CLUREF T_3_2;
@@ -5462,7 +5469,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                     }
                     if (T_3_1.num == true) {
 
-  LINE(905);
+  LINE(921);
                         {
                         CLUREF T_4_1;
                         CLUREF T_4_2;
@@ -5474,7 +5481,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                             for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                 each_idn.num = T_4_4.vec->data[T_4_2.num - 1];
 
-  LINE(906);
+  LINE(922);
                                 {
                                 CLUREF T_5_1;
                                 CLUREF T_5_2;
@@ -5489,7 +5496,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                                 if (err != ERR_ok) goto ex_0;
                                 }
 
-  LINE(908);
+  LINE(924);
                                 {
                                 CLUREF T_5_1;
                                 err = idnOPget_str(each_idn, &T_5_1);
@@ -5503,7 +5510,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                         }
                     else {
 
-  LINE(911);
+  LINE(927);
                         {
                         CLUREF T_4_1;
                         CLUREF T_4_2;
@@ -5515,7 +5522,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                             for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                 each_idn.num = T_4_4.vec->data[T_4_2.num - 1];
 
-  LINE(912);
+  LINE(928);
                                 {
                                     {CLUREF T_5_1;
                                     CLUREF T_5_2;
@@ -5527,7 +5534,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                                     }
                                     }
 
-  LINE(913);
+  LINE(929);
                                 {
                                 CLUREF T_5_1;
                                 CLUREF T_5_2;
@@ -5557,7 +5564,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                                 if (err != ERR_ok) goto ex_0;
                                 }
 
-  LINE(916);
+  LINE(932);
                                 {
                                 err = dbg_infoOPadd_own(nm);
                                 if (err != ERR_ok) goto ex_0;
@@ -5570,7 +5577,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                     }
             default: {
 
-  LINE(920);
+  LINE(936);
                 {
                 CLUREF T_3_1;
                 T_3_1.num = 300;
@@ -5578,7 +5585,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(921);
+  LINE(937);
                 {
                 CLUREF T_3_1;
                 T_3_1.num = each_d.vec->data[1];
@@ -5592,7 +5599,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
     }
     end_inline_for_1:;
 
-  LINE(925);
+  LINE(941);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -5602,7 +5609,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_d.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(926);
+  LINE(942);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -5616,7 +5623,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                 T_2_3.num = T_2_2.cell->value;
                 ct.num = T_2_3.num;
 
-  LINE(928);
+  LINE(944);
                     {
                     CLUREF T_3_1;
                     CLUREF T_3_2;
@@ -5693,7 +5700,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                     }
                     if (T_3_1.num == true) {
 
-  LINE(935);
+  LINE(951);
                         {
                         CLUREF T_4_1;
                         CLUREF T_4_2;
@@ -5705,7 +5712,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                             for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                 each_idn.num = T_4_4.vec->data[T_4_2.num - 1];
 
-  LINE(936);
+  LINE(952);
                                 {
                                 CLUREF T_5_1;
                                 CLUREF T_5_2;
@@ -5720,7 +5727,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                                 if (err != ERR_ok) goto ex_0;
                                 }
 
-  LINE(938);
+  LINE(954);
                                 {
                                 CLUREF T_5_1;
                                 err = idnOPget_str(each_idn, &T_5_1);
@@ -5734,7 +5741,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                         }
                     else {
 
-  LINE(941);
+  LINE(957);
                         {
                         CLUREF T_4_1;
                         CLUREF T_4_2;
@@ -5746,7 +5753,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                             for (T_4_2.num = 1; T_4_2.num <= T_4_3.num; T_4_2.num++) {
                                 each_idn.num = T_4_4.vec->data[T_4_2.num - 1];
 
-  LINE(942);
+  LINE(958);
                                 {
                                     {CLUREF T_5_1;
                                     CLUREF T_5_2;
@@ -5758,7 +5765,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                                     }
                                     }
 
-  LINE(943);
+  LINE(959);
                                 {
                                 CLUREF T_5_1;
                                 CLUREF T_5_2;
@@ -5788,7 +5795,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                                 if (err != ERR_ok) goto ex_0;
                                 }
 
-  LINE(946);
+  LINE(962);
                                 {
                                 err = dbg_infoOPadd_own(nm);
                                 if (err != ERR_ok) goto ex_0;
@@ -5801,7 +5808,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                     }
             default: {
 
-  LINE(950);
+  LINE(966);
                 {
                 CLUREF T_3_1;
                 T_3_1.num = 301;
@@ -5809,7 +5816,7 @@ g_parm_decls(CLUREF e, CLUREF tparms, CLUREF aparms)
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(951);
+  LINE(967);
                 {
                 CLUREF T_3_1;
                 T_3_1.num = each_d.vec->data[1];
@@ -5844,9 +5851,9 @@ restricted_parm(CLUREF parm, CLUREF w, CLUREF *ret_1)
 {
     errcode err;
     CLUREF each_r;
-    enter_proc(957);
+    enter_proc(973);
 
-  LINE(959);
+  LINE(975);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -5856,7 +5863,7 @@ restricted_parm(CLUREF parm, CLUREF w, CLUREF *ret_1)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_r.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(960);
+  LINE(976);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -5865,7 +5872,7 @@ restricted_parm(CLUREF parm, CLUREF w, CLUREF *ret_1)
             if (err != ERR_ok) goto ex_0;
             if (T_2_2.num == true) {
 
-  LINE(961);
+  LINE(977);
                 {
                 {
                 ret_1->tf = true;
@@ -5877,7 +5884,7 @@ restricted_parm(CLUREF parm, CLUREF w, CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(963);
+  LINE(979);
     {
     {
     ret_1->tf = false;
@@ -5906,9 +5913,9 @@ type_own_name(CLUREF *ret_1)
 {
     errcode err;
     CLUREF defn_name;
-    enter_proc(966);
+    enter_proc(982);
 
-  LINE(967);
+  LINE(983);
     {
         {CLUREF T_1_1;
         err = current_typeOPget_name(&T_1_1);
@@ -5917,7 +5924,7 @@ type_own_name(CLUREF *ret_1)
         }
         }
 
-  LINE(972);
+  LINE(988);
     {
     {
     ret_1->num = defn_name.num;
@@ -5952,9 +5959,9 @@ op_own_name(CLUREF *ret_1)
         stringOPcons("_op_", CLU_1, CLUREF_make_num(4), &STR__137op_137);
         op_own_name_own_init = 1;
     }
-    enter_proc(975);
+    enter_proc(991);
 
-  LINE(976);
+  LINE(992);
     {
         {CLUREF T_1_1;
         err = current_applyOPget_short_name(&T_1_1);
@@ -5963,14 +5970,14 @@ op_own_name(CLUREF *ret_1)
         }
         }
 
-  LINE(980);
+  LINE(996);
     {
     CLUREF T_1_1;
     err = current_typeOPexists(&T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(981);
+  LINE(997);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -5986,7 +5993,7 @@ op_own_name(CLUREF *ret_1)
         }
         }/* end if */
 
-  LINE(988);
+  LINE(1004);
     {
     {
     ret_1->num = defn_name.num;
@@ -6028,15 +6035,15 @@ g_externs(CLUREF e, CLUREF names, CLUREF b)
         stringOPcons("static errcode ", CLU_1, CLUREF_make_num(15), &STR_static_040errcode_040);
         g_externs_own_init = 1;
     }
-    enter_proc(992);
+    enter_proc(1008);
 
-  LINE(993);
+  LINE(1009);
     {
     err = g_envOPnewline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(994);
+  LINE(1010);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6050,14 +6057,14 @@ g_externs(CLUREF e, CLUREF names, CLUREF b)
                 goto ex_0;}
             each_name.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
-  LINE(995);
+  LINE(1011);
             {
             CLUREF T_2_1;
             err = g_envOPadd_extern(each_name, &T_2_1);
             if (err != ERR_ok) goto ex_0;
             if (T_2_1.num == true) {
 
-  LINE(996);
+  LINE(1012);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -6077,7 +6084,7 @@ g_externs(CLUREF e, CLUREF names, CLUREF b)
     }
     end_inline_for_1:;
 
-  LINE(999);
+  LINE(1015);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6086,22 +6093,22 @@ g_externs(CLUREF e, CLUREF names, CLUREF b)
     T_1_2.num = T_1_1.num ^ 1;
     if (T_1_2.num == true) {
 
-  LINE(1000);
+  LINE(1016);
         {
             {CLUREF T_2_1;
-            err = arrayOPnew( &T_2_1);
+            err = arrayOPnew(&T_2_1);
             if (err != ERR_ok) goto ex_0;
             ibnames.num = T_2_1.num;
             }
             }
 
-  LINE(1001);
+  LINE(1017);
         {
         err = g_iterbody_names(ibnames, b);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1002);
+  LINE(1018);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -6115,7 +6122,7 @@ g_externs(CLUREF e, CLUREF names, CLUREF b)
                     goto ex_0;}
                 each_ibname.num = T_2_3.array->store->data[T_2_1.num - T_2_3.array->ext_low + T_2_3.array->int_low];
 
-  LINE(1003);
+  LINE(1019);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -6199,21 +6206,21 @@ g_typedefn(CLUREF e, CLUREF t)
         stringOPcons("/**** END CLUSTER ", CLU_1, CLUREF_make_num(18), &STR__057_052_052_052_052_040END_040CLUSTER_040);
         g_typedefn_own_init = 1;
     }
-    enter_proc(1009);
+    enter_proc(1025);
 
-  LINE(1020);
+  LINE(1036);
     {
     err = current_typeOPset(t);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1021);
+  LINE(1037);
     {
     err = g_envOPputs(e, STR__057_052_052_052_052_040BEGIN_040CLUSTER_040);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1022);
+  LINE(1038);
     {
     CLUREF T_1_1;
     T_1_1.num = t.vec->data[3];
@@ -6221,19 +6228,19 @@ g_typedefn(CLUREF e, CLUREF t)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1023);
+  LINE(1039);
     {
     err = g_envOPputl(e, STR__040_052_052_052_052_057);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1024);
+  LINE(1040);
     {
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1025);
+  LINE(1041);
     {
     CLUREF T_1_1;
     T_1_1.num = t.vec->data[3];
@@ -6241,13 +6248,13 @@ g_typedefn(CLUREF e, CLUREF t)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1026);
+  LINE(1042);
     {
     err = reqsOPpreprocessing(CLU_1);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1027);
+  LINE(1043);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6257,7 +6264,7 @@ g_typedefn(CLUREF e, CLUREF t)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1029);
+  LINE(1045);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6270,7 +6277,7 @@ g_typedefn(CLUREF e, CLUREF t)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1030);
+  LINE(1046);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6280,7 +6287,7 @@ g_typedefn(CLUREF e, CLUREF t)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1032);
+  LINE(1048);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6289,7 +6296,7 @@ g_typedefn(CLUREF e, CLUREF t)
     T_1_2.num = T_1_1.num ^ 1;
     if (T_1_2.num == true) {
 
-  LINE(1033);
+  LINE(1049);
         {
             {CLUREF T_2_1;
             err = sequenceOPnew(&T_2_1);
@@ -6298,7 +6305,7 @@ g_typedefn(CLUREF e, CLUREF t)
             }
             }
 
-  LINE(1034);
+  LINE(1050);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -6310,7 +6317,7 @@ g_typedefn(CLUREF e, CLUREF t)
             for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                 a.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(1035);
+  LINE(1051);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -6324,7 +6331,7 @@ g_typedefn(CLUREF e, CLUREF t)
                 T_3_4.num = T_3_3.num ^ 1;
                 if (T_3_4.num == true) {
 
-  LINE(1036);
+  LINE(1052);
                     {
                     CLUREF T_4_1;
                     err = sequenceOPaddh(newbod, a, &T_4_1);
@@ -6337,14 +6344,14 @@ g_typedefn(CLUREF e, CLUREF t)
         }
         end_inline_for_1:;
 
-  LINE(1039);
+  LINE(1055);
         {
         t.vec->data[0] = newbod.num;
         }
         }
         }/* end if */
 
-  LINE(1041);
+  LINE(1057);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6356,7 +6363,7 @@ g_typedefn(CLUREF e, CLUREF t)
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             a.num = T_1_4.vec->data[T_1_2.num - 1];
 
-  LINE(1042);
+  LINE(1058);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -6369,19 +6376,19 @@ g_typedefn(CLUREF e, CLUREF t)
     }
     end_inline_for_2:;
 
-  LINE(1044);
+  LINE(1060);
     {
     err = reqsOPpreprocessing(CLU_0);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1045);
+  LINE(1061);
     {
     err = reqsOPinitial_output(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1046);
+  LINE(1062);
     {
     CLUREF T_1_1;
     T_1_1.num = t.vec->data[7];
@@ -6389,13 +6396,13 @@ g_typedefn(CLUREF e, CLUREF t)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1047);
+  LINE(1063);
     {
     err = g_envOPnewline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1049);
+  LINE(1065);
     {
         {CLUREF T_1_1;
         CLUREF T_1_2;
@@ -6406,7 +6413,7 @@ g_typedefn(CLUREF e, CLUREF t)
         }
         }
 
-  LINE(1050);
+  LINE(1066);
     {
         {CLUREF T_1_1;
         err = arrayOPpredict(CLU_1, CLU_40, &T_1_1);
@@ -6415,19 +6422,19 @@ g_typedefn(CLUREF e, CLUREF t)
         }
         }
 
-  LINE(1051);
+  LINE(1067);
     {
     err = g_expr_proc_names(ext_names, s);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1052);
+  LINE(1068);
     {
     err = g_xrefOPadd_ent(ext_names);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1053);
+  LINE(1069);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6439,7 +6446,7 @@ g_typedefn(CLUREF e, CLUREF t)
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             a.num = T_1_4.vec->data[T_1_2.num - 1];
 
-  LINE(1054);
+  LINE(1070);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -6459,7 +6466,7 @@ g_typedefn(CLUREF e, CLUREF t)
                 }
                 }/* end if */
 
-  LINE(1056);
+  LINE(1072);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -6476,7 +6483,7 @@ g_typedefn(CLUREF e, CLUREF t)
             s.num = T_2_3.num;
             }
 
-  LINE(1057);
+  LINE(1073);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -6493,31 +6500,31 @@ g_typedefn(CLUREF e, CLUREF t)
     }
     end_inline_for_3:;
 
-  LINE(1060);
+  LINE(1076);
     {
     err = g_expr_proc_names(ext_names, s);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1061);
+  LINE(1077);
     {
     err = g_externs(e, ext_names, s);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1062);
+  LINE(1078);
     {
     err = ibOPinit();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1063);
+  LINE(1079);
     {
     err = own_defnOPstart();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1064);
+  LINE(1080);
     {
     CLUREF T_1_1;
     CellAlloc(3, t.num, T_1_1);
@@ -6525,25 +6532,25 @@ g_typedefn(CLUREF e, CLUREF t)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1065);
+  LINE(1081);
     {
     err = own_defnOPstop();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1066);
+  LINE(1082);
     {
     err = g_tblOPprune();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1067);
+  LINE(1083);
     {
     err = parmOPleave();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1068);
+  LINE(1084);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6556,20 +6563,20 @@ g_typedefn(CLUREF e, CLUREF t)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1069);
+  LINE(1085);
     {
     err = g_constOPfind_consts(e, s);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1070);
+  LINE(1086);
     {
     CLUREF T_1_1;
     err = current_typeOPparmd(&T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(1072);
+  LINE(1088);
         {
         CLUREF T_2_1;
         T_2_1.num = t.vec->data[7];
@@ -6577,7 +6584,7 @@ g_typedefn(CLUREF e, CLUREF t)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1073);
+  LINE(1089);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -6587,13 +6594,13 @@ g_typedefn(CLUREF e, CLUREF t)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1074);
+  LINE(1090);
         {
         err = g_envOPnewline(e);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1075);
+  LINE(1091);
         {
         CLUREF T_2_1;
         T_2_1.num = t.vec->data[4];
@@ -6601,7 +6608,7 @@ g_typedefn(CLUREF e, CLUREF t)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1076);
+  LINE(1092);
         {
         err = current_typeOPset_own_init_proc(CLU_1);
         if (err != ERR_ok) goto ex_0;
@@ -6609,7 +6616,7 @@ g_typedefn(CLUREF e, CLUREF t)
         }
     else {
 
-  LINE(1078);
+  LINE(1094);
         {
         CLUREF T_2_1;
         T_2_1.num = t.vec->data[4];
@@ -6617,7 +6624,7 @@ g_typedefn(CLUREF e, CLUREF t)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1079);
+  LINE(1095);
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
@@ -6629,7 +6636,7 @@ g_typedefn(CLUREF e, CLUREF t)
             for (T_2_2.num = 1; T_2_2.num <= T_2_3.num; T_2_2.num++) {
                 each_ap.num = T_2_4.vec->data[T_2_2.num - 1];
 
-  LINE(1080);
+  LINE(1096);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -6643,7 +6650,7 @@ g_typedefn(CLUREF e, CLUREF t)
                     }
                     }/* end if */
 
-  LINE(1081);
+  LINE(1097);
                 {
                     {CLUREF T_3_1;
                     CLUREF T_3_2;
@@ -6657,7 +6664,7 @@ g_typedefn(CLUREF e, CLUREF t)
                     }
                     }
 
-  LINE(1083);
+  LINE(1099);
                 {
                 CLUREF T_3_1;
                 T_3_1.num = each_ap.vec->data[5];
@@ -6668,7 +6675,7 @@ g_typedefn(CLUREF e, CLUREF t)
         }
         end_inline_for_4:;
 
-  LINE(1085);
+  LINE(1101);
         {
         CLUREF T_2_1;
         T_2_1.num = t.vec->data[4];
@@ -6676,13 +6683,13 @@ g_typedefn(CLUREF e, CLUREF t)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1086);
+  LINE(1102);
         {
         err = g_envOPnewline(e);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1087);
+  LINE(1103);
         {
             {CLUREF T_2_1;
             CLUREF T_2_2;
@@ -6693,14 +6700,14 @@ g_typedefn(CLUREF e, CLUREF t)
             }
             }
 
-  LINE(1088);
+  LINE(1104);
         {
         err = current_typeOPset_own_init_proc(exists);
         if (err != ERR_ok) goto ex_0;
         }
         }}/* end if */
 
-  LINE(1090);
+  LINE(1106);
     {
     CLUREF T_1_1;
     T_1_1.num = t.vec->data[8];
@@ -6708,13 +6715,13 @@ g_typedefn(CLUREF e, CLUREF t)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1091);
+  LINE(1107);
     {
     err = typOPbegin_local_idn_types();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1092);
+  LINE(1108);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6726,7 +6733,7 @@ g_typedefn(CLUREF e, CLUREF t)
         for (T_1_2.num = 1; T_1_2.num <= T_1_3.num; T_1_2.num++) {
             a.num = T_1_4.vec->data[T_1_2.num - 1];
 
-  LINE(1093);
+  LINE(1109);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -6737,7 +6744,7 @@ g_typedefn(CLUREF e, CLUREF t)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1094);
+  LINE(1110);
             {
             err = g_envOPnewline(e);
             if (err != ERR_ok) goto ex_0;
@@ -6746,13 +6753,13 @@ g_typedefn(CLUREF e, CLUREF t)
     }
     end_inline_for_5:;
 
-  LINE(1096);
+  LINE(1112);
     {
     err = g_envOPnewline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1097);
+  LINE(1113);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6762,37 +6769,37 @@ g_typedefn(CLUREF e, CLUREF t)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1098);
+  LINE(1114);
     {
     err = reqsOPoutput(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1099);
+  LINE(1115);
     {
     err = reqsOPreset();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1100);
+  LINE(1116);
     {
     err = parmOPleave_base();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1101);
+  LINE(1117);
     {
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1102);
+  LINE(1118);
     {
     err = g_envOPputs(e, STR__057_052_052_052_052_040END_040CLUSTER_040);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1103);
+  LINE(1119);
     {
     CLUREF T_1_1;
     T_1_1.num = t.vec->data[3];
@@ -6800,25 +6807,25 @@ g_typedefn(CLUREF e, CLUREF t)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1104);
+  LINE(1120);
     {
     err = g_envOPputl(e, STR__040_052_052_052_052_057);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1105);
+  LINE(1121);
     {
     err = typOPundo_global_idn_types();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1106);
+  LINE(1122);
     {
     err = current_typeOPreset();
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1107);
+  LINE(1123);
     {
     err = dbg_infoOPreset();
     if (err != ERR_ok) goto ex_0;
@@ -6911,45 +6918,45 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
         stringOPcons("_ops_actual;", CLU_1, CLUREF_make_num(12), &STR__137ops_137actual_073);
         g_opstruct_own_init = 1;
     }
-    enter_proc(1110);
+    enter_proc(1126);
 
-  LINE(1111);
+  LINE(1127);
     {
     err = g_envOPnewline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1112);
+  LINE(1128);
     {
     err = g_envOPputl(e, STR_typedef_040struct_173);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1113);
+  LINE(1129);
     {
     err = g_envOPindent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1114);
+  LINE(1130);
     {
     err = g_envOPputl(e, STR_long_040count_073);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1115);
+  LINE(1131);
     {
     err = g_envOPputl(e, STR_OWNPTR_040type_137owns_073);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1116);
+  LINE(1132);
     {
     err = g_envOPputl(e, STR_OWNPTR_040op_137owns_073);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1117);
+  LINE(1133);
     {
         {CLUREF T_1_1;
         T_1_1.num = ops.vec->size;
@@ -6957,7 +6964,7 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
         }
         }
 
-  LINE(1118);
+  LINE(1134);
     {
     CLUREF T_1_1;
     err = dbg_infoOPactive(&T_1_1);
@@ -6975,7 +6982,7 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
         }
         }/* end if */
 
-  LINE(1119);
+  LINE(1135);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -6990,19 +6997,19 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1120);
+  LINE(1136);
     {
     err = g_envOPoutdent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1121);
+  LINE(1137);
     {
     err = g_envOPputs(e, STR__175_040);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1122);
+  LINE(1138);
     {
     CLUREF T_1_1;
     err = idnOPget_str(id, &T_1_1);
@@ -7011,19 +7018,19 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1123);
+  LINE(1139);
     {
     err = g_envOPputl(e, STR__137OPS_073);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1124);
+  LINE(1140);
     {
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1125);
+  LINE(1141);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -7033,7 +7040,7 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_op.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(1126);
+  LINE(1142);
             {
                 {CLUREF T_2_1;
                 err = idnOPget_str(each_op, &T_2_1);
@@ -7042,7 +7049,7 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
                 }
                 }
 
-  LINE(1128);
+  LINE(1144);
             {
             CLUREF T_2_1;
             err = c_fixup_opname(nm, &T_2_1);
@@ -7050,13 +7057,13 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
             nm.num = T_2_1.num;
             }
 
-  LINE(1129);
+  LINE(1145);
             {
             err = g_envOPputs(e, STR_static_040CLU_137proc_040);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1130);
+  LINE(1146);
             {
             CLUREF T_2_1;
             err = idnOPget_str(id, &T_2_1);
@@ -7065,25 +7072,25 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1131);
+  LINE(1147);
             {
             err = g_envOPputs(e, STR__137oe_137);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1132);
+  LINE(1148);
             {
             err = g_envOPputs(e, nm);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1133);
+  LINE(1149);
             {
             err = g_envOPputs(e, STR__040_075_040_173_040_056proc_040_075_040);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1134);
+  LINE(1150);
             {
             CLUREF T_2_1;
             err = idnOPget_str(id, &T_2_1);
@@ -7092,19 +7099,19 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1135);
+  LINE(1151);
             {
             err = g_envOPputs(e, STR_OP);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1136);
+  LINE(1152);
             {
             err = g_envOPputs(e, nm);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1137);
+  LINE(1153);
             {
             err = g_envOPputl(e, STR__040_175_073);
             if (err != ERR_ok) goto ex_0;
@@ -7113,20 +7120,20 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     }
     end_inline_for_1:;
 
-  LINE(1139);
+  LINE(1155);
     {
     CLUREF T_1_1;
     err = dbg_infoOPactive(&T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(1140);
+  LINE(1156);
         {
         err = g_envOPputs(e, STR_static_040CLU_137proc_040);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1141);
+  LINE(1157);
         {
         CLUREF T_2_1;
         err = idnOPget_str(id, &T_2_1);
@@ -7135,13 +7142,13 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1142);
+  LINE(1158);
         {
         err = g_envOPputs(e, STR__137oe_137debug_137print_040_075_040_173_040_056proc_040_075_040);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1143);
+  LINE(1159);
         {
         CLUREF T_2_1;
         err = idnOPget_str(id, &T_2_1);
@@ -7150,7 +7157,7 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1144);
+  LINE(1160);
         {
         err = g_envOPputl(e, STR_OPdebug_137print_040_175_073);
         if (err != ERR_ok) goto ex_0;
@@ -7158,19 +7165,19 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
         }
         }/* end if */
 
-  LINE(1146);
+  LINE(1162);
     {
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1147);
+  LINE(1163);
     {
     err = g_envOPputs(e, STR_static_040);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1148);
+  LINE(1164);
     {
     CLUREF T_1_1;
     err = idnOPget_str(id, &T_1_1);
@@ -7179,13 +7186,13 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1149);
+  LINE(1165);
     {
     err = g_envOPputs(e, STR__137OPS_040);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1150);
+  LINE(1166);
     {
     CLUREF T_1_1;
     err = idnOPget_str(id, &T_1_1);
@@ -7194,19 +7201,19 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1151);
+  LINE(1167);
     {
     err = g_envOPputs(e, STR__137ops_137actual_040_075_040_173);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1152);
+  LINE(1168);
     {
         {nth.tf = false;
         }
         }
 
-  LINE(1153);
+  LINE(1169);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -7218,7 +7225,7 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1154);
+  LINE(1170);
     {
     CLUREF T_1_1;
     err = idnOPget_str(id, &T_1_1);
@@ -7227,13 +7234,13 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1155);
+  LINE(1171);
     {
     err = g_envOPputs(e, STR__137own_137init_054_040_050OWNPTR_051_046);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1156);
+  LINE(1172);
     {
     CLUREF T_1_1;
     err = idnOPget_str(id, &T_1_1);
@@ -7242,19 +7249,19 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1157);
+  LINE(1173);
     {
     err = g_envOPputl(e, STR__137own_137init_054_040_173);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1158);
+  LINE(1174);
     {
     err = g_envOPindent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1159);
+  LINE(1175);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -7264,7 +7271,7 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_op.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(1160);
+  LINE(1176);
             {
                 {CLUREF T_2_1;
                 CLUREF T_2_2;
@@ -7276,7 +7283,7 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
                 }
                 }
 
-  LINE(1161);
+  LINE(1177);
             {
             if (nth.num == true) {
                 {
@@ -7290,13 +7297,13 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
                 }
                 }}/* end if */
 
-  LINE(1162);
+  LINE(1178);
             {
             err = g_envOPputs(e, STR__173_046);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1163);
+  LINE(1179);
             {
             CLUREF T_2_1;
             err = idnOPget_str(id, &T_2_1);
@@ -7305,37 +7312,37 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1164);
+  LINE(1180);
             {
             err = g_envOPputs(e, STR__137oe_137);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1165);
+  LINE(1181);
             {
             err = g_envOPputs(e, nm);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1166);
+  LINE(1182);
             {
             err = g_envOPputs(e, STR__054_040_042);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1167);
+  LINE(1183);
             {
             err = g_envOPputs(e, nm);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1168);
+  LINE(1184);
             {
             err = g_envOPputs(e, STR__042);
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1169);
+  LINE(1185);
             {
             err = g_envOPputs(e, STR__175);
             if (err != ERR_ok) goto ex_0;
@@ -7344,14 +7351,14 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     }
     end_inline_for_2:;
 
-  LINE(1171);
+  LINE(1187);
     {
     CLUREF T_1_1;
     err = dbg_infoOPactive(&T_1_1);
     if (err != ERR_ok) goto ex_0;
     if (T_1_1.num == true) {
 
-  LINE(1172);
+  LINE(1188);
         {
         if (nth.num == true) {
             {
@@ -7365,13 +7372,13 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
             }
             }}/* end if */
 
-  LINE(1173);
+  LINE(1189);
         {
         err = g_envOPputs(e, STR__173_046);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1174);
+  LINE(1190);
         {
         CLUREF T_2_1;
         err = idnOPget_str(id, &T_2_1);
@@ -7380,13 +7387,13 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1175);
+  LINE(1191);
         {
         err = g_envOPputs(e, STR__137oe_137debug_137print);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1176);
+  LINE(1192);
         {
         err = g_envOPputs(e, STR__054_040_042debug_137print_042_175);
         if (err != ERR_ok) goto ex_0;
@@ -7394,31 +7401,31 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
         }
         }/* end if */
 
-  LINE(1178);
+  LINE(1194);
     {
     err = g_envOPputl(e, STR__175_175_073);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1179);
+  LINE(1195);
     {
     err = g_envOPoutdent(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1180);
+  LINE(1196);
     {
     err = g_envOPblankline(e);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1181);
+  LINE(1197);
     {
     err = g_envOPputs(e, STR_struct_040OPS_040_052);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1182);
+  LINE(1198);
     {
     CLUREF T_1_1;
     err = idnOPget_str(id, &T_1_1);
@@ -7427,13 +7434,13 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1183);
+  LINE(1199);
     {
     err = g_envOPputs(e, STR__137ops_040_075_040_050struct_040OPS_040_052_051_046);
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1184);
+  LINE(1200);
     {
     CLUREF T_1_1;
     err = idnOPget_str(id, &T_1_1);
@@ -7442,7 +7449,7 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     if (err != ERR_ok) goto ex_0;
     }
 
-  LINE(1185);
+  LINE(1201);
     {
     err = g_envOPputl(e, STR__137ops_137actual_073);
     if (err != ERR_ok) goto ex_0;
@@ -7475,9 +7482,9 @@ g_ctype(CLUREF typ, CLUREF *ret_1)
         stringOPcons("REF", CLU_1, CLUREF_make_num(3), &STR_REF);
         g_ctype_own_init = 1;
     }
-    enter_proc(1188);
+    enter_proc(1204);
 
-  LINE(1189);
+  LINE(1205);
     {
     CLUREF T_1_1;
     err = typespecOPget_abs(typ, &T_1_1);
@@ -7488,7 +7495,7 @@ g_ctype(CLUREF typ, CLUREF *ret_1)
         T_1_2.num = T_1_1.cell->value;
         i.num = T_1_2.num;
 
-  LINE(1191);
+  LINE(1207);
             {
             {
             CLUREF T_2_1;
@@ -7501,7 +7508,7 @@ g_ctype(CLUREF typ, CLUREF *ret_1)
             }
     default: {
 
-  LINE(1193);
+  LINE(1209);
         {
         {
         ret_1->str = STR_REF.str;
@@ -7553,9 +7560,9 @@ g_typelist(CLUREF e, CLUREF types)
         find_prociter_instance(g_commalist, 2, &g_commalist_ownreqs, &(g_commalist_of_sequence_of_typespec_typespec_ops));
         g_typelist_own_init = 1;
     }
-    enter_proc(1197);
+    enter_proc(1213);
 
-  LINE(1200);
+  LINE(1216);
     {
     CLUREF T_1_1;
     err = proctypeOPnew(CLU_0, &T_1_1);
@@ -7598,9 +7605,9 @@ g_term_typespec(CLUREF e, CLUREF ts)
         stringOPcons("CLUREF", CLU_1, CLUREF_make_num(6), &STR_CLUREF);
         g_term_typespec_own_init = 1;
     }
-    enter_proc(1203);
+    enter_proc(1219);
 
-  LINE(1204);
+  LINE(1220);
     {
     CLUREF T_1_1;
     err = typespecOPget_abs(ts, &T_1_1);
@@ -7611,7 +7618,7 @@ g_term_typespec(CLUREF e, CLUREF ts)
         T_1_2.num = T_1_1.cell->value;
         ta.num = T_1_2.num;
 
-  LINE(1206);
+  LINE(1222);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -7625,7 +7632,7 @@ g_term_typespec(CLUREF e, CLUREF ts)
             }
     default: {
 
-  LINE(1208);
+  LINE(1224);
         {
         err = g_envOPputs(e, STR_CLUREF);
         if (err != ERR_ok) goto ex_0;
@@ -7675,9 +7682,9 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
         stringOPcons("g_ref_name_typespec: don\'t know output for this typespec", CLU_1, CLUREF_make_num(56), &STR_g_137ref_137name_137typespec_072_040don_047t_040know_040output_040for_040this_040typespec);
         g_ref_name_typespec_own_init = 1;
     }
-    enter_proc(1212);
+    enter_proc(1228);
 
-  LINE(1214);
+  LINE(1230);
     {
     CLUREF T_1_1;
     err = typespecOPget_abs(ts, &T_1_1);
@@ -7688,7 +7695,7 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
         T_1_2.num = T_1_1.cell->value;
         ta.num = T_1_2.num;
 
-  LINE(1217);
+  LINE(1233);
             {
                 {CLUREF T_2_1;
                 CLUREF T_2_2;
@@ -7699,7 +7706,7 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
                 }
                 }
 
-  LINE(1218);
+  LINE(1234);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -7713,7 +7720,7 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1219);
+  LINE(1235);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -7725,13 +7732,13 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
             T_2_4.num = T_2_3.num ^ 1;
             if (T_2_4.num == true) {
 
-  LINE(1220);
+  LINE(1236);
                 {
                 err = g_envOPputs(e, STR__137of);
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(1221);
+  LINE(1237);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -7743,13 +7750,13 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         each_expr.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(1222);
+  LINE(1238);
                         {
                         err = g_envOPputs(e, STR__137);
                         if (err != ERR_ok) goto ex_0;
                         }
 
-  LINE(1223);
+  LINE(1239);
                         {
                         err = g_expr4(e, each_expr);
                         if (err != ERR_ok) goto ex_0;
@@ -7766,7 +7773,7 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
         T_1_3.num = T_1_1.cell->value;
         ta.num = T_1_3.num;
 
-  LINE(1228);
+  LINE(1244);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -7802,7 +7809,7 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
         T_1_4.num = T_1_1.cell->value;
         ta.num = T_1_4.num;
 
-  LINE(1231);
+  LINE(1247);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -7819,7 +7826,7 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
         T_1_5.num = T_1_1.cell->value;
         i.num = T_1_5.num;
 
-  LINE(1234);
+  LINE(1250);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -7838,7 +7845,7 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
     case 1:
          {
 
-  LINE(1236);
+  LINE(1252);
             {
             err = g_envOPputs(e, STR_any);
             if (err != ERR_ok) goto ex_0;
@@ -7847,7 +7854,7 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
             }
     default: {
 
-  LINE(1238);
+  LINE(1254);
         {
         CLUREF T_2_1;
         T_2_1.num = 302;
@@ -7855,7 +7862,7 @@ g_ref_name_typespec(CLUREF e, CLUREF ts)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1239);
+  LINE(1255);
         {
         err = typespec_print(ts);
         if (err != ERR_ok) goto ex_0;
@@ -7899,9 +7906,9 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
         stringOPcons("WRONG", CLU_1, CLUREF_make_num(5), &STR_WRONG);
         s_ref_name_typespec_own_init = 1;
     }
-    enter_proc(1243);
+    enter_proc(1259);
 
-  LINE(1245);
+  LINE(1261);
     {
     CLUREF T_1_1;
     err = typespecOPget_abs(ts, &T_1_1);
@@ -7912,7 +7919,7 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
         T_1_2.num = T_1_1.cell->value;
         ta.num = T_1_2.num;
 
-  LINE(1248);
+  LINE(1264);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -7922,7 +7929,7 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
             result.num = T_2_2.num;
             }
 
-  LINE(1249);
+  LINE(1265);
             {
                 {CLUREF T_2_1;
                 CLUREF T_2_2;
@@ -7933,7 +7940,7 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
                 }
                 }
 
-  LINE(1250);
+  LINE(1266);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -7945,7 +7952,7 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
             T_2_4.num = T_2_3.num ^ 1;
             if (T_2_4.num == true) {
 
-  LINE(1251);
+  LINE(1267);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -7956,7 +7963,7 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
                 result.num = T_3_2.num;
                 }
 
-  LINE(1252);
+  LINE(1268);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -7968,7 +7975,7 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         each_expr.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(1253);
+  LINE(1269);
                         {
                         CLUREF T_4_1;
                         CLUREF T_4_2;
@@ -7993,7 +8000,7 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
         T_1_3.num = T_1_1.cell->value;
         ta.num = T_1_3.num;
 
-  LINE(1258);
+  LINE(1274);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -8028,7 +8035,7 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
         T_1_4.num = T_1_1.cell->value;
         ta.num = T_1_4.num;
 
-  LINE(1261);
+  LINE(1277);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -8044,7 +8051,7 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
         T_1_5.num = T_1_1.cell->value;
         i.num = T_1_5.num;
 
-  LINE(1264);
+  LINE(1280);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -8062,7 +8069,7 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
     case 1:
          {
 
-  LINE(1266);
+  LINE(1282);
             {
             {
             ret_1->str = STR_any.str;
@@ -8072,13 +8079,13 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
             }
     default: {
 
-  LINE(1269);
+  LINE(1285);
         {
         err = typespec_print(ts);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1270);
+  LINE(1286);
         {
         result = STR_WRONG;
         }
@@ -8086,7 +8093,7 @@ s_ref_name_typespec(CLUREF ts, CLUREF *ret_1)
     }
     }
 
-  LINE(1272);
+  LINE(1288);
     {
     {
     ret_1->num = result.num;
@@ -8127,9 +8134,9 @@ g_name_typespec(CLUREF e, CLUREF ts)
         stringOPcons("g_name_typespec: don\'t know output for this typespec", CLU_1, CLUREF_make_num(52), &STR_g_137name_137typespec_072_040don_047t_040know_040output_040for_040this_040typespec);
         g_name_typespec_own_init = 1;
     }
-    enter_proc(1275);
+    enter_proc(1291);
 
-  LINE(1276);
+  LINE(1292);
     {
     CLUREF T_1_1;
     err = typespecOPget_abs(ts, &T_1_1);
@@ -8140,7 +8147,7 @@ g_name_typespec(CLUREF e, CLUREF ts)
         T_1_2.num = T_1_1.cell->value;
         ta.num = T_1_2.num;
 
-  LINE(1278);
+  LINE(1294);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -8151,7 +8158,7 @@ g_name_typespec(CLUREF e, CLUREF ts)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1279);
+  LINE(1295);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -8163,13 +8170,13 @@ g_name_typespec(CLUREF e, CLUREF ts)
             T_2_4.num = T_2_3.num ^ 1;
             if (T_2_4.num == true) {
 
-  LINE(1280);
+  LINE(1296);
                 {
                 err = g_envOPputs(e, STR__137of);
                 if (err != ERR_ok) goto ex_0;
                 }
 
-  LINE(1281);
+  LINE(1297);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -8181,13 +8188,13 @@ g_name_typespec(CLUREF e, CLUREF ts)
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         each_expr.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(1282);
+  LINE(1298);
                         {
                         err = g_envOPputs(e, STR__137);
                         if (err != ERR_ok) goto ex_0;
                         }
 
-  LINE(1283);
+  LINE(1299);
                         {
                         err = g_expr4(e, each_expr);
                         if (err != ERR_ok) goto ex_0;
@@ -8204,7 +8211,7 @@ g_name_typespec(CLUREF e, CLUREF ts)
         T_1_3.num = T_1_1.cell->value;
         ta.num = T_1_3.num;
 
-  LINE(1287);
+  LINE(1303);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -8232,7 +8239,7 @@ g_name_typespec(CLUREF e, CLUREF ts)
         T_1_4.num = T_1_1.cell->value;
         ta.num = T_1_4.num;
 
-  LINE(1289);
+  LINE(1305);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -8249,7 +8256,7 @@ g_name_typespec(CLUREF e, CLUREF ts)
         T_1_5.num = T_1_1.cell->value;
         i.num = T_1_5.num;
 
-  LINE(1291);
+  LINE(1307);
             {
             CLUREF T_2_1;
             err = idnOPget_str(i, &T_2_1);
@@ -8262,7 +8269,7 @@ g_name_typespec(CLUREF e, CLUREF ts)
     case 1:
          {
 
-  LINE(1293);
+  LINE(1309);
             {
             err = g_envOPputs(e, STR_any);
             if (err != ERR_ok) goto ex_0;
@@ -8271,13 +8278,13 @@ g_name_typespec(CLUREF e, CLUREF ts)
             }
     default: {
 
-  LINE(1295);
+  LINE(1311);
         {
         err = g_envOPputs(e, STR_WRONG);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1296);
+  LINE(1312);
         {
         CLUREF T_2_1;
         T_2_1.num = 303;
@@ -8285,7 +8292,7 @@ g_name_typespec(CLUREF e, CLUREF ts)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1297);
+  LINE(1313);
         {
         err = typespec_print(ts);
         if (err != ERR_ok) goto ex_0;
@@ -8328,9 +8335,9 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
         stringOPcons("WRONG", CLU_1, CLUREF_make_num(5), &STR_WRONG);
         s_name_typespec_own_init = 1;
     }
-    enter_proc(1301);
+    enter_proc(1317);
 
-  LINE(1302);
+  LINE(1318);
     {
     CLUREF T_1_1;
     err = typespecOPget_abs(ts, &T_1_1);
@@ -8341,7 +8348,7 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
         T_1_2.num = T_1_1.cell->value;
         ta.num = T_1_2.num;
 
-  LINE(1304);
+  LINE(1320);
             {
                 {CLUREF T_2_1;
                 CLUREF T_2_2;
@@ -8352,7 +8359,7 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
                 }
                 }
 
-  LINE(1305);
+  LINE(1321);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -8364,7 +8371,7 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
             T_2_4.num = T_2_3.num ^ 1;
             if (T_2_4.num == true) {
 
-  LINE(1306);
+  LINE(1322);
                 {
                 CLUREF T_3_1;
                 err = stringOPconcat(result, STR__137of, &T_3_1);
@@ -8372,7 +8379,7 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
                 result.num = T_3_1.num;
                 }
 
-  LINE(1307);
+  LINE(1323);
                 {
                 CLUREF T_3_1;
                 CLUREF T_3_2;
@@ -8384,7 +8391,7 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
                     for (T_3_2.num = 1; T_3_2.num <= T_3_3.num; T_3_2.num++) {
                         each_expr.num = T_3_4.vec->data[T_3_2.num - 1];
 
-  LINE(1308);
+  LINE(1324);
                         {
                         CLUREF T_4_1;
                         CLUREF T_4_2;
@@ -8403,7 +8410,7 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
                 }
                 }/* end if */
 
-  LINE(1311);
+  LINE(1327);
             {
             {
             ret_1->num = result.num;
@@ -8416,7 +8423,7 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
         T_1_3.num = T_1_1.cell->value;
         ta.num = T_1_3.num;
 
-  LINE(1313);
+  LINE(1329);
             {
             {
             CLUREF T_2_1;
@@ -8445,7 +8452,7 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
         T_1_4.num = T_1_1.cell->value;
         ta.num = T_1_4.num;
 
-  LINE(1315);
+  LINE(1331);
             {
             {
             CLUREF T_2_1;
@@ -8463,7 +8470,7 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
         T_1_5.num = T_1_1.cell->value;
         i.num = T_1_5.num;
 
-  LINE(1317);
+  LINE(1333);
             {
             {
             CLUREF T_2_1;
@@ -8477,7 +8484,7 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
     case 1:
          {
 
-  LINE(1319);
+  LINE(1335);
             {
             {
             ret_1->str = STR_any.str;
@@ -8487,7 +8494,7 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
             }
     default: {
 
-  LINE(1321);
+  LINE(1337);
         {
         CLUREF T_2_1;
         T_2_1.num = 304;
@@ -8495,13 +8502,13 @@ s_name_typespec(CLUREF ts, CLUREF *ret_1)
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1322);
+  LINE(1338);
         {
         err = typespec_print(ts);
         if (err != ERR_ok) goto ex_0;
         }
 
-  LINE(1323);
+  LINE(1339);
         {
         {
         ret_1->str = STR_WRONG.str;
@@ -8538,9 +8545,9 @@ g_decl_typespec(CLUREF e, CLUREF ts, CLUREF s)
         stringOPcons(";", CLU_1, CLUREF_make_num(1), &STR__073);
         g_decl_typespec_own_init = 1;
     }
-    enter_proc(1327);
+    enter_proc(1343);
 
-  LINE(1328);
+  LINE(1344);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -8580,9 +8587,9 @@ g_typespec(CLUREF e, CLUREF ts)
         stringOPcons("CLUREF", CLU_1, CLUREF_make_num(6), &STR_CLUREF);
         g_typespec_own_init = 1;
     }
-    enter_proc(1331);
+    enter_proc(1347);
 
-  LINE(1332);
+  LINE(1348);
     {
     CLUREF T_1_1;
     err = typespecOPget_abs(ts, &T_1_1);
@@ -8593,7 +8600,7 @@ g_typespec(CLUREF e, CLUREF ts)
         T_1_2.num = T_1_1.cell->value;
         ta.num = T_1_2.num;
 
-  LINE(1334);
+  LINE(1350);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -8610,7 +8617,7 @@ g_typespec(CLUREF e, CLUREF ts)
         T_1_3.num = T_1_1.cell->value;
         ta.num = T_1_3.num;
 
-  LINE(1336);
+  LINE(1352);
             {
             CLUREF T_2_1;
             CLUREF T_2_2;
@@ -8627,7 +8634,7 @@ g_typespec(CLUREF e, CLUREF ts)
         T_1_4.num = T_1_1.cell->value;
         ta.num = T_1_4.num;
 
-  LINE(1338);
+  LINE(1354);
             {
             CLUREF T_2_1;
             T_2_1.num = 305;
@@ -8635,7 +8642,7 @@ g_typespec(CLUREF e, CLUREF ts)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1339);
+  LINE(1355);
             {
             err = typespec_print(ts);
             if (err != ERR_ok) goto ex_0;
@@ -8644,7 +8651,7 @@ g_typespec(CLUREF e, CLUREF ts)
             }
     default: {
 
-  LINE(1341);
+  LINE(1357);
         {
         err = g_envOPputs(e, STR_CLUREF);
         if (err != ERR_ok) goto ex_0;
@@ -8688,9 +8695,9 @@ s_typespec(CLUREF ts, CLUREF *ret_1)
         stringOPcons("WRONG_3", CLU_1, CLUREF_make_num(7), &STR_WRONG_1373);
         s_typespec_own_init = 1;
     }
-    enter_proc(1345);
+    enter_proc(1361);
 
-  LINE(1346);
+  LINE(1362);
     {
     CLUREF T_1_1;
     err = typespecOPget_abs(ts, &T_1_1);
@@ -8701,7 +8708,7 @@ s_typespec(CLUREF ts, CLUREF *ret_1)
         T_1_2.num = T_1_1.cell->value;
         ta.num = T_1_2.num;
 
-  LINE(1348);
+  LINE(1364);
             {
             {
             CLUREF T_2_1;
@@ -8719,7 +8726,7 @@ s_typespec(CLUREF ts, CLUREF *ret_1)
         T_1_3.num = T_1_1.cell->value;
         ta.num = T_1_3.num;
 
-  LINE(1350);
+  LINE(1366);
             {
             CLUREF T_2_1;
             T_2_1.num = 306;
@@ -8727,7 +8734,7 @@ s_typespec(CLUREF ts, CLUREF *ret_1)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1351);
+  LINE(1367);
             {
             {
             ret_1->str = STR_WRONG_1371.str;
@@ -8740,7 +8747,7 @@ s_typespec(CLUREF ts, CLUREF *ret_1)
         T_1_4.num = T_1_1.cell->value;
         ta.num = T_1_4.num;
 
-  LINE(1353);
+  LINE(1369);
             {
             CLUREF T_2_1;
             T_2_1.num = 307;
@@ -8748,7 +8755,7 @@ s_typespec(CLUREF ts, CLUREF *ret_1)
             if (err != ERR_ok) goto ex_0;
             }
 
-  LINE(1354);
+  LINE(1370);
             {
             {
             ret_1->str = STR_WRONG_1372.str;
@@ -8758,7 +8765,7 @@ s_typespec(CLUREF ts, CLUREF *ret_1)
             }
     default: {
 
-  LINE(1356);
+  LINE(1372);
         {
         {
         ret_1->str = STR_CLUREF.str;
@@ -8768,7 +8775,7 @@ s_typespec(CLUREF ts, CLUREF *ret_1)
     }
     }
 
-  LINE(1358);
+  LINE(1374);
     {
     {
     ret_1->str = STR_WRONG_1373.str;
@@ -8802,9 +8809,9 @@ g_anys(CLUREF e, CLUREF anys)
         stringOPcons("TIME to fix ANYS", CLU_1, CLUREF_make_num(16), &STR_TIME_040to_040fix_040ANYS);
         g_anys_own_init = 1;
     }
-    enter_proc(1361);
+    enter_proc(1377);
 
-  LINE(1363);
+  LINE(1379);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -8814,7 +8821,7 @@ g_anys(CLUREF e, CLUREF anys)
     T_1_3.num = T_1_2.num ^ 1;
     if (T_1_3.num == true) {
 
-  LINE(1364);
+  LINE(1380);
         {
         CLUREF T_2_1;
         T_2_1.num = 308;

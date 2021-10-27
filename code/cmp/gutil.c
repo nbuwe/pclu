@@ -1398,8 +1398,8 @@ typespec_similar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     if (typespec_similar_own_init == 0) {
         add_parm_info_type(0, (const struct OPS *)expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
-        add_selector_info("sel", 0, string_ops);
-        add_selector_info("type_", 1, typespec_ops);
+        add_selector_info("sel", 0, (struct OPS *)string_ops);
+        add_selector_info("type_", 1, (struct OPS *)typespec_ops);
         find_selector_ops("record", 2, &(record_sel_type__ops));
         add_parm_info_type(0, (const struct OPS *)record_sel_type__ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_record_sel_type__ops));
@@ -3798,6 +3798,7 @@ other_print(CLUREF o)
 
 /**** BEGIN PROCEDURE compiler_logit ****/
 
+extern errcode streamOPputl();
 static CLUREF STR_Probable_040compiler_040bug_040;
 static int compiler_logit_own_init = 0;
 
@@ -3807,7 +3808,6 @@ compiler_logit(CLUREF code, CLUREF s)
     errcode err;
     CLUREF po;
     if (compiler_logit_own_init == 0) {
-        stringOPcons("\n", CLU_1, CLUREF_make_num(1), &STR__012);
         stringOPcons("Probable compiler bug ", CLU_1, CLUREF_make_num(22), &STR_Probable_040compiler_040bug_040);
         compiler_logit_own_init = 1;
     }
@@ -3826,10 +3826,7 @@ compiler_logit(CLUREF code, CLUREF s)
     {
     if (true == true) {
         {
-        CLUREF T_2_1;
-        err = stringOPconcat(s, STR__012, &T_2_1);
-        if (err != ERR_ok) goto ex_0;
-        err = streamOPputs(po, T_2_1);
+        err = streamOPputl(po, s);
         if (err != ERR_ok) goto ex_0;
         }
         }
@@ -3839,14 +3836,11 @@ compiler_logit(CLUREF code, CLUREF s)
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
-        CLUREF T_2_3;
         err = intOPunparse(code, &T_2_1);
         if (err != ERR_ok) goto ex_0;
         err = stringOPconcat(STR_Probable_040compiler_040bug_040, T_2_1, &T_2_2);
         if (err != ERR_ok) goto ex_0;
-        err = stringOPconcat(T_2_2, STR__012, &T_2_3);
-        if (err != ERR_ok) goto ex_0;
-        err = streamOPputs(po, T_2_3);
+        err = streamOPputl(po, T_2_2);
         if (err != ERR_ok) goto ex_0;
         }
         }}/* end if */
@@ -3871,9 +3865,9 @@ errcode
 get_stream(CLUREF *ret_1)
 {
     errcode err;
-    enter_proc(489);
+    enter_proc(488);
 
-  LINE(491);
+  LINE(490);
     {
     {
     CLUREF T_1_1;
@@ -3934,9 +3928,9 @@ array_extend(CLUREF a, CLUREF b)
         op_own_ptr->array_extend_own_init = 1;
         /* no own vars to init */
     }
-    enter_proc(498);
+    enter_proc(497);
 
-  LINE(499);
+  LINE(498);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -3946,7 +3940,7 @@ array_extend(CLUREF a, CLUREF b)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             elt.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(500);
+  LINE(499);
             {
             {
             if ((a.array->int_low + a.array->ext_size + 1) < a.array->int_size) {
@@ -4011,9 +4005,9 @@ array_concat(CLUREF a, CLUREF b)
         op_own_ptr->array_concat_own_init = 1;
         /* no own vars to init */
     }
-    enter_proc(504);
+    enter_proc(503);
 
-  LINE(505);
+  LINE(504);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4027,7 +4021,7 @@ array_concat(CLUREF a, CLUREF b)
                 goto ex_0;}
             elt.num = T_1_3.array->store->data[T_1_1.num - T_1_3.array->ext_low + T_1_3.array->int_low];
 
-  LINE(506);
+  LINE(505);
             {
             {
             if ((a.array->int_low + a.array->ext_size + 1) < a.array->int_size) {
@@ -4103,9 +4097,9 @@ seq_extend(CLUREF a, CLUREF b, CLUREF *ret_1)
         op_own_ptr->seq_extend_own_init = 1;
         /* no own vars to init */
     }
-    enter_proc(510);
+    enter_proc(509);
 
-  LINE(512);
+  LINE(511);
     {
         {CLUREF T_1_1;
         generic_CLU_proc.type_owns = op_own_ptr->sequence_of_t_ops->type_owns;
@@ -4117,7 +4111,7 @@ seq_extend(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
         }
 
-  LINE(513);
+  LINE(512);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4127,7 +4121,7 @@ seq_extend(CLUREF a, CLUREF b, CLUREF *ret_1)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             elt.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(514);
+  LINE(513);
             {
             CLUREF T_2_1;
             err = sequenceOPaddh(c, elt, &T_2_1);
@@ -4138,7 +4132,7 @@ seq_extend(CLUREF a, CLUREF b, CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(516);
+  LINE(515);
     {
     {
     ret_1->num = c.num;
@@ -4176,9 +4170,9 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
     CLUREF this_abs;
     CLUREF this_stmt;
     CLUREF di;
-    enter_proc(522);
+    enter_proc(521);
 
-  LINE(524);
+  LINE(523);
     {
         {CLUREF T_1_1;
         err = sequenceOPnew(&T_1_1);
@@ -4187,7 +4181,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
         }
         }
 
-  LINE(525);
+  LINE(524);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4197,7 +4191,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_init.num = T_1_3.vec->data[T_1_1.num - 1];
 
-  LINE(526);
+  LINE(525);
             {
             CLUREF T_2_1;
             T_2_1.num = each_init.vec->data[1];
@@ -4207,7 +4201,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
                 T_2_2.num = T_2_1.cell->value;
                 d.num = T_2_2.num;
 
-  LINE(528);
+  LINE(527);
                     {
                         {CLUREF T_3_1;
                         CellAlloc(6, d.num, T_3_1);
@@ -4215,7 +4209,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
                         }
                         }
 
-  LINE(529);
+  LINE(528);
                     {
                         {CLUREF T_3_1;
                         CLUREF T_3_2;
@@ -4226,7 +4220,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
                         }
                         }
 
-  LINE(530);
+  LINE(529);
                     {
                     CLUREF T_3_1;
                     err = sequenceOPaddh(s, this_stmt, &T_3_1);
@@ -4240,7 +4234,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
                 T_2_3.num = T_2_1.cell->value;
                 di.num = T_2_3.num;
 
-  LINE(532);
+  LINE(531);
                     {
                         {CLUREF T_3_1;
                         CellAlloc(7, di.num, T_3_1);
@@ -4248,7 +4242,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
                         }
                         }
 
-  LINE(533);
+  LINE(532);
                     {
                         {CLUREF T_3_1;
                         CLUREF T_3_2;
@@ -4259,7 +4253,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
                         }
                         }
 
-  LINE(534);
+  LINE(533);
                     {
                     CLUREF T_3_1;
                     err = sequenceOPaddh(s, this_stmt, &T_3_1);
@@ -4274,7 +4268,7 @@ initlist_to_stmtlist(CLUREF i, CLUREF *ret_1)
     }
     end_inline_for_1:;
 
-  LINE(537);
+  LINE(536);
     {
     {
     ret_1->num = s.num;
@@ -4367,15 +4361,15 @@ g_commalist(CLUREF e, CLUREF l, CLUREF eltproc)
         locals.op_own_ptr->g_commalist_own_init = 1;
         /* no own vars to init */
     }
-    enter_proc(544);
+    enter_proc(543);
 
-  LINE(551);
+  LINE(550);
     {
         {locals.first.tf = true;
         }
         }
 
-  LINE(553);
+  LINE(552);
     {
         CLUREF T_1_1;
         T_1_1.proc = locals.op_own_ptr->ltype_ops->elements.fcn;
@@ -4408,15 +4402,15 @@ static errcode
 g_commalist_IB_1(CLUREF iv_1, g_commalist_LOCALS_t *locals, errcode *iecode)
 {
     locals->x.num = iv_1.num;
-    enter_iter_body_proc(554);
+    enter_iter_body_proc(553);
 
-  FB_LINE(554);
+  FB_LINE(553);
     {
     CLUREF T_1_1;
     T_1_1.num = locals->first.num ^ 1;
     if (T_1_1.num == true) {
 
-  FB_LINE(555);
+  FB_LINE(554);
         {
         locals->err = g_envOPputs(locals->e, STR__054_040);
         if (locals->err != ERR_ok) goto ex_0;
@@ -4424,13 +4418,13 @@ g_commalist_IB_1(CLUREF iv_1, g_commalist_LOCALS_t *locals, errcode *iecode)
         }
     else {
 
-  FB_LINE(556);
+  FB_LINE(555);
         {
         locals->first.tf = false;
         }
         }}/* end if */
 
-  FB_LINE(558);
+  FB_LINE(557);
     {
     CUR_PROC_VAR = locals->eltproc;
     locals->err = locals->eltproc.proc->proc(locals->e, locals->x);
@@ -4521,9 +4515,9 @@ g_next_commalist(CLUREF e, CLUREF l, CLUREF eltproc, CLUREF cont)
         locals.op_own_ptr->g_next_commalist_own_init = 1;
         /* no own vars to init */
     }
-    enter_proc(562);
+    enter_proc(561);
 
-  LINE(570);
+  LINE(569);
     {
         CLUREF T_1_1;
         T_1_1.proc = locals.op_own_ptr->ltype_ops->elements.fcn;
@@ -4556,9 +4550,9 @@ static errcode
 g_next_commalist_IB_1(CLUREF iv_1, g_next_commalist_LOCALS_t *locals, errcode *iecode)
 {
     locals->x.num = iv_1.num;
-    enter_iter_body_proc(571);
+    enter_iter_body_proc(570);
 
-  FB_LINE(571);
+  FB_LINE(570);
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
@@ -4566,7 +4560,7 @@ g_next_commalist_IB_1(CLUREF iv_1, g_next_commalist_LOCALS_t *locals, errcode *i
     T_1_2.num = T_1_1.num ^ 1;
     if (T_1_2.num == true) {
 
-  FB_LINE(572);
+  FB_LINE(571);
         {
         locals->err = g_envOPputs(locals->e, STR__054_040);
         if (locals->err != ERR_ok) goto ex_0;
@@ -4574,13 +4568,13 @@ g_next_commalist_IB_1(CLUREF iv_1, g_next_commalist_LOCALS_t *locals, errcode *i
         }
     else {
 
-  FB_LINE(573);
+  FB_LINE(572);
         {
         locals->cont.num = 1;
         }
         }}/* end if */
 
-  FB_LINE(575);
+  FB_LINE(574);
     {
     CUR_PROC_VAR = locals->eltproc;
     locals->err = locals->eltproc.proc->proc(locals->e, locals->x);
@@ -4614,9 +4608,9 @@ bool_unparse(CLUREF b, CLUREF *ret_1)
         stringOPcons("false", CLU_1, CLUREF_make_num(5), &STR_false);
         bool_unparse_own_init = 1;
     }
-    enter_proc(579);
+    enter_proc(578);
 
-  LINE(580);
+  LINE(579);
     {
     if (b.num == true) {
         {
@@ -4627,7 +4621,7 @@ bool_unparse(CLUREF b, CLUREF *ret_1)
         }
     else {
 
-  LINE(581);
+  LINE(580);
         {
         {
         ret_1->str = STR_false.str;

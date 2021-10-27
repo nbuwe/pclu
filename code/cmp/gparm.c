@@ -7498,9 +7498,9 @@ reqs_own_init_proc(void)
     if (reqs_own_init == 0) {
         add_parm_info_type(0, (const struct OPS *)expr_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_expr_ops));
-        add_selector_info("name", 0, string_ops);
-        add_selector_info("parms", 1, sequence_of_expr_ops);
-        add_selector_info("type_", 2, typespec_ops);
+        add_selector_info("name", 0, (struct OPS *)string_ops);
+        add_selector_info("parms", 1, (struct OPS *)sequence_of_expr_ops);
+        add_selector_info("type_", 2, (struct OPS *)typespec_ops);
         find_selector_ops("record", 3, &(record_name_parms_type__ops));
         stringOPcons("_op_", CLU_1, CLUREF_make_num(4), &STR__137op_137);
         stringOPcons("_of_", CLU_1, CLUREF_make_num(4), &STR__137of_137);

@@ -1394,9 +1394,9 @@ p_s_cons(CLUREF e, CLUREF t, CLUREF *ret_1)
     if (p_s_cons_own_init == 0) {
         add_parm_info_type(0, (const struct OPS *)string_ops, sequence_of_t_reqs);
         find_type_instance(sequence_ops, 1, &sequence_ownreqs, &(sequence_of_string_ops));
-        add_selector_info("line", 0, int_ops);
-        add_selector_info("sels", 1, sequence_of_string_ops);
-        add_selector_info("val", 2, expr_ops);
+        add_selector_info("line", 0, (struct OPS *)int_ops);
+        add_selector_info("sels", 1, (struct OPS *)sequence_of_string_ops);
+        add_selector_info("val", 2, (struct OPS *)expr_ops);
         find_selector_ops("record", 3, &(record_line_sels_val_ops));
         add_parm_info_type(0, (const struct OPS *)record_line_sels_val_ops, p_clist_of_t_reqs);
         find_prociter_instance(p_clist, 1, &p_clist_ownreqs, &(p_clist_of_record_line_sels_val_ops));

@@ -8844,7 +8844,6 @@ static CLUREF STR_g_137arraycons_072_040type_137_040not_040cluster_137;
 static CLUREF STR_sequence;
 static CLUREF STR_create_050;
 static CLUREF STR_new_050;
-static CLUREF STR__040_046;
 static CLUREF STR_addh_050;
 static int g_arraycons_own_init = 0;
 
@@ -8868,7 +8867,7 @@ g_arraycons(CLUREF e, CLUREF ac, CLUREF *ret_1)
         stringOPcons("create(", CLU_1, CLUREF_make_num(7), &STR_create_050);
         stringOPcons(", ", CLU_1, CLUREF_make_num(2), &STR__054_040);
         stringOPcons("new(", CLU_1, CLUREF_make_num(4), &STR_new_050);
-        stringOPcons(" &", CLU_1, CLUREF_make_num(2), &STR__040_046);
+        stringOPcons("&", CLU_1, CLUREF_make_num(1), &STR__046);
         stringOPcons(");", CLU_1, CLUREF_make_num(2), &STR__051_073);
         stringOPcons("if (", CLU_1, CLUREF_make_num(4), &STR_if_040_050);
         stringOPcons(" != ERR_ok) goto ", CLU_1, CLUREF_make_num(17), &STR__040_041_075_040ERR_137ok_051_040goto_040);
@@ -9066,7 +9065,7 @@ g_arraycons(CLUREF e, CLUREF ac, CLUREF *ret_1)
 
   LINE(1406);
     {
-    err = g_envOPputs(e, STR__040_046);
+    err = g_envOPputs(e, STR__046);
     if (err != ERR_ok) goto ex_0;
     }
 

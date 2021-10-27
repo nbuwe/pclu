@@ -2283,8 +2283,8 @@ g_envOPadd_siglist(CLUREF n, CLUREF *ret_1)
     CLUREF T_1_1;
     CLUREF T_1_2;
     CLUREF T_1_3;
-        T_1_2.num = g_envOPvlist.vec->size;
-        T_1_3 = g_envOPvlist;
+        T_1_2.num = g_envOPsiglist.vec->size;
+        T_1_3 = g_envOPsiglist;
         for (T_1_1.num = 1; T_1_1.num <= T_1_2.num; T_1_1.num++) {
             each_n.num = T_1_3.vec->data[T_1_1.num - 1];
 

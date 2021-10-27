@@ -16,7 +16,6 @@ extern errcode _system_root();
 extern errcode streamOPopen();
 extern errcode streamOPgetl();
 extern errcode stringOPindexs();
-extern errcode boolOPnot();
 extern errcode intOPequal();
 extern errcode stringOPsubstr();
 extern errcode intOPsub();
@@ -1129,23 +1128,28 @@ cmpvarOPinit_base_cmd(CLUREF ty, CLUREF *ret_1)
             }
 
   LINE(161);
-        {
-            {CLUREF T_3_1;
-            err = stringOPindexs(STR__176CLU, line, &T_3_1);
-            if (err != ERR_ok) goto ex_1;
-            pos.num = T_3_1.num;
-            }
-            }
+        for (;;) {
+            if (true != true) { break; }
 
   LINE(162);
-        {
-        CLUREF T_3_1;
-        CLUREF T_3_2;
-        T_3_1.num = (pos.num == 0)? true : false;
-        T_3_2.num = T_3_1.num ^ 1;
-        if (T_3_2.num == true) {
+            {
+                {CLUREF T_4_1;
+                err = stringOPindexs(STR__176CLU, line, &T_4_1);
+                if (err != ERR_ok) goto ex_1;
+                pos.num = T_4_1.num;
+                }
+                }
 
   LINE(163);
+            {
+            CLUREF T_4_1;
+            T_4_1.num = (pos.num == 0)? true : false;
+            if (T_4_1.num == true) {
+                goto end_while_1;
+                }
+                }/* end if */
+
+  LINE(165);
             {
             CLUREF T_4_1;
             CLUREF T_4_2;
@@ -1177,15 +1181,15 @@ cmpvarOPinit_base_cmd(CLUREF ty, CLUREF *ret_1)
             line.num = T_4_7.num;
             }
             }
-            }/* end if */
+            end_while_1:;
 
-  LINE(166);
+  LINE(168);
         {
         err = streamOPclose(st);
         if (err != ERR_ok) goto ex_1;
         }
 
-  LINE(167);
+  LINE(169);
         {
         {
         ret_1->num = line.num;
@@ -1196,7 +1200,7 @@ cmpvarOPinit_base_cmd(CLUREF ty, CLUREF *ret_1)
         ex_1:
             {
 
-  LINE(169);
+  LINE(171);
                 {
                 {
                 ret_1->str = CLU_empty_string.str;
