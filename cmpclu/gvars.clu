@@ -132,6 +132,7 @@ g_proc_exprs = proc(a: an, ex: expr)
 	   g_proc_exprs(a, inv.apply)
 	   g_proc_exprlist(a, inv.args)
 
+       % XXX: uwe: should addh_if_new array's create/new and addh
        tag a_cons (ar: arraycons):
 	   if mexpr$is_one(ar.low) then
 	      g_proc_exprs(a, mexpr$value_one(ar.low)) end
