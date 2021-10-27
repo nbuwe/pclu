@@ -1,7 +1,3 @@
-
-% 1/12/93 removed static from "actual" declaration to allow c compilation
-%		without -g option (to save space)
-
 dbg_info = cluster is start, emit_extern, emit_local_entry, init_local_entry,
 		      emit_decls, active, add_locals, add_local, extend_locals,
 		      set_own_context, add_own, add_ilist, reset
