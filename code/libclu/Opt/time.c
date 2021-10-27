@@ -71,12 +71,12 @@ time_own_init_proc(void)
     errcode err;
     enter_own_init_proc();
     if (time_own_init == 0) {
-        add_selector_info("days", 0, int_ops);
-        add_selector_info("hours", 1, int_ops);
-        add_selector_info("micros", 2, int_ops);
-        add_selector_info("millis", 3, int_ops);
-        add_selector_info("mins", 4, int_ops);
-        add_selector_info("secs", 5, int_ops);
+        add_selector_info("days", 0, (struct OPS *)int_ops);
+        add_selector_info("hours", 1, (struct OPS *)int_ops);
+        add_selector_info("micros", 2, (struct OPS *)int_ops);
+        add_selector_info("millis", 3, (struct OPS *)int_ops);
+        add_selector_info("mins", 4, (struct OPS *)int_ops);
+        add_selector_info("secs", 5, (struct OPS *)int_ops);
         find_selector_ops("struct", 6, &(struct_days_hours_micros_millis_mins_secs_ops));
         stringOPcons("bad format", CLU_1, CLUREF_make_num(10), &STR_bad_040format);
         time_own_init = 1;

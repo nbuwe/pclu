@@ -69,8 +69,8 @@ xref_own_init_proc(void)
     if (xref_own_init == 0) {
         add_parm_info_type(0, (const struct OPS *)string_ops, array_of_t_reqs);
         find_type_instance(array_ops, 1, &array_ownreqs, &(array_of_string_ops));
-        add_selector_info("key", 0, string_ops);
-        add_selector_info("users", 1, array_of_string_ops);
+        add_selector_info("key", 0, (struct OPS *)string_ops);
+        add_selector_info("users", 1, (struct OPS *)array_of_string_ops);
         find_selector_ops("record", 2, &(record_key_users_ops));
         add_parm_info_type(0, (const struct OPS *)record_key_users_ops, xref_op_find_index_of_etype_reqs);
         find_typeop_instance(xref_ops, xrefOPfind_index, 1, 0, &xref_op_find_index_ownreqs, &xref_ownreqs, &(xref_op_find_index_of_record_key_users_ops));
@@ -1205,7 +1205,7 @@ xrefOPoutput(CLUREF tab, CLUREF lhead, CLUREF rhead, CLUREF st)
   LINE(156);
         {
         CLUREF T_3_1;
-        err = arrayOPnew( &T_3_1);
+        err = arrayOPnew(&T_3_1);
         if (err != ERR_ok) goto ex_1;
         err = arrayOPaddh(T_3_1, rhead);
         if (err != ERR_ok) goto ex_1;

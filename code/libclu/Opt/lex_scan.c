@@ -67,7 +67,7 @@ lex_scan(CLUREF s, CLUREF sep_chars, CLUREF fill_chars, CLUREF beginq, CLUREF en
   LINE(39);
     {
         {CLUREF T_1_1;
-        err = arrayOPnew( &T_1_1);
+        err = arrayOPnew(&T_1_1);
         if (err != ERR_ok) goto ex_0;
         ps.num = T_1_1.num;
         }

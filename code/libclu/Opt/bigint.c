@@ -120,7 +120,7 @@ bigintOPi2bi(CLUREF i, CLUREF *ret_1)
             {
             {
             CLUREF T_3_1;
-            err = arrayOPnew( &T_3_1);
+            err = arrayOPnew(&T_3_1);
             if (err != ERR_ok) goto ex_0;
             err = arrayOPaddh(T_3_1, i);
             if (err != ERR_ok) goto ex_0;
@@ -138,7 +138,7 @@ bigintOPi2bi(CLUREF i, CLUREF *ret_1)
             CLUREF T_3_3;
             CLUREF T_3_4;
             CLUREF T_3_5;
-            err = arrayOPnew( &T_3_1);
+            err = arrayOPnew(&T_3_1);
             if (err != ERR_ok) goto ex_0;
             T_3_2.num = 268435456;
             err = intOPmod(i, T_3_2, &T_3_3);
@@ -180,7 +180,7 @@ bigintOPi2bi(CLUREF i, CLUREF *ret_1)
             {
             {
             CLUREF T_3_1;
-            err = arrayOPnew( &T_3_1);
+            err = arrayOPnew(&T_3_1);
             if (err != ERR_ok) goto ex_0;
             err = arrayOPaddh(T_3_1, first);
             if (err != ERR_ok) goto ex_0;
@@ -198,7 +198,7 @@ bigintOPi2bi(CLUREF i, CLUREF *ret_1)
             CLUREF T_3_3;
             CLUREF T_3_4;
             CLUREF T_3_5;
-            err = arrayOPnew( &T_3_1);
+            err = arrayOPnew(&T_3_1);
             if (err != ERR_ok) goto ex_0;
             err = arrayOPaddh(T_3_1, first);
             if (err != ERR_ok) goto ex_0;
@@ -420,7 +420,7 @@ bigintOPparse(CLUREF a, CLUREF *ret_1)
   LINE(57);
     {
         {CLUREF T_1_1;
-        err = arrayOPnew( &T_1_1);
+        err = arrayOPnew(&T_1_1);
         if (err != ERR_ok) goto ex_0;
         err = arrayOPaddh(T_1_1, CLU_0);
         if (err != ERR_ok) goto ex_0;
@@ -431,7 +431,7 @@ bigintOPparse(CLUREF a, CLUREF *ret_1)
   LINE(58);
     {
         {CLUREF T_1_1;
-        err = arrayOPnew( &T_1_1);
+        err = arrayOPnew(&T_1_1);
         if (err != ERR_ok) goto ex_0;
         err = arrayOPaddh(T_1_1, CLU_10);
         if (err != ERR_ok) goto ex_0;
@@ -442,7 +442,7 @@ bigintOPparse(CLUREF a, CLUREF *ret_1)
   LINE(59);
     {
         {CLUREF T_1_1;
-        err = arrayOPnew( &T_1_1);
+        err = arrayOPnew(&T_1_1);
         if (err != ERR_ok) goto ex_0;
         err = arrayOPaddh(T_1_1, CLU_0);
         if (err != ERR_ok) goto ex_0;
@@ -982,7 +982,7 @@ bigintOPminus(CLUREF a, CLUREF *ret_1)
     {
     CLUREF T_1_1;
     CLUREF T_1_2;
-    err = arrayOPnew( &T_1_1);
+    err = arrayOPnew(&T_1_1);
     if (err != ERR_ok) goto ex_0;
     err = arrayOPaddh(T_1_1, CLU_0);
     if (err != ERR_ok) goto ex_0;
@@ -2950,7 +2950,7 @@ bigintOPpower(CLUREF a, CLUREF b, CLUREF *ret_1)
   LINE(347);
     {
         {CLUREF T_1_1;
-        err = arrayOPnew( &T_1_1);
+        err = arrayOPnew(&T_1_1);
         if (err != ERR_ok) goto ex_0;
         err = arrayOPaddh(T_1_1, CLU_1);
         if (err != ERR_ok) goto ex_0;
@@ -3120,7 +3120,7 @@ bigintOPdiv(CLUREF a, CLUREF b, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         CLUREF T_2_2;
-        err = arrayOPnew( &T_2_1);
+        err = arrayOPnew(&T_2_1);
         if (err != ERR_ok) goto ex_0;
         err = arrayOPaddh(T_2_1, CLU_1);
         if (err != ERR_ok) goto ex_0;
@@ -3535,7 +3535,7 @@ bigintOPdivmod(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2)
         }
         {
         CLUREF T_2_1;
-        err = arrayOPnew( &T_2_1);
+        err = arrayOPnew(&T_2_1);
         if (err != ERR_ok) goto ex_0;
         err = arrayOPaddh(T_2_1, remainder);
         if (err != ERR_ok) goto ex_0;
@@ -3577,7 +3577,7 @@ bigintOPdivmod(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2)
         {
         {
         CLUREF T_2_1;
-        err = arrayOPnew( &T_2_1);
+        err = arrayOPnew(&T_2_1);
         if (err != ERR_ok) goto ex_0;
         err = arrayOPaddh(T_2_1, CLU_0);
         if (err != ERR_ok) goto ex_0;

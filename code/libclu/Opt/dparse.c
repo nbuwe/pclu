@@ -987,7 +987,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
   LINE(142);
     {
         {CLUREF T_1_1;
-        err = arrayOPcreate(CLU_1,  &T_1_1);
+        err = arrayOPcreate(CLU_1, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         err = arrayOPaddh(T_1_1, CLU_31);
         if (err != ERR_ok) goto ex_0;
@@ -1020,7 +1020,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
   LINE(143);
     {
         {CLUREF T_1_1;
-        err = arrayOPcreate(CLU_1,  &T_1_1);
+        err = arrayOPcreate(CLU_1, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         err = arrayOPaddh(T_1_1, CLU_31);
         if (err != ERR_ok) goto ex_0;

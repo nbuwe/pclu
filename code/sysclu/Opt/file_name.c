@@ -58,10 +58,10 @@ file_name_own_init_proc(void)
     errcode err;
     enter_own_init_proc();
     if (file_name_own_init == 0) {
-        add_selector_info("dir", 0, string_ops);
-        add_selector_info("name", 1, string_ops);
-        add_selector_info("other", 2, string_ops);
-        add_selector_info("suffix", 3, string_ops);
+        add_selector_info("dir", 0, (struct OPS *)string_ops);
+        add_selector_info("name", 1, (struct OPS *)string_ops);
+        add_selector_info("other", 2, (struct OPS *)string_ops);
+        add_selector_info("suffix", 3, (struct OPS *)string_ops);
         find_selector_ops("record", 4, &(record_dir_name_other_suffix_ops));
         stringOPcons("/", CLU_1, CLUREF_make_num(1), &STR__057);
         stringOPcons("output", CLU_1, CLUREF_make_num(6), &STR_output);
