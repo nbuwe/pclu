@@ -1363,9 +1363,8 @@ g_int_const = proc(e: g_env, i: int)
     end g_int_const
 
 g_bool_const = proc(e: g_env, b: bool)
-    g_env$puts(e, "CLU_")
-    if b then g_env$puts(e, "1")
-       else g_env$puts(e, "0")
+    if b then g_env$puts(e, "CLU_true")
+       else g_env$puts(e, "CLU_false")
        end
     end g_bool_const
 
