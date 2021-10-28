@@ -418,7 +418,7 @@ g_inv1 = proc(e: g_env, exp: expr) returns (exprlist)
 	   newidn: idn := idn$create(generic_name, idnkind$make_var(exp.typespec))
 	   proc_id: expr := expr$create(exprabs$make_idn(newidn), exp.typespec)
 
-	   g_env$putl(e, generic_name || ".type_owns = 0;")
+	   g_env$putl(e, generic_name || ".type_owns = NULL;")
 
 	   g_env$puts(e, generic_name || ".op_owns = ")
 	   if exprlist$size(parm_list) ~= 0
@@ -431,7 +431,7 @@ g_inv1 = proc(e: g_env, exp: expr) returns (exprlist)
 		       end
 		   g_env$putl(e,  "ops->op_owns;")
 	      else
-		   g_env$putl(e,  "0;")
+		   g_env$putl(e,  "NULL;")
 	      end
 
 	   g_expr2(e, proc_id)
@@ -505,7 +505,7 @@ g_inv1 = proc(e: g_env, exp: expr) returns (exprlist)
 		       end
 		   g_env$putl(e,  "ops->type_owns;")
 	      else
-		   g_env$putl(e,  "0;")
+		   g_env$putl(e,  "NULL;")
 	      end
 	   if type_parms_ct ~= exprlist$size(parm_list)
 	      then
@@ -1044,7 +1044,7 @@ g_apply1 = proc(e: g_env, exp:expr, ct: clutype) returns (exprlist)
 		   logit(412, "g_apply1: wrong_tag")
 		   expr_print(proc_id, 1)
 	      end
-    g_env$putl(e, ".proc->type_owns = 0;")
+    g_env$putl(e, ".proc->type_owns = NULL;")
 
     g_idnlit(e, exprabs$value_idn(proc_id.abs))
        except when wrong_tag:
@@ -1062,7 +1062,7 @@ g_apply1 = proc(e: g_env, exp:expr, ct: clutype) returns (exprlist)
 		end
 	    g_env$putl(e,  "ops->op_owns;")
        else
-	    g_env$putl(e,  "0;")
+	    g_env$putl(e,  "NULL;")
        end
 
     g_expr2(e, proc_id)
@@ -1153,7 +1153,7 @@ g_op1 = proc(e: g_env, exp: expr, cop: clusterop) returns (exprlist)
 		   end
 	       g_env$putl(e,  "ops->type_owns;")
 	  else
-	       g_env$putl(e,  "0;")
+	       g_env$putl(e,  "NULL;")
 	  end
        if type_parms_ct ~= exprlist$size(parm_list)
 	  then
