@@ -160,4 +160,8 @@ namelist."
 	  (list '(clu-font-lock-keywords
 		  clu-font-lock-keywords-1
 		  clu-font-lock-keywords-2
-		  clu-font-lock-keywords-3)))))
+		  clu-font-lock-keywords-3)
+		;; :keywords-only
+		nil
+		;; :case-fold
+		t))))
