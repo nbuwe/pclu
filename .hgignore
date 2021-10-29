@@ -7,31 +7,39 @@ code/gc*
 code/include/gc
 
 *.bak
+*.diff
 *.orig
+*.patch
 *~
 .\#*
 \#*\#
 
 ID
+marks.txt
 
-cludent/cludent
 cludent/*.c
+cludent/cludent
 cludent/cludent.lib
 cmpclu/cmp.lib
 code/cmp/pclu
+code/lib*/Debug*/*.[ch]
+code/sys*/Debug*/*.[ch]
+debug/debug.c
+debug/debug.lib
+debug/debug2.c
+debug/parse.c
 exe/cludent
 exe/pclu
 include/pclu_err.h
 include/pclu_sys.h
-lib/lowlev.lib
-lib/misc.lib
-lib/useful.lib
-
 lib/clu/gc_dump.c
 lib/clu/gc_read.c
 lib/clu/gcd_tab.c
 lib/clu/test_gcd
 lib/clu/test_gcd.c
+lib/lowlev.lib
+lib/misc.lib
+lib/useful.lib
 
 *.a
 *.core
