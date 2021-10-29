@@ -1916,6 +1916,8 @@ g_c_assn = proc(e: g_env, i: idn, exp: expr)
     tagcase exp.abs
        tag idn (id: idn):
 	   g_env$puts(e, ".num = ")
+	   % XXX: uwe: this is wrong for constant parms
+	   % they need to be fetched from type/op owns
 	   g_idn_plain(e, id)
 	   g_env$puts(e, ".num")
        tag apply (ct: clutype):
@@ -1993,6 +1995,8 @@ g_ret_assn = proc(e: g_env, i: int, exp: expr)
     tagcase exp.abs
        tag idn (id: idn):
 	   g_env$puts(e, "->num = ")
+	   % XXX: uwe: this is wrong for constant parms
+	   % they need to be fetched from type/op owns
 	   g_idn_plain(e, id)
 	   g_env$puts(e, ".num")
        tag null_:
