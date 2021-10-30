@@ -1006,7 +1006,6 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
 	g_env$putl(e, ") {")
 	tagcase h.vars
 	   tag decls (dlist: decllist):
-	       g_decllist(e, dlist)
 	       i: int := 0
 	       for each_d: decl in decllist$elements(dlist) do
 		   for each_idn: idn in idnlist$elements(each_d.idns) do
@@ -1036,7 +1035,6 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
 	    if mdecl$is_decl(arm.decl)
 	       then
 		    d: decl := mdecl$value_decl(arm.decl)
-		    g_decl(e, d)
 		    % 3/14/94: dcurtis: handle variable properly for others:
 		    %		at most one var; set it to signal name
 		    g_idn_plain(e, idnlist$bottom(d.idns))
