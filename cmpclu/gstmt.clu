@@ -215,8 +215,8 @@ g_while = proc (e: g_env, stmnt: whilestmt)
     g_body(e, stmnt.body)
     g_env$putl(e, "}")
     n: int := loop_context$get_current_while_count()
-    g_env$putl(e, "end_while_" || int$unparse(n) || ":;")
-    g_env$ensure_newline(e)
+    g_env$putl(e, "end_while_" || int$unparse(n) || ":")
+    g_env$putl(e, "__CLU_END_LABEL;")	 % only used by "break"
     g_env$outdent(e)
     loop_context$leave()
     end g_while
@@ -1058,6 +1058,7 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
     g_env$newline(e)
     g_env$outdent(e)
     g_env$puts(e, el || ":;")
+    % not marked with __CLU_END_LABEL b/c we emit the goto just above
     g_env$ensure_newline(e)
     g_env$outdent(e)
     end g_except
@@ -1140,6 +1141,7 @@ g_resignal = proc (e: g_env, stmnt: resignalstmt)
     g_env$outdent(e)
 
     % emit end of statement and exception handler label
+    % not marked with __CLU_END_LABEL b/c we emit the goto just above
     g_env$puts(e, el || ":;")
     g_env$ensure_newline(e)
     end g_resignal
