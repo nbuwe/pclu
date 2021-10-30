@@ -812,7 +812,7 @@ g_localvars_vars = proc (e: g_env, ap: applydefn, locals: array[decl],
     dbg_info$add_local("err")
     g_env$putl(e, "errcode err;")
 
-    if iterp then 
+    if iterp cand ib$exist() then
        dbg_info$add_local("body_ctrl_req")
        g_env$putl(e, "bool body_ctrl_req;") end
 
