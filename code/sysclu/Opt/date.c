@@ -84,6 +84,7 @@ date_own_init_proc(void)
         date_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -207,6 +208,7 @@ dateOPcreate(CLUREF day, CLUREF month, CLUREF year, CLUREF hour, CLUREF minute, 
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -242,6 +244,7 @@ dateOPget_day(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -277,6 +280,7 @@ dateOPget_month(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -312,6 +316,7 @@ dateOPget_year(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -347,6 +352,7 @@ dateOPget_hour(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -382,6 +388,7 @@ dateOPget_minute(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -417,6 +424,7 @@ dateOPget_second(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -477,6 +485,7 @@ dateOPget_all(CLUREF d, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -526,6 +535,7 @@ dateOPunparse(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -606,6 +616,7 @@ dateOPunparse_date(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -745,6 +756,7 @@ dateOPunparse_time(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -781,7 +793,7 @@ dateOPequal(CLUREF date1, CLUREF date2, CLUREF *ret_1)
         {
         {
         CLUREF T_2_1;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = struct_day_hour_minute_month_second_year_ops->entry[0].fcn->op_owns;
         generic_CLU_proc.proc = structOPequal;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -794,6 +806,7 @@ dateOPequal(CLUREF date1, CLUREF date2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -827,7 +840,7 @@ dateOPsimilar(CLUREF date1, CLUREF date2, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = struct_day_hour_minute_month_second_year_ops->entry[0].fcn->op_owns;
     generic_CLU_proc.proc = structOPequal;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -839,6 +852,7 @@ dateOPsimilar(CLUREF date1, CLUREF date2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -872,6 +886,7 @@ dateOPcopy(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1046,6 +1061,7 @@ dateOPlt(CLUREF d1, CLUREF d2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1220,6 +1236,7 @@ dateOPle(CLUREF d1, CLUREF d2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1256,6 +1273,7 @@ dateOPgt(CLUREF d1, CLUREF d2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1292,6 +1310,7 @@ dateOPge(CLUREF d1, CLUREF d2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1328,6 +1347,7 @@ dateOPprint(CLUREF d, CLUREF ps)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1404,6 +1424,7 @@ dateOPencode(CLUREF d, CLUREF ist)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -1411,6 +1432,7 @@ dateOPencode(CLUREF d, CLUREF ist)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1467,6 +1489,7 @@ dateOPdecode(CLUREF ist, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -1474,6 +1497,7 @@ dateOPdecode(CLUREF ist, CLUREF *ret_1)
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bad_format)) {
 
   LINE(166);
@@ -1488,6 +1512,7 @@ dateOPdecode(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1521,7 +1546,7 @@ dateOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = struct_day_hour_minute_month_second_year_ops->entry[6].fcn->op_owns;
     generic_CLU_proc.proc = structOP_gcd;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1533,6 +1558,7 @@ dateOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

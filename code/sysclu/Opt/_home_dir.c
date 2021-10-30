@@ -106,6 +106,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
         }/* end if */
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_found) {signal(ERR_not_found);}
         else {
             goto ex_0;}
@@ -150,7 +151,8 @@ _home_dir(CLUREF user, CLUREF *ret_1)
                     }/* end if */
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
         }
         }/* end if */
 
@@ -174,6 +176,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
         }/* end if */
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
             }
             else {
@@ -201,6 +204,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
         }/* end if */
         goto end_3;
         ex_3:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
             }
             else {
@@ -221,6 +225,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
         }
         goto end_4;
         ex_4:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
 
   LINE(27);
@@ -315,7 +320,8 @@ _home_dir(CLUREF user, CLUREF *ret_1)
             max.num = T_4_2.num;
             }
             }
-            end_while_1:;
+            end_while_1:
+            __CLU_END_LABEL;
 
   LINE(37);
         {
@@ -338,14 +344,15 @@ _home_dir(CLUREF user, CLUREF *ret_1)
                 }
             }
         }
-        end_inline_for_2:;
+        end_inline_for_2:
+        __CLU_END_LABEL;
 
   LINE(40);
         {
         CLUREF T_3_1;
         CLUREF T_3_2;
         CLUREF T_3_3;
-        err = _chanOPget(c, b, CLU_1, max, STR__072, CLU_0, &T_3_1, &T_3_2, &T_3_3);
+        err = _chanOPget(c, b, CLU_1, max, STR__072, CLU_false, &T_3_1, &T_3_2, &T_3_3);
         if (err != ERR_ok) goto ex_5;
         home.num = T_3_1.num;
         idx.num = T_3_2.num;
@@ -354,6 +361,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
         }
         goto end_5;
         ex_5:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)
              || (err == ERR_not_possible)) {
 
@@ -521,6 +529,7 @@ _home_dir(CLUREF user, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

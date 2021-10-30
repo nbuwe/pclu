@@ -93,6 +93,7 @@ pstream_own_init_proc(void)
         pstream_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -137,6 +138,7 @@ pstreamOPprimary_output(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -212,6 +214,7 @@ pstreamOPcreate(CLUREF st, CLUREF max_depth, CLUREF max_width, CLUREF *ret_1)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_no_limit)) {
 
   LINE(52);
@@ -233,6 +236,7 @@ pstreamOPcreate(CLUREF st, CLUREF max_depth, CLUREF max_width, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -268,6 +272,7 @@ pstreamOPget_depth(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -303,6 +308,7 @@ pstreamOPget_hpos(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -439,6 +445,7 @@ pstreamOPstart(CLUREF ps, CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -540,6 +547,7 @@ pstreamOPstop(CLUREF ps, CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -746,6 +754,7 @@ pstreamOPpause(CLUREF ps, CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -800,6 +809,7 @@ pstreamOPtext(CLUREF ps, CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -957,6 +967,7 @@ pstreamOPtextc(CLUREF ps, CLUREF c, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1043,6 +1054,7 @@ pstreamOPputleft(CLUREF ps, CLUREF s, CLUREF size, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1122,6 +1134,7 @@ pstreamOPputright(CLUREF ps, CLUREF s, CLUREF size, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1188,6 +1201,7 @@ pstreamOPputspace(CLUREF ps, CLUREF len, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1383,6 +1397,7 @@ pstreamOPputs(CLUREF ps, CLUREF s)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -1512,9 +1527,11 @@ pstreamOPputs_IB_1(CLUREF iv_1, pstreamOPputs_LOCALS_t *locals, errcode *iecode)
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -1656,7 +1673,8 @@ pstreamOPputsp(CLUREF ps, CLUREF len)
         ps.vec->data[9] = T_2_3.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(235);
     {
@@ -1670,6 +1688,7 @@ pstreamOPputsp(CLUREF ps, CLUREF len)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1706,6 +1725,7 @@ pstreamOPget_indent(CLUREF ps, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
 
   LINE(240);
@@ -1722,6 +1742,7 @@ pstreamOPget_indent(CLUREF ps, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1761,6 +1782,7 @@ pstreamOPset_indent(CLUREF ps, CLUREF indent)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -1770,6 +1792,7 @@ pstreamOPset_indent(CLUREF ps, CLUREF indent)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1804,6 +1827,7 @@ pstreamOPget_max_depth(CLUREF ps, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1835,6 +1859,7 @@ pstreamOPset_max_depth(CLUREF ps, CLUREF depth)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1869,6 +1894,7 @@ pstreamOPget_max_width(CLUREF ps, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1900,6 +1926,7 @@ pstreamOPset_max_width(CLUREF ps, CLUREF width)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1934,6 +1961,7 @@ pstreamOPget_flat(CLUREF ps, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1965,6 +1993,7 @@ pstreamOPset_flat(CLUREF ps, CLUREF flat)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1999,6 +2028,7 @@ pstreamOPget_wrap(CLUREF ps, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2030,6 +2060,7 @@ pstreamOPset_wrap(CLUREF ps, CLUREF wrap)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2066,6 +2097,7 @@ pstreamOPget_line_length(CLUREF ps, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_no_limit) {signal(ERR_no_limit);}
         else {
             goto ex_0;}
@@ -2073,6 +2105,7 @@ pstreamOPget_line_length(CLUREF ps, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2110,6 +2143,7 @@ pstreamOPget_page_length(CLUREF ps, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_no_limit) {signal(ERR_no_limit);}
         else {
             goto ex_0;}
@@ -2117,6 +2151,7 @@ pstreamOPget_page_length(CLUREF ps, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2152,6 +2187,7 @@ pstreamOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2214,6 +2250,7 @@ pstreamOPreset(CLUREF ps)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2329,6 +2366,7 @@ pstreamOPprint(CLUREF ps1, CLUREF ps2)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
 
   LINE(317);
@@ -2354,6 +2392,7 @@ pstreamOPprint(CLUREF ps1, CLUREF ps2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

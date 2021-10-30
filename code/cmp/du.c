@@ -83,6 +83,7 @@ du_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -124,7 +125,7 @@ duOPcreate(CLUREF common, CLUREF *ret_1)
         duOPfixups.array->store->data[duOPfixups.array->int_low + duOPfixups.array->ext_size] = false;
         duOPfixups.array->ext_size++; duOPfixups.array->ext_high++;}
     else {
-        err = arrayOPaddh(duOPfixups, CLU_0);
+        err = arrayOPaddh(duOPfixups, CLU_false);
         if (err != ERR_ok) goto ex_0;}
     }
     }
@@ -158,6 +159,7 @@ duOPcreate(CLUREF common, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -193,6 +195,7 @@ duOPget_unique(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -228,6 +231,7 @@ duOPget_common(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -303,6 +307,7 @@ duOPread_specs(CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -366,6 +371,7 @@ duOPadd_specs(CLUREF d, CLUREF specs)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -405,6 +411,7 @@ duOPget_mspecs(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -443,6 +450,7 @@ duOPset_mspecs(CLUREF d, CLUREF specs)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -489,6 +497,7 @@ duOPget_dump_info(CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -579,6 +588,7 @@ duOPupdate_specs(CLUREF d, CLUREF specs)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -654,6 +664,7 @@ duOPforget_specs(CLUREF d)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -713,10 +724,12 @@ duOPkeep()
         duOPkeepmax.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -792,10 +805,12 @@ duOPreset()
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -830,6 +845,7 @@ duOPequal(CLUREF d1, CLUREF d2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -870,6 +886,7 @@ duOPsimilar(CLUREF d1, CLUREF d2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -903,6 +920,7 @@ duOPcopy(CLUREF d, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -936,7 +954,7 @@ duOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = record_index_name_ops->entry[6].fcn->op_owns;
     generic_CLU_proc.proc = recordOP_gcd;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -948,6 +966,7 @@ duOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

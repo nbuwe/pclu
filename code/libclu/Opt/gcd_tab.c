@@ -215,6 +215,7 @@ gcd_tab_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -268,6 +269,7 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -334,7 +336,7 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
 
   LINE(70);
         {
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = op_own_ptr->gcd_tab_op_mgrind_of_t_ops->op_owns;
         generic_CLU_proc.proc = gcd_tabOPmgrind;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -358,14 +360,14 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
 
   LINE(73);
         {
-        err = _chanOPputw(ch, buf, CLU_1, CLU_4, CLU_0);
+        err = _chanOPputw(ch, buf, CLU_1, CLU_4, CLU_false);
         if (err != ERR_ok) goto ex_2;
         }
         }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
-            CLUREF why;
             why.num = elist[0].num;
 
   LINE(75);
@@ -381,6 +383,7 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
                 }
                     goto end_3;
                     ex_3:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_not_possible)) {
                         }
                         else {
@@ -411,6 +414,7 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
     }
     goto end_4;
     ex_4:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -425,6 +429,7 @@ gcd_tabOPgrind(CLUREF x, CLUREF fn, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -477,6 +482,7 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -531,7 +537,7 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
 
   LINE(101);
         {
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = op_own_ptr->gcd_tab_op_mgrind_of_t_ops->op_owns;
         generic_CLU_proc.proc = gcd_tabOPmgrind;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -561,14 +567,14 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
 
   LINE(104);
         {
-        err = _chanOPputw(ch, buf, CLU_1, CLU_4, CLU_0);
+        err = _chanOPputw(ch, buf, CLU_1, CLU_4, CLU_false);
         if (err != ERR_ok) goto ex_2;
         }
         }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
-            CLUREF why;
             why.num = elist[0].num;
 
   LINE(106);
@@ -595,6 +601,7 @@ gcd_tabOPgrindc(CLUREF x, CLUREF ch, CLUREF pos)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -691,7 +698,7 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
 
   LINE(123);
         {
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = op_own_ptr->gcd_tab_op_pgrind_of_t_ops->op_owns;
         generic_CLU_proc.proc = gcd_tabOPpgrind;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -714,7 +721,7 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
 
   LINE(126);
         {
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = op_own_ptr->gcd_tab_op_mgrind_of_t_ops->op_owns;
         generic_CLU_proc.proc = gcd_tabOPmgrind;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -724,8 +731,8 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
-            CLUREF why;
             why.num = elist[0].num;
 
   LINE(128);
@@ -752,6 +759,7 @@ gcd_tabOPgrindp(CLUREF x, CLUREF ch)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -902,7 +910,8 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                         }
                     }
                 }
-                end_inline_for_1:;
+                end_inline_for_1:
+                __CLU_END_LABEL;
                 break;
                 }
         case 3:
@@ -950,7 +959,8 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                         }
                     }
                 }
-                end_inline_for_2:;
+                end_inline_for_2:
+                __CLU_END_LABEL;
                 break;
                 }
         case 4:
@@ -1131,15 +1141,18 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
                             }/* end if */
                     }
                 }
-                end_inline_for_3:;
+                end_inline_for_3:
+                __CLU_END_LABEL;
                 break;
                 }
         }
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -1149,6 +1162,7 @@ gcd_tabOPpgrind(CLUREF tab, CLUREF x)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1213,6 +1227,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -1225,6 +1240,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
     }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -1257,6 +1273,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
         }
         goto end_3;
         ex_3:
+            __CLU_EX_HANDLER;
             if (err == ERR_not_possible) {signal(ERR_not_possible);}
             else {
                 goto ex_0;}
@@ -1271,6 +1288,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
         }
         goto end_4;
         ex_4:
+            __CLU_EX_HANDLER;
             if (err == ERR_not_possible) {signal(ERR_not_possible);}
             else {
                 goto ex_0;}
@@ -1335,6 +1353,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 }
                 goto end_7;
                 ex_7:
+                    __CLU_EX_HANDLER;
                     if (err == ERR_not_possible) {signal(ERR_not_possible);}
                     else {
                         goto ex_6;}
@@ -1347,6 +1366,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 }
                 goto end_8;
                 ex_8:
+                    __CLU_EX_HANDLER;
                     if (err == ERR_not_possible) {signal(ERR_not_possible);}
                     else {
                         goto ex_6;}
@@ -1380,6 +1400,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 }
                 goto end_9;
                 ex_9:
+                    __CLU_EX_HANDLER;
                     if (err == ERR_not_possible) {signal(ERR_not_possible);}
                     else {
                         goto ex_6;}
@@ -1419,6 +1440,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }
                             goto end_10;
                             ex_10:
+                                __CLU_EX_HANDLER;
                                 if (err == ERR_not_possible) {signal(ERR_not_possible);}
                                 else {
                                     goto ex_6;}
@@ -1433,6 +1455,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }
                             goto end_11;
                             ex_11:
+                                __CLU_EX_HANDLER;
                                 if (err == ERR_not_possible) {signal(ERR_not_possible);}
                                 else {
                                     goto ex_6;}
@@ -1440,7 +1463,8 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }}/* end if */
                     }
                 }
-                end_inline_for_1:;
+                end_inline_for_1:
+                __CLU_END_LABEL;
                 break;
                 }
         case 3:
@@ -1476,6 +1500,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 }
                 goto end_12;
                 ex_12:
+                    __CLU_EX_HANDLER;
                     if (err == ERR_not_possible) {signal(ERR_not_possible);}
                     else {
                         goto ex_6;}
@@ -1529,6 +1554,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }
                             goto end_13;
                             ex_13:
+                                __CLU_EX_HANDLER;
                                 if (err == ERR_not_possible) {signal(ERR_not_possible);}
                                 else {
                                     goto ex_6;}
@@ -1543,6 +1569,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }
                             goto end_14;
                             ex_14:
+                                __CLU_EX_HANDLER;
                                 if (err == ERR_not_possible) {signal(ERR_not_possible);}
                                 else {
                                     goto ex_6;}
@@ -1550,7 +1577,8 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }}/* end if */
                     }
                 }
-                end_inline_for_2:;
+                end_inline_for_2:
+                __CLU_END_LABEL;
                 break;
                 }
         case 4:
@@ -1586,6 +1614,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 }
                 goto end_15;
                 ex_15:
+                    __CLU_EX_HANDLER;
                     if (err == ERR_not_possible) {signal(ERR_not_possible);}
                     else {
                         goto ex_6;}
@@ -1620,6 +1649,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     goto end_16;
                     ex_16:
+                        __CLU_EX_HANDLER;
                         if (err == ERR_not_possible) {signal(ERR_not_possible);}
                         else {
                             goto ex_6;}
@@ -1634,6 +1664,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     goto end_17;
                     ex_17:
+                        __CLU_EX_HANDLER;
                         if (err == ERR_not_possible) {signal(ERR_not_possible);}
                         else {
                             goto ex_6;}
@@ -1674,6 +1705,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 }
                 goto end_18;
                 ex_18:
+                    __CLU_EX_HANDLER;
                     if (err == ERR_not_possible) {signal(ERR_not_possible);}
                     else {
                         goto ex_6;}
@@ -1703,6 +1735,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     goto end_19;
                     ex_19:
+                        __CLU_EX_HANDLER;
                         if (err == ERR_not_possible) {signal(ERR_not_possible);}
                         else {
                             goto ex_6;}
@@ -1717,6 +1750,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     goto end_20;
                     ex_20:
+                        __CLU_EX_HANDLER;
                         if (err == ERR_not_possible) {signal(ERR_not_possible);}
                         else {
                             goto ex_6;}
@@ -1792,6 +1826,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 }
                 goto end_21;
                 ex_21:
+                    __CLU_EX_HANDLER;
                     if (err == ERR_not_possible) {signal(ERR_not_possible);}
                     else {
                         goto ex_6;}
@@ -1817,6 +1852,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                     }
                     goto end_22;
                     ex_22:
+                        __CLU_EX_HANDLER;
                         if (err == ERR_not_possible) {signal(ERR_not_possible);}
                         else {
                             goto ex_6;}
@@ -1851,6 +1887,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                 }
                 goto end_23;
                 ex_23:
+                    __CLU_EX_HANDLER;
                     if (err == ERR_not_possible) {signal(ERR_not_possible);}
                     else {
                         goto ex_6;}
@@ -1881,6 +1918,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }
                             goto end_24;
                             ex_24:
+                                __CLU_EX_HANDLER;
                                 if (err == ERR_not_possible) {signal(ERR_not_possible);}
                                 else {
                                     goto ex_6;}
@@ -1912,6 +1950,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                                 }
                                 goto end_25;
                                 ex_25:
+                                    __CLU_EX_HANDLER;
                                     if (err == ERR_not_possible) {signal(ERR_not_possible);}
                                     else {
                                         goto ex_6;}
@@ -1926,6 +1965,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                                 }
                                 goto end_26;
                                 ex_26:
+                                    __CLU_EX_HANDLER;
                                     if (err == ERR_not_possible) {signal(ERR_not_possible);}
                                     else {
                                         goto ex_6;}
@@ -1934,21 +1974,25 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
                             }}/* end if */
                     }
                 }
-                end_inline_for_3:;
+                end_inline_for_3:
+                __CLU_END_LABEL;
                 break;
                 }
         }
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
     goto end_6;
     ex_6:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_5;}
     end_6:;
         goto end_5;
         ex_5:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -1963,6 +2007,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
     }
     goto end_27;
     ex_27:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -1970,6 +2015,7 @@ gcd_tabOPmgrind(CLUREF tab, CLUREF buf, CLUREF ch, CLUREF x)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2075,7 +2121,8 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
         mb.num = T_2_2.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(320);
     {
@@ -2148,6 +2195,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2240,6 +2288,7 @@ gcd_store_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -2277,6 +2326,7 @@ gcd_storeOPinit(CLUREF w, CLUREF c)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2347,6 +2397,7 @@ gcd_storeOPstore_id()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2378,6 +2429,7 @@ gcd_storeOPstore_lit(CLUREF i1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2408,6 +2460,7 @@ gcd_storeOPstore_lit(CLUREF i1)
     }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2432,6 +2485,7 @@ gcd_storeOPstore_lit(CLUREF i1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2463,6 +2517,7 @@ gcd_storeOPstore_ref(CLUREF i1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2493,6 +2548,7 @@ gcd_storeOPstore_ref(CLUREF i1)
     }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2517,6 +2573,7 @@ gcd_storeOPstore_ref(CLUREF i1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2548,6 +2605,7 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2578,6 +2636,7 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
     }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2602,6 +2661,7 @@ gcd_storeOPstore_hdr(CLUREF hid, CLUREF size)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2638,6 +2698,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2670,6 +2731,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2709,6 +2771,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     }
     goto end_3;
     ex_3:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2745,6 +2808,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     }
     goto end_4;
     ex_4:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2781,6 +2845,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     }
     goto end_5;
     ex_5:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2817,6 +2882,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
     }
     goto end_6;
     ex_6:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2847,6 +2913,7 @@ gcd_storeOPstore_array_desc(CLUREF a)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2959,6 +3026,7 @@ gcd_storeOPstore_string(CLUREF s)
             }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if (err == ERR_not_possible) {signal(ERR_not_possible);}
             else {
                 goto ex_1;}
@@ -3067,9 +3135,11 @@ gcd_storeOPstore_string(CLUREF s)
         rounded_longs.num = T_3_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if (errcmp(err, "ERR_done")) {
             }
             else {
@@ -3079,6 +3149,7 @@ gcd_storeOPstore_string(CLUREF s)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3113,11 +3184,12 @@ gcd_storeOPdone()
         goto ex_1;}
     err = intOPmul(gcd_storeOPclurefsz, T_2_1, &T_2_2);
     if (err != ERR_ok) goto ex_1;
-    err = _chanOPputw(gcd_storeOPch, gcd_storeOPbuf, CLU_1, T_2_2, CLU_0);
+    err = _chanOPputw(gcd_storeOPch, gcd_storeOPbuf, CLU_1, T_2_2, CLU_false);
     if (err != ERR_ok) goto ex_1;
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -3125,6 +3197,7 @@ gcd_storeOPdone()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3184,11 +3257,12 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
 
   LINE(515);
         {
-        err = _chanOPputw(gcd_storeOPch, gcd_storeOPbuf, CLU_1, gcd_storeOPbpagesz, CLU_0);
+        err = _chanOPputw(gcd_storeOPch, gcd_storeOPbuf, CLU_1, gcd_storeOPbpagesz, CLU_false);
         if (err != ERR_ok) goto ex_1;
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if (err == ERR_not_possible) {signal(ERR_not_possible);}
             else {
                 goto ex_0;}
@@ -3239,11 +3313,12 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
 
   LINE(522);
         {
-        err = _chanOPputw(gcd_storeOPch, gcd_storeOPbuf, CLU_1, gcd_storeOPbpagesz, CLU_0);
+        err = _chanOPputw(gcd_storeOPch, gcd_storeOPbuf, CLU_1, gcd_storeOPbpagesz, CLU_false);
         if (err != ERR_ok) goto ex_2;
         }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if (err == ERR_not_possible) {signal(ERR_not_possible);}
             else {
                 goto ex_0;}
@@ -3269,6 +3344,7 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

@@ -269,7 +269,8 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
                     }
                 }
             }
-            end_inline_for_1:;
+            end_inline_for_1:
+            __CLU_END_LABEL;
 
   LINE(23);
             {
@@ -664,6 +665,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_bad)) {
 
   LINE(72);
@@ -671,7 +673,6 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
                 {signal (ERR_bad);}}
             }
             else {
-                CLUREF err_UNIQ;
                 locals.err_UNIQ = _pclu_erstr(locals.err);
 
   LINE(73);
@@ -683,6 +684,7 @@ e_strop(CLUREF e, CLUREF op, CLUREF args, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -715,9 +717,11 @@ e_strop_IB_1(CLUREF iv_1, e_strop_LOCALS_t *locals, errcode *iecode)
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -923,6 +927,7 @@ e_oneofop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_bad) {signal(ERR_bad);}
         else {
             goto ex_0;}
@@ -930,6 +935,7 @@ e_oneofop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1114,10 +1120,12 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                                 }/* end if */
                         }
                     }
-                    end_inline_for_2:;
+                    end_inline_for_2:
+                    __CLU_END_LABEL;
                 }
             }
-            end_inline_for_1:;
+            end_inline_for_1:
+            __CLU_END_LABEL;
 
   LINE(120);
             {
@@ -1221,7 +1229,7 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                                         err = ERR_bounds;
                                         goto ex_1;}
                                     T_7_1.num = fields.vec->data[j.num - 1];
-                                    generic_CLU_proc.type_owns = 0;
+                                    generic_CLU_proc.type_owns = NULL;
                                     generic_CLU_proc.proc = recordOPcopy1;
                                     CUR_PROC_VAR.proc = &generic_CLU_proc;
                                     err = recordOPcopy1(T_7_1, &T_7_2);
@@ -1345,10 +1353,12 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                                 }/* end if */
                         }
                     }
-                    end_inline_for_4:;
+                    end_inline_for_4:
+                    __CLU_END_LABEL;
                 }
             }
-            end_inline_for_3:;
+            end_inline_for_3:
+            __CLU_END_LABEL;
 
   LINE(148);
             {
@@ -1377,6 +1387,7 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_bad) {signal(ERR_bad);}
         else {
             goto ex_0;}
@@ -1384,6 +1395,7 @@ e_structop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1915,6 +1927,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bad)) {
 
   LINE(200);
@@ -1922,7 +1935,6 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                 {signal (ERR_bad);}}
             }
             else if ((err == ERR_recons)) {
-            CLUREF elts;
             elts.num = elist[0].num;
 
   LINE(202);
@@ -1955,7 +1967,6 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
                 {signal (ERR_ok);}}
             }
             else {
-                CLUREF err_UNIQ;
                 err_UNIQ = _pclu_erstr(err);
 
   LINE(207);
@@ -1967,6 +1978,7 @@ e_seqop(CLUREF e, CLUREF x, CLUREF cop, CLUREF args, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2004,6 +2016,7 @@ e_e2n(CLUREF x, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_wrong_tag)) {
 
   LINE(213);
@@ -2017,6 +2030,7 @@ e_e2n(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2053,6 +2067,7 @@ e_e2b(CLUREF x, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_wrong_tag)) {
 
   LINE(218);
@@ -2066,6 +2081,7 @@ e_e2b(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2102,6 +2118,7 @@ e_e2i(CLUREF x, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_wrong_tag)) {
 
   LINE(223);
@@ -2115,6 +2132,7 @@ e_e2i(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2151,6 +2169,7 @@ e_e2r(CLUREF x, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_wrong_tag)) {
 
   LINE(228);
@@ -2164,6 +2183,7 @@ e_e2r(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2200,6 +2220,7 @@ e_e2h(CLUREF x, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_wrong_tag)) {
 
   LINE(233);
@@ -2213,6 +2234,7 @@ e_e2h(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2249,6 +2271,7 @@ e_e2s(CLUREF x, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_wrong_tag)) {
 
   LINE(238);
@@ -2262,6 +2285,7 @@ e_e2s(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2367,6 +2391,7 @@ e_e2o(CLUREF x, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2403,6 +2428,7 @@ e_e2sc(CLUREF x, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_wrong_tag)) {
 
   LINE(259);
@@ -2416,6 +2442,7 @@ e_e2sc(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2452,6 +2479,7 @@ e_e2qc(CLUREF x, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_wrong_tag)) {
 
   LINE(264);
@@ -2465,6 +2493,7 @@ e_e2qc(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

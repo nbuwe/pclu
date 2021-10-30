@@ -96,6 +96,7 @@ p_clist(CLUREF e, CLUREF p_t, CLUREF what, CLUREF *ret_1)
             }
                 goto end_2;
                 ex_2:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_bad)) {
                     }
                     else {
@@ -133,9 +134,11 @@ p_clist(CLUREF e, CLUREF p_t, CLUREF what, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_none)) {
 
   LINE(22);
@@ -213,6 +216,7 @@ p_clist(CLUREF e, CLUREF p_t, CLUREF what, CLUREF *ret_1)
         }
             goto end_4;
             ex_4:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bad)) {
                 }
                 else {
@@ -252,9 +256,11 @@ p_clist(CLUREF e, CLUREF p_t, CLUREF what, CLUREF *ret_1)
         }
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_3;
         ex_3:
+            __CLU_EX_HANDLER;
             if ((err == ERR_none)) {
             }
             else {
@@ -286,6 +292,7 @@ p_clist(CLUREF e, CLUREF p_t, CLUREF what, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -363,6 +370,7 @@ p_slist(CLUREF e, CLUREF p_t, CLUREF *ret_1)
         }
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bad)) {
                 }
                 else {
@@ -376,9 +384,11 @@ p_slist(CLUREF e, CLUREF p_t, CLUREF *ret_1)
         if (err != ERR_ok) goto ex_1;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_none)) {
 
   LINE(54);
@@ -395,6 +405,7 @@ p_slist(CLUREF e, CLUREF p_t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -475,6 +486,7 @@ p_list(CLUREF e, CLUREF p_t, CLUREF emptyok, CLUREF what, CLUREF *ret_1)
         }
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bad)) {
                 }
                 else {
@@ -482,9 +494,11 @@ p_list(CLUREF e, CLUREF p_t, CLUREF emptyok, CLUREF what, CLUREF *ret_1)
                 }
             end_2:;
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_none)) {
             }
             else {
@@ -526,6 +540,7 @@ p_list(CLUREF e, CLUREF p_t, CLUREF emptyok, CLUREF what, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -645,7 +660,7 @@ p_blist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF what, CLUREF *ret_1)
   LINE(88);
     {
         {CLUREF T_1_1;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = op_own_ptr->p_clist_of_t_ops->op_owns;
         generic_CLU_proc.proc = p_clist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -698,6 +713,7 @@ p_blist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF what, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -852,7 +868,7 @@ p_plist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF emptyok, CLUREF what, CLUREF
   LINE(117);
     {
         {CLUREF T_1_1;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = op_own_ptr->p_clist_of_t_ops->op_owns;
         generic_CLU_proc.proc = p_clist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -905,6 +921,7 @@ p_plist(CLUREF e, CLUREF p_t, CLUREF noneok, CLUREF emptyok, CLUREF what, CLUREF
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

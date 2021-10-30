@@ -60,7 +60,7 @@ const OWN_req heap_ownreqs = { sizeof(heap_OWN_DEFN), 8 };
 errcode
 heap_own_init_proc()
 {
-    errcode err;
+    errcode err __CLU_UNUSED;
     heap_OWN_DEFN *type_own_ptr;
     type_own_ptr = (heap_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
@@ -104,6 +104,7 @@ heapOPcreate(CLUREF p, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -143,6 +144,7 @@ heapOPtop(CLUREF x, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
 
   LINE(51);
@@ -156,6 +158,7 @@ heapOPtop(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -195,6 +198,7 @@ heapOPsize(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -236,6 +240,7 @@ heapOPempty(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -355,7 +360,8 @@ heapOPinsert(CLUREF x, CLUREF v)
         dad.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(72);
     {
@@ -369,6 +375,7 @@ heapOPinsert(CLUREF x, CLUREF v)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -430,6 +437,7 @@ heapOPremove(CLUREF x, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
 
   LINE(79);
@@ -583,7 +591,8 @@ heapOPremove(CLUREF x, CLUREF *ret_1)
         dad.num = son.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(97);
     {
@@ -604,6 +613,7 @@ heapOPremove(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -633,7 +643,7 @@ heapOPcopy(CLUREF x, CLUREF *ret_1)
   LINE(102);
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.proc = recordOPcopy1;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
     err = recordOPcopy1(x, &T_1_1);
@@ -660,6 +670,7 @@ heapOPcopy(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

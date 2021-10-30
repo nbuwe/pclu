@@ -275,6 +275,7 @@ ce_own_init_proc(void)
         ce_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -481,8 +482,8 @@ ceOPcreate(CLUREF *ret_1)
         T_1_2.num = 300;
         err = proctypeOPnew(CLU_0, &T_1_3);
         if (err!= ERR_ok) goto ex_0;
-        T_1_3.proc->type_owns = 0;
-        T_1_3.proc->op_owns = 0;
+        T_1_3.proc->type_owns = NULL;
+        T_1_3.proc->op_owns = NULL;
         T_1_3.proc->proc = hash;
         err = proctypeOPnew(CLU_0, &T_1_4);
         if (err!= ERR_ok) goto ex_0;
@@ -506,8 +507,8 @@ ceOPcreate(CLUREF *ret_1)
         T_1_10.num = 300;
         err = proctypeOPnew(CLU_0, &T_1_11);
         if (err!= ERR_ok) goto ex_0;
-        T_1_11.proc->type_owns = 0;
-        T_1_11.proc->op_owns = 0;
+        T_1_11.proc->type_owns = NULL;
+        T_1_11.proc->op_owns = NULL;
         T_1_11.proc->proc = hash_typeabs;
         err = proctypeOPnew(CLU_1, &T_1_12);
         if (err!= ERR_ok) goto ex_0;
@@ -524,8 +525,8 @@ ceOPcreate(CLUREF *ret_1)
         T_1_14.num = 300;
         err = proctypeOPnew(CLU_0, &T_1_15);
         if (err!= ERR_ok) goto ex_0;
-        T_1_15.proc->type_owns = 0;
-        T_1_15.proc->op_owns = 0;
+        T_1_15.proc->type_owns = NULL;
+        T_1_15.proc->op_owns = NULL;
         T_1_15.proc->proc = hash_du;
         err = proctypeOPnew(CLU_0, &T_1_16);
         if (err!= ERR_ok) goto ex_0;
@@ -777,6 +778,7 @@ ceOPcreate(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -831,6 +833,7 @@ ceOPreset_entries(CLUREF e, CLUREF lasting)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -878,6 +881,7 @@ ceOPflush_entries(CLUREF e)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -969,6 +973,7 @@ ceOPpflush_id(CLUREF ent, CLUREF lasting, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1061,10 +1066,12 @@ ceOPreset_types(CLUREF e, CLUREF types)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1212,6 +1219,7 @@ ceOPreset(CLUREF e)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -1239,9 +1247,11 @@ ceOPreset_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPreset_LOCALS_t *locals, errcode *ie
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -1370,6 +1380,7 @@ ceOPreset1(CLUREF e)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -1397,9 +1408,11 @@ ceOPreset1_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPreset1_LOCALS_t *locals, errcode *
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -1453,6 +1466,7 @@ ceOPflush_id(CLUREF ent, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1511,6 +1525,7 @@ ceOPpflush_type(CLUREF t, CLUREF max, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1588,6 +1603,7 @@ ceOPkeep(CLUREF e)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -1616,7 +1632,7 @@ ceOPkeep_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPkeep_LOCALS_t *locals, errcode *ieco
         generic_CLU_proc.type_owns = table_of_du_bool_ops->type_owns;
         generic_CLU_proc.proc = tableOPalter;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
-        locals->err = tableOPalter(locals->tab, locals->d, CLU_0);
+        locals->err = tableOPalter(locals->tab, locals->d, CLU_false);
         if (locals->err != ERR_ok) goto ex_0;
         }
         }
@@ -1624,9 +1640,11 @@ ceOPkeep_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPkeep_LOCALS_t *locals, errcode *ieco
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -1691,7 +1709,7 @@ ceOPlookup(CLUREF e, CLUREF s, CLUREF line, CLUREF *ret_1)
   LINE(231);
         {
         CLUREF T_2_1;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.proc = recordOPcopy1;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = recordOPcopy1(xent, &T_2_1);
@@ -1769,6 +1787,7 @@ ceOPlookup(CLUREF e, CLUREF s, CLUREF line, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1868,6 +1887,7 @@ ceOPlocal(CLUREF e, CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1925,6 +1945,7 @@ ceOPadd_entry(CLUREF e, CLUREF i)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_exists) {signal(ERR_exists);}
         else {
             goto ex_0;}
@@ -1932,6 +1953,7 @@ ceOPadd_entry(CLUREF e, CLUREF i)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1966,6 +1988,7 @@ ceOPget_unknown_type(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2001,6 +2024,7 @@ ceOPget_null_type(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2036,6 +2060,7 @@ ceOPget_bool_type(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2071,6 +2096,7 @@ ceOPget_int_type(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2106,6 +2132,7 @@ ceOPget_real_type(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2141,6 +2168,7 @@ ceOPget_char_type(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2176,6 +2204,7 @@ ceOPget_str_type(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2211,6 +2240,7 @@ ceOPget_type_type(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2246,6 +2276,7 @@ ceOPget_cvt_type(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2281,6 +2312,7 @@ ceOPget_any_type(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2316,6 +2348,7 @@ ceOPget_array_(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2351,6 +2384,7 @@ ceOPget_record_(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2386,6 +2420,7 @@ ceOPget_oneof_(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2421,6 +2456,7 @@ ceOPget_seq_(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2456,6 +2492,7 @@ ceOPget_struct_(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2491,6 +2528,7 @@ ceOPget_variant_(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2526,6 +2564,7 @@ ceOPget_proc_(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2561,6 +2600,7 @@ ceOPget_iter_(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2637,6 +2677,7 @@ ceOPget_type(CLUREF e, CLUREF ta, CLUREF *ret_1, CLUREF *ret_2)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
             }
             else {
@@ -2671,6 +2712,7 @@ ceOPget_type(CLUREF e, CLUREF ta, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2845,6 +2887,7 @@ ceOPfixup(CLUREF e, CLUREF t)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2903,6 +2946,7 @@ ceOPadd_du(CLUREF e, CLUREF mod, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
 
   LINE(370);
@@ -2924,7 +2968,7 @@ ceOPadd_du(CLUREF e, CLUREF mod, CLUREF *ret_1)
                 generic_CLU_proc.type_owns = table_of_du_bool_ops->type_owns;
                 generic_CLU_proc.proc = tableOPbind;
                 CUR_PROC_VAR.proc = &generic_CLU_proc;
-                err = tableOPbind(T_2_1, d, CLU_1);
+                err = tableOPbind(T_2_1, d, CLU_true);
                 if (err != ERR_ok) goto ex_0;
                 }
 
@@ -2942,6 +2986,7 @@ ceOPadd_du(CLUREF e, CLUREF mod, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2972,7 +3017,7 @@ typedef struct {
 errcode
 ceOPall_dus(CLUREF e, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     ceOPall_dus_LOCALS_t locals;
     locals.e = e;
     locals.proc = proc;
@@ -3019,6 +3064,7 @@ ceOPall_dus(CLUREF e, errcode (*proc)(), void *user_locals, errcode *iecode)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -3051,10 +3097,12 @@ ceOPall_dus_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPall_dus_LOCALS_t *locals, errcode
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     locals->body_ctrl_req = true;
     signal(ERR_iteriterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -3237,7 +3285,8 @@ hash_exprs(CLUREF exprs, CLUREF z, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(400);
     {
@@ -3248,6 +3297,7 @@ hash_exprs(CLUREF exprs, CLUREF z, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3384,7 +3434,8 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     }
                 }
             }
-            end_inline_for_1:;
+            end_inline_for_1:
+            __CLU_END_LABEL;
 
   LINE(412);
             {
@@ -3469,7 +3520,8 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     }
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
 
   LINE(420);
             {
@@ -3511,7 +3563,8 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
                     }
                 }
             }
-            end_inline_for_3:;
+            end_inline_for_3:
+            __CLU_END_LABEL;
 
   LINE(423);
             {
@@ -3701,6 +3754,7 @@ hash_typeabs(CLUREF ta, CLUREF z, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3737,6 +3791,7 @@ hash_du(CLUREF d, CLUREF size, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

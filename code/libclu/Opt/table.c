@@ -93,7 +93,7 @@ const OWN_req table_ownreqs = { sizeof(table_OWN_DEFN), 19 };
 errcode
 table_own_init_proc()
 {
-    errcode err;
+    errcode err __CLU_UNUSED;
     table_OWN_DEFN *type_own_ptr;
     type_own_ptr = (table_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
@@ -102,6 +102,7 @@ table_own_init_proc()
         type_own_ptr->table_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -184,6 +185,7 @@ tableOPcreate(CLUREF size, CLUREF hasher, CLUREF comper, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -251,10 +253,12 @@ tableOPflush(CLUREF t)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -399,13 +403,16 @@ tableOPcond_flush(CLUREF t, CLUREF pred)
                     }
                     }}/* end if */
                 }
-                end_while_1:;
+                end_while_1:
+                __CLU_END_LABEL;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -574,13 +581,16 @@ tableOPpcond_flush(CLUREF t, CLUREF pred, CLUREF thing)
                     }
                     }}/* end if */
                 }
-                end_while_1:;
+                end_while_1:
+                __CLU_END_LABEL;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -751,7 +761,8 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
         mb.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(135);
     {
@@ -786,6 +797,7 @@ tableOPbind(CLUREF t, CLUREF k, CLUREF v)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -968,7 +980,8 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
         mb.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(161);
     {
@@ -1010,6 +1023,7 @@ tableOPmbind(CLUREF t, CLUREF k, CLUREF v, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1171,7 +1185,8 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
         mb.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(187);
     {
@@ -1199,6 +1214,7 @@ tableOPalter(CLUREF t, CLUREF k, CLUREF v)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1377,7 +1393,8 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
         mb.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(213);
     {
@@ -1397,6 +1414,7 @@ tableOPlookup(CLUREF t, CLUREF k, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1579,7 +1597,8 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
         mb.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(238);
     {
@@ -1602,6 +1621,7 @@ tableOPmlookup(CLUREF t, CLUREF k, CLUREF defv, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1789,7 +1809,8 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
         mb.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(264);
     {
@@ -1809,6 +1830,7 @@ tableOPget_pair(CLUREF t, CLUREF k, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1974,7 +1996,8 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
         mb.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(286);
     {
@@ -1997,6 +2020,7 @@ tableOPexists(CLUREF t, CLUREF k, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2164,7 +2188,8 @@ tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
         isprev.tf = true;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(314);
     {
@@ -2172,6 +2197,7 @@ tableOPremove(CLUREF t, CLUREF k, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2334,10 +2360,12 @@ tableOPdelete(CLUREF t, CLUREF k)
         isprev.tf = true;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2480,7 +2508,8 @@ tableOPrehash(CLUREF t, CLUREF hasher)
                 buck.num = T_3_2.num;
                 }
                 }
-                end_while_1:;
+                end_while_1:
+                __CLU_END_LABEL;
 
   LINE(358);
             {
@@ -2493,7 +2522,8 @@ tableOPrehash(CLUREF t, CLUREF hasher)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(361);
     for (;;) {
@@ -2560,10 +2590,12 @@ tableOPrehash(CLUREF t, CLUREF hasher)
         chain.num = nchain.num;
         }
         }
-        end_while_2:;
+        end_while_2:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2580,9 +2612,8 @@ tableOPrehash(CLUREF t, CLUREF hasher)
 errcode
 tableOPelements(CLUREF t, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     errcode err;
-    bool body_ctrl_req;
     table_OWN_DEFN *type_own_ptr;
     CLUREF bucks;
     CLUREF i;
@@ -2672,13 +2703,16 @@ tableOPelements(CLUREF t, errcode (*proc)(), void *user_locals, errcode *iecode)
                 mb.num = T_3_1.num;
                 }
                 }
-                end_while_1:;
+                end_while_1:
+                __CLU_END_LABEL;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2780,10 +2814,12 @@ tableOPcount(CLUREF t, CLUREF *ret_1)
                 mb.num = T_3_2.num;
                 }
                 }
-                end_while_1:;
+                end_while_1:
+                __CLU_END_LABEL;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(397);
     {
@@ -2794,6 +2830,7 @@ tableOPcount(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2872,7 +2909,8 @@ tableOPempty(CLUREF t, CLUREF *ret_1)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(408);
     {
@@ -2883,6 +2921,7 @@ tableOPempty(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2995,7 +3034,8 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
                 mb.num = T_3_2.num;
                 }
                 }
-                end_while_1:;
+                end_while_1:
+                __CLU_END_LABEL;
 
   LINE(425);
             {
@@ -3019,6 +3059,7 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
             }
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_bounds)) {
 
   LINE(427);
@@ -3041,7 +3082,8 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
                             }
                             }
                             }
-                            end_while_2:;
+                            end_while_2:
+                            __CLU_END_LABEL;
 
   LINE(430);
                         {
@@ -3061,7 +3103,8 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
                 end_1:;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(433);
     {
@@ -3072,6 +3115,7 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

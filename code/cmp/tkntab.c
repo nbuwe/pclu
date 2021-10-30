@@ -421,6 +421,7 @@ tokentab_own_init_proc(void)
         tokentab_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -478,8 +479,8 @@ tokentabOPcreate(CLUREF e, CLUREF *ret_1)
         T_1_1.num = 500;
         err = proctypeOPnew(CLU_0, &T_1_2);
         if (err!= ERR_ok) goto ex_0;
-        T_1_2.proc->type_owns = 0;
-        T_1_2.proc->op_owns = 0;
+        T_1_2.proc->type_owns = NULL;
+        T_1_2.proc->op_owns = NULL;
         T_1_2.proc->proc = hash;
         err = proctypeOPnew(CLU_0, &T_1_3);
         if (err!= ERR_ok) goto ex_0;
@@ -974,6 +975,7 @@ tokentabOPcreate(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1348,6 +1350,7 @@ tokentabOPreset(CLUREF t, CLUREF e)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1452,6 +1455,7 @@ tokentabOPhack(CLUREF t)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1509,6 +1513,7 @@ tokentabOPunhack(CLUREF t)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1591,6 +1596,7 @@ tokentabOPident(CLUREF t, CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1657,6 +1663,7 @@ tokentabOPget_token(CLUREF t, CLUREF s, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
             }
             else {
@@ -1695,6 +1702,7 @@ tokentabOPget_token(CLUREF t, CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1757,6 +1765,7 @@ tokentabOPadd_token(CLUREF t, CLUREF s, CLUREF k)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

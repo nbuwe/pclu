@@ -70,7 +70,7 @@ typedef struct {
 errcode
 _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     _all_file_names__LOCALS_t locals;
     locals.fs = fs;
     locals.proc = proc;
@@ -139,7 +139,7 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecod
   LINE(18);
             {
             CLUREF T_4_1;
-            locals.err = _fixup_file_name(locals.fn, CLU_0, &T_4_1);
+            locals.err = _fixup_file_name(locals.fn, CLU_false, &T_4_1);
             if (locals.err != ERR_ok) goto ex_1;
             locals.err = locals.proc(T_4_1, locals.user_locals, iecode);
             if (locals.err != ERR_ok) {
@@ -160,6 +160,7 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecod
         }/* end if */
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (locals.err == ERR_bad_format) {signal(ERR_bad_format);}
         else if (locals.err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -226,7 +227,8 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecod
         locals.z.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(27);
     {
@@ -329,6 +331,7 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecod
         }/* end if */
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_bounds)
              || (locals.err == ERR_not_found)) {
             }
@@ -364,6 +367,7 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecod
         }
     goto end_3;
     ex_3:
+        __CLU_EX_HANDLER;
         if (locals.err == ERR_not_possible) {signal(ERR_not_possible);}
         else if (locals.err == ERR_bad_format) {signal(ERR_bad_format);}
         else {
@@ -372,6 +376,7 @@ _all_file_names_(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecod
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -420,7 +425,7 @@ _all_file_names__IB_1(CLUREF iv_1, _all_file_names__LOCALS_t *locals, errcode *i
   FB_LINE(46);
             {
             CLUREF T_4_1;
-            locals->err = _fixup_file_name(locals->fn, CLU_1, &T_4_1);
+            locals->err = _fixup_file_name(locals->fn, CLU_true, &T_4_1);
             if (locals->err != ERR_ok) goto ex_1;
             locals->err = locals->proc(T_4_1, locals->user_locals, iecode);
             if ((locals->body_ctrl_req == true) && (locals->err == ERR_iteriterbodyexit)) {
@@ -434,6 +439,7 @@ _all_file_names__IB_1(CLUREF iv_1, _all_file_names__LOCALS_t *locals, errcode *i
             }/* end if */
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((locals->err == ERR_not_possible)) {
                 }
                 else {
@@ -544,7 +550,8 @@ _all_file_names__IB_1(CLUREF iv_1, _all_file_names__LOCALS_t *locals, errcode *i
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   FB_LINE(79);
     {
@@ -567,10 +574,12 @@ _all_file_names__IB_1(CLUREF iv_1, _all_file_names__LOCALS_t *locals, errcode *i
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     locals->body_ctrl_req = true;
     signal(ERR_iteriterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -675,12 +684,15 @@ _all_file_names__IB_2(CLUREF iv_1, CLUREF iv_2, _all_file_names__LOCALS_t *local
                 locals->z.num = T_4_1.num;
                 }
                 }
-                end_while_2:;
+                end_while_2:
+                __CLU_END_LABEL;
         }
     }
-    end_inline_for_2:;
+    end_inline_for_2:
+    __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((locals->err == ERR_bounds)) {
             }
             else {
@@ -702,10 +714,12 @@ _all_file_names__IB_2(CLUREF iv_1, CLUREF iv_2, _all_file_names__LOCALS_t *local
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     locals->body_ctrl_req = true;
     signal(ERR_iteriterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -786,10 +800,12 @@ _restar(CLUREF s, CLUREF *ret_1)
         s.num = T_2_7.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -928,7 +944,8 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
         i.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(110);
     for (;;) {
@@ -975,7 +992,8 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
             j.num = T_4_1.num;
             }
             }
-            end_while_3:;
+            end_while_3:
+            __CLU_END_LABEL;
 
   LINE(116);
         {
@@ -1095,7 +1113,8 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
                 i.num = T_6_1.num;
                 }
                 }
-                end_while_5:;
+                end_while_5:
+                __CLU_END_LABEL;
 
   LINE(133);
             {
@@ -1113,9 +1132,11 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
             i.num = j.num;
             }
             }
-            end_while_4:;
+            end_while_4:
+            __CLU_END_LABEL;
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_found)) {
                 }
                 else {
@@ -1123,9 +1144,11 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
                 }
             end_2:;
         }
-        end_while_2:;
+        end_while_2:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -1253,7 +1276,8 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
         i.num = T_2_1.num;
         }
         }
-        end_while_6:;
+        end_while_6:
+        __CLU_END_LABEL;
 
   LINE(149);
     {
@@ -1270,6 +1294,7 @@ _match_name_spec(CLUREF off, CLUREF buf, CLUREF nm, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

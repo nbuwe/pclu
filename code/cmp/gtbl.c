@@ -192,6 +192,7 @@ g_tbl_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -239,6 +240,7 @@ g_tblOPexist(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -320,7 +322,8 @@ g_tblOPfind_tables(CLUREF e, CLUREF bod, CLUREF d)
                     }
                 }
             }
-            end_inline_for_1:;
+            end_inline_for_1:
+            __CLU_END_LABEL;
             }}/* end if */
         }
         }/* end if */
@@ -356,6 +359,7 @@ g_tblOPfind_tables(CLUREF e, CLUREF bod, CLUREF d)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -424,12 +428,14 @@ g_tblOPfind_tbls_in_signature(CLUREF ap, CLUREF pbl)
                 }
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
         }
         }/* end if */
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -695,7 +701,8 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                             }
                         }
                     }
-                    end_inline_for_2:;
+                    end_inline_for_2:
+                    __CLU_END_LABEL;
 
   LINE(96);
                     {
@@ -758,7 +765,8 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                             }
                         }
                     }
-                    end_inline_for_3:;
+                    end_inline_for_3:
+                    __CLU_END_LABEL;
 
   LINE(106);
                     {
@@ -890,7 +898,8 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
                             }
                         }
                     }
-                    end_inline_for_4:;
+                    end_inline_for_4:
+                    __CLU_END_LABEL;
 
   LINE(127);
                     {
@@ -977,10 +986,12 @@ g_tblOPfind_tbls(CLUREF bod, CLUREF pbl)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1022,10 +1033,12 @@ g_tblOPfind_tbl_decllist(CLUREF dl, CLUREF pbl)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1059,6 +1072,7 @@ g_tblOPfind_tbl_decl(CLUREF d, CLUREF pbl)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1100,10 +1114,12 @@ g_tblOPfind_tbl_typelist(CLUREF tys, CLUREF pbl)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1315,6 +1331,7 @@ g_tblOPfind_tbl_type_(CLUREF type_, CLUREF pbl)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1356,10 +1373,12 @@ g_tblOPfind_tbl_exprlist(CLUREF el, CLUREF pbl)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1401,10 +1420,12 @@ g_tblOPfind_tbl_fieldspeclist(CLUREF fl, CLUREF pbl)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1797,7 +1818,8 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
                         }
                     }
                 }
-                end_inline_for_1:;
+                end_inline_for_1:
+                __CLU_END_LABEL;
 
   LINE(303);
                 {
@@ -2258,6 +2280,7 @@ g_tblOPfind_tbl_exprs(CLUREF exp, CLUREF pbl)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2427,6 +2450,7 @@ g_tblOPfind_tbl_field(CLUREF f, CLUREF pbl)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2857,9 +2881,11 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
                     }
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_cont)) {
 
   LINE(467);
@@ -2883,7 +2909,8 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(470);
     {
@@ -2894,6 +2921,7 @@ g_tblOPtbl_uniq(CLUREF pbl, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3041,10 +3069,12 @@ g_tblOPg_field_tables(CLUREF e, CLUREF pass)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3106,6 +3136,7 @@ g_tblOPg_sel_table(CLUREF e, CLUREF fn, CLUREF fl, CLUREF pass)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3210,10 +3241,12 @@ g_tblOPg_sel_extern(CLUREF e, CLUREF each_fl)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3343,7 +3376,8 @@ g_tblOPbuild_tables(CLUREF e, CLUREF pass)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(553);
     {
@@ -3361,6 +3395,7 @@ g_tblOPbuild_tables(CLUREF e, CLUREF pass)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3657,6 +3692,7 @@ g_tblOPtest_pb(CLUREF p, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3815,7 +3851,8 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
                                 }/* end if */
                         }
                     }
-                    end_inline_for_2:;
+                    end_inline_for_2:
+                    __CLU_END_LABEL;
                     break;
                     }
             case 27:
@@ -3915,7 +3952,8 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(653);
     {
@@ -3926,6 +3964,7 @@ g_tblOPtest_pb_exprs_asst(CLUREF el, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4035,6 +4074,7 @@ g_tblOPtest_pb_exprs_type_asst(CLUREF ty, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4133,6 +4173,7 @@ g_tblOPbase_cluster_test(CLUREF cop, CLUREF ct, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4191,6 +4232,7 @@ g_tblOPbase_apply_test(CLUREF ct, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4336,7 +4378,8 @@ g_tblOPtest_pb_fields_asst(CLUREF fl, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(717);
     {
@@ -4347,6 +4390,7 @@ g_tblOPtest_pb_fields_asst(CLUREF fl, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4459,7 +4503,8 @@ g_tblOPbuild_one_selector_table(CLUREF e, CLUREF each_fn, CLUREF each_fl)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(742);
     {
@@ -4519,6 +4564,7 @@ g_tblOPbuild_one_selector_table(CLUREF e, CLUREF each_fn, CLUREF each_fl)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4893,7 +4939,8 @@ g_tblOPprune()
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(796);
     {
@@ -4902,6 +4949,7 @@ g_tblOPprune()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5076,9 +5124,11 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
                         }/* end if */
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
                 goto end_2;
                 ex_2:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_cont)) {
 
   LINE(816);
@@ -5101,9 +5151,11 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_found)) {
 
   LINE(820);
@@ -5185,7 +5237,8 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_3:;
+    end_inline_for_3:
+    __CLU_END_LABEL;
 
   LINE(831);
     {
@@ -5218,6 +5271,7 @@ make_sel_name(CLUREF fl, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5448,7 +5502,8 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                                 }
                             }
                         }
-                        end_inline_for_2:;
+                        end_inline_for_2:
+                        __CLU_END_LABEL;
 
   LINE(862);
                         {
@@ -5631,7 +5686,8 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
                         }
                     }
                 }
-                end_inline_for_1:;
+                end_inline_for_1:
+                __CLU_END_LABEL;
                 }
                 }/* end if */
             break;
@@ -5842,6 +5898,7 @@ g_own_build_one(CLUREF e, CLUREF each_pb)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5879,6 +5936,7 @@ own_defn_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -5918,6 +5976,7 @@ own_defnOPstart()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5984,7 +6043,8 @@ own_defnOPtest(CLUREF s, CLUREF *ret_1)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(958);
     {
@@ -6007,6 +6067,7 @@ own_defnOPtest(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -6038,6 +6099,7 @@ own_defnOPstop()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -6154,6 +6216,7 @@ base_cluster_test(CLUREF cop, CLUREF ct, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -6210,6 +6273,7 @@ base_apply_test(CLUREF ct, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

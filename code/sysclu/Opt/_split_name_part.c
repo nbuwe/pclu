@@ -82,9 +82,11 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
             j.num = T_4_1.num;
             }
             }
-            end_while_1:;
+            end_while_1:
+            __CLU_END_LABEL;
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bounds)) {
 
   LINE(9);
@@ -200,9 +202,11 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
             j.num = T_4_1.num;
             }
             }
-            end_while_2:;
+            end_while_2:
+            __CLU_END_LABEL;
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bounds)) {
 
   LINE(20);
@@ -274,6 +278,7 @@ _split_name_part(CLUREF s, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

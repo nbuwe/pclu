@@ -141,6 +141,7 @@ _working_dir(CLUREF s, CLUREF update, CLUREF *ret_1)
             }}/* end if */
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_not_found)) {
 
   LINE(18);
@@ -202,7 +203,7 @@ _working_dir(CLUREF s, CLUREF update, CLUREF *ret_1)
     CLUREF T_2_3;
     err = file_nameOPcreate(s, CLU_empty_string, CLU_empty_string, CLU_empty_string, &T_2_1);
     if (err != ERR_ok) goto ex_2;
-    err = _fixup_file_name(T_2_1, CLU_0, &T_2_2);
+    err = _fixup_file_name(T_2_1, CLU_false, &T_2_2);
     if (err != ERR_ok) goto ex_2;
     err = file_nameOPunparse(T_2_2, &T_2_3);
     if (err != ERR_ok) goto ex_2;
@@ -210,6 +211,7 @@ _working_dir(CLUREF s, CLUREF update, CLUREF *ret_1)
     }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_bad_format) {signal(ERR_bad_format);}
         else {
             goto ex_0;}
@@ -224,6 +226,7 @@ _working_dir(CLUREF s, CLUREF update, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

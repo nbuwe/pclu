@@ -77,6 +77,7 @@ istream_own_init_proc(void)
         istream_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -150,6 +151,7 @@ istreamOPopen(CLUREF f, CLUREF access, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -217,6 +219,7 @@ istreamOPopen(CLUREF f, CLUREF access, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -254,6 +257,7 @@ istreamOPcan_read(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -291,6 +295,7 @@ istreamOPcan_write(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -381,12 +386,14 @@ istreamOPempty(CLUREF ist, CLUREF *ret_1)
     }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_1;}
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
 
   LINE(68);
@@ -403,6 +410,7 @@ istreamOPempty(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -483,6 +491,7 @@ istreamOPreset(CLUREF ist)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -490,6 +499,7 @@ istreamOPreset(CLUREF ist)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -535,7 +545,7 @@ istreamOPflush(CLUREF ist)
             T_3_3.num = wb.vec->data[1];
             err = intOPmul(CLU_8, T_3_3, &T_3_4);
             if (err != ERR_ok) goto ex_1;
-            err = _chanOPputw(T_3_1, T_3_2, CLU_1, T_3_4, CLU_0);
+            err = _chanOPputw(T_3_1, T_3_2, CLU_1, T_3_4, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
 
@@ -551,6 +561,7 @@ istreamOPflush(CLUREF ist)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -558,6 +569,7 @@ istreamOPflush(CLUREF ist)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -639,6 +651,7 @@ istreamOPget_date(CLUREF ist, CLUREF *ret_1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -646,6 +659,7 @@ istreamOPget_date(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -681,6 +695,7 @@ istreamOPset_date(CLUREF ist, CLUREF new_date)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -715,6 +730,7 @@ istreamOPget_name(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -776,7 +792,7 @@ istreamOPclose(CLUREF ist)
             T_3_3.num = wb.vec->data[1];
             err = intOPmul(CLU_8, T_3_3, &T_3_4);
             if (err != ERR_ok) goto ex_1;
-            err = _chanOPputw(T_3_1, T_3_2, CLU_1, T_3_4, CLU_0);
+            err = _chanOPputw(T_3_1, T_3_2, CLU_1, T_3_4, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
 
@@ -800,6 +816,7 @@ istreamOPclose(CLUREF ist)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -814,6 +831,7 @@ istreamOPclose(CLUREF ist)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -878,6 +896,7 @@ istreamOPabort(CLUREF ist)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -894,6 +913,7 @@ istreamOPabort(CLUREF ist)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -930,6 +950,7 @@ istreamOPis_closed(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -965,6 +986,7 @@ istreamOPequal(CLUREF ist1, CLUREF ist2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1000,6 +1022,7 @@ istreamOPsimilar(CLUREF ist1, CLUREF ist2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1033,6 +1056,7 @@ istreamOPcopy(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1110,6 +1134,7 @@ istreamOPget_chan(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1229,6 +1254,7 @@ istreamOPgeti(CLUREF ist, CLUREF *ret_1)
     }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -1236,6 +1262,7 @@ istreamOPgeti(CLUREF ist, CLUREF *ret_1)
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_overflow)) {
 
   LINE(178);
@@ -1250,6 +1277,7 @@ istreamOPgeti(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1307,7 +1335,7 @@ istreamOPputi(CLUREF ist, CLUREF i)
                 T_4_1.num = wb.vec->data[0];
                 T_4_2.num = wb.vec->data[2];
                 T_4_3.num = 2048;
-                err = _chanOPputw(T_4_1, T_4_2, CLU_1, T_4_3, CLU_0);
+                err = _chanOPputw(T_4_1, T_4_2, CLU_1, T_4_3, CLU_false);
                 if (err != ERR_ok) goto ex_1;
                 }
 
@@ -1353,6 +1381,7 @@ istreamOPputi(CLUREF ist, CLUREF i)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -1360,6 +1389,7 @@ istreamOPputi(CLUREF ist, CLUREF i)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1638,7 +1668,8 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
                 rb.vec->data[1] = T_5_4.num;
                 }
                 }
-                end_while_1:;
+                end_while_1:
+                __CLU_END_LABEL;
 
   LINE(223);
             {
@@ -1659,6 +1690,7 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
     }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -1666,6 +1698,7 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_overflow)
              || (err == ERR_toobig)) {
 
@@ -1681,6 +1714,7 @@ istreamOPgetbv(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1751,7 +1785,7 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
                 T_4_1.num = wb.vec->data[0];
                 T_4_2.num = wb.vec->data[2];
                 T_4_3.num = 2048;
-                err = _chanOPputw(T_4_1, T_4_2, CLU_1, T_4_3, CLU_0);
+                err = _chanOPputw(T_4_1, T_4_2, CLU_1, T_4_3, CLU_false);
                 if (err != ERR_ok) goto ex_1;
                 }
 
@@ -1815,7 +1849,7 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
                     T_5_1.num = wb.vec->data[0];
                     T_5_2.num = wb.vec->data[2];
                     T_5_3.num = 2048;
-                    err = _chanOPputw(T_5_1, T_5_2, CLU_1, T_5_3, CLU_0);
+                    err = _chanOPputw(T_5_1, T_5_2, CLU_1, T_5_3, CLU_false);
                     if (err != ERR_ok) goto ex_1;
                     }
 
@@ -1922,7 +1956,8 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
                 wb.vec->data[1] = T_4_4.num;
                 }
                 }
-                end_while_1:;
+                end_while_1:
+                __CLU_END_LABEL;
             break;
             }
     default: {
@@ -1936,6 +1971,7 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -1943,6 +1979,7 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

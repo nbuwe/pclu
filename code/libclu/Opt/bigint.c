@@ -81,6 +81,7 @@ bigint_own_init_proc(void)
         bigint_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -218,6 +219,7 @@ bigintOPi2bi(CLUREF i, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -315,6 +317,7 @@ bigintOPbi2i(CLUREF a, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if (err == ERR_overflow) {signal(ERR_overflow);}
             else {
                 goto ex_0;}
@@ -331,6 +334,7 @@ bigintOPbi2i(CLUREF a, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -406,6 +410,7 @@ bigintOPparse(CLUREF a, CLUREF *ret_1)
         }}/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
 
   LINE(56);
@@ -523,7 +528,8 @@ bigintOPparse(CLUREF a, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(66);
     {
@@ -546,6 +552,7 @@ bigintOPparse(CLUREF a, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -696,7 +703,8 @@ bigintOPunparse(CLUREF r, CLUREF *ret_1)
         cbptr.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(91);
     {
@@ -751,6 +759,7 @@ bigintOPunparse(CLUREF r, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -867,7 +876,8 @@ bigintOPone_digit_divide(CLUREF rnb, CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(110);
     {
@@ -881,6 +891,7 @@ bigintOPone_digit_divide(CLUREF rnb, CLUREF d, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -909,7 +920,7 @@ bigintOPadd(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    err = bigintOPaddsub(a, b, CLU_0, &T_1_1);
+    err = bigintOPaddsub(a, b, CLU_false, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_1.num;
     }
@@ -917,6 +928,7 @@ bigintOPadd(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -945,7 +957,7 @@ bigintOPsub(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    err = bigintOPaddsub(a, b, CLU_1, &T_1_1);
+    err = bigintOPaddsub(a, b, CLU_true, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_1.num;
     }
@@ -953,6 +965,7 @@ bigintOPsub(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -986,7 +999,7 @@ bigintOPminus(CLUREF a, CLUREF *ret_1)
     if (err != ERR_ok) goto ex_0;
     err = arrayOPaddh(T_1_1, CLU_0);
     if (err != ERR_ok) goto ex_0;
-    err = bigintOPaddsub(T_1_1, a, CLU_1, &T_1_2);
+    err = bigintOPaddsub(T_1_1, a, CLU_true, &T_1_2);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_2.num;
     }
@@ -994,6 +1007,7 @@ bigintOPminus(CLUREF a, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1161,7 +1175,8 @@ bigintOPaddsub(CLUREF a, CLUREF b, CLUREF neg, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(147);
     {
@@ -1269,6 +1284,7 @@ bigintOPaddsub(CLUREF a, CLUREF b, CLUREF neg, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1309,6 +1325,7 @@ bigintOPmax_size(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1346,6 +1363,7 @@ bigintOPfetch_digit(CLUREF n, CLUREF i, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
 
   LINE(172);
@@ -1383,6 +1401,7 @@ bigintOPfetch_digit(CLUREF n, CLUREF i, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1411,7 +1430,7 @@ bigintOPgt(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    err = bigintOPgtge(a, b, CLU_0, &T_1_1);
+    err = bigintOPgtge(a, b, CLU_false, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_1.num;
     }
@@ -1419,6 +1438,7 @@ bigintOPgt(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1447,7 +1467,7 @@ bigintOPge(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    err = bigintOPgtge(a, b, CLU_1, &T_1_1);
+    err = bigintOPgtge(a, b, CLU_true, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_1.num;
     }
@@ -1455,6 +1475,7 @@ bigintOPge(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1483,7 +1504,7 @@ bigintOPlt(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    err = bigintOPgtge(b, a, CLU_0, &T_1_1);
+    err = bigintOPgtge(b, a, CLU_false, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_1.num;
     }
@@ -1491,6 +1512,7 @@ bigintOPlt(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1519,7 +1541,7 @@ bigintOPle(CLUREF a, CLUREF b, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    err = bigintOPgtge(b, a, CLU_1, &T_1_1);
+    err = bigintOPgtge(b, a, CLU_true, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_1.num;
     }
@@ -1527,6 +1549,7 @@ bigintOPle(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1605,7 +1628,8 @@ bigintOPequal(CLUREF a, CLUREF b, CLUREF *ret_1)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(202);
     {
@@ -1616,6 +1640,7 @@ bigintOPequal(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1662,6 +1687,7 @@ bigintOPmax(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1708,6 +1734,7 @@ bigintOPmin(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1761,6 +1788,7 @@ bigintOPabs(CLUREF a, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1900,7 +1928,8 @@ bigintOPgtge(CLUREF a, CLUREF b, CLUREF eq, CLUREF *ret_1)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(236);
     {
@@ -1911,6 +1940,7 @@ bigintOPgtge(CLUREF a, CLUREF b, CLUREF eq, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1947,6 +1977,7 @@ bigintOPsimilar(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1980,6 +2011,7 @@ bigintOPcopy(CLUREF a, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2019,6 +2051,7 @@ bigintOPencode(CLUREF v, CLUREF i)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -2026,6 +2059,7 @@ bigintOPencode(CLUREF v, CLUREF i)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2068,6 +2102,7 @@ bigintOPdecode(CLUREF i, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -2076,6 +2111,7 @@ bigintOPdecode(CLUREF i, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2482,7 +2518,8 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                             add_in.num = T_5_1.num;
                             }
                             }
-                            end_while_1:;
+                            end_while_1:
+                            __CLU_END_LABEL;
 
   LINE(289);
                         {
@@ -2518,10 +2555,12 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
                     }
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(295);
     {
@@ -2592,6 +2631,7 @@ bigintOPmul(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2726,10 +2766,12 @@ bigintOPmul_sub_in(CLUREF c, CLUREF a, CLUREF p)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2816,7 +2858,8 @@ bigintOPclear_leads(CLUREF r)
                 rsz.num = T_5_1.num;
                 }
                 }
-                end_while_1:;
+                end_while_1:
+                __CLU_END_LABEL;
 
   LINE(330);
             {
@@ -2876,6 +2919,7 @@ bigintOPclear_leads(CLUREF r)
             }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bounds)) {
 
   LINE(333);
@@ -2898,6 +2942,7 @@ bigintOPclear_leads(CLUREF r)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3039,10 +3084,12 @@ bigintOPpower(CLUREF a, CLUREF b, CLUREF *ret_1)
                     }
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(360);
     {
@@ -3053,6 +3100,7 @@ bigintOPpower(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3100,6 +3148,7 @@ bigintOPdiv(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_zero_divide) {signal(ERR_zero_divide);}
         else {
             goto ex_0;}
@@ -3158,6 +3207,7 @@ bigintOPdiv(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3205,6 +3255,7 @@ bigintOPmod(CLUREF a, CLUREF b, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_zero_divide) {signal(ERR_zero_divide);}
         else {
             goto ex_0;}
@@ -3261,6 +3312,7 @@ bigintOPmod(CLUREF a, CLUREF b, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3365,6 +3417,7 @@ bigintOPdivmodhack(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_zero_divide) {signal(ERR_zero_divide);}
         else {
             goto ex_0;}
@@ -3440,6 +3493,7 @@ bigintOPdivmodhack(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3635,7 +3689,8 @@ bigintOPdivmod(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(429);
     {
@@ -3649,6 +3704,7 @@ bigintOPdivmod(CLUREF a, CLUREF b, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3882,7 +3938,8 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
         divsofar.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(454);
     {
@@ -3893,6 +3950,7 @@ bigintOPdiv_one(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4035,7 +4093,8 @@ bigintOPdiv_lt(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(467);
     {
@@ -4046,6 +4105,7 @@ bigintOPdiv_lt(CLUREF iden, CLUREF isor, CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4195,7 +4255,8 @@ bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(484);
     {
@@ -4228,6 +4289,7 @@ bigintOPdiv_sub(CLUREF iden, CLUREF isor, CLUREF e, CLUREF x)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4317,7 +4379,8 @@ bigintOPnew_base(CLUREF a, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(497);
     {
@@ -4378,6 +4441,7 @@ bigintOPnew_base(CLUREF a, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4476,6 +4540,7 @@ bigintOPold_base(CLUREF a, CLUREF *ret_1)
                 }
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_bounds)) {
 
   LINE(518);
@@ -4589,7 +4654,8 @@ bigintOPold_base(CLUREF a, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(533);
     {
@@ -4606,6 +4672,7 @@ bigintOPold_base(CLUREF a, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

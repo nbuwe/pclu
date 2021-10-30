@@ -34,6 +34,7 @@ tan(CLUREF x, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_overflow) {signal(ERR_overflow);}
         else if (err == ERR_underflow) {signal(ERR_underflow);}
         else {
@@ -41,6 +42,7 @@ tan(CLUREF x, CLUREF *ret_1)
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_zero_divide)) {
 
   LINE(8);
@@ -54,6 +56,7 @@ tan(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

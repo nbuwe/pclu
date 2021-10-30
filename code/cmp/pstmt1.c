@@ -176,14 +176,14 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     CLUREF T_4_3;
                     err = proctypeOPnew(CLU_0, &T_4_1);
                     if (err!= ERR_ok) goto ex_1;
-                    T_4_1.proc->type_owns = 0;
-                    T_4_1.proc->op_owns = 0;
+                    T_4_1.proc->type_owns = NULL;
+                    T_4_1.proc->op_owns = NULL;
                     T_4_1.proc->proc = p_expr;
-                    generic_CLU_proc.type_owns = 0;
+                    generic_CLU_proc.type_owns = NULL;
                     generic_CLU_proc.op_owns = p_plist_of_expr_ops->op_owns;
                     generic_CLU_proc.proc = p_plist;
                     CUR_PROC_VAR.proc = &generic_CLU_proc;
-                    err = p_plist(e, T_4_1, opt, CLU_0, STR_expression, &T_4_2);
+                    err = p_plist(e, T_4_1, opt, CLU_false, STR_expression, &T_4_2);
                     if (err != ERR_ok) goto ex_1;
                     CellAlloc(15, T_4_2.num, T_4_3);
                     abs.num = T_4_3.num;
@@ -219,14 +219,14 @@ p_stmt(CLUREF e, CLUREF *ret_1)
                     CLUREF T_4_3;
                     err = proctypeOPnew(CLU_0, &T_4_1);
                     if (err!= ERR_ok) goto ex_1;
-                    T_4_1.proc->type_owns = 0;
-                    T_4_1.proc->op_owns = 0;
+                    T_4_1.proc->type_owns = NULL;
+                    T_4_1.proc->op_owns = NULL;
                     T_4_1.proc->proc = p_expr;
-                    generic_CLU_proc.type_owns = 0;
+                    generic_CLU_proc.type_owns = NULL;
                     generic_CLU_proc.op_owns = p_plist_of_expr_ops->op_owns;
                     generic_CLU_proc.proc = p_plist;
                     CUR_PROC_VAR.proc = &generic_CLU_proc;
-                    err = p_plist(e, T_4_1, opt, CLU_0, STR_expression, &T_4_2);
+                    err = p_plist(e, T_4_1, opt, CLU_false, STR_expression, &T_4_2);
                     if (err != ERR_ok) goto ex_1;
                     CellAlloc(20, T_4_2.num, T_4_3);
                     abs.num = T_4_3.num;
@@ -522,6 +522,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bad)) {
 
   LINE(77);
@@ -551,6 +552,7 @@ p_stmt(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -745,10 +747,12 @@ p_if(CLUREF e, CLUREF *ret_1)
         }
         {signal (ERR_ok);}}
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -907,6 +911,7 @@ p_for(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -989,6 +994,7 @@ p_do(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1054,10 +1060,10 @@ p_idns_or_decls(CLUREF e, CLUREF *ret_1)
         CLUREF T_1_2;
         err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
-        T_1_1.proc->type_owns = 0;
-        T_1_1.proc->op_owns = 0;
+        T_1_1.proc->type_owns = NULL;
+        T_1_1.proc->op_owns = NULL;
         T_1_1.proc->proc = p_idn;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = p_clist_of_idn_ops->op_owns;
         generic_CLU_proc.proc = p_clist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1114,10 +1120,10 @@ p_idns_or_decls(CLUREF e, CLUREF *ret_1)
                     CLUREF T_3_2;
                     err = proctypeOPnew(CLU_0, &T_3_1);
                     if (err!= ERR_ok) goto ex_0;
-                    T_3_1.proc->type_owns = 0;
-                    T_3_1.proc->op_owns = 0;
+                    T_3_1.proc->type_owns = NULL;
+                    T_3_1.proc->op_owns = NULL;
                     T_3_1.proc->proc = p_decl;
-                    generic_CLU_proc.type_owns = 0;
+                    generic_CLU_proc.type_owns = NULL;
                     generic_CLU_proc.op_owns = p_clist_of_record_idns_type__ops->op_owns;
                     generic_CLU_proc.proc = p_clist;
                     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1178,6 +1184,7 @@ p_idns_or_decls(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1237,6 +1244,7 @@ p_idn(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1255,9 +1263,8 @@ p_idn(CLUREF e, CLUREF *ret_1)
 errcode
 p_idn1(CLUREF e, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     errcode err;
-    bool body_ctrl_req;
     enter_proc(183);
 
   LINE(184);
@@ -1276,6 +1283,7 @@ p_idn1(CLUREF e, errcode (*proc)(), void *user_locals, errcode *iecode)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_none)) {
             }
             else {
@@ -1285,6 +1293,7 @@ p_idn1(CLUREF e, errcode (*proc)(), void *user_locals, errcode *iecode)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1324,10 +1333,10 @@ p_decl(CLUREF e, CLUREF *ret_1)
         CLUREF T_1_2;
         err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
-        T_1_1.proc->type_owns = 0;
-        T_1_1.proc->op_owns = 0;
+        T_1_1.proc->type_owns = NULL;
+        T_1_1.proc->op_owns = NULL;
         T_1_1.proc->proc = p_idn;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = p_clist_of_idn_ops->op_owns;
         generic_CLU_proc.proc = p_clist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1394,6 +1403,7 @@ p_decl(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1525,14 +1535,14 @@ p_tagcase(CLUREF e, CLUREF *ret_1)
         CLUREF T_1_2;
         err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
-        T_1_1.proc->type_owns = 0;
-        T_1_1.proc->op_owns = 0;
+        T_1_1.proc->type_owns = NULL;
+        T_1_1.proc->op_owns = NULL;
         T_1_1.proc->proc = p_tagarm;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = p_list_of_record_body_line_tags_var_ops->op_owns;
         generic_CLU_proc.proc = p_list;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
-        err = p_list(e, T_1_1, CLU_0, STR_TAG_040arm, &T_1_2);
+        err = p_list(e, T_1_1, CLU_false, STR_TAG_040arm, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         arms.num = T_1_2.num;
         }
@@ -1606,6 +1616,7 @@ p_tagcase(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1686,10 +1697,10 @@ p_tagarm(CLUREF e, CLUREF *ret_1)
         CLUREF T_1_2;
         err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
-        T_1_1.proc->type_owns = 0;
-        T_1_1.proc->op_owns = 0;
+        T_1_1.proc->type_owns = NULL;
+        T_1_1.proc->op_owns = NULL;
         T_1_1.proc->proc = p_name;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = p_clist_of_string_ops->op_owns;
         generic_CLU_proc.proc = p_clist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1732,6 +1743,7 @@ p_tagarm(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

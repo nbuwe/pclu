@@ -847,6 +847,7 @@ p_env_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -968,6 +969,7 @@ p_envOPcreate(CLUREF comp, CLUREF inst, CLUREF errst, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1005,7 +1007,7 @@ p_envOPnew_env(CLUREF e, CLUREF inst, CLUREF *ret_1)
   LINE(200);
     {
         {CLUREF T_1_1;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.proc = recordOPcopy1;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = recordOPcopy1(e, &T_1_1);
@@ -1094,6 +1096,7 @@ p_envOPnew_env(CLUREF e, CLUREF inst, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1132,7 +1135,7 @@ p_envOPpush(CLUREF e, CLUREF inst, CLUREF *ret_1)
   LINE(216);
     {
         {CLUREF T_1_1;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.proc = recordOPcopy1;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
         err = recordOPcopy1(e, &T_1_1);
@@ -1204,6 +1207,7 @@ p_envOPpush(CLUREF e, CLUREF inst, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1237,6 +1241,7 @@ p_envOPpop(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1403,6 +1408,7 @@ p_envOPreset(CLUREF e, CLUREF comp, CLUREF inst, CLUREF errst)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1456,6 +1462,7 @@ p_envOPhack(CLUREF e)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1502,6 +1509,7 @@ p_envOPunhack(CLUREF e)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1536,6 +1544,7 @@ p_envOPis_hacked(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1570,6 +1579,7 @@ p_envOPadd_token(CLUREF e, CLUREF n, CLUREF k)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1604,6 +1614,7 @@ p_envOPget_peek1(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1679,7 +1690,8 @@ p_envOPpeek(CLUREF e, CLUREF num, CLUREF *ret_1)
         if (err != ERR_ok) goto ex_0;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(295);
     {
@@ -1703,6 +1715,7 @@ p_envOPpeek(CLUREF e, CLUREF num, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1832,6 +1845,7 @@ p_envOPnext_token(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1867,6 +1881,7 @@ p_envOPget_line(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1902,6 +1917,7 @@ p_envOPget_peekline(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1942,6 +1958,7 @@ p_envOPbegin_body(CLUREF e, CLUREF kind)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1976,6 +1993,7 @@ p_envOPend_body(CLUREF e)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2030,7 +2048,8 @@ p_envOPin_body(CLUREF e, CLUREF kind, CLUREF *ret_1)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(334);
     {
@@ -2041,6 +2060,7 @@ p_envOPin_body(CLUREF e, CLUREF kind, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2076,6 +2096,7 @@ p_envOPget_unknown_type(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2116,6 +2137,7 @@ p_envOPget_bad_expr(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2201,6 +2223,7 @@ p_envOPassume(CLUREF e, CLUREF what)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -2216,6 +2239,7 @@ p_envOPassume(CLUREF e, CLUREF what)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2250,6 +2274,7 @@ p_envOPget_err(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2291,6 +2316,7 @@ p_envOPset_err(CLUREF e, CLUREF deg)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2321,6 +2347,7 @@ p_envOPreset_err(CLUREF e)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2393,6 +2420,7 @@ p_envOPerr(CLUREF e, CLUREF why, CLUREF deg)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -2408,6 +2436,7 @@ p_envOPerr(CLUREF e, CLUREF why, CLUREF deg)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2498,7 +2527,8 @@ p_envOPline(CLUREF e, CLUREF deg)
                 }
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
 
   LINE(391);
         {
@@ -2601,7 +2631,8 @@ p_envOPline(CLUREF e, CLUREF deg)
                 }
             }
         }
-        end_inline_for_2:;
+        end_inline_for_2:
+        __CLU_END_LABEL;
 
   LINE(404);
         {
@@ -2613,6 +2644,7 @@ p_envOPline(CLUREF e, CLUREF deg)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -2635,6 +2667,7 @@ p_envOPline(CLUREF e, CLUREF deg)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2678,6 +2711,7 @@ p_envOPset_deftype(CLUREF e, CLUREF which, CLUREF specvals)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2712,6 +2746,7 @@ p_envOPin_proc(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2747,6 +2782,7 @@ p_envOPspecd_vals(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2782,6 +2818,7 @@ p_envOPget_clustr(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2817,6 +2854,7 @@ p_envOPget_applystr(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2853,6 +2891,7 @@ p_envOPset_clustr(CLUREF e, CLUREF s)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2883,6 +2922,7 @@ p_envOPset_applystr(CLUREF e, CLUREF s)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2988,6 +3028,7 @@ p_envOPscanline(CLUREF e)
             }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_end_of_file)) {
 
   LINE(452);
@@ -3154,6 +3195,7 @@ p_envOPscanline(CLUREF e)
                             }
                             goto end_3;
                             ex_3:
+                                __CLU_EX_HANDLER;
                                 if ((err == ERR_end_of_file)) {
                                 }
                                 else {
@@ -3274,7 +3316,8 @@ p_envOPscanline(CLUREF e)
                             }
                         }
                     }
-                    end_inline_for_1:;
+                    end_inline_for_1:
+                    __CLU_END_LABEL;
 
   LINE(493);
                     {
@@ -3320,6 +3363,7 @@ p_envOPscanline(CLUREF e)
         }
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bounds)) {
 
   LINE(501);
@@ -3336,10 +3380,12 @@ p_envOPscanline(CLUREF e)
                 }
             end_2:;
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3451,9 +3497,11 @@ p_envOPidn_or_key(CLUREF e, CLUREF cc)
         }
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)
              || (err == ERR_end_of_file)) {
             }
@@ -3486,6 +3534,7 @@ p_envOPidn_or_key(CLUREF e, CLUREF cc)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3677,9 +3726,11 @@ p_envOPnumber(CLUREF e, CLUREF cc)
         }
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)
              || (err == ERR_end_of_file)) {
             }
@@ -3729,6 +3780,7 @@ p_envOPnumber(CLUREF e, CLUREF cc)
         }}/* end if */
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_overflow)) {
 
   LINE(568);
@@ -3786,6 +3838,7 @@ p_envOPnumber(CLUREF e, CLUREF cc)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3965,9 +4018,11 @@ p_envOPreallit(CLUREF e, CLUREF a)
         }
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)
              || (err == ERR_end_of_file)) {
             }
@@ -3995,6 +4050,7 @@ p_envOPreallit(CLUREF e, CLUREF a)
         }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bad_format)) {
 
   LINE(600);
@@ -4065,6 +4121,7 @@ p_envOPreallit(CLUREF e, CLUREF a)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4258,6 +4315,7 @@ p_envOPstrlit(CLUREF e)
         }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bounds)) {
 
   LINE(638);
@@ -4309,7 +4367,8 @@ p_envOPstrlit(CLUREF e)
                 }
             end_1:;
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(647);
     {
@@ -4334,6 +4393,7 @@ p_envOPstrlit(CLUREF e)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4482,6 +4542,7 @@ p_envOPcharlit(CLUREF e)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
 
   LINE(674);
@@ -4561,6 +4622,7 @@ p_envOPcharlit(CLUREF e)
         }/* end if */
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
             }
             else {
@@ -4582,6 +4644,7 @@ p_envOPcharlit(CLUREF e)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4640,6 +4703,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
 
   LINE(694);
@@ -4899,7 +4963,8 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
                     }
                 }
             }
-            end_inline_for_1:;
+            end_inline_for_1:
+            __CLU_END_LABEL;
 
   LINE(728);
             {
@@ -5095,6 +5160,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
     }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bad_format)
              || (err == ERR_illegal_char)
              || (err == ERR_bounds)
@@ -5125,6 +5191,7 @@ p_envOPescape(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5173,6 +5240,7 @@ p_envOPmcharop(CLUREF e, CLUREF t, CLUREF c)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
 
   LINE(761);
@@ -5560,6 +5628,7 @@ p_envOPmcharop(CLUREF e, CLUREF t, CLUREF c)
     }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
             }
             else {
@@ -5583,6 +5652,7 @@ p_envOPmcharop(CLUREF e, CLUREF t, CLUREF c)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5704,6 +5774,7 @@ p_envOPcomment(CLUREF e)
                     }}/* end if */
                     goto end_2;
                     ex_2:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_end_of_file)) {
 
   LINE(852);
@@ -5737,6 +5808,7 @@ p_envOPcomment(CLUREF e)
         }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bounds)) {
 
   LINE(859);
@@ -5762,10 +5834,12 @@ p_envOPcomment(CLUREF e)
                 }
             end_1:;
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5869,6 +5943,7 @@ p_envOPbad(CLUREF e, CLUREF text, CLUREF why)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -5891,6 +5966,7 @@ p_envOPbad(CLUREF e, CLUREF text, CLUREF why)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -6143,6 +6219,7 @@ cprint_form(CLUREF c, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

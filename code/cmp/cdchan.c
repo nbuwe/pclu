@@ -89,6 +89,7 @@ code_chan_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -156,6 +157,7 @@ code_chanOPopen(CLUREF fn, CLUREF *ret_1, CLUREF *ret_2)
         }}/* end if */
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -212,6 +214,7 @@ code_chanOPopen(CLUREF fn, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -314,13 +317,13 @@ code_chanOPwrite(CLUREF cc, CLUREF base, CLUREF code, CLUREF eblock, CLUREF *ret
             T_4_1.num = cc.vec->data[0];
             T_4_2.num = cc.vec->data[5];
             T_4_3.num = 8192;
-            err = _chanOPputw(T_4_1, T_4_2, CLU_1, T_4_3, CLU_0);
+            err = _chanOPputw(T_4_1, T_4_2, CLU_1, T_4_3, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_not_possible)) {
-                    CLUREF why;
                     why.num = elist[0].num;
 
   LINE(56);
@@ -391,6 +394,7 @@ code_chanOPwrite(CLUREF cc, CLUREF base, CLUREF code, CLUREF eblock, CLUREF *ret
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -516,13 +520,13 @@ code_chanOPboutput(CLUREF cc, CLUREF block)
                 CLUREF T_5_2;
                 T_5_1.num = cc.vec->data[0];
                 T_5_2.num = 8192;
-                err = _chanOPputw(T_5_1, p, CLU_1, T_5_2, CLU_0);
+                err = _chanOPputw(T_5_1, p, CLU_1, T_5_2, CLU_false);
                 if (err != ERR_ok) goto ex_1;
                 }
                     goto end_1;
                     ex_1:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_not_possible)) {
-                        CLUREF why;
                         why.num = elist[0].num;
 
   LINE(81);
@@ -613,7 +617,8 @@ code_chanOPboutput(CLUREF cc, CLUREF block)
         i.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(95);
     {
@@ -649,7 +654,8 @@ code_chanOPboutput(CLUREF cc, CLUREF block)
         if (err != ERR_ok) goto ex_0;
         }
         }
-        end_while_2:;
+        end_while_2:
+        __CLU_END_LABEL;
 
   LINE(100);
     {
@@ -661,6 +667,7 @@ code_chanOPboutput(CLUREF cc, CLUREF block)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -771,13 +778,13 @@ code_chanOPoutput(CLUREF cc, CLUREF block)
                     CLUREF T_5_2;
                     T_5_1.num = cc.vec->data[0];
                     T_5_2.num = 8192;
-                    err = _chanOPputw(T_5_1, p, CLU_1, T_5_2, CLU_0);
+                    err = _chanOPputw(T_5_1, p, CLU_1, T_5_2, CLU_false);
                     if (err != ERR_ok) goto ex_1;
                     }
                         goto end_1;
                         ex_1:
+                            __CLU_EX_HANDLER;
                             if ((err == ERR_not_possible)) {
-                            CLUREF why;
                             why.num = elist[0].num;
 
   LINE(115);
@@ -838,7 +845,8 @@ code_chanOPoutput(CLUREF cc, CLUREF block)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(124);
     {
@@ -870,13 +878,13 @@ code_chanOPoutput(CLUREF cc, CLUREF block)
                 CLUREF T_5_2;
                 T_5_1.num = cc.vec->data[0];
                 T_5_2.num = 8192;
-                err = _chanOPputw(T_5_1, p, CLU_1, T_5_2, CLU_0);
+                err = _chanOPputw(T_5_1, p, CLU_1, T_5_2, CLU_false);
                 if (err != ERR_ok) goto ex_2;
                 }
                     goto end_2;
                     ex_2:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_not_possible)) {
-                        CLUREF why;
                         why.num = elist[0].num;
 
   LINE(129);
@@ -932,6 +940,7 @@ code_chanOPoutput(CLUREF cc, CLUREF block)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -983,13 +992,13 @@ code_chanOPget_chan(CLUREF cc, CLUREF *ret_1)
             T_4_3.num = cc.vec->data[4];
             err = intOPmul(CLU_4, T_4_3, &T_4_4);
             if (err != ERR_ok) goto ex_1;
-            err = _chanOPputw(T_4_1, T_4_2, CLU_1, T_4_4, CLU_0);
+            err = _chanOPputw(T_4_1, T_4_2, CLU_1, T_4_4, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_not_possible)) {
-                    CLUREF why;
                     why.num = elist[0].num;
 
   LINE(146);
@@ -1027,6 +1036,7 @@ code_chanOPget_chan(CLUREF cc, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1062,6 +1072,7 @@ code_chanOPsize(CLUREF cc, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1131,13 +1142,13 @@ code_chanOPclose(CLUREF cc)
         T_3_3.num = cc.vec->data[4];
         err = intOPmul(CLU_4, T_3_3, &T_3_4);
         if (err != ERR_ok) goto ex_1;
-        err = _chanOPputw(T_3_1, T_3_2, CLU_1, T_3_4, CLU_0);
+        err = _chanOPputw(T_3_1, T_3_2, CLU_1, T_3_4, CLU_false);
         if (err != ERR_ok) goto ex_1;
         }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_not_possible)) {
-                CLUREF why;
                 why.num = elist[0].num;
 
   LINE(165);
@@ -1183,8 +1194,8 @@ code_chanOPclose(CLUREF cc)
         }}/* end if */
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
-            CLUREF why;
             why.num = elist[0].num;
 
   LINE(173);
@@ -1265,6 +1276,7 @@ code_chanOPclose(CLUREF cc)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

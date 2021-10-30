@@ -108,10 +108,10 @@ p_where(CLUREF e, CLUREF *ret_1)
             CLUREF T_2_2;
             err = proctypeOPnew(CLU_0, &T_2_1);
             if (err!= ERR_ok) goto ex_0;
-            T_2_1.proc->type_owns = 0;
-            T_2_1.proc->op_owns = 0;
+            T_2_1.proc->type_owns = NULL;
+            T_2_1.proc->op_owns = NULL;
             T_2_1.proc->proc = p_restrict;
-            generic_CLU_proc.type_owns = 0;
+            generic_CLU_proc.type_owns = NULL;
             generic_CLU_proc.op_owns = p_clist_of_record_idn_kind_line_ops->op_owns;
             generic_CLU_proc.proc = p_clist;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -139,6 +139,7 @@ p_where(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -190,6 +191,7 @@ p_restrict(CLUREF e, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_none) {signal(ERR_none);}
         else {
             goto ex_0;}
@@ -267,6 +269,7 @@ p_restrict(CLUREF e, CLUREF *ret_1)
                     }
                     goto end_2;
                     ex_2:
+                        __CLU_EX_HANDLER;
                         if (err == ERR_bad) {signal(ERR_bad);}
                         else {
                             goto ex_0;}
@@ -339,6 +342,7 @@ p_restrict(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -408,6 +412,7 @@ p_typeset(CLUREF e, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_none)) {
 
   LINE(56);
@@ -476,6 +481,7 @@ p_typeset(CLUREF e, CLUREF *ret_1)
                 }
                     goto end_2;
                     ex_2:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_none)) {
 
   LINE(65);
@@ -583,10 +589,10 @@ p_typeset(CLUREF e, CLUREF *ret_1)
         CLUREF T_1_2;
         err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
-        T_1_1.proc->type_owns = 0;
-        T_1_1.proc->op_owns = 0;
+        T_1_1.proc->type_owns = NULL;
+        T_1_1.proc->op_owns = NULL;
         T_1_1.proc->proc = p_equate;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = p_slist_of_equate_ops->op_owns;
         generic_CLU_proc.proc = p_slist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -644,6 +650,7 @@ p_typeset(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -725,10 +732,10 @@ p_operdecllist(CLUREF e, CLUREF *ret_1)
             CLUREF T_2_2;
             err = proctypeOPnew(CLU_0, &T_2_1);
             if (err!= ERR_ok) goto ex_0;
-            T_2_1.proc->type_owns = 0;
-            T_2_1.proc->op_owns = 0;
+            T_2_1.proc->type_owns = NULL;
+            T_2_1.proc->op_owns = NULL;
             T_2_1.proc->proc = p_opname;
-            generic_CLU_proc.type_owns = 0;
+            generic_CLU_proc.type_owns = NULL;
             generic_CLU_proc.op_owns = p_clist_of_record_name_parms_type__ops->op_owns;
             generic_CLU_proc.proc = p_clist;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -798,7 +805,8 @@ p_operdecllist(CLUREF e, CLUREF *ret_1)
                 }
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
 
   LINE(112);
         {
@@ -864,10 +872,12 @@ p_operdecllist(CLUREF e, CLUREF *ret_1)
         }
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -915,6 +925,7 @@ p_opname(CLUREF e, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_none) {signal(ERR_none);}
         else {
             goto ex_0;}
@@ -926,14 +937,14 @@ p_opname(CLUREF e, CLUREF *ret_1)
         CLUREF T_1_2;
         err = proctypeOPnew(CLU_0, &T_1_1);
         if (err!= ERR_ok) goto ex_0;
-        T_1_1.proc->type_owns = 0;
-        T_1_1.proc->op_owns = 0;
+        T_1_1.proc->type_owns = NULL;
+        T_1_1.proc->op_owns = NULL;
         T_1_1.proc->proc = p_expr;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = p_blist_of_expr_ops->op_owns;
         generic_CLU_proc.proc = p_blist;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
-        err = p_blist(e, T_1_1, CLU_1, STR_constant, &T_1_2);
+        err = p_blist(e, T_1_1, CLU_true, STR_constant, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         parms.num = T_1_2.num;
         }
@@ -956,6 +967,7 @@ p_opname(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1020,6 +1032,7 @@ p_pathname(CLUREF e, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_wrong_tag)) {
             }
             else {
@@ -1039,6 +1052,7 @@ p_pathname(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1216,6 +1230,7 @@ p_defn_end(CLUREF e, CLUREF id)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_wrong_tag)) {
 
   LINE(174);
@@ -1247,6 +1262,7 @@ p_defn_end(CLUREF e, CLUREF id)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1337,10 +1353,12 @@ p_semi(CLUREF e)
         }
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1504,9 +1522,11 @@ p_find_a_defn(CLUREF e, CLUREF want_oper, CLUREF *ret_1)
             if (err != ERR_ok) goto ex_0;
             }
             }
-            end_while_2:;
+            end_while_2:
+            __CLU_END_LABEL;
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(230);
     {
@@ -1529,6 +1549,7 @@ p_find_a_defn(CLUREF e, CLUREF want_oper, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

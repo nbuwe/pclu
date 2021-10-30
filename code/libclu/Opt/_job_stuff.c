@@ -116,6 +116,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
                 }
                 goto end_2;
                 ex_2:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_not_found)) {
 
   LINE(14);
@@ -244,9 +245,11 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
                 }
                 }
                 }
-                end_while_1:;
+                end_while_1:
+                __CLU_END_LABEL;
                 goto end_3;
                 ex_3:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_bounds)) {
                     }
                     else {
@@ -314,9 +317,11 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
                     }/* end if */
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
         goto end_4;
         ex_4:
+            __CLU_EX_HANDLER;
             if (err == ERR_not_possible) {signal(ERR_not_possible);}
             else {
                 goto ex_1;}
@@ -330,6 +335,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
         }/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_found)) {
             }
             else {
@@ -442,7 +448,8 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
             i.num = T_4_1.num;
             }
             }
-            end_while_3:;
+            end_while_3:
+            __CLU_END_LABEL;
 
   LINE(54);
         for (;;) {
@@ -477,11 +484,14 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
             i.num = T_4_1.num;
             }
             }
-            end_while_4:;
+            end_while_4:
+            __CLU_END_LABEL;
         }
-        end_while_2:;
+        end_while_2:
+        __CLU_END_LABEL;
         goto end_5;
         ex_5:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -575,11 +585,14 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
             i.num = T_4_1.num;
             }
             }
-            end_while_6:;
+            end_while_6:
+            __CLU_END_LABEL;
         }
-        end_while_5:;
+        end_while_5:
+        __CLU_END_LABEL;
         goto end_6;
         ex_6:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -602,6 +615,7 @@ _job_stuff(CLUREF fn, CLUREF jcl, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

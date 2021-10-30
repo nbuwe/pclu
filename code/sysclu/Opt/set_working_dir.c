@@ -18,11 +18,12 @@ set_working_dir(CLUREF s)
   LINE(4);
     {
     CLUREF T_2_1;
-    err = _working_dir(s, CLU_1, &T_2_1);
+    err = _working_dir(s, CLU_true, &T_2_1);
     if (err != ERR_ok) goto ex_1;
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_bad_format) {signal(ERR_bad_format);}
         else {
             goto ex_0;}
@@ -30,6 +31,7 @@ set_working_dir(CLUREF s)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

@@ -82,8 +82,8 @@ gc_copy(CLUREF x, CLUREF *ret_1)
     T_1_2.num = 500;
     err = proctypeOPnew(CLU_0, &T_1_3);
     if (err!= ERR_ok) goto ex_0;
-    T_1_3.proc->type_owns = 0;
-    T_1_3.proc->op_owns = 0;
+    T_1_3.proc->type_owns = NULL;
+    T_1_3.proc->op_owns = NULL;
     T_1_3.proc->proc = hash_obj;
     err = proctypeOPnew(CLU_0, &T_1_4);
     if (err!= ERR_ok) goto ex_0;
@@ -119,6 +119,7 @@ gc_copy(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -193,8 +194,8 @@ gc_copy_to(CLUREF x, CLUREF leaves, CLUREF *ret_1)
         T_1_1.num = 500;
         err = proctypeOPnew(CLU_0, &T_1_2);
         if (err!= ERR_ok) goto ex_0;
-        T_1_2.proc->type_owns = 0;
-        T_1_2.proc->op_owns = 0;
+        T_1_2.proc->type_owns = NULL;
+        T_1_2.proc->op_owns = NULL;
         T_1_2.proc->proc = hash_obj;
         err = proctypeOPnew(CLU_0, &T_1_3);
         if (err!= ERR_ok) goto ex_0;
@@ -232,7 +233,8 @@ gc_copy_to(CLUREF x, CLUREF leaves, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(29);
     {
@@ -268,6 +270,7 @@ gc_copy_to(CLUREF x, CLUREF leaves, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -380,8 +383,8 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
         T_2_1.num = t.vec->data[1];
         err = proctypeOPnew(CLU_0, &T_2_2);
         if (err!= ERR_ok) goto ex_0;
-        T_2_2.proc->type_owns = 0;
-        T_2_2.proc->op_owns = 0;
+        T_2_2.proc->type_owns = NULL;
+        T_2_2.proc->op_owns = NULL;
         T_2_2.proc->proc = hash_obj;
         generic_CLU_proc.type_owns = table_of__obj__obj_ops->type_owns;
         generic_CLU_proc.proc = tableOPrehash;
@@ -390,7 +393,8 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
         if (err != ERR_ok) goto ex_0;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(43);
     {
@@ -408,6 +412,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
             }
             else {
@@ -479,7 +484,8 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
                 }
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
         }
     else {
     CLUREF T_1_2;
@@ -572,7 +578,8 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
                 }
             }
         }
-        end_inline_for_2:;
+        end_inline_for_2:
+        __CLU_END_LABEL;
         }
     else {
     CLUREF T_1_4;
@@ -663,6 +670,7 @@ _gc_copy(CLUREF t, CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

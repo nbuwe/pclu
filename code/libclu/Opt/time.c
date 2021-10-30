@@ -82,6 +82,7 @@ time_own_init_proc(void)
         time_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -295,6 +296,7 @@ timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis,
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_overflow) {signal(ERR_overflow);}
         else {
             goto ex_0;}
@@ -302,6 +304,7 @@ timeOPcreate(CLUREF days, CLUREF hours, CLUREF mins, CLUREF secs, CLUREF millis,
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -337,6 +340,7 @@ timeOPget_days(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -372,6 +376,7 @@ timeOPget_hours(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -407,6 +412,7 @@ timeOPget_minutes(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -442,6 +448,7 @@ timeOPget_seconds(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -477,6 +484,7 @@ timeOPget_millis(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -512,6 +520,7 @@ timeOPget_micros(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -572,6 +581,7 @@ timeOPget_all(CLUREF t, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUREF *ret
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -885,6 +895,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_overflow) {signal(ERR_overflow);}
         else {
             goto ex_0;}
@@ -892,6 +903,7 @@ timeOPadd(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1207,6 +1219,7 @@ timeOPsub(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1354,6 +1367,7 @@ timeOPmul(CLUREF t, CLUREF n, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_overflow) {signal(ERR_overflow);}
         else {
             goto ex_0;}
@@ -1361,6 +1375,7 @@ timeOPmul(CLUREF t, CLUREF n, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1396,6 +1411,7 @@ timeOPdiv(CLUREF t, CLUREF n, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_bad_divisor) {signal(ERR_bad_divisor);}
         else {
             goto ex_0;}
@@ -1403,6 +1419,7 @@ timeOPdiv(CLUREF t, CLUREF n, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1560,6 +1577,7 @@ timeOPaverage(CLUREF t, CLUREF n, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1626,6 +1644,7 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_overflow)) {
             }
             else {
@@ -1655,6 +1674,7 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
         }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_overflow) {signal(ERR_overflow);}
         else {
             goto ex_0;}
@@ -1741,9 +1761,11 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
                 }}/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
     goto end_3;
     ex_3:
+        __CLU_EX_HANDLER;
         if (err == ERR_overflow) {signal(ERR_overflow);}
         else {
             goto ex_0;}
@@ -1761,6 +1783,7 @@ timeOPdo_div(CLUREF a, CLUREF b, CLUREF c, CLUREF d, CLUREF *ret_1, CLUREF *ret_
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1924,6 +1947,7 @@ timeOPlt(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1968,6 +1992,7 @@ timeOPle(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2004,6 +2029,7 @@ timeOPge(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2040,6 +2066,7 @@ timeOPgt(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2146,7 +2173,8 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
             s.num = T_4_2.num;
             }
             }
-            end_while_1:;
+            end_while_1:
+            __CLU_END_LABEL;
 
   LINE(228);
         {
@@ -2254,7 +2282,8 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
             if (err != ERR_ok) goto ex_1;
             }
             }
-            end_while_2:;
+            end_while_2:
+            __CLU_END_LABEL;
 
   LINE(240);
         for (;;) {
@@ -2280,7 +2309,8 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
             s.num = T_4_2.num;
             }
             }
-            end_while_3:;
+            end_while_3:
+            __CLU_END_LABEL;
 
   LINE(243);
         for (;;) {
@@ -2331,7 +2361,8 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
             s.num = T_4_1.num;
             }
             }
-            end_while_4:;
+            end_while_4:
+            __CLU_END_LABEL;
 
   LINE(249);
         for (;;) {
@@ -2353,7 +2384,8 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
             }
             }
             }
-            end_while_5:;
+            end_while_5:
+            __CLU_END_LABEL;
 
   LINE(252);
         {
@@ -2403,6 +2435,7 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_overflow)) {
 
   LINE(254);
@@ -2419,6 +2452,7 @@ timeOPparse(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2455,6 +2489,7 @@ timeOPunparse(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2557,6 +2592,7 @@ timeOPt2r(CLUREF t, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_overflow) {signal(ERR_overflow);}
         else {
             goto ex_0;}
@@ -2564,6 +2600,7 @@ timeOPt2r(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2870,6 +2907,7 @@ timeOPformat(CLUREF t, CLUREF frac_width, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2906,6 +2944,7 @@ timeOPprint(CLUREF t, CLUREF pst)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2941,7 +2980,7 @@ timeOPequal(CLUREF t1, CLUREF t2, CLUREF *ret_1)
         {
         {
         CLUREF T_2_1;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = struct_days_hours_micros_millis_mins_secs_ops->entry[0].fcn->op_owns;
         generic_CLU_proc.proc = structOPequal;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -2954,6 +2993,7 @@ timeOPequal(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2990,6 +3030,7 @@ timeOPsimilar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3023,6 +3064,7 @@ timeOPcopy(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3057,6 +3099,7 @@ timeOPencode(CLUREF t, CLUREF ist)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -3064,6 +3107,7 @@ timeOPencode(CLUREF t, CLUREF ist)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3105,6 +3149,7 @@ timeOPdecode(CLUREF ist, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -3112,6 +3157,7 @@ timeOPdecode(CLUREF ist, CLUREF *ret_1)
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bad_format)) {
 
   LINE(338);
@@ -3126,6 +3172,7 @@ timeOPdecode(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3159,7 +3206,7 @@ timeOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = struct_days_hours_micros_millis_mins_secs_ops->entry[6].fcn->op_owns;
     generic_CLU_proc.proc = structOP_gcd;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -3171,6 +3218,7 @@ timeOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

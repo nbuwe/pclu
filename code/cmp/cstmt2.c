@@ -61,6 +61,7 @@ c_tagcase(CLUREF e, CLUREF ts)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_abstract)) {
 
   LINE(9);
@@ -119,7 +120,8 @@ c_tagcase(CLUREF e, CLUREF ts)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(17);
     {
@@ -183,6 +185,7 @@ c_tagcase(CLUREF e, CLUREF ts)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -379,6 +382,7 @@ c_oneof_specs(CLUREF e, CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -429,7 +433,7 @@ c_tagarms(CLUREF e, CLUREF arms, CLUREF specs, CLUREF *ret_1)
         {CLUREF T_1_1;
         CLUREF T_1_2;
         T_1_1.num = specs.vec->size;
-        err = arrayOPfill(CLU_1, T_1_1, CLU_0, &T_1_2);
+        err = arrayOPfill(CLU_1, T_1_1, CLU_false, &T_1_2);
         if (err != ERR_ok) goto ex_0;
         used.num = T_1_2.num;
         }
@@ -512,7 +516,8 @@ c_tagarms(CLUREF e, CLUREF arms, CLUREF specs, CLUREF *ret_1)
                         }/* end if */
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
 
   LINE(67);
             {
@@ -529,7 +534,8 @@ c_tagarms(CLUREF e, CLUREF arms, CLUREF specs, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(70);
     {
@@ -540,6 +546,7 @@ c_tagarms(CLUREF e, CLUREF arms, CLUREF specs, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -633,7 +640,8 @@ c_tag_sugar(CLUREF e, CLUREF at, CLUREF ts)
                     }
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
 
   LINE(83);
             {
@@ -650,7 +658,8 @@ c_tag_sugar(CLUREF e, CLUREF at, CLUREF ts)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(86);
     {
@@ -678,6 +687,7 @@ c_tag_sugar(CLUREF e, CLUREF at, CLUREF ts)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -760,7 +770,8 @@ c_tag_name(CLUREF e, CLUREF n, CLUREF at, CLUREF vt, CLUREF names)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(101);
     {
@@ -831,6 +842,7 @@ c_tag_name(CLUREF e, CLUREF n, CLUREF at, CLUREF vt, CLUREF names)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1110,15 +1122,17 @@ c_tag_op(CLUREF e, CLUREF cop, CLUREF at, CLUREF vt)
 
   LINE(147);
             {
-            err = c_envOPadd_cond(e, sig, CLU_0);
+            err = c_envOPadd_cond(e, sig, CLU_false);
             if (err != ERR_ok) goto ex_0;
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1185,6 +1199,7 @@ c_mdecl(CLUREF e, CLUREF md, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1236,7 +1251,8 @@ c_return(CLUREF e, CLUREF exprs, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(165);
     {
@@ -1281,6 +1297,7 @@ c_return(CLUREF e, CLUREF exprs, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1329,7 +1346,8 @@ c_yield(CLUREF e, CLUREF exprs, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(176);
     {
@@ -1367,6 +1385,7 @@ c_yield(CLUREF e, CLUREF exprs, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1427,7 +1446,8 @@ c_signal(CLUREF e, CLUREF sig)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(187);
     {
@@ -1478,7 +1498,8 @@ c_signal(CLUREF e, CLUREF sig)
                 }/* end if */
         }
     }
-    end_inline_for_2:;
+    end_inline_for_2:
+    __CLU_END_LABEL;
 
   LINE(194);
     {
@@ -1528,6 +1549,7 @@ c_signal(CLUREF e, CLUREF sig)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1724,6 +1746,7 @@ c_values(CLUREF e, CLUREF types, CLUREF exprs, CLUREF st, CLUREF *ret_1)
                 }/* end if */
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_anyize)) {
 
   LINE(226);
@@ -1780,7 +1803,8 @@ c_values(CLUREF e, CLUREF types, CLUREF exprs, CLUREF st, CLUREF *ret_1)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(235);
     {
@@ -1791,6 +1815,7 @@ c_values(CLUREF e, CLUREF types, CLUREF exprs, CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1840,12 +1865,13 @@ c_exit(CLUREF e, CLUREF cond)
 
   LINE(242);
     {
-    err = c_envOPadd_cond(e, ex, CLU_1);
+    err = c_envOPadd_cond(e, ex, CLU_true);
     if (err != ERR_ok) goto ex_0;
     }
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1994,6 +2020,7 @@ c_except(CLUREF e, CLUREF xs)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2077,7 +2104,8 @@ c_when_decls(CLUREF e, CLUREF xs)
                             }
                         }
                     }
-                    end_inline_for_2:;
+                    end_inline_for_2:
+                    __CLU_END_LABEL;
                     break;
                     }
             default: {
@@ -2086,10 +2114,12 @@ c_when_decls(CLUREF e, CLUREF xs)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2246,7 +2276,8 @@ c_whenarms(CLUREF e, CLUREF arms)
                                 }/* end if */
                         }
                     }
-                    end_inline_for_3:;
+                    end_inline_for_3:
+                    __CLU_END_LABEL;
 
   LINE(295);
                     {
@@ -2300,13 +2331,16 @@ c_whenarms(CLUREF e, CLUREF arms)
                                         }/* end if */
                                 }
                             }
-                            end_inline_for_5:;
+                            end_inline_for_5:
+                            __CLU_END_LABEL;
                         }
                     }
-                    end_inline_for_4:;
+                    end_inline_for_4:
+                    __CLU_END_LABEL;
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
 
   LINE(305);
             {
@@ -2351,10 +2385,12 @@ c_whenarms(CLUREF e, CLUREF arms)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2652,10 +2688,12 @@ c_when_assn(CLUREF e, CLUREF vars, CLUREF cond, CLUREF is_exit)
                     }
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(359);
     {
@@ -2687,6 +2725,7 @@ c_when_assn(CLUREF e, CLUREF vars, CLUREF cond, CLUREF is_exit)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2796,7 +2835,8 @@ c_resignal(CLUREF e, CLUREF rs)
                         }/* end if */
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
 
   LINE(376);
             {
@@ -2848,9 +2888,11 @@ c_resignal(CLUREF e, CLUREF rs)
                         }/* end if */
                 }
             }
-            end_inline_for_3:;
+            end_inline_for_3:
+            __CLU_END_LABEL;
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if (errcmp(err, "ERR_ok_UNIQ")) {
 
   LINE(382);
@@ -2884,10 +2926,12 @@ c_resignal(CLUREF e, CLUREF rs)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3022,7 +3066,8 @@ c_resig_catch(CLUREF e, CLUREF cond, CLUREF is_exit)
                     }/* end if */
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
 
   LINE(407);
         {
@@ -3030,6 +3075,7 @@ c_resig_catch(CLUREF e, CLUREF cond, CLUREF is_exit)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if (errcmp(err, "ERR_ok_UNIQ")) {
             }
             else {
@@ -3164,10 +3210,12 @@ c_resig_catch(CLUREF e, CLUREF cond, CLUREF is_exit)
                 }/* end if */
         }
     }
-    end_inline_for_2:;
+    end_inline_for_2:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3353,6 +3401,7 @@ c_forcestmt(CLUREF e, CLUREF fs)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

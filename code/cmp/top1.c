@@ -332,9 +332,11 @@ start_up()
         allok.num = T_3_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
             }
             else {
@@ -361,6 +363,7 @@ start_up()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -422,10 +425,12 @@ addl_chars(CLUREF line, CLUREF chars)
         i.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -559,6 +564,7 @@ process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
                 }
                     goto end_1;
                     ex_1:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_not_possible)) {
                         }
                         else {
@@ -630,6 +636,7 @@ process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
                 }
                     goto end_2;
                     ex_2:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_not_possible)) {
                         }
                         else {
@@ -714,6 +721,7 @@ process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
                 }}}/* end if */
                 goto end_3;
                 ex_3:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_not_possible)) {
                     }
                     else {
@@ -722,7 +730,8 @@ process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
                 end_3:;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(91);
     {
@@ -740,6 +749,7 @@ process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
         }
             goto end_4;
             ex_4:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_not_possible)) {
                 }
                 else {
@@ -754,6 +764,7 @@ process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
         }
             goto end_5;
             ex_5:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_not_possible)) {
 
   LINE(95);
@@ -803,6 +814,7 @@ process_commands(CLUREF line, CLUREF tyo, CLUREF from, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -846,6 +858,7 @@ fake_stream(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -911,6 +924,7 @@ get_outstream(CLUREF fs, CLUREF tyo, CLUREF *ret_1)
         }/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bad_format)
              || (err == ERR_open_failed)) {
             }
@@ -933,6 +947,7 @@ get_outstream(CLUREF fs, CLUREF tyo, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_open_failed)) {
             }
             else {
@@ -969,6 +984,7 @@ get_outstream(CLUREF fs, CLUREF tyo, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1108,6 +1124,7 @@ get_command_mode(CLUREF cmnd, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1160,6 +1177,7 @@ prefix(CLUREF s, CLUREF cmnd, CLUREF cnt, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1201,6 +1219,7 @@ make_file_name(CLUREF fs, CLUREF suffix, CLUREF tyo, CLUREF *ret_1, CLUREF *ret_
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bad_format)) {
 
   LINE(147);
@@ -1220,6 +1239,7 @@ make_file_name(CLUREF fs, CLUREF suffix, CLUREF tyo, CLUREF *ret_1, CLUREF *ret_
                     }
                     goto end_2;
                     ex_2:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_not_possible)) {
                         }
                         else {
@@ -1257,6 +1277,7 @@ make_file_name(CLUREF fs, CLUREF suffix, CLUREF tyo, CLUREF *ret_1, CLUREF *ret_
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1512,6 +1533,7 @@ check_file_name(CLUREF fn, CLUREF *ret_1)
         }/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -1528,6 +1550,7 @@ check_file_name(CLUREF fn, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1596,8 +1619,8 @@ open_stream(CLUREF fn, CLUREF mode, CLUREF tyo, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
-            CLUREF why;
             why.num = elist[0].num;
 
   LINE(188);
@@ -1648,6 +1671,7 @@ open_stream(CLUREF fn, CLUREF mode, CLUREF tyo, CLUREF *ret_1)
                     }
                     goto end_2;
                     ex_2:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_not_possible)) {
                         }
                         else {
@@ -1666,6 +1690,7 @@ open_stream(CLUREF fn, CLUREF mode, CLUREF tyo, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2125,13 +2150,13 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(233);
                 {
-                locals.err = g_envOPset_space(locals.ge, CLU_1);
+                locals.err = g_envOPset_space(locals.ge, CLU_true);
                 if (locals.err != ERR_ok) goto ex_1;
                 }
 
   LINE(234);
                 {
-                locals.err = g_envOPset_time(locals.ge, CLU_1);
+                locals.err = g_envOPset_time(locals.ge, CLU_true);
                 if (locals.err != ERR_ok) goto ex_1;
                 }
                 }
@@ -2148,13 +2173,13 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(236);
                 {
-                locals.err = g_envOPset_space(locals.ge, CLU_1);
+                locals.err = g_envOPset_space(locals.ge, CLU_true);
                 if (locals.err != ERR_ok) goto ex_1;
                 }
 
   LINE(237);
                 {
-                locals.err = g_envOPset_time(locals.ge, CLU_0);
+                locals.err = g_envOPset_time(locals.ge, CLU_false);
                 if (locals.err != ERR_ok) goto ex_1;
                 }
                 }
@@ -2171,13 +2196,13 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(239);
                 {
-                locals.err = g_envOPset_space(locals.ge, CLU_0);
+                locals.err = g_envOPset_space(locals.ge, CLU_false);
                 if (locals.err != ERR_ok) goto ex_1;
                 }
 
   LINE(240);
                 {
-                locals.err = g_envOPset_time(locals.ge, CLU_0);
+                locals.err = g_envOPset_time(locals.ge, CLU_false);
                 if (locals.err != ERR_ok) goto ex_1;
                 }
                 }
@@ -2267,6 +2292,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
                 }/* end if */
                 goto end_2;
                 ex_2:
+                    __CLU_EX_HANDLER;
                     if ((locals.err == ERR_not_possible)) {
 
   LINE(253);
@@ -2344,7 +2370,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(263);
             {
-            locals.err = cmpvarOPset_allow(CLU_1);
+            locals.err = cmpvarOPset_allow(CLU_true);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -2361,7 +2387,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(265);
             {
-            locals.err = cmpvarOPset_allow(CLU_0);
+            locals.err = cmpvarOPset_allow(CLU_false);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -2412,7 +2438,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(271);
             {
-            locals.err = cmpvarOPset_expunge(CLU_1);
+            locals.err = cmpvarOPset_expunge(CLU_true);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -2429,7 +2455,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(273);
             {
-            locals.err = cmpvarOPset_expunge(CLU_0);
+            locals.err = cmpvarOPset_expunge(CLU_false);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -2480,7 +2506,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(279);
             {
-            locals.err = cmpvarOPset_externals(CLU_1);
+            locals.err = cmpvarOPset_externals(CLU_true);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -2497,7 +2523,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(281);
             {
-            locals.err = cmpvarOPset_externals(CLU_0);
+            locals.err = cmpvarOPset_externals(CLU_false);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -2548,7 +2574,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(287);
             {
-            locals.err = cmpvarOPset_force_(CLU_1);
+            locals.err = cmpvarOPset_force_(CLU_true);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -2565,7 +2591,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(289);
             {
-            locals.err = cmpvarOPset_force_(CLU_0);
+            locals.err = cmpvarOPset_force_(CLU_false);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -2616,7 +2642,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(295);
             {
-            locals.err = cmpvarOPset_locals(CLU_1);
+            locals.err = cmpvarOPset_locals(CLU_true);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -2633,7 +2659,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(297);
             {
-            locals.err = cmpvarOPset_locals(CLU_0);
+            locals.err = cmpvarOPset_locals(CLU_false);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -2798,7 +2824,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(315);
             {
-            locals.err = cmpvarOPset_save_c(CLU_1);
+            locals.err = cmpvarOPset_save_c(CLU_true);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -2815,7 +2841,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
   LINE(317);
             {
-            locals.err = cmpvarOPset_save_c(CLU_0);
+            locals.err = cmpvarOPset_save_c(CLU_false);
             if (locals.err != ERR_ok) goto ex_1;
             }
             }
@@ -3004,6 +3030,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
                     }}/* end if */
                     goto end_3;
                     ex_3:
+                        __CLU_EX_HANDLER;
                         if ((locals.err == ERR_not_found)) {
                         }
                         else {
@@ -3061,6 +3088,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
             }
                 goto end_4;
                 ex_4:
+                    __CLU_EX_HANDLER;
                     if ((locals.err == ERR_bad_format)) {
 
   LINE(349);
@@ -3177,6 +3205,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
                 }
                 goto end_5;
                 ex_5:
+                    __CLU_EX_HANDLER;
                     if ((locals.err == ERR_bad_format)) {
 
   LINE(365);
@@ -3186,7 +3215,6 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
                         }
                     }
                     else if ((locals.err == ERR_not_possible)) {
-                    CLUREF why;
                     locals.why.num = elist[0].num;
 
   LINE(366);
@@ -3239,6 +3267,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
                 }
                 goto end_6;
                 ex_6:
+                    __CLU_EX_HANDLER;
                     if ((locals.err == ERR_not_found)) {
 
   LINE(374);
@@ -3259,7 +3288,6 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
                         }
                     }
                     else if ((locals.err == ERR_not_possible)) {
-                    CLUREF why;
                     locals.why.num = elist[0].num;
 
   LINE(376);
@@ -3322,6 +3350,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
                 }
                     goto end_7;
                     ex_7:
+                        __CLU_EX_HANDLER;
                         if ((locals.err == ERR_not_found)) {
 
   LINE(395);
@@ -3342,7 +3371,8 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
                     end_7:;
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
         }
     else {
     CLUREF T_2_27;
@@ -3385,6 +3415,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
         }}}}}}}}}}}}}}}}}}}}}}}}/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_not_possible)) {
             }
             else {
@@ -3394,6 +3425,7 @@ execute_command(CLUREF cmnd, CLUREF args, CLUREF tyo)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -3440,8 +3472,8 @@ execute_command_IB_1(CLUREF iv_1, execute_command_LOCALS_t *locals, errcode *iec
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((locals->err == ERR_not_possible)) {
-            CLUREF why;
             locals->why.num = elist[0].num;
 
   FB_LINE(386);
@@ -3471,9 +3503,11 @@ execute_command_IB_1(CLUREF iv_1, execute_command_LOCALS_t *locals, errcode *iec
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -3511,8 +3545,8 @@ execute_command_IB_2(CLUREF iv_1, execute_command_LOCALS_t *locals, errcode *iec
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((locals->err == ERR_not_possible)) {
-            CLUREF why;
             locals->why.num = elist[0].num;
 
   FB_LINE(406);
@@ -3542,9 +3576,11 @@ execute_command_IB_2(CLUREF iv_1, execute_command_LOCALS_t *locals, errcode *iec
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -3593,6 +3629,7 @@ xfile_execute(CLUREF args, CLUREF tyo)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -3621,6 +3658,7 @@ xfile_execute_IB_1(CLUREF iv_1, xfile_execute_LOCALS_t *locals, errcode *iecode)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((locals->err == ERR_open_failed)) {
 
   FB_LINE(420);
@@ -3651,6 +3689,7 @@ xfile_execute_IB_1(CLUREF iv_1, xfile_execute_LOCALS_t *locals, errcode *iecode)
         }
             goto end_3;
             ex_3:
+                __CLU_EX_HANDLER;
                 if ((locals->err == ERR_not_possible)) {
                 }
                 else {
@@ -3668,9 +3707,11 @@ xfile_execute_IB_1(CLUREF iv_1, xfile_execute_LOCALS_t *locals, errcode *iecode)
         if (locals->err != ERR_ok) goto ex_2;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((locals->err == ERR_end_of_file)) {
             }
             else {
@@ -3686,9 +3727,11 @@ xfile_execute_IB_1(CLUREF iv_1, xfile_execute_LOCALS_t *locals, errcode *iecode)
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -3719,6 +3762,7 @@ set_dir(CLUREF dir, CLUREF tyo)
     }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bad_format)) {
 
   LINE(435);
@@ -3733,6 +3777,7 @@ set_dir(CLUREF dir, CLUREF tyo)
         end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -3742,6 +3787,7 @@ set_dir(CLUREF dir, CLUREF tyo)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3778,6 +3824,7 @@ dump_file(CLUREF fn, CLUREF tyo)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_open_failed)) {
 
   LINE(442);
@@ -3802,9 +3849,11 @@ dump_file(CLUREF fn, CLUREF tyo)
         if (err != ERR_ok) goto ex_2;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)
              || (err == ERR_not_possible)) {
             }
@@ -3828,6 +3877,7 @@ dump_file(CLUREF fn, CLUREF tyo)
     }
         goto end_3;
         ex_3:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -3837,6 +3887,7 @@ dump_file(CLUREF fn, CLUREF tyo)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3868,7 +3919,7 @@ typedef struct {
 errcode
 all_input_names(CLUREF args, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     all_input_names_LOCALS_t locals;
     locals.args = args;
     locals.suffix = suffix;
@@ -3918,10 +3969,12 @@ all_input_names(CLUREF args, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
                 }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -3953,10 +4006,12 @@ all_input_names_IB_1(CLUREF iv_1, all_input_names_LOCALS_t *locals, errcode *iec
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     locals->body_ctrl_req = true;
     signal(ERR_iteriterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -4005,7 +4060,7 @@ typedef struct {
 errcode
 all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     all_derived_names_LOCALS_t locals;
     locals.fs = fs;
     locals.suffix = suffix;
@@ -4121,9 +4176,11 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
                 if (locals.err != ERR_ok) goto ex_2;
                 }
             }
-            end_while_1:;
+            end_while_1:
+            __CLU_END_LABEL;
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 if ((locals.err == ERR_end_of_file)
                  || (locals.err == ERR_not_possible)) {
                 }
@@ -4145,6 +4202,7 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
         }/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_bad_format)
              || (locals.err == ERR_open_failed)) {
 
@@ -4230,6 +4288,7 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
         }/* end if */
         goto end_3;
         ex_3:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_bad_format)) {
             }
             else {
@@ -4247,6 +4306,7 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
         }
         goto end_4;
         ex_4:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_bad_format)) {
 
   LINE(488);
@@ -4266,6 +4326,7 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
                     }
                     goto end_5;
                     ex_5:
+                        __CLU_EX_HANDLER;
                         if ((locals.err == ERR_not_possible)) {
                         }
                         else {
@@ -4375,6 +4436,7 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
     }
         goto end_6;
         ex_6:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_bad_format)) {
 
   LINE(506);
@@ -4430,8 +4492,8 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
         }
         goto end_7;
         ex_7:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_not_possible)) {
-            CLUREF why;
             locals.why.num = elist[0].num;
 
   LINE(514);
@@ -4463,6 +4525,7 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
                     }
                     goto end_8;
                     ex_8:
+                        __CLU_EX_HANDLER;
                         if ((locals.err == ERR_not_possible)) {
                         }
                         else {
@@ -4537,6 +4600,7 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
         }/* end if */
         goto end_9;
         ex_9:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_bad_format)
              || (locals.err == ERR_none)
              || (locals.err == ERR_not_possible)) {
@@ -4594,6 +4658,7 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
         }/* end if */
         goto end_10;
         ex_10:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_bad_format)
              || (locals.err == ERR_none)
              || (locals.err == ERR_not_possible)) {
@@ -4626,6 +4691,7 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
         }
         goto end_11;
         ex_11:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_not_possible)) {
             }
             else {
@@ -4635,6 +4701,7 @@ all_derived_names(CLUREF fs, CLUREF suffix, CLUREF tyo, errcode (*proc)(), void 
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -4666,10 +4733,12 @@ all_derived_names_IB_1(CLUREF iv_1, all_derived_names_LOCALS_t *locals, errcode 
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     locals->body_ctrl_req = true;
     signal(ERR_iteriterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -4692,10 +4761,12 @@ all_derived_names_IB_2(CLUREF iv_1, all_derived_names_LOCALS_t *locals, errcode 
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     locals->body_ctrl_req = true;
     signal(ERR_iteriterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -4718,10 +4789,12 @@ all_derived_names_IB_3(CLUREF iv_1, all_derived_names_LOCALS_t *locals, errcode 
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     locals->body_ctrl_req = true;
     signal(ERR_iteriterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -4744,10 +4817,12 @@ all_derived_names_IB_4(CLUREF iv_1, all_derived_names_LOCALS_t *locals, errcode 
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     locals->body_ctrl_req = true;
     signal(ERR_iteriterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -4804,7 +4879,8 @@ as2str(CLUREF a, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(549);
     {
@@ -4815,6 +4891,7 @@ as2str(CLUREF a, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

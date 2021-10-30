@@ -318,6 +318,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_overflow)
              || (err == ERR_bad_format)) {
             }
@@ -332,6 +333,7 @@ inet_address(CLUREF spec, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

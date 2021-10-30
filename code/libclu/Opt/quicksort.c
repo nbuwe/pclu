@@ -86,7 +86,7 @@ quicksort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
 
   LINE(27);
             {
-            generic_CLU_proc.type_owns = 0;
+            generic_CLU_proc.type_owns = NULL;
             generic_CLU_proc.op_owns = op_own_ptr->sisort_of_t_ops->op_owns;
             generic_CLU_proc.proc = sisort;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -98,7 +98,7 @@ quicksort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
 
   LINE(28);
             {
-            generic_CLU_proc.type_owns = 0;
+            generic_CLU_proc.type_owns = NULL;
             generic_CLU_proc.op_owns = op_own_ptr->lqsort_of_t_ops->op_owns;
             generic_CLU_proc.proc = lqsort;
             CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -108,6 +108,7 @@ quicksort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
             }}/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if (err == ERR_bounds) {signal(ERR_bounds);}
             else {
                 goto ex_0;}
@@ -128,6 +129,7 @@ quicksort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -565,7 +567,8 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
                     left.num = T_6_1.num;
                     }
                     }
-                    end_while_3:;
+                    end_while_3:
+                    __CLU_END_LABEL;
 
   LINE(92);
                 {
@@ -600,7 +603,8 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
                     right.num = T_6_1.num;
                     }
                     }
-                    end_while_4:;
+                    end_while_4:
+                    __CLU_END_LABEL;
 
   LINE(95);
                 {
@@ -645,7 +649,8 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
                     }
                     }/* end if */
                 }
-                end_while_2:;
+                end_while_2:
+                __CLU_END_LABEL;
 
   LINE(103);
             {
@@ -730,7 +735,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
 
   LINE(120);
                     {
-                    generic_CLU_proc.type_owns = 0;
+                    generic_CLU_proc.type_owns = NULL;
                     generic_CLU_proc.op_owns = op_own_ptr->sisort_of_t_ops->op_owns;
                     generic_CLU_proc.proc = sisort;
                     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -742,7 +747,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
 
   LINE(121);
                     {
-                    generic_CLU_proc.type_owns = 0;
+                    generic_CLU_proc.type_owns = NULL;
                     generic_CLU_proc.op_owns = op_own_ptr->lqsort_of_t_ops->op_owns;
                     generic_CLU_proc.proc = lqsort;
                     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -753,11 +758,12 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
                 }
                 }/* end if */
             }
-            end_while_1:;
+            end_while_1:
+            __CLU_END_LABEL;
 
   LINE(127);
         {
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = op_own_ptr->sisort_of_t_ops->op_owns;
         generic_CLU_proc.proc = sisort;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -767,6 +773,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_bounds) {signal(ERR_bounds);}
         else {
             goto ex_0;}
@@ -774,6 +781,7 @@ lqsort(CLUREF items, CLUREF low, CLUREF high, CLUREF size, CLUREF less)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -922,7 +930,8 @@ sisort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
                 trial.num = T_4_1.num;
                 }
                 }
-                end_while_1:;
+                end_while_1:
+                __CLU_END_LABEL;
 
   LINE(158);
             {
@@ -935,9 +944,11 @@ sisort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_bounds) {signal(ERR_bounds);}
         else {
             goto ex_0;}
@@ -945,6 +956,7 @@ sisort(CLUREF items, CLUREF low, CLUREF high, CLUREF less)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

@@ -97,6 +97,7 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
         }
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bad_format)
                  || (err == ERR_not_possible)) {
 
@@ -182,7 +183,8 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
                 max.num = T_6_2.num;
                 }
                 }
-                end_while_3:;
+                end_while_3:
+                __CLU_END_LABEL;
 
   LINE(21);
             {
@@ -330,7 +332,8 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
                     }
                     }/* end if */
                 }
-                end_while_4:;
+                end_while_4:
+                __CLU_END_LABEL;
 
   LINE(38);
             {
@@ -342,9 +345,11 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
             max.num = T_5_2.num;
             }
             }
-            end_while_2:;
+            end_while_2:
+            __CLU_END_LABEL;
             goto end_3;
             ex_3:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_found)) {
                 }
                 else {
@@ -367,7 +372,7 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
             CLUREF T_4_1;
             CLUREF T_4_2;
             CLUREF T_4_3;
-            err = _chanOPget(c, b, idx, max, STR__012, CLU_0, &T_4_1, &T_4_2, &T_4_3);
+            err = _chanOPget(c, b, idx, max, STR__012, CLU_false, &T_4_1, &T_4_2, &T_4_3);
             if (err != ERR_ok) goto ex_1;
             s.num = T_4_1.num;
             idx.num = T_4_2.num;
@@ -483,7 +488,8 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
             ent.num = T_4_3.num;
             }
             }
-            end_while_5:;
+            end_while_5:
+            __CLU_END_LABEL;
 
   LINE(56);
         {
@@ -552,9 +558,11 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
         ent.num = T_3_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else if ((err == ERR_bounds)
@@ -577,6 +585,7 @@ _termcap_entry(CLUREF fs, CLUREF term, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

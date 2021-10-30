@@ -185,8 +185,8 @@ xlib_own_init_proc(void)
             T_0_1.num = 300;
             err = proctypeOPnew(CLU_0, &T_0_2);
             if (err!= ERR_ok) goto ex_0;
-            T_0_2.proc->type_owns = 0;
-            T_0_2.proc->op_owns = 0;
+            T_0_2.proc->type_owns = NULL;
+            T_0_2.proc->op_owns = NULL;
             T_0_2.proc->proc = hash;
             err = proctypeOPnew(CLU_0, &T_0_3);
             if (err!= ERR_ok) goto ex_0;
@@ -201,6 +201,7 @@ xlib_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -362,6 +363,7 @@ xlibOPinit()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -404,6 +406,7 @@ xlibOPlookup(CLUREF path, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_found) {signal(ERR_not_found);}
         else {
             goto ex_0;}
@@ -411,6 +414,7 @@ xlibOPlookup(CLUREF path, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -450,6 +454,7 @@ xlibOPbind(CLUREF path, CLUREF d)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_exists) {signal(ERR_exists);}
         else {
             goto ex_0;}
@@ -457,6 +462,7 @@ xlibOPbind(CLUREF path, CLUREF d)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -500,6 +506,7 @@ xlibOPget_du(CLUREF n, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
 
   LINE(54);
@@ -534,6 +541,7 @@ xlibOPget_du(CLUREF n, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -641,7 +649,7 @@ xlibOPdump(CLUREF fn, CLUREF *ret_1)
         if (locals.err != ERR_ok) goto ex_1;
         locals.err = file_nameOPcreate(T_2_1, T_2_2, STR__137l_137, CLU_empty_string, &T_2_3);
         if (locals.err != ERR_ok) goto ex_1;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = gc_dump_of_array_of_record_name_path_specs_ops->op_owns;
         generic_CLU_proc.proc = gc_dump;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -652,6 +660,7 @@ xlibOPdump(CLUREF fn, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (locals.err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -676,8 +685,8 @@ xlibOPdump(CLUREF fn, CLUREF *ret_1)
     }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_not_possible)) {
-            CLUREF why;
             locals.why.num = elist[0].num;
 
   LINE(77);
@@ -687,6 +696,7 @@ xlibOPdump(CLUREF fn, CLUREF *ret_1)
                 }
                     goto end_3;
                     ex_3:
+                        __CLU_EX_HANDLER;
                         if ((locals.err == ERR_not_possible)) {
                         }
                         else {
@@ -725,6 +735,7 @@ xlibOPdump(CLUREF fn, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -793,9 +804,11 @@ xlibOPdump_IB_1(CLUREF iv_1, CLUREF iv_2, xlibOPdump_LOCALS_t *locals, errcode *
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -842,7 +855,7 @@ xlibOPmerge(CLUREF fn)
     CLUREF T_2_2;
     CLUREF T_2_3;
     CLUREF T_2_4;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = gc_read_of_array_of_record_name_path_specs_ops->op_owns;
         generic_CLU_proc.proc = gc_read;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -872,6 +885,7 @@ xlibOPmerge(CLUREF fn)
                 }
                 goto end_2;
                 ex_2:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_not_found)) {
 
   LINE(88);
@@ -938,9 +952,11 @@ xlibOPmerge(CLUREF fn)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -948,6 +964,7 @@ xlibOPmerge(CLUREF fn)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -997,7 +1014,7 @@ xlibOPunmerge(CLUREF fn)
     CLUREF T_2_2;
     CLUREF T_2_3;
     CLUREF T_2_4;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = gc_read_of_array_of_record_name_path_specs_ops->op_owns;
         generic_CLU_proc.proc = gc_read;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1027,6 +1044,7 @@ xlibOPunmerge(CLUREF fn)
             }
                 goto end_2;
                 ex_2:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_not_found)) {
                     }
                     else {
@@ -1035,9 +1053,11 @@ xlibOPunmerge(CLUREF fn)
                 end_2:;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -1045,6 +1065,7 @@ xlibOPunmerge(CLUREF fn)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

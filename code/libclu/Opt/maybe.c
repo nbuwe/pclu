@@ -56,7 +56,7 @@ const OWN_req maybe_ownreqs = { sizeof(maybe_OWN_DEFN), 9 };
 errcode
 maybe_own_init_proc()
 {
-    errcode err;
+    errcode err __CLU_UNUSED;
     maybe_OWN_DEFN *type_own_ptr;
     type_own_ptr = (maybe_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
@@ -96,6 +96,7 @@ maybeOPnone(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -153,6 +154,7 @@ maybeOPmake(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -194,6 +196,7 @@ maybeOPexists(CLUREF m, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -245,6 +248,7 @@ maybeOPvalue(CLUREF m, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -336,6 +340,7 @@ maybeOPequal(CLUREF m1, CLUREF m2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -427,6 +432,7 @@ maybeOPsimilar(CLUREF m1, CLUREF m2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -487,6 +493,7 @@ maybeOPcopy(CLUREF m, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -548,6 +555,7 @@ maybeOP_gcd(CLUREF m, CLUREF tab, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

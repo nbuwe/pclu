@@ -76,6 +76,7 @@ parse_line(CLUREF s, CLUREF *ret_1)
                 }
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_bounds)) {
 
   LINE(13);
@@ -163,7 +164,8 @@ parse_line(CLUREF s, CLUREF *ret_1)
                 }}/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(22);
     {
@@ -174,6 +176,7 @@ parse_line(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

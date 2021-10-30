@@ -81,6 +81,7 @@ xref_own_init_proc(void)
         xref_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -113,6 +114,7 @@ xrefOPcreate(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -160,7 +162,7 @@ xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
         err = proctypeOPnew(CLU_0, &T_1_2);
         if (err!= ERR_ok) goto ex_0;
         T_1_2.proc->proc = xrefOPentry_maker;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = xref_op_find_index_of_record_key_users_ops->op_owns;
         generic_CLU_proc.proc = xrefOPfind_index;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -203,7 +205,8 @@ xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(37);
     {
@@ -216,7 +219,7 @@ xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
     err = proctypeOPnew(CLU_0, &T_1_2);
     if (err!= ERR_ok) goto ex_0;
     T_1_2.proc->proc = stringOPcopy;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = xref_op_find_index_of_string_ops->op_owns;
     generic_CLU_proc.proc = xrefOPfind_index;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -226,6 +229,7 @@ xrefOPadd_ref(CLUREF tab, CLUREF key, CLUREF user)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -274,7 +278,7 @@ xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
         err = proctypeOPnew(CLU_0, &T_1_2);
         if (err!= ERR_ok) goto ex_0;
         T_1_2.proc->proc = xrefOPentry_maker;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = xref_op_find_index_of_record_key_users_ops->op_owns;
         generic_CLU_proc.proc = xrefOPfind_index;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -341,7 +345,8 @@ xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
                         }/* end if */
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
 
   LINE(52);
             {
@@ -358,7 +363,7 @@ xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
                 err = proctypeOPnew(CLU_0, &T_3_2);
                 if (err!= ERR_ok) goto ex_0;
                 T_3_2.proc->proc = stringOPcopy;
-                generic_CLU_proc.type_owns = 0;
+                generic_CLU_proc.type_owns = NULL;
                 generic_CLU_proc.op_owns = xref_op_find_index_of_string_ops->op_owns;
                 generic_CLU_proc.proc = xrefOPfind_index;
                 CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -369,10 +374,12 @@ xrefOPadd_refs(CLUREF tab, CLUREF key, CLUREF users)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -419,7 +426,7 @@ xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
         err = proctypeOPnew(CLU_0, &T_1_2);
         if (err!= ERR_ok) goto ex_0;
         T_1_2.proc->proc = xrefOPentry_maker;
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = xref_op_find_index_of_record_key_users_ops->op_owns;
         generic_CLU_proc.proc = xrefOPfind_index;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -512,7 +519,8 @@ xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
                 }
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
 
   LINE(68);
         {
@@ -561,7 +569,8 @@ xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
                 }
             }
         }
-        end_inline_for_2:;
+        end_inline_for_2:
+        __CLU_END_LABEL;
 
   LINE(72);
         {
@@ -580,6 +589,7 @@ xrefOPrem_refs(CLUREF tab, CLUREF key, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -620,6 +630,7 @@ xrefOPentry_maker(CLUREF key, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -792,7 +803,8 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
             }
             }}}/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(106);
     {
@@ -866,7 +878,8 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
                 }
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
 
   LINE(112);
         {
@@ -925,7 +938,8 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
                 }
             }
         }
-        end_inline_for_2:;
+        end_inline_for_2:
+        __CLU_END_LABEL;
 
   LINE(118);
         {
@@ -947,6 +961,7 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -964,9 +979,8 @@ xrefOPfind_index(CLUREF tab, CLUREF key, CLUREF get, CLUREF cons, CLUREF *ret_1)
 errcode
 xrefOPelements(CLUREF tab, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     errcode err;
-    bool body_ctrl_req;
     CLUREF ent;
     CLUREF key;
     CLUREF user;
@@ -1027,13 +1041,16 @@ xrefOPelements(CLUREF tab, errcode (*proc)(), void *user_locals, errcode *iecode
                     }
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1050,9 +1067,8 @@ xrefOPelements(CLUREF tab, errcode (*proc)(), void *user_locals, errcode *iecode
 errcode
 xrefOPkeys(CLUREF tab, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     errcode err;
-    bool body_ctrl_req;
     CLUREF ent;
     if (xref_own_init == 0) {
         err = xref_own_init_proc();
@@ -1089,10 +1105,12 @@ xrefOPkeys(CLUREF tab, errcode (*proc)(), void *user_locals, errcode *iecode)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1186,7 +1204,8 @@ xrefOPoutput(CLUREF tab, CLUREF lhead, CLUREF rhead, CLUREF st)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(154);
     {
@@ -1228,7 +1247,8 @@ xrefOPoutput(CLUREF tab, CLUREF lhead, CLUREF rhead, CLUREF st)
                 }
             }
         }
-        end_inline_for_2:;
+        end_inline_for_2:
+        __CLU_END_LABEL;
 
   LINE(160);
         {
@@ -1261,10 +1281,12 @@ xrefOPoutput(CLUREF tab, CLUREF lhead, CLUREF rhead, CLUREF st)
                 }
             }
         }
-        end_inline_for_3:;
+        end_inline_for_3:
+        __CLU_END_LABEL;
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -1272,6 +1294,7 @@ xrefOPoutput(CLUREF tab, CLUREF lhead, CLUREF rhead, CLUREF st)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1403,7 +1426,8 @@ xrefOPputout(CLUREF st, CLUREF key, CLUREF users, CLUREF max)
                 }
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
 
   LINE(185);
         {
@@ -1415,6 +1439,7 @@ xrefOPputout(CLUREF st, CLUREF key, CLUREF users, CLUREF max)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -1422,6 +1447,7 @@ xrefOPputout(CLUREF st, CLUREF key, CLUREF users, CLUREF max)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1474,6 +1500,7 @@ xrefOPmerge(CLUREF tab1, CLUREF tab2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -1501,9 +1528,11 @@ xrefOPmerge_IB_1(CLUREF iv_1, CLUREF iv_2, xrefOPmerge_LOCALS_t *locals, errcode
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -1537,6 +1566,7 @@ xrefOPflush(CLUREF tab)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

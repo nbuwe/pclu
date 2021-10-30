@@ -238,7 +238,8 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
             c.num = T_4_1.num;
             }
             }
-            end_while_1:;
+            end_while_1:
+            __CLU_END_LABEL;
 
   LINE(32);
         {
@@ -372,6 +373,7 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
         }/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -407,9 +409,11 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
         s.num = T_3_1.num;
         }
         }
-        end_while_2:;
+        end_while_2:
+        __CLU_END_LABEL;
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -429,6 +433,7 @@ _termcap(CLUREF term, CLUREF cap, CLUREF repeat, CLUREF baud, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -475,6 +480,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_bounds) {signal(ERR_bounds);}
         else {
             goto ex_0;}
@@ -619,6 +625,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
             }
                 goto end_3;
                 ex_3:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_illegal_char)) {
                     }
                     else {
@@ -783,6 +790,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
         }}/* end if */
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_bounds) {signal(ERR_bounds);}
         else {
             goto ex_0;}
@@ -800,6 +808,7 @@ _termcap_decode(CLUREF term, CLUREF i, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

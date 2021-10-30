@@ -23,7 +23,7 @@ typedef struct {
 errcode
 all_file_names(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     all_file_names_LOCALS_t locals;
     locals.fs = fs;
     locals.proc = proc;
@@ -63,6 +63,7 @@ all_file_names(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecode)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (locals.err == ERR_bad_format) {signal(ERR_bad_format);}
         else if (locals.err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -81,6 +82,7 @@ all_file_names(CLUREF fs, errcode (*proc)(), void *user_locals, errcode *iecode)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -117,10 +119,12 @@ all_file_names_IB_1(CLUREF iv_1, all_file_names_LOCALS_t *locals, errcode *iecod
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     locals->body_ctrl_req = true;
     signal(ERR_iteriterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 

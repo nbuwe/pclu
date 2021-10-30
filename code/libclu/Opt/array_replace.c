@@ -866,6 +866,7 @@ array_replace(CLUREF a1, CLUREF b1, CLUREF w1, CLUREF a2, CLUREF b2, CLUREF w2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

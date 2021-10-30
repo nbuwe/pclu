@@ -93,8 +93,8 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         }
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_not_possible)) {
-                CLUREF why;
                 why.num = elist[0].num;
 
   LINE(14);
@@ -282,6 +282,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         }
         goto end_3;
         ex_3:
+            __CLU_EX_HANDLER;
             if (err == ERR_not_possible) {signal(ERR_not_possible);}
             else {
                 goto ex_1;}
@@ -316,6 +317,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         }
         goto end_4;
         ex_4:
+            __CLU_EX_HANDLER;
             if (err == ERR_not_possible) {signal(ERR_not_possible);}
             else {
                 goto ex_1;}
@@ -365,6 +367,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             {
 
   LINE(83);
@@ -382,6 +385,7 @@ gc_read(CLUREF fn, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -461,6 +465,7 @@ gcr_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -504,6 +509,7 @@ gcrOPpass1(CLUREF ch)
             }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_none)) {
 
   LINE(98);
@@ -620,10 +626,12 @@ gcrOPpass1(CLUREF ch)
         if (err != ERR_ok) goto ex_0;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -687,13 +695,14 @@ gcrOPmake_bvec1(CLUREF ch, CLUREF *ret_1)
                 i.num = T_3_1.num;
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_end_of_file)) {
                 }
                 else if ((err == ERR_not_possible)) {
-                CLUREF why;
                 why.num = elist[0].num;
                 }
                 else {
@@ -713,6 +722,7 @@ gcrOPmake_bvec1(CLUREF ch, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -774,6 +784,7 @@ gcrOPmake_vec1(CLUREF ch, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -842,6 +853,7 @@ gcrOPmake_cell1(CLUREF ch, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -922,6 +934,7 @@ gcrOPmake_adv1(CLUREF ch, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -969,6 +982,7 @@ gcrOPpass2(CLUREF ch)
             }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_none)) {
 
   LINE(180);
@@ -1050,10 +1064,12 @@ gcrOPpass2(CLUREF ch)
             {signal (ERR_not_possible);}}
             }}}}}/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1104,6 +1120,7 @@ gcrOPmake_bvec2(CLUREF ch, CLUREF o)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1165,10 +1182,12 @@ gcrOPmake_vec2(CLUREF ch, CLUREF o)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1230,6 +1249,7 @@ gcrOPmake_cell2(CLUREF ch, CLUREF o)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1346,6 +1366,7 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1451,6 +1472,7 @@ gcb_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -1488,6 +1510,7 @@ gcbOPinit()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1529,6 +1552,7 @@ gcbOPget_next_hdr(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
 
   LINE(267);
@@ -1552,6 +1576,7 @@ gcbOPget_next_hdr(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1595,6 +1620,7 @@ gcbOPget_size(CLUREF ch, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1677,6 +1703,7 @@ gcbOPget_array_info(CLUREF ch, CLUREF *ret_1, CLUREF *ret_2, CLUREF *ret_3, CLUR
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1720,6 +1747,7 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
         }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_end_of_file)) {
 
   LINE(289);
@@ -1740,6 +1768,7 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
         }
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_end_of_file)) {
 
   LINE(292);
@@ -1790,10 +1819,12 @@ gcbOPget_next_obj(CLUREF ch, CLUREF *ret_1)
             {signal (ERR_not_possible);}}
             }}}/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1853,6 +1884,7 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
                 }
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_end_of_file)) {
 
   LINE(309);
@@ -1874,6 +1906,7 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
                 }
                 goto end_2;
                 ex_2:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_end_of_file)) {
 
   LINE(312);
@@ -1911,10 +1944,12 @@ gcbOPskip_obj(CLUREF ch, CLUREF count)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1954,6 +1989,7 @@ gcbOPgeti(CLUREF ch, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
             else {
                 goto ex_0;}
@@ -2019,6 +2055,7 @@ gcbOPgeti(CLUREF ch, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2114,6 +2151,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
             }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
                 else {
                     goto ex_0;}
@@ -2215,7 +2253,8 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         copied.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(353);
     {
@@ -2232,6 +2271,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
         }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
             else {
                 goto ex_0;}
@@ -2293,6 +2333,7 @@ gcbOPgetb(CLUREF ch, CLUREF b)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2355,6 +2396,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
             }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
                 else {
                     goto ex_0;}
@@ -2418,7 +2460,8 @@ gcbOPskip(CLUREF ch, CLUREF i)
         skipped.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(378);
     {
@@ -2433,6 +2476,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2519,6 +2563,7 @@ gcoOPinit()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2600,7 +2645,8 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
         this_buck.num = T_2_2.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(406);
     {
@@ -2627,6 +2673,7 @@ gcoOPget_obj(CLUREF i, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2696,6 +2743,7 @@ gcoOPsave_new_obj(CLUREF i, CLUREF o)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2725,6 +2773,7 @@ gcoOPreset()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

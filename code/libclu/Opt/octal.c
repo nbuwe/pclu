@@ -49,6 +49,7 @@ i_oparse(CLUREF s, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
 
   LINE(8);
@@ -97,6 +98,7 @@ i_oparse(CLUREF s, CLUREF *ret_1)
         }
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bounds)) {
 
   LINE(13);
@@ -180,15 +182,18 @@ i_oparse(CLUREF s, CLUREF *ret_1)
         c.num = T_4_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
     goto end_4;
     ex_4:
+        __CLU_EX_HANDLER;
         if (err == ERR_overflow) {signal(ERR_overflow);}
         else {
             goto ex_3;}
     end_4:;
         goto end_3;
         ex_3:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -225,6 +230,7 @@ i_oparse(CLUREF s, CLUREF *ret_1)
         }}/* end if */
     goto end_5;
     ex_5:
+        __CLU_EX_HANDLER;
         if (err == ERR_overflow) {signal(ERR_overflow);}
         else {
             goto ex_0;}
@@ -232,6 +238,7 @@ i_oparse(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -394,10 +401,12 @@ i_ounparse(CLUREF i, CLUREF *ret_1)
             }
             }/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

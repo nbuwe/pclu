@@ -129,6 +129,7 @@ typespec_own_init_proc(void)
         typespec_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -162,6 +163,7 @@ typespecOPcreate(CLUREF ta, CLUREF id, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -199,6 +201,7 @@ typespecOPis_unknown(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -234,6 +237,7 @@ typespecOPget_abs(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -265,6 +269,7 @@ typespecOPset_abs(CLUREF t, CLUREF abs)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -299,6 +304,7 @@ typespecOPget_id(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -330,6 +336,7 @@ typespecOPset_id(CLUREF t, CLUREF id)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -362,6 +369,7 @@ typespecOPcopy(CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -401,6 +409,7 @@ typespecOPequal(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -440,6 +449,7 @@ typespecOPsimilar(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -709,7 +719,7 @@ typespecOPmismatch(CLUREF t1, CLUREF t2, CLUREF *ret_1)
   LINE(114);
                                         {
                                         CLUREF T_7_1;
-                                        generic_CLU_proc.type_owns = 0;
+                                        generic_CLU_proc.type_owns = NULL;
                                         generic_CLU_proc.op_owns = record_name_types_ops->entry[0].fcn->op_owns;
                                         generic_CLU_proc.proc = recordOPsimilar;
                                         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -726,7 +736,8 @@ typespecOPmismatch(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                                             }/* end if */
                                     }
                                 }
-                                end_inline_for_2:;
+                                end_inline_for_2:
+                                __CLU_END_LABEL;
 
   LINE(117);
                                 {
@@ -737,6 +748,7 @@ typespecOPmismatch(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                                 }
                                 goto end_1;
                                 ex_1:
+                                    __CLU_EX_HANDLER;
                                     if (errcmp(err, "ERR_ok_UNIQ")) {
                                     }
                                     else {
@@ -745,7 +757,8 @@ typespecOPmismatch(CLUREF t1, CLUREF t2, CLUREF *ret_1)
                                 end_1:;
                         }
                     }
-                    end_inline_for_1:;
+                    end_inline_for_1:
+                    __CLU_END_LABEL;
 
   LINE(120);
                     {
@@ -862,6 +875,7 @@ typespecOPmismatch(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -905,6 +919,7 @@ typespecOPmismatch2(CLUREF t1, CLUREF t2, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_anyize)) {
 
   LINE(144);
@@ -921,6 +936,7 @@ typespecOPmismatch2(CLUREF t1, CLUREF t2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -968,7 +984,7 @@ typespecOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = record_id_type__ops->entry[6].fcn->op_owns;
     generic_CLU_proc.proc = recordOP_gcd;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -980,6 +996,7 @@ typespecOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1092,6 +1109,7 @@ equate_own_init_proc(void)
         equate_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -1126,6 +1144,7 @@ equateOPcreate(CLUREF id, CLUREF val, CLUREF line, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1171,6 +1190,7 @@ equateOPis_rep(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1206,6 +1226,7 @@ equateOPget_idn(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1241,6 +1262,7 @@ equateOPget_val(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1276,6 +1298,7 @@ equateOPget_line(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1309,6 +1332,7 @@ equateOPcopy(CLUREF e, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1344,6 +1368,7 @@ equateOPequal(CLUREF e1, CLUREF e2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1399,7 +1424,7 @@ equateOPsimilar(CLUREF e1, CLUREF e2, CLUREF *ret_1)
         CLUREF T_2_3;
         T_2_1.num = e1.vec->data[2];
         T_2_2.num = e2.vec->data[2];
-        generic_CLU_proc.type_owns = 0;
+        generic_CLU_proc.type_owns = NULL;
         generic_CLU_proc.op_owns = oneof_du_expr_typeset_ops->entry[1].fcn->op_owns;
         generic_CLU_proc.proc = oneofOPsimilar;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1421,6 +1446,7 @@ equateOPsimilar(CLUREF e1, CLUREF e2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1462,7 +1488,7 @@ equateOP_gcd(CLUREF e, CLUREF tab, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = record_idn_line_val_ops->entry[6].fcn->op_owns;
     generic_CLU_proc.proc = recordOP_gcd;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1474,6 +1500,7 @@ equateOP_gcd(CLUREF e, CLUREF tab, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1760,6 +1787,7 @@ stmt_own_init_proc(void)
         stmt_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -1793,6 +1821,7 @@ stmtOPcreate(CLUREF s, CLUREF l, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1828,6 +1857,7 @@ stmtOPget_abs(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1859,6 +1889,7 @@ stmtOPset_abs(CLUREF s, CLUREF a)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1893,6 +1924,7 @@ stmtOPget_line(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1926,6 +1958,7 @@ stmtOPcopy(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1961,6 +1994,7 @@ stmtOPequal(CLUREF s1, CLUREF s2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2038,7 +2072,7 @@ stmtOPsimilar(CLUREF s1, CLUREF s2, CLUREF *ret_1)
     CLUREF T_1_3;
     T_1_1.num = s1.vec->data[1];
     T_1_2.num = s2.vec->data[1];
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = oneof_assn_bad_body_break__continue__decl_declinit_except__exit__for__force__if__invoke_resignal__return__signal__sugarassn_tag__while__yield__ops->entry[1].fcn->op_owns;
     generic_CLU_proc.proc = oneofOPsimilar;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -2050,6 +2084,7 @@ stmtOPsimilar(CLUREF s1, CLUREF s2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2124,7 +2159,7 @@ stmtOP_gcd(CLUREF s, CLUREF tab, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = record_line_stmt_1_ops->entry[6].fcn->op_owns;
     generic_CLU_proc.proc = recordOP_gcd;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -2136,6 +2171,7 @@ stmtOP_gcd(CLUREF s, CLUREF tab, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2297,6 +2333,7 @@ expr_own_init_proc(void)
         expr_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -2330,6 +2367,7 @@ exprOPcreate(CLUREF x, CLUREF t, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2365,6 +2403,7 @@ exprOPget_abs(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2396,6 +2435,7 @@ exprOPset_abs(CLUREF x, CLUREF a)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2430,6 +2470,7 @@ exprOPget_typespec(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2461,6 +2502,7 @@ exprOPset_typespec(CLUREF x, CLUREF t)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2509,7 +2551,7 @@ exprOPcopy(CLUREF x, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = record_expr_type__ops->entry[2].fcn->op_owns;
     generic_CLU_proc.proc = recordOPcopy;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -2521,6 +2563,7 @@ exprOPcopy(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2556,6 +2599,7 @@ exprOPequal(CLUREF x1, CLUREF x2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2608,7 +2652,7 @@ exprOPsimilar(CLUREF x1, CLUREF x2, CLUREF *ret_1)
     CLUREF T_1_3;
     T_1_1.num = x1.vec->data[0];
     T_1_2.num = x2.vec->data[0];
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = oneof_a_cons_any__apply_bad_bool__cand__char__cor__down__fetch_force__get_idn_infix_int__invoke_minus_not_null__op_real__ref_s_cons_str_type__type_of__up__ops->entry[1].fcn->op_owns;
     generic_CLU_proc.proc = oneofOPsimilar;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -2620,6 +2664,7 @@ exprOPsimilar(CLUREF x1, CLUREF x2, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2669,7 +2714,7 @@ exprOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = record_expr_type__ops->entry[6].fcn->op_owns;
     generic_CLU_proc.proc = recordOP_gcd;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -2681,6 +2726,7 @@ exprOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

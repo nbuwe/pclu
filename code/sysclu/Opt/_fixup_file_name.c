@@ -440,9 +440,11 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                         }
                         }/* end if */
                     }
-                    end_while_3:;
+                    end_while_3:
+                    __CLU_END_LABEL;
                     goto end_2;
                     ex_2:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_bounds)) {
 
   LINE(50);
@@ -475,11 +477,14 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
                 d.num = T_5_3.num;
                 }
                 }
-                end_while_2:;
+                end_while_2:
+                __CLU_END_LABEL;
             }
-            end_while_1:;
+            end_while_1:
+            __CLU_END_LABEL;
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bounds)) {
                 }
                 else {
@@ -780,6 +785,7 @@ _fixup_file_name(CLUREF fn, CLUREF dirok, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

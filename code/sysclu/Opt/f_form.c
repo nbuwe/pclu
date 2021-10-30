@@ -420,7 +420,8 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
             }
             }/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(58);
     {
@@ -433,6 +434,7 @@ f_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

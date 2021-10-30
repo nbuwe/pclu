@@ -29,6 +29,7 @@ host_address(CLUREF host, CLUREF *ret_1, CLUREF *ret_2)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_found) {signal(ERR_not_found);}
         else if (err == ERR_bad_address) {signal(ERR_bad_address);}
         else {
@@ -47,6 +48,7 @@ host_address(CLUREF host, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

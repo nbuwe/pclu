@@ -60,7 +60,7 @@ gc_dump(CLUREF x, CLUREF fn, CLUREF *ret_1)
     {
     {
     CLUREF T_2_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = op_own_ptr->gcd_tab_op_grind_of_t_ops->op_owns;
     generic_CLU_proc.proc = gcd_tabOPgrind;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -71,6 +71,7 @@ gc_dump(CLUREF x, CLUREF fn, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -78,6 +79,7 @@ gc_dump(CLUREF x, CLUREF fn, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

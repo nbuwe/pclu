@@ -676,6 +676,7 @@ pt_token(CLUREF t, CLUREF st)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -685,6 +686,7 @@ pt_token(CLUREF t, CLUREF st)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -753,6 +755,7 @@ typekey_string(CLUREF k, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -838,6 +841,7 @@ exprkey_string(CLUREF k, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1011,6 +1015,7 @@ stmtkey_string(CLUREF k, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1107,6 +1112,7 @@ defnkey_string(CLUREF k, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1143,7 +1149,7 @@ pt_str(CLUREF s, CLUREF st)
 
   LINE(150);
         {
-        err = pt_charseq(s, CLU_1, st);
+        err = pt_charseq(s, CLU_true, st);
         if (err != ERR_ok) goto ex_1;
         }
 
@@ -1157,6 +1163,7 @@ pt_str(CLUREF s, CLUREF st)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -1166,6 +1173,7 @@ pt_str(CLUREF s, CLUREF st)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1207,7 +1215,7 @@ pt_char(CLUREF c, CLUREF st)
         CLUREF T_3_1;
         err = stringOPc2s(c, &T_3_1);
         if (err != ERR_ok) goto ex_1;
-        err = pt_charseq(T_3_1, CLU_0, st);
+        err = pt_charseq(T_3_1, CLU_false, st);
         if (err != ERR_ok) goto ex_1;
         }
 
@@ -1219,6 +1227,7 @@ pt_char(CLUREF c, CLUREF st)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -1228,6 +1237,7 @@ pt_char(CLUREF c, CLUREF st)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1302,6 +1312,7 @@ pt_charseq(CLUREF s, CLUREF is_str, CLUREF st)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_not_possible)) {
             }
             else {
@@ -1311,6 +1322,7 @@ pt_charseq(CLUREF s, CLUREF is_str, CLUREF st)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -1544,9 +1556,11 @@ pt_charseq_IB_1(CLUREF iv_1, pt_charseq_LOCALS_t *locals, errcode *iecode)
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -1826,6 +1840,7 @@ pt_infixop(CLUREF op, CLUREF st)
         }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_not_possible)) {
                 }
                 else {
@@ -1842,6 +1857,7 @@ pt_infixop(CLUREF op, CLUREF st)
     }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
             }
             else {
@@ -1851,6 +1867,7 @@ pt_infixop(CLUREF op, CLUREF st)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

@@ -395,7 +395,8 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
             }
             }}}/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(41);
     {
@@ -405,7 +406,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
          (T_1_1.num <= 0 && low.num > 0 && (-1) > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = op_own_ptr->quick_sort_of_t_ops->op_owns;
     generic_CLU_proc.proc = quick_sort;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -421,7 +422,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
          (T_1_1.num < 0 && high.num > 0 && 1 > 0)) {
         err = ERR_overflow;
         goto ex_0;}
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = op_own_ptr->quick_sort_of_t_ops->op_owns;
     generic_CLU_proc.proc = quick_sort;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -431,6 +432,7 @@ quick_sort(CLUREF a, CLUREF low, CLUREF high, CLUREF less, CLUREF equal)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

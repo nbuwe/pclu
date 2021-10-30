@@ -189,9 +189,11 @@ date_parse(CLUREF s, CLUREF *ret_1)
             c.num = T_5_1.num;
             }
             }
-            end_while_2:;
+            end_while_2:
+            __CLU_END_LABEL;
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 {
                 }
             end_2:;
@@ -313,9 +315,11 @@ date_parse(CLUREF s, CLUREF *ret_1)
             c.num = T_5_1.num;
             }
             }
-            end_while_3:;
+            end_while_3:
+            __CLU_END_LABEL;
             goto end_3;
             ex_3:
+                __CLU_EX_HANDLER;
                 {
                 }
             end_3:;
@@ -360,9 +364,11 @@ date_parse(CLUREF s, CLUREF *ret_1)
         }
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             {
             }
         end_1:;
@@ -451,6 +457,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
         }
             goto end_5;
             ex_5:
+                __CLU_EX_HANDLER;
                 {
                 }
             end_5:;
@@ -812,6 +819,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
         }}/* end if */
         goto end_4;
         ex_4:
+            __CLU_EX_HANDLER;
             {
 
   LINE(119);
@@ -913,6 +921,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
         }/* end if */
         goto end_6;
         ex_6:
+            __CLU_EX_HANDLER;
             {
 
   LINE(131);
@@ -940,6 +949,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
         }/* end if */
         goto end_7;
         ex_7:
+            __CLU_EX_HANDLER;
             {
             }
         end_7:;
@@ -950,6 +960,7 @@ date_parse(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1087,6 +1098,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_overflow)) {
 
   LINE(149);
@@ -1355,9 +1367,11 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
         years.num = 0;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_overflow)) {
 
   LINE(183);
@@ -1371,6 +1385,7 @@ date_sub(CLUREF d, CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1412,6 +1427,7 @@ ago(CLUREF days, CLUREF months, CLUREF years, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

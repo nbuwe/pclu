@@ -124,6 +124,7 @@ _longsub(CLUREF x1, CLUREF x2, CLUREF x3, CLUREF y1, CLUREF y2, CLUREF y3, CLURE
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

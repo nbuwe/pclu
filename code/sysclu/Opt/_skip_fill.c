@@ -92,6 +92,7 @@ _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
             }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
                 else {
                     goto ex_0;}
@@ -142,7 +143,8 @@ _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
             }
             }}}/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(19);
     {
@@ -191,6 +193,7 @@ _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
     }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
 
   LINE(23);
@@ -219,6 +222,7 @@ _skip_fill(CLUREF b, CLUREF max, CLUREF c, CLUREF term, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

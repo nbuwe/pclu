@@ -76,7 +76,8 @@ _fixup_dir_part(CLUREF s, CLUREF *ret_1)
         s.num = T_2_4.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(10);
     {
@@ -130,6 +131,7 @@ _fixup_dir_part(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

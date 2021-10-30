@@ -90,6 +90,7 @@ g_const_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -137,6 +138,7 @@ g_constOPexist(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -202,6 +204,7 @@ g_constOPfind_consts(CLUREF e, CLUREF bod)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -424,7 +427,8 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                             }
                         }
                     }
-                    end_inline_for_2:;
+                    end_inline_for_2:
+                    __CLU_END_LABEL;
 
   LINE(63);
                     {
@@ -487,7 +491,8 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                             }
                         }
                     }
-                    end_inline_for_3:;
+                    end_inline_for_3:
+                    __CLU_END_LABEL;
 
   LINE(73);
                     {
@@ -619,7 +624,8 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
                             }
                         }
                     }
-                    end_inline_for_4:;
+                    end_inline_for_4:
+                    __CLU_END_LABEL;
 
   LINE(93);
                     {
@@ -685,10 +691,12 @@ g_constOPfind_consts2(CLUREF bod, CLUREF const_UNIQ)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -730,10 +738,12 @@ g_constOPfind_const_exprlist(CLUREF el, CLUREF const_UNIQ)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -775,10 +785,12 @@ g_constOPfind_const_fieldspeclist(CLUREF fl, CLUREF const_UNIQ)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -947,7 +959,8 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
                         }
                     }
                 }
-                end_inline_for_1:;
+                end_inline_for_1:
+                __CLU_END_LABEL;
                 }
                 }/* end if */
             break;
@@ -1167,6 +1180,7 @@ g_constOPfind_const_exprs(CLUREF exp, CLUREF const_UNIQ)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1267,6 +1281,7 @@ g_constOPfind_const_field(CLUREF f, CLUREF const_UNIQ)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1435,9 +1450,11 @@ g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
                     }
                 }
             }
-            end_inline_for_2:;
+            end_inline_for_2:
+            __CLU_END_LABEL;
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_cont)) {
 
   LINE(289);
@@ -1461,7 +1478,8 @@ g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(292);
     {
@@ -1472,6 +1490,7 @@ g_constOPconst_uniq(CLUREF const_UNIQ, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1562,10 +1581,12 @@ g_constOPg_consts(CLUREF e, CLUREF pass)
                 }}/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1630,6 +1651,7 @@ g_constOPg_str_decl(CLUREF e, CLUREF s)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1721,6 +1743,7 @@ g_constOPg_str_cons(CLUREF e, CLUREF s)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1777,6 +1800,7 @@ const_defn_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -1816,6 +1840,7 @@ const_defnOPstart()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1882,7 +1907,8 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(493);
     {
@@ -1905,6 +1931,7 @@ const_defnOPtest(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1936,6 +1963,7 @@ const_defnOPstop()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

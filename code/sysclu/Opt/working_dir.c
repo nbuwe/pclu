@@ -23,7 +23,7 @@ working_dir(CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    err = _working_dir(CLU_empty_string, CLU_0, &T_1_1);
+    err = _working_dir(CLU_empty_string, CLU_false, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_1.num;
     }
@@ -31,6 +31,7 @@ working_dir(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

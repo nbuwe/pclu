@@ -46,7 +46,8 @@ fill(CLUREF substring, CLUREF times, CLUREF *ret_1)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(109);
     {
@@ -57,6 +58,7 @@ fill(CLUREF substring, CLUREF times, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -203,6 +205,7 @@ insert_text(CLUREF str, CLUREF text_to_insert, CLUREF current_text, CLUREF curre
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -262,6 +265,7 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
             }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bounds)) {
 
   LINE(149);
@@ -466,6 +470,7 @@ delete_text(CLUREF str, CLUREF current_text, CLUREF current_pos, CLUREF del_star
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -563,9 +568,11 @@ find_word(CLUREF current_text, CLUREF current_pos, CLUREF delim, CLUREF *ret_1, 
                 }}/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if (errcmp(err, "ERR_got_it")) {
             }
             else {
@@ -629,7 +636,8 @@ find_word(CLUREF current_text, CLUREF current_pos, CLUREF delim, CLUREF *ret_1, 
                 }}/* end if */
         }
     }
-    end_inline_for_2:;
+    end_inline_for_2:
+    __CLU_END_LABEL;
 
   LINE(216);
     {
@@ -646,6 +654,7 @@ find_word(CLUREF current_text, CLUREF current_pos, CLUREF delim, CLUREF *ret_1, 
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -681,11 +690,12 @@ getc_noeof(CLUREF str, CLUREF *ret_1)
     {signal (ERR_ok);}}
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
 
   LINE(225);
                 {
-                err = streamOPset_eof_flag(str, CLU_0);
+                err = streamOPset_eof_flag(str, CLU_false);
                 if (err != ERR_ok) goto ex_0;
                 }
 
@@ -706,6 +716,7 @@ getc_noeof(CLUREF str, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -955,7 +966,8 @@ get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
                 }
                 if (T_3_1.num != true) { break; }
                 }
-                end_while_2:;
+                end_while_2:
+                __CLU_END_LABEL;
             }
             }/* end if */
 
@@ -1066,10 +1078,12 @@ get_key_press(CLUREF str, CLUREF *ret_1, CLUREF *ret_2)
             }
             }/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1363,6 +1377,7 @@ setup_default_keytable(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1441,6 +1456,7 @@ setup_keytable(CLUREF *ret_1)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
 
   LINE(347);
@@ -1469,6 +1485,7 @@ setup_keytable(CLUREF *ret_1)
     }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
             }
             else {
@@ -1489,6 +1506,7 @@ setup_keytable(CLUREF *ret_1)
     }
         goto end_3;
         ex_3:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
             }
             else {
@@ -1505,6 +1523,7 @@ setup_keytable(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1683,8 +1702,8 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
-            CLUREF why;
             why.num = elist[0].num;
 
   LINE(363);
@@ -2148,9 +2167,11 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
                 }
                 }}/* end if */
             }
-            end_while_2:;
+            end_while_2:
+            __CLU_END_LABEL;
             goto end_3;
             ex_3:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bounds)) {
 
   LINE(424);
@@ -2433,6 +2454,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
                 }
                     goto end_4;
                     ex_4:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_duplicate)) {
 
   LINE(478);
@@ -2490,9 +2512,11 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
             }
             }}/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
             }
             else {
@@ -2508,6 +2532,7 @@ overload_keytable_file(CLUREF tbl, CLUREF fn)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2599,6 +2624,7 @@ replace(CLUREF look_for, CLUREF new, CLUREF from, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2855,6 +2881,7 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
                 }/* end if */
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((locals.err == ERR_bounds)) {
 
   LINE(572);
@@ -2901,7 +2928,8 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
                     }
                 }
             }
-            end_inline_for_1:;
+            end_inline_for_1:
+            __CLU_END_LABEL;
 
   LINE(581);
             {
@@ -3411,10 +3439,12 @@ lineedit(CLUREF str, CLUREF prompt, CLUREF *ret_1)
             }
             }}}}}}}}}}}}}}}}}/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -3454,9 +3484,11 @@ lineedit_IB_1(CLUREF iv_1, lineedit_LOCALS_t *locals, errcode *iecode)
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 

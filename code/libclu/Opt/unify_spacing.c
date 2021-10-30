@@ -102,6 +102,7 @@ unify_spacing(CLUREF s, CLUREF *ret_1)
             }/* end if */
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((locals.err == ERR_bounds)) {
                 }
                 else {
@@ -134,6 +135,7 @@ unify_spacing(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -258,9 +260,11 @@ unify_spacing_IB_1(CLUREF iv_1, unify_spacing_LOCALS_t *locals, errcode *iecode)
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 

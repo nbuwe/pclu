@@ -135,10 +135,12 @@ trim_head(CLUREF s, CLUREF *ret_1)
         c.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -275,10 +277,12 @@ trim_tail(CLUREF s, CLUREF *ret_1)
         c.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -404,7 +408,8 @@ trim_both(CLUREF s, CLUREF *ret_1)
         c.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(45);
     for (;;) {
@@ -475,10 +480,12 @@ trim_both(CLUREF s, CLUREF *ret_1)
         len.num = T_2_1.num;
         }
         }
-        end_while_2:;
+        end_while_2:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

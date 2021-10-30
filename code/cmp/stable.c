@@ -82,7 +82,7 @@ const OWN_req stable_ownreqs = { sizeof(stable_OWN_DEFN), 12 };
 errcode
 stable_own_init_proc()
 {
-    errcode err;
+    errcode err __CLU_UNUSED;
     stable_OWN_DEFN *type_own_ptr;
     type_own_ptr = (stable_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns;
 
@@ -128,6 +128,7 @@ stableOPcreate(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -165,13 +166,14 @@ stableOPlookup(CLUREF tbl, CLUREF name, CLUREF *ret_1)
         generic_CLU_proc.type_owns = type_own_ptr->stable_of_value_t_ops->type_owns;
         generic_CLU_proc.proc = stableOPfind_index;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
-        err = stableOPfind_index(tbl, name, CLU_1, &T_2_1);
+        err = stableOPfind_index(tbl, name, CLU_true, &T_2_1);
         if (err != ERR_ok) goto ex_1;
         index.num = T_2_1.num;
         }
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_found) {signal(ERR_not_found);}
         else {
             goto ex_0;}
@@ -193,6 +195,7 @@ stableOPlookup(CLUREF tbl, CLUREF name, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -277,6 +280,7 @@ stableOPcompletions(CLUREF tbl, CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -319,9 +323,11 @@ stableOPcompletions_IB_1(CLUREF iv_1, CLUREF iv_2, stableOPcompletions_LOCALS_t 
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -334,9 +340,8 @@ stableOPcompletions_IB_1(CLUREF iv_1, CLUREF iv_2, stableOPcompletions_LOCALS_t 
 errcode
 stableOPmatch(CLUREF tbl, CLUREF ms, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     errcode err;
-    bool body_ctrl_req;
     stable_OWN_DEFN *type_own_ptr;
     CLUREF len;
     CLUREF i;
@@ -366,7 +371,7 @@ stableOPmatch(CLUREF tbl, CLUREF ms, errcode (*proc)(), void *user_locals, errco
         generic_CLU_proc.type_owns = type_own_ptr->stable_of_value_t_ops->type_owns;
         generic_CLU_proc.proc = stableOPfind_index;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
-        err = stableOPfind_index(tbl, ms, CLU_0, &T_1_1);
+        err = stableOPfind_index(tbl, ms, CLU_false, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         i.num = T_1_1.num;
         }
@@ -426,9 +431,11 @@ stableOPmatch(CLUREF tbl, CLUREF ms, errcode (*proc)(), void *user_locals, errco
         i.num = T_3_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -438,6 +445,7 @@ stableOPmatch(CLUREF tbl, CLUREF ms, errcode (*proc)(), void *user_locals, errco
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -475,7 +483,7 @@ stableOPinsert(CLUREF tbl, CLUREF name, CLUREF val)
         generic_CLU_proc.type_owns = type_own_ptr->stable_of_value_t_ops->type_owns;
         generic_CLU_proc.proc = stableOPfind_index;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
-        err = stableOPfind_index(tbl, name, CLU_0, &T_1_1);
+        err = stableOPfind_index(tbl, name, CLU_false, &T_1_1);
         if (err != ERR_ok) goto ex_0;
         i.num = T_1_1.num;
         }
@@ -557,7 +565,8 @@ stableOPinsert(CLUREF tbl, CLUREF name, CLUREF val)
                 }
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
 
   LINE(69);
         {
@@ -575,6 +584,7 @@ stableOPinsert(CLUREF tbl, CLUREF name, CLUREF val)
         }}/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
 
   LINE(71);
@@ -600,6 +610,7 @@ stableOPinsert(CLUREF tbl, CLUREF name, CLUREF val)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -636,7 +647,7 @@ stableOPchange(CLUREF tbl, CLUREF name, CLUREF new_val)
     generic_CLU_proc.type_owns = type_own_ptr->stable_of_value_t_ops->type_owns;
     generic_CLU_proc.proc = stableOPfind_index;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
-    err = stableOPfind_index(tbl, name, CLU_1, &T_2_1);
+    err = stableOPfind_index(tbl, name, CLU_true, &T_2_1);
     if (err != ERR_ok) goto ex_1;
     if (T_2_1.num < tbl.array->ext_low || T_2_1.num > tbl.array->ext_high ) {
         err = ERR_bounds;
@@ -646,6 +657,7 @@ stableOPchange(CLUREF tbl, CLUREF name, CLUREF new_val)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_found) {signal(ERR_not_found);}
         else {
             goto ex_0;}
@@ -653,6 +665,7 @@ stableOPchange(CLUREF tbl, CLUREF name, CLUREF new_val)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -776,6 +789,7 @@ stableOPfind_index(CLUREF tbl, CLUREF look_for, CLUREF exact, CLUREF *ret_1)
             }}}/* end if */
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_bounds)) {
 
   LINE(102);
@@ -833,10 +847,12 @@ stableOPfind_index(CLUREF tbl, CLUREF look_for, CLUREF exact, CLUREF *ret_1)
             }
             }/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -875,13 +891,14 @@ stableOPdelete(CLUREF tbl, CLUREF name)
         generic_CLU_proc.type_owns = type_own_ptr->stable_of_value_t_ops->type_owns;
         generic_CLU_proc.proc = stableOPfind_index;
         CUR_PROC_VAR.proc = &generic_CLU_proc;
-        err = stableOPfind_index(tbl, name, CLU_1, &T_2_1);
+        err = stableOPfind_index(tbl, name, CLU_true, &T_2_1);
         if (err != ERR_ok) goto ex_1;
         index.num = T_2_1.num;
         }
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_found) {signal(ERR_not_found);}
         else {
             goto ex_0;}
@@ -925,7 +942,8 @@ stableOPdelete(CLUREF tbl, CLUREF name)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(130);
     {
@@ -936,6 +954,7 @@ stableOPdelete(CLUREF tbl, CLUREF name)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -952,9 +971,8 @@ stableOPdelete(CLUREF tbl, CLUREF name)
 errcode
 stableOPentries(CLUREF tbl, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     errcode err;
-    bool body_ctrl_req;
     stable_OWN_DEFN *type_own_ptr;
     CLUREF el;
     type_own_ptr = (stable_OWN_DEFN *) CUR_PROC_VAR.proc->type_owns;
@@ -995,10 +1013,12 @@ stableOPentries(CLUREF tbl, errcode (*proc)(), void *user_locals, errcode *iecod
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1035,6 +1055,7 @@ stableOPempty(CLUREF tbl, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1108,6 +1129,7 @@ stableOPunparse(CLUREF tbl, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -1153,9 +1175,11 @@ stableOPunparse_IB_1(CLUREF iv_1, CLUREF iv_2, stableOPunparse_LOCALS_t *locals,
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 

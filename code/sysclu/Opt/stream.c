@@ -277,6 +277,7 @@ stream_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -529,6 +530,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -607,6 +609,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
         }/* end if */
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
 
   LINE(125);
@@ -750,6 +753,7 @@ streamOPopen(CLUREF fn, CLUREF mode, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -795,6 +799,7 @@ streamOPopen_streams(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -843,6 +848,7 @@ streamOPprimary_input(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -891,6 +897,7 @@ streamOPprimary_output(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1009,6 +1016,7 @@ streamOPerror_output(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1306,6 +1314,7 @@ streamOPget_prims(CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1352,6 +1361,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
         }
             goto end_1;
             ex_1:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_not_found)) {
 
   LINE(267);
@@ -1377,6 +1387,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
     }
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)
              || (err == ERR_bad_format)
              || (err == ERR_overflow)) {
@@ -1403,6 +1414,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
     }
         goto end_3;
         ex_3:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)
              || (err == ERR_bad_format)
              || (err == ERR_overflow)) {
@@ -1446,6 +1458,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
         }
         goto end_4;
         ex_4:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
 
   LINE(276);
@@ -1484,6 +1497,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
         }}/* end if */
         goto end_6;
         ex_6:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
 
   LINE(281);
@@ -1500,6 +1514,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
         end_6:;
         goto end_5;
         ex_5:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
             }
             else {
@@ -1516,6 +1531,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
     }
         goto end_7;
         ex_7:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
 
   LINE(285);
@@ -1584,6 +1600,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
     }
         goto end_8;
         ex_8:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
             }
             else {
@@ -1640,6 +1657,7 @@ streamOPtermcap(CLUREF b, CLUREF term)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1735,6 +1753,7 @@ streamOPadd_script(CLUREF st1, CLUREF st2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -1769,9 +1788,11 @@ streamOPadd_script_IB_1(CLUREF iv_1, streamOPadd_script_LOCALS_t *locals, errcod
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -1797,9 +1818,11 @@ streamOPadd_script_IB_2(CLUREF iv_1, streamOPadd_script_LOCALS_t *locals, errcod
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -1823,7 +1846,7 @@ typedef struct {
 errcode
 streamOPall_scripts(CLUREF st, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     streamOPall_scripts_LOCALS_t locals;
     locals.st = st;
     locals.proc = proc;
@@ -1885,10 +1908,12 @@ streamOPall_scripts(CLUREF st, errcode (*proc)(), void *user_locals, errcode *ie
                 }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -1920,10 +1945,12 @@ streamOPall_scripts_IB_1(CLUREF iv_1, streamOPall_scripts_LOCALS_t *locals, errc
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     locals->body_ctrl_req = true;
     signal(ERR_iteriterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -1936,9 +1963,8 @@ streamOPall_scripts_IB_1(CLUREF iv_1, streamOPall_scripts_LOCALS_t *locals, errc
 errcode
 streamOPscripts(CLUREF st, errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     errcode err;
-    bool body_ctrl_req;
     CLUREF scr;
     if (stream_own_init == 0) {
         err = stream_own_init_proc();
@@ -1971,10 +1997,12 @@ streamOPscripts(CLUREF st, errcode (*proc)(), void *user_locals, errcode *iecode
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2075,10 +2103,12 @@ streamOPrem_script(CLUREF st1, CLUREF st2)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2117,6 +2147,7 @@ streamOPunscript(CLUREF st)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2172,6 +2203,7 @@ streamOPcan_read(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2228,6 +2260,7 @@ streamOPcan_write(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2367,7 +2400,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
   LINE(386);
             {
             CLUREF T_3_1;
-            err = streamOPtty_get1(tb, CLU_0, &T_3_1);
+            err = streamOPtty_get1(tb, CLU_false, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             c.num = T_3_1.num;
             }
@@ -2397,6 +2430,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
             }
                 goto end_2;
                 ex_2:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_bounds)) {
 
   LINE(391);
@@ -2492,6 +2526,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -2509,7 +2544,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
         CLUREF T_2_1;
         err = stringOPc2s(c, &T_2_1);
         if (err != ERR_ok) goto ex_0;
-        err = streamOPscript(st, T_2_1, CLU_0);
+        err = streamOPscript(st, T_2_1, CLU_false);
         if (err != ERR_ok) goto ex_0;
         }
         }
@@ -2524,6 +2559,7 @@ streamOPgetc(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2663,7 +2699,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
   LINE(425);
             {
             CLUREF T_3_1;
-            err = streamOPtty_get1(tb, CLU_1, &T_3_1);
+            err = streamOPtty_get1(tb, CLU_true, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             c.num = T_3_1.num;
             }
@@ -2687,6 +2723,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
             }
                 goto end_2;
                 ex_2:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_bounds)) {
 
   LINE(429);
@@ -2782,6 +2819,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -2799,7 +2837,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
         CLUREF T_2_1;
         err = stringOPc2s(c, &T_2_1);
         if (err != ERR_ok) goto ex_0;
-        err = streamOPscript(st, T_2_1, CLU_1);
+        err = streamOPscript(st, T_2_1, CLU_true);
         if (err != ERR_ok) goto ex_0;
         }
         }
@@ -2814,6 +2852,7 @@ streamOPgetc_image(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -2955,7 +2994,7 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
                     {CLUREF T_4_1;
                     CLUREF T_4_2;
                     T_4_1.num = tb.vec->data[2];
-                    err = _chanOPgetc(T_4_1, CLU_1, &T_4_2);
+                    err = _chanOPgetc(T_4_1, CLU_true, &T_4_2);
                     if (err != ERR_ok) goto ex_1;
                     c.num = T_4_2.num;
                     }
@@ -3041,6 +3080,7 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
             {signal (ERR_ok);}}
                 goto end_2;
                 ex_2:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_bounds)) {
 
   LINE(475);
@@ -3097,6 +3137,7 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -3105,6 +3146,7 @@ streamOPpeekc(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3169,7 +3211,7 @@ streamOPpending(CLUREF st, CLUREF *ret_1)
                 T_3_6.num = T_3_9.num;
                 if (!T_3_9.num) {
                     T_3_10.num = tb.vec->data[2];
-                    err = _chanOPpending(T_3_10, CLU_0, &T_3_11);
+                    err = _chanOPpending(T_3_10, CLU_false, &T_3_11);
                     if (err != ERR_ok) goto ex_1;
                     T_3_6.num = T_3_11.num;
                 }
@@ -3198,6 +3240,7 @@ streamOPpending(CLUREF st, CLUREF *ret_1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -3205,6 +3248,7 @@ streamOPpending(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3379,12 +3423,14 @@ streamOPempty(CLUREF st, CLUREF *ret_1)
     }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_1;}
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
 
   LINE(517);
@@ -3401,6 +3447,7 @@ streamOPempty(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3463,7 +3510,7 @@ streamOPputc(CLUREF st, CLUREF c)
                     T_4_3.num = wb.vec->data[2];
                     err = stringOPc2s(c, &T_4_4);
                     if (err != ERR_ok) goto ex_1;
-                    err = _chanOPput(T_4_1, T_4_2, CLU_1, T_4_3, T_4_4, CLU_0, &T_4_5, &T_4_6);
+                    err = _chanOPput(T_4_1, T_4_2, CLU_1, T_4_3, T_4_4, CLU_false, &T_4_5, &T_4_6);
                     if (err != ERR_ok) goto ex_1;
                     low.num = T_4_5.num;
                     index.num = T_4_6.num;
@@ -3481,7 +3528,7 @@ streamOPputc(CLUREF st, CLUREF c)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = wb.vec->data[1];
-                err = _chanOPputc(T_4_1, c, CLU_0);
+                err = _chanOPputc(T_4_1, c, CLU_false);
                 if (err != ERR_ok) goto ex_1;
                 }
                 }}/* end if */
@@ -3497,7 +3544,7 @@ streamOPputc(CLUREF st, CLUREF c)
             CLUREF T_3_1;
             err = stringOPc2s(c, &T_3_1);
             if (err != ERR_ok) goto ex_1;
-            err = streamOPtty_put(tb, T_3_1, CLU_0);
+            err = streamOPtty_put(tb, T_3_1, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
             break;
@@ -3539,6 +3586,7 @@ streamOPputc(CLUREF st, CLUREF c)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -3555,7 +3603,7 @@ streamOPputc(CLUREF st, CLUREF c)
         CLUREF T_2_1;
         err = stringOPc2s(c, &T_2_1);
         if (err != ERR_ok) goto ex_0;
-        err = streamOPscript(st, T_2_1, CLU_0);
+        err = streamOPscript(st, T_2_1, CLU_false);
         if (err != ERR_ok) goto ex_0;
         }
         }
@@ -3563,6 +3611,7 @@ streamOPputc(CLUREF st, CLUREF c)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3624,7 +3673,7 @@ streamOPputc_image(CLUREF st, CLUREF c)
                     T_4_3.num = wb.vec->data[2];
                     err = stringOPc2s(c, &T_4_4);
                     if (err != ERR_ok) goto ex_1;
-                    err = _chanOPput(T_4_1, T_4_2, CLU_1, T_4_3, T_4_4, CLU_1, &T_4_5, &T_4_6);
+                    err = _chanOPput(T_4_1, T_4_2, CLU_1, T_4_3, T_4_4, CLU_true, &T_4_5, &T_4_6);
                     if (err != ERR_ok) goto ex_1;
                     low.num = T_4_5.num;
                     index.num = T_4_6.num;
@@ -3642,7 +3691,7 @@ streamOPputc_image(CLUREF st, CLUREF c)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = wb.vec->data[1];
-                err = _chanOPputc(T_4_1, c, CLU_1);
+                err = _chanOPputc(T_4_1, c, CLU_true);
                 if (err != ERR_ok) goto ex_1;
                 }
                 }}/* end if */
@@ -3658,7 +3707,7 @@ streamOPputc_image(CLUREF st, CLUREF c)
             CLUREF T_3_1;
             err = stringOPc2s(c, &T_3_1);
             if (err != ERR_ok) goto ex_1;
-            err = streamOPtty_put(tb, T_3_1, CLU_1);
+            err = streamOPtty_put(tb, T_3_1, CLU_true);
             if (err != ERR_ok) goto ex_1;
             }
             break;
@@ -3700,6 +3749,7 @@ streamOPputc_image(CLUREF st, CLUREF c)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -3716,7 +3766,7 @@ streamOPputc_image(CLUREF st, CLUREF c)
         CLUREF T_2_1;
         err = stringOPc2s(c, &T_2_1);
         if (err != ERR_ok) goto ex_0;
-        err = streamOPscript(st, T_2_1, CLU_1);
+        err = streamOPscript(st, T_2_1, CLU_true);
         if (err != ERR_ok) goto ex_0;
         }
         }
@@ -3724,6 +3774,7 @@ streamOPputc_image(CLUREF st, CLUREF c)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3816,6 +3867,7 @@ streamOPget_lineno(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3842,6 +3894,7 @@ streamOPset_lineno(CLUREF st, CLUREF ln)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -3960,11 +4013,12 @@ streamOPreset(CLUREF st)
                 CLUREF T_5_2;
                 T_5_1.num = tb.vec->data[2];
                 T_5_2.ch = '\n';
-                err = _chanOPputc(T_5_1, T_5_2, CLU_0);
+                err = _chanOPputc(T_5_1, T_5_2, CLU_false);
                 if (err != ERR_ok) goto ex_2;
                 }
                     goto end_2;
                     ex_2:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_not_possible)) {
                         }
                         else {
@@ -4068,6 +4122,7 @@ streamOPreset(CLUREF st)
                 }/* end if */
                 goto end_3;
                 ex_3:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_bounds)) {
                     }
                     else {
@@ -4097,6 +4152,7 @@ streamOPreset(CLUREF st)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -4104,6 +4160,7 @@ streamOPreset(CLUREF st)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4148,7 +4205,7 @@ streamOPflush(CLUREF st)
             T_3_1.num = wb.vec->data[1];
             T_3_2.num = wb.vec->data[0];
             T_3_3.num = wb.vec->data[2];
-            err = _chanOPputb(T_3_1, T_3_2, CLU_1, T_3_3, CLU_0);
+            err = _chanOPputb(T_3_1, T_3_2, CLU_1, T_3_3, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
 
@@ -4217,6 +4274,7 @@ streamOPflush(CLUREF st)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -4247,9 +4305,11 @@ streamOPflush(CLUREF st)
                 }
             }
         }
-        end_inline_for_1:;
+        end_inline_for_1:
+        __CLU_END_LABEL;
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if (err == ERR_not_possible) {signal(ERR_not_possible);}
             else {
                 goto ex_0;}
@@ -4259,6 +4319,7 @@ streamOPflush(CLUREF st)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4324,6 +4385,7 @@ streamOPget_line_length(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4390,6 +4452,7 @@ streamOPget_page_length(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4472,6 +4535,7 @@ streamOPget_date(CLUREF st, CLUREF *ret_1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -4479,6 +4543,7 @@ streamOPget_date(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4514,6 +4579,7 @@ streamOPset_date(CLUREF st, CLUREF ndate)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4572,6 +4638,7 @@ streamOPget_name(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4608,6 +4675,7 @@ streamOPclose(CLUREF st)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -4714,12 +4782,14 @@ streamOPclose(CLUREF st)
     }
     goto end_3;
     ex_3:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_2;}
     end_3:;
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_permanent)) {
 
   LINE(699);
@@ -4793,6 +4863,7 @@ streamOPclose(CLUREF st)
                 }
                     goto end_4;
                     ex_4:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_bounds)) {
                         }
                         else {
@@ -4807,10 +4878,12 @@ streamOPclose(CLUREF st)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -4940,6 +5013,7 @@ streamOPabort(CLUREF st)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_permanent)
              || (err == ERR_not_possible)) {
 
@@ -5014,6 +5088,7 @@ streamOPabort(CLUREF st)
                 }
                     goto end_2;
                     ex_2:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_bounds)) {
                         }
                         else {
@@ -5028,10 +5103,12 @@ streamOPabort(CLUREF st)
                 }/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5068,6 +5145,7 @@ streamOPis_closed(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5105,6 +5183,7 @@ streamOPis_terminal(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5148,6 +5227,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -5229,6 +5309,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
             }
                 goto end_2;
                 ex_2:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_bounds)) {
 
   LINE(765);
@@ -5260,13 +5341,14 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
                 CLUREF T_4_2;
                 T_4_1.num = tb.vec->data[2];
                 T_4_2.ch = '\n';
-                err = _chanOPputc(T_4_1, T_4_2, CLU_0);
+                err = _chanOPputc(T_4_1, T_4_2, CLU_false);
                 if (err != ERR_ok) goto ex_3;
                 }
                 }
                 }/* end if */
                 goto end_3;
                 ex_3:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_not_possible)) {
                     }
                     else {
@@ -5363,7 +5445,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
 
   LINE(783);
         {
-        err = streamOPscript(st, STR__012, CLU_0);
+        err = streamOPscript(st, STR__012, CLU_false);
         if (err != ERR_ok) goto ex_0;
         }
         }
@@ -5378,6 +5460,7 @@ streamOPgetl(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5421,6 +5504,7 @@ streamOPputl(CLUREF st, CLUREF line)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -5428,6 +5512,7 @@ streamOPputl(CLUREF st, CLUREF line)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5485,7 +5570,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
             T_3_2.num = rb.vec->data[0];
             T_3_3.num = rb.vec->data[2];
             T_3_4.num = rb.vec->data[4];
-            err = _chanOPget(T_3_1, T_3_2, T_3_3, T_3_4, term, CLU_0, &T_3_5, &T_3_6, &T_3_7);
+            err = _chanOPget(T_3_1, T_3_2, T_3_3, T_3_4, term, CLU_false, &T_3_5, &T_3_6, &T_3_7);
             if (err != ERR_ok) goto ex_1;
             s.num = T_3_5.num;
             index.num = T_3_6.num;
@@ -5594,7 +5679,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
                     {
                     CLUREF T_5_1;
                     T_5_1.num = tb.vec->data[17];
-                    err = streamOPscript(st, T_5_1, CLU_0);
+                    err = streamOPscript(st, T_5_1, CLU_false);
                     if (err != ERR_ok) goto ex_1;
                     }
                     }
@@ -5613,7 +5698,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
   LINE(815);
                 {
                 CLUREF T_4_1;
-                err = streamOPtty_get(tb, term, CLU_0, &T_4_1);
+                err = streamOPtty_get(tb, term, CLU_false, &T_4_1);
                 if (err != ERR_ok) goto ex_1;
                 s.num = T_4_1.num;
                 }
@@ -5657,6 +5742,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -5671,7 +5757,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
 
   LINE(825);
         {
-        err = streamOPscript(st, s, CLU_0);
+        err = streamOPscript(st, s, CLU_false);
         if (err != ERR_ok) goto ex_0;
         }
         }
@@ -5686,6 +5772,7 @@ streamOPgets(CLUREF st, CLUREF term, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -5744,7 +5831,7 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
             T_3_2.num = rb.vec->data[0];
             T_3_3.num = rb.vec->data[2];
             T_3_4.num = rb.vec->data[4];
-            err = _chanOPget(T_3_1, T_3_2, T_3_3, T_3_4, term, CLU_1, &T_3_5, &T_3_6, &T_3_7);
+            err = _chanOPget(T_3_1, T_3_2, T_3_3, T_3_4, term, CLU_true, &T_3_5, &T_3_6, &T_3_7);
             if (err != ERR_ok) goto ex_1;
             s.num = T_3_5.num;
             index.num = T_3_6.num;
@@ -5824,7 +5911,7 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
   LINE(846);
             {
             CLUREF T_3_1;
-            err = streamOPtty_get(tb, term, CLU_1, &T_3_1);
+            err = streamOPtty_get(tb, term, CLU_true, &T_3_1);
             if (err != ERR_ok) goto ex_1;
             s.num = T_3_1.num;
             }
@@ -5867,6 +5954,7 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -5881,7 +5969,7 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
 
   LINE(855);
         {
-        err = streamOPscript(st, s, CLU_1);
+        err = streamOPscript(st, s, CLU_true);
         if (err != ERR_ok) goto ex_0;
         }
         }
@@ -5896,6 +5984,7 @@ streamOPgets_image(CLUREF st, CLUREF term, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -6002,12 +6091,14 @@ streamOPtty_get1(CLUREF tb, CLUREF image, CLUREF *ret_1)
         }}/* end if */
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_1;}
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
 
   LINE(873);
@@ -6088,6 +6179,7 @@ streamOPtty_get1(CLUREF tb, CLUREF image, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -6232,15 +6324,18 @@ streamOPtty_get(CLUREF tb, CLUREF term, CLUREF image, CLUREF *ret_1)
         }
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_1;}
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
 
   LINE(907);
@@ -6294,6 +6389,7 @@ streamOPtty_get(CLUREF tb, CLUREF term, CLUREF image, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -6421,9 +6517,11 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
         last.num = T_3_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -6568,6 +6666,7 @@ streamOPstr_get(CLUREF sb, CLUREF term, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -6631,7 +6730,7 @@ streamOPputs(CLUREF st, CLUREF s)
                 T_3_1.num = locals.wb.vec->data[1];
                 T_3_2.num = locals.wb.vec->data[0];
                 T_3_3.num = locals.wb.vec->data[2];
-                locals.err = _chanOPput(T_3_1, T_3_2, CLU_1, T_3_3, locals.s, CLU_0, &T_3_4, &T_3_5);
+                locals.err = _chanOPput(T_3_1, T_3_2, CLU_1, T_3_3, locals.s, CLU_false, &T_3_4, &T_3_5);
                 if (locals.err != ERR_ok) goto ex_1;
                 locals.low.num = T_3_4.num;
                 locals.index.num = T_3_5.num;
@@ -6652,7 +6751,7 @@ streamOPputs(CLUREF st, CLUREF s)
                 CLUREF T_4_2;
                 T_4_1.num = locals.wb.vec->data[1];
                 T_4_2.num = locals.wb.vec->data[0];
-                locals.err = _chanOPputb(T_4_1, T_4_2, CLU_1, locals.index, CLU_0);
+                locals.err = _chanOPputb(T_4_1, T_4_2, CLU_1, locals.index, CLU_false);
                 if (locals.err != ERR_ok) goto ex_1;
                 }
 
@@ -6676,7 +6775,7 @@ streamOPputs(CLUREF st, CLUREF s)
 
   LINE(961);
             {
-            locals.err = streamOPtty_put(locals.tb, locals.s, CLU_0);
+            locals.err = streamOPtty_put(locals.tb, locals.s, CLU_false);
             if (locals.err != ERR_ok) goto ex_1;
             }
             break;
@@ -6718,6 +6817,7 @@ streamOPputs(CLUREF st, CLUREF s)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (locals.err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -6731,7 +6831,7 @@ streamOPputs(CLUREF st, CLUREF s)
 
   LINE(971);
         {
-        locals.err = streamOPscript(locals.st, locals.s, CLU_0);
+        locals.err = streamOPscript(locals.st, locals.s, CLU_false);
         if (locals.err != ERR_ok) goto ex_0;
         }
         }
@@ -6739,6 +6839,7 @@ streamOPputs(CLUREF st, CLUREF s)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -6771,9 +6872,11 @@ streamOPputs_IB_1(CLUREF iv_1, streamOPputs_LOCALS_t *locals, errcode *iecode)
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -6838,7 +6941,7 @@ streamOPputs_image(CLUREF st, CLUREF s)
                     T_4_1.num = locals.wb.vec->data[1];
                     T_4_2.num = locals.wb.vec->data[0];
                     T_4_3.num = locals.wb.vec->data[2];
-                    locals.err = _chanOPput(T_4_1, T_4_2, CLU_1, T_4_3, locals.s, CLU_1, &T_4_4, &T_4_5);
+                    locals.err = _chanOPput(T_4_1, T_4_2, CLU_1, T_4_3, locals.s, CLU_true, &T_4_4, &T_4_5);
                     if (locals.err != ERR_ok) goto ex_1;
                     locals.low.num = T_4_4.num;
                     locals.index.num = T_4_5.num;
@@ -6856,7 +6959,7 @@ streamOPputs_image(CLUREF st, CLUREF s)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = locals.wb.vec->data[1];
-                locals.err = _chanOPputs(T_4_1, locals.s, CLU_1);
+                locals.err = _chanOPputs(T_4_1, locals.s, CLU_true);
                 if (locals.err != ERR_ok) goto ex_1;
                 }
                 }}/* end if */
@@ -6869,7 +6972,7 @@ streamOPputs_image(CLUREF st, CLUREF s)
 
   LINE(984);
             {
-            locals.err = streamOPtty_put(locals.tb, locals.s, CLU_1);
+            locals.err = streamOPtty_put(locals.tb, locals.s, CLU_true);
             if (locals.err != ERR_ok) goto ex_1;
             }
             break;
@@ -6911,6 +7014,7 @@ streamOPputs_image(CLUREF st, CLUREF s)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (locals.err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -6924,7 +7028,7 @@ streamOPputs_image(CLUREF st, CLUREF s)
 
   LINE(994);
         {
-        locals.err = streamOPscript(locals.st, locals.s, CLU_1);
+        locals.err = streamOPscript(locals.st, locals.s, CLU_true);
         if (locals.err != ERR_ok) goto ex_0;
         }
         }
@@ -6932,6 +7036,7 @@ streamOPputs_image(CLUREF st, CLUREF s)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -6964,9 +7069,11 @@ streamOPputs_image_IB_1(CLUREF iv_1, streamOPputs_image_LOCALS_t *locals, errcod
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -7044,6 +7151,7 @@ streamOPtty_put1(CLUREF tb, CLUREF c)
         }}/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
 
   LINE(1004);
@@ -7066,6 +7174,7 @@ streamOPtty_put1(CLUREF tb, CLUREF c)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -7157,6 +7266,7 @@ streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -7205,6 +7315,7 @@ streamOPtty_put(CLUREF tb, CLUREF s, CLUREF image)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -7288,6 +7399,7 @@ streamOPputzero(CLUREF st, CLUREF s, CLUREF size)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (locals.err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -7322,9 +7434,11 @@ streamOPputzero(CLUREF st, CLUREF s, CLUREF size)
             locals.diff.num = T_4_1.num;
             }
             }
-            end_while_1:;
+            end_while_1:
+            __CLU_END_LABEL;
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if (locals.err == ERR_not_possible) {signal(ERR_not_possible);}
             else {
                 goto ex_0;}
@@ -7334,6 +7448,7 @@ streamOPputzero(CLUREF st, CLUREF s, CLUREF size)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -7415,7 +7530,8 @@ streamOPputzero_IB_1(CLUREF iv_1, streamOPputzero_LOCALS_t *locals, errcode *iec
             locals->diff.num = T_3_1.num;
             }
             }
-            end_while_2:;
+            end_while_2:
+            __CLU_END_LABEL;
         }
         }/* end if */
 
@@ -7427,9 +7543,11 @@ streamOPputzero_IB_1(CLUREF iv_1, streamOPputzero_LOCALS_t *locals, errcode *iec
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -7502,6 +7620,7 @@ streamOPputleft(CLUREF st, CLUREF s, CLUREF size)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -7509,6 +7628,7 @@ streamOPputleft(CLUREF st, CLUREF s, CLUREF size)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -7585,6 +7705,7 @@ streamOPputright(CLUREF st, CLUREF s, CLUREF size)
         }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -7592,6 +7713,7 @@ streamOPputright(CLUREF st, CLUREF s, CLUREF size)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -7652,9 +7774,11 @@ streamOPputspace(CLUREF st, CLUREF len)
         len.num = T_3_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -7662,6 +7786,7 @@ streamOPputspace(CLUREF st, CLUREF len)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -7724,6 +7849,7 @@ streamOPcreate_input(CLUREF s, CLUREF *ret_1)
         }/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -7760,6 +7886,7 @@ streamOPcreate_input(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -7814,6 +7941,7 @@ streamOPcreate_output(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -7876,6 +8004,7 @@ streamOPget_contents(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -7934,7 +8063,7 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
             T_3_2.num = rb.vec->data[0];
             T_3_3.num = rb.vec->data[2];
             T_3_4.num = rb.vec->data[4];
-            err = _chanOPget(T_3_1, T_3_2, T_3_3, T_3_4, term, CLU_0, &T_3_5, &T_3_6, &T_3_7);
+            err = _chanOPget(T_3_1, T_3_2, T_3_3, T_3_4, term, CLU_false, &T_3_5, &T_3_6, &T_3_7);
             if (err != ERR_ok) goto ex_1;
             s.num = T_3_5.num;
             index.num = T_3_6.num;
@@ -8037,7 +8166,7 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
                 {
                 CLUREF T_4_1;
                 T_4_1.num = tb.vec->data[17];
-                err = streamOPscript(st, T_4_1, CLU_0);
+                err = streamOPscript(st, T_4_1, CLU_false);
                 if (err != ERR_ok) goto ex_1;
                 }
                 }
@@ -8089,6 +8218,7 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -8103,7 +8233,7 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
 
   LINE(1145);
         {
-        err = streamOPscript(st, s, CLU_0);
+        err = streamOPscript(st, s, CLU_false);
         if (err != ERR_ok) goto ex_0;
         }
         }
@@ -8118,6 +8248,7 @@ streamOPgetbuf(CLUREF st, CLUREF term, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -8184,7 +8315,8 @@ streamOPlines(CLUREF s, CLUREF i, CLUREF *ret_1)
         i.num = T_2_4.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(1155);
     {
@@ -8195,6 +8327,7 @@ streamOPlines(CLUREF s, CLUREF i, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -8252,6 +8385,7 @@ streamOPscript(CLUREF st, CLUREF s, CLUREF image)
                 }}/* end if */
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_not_possible)) {
                     }
                     else {
@@ -8260,10 +8394,12 @@ streamOPscript(CLUREF st, CLUREF s, CLUREF image)
                 end_1:;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -8392,7 +8528,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = tb.vec->data[4];
         T_2_2.num = tb.vec->data[11];
-        err = _chanOPputb(ch, bvec, T_2_1, T_2_2, CLU_0);
+        err = _chanOPputb(ch, bvec, T_2_1, T_2_2, CLU_false);
         if (err != ERR_ok) goto ex_0;
         }
 
@@ -8481,9 +8617,11 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                     redisp.num = T_8_1.num;
                     }
                     }
-                    end_while_2:;
+                    end_while_2:
+                    __CLU_END_LABEL;
                     goto end_3;
                     ex_3:
+                        __CLU_EX_HANDLER;
                         if ((err == ERR_bounds)) {
                         }
                         else {
@@ -8546,13 +8684,14 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                     {
                     CLUREF T_7_1;
                     T_7_1.ch = '\n';
-                    err = _chanOPputc(ch, T_7_1, CLU_0);
+                    err = _chanOPputc(ch, T_7_1, CLU_false);
                     if (err != ERR_ok) goto ex_2;
                     }
                     }
                     }/* end if */
                 }
-                end_while_3:;
+                end_while_3:
+                __CLU_END_LABEL;
 
   LINE(1204);
             {
@@ -8598,7 +8737,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
   LINE(1211);
             {
             CLUREF T_5_1;
-            err = _chanOPgetc(ch, CLU_1, &T_5_1);
+            err = _chanOPgetc(ch, CLU_true, &T_5_1);
             if (err != ERR_ok) goto ex_2;
             c.num = T_5_1.num;
             }
@@ -8722,7 +8861,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
             {
             CLUREF T_5_1;
             T_5_1.ch = '\n';
-            err = _chanOPputc(ch, T_5_1, CLU_0);
+            err = _chanOPputc(ch, T_5_1, CLU_false);
             if (err != ERR_ok) goto ex_2;
             }
 
@@ -8744,7 +8883,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
             CLUREF T_5_2;
             T_5_1.num = tb.vec->data[2];
             T_5_2.num = tb.vec->data[3];
-            err = _chanOPputs(T_5_1, T_5_2, CLU_0);
+            err = _chanOPputs(T_5_1, T_5_2, CLU_false);
             if (err != ERR_ok) goto ex_2;
             }
 
@@ -8764,7 +8903,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
             {
             CLUREF T_5_1;
             T_5_1.ch = '\n';
-            err = _chanOPputc(ch, T_5_1, CLU_0);
+            err = _chanOPputc(ch, T_5_1, CLU_false);
             if (err != ERR_ok) goto ex_2;
             }
 
@@ -8783,7 +8922,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
   LINE(1242);
             {
             CLUREF T_5_1;
-            err = streamOPerase(tb, CLU_1, &T_5_1);
+            err = streamOPerase(tb, CLU_true, &T_5_1);
             if (err != ERR_ok) goto ex_2;
             redisp.num = T_5_1.num;
             }
@@ -8798,7 +8937,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
   LINE(1245);
             {
             CLUREF T_5_1;
-            err = streamOPerase(tb, CLU_0, &T_5_1);
+            err = streamOPerase(tb, CLU_false, &T_5_1);
             if (err != ERR_ok) goto ex_2;
             redisp.num = T_5_1.num;
             }
@@ -8829,7 +8968,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                 {
                 CLUREF T_6_1;
                 T_6_1.ch = '\n';
-                err = _chanOPputc(ch, T_6_1, CLU_0);
+                err = _chanOPputc(ch, T_6_1, CLU_false);
                 if (err != ERR_ok) goto ex_2;
                 }
                 }
@@ -8857,15 +8996,18 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
             }
             }}}}}}}}}/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_1;}
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_end_of_file)) {
 
   LINE(1256);
@@ -9045,7 +9187,8 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
                 }}/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(1278);
     {
@@ -9115,6 +9258,7 @@ streamOPedit(CLUREF tb, CLUREF term, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -9162,7 +9306,7 @@ streamOPecho(CLUREF ch, CLUREF c)
 
   LINE(1292);
             {
-            err = _chanOPputs(ch, STR__136_077, CLU_0);
+            err = _chanOPputs(ch, STR__136_077, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
             }
@@ -9190,7 +9334,7 @@ streamOPecho(CLUREF ch, CLUREF c)
             {
             CLUREF T_4_1;
             T_4_1.ch = '!';
-            err = _chanOPputc(ch, T_4_1, CLU_0);
+            err = _chanOPputc(ch, T_4_1, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
 
@@ -9211,7 +9355,7 @@ streamOPecho(CLUREF ch, CLUREF c)
             T_4_4.num = 128;
             err = intOPmod(T_4_3, T_4_4, &T_4_5);
             if (err != ERR_ok) goto ex_1;
-            err = _chanOPputi(ch, T_4_5, CLU_0);
+            err = _chanOPputi(ch, T_4_5, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
             }
@@ -9221,7 +9365,7 @@ streamOPecho(CLUREF ch, CLUREF c)
             {
             CLUREF T_4_1;
             T_4_1.ch = '&';
-            err = _chanOPputc(ch, T_4_1, CLU_0);
+            err = _chanOPputc(ch, T_4_1, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
 
@@ -9237,7 +9381,7 @@ streamOPecho(CLUREF ch, CLUREF c)
                  (T_4_3.num <= 0 && T_4_1.num > 0 && (-T_4_2.num) > 0)) {
                 err = ERR_overflow;
                 goto ex_1;}
-            err = _chanOPputi(ch, T_4_3, CLU_0);
+            err = _chanOPputi(ch, T_4_3, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
             }}}/* end if */
@@ -9270,7 +9414,7 @@ streamOPecho(CLUREF ch, CLUREF c)
 
   LINE(1301);
         {
-        err = _chanOPputc(ch, c, CLU_0);
+        err = _chanOPputc(ch, c, CLU_false);
         if (err != ERR_ok) goto ex_1;
         }
         }
@@ -9280,7 +9424,7 @@ streamOPecho(CLUREF ch, CLUREF c)
         {
         CLUREF T_3_1;
         T_3_1.ch = '^';
-        err = _chanOPputc(ch, T_3_1, CLU_0);
+        err = _chanOPputc(ch, T_3_1, CLU_false);
         if (err != ERR_ok) goto ex_1;
         }
 
@@ -9296,12 +9440,13 @@ streamOPecho(CLUREF ch, CLUREF c)
              (T_3_3.num < 0 && T_3_1.num > 0 && T_3_2.num > 0)) {
             err = ERR_overflow;
             goto ex_1;}
-        err = _chanOPputi(ch, T_3_3, CLU_0);
+        err = _chanOPputi(ch, T_3_3, CLU_false);
         if (err != ERR_ok) goto ex_1;
         }
         }}}/* end if */
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -9309,6 +9454,7 @@ streamOPecho(CLUREF ch, CLUREF c)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -9413,7 +9559,7 @@ streamOPrubout(CLUREF tb, CLUREF *ret_1)
             CLUREF T_3_2;
             T_3_1.num = tb.vec->data[2];
             T_3_2.ch = '\n';
-            err = _chanOPputc(T_3_1, T_3_2, CLU_0);
+            err = _chanOPputc(T_3_1, T_3_2, CLU_false);
             if (err != ERR_ok) goto ex_0;
             }
 
@@ -9432,7 +9578,7 @@ streamOPrubout(CLUREF tb, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = tb.vec->data[2];
         T_2_2.ch = '\\';
-        err = _chanOPputc(T_2_1, T_2_2, CLU_0);
+        err = _chanOPputc(T_2_1, T_2_2, CLU_false);
         if (err != ERR_ok) goto ex_0;
         }
 
@@ -9440,7 +9586,7 @@ streamOPrubout(CLUREF tb, CLUREF *ret_1)
         {
         CLUREF T_2_1;
         T_2_1.num = tb.vec->data[2];
-        err = _chanOPputc(T_2_1, c, CLU_0);
+        err = _chanOPputc(T_2_1, c, CLU_false);
         if (err != ERR_ok) goto ex_0;
         }
 
@@ -9548,12 +9694,13 @@ streamOPrubout(CLUREF tb, CLUREF *ret_1)
             CLUREF T_2_2;
             T_2_1.num = tb.vec->data[2];
             T_2_2.num = tb.vec->data[0];
-            err = _chanOPputs(T_2_1, T_2_2, CLU_0);
+            err = _chanOPputs(T_2_1, T_2_2, CLU_false);
             if (err != ERR_ok) goto ex_0;
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(1332);
     {
@@ -9561,7 +9708,7 @@ streamOPrubout(CLUREF tb, CLUREF *ret_1)
     CLUREF T_1_2;
     T_1_1.num = tb.vec->data[2];
     T_1_2.num = tb.vec->data[12];
-    err = _chanOPputs(T_1_1, T_1_2, CLU_0);
+    err = _chanOPputs(T_1_1, T_1_2, CLU_false);
     if (err != ERR_ok) goto ex_0;
     }
 
@@ -9574,6 +9721,7 @@ streamOPrubout(CLUREF tb, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -9711,7 +9859,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
             CLUREF T_3_2;
             T_3_1.num = tb.vec->data[2];
             T_3_2.ch = '\n';
-            err = _chanOPputc(T_3_1, T_3_2, CLU_0);
+            err = _chanOPputc(T_3_1, T_3_2, CLU_false);
             if (err != ERR_ok) goto ex_0;
             }
 
@@ -9920,7 +10068,8 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
             tb.vec->data[4] = T_3_2.num;
             }
             }
-            end_while_1:;
+            end_while_1:
+            __CLU_END_LABEL;
 
   LINE(1372);
         {
@@ -9959,7 +10108,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
         CLUREF T_2_2;
         T_2_1.num = tb.vec->data[2];
         T_2_2.ch = '\n';
-        err = _chanOPputc(T_2_1, T_2_2, CLU_0);
+        err = _chanOPputc(T_2_1, T_2_2, CLU_false);
         if (err != ERR_ok) goto ex_0;
         }
 
@@ -9994,12 +10143,13 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
             CLUREF T_2_2;
             T_2_1.num = tb.vec->data[2];
             T_2_2.num = tb.vec->data[0];
-            err = _chanOPputs(T_2_1, T_2_2, CLU_0);
+            err = _chanOPputs(T_2_1, T_2_2, CLU_false);
             if (err != ERR_ok) goto ex_0;
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(1384);
     {
@@ -10007,7 +10157,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
     CLUREF T_1_2;
     T_1_1.num = tb.vec->data[2];
     T_1_2.num = tb.vec->data[12];
-    err = _chanOPputs(T_1_1, T_1_2, CLU_0);
+    err = _chanOPputs(T_1_1, T_1_2, CLU_false);
     if (err != ERR_ok) goto ex_0;
     }
 
@@ -10020,6 +10170,7 @@ streamOPerase(CLUREF tb, CLUREF all, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -10169,7 +10320,8 @@ streamOPcalc_pos(CLUREF tb, CLUREF *ret_1)
                 }}}}/* end if */
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(1400);
     {
@@ -10180,6 +10332,7 @@ streamOPcalc_pos(CLUREF tb, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -10264,6 +10417,7 @@ streamOPdisplay(CLUREF st, CLUREF s, CLUREF *ret_1)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -10271,6 +10425,7 @@ streamOPdisplay(CLUREF st, CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -10349,6 +10504,7 @@ streamOPmodify_display(CLUREF st, CLUREF term)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -10461,7 +10617,7 @@ streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
 
   LINE(1439);
             {
-            err = _chanOPputc(ch, c, CLU_0);
+            err = _chanOPputc(ch, c, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
 
@@ -10501,7 +10657,7 @@ streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = tb.vec->data[3];
-            err = _chanOPputs(ch, T_4_1, CLU_0);
+            err = _chanOPputs(ch, T_4_1, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
             }
@@ -10516,7 +10672,7 @@ streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = tb.vec->data[0];
-            err = _chanOPputs(ch, T_4_1, CLU_0);
+            err = _chanOPputs(ch, T_4_1, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
             }
@@ -10531,7 +10687,7 @@ streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.num = tb.vec->data[12];
-            err = _chanOPputs(ch, T_4_1, CLU_0);
+            err = _chanOPputs(ch, T_4_1, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
             }
@@ -10541,20 +10697,22 @@ streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
             {
             CLUREF T_4_1;
             T_4_1.ch = '\020';
-            err = _chanOPputc(ch, T_4_1, CLU_0);
+            err = _chanOPputc(ch, T_4_1, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
 
   LINE(1451);
             {
-            err = _chanOPputc(ch, c, CLU_0);
+            err = _chanOPputc(ch, c, CLU_false);
             if (err != ERR_ok) goto ex_1;
             }
             }}}}/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
 
   LINE(1453);
@@ -10578,6 +10736,7 @@ streamOPttydsp(CLUREF tb, CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -10641,6 +10800,7 @@ streamOPget_prompt(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -10689,6 +10849,7 @@ streamOPset_prompt(CLUREF st, CLUREF prompt)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -10777,6 +10938,7 @@ streamOPget_rescan(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -10863,6 +11025,7 @@ streamOPset_rescan(CLUREF st, CLUREF s)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -10938,6 +11101,7 @@ streamOPget_input_buffered(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11018,6 +11182,7 @@ streamOPset_input_buffered(CLUREF st, CLUREF flag)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11108,6 +11273,7 @@ streamOPget_output_buffered(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11232,6 +11398,7 @@ streamOPset_output_buffered(CLUREF st, CLUREF flag)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -11239,6 +11406,7 @@ streamOPset_output_buffered(CLUREF st, CLUREF flag)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11310,6 +11478,7 @@ streamOPget_eof_flag(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11392,6 +11561,7 @@ streamOPset_eof_flag(CLUREF st, CLUREF eofok)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11426,6 +11596,7 @@ streamOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11461,6 +11632,7 @@ streamOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11494,6 +11666,7 @@ streamOPcopy(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11602,6 +11775,7 @@ streamOPprint(CLUREF x, CLUREF ps)
     }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_possible)) {
 
   LINE(1599);
@@ -11627,6 +11801,7 @@ streamOPprint(CLUREF x, CLUREF ps)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11719,6 +11894,7 @@ streamOPget_chan(CLUREF st, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11736,9 +11912,8 @@ streamOPget_chan(CLUREF st, CLUREF *ret_1)
 errcode
 streamOP_open_streams(errcode (*proc)(), void *user_locals, errcode *iecode)
 {
-    errcode ecode;
+    errcode ecode __CLU_UNUSED;
     errcode err;
-    bool body_ctrl_req;
     CLUREF s;
     if (stream_own_init == 0) {
         err = stream_own_init_proc();
@@ -11776,9 +11951,11 @@ streamOP_open_streams(errcode (*proc)(), void *user_locals, errcode *iecode)
             }
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -11788,6 +11965,7 @@ streamOP_open_streams(errcode (*proc)(), void *user_locals, errcode *iecode)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -11844,6 +12022,7 @@ streamOP_close_all()
             }
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_not_possible)) {
                     }
                     else {
@@ -11852,7 +12031,8 @@ streamOP_close_all()
                 end_1:;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(1628);
     {
@@ -11882,7 +12062,8 @@ streamOP_close_all()
             }
         }
     }
-    end_inline_for_2:;
+    end_inline_for_2:
+    __CLU_END_LABEL;
 
   LINE(1632);
     {
@@ -11912,6 +12093,7 @@ streamOP_close_all()
         }
             goto end_3;
             ex_3:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_not_possible)) {
 
   LINE(1636);
@@ -11950,9 +12132,11 @@ streamOP_close_all()
             }
             }/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -11962,6 +12146,7 @@ streamOP_close_all()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

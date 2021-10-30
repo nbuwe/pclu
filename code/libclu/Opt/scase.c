@@ -19,7 +19,7 @@ lower_case(CLUREF s, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    err = _case(s, CLU_0, CLU_0, &T_1_1);
+    err = _case(s, CLU_false, CLU_false, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_1.num;
     }
@@ -27,6 +27,7 @@ lower_case(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -52,7 +53,7 @@ upper_case(CLUREF s, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    err = _case(s, CLU_1, CLU_1, &T_1_1);
+    err = _case(s, CLU_true, CLU_true, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_1.num;
     }
@@ -60,6 +61,7 @@ upper_case(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -85,7 +87,7 @@ capitalize(CLUREF s, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    err = _case(s, CLU_1, CLU_0, &T_1_1);
+    err = _case(s, CLU_true, CLU_false, &T_1_1);
     if (err != ERR_ok) goto ex_0;
     ret_1->num = T_1_1.num;
     }
@@ -93,6 +95,7 @@ capitalize(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -181,6 +184,7 @@ _case(CLUREF s, CLUREF first, CLUREF rest, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((locals.err == ERR_change)) {
 
   LINE(30);
@@ -235,6 +239,7 @@ _case(CLUREF s, CLUREF first, CLUREF rest, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (locals.err != ERR_failure)
         elist[0] = _pclu_erstr(locals.err);
     signal(ERR_failure);
@@ -331,9 +336,11 @@ _case_IB_1(CLUREF iv_1, _case_LOCALS_t *locals, errcode *iecode)
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 
@@ -464,9 +471,11 @@ _case_IB_2(CLUREF iv_1, _case_LOCALS_t *locals, errcode *iecode)
 
     signal(ERR_ok);
   ex_0:
+    __CLU_EX_HANDLER;
     *iecode = locals->err;
     signal(ERR_iterbodyexit);
   end_0:
+    __CLU_END_LABEL;
     signal(ERR_ok);
 }
 

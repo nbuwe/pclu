@@ -70,6 +70,7 @@ file_name_own_init_proc(void)
         file_name_own_init = 1;
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -231,11 +232,13 @@ file_nameOPcreate(CLUREF dir, CLUREF name, CLUREF suffix, CLUREF other, CLUREF *
                 }
                 }/* end if */
             }
-            end_while_1:;
+            end_while_1:
+            __CLU_END_LABEL;
         }
         }/* end if */
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -305,11 +308,13 @@ file_nameOPcreate(CLUREF dir, CLUREF name, CLUREF suffix, CLUREF other, CLUREF *
                 }
                 }/* end if */
             }
-            end_while_2:;
+            end_while_2:
+            __CLU_END_LABEL;
         }
         }/* end if */
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
             }
             else {
@@ -335,6 +340,7 @@ file_nameOPcreate(CLUREF dir, CLUREF name, CLUREF suffix, CLUREF other, CLUREF *
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -481,6 +487,7 @@ file_nameOPparse(CLUREF s, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -636,6 +643,7 @@ file_nameOPunparse(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -671,6 +679,7 @@ file_nameOPget_dir(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -706,6 +715,7 @@ file_nameOPget_name(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -741,6 +751,7 @@ file_nameOPget_suffix(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -776,6 +787,7 @@ file_nameOPget_other(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -807,7 +819,7 @@ file_nameOPmake_output(CLUREF x, CLUREF ext, CLUREF *ret_1)
   LINE(118);
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.proc = recordOPcopy1;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
     err = recordOPcopy1(x, &T_1_1);
@@ -874,6 +886,7 @@ file_nameOPmake_output(CLUREF x, CLUREF ext, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -975,6 +988,7 @@ file_nameOPmake_temp(CLUREF tdir, CLUREF prog, CLUREF kind, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_bad_format) {signal(ERR_bad_format);}
         else {
             goto ex_0;}
@@ -982,6 +996,7 @@ file_nameOPmake_temp(CLUREF tdir, CLUREF prog, CLUREF kind, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1015,7 +1030,7 @@ file_nameOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = record_dir_name_other_suffix_ops->entry[0].fcn->op_owns;
     generic_CLU_proc.proc = recordOPsimilar;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1027,6 +1042,7 @@ file_nameOPequal(CLUREF x, CLUREF y, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1060,7 +1076,7 @@ file_nameOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = record_dir_name_other_suffix_ops->entry[0].fcn->op_owns;
     generic_CLU_proc.proc = recordOPsimilar;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1072,6 +1088,7 @@ file_nameOPsimilar(CLUREF x, CLUREF y, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1105,6 +1122,7 @@ file_nameOPcopy(CLUREF x, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1261,6 +1279,7 @@ file_nameOPprint(CLUREF x, CLUREF ps)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1294,6 +1313,7 @@ file_nameOPencode(CLUREF fn, CLUREF ist)
     }
     goto end_1;
     ex_1:
+        __CLU_EX_HANDLER;
         if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
             goto ex_0;}
@@ -1301,6 +1321,7 @@ file_nameOPencode(CLUREF fn, CLUREF ist)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1342,6 +1363,7 @@ file_nameOPdecode(CLUREF ist, CLUREF *ret_1)
     {signal (ERR_ok);}}
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_end_of_file) {signal(ERR_end_of_file);}
         else if (err == ERR_not_possible) {signal(ERR_not_possible);}
         else {
@@ -1349,6 +1371,7 @@ file_nameOPdecode(CLUREF ist, CLUREF *ret_1)
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bad_format)) {
 
   LINE(177);
@@ -1363,6 +1386,7 @@ file_nameOPdecode(CLUREF ist, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1396,7 +1420,7 @@ file_nameOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
     {
     {
     CLUREF T_1_1;
-    generic_CLU_proc.type_owns = 0;
+    generic_CLU_proc.type_owns = NULL;
     generic_CLU_proc.op_owns = record_dir_name_other_suffix_ops->entry[6].fcn->op_owns;
     generic_CLU_proc.proc = recordOP_gcd;
     CUR_PROC_VAR.proc = &generic_CLU_proc;
@@ -1408,6 +1432,7 @@ file_nameOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

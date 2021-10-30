@@ -67,6 +67,7 @@ g_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_undefined)) {
             }
             else {
@@ -110,6 +111,7 @@ g_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
         {signal (ERR_ok);}}
             goto end_2;
             ex_2:
+                __CLU_EX_HANDLER;
                 if ((err == ERR_insufficient_field_width)) {
                 }
                 else {
@@ -160,6 +162,7 @@ g_form(CLUREF x, CLUREF i, CLUREF f, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

@@ -106,6 +106,7 @@ _resolve_own_init_proc(void)
             }
         signal(ERR_ok);
       ex_0:
+        __CLU_EX_HANDLER;
         pclu_unhandled(err);
         signal(ERR_failure);
     }
@@ -175,6 +176,7 @@ _resolveOPinit(CLUREF *ret_1)
             }
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_not_possible)) {
 
   LINE(63);
@@ -194,7 +196,8 @@ _resolveOPinit(CLUREF *ret_1)
             goto end_inline_for_1;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(67);
     {
@@ -378,7 +381,8 @@ _resolveOPinit(CLUREF *ret_1)
             goto end_while_1;
             }}/* end if */
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(100);
     {
@@ -521,7 +525,8 @@ _resolveOPinit(CLUREF *ret_1)
             goto end_while_2;
             }}/* end if */
         }
-        end_while_2:;
+        end_while_2:
+        __CLU_END_LABEL;
 
   LINE(116);
     {
@@ -643,6 +648,7 @@ _resolveOPinit(CLUREF *ret_1)
         }/* end if */
         goto end_2;
         ex_2:
+            __CLU_EX_HANDLER;
             {
             }
         end_2:;
@@ -656,6 +662,7 @@ _resolveOPinit(CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -710,12 +717,14 @@ _resolveOPn2a(CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
         }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_timeout) {signal(ERR_timeout);}
         else {
             goto ex_1;}
     end_2:;
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_not_found)) {
 
   LINE(141);
@@ -754,6 +763,7 @@ _resolveOPn2a(CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
                 }
                 goto end_3;
                 ex_3:
+                    __CLU_EX_HANDLER;
                     if (err == ERR_not_found) {signal(ERR_not_found);}
                     else if (err == ERR_timeout) {signal(ERR_timeout);}
                     else {
@@ -777,6 +787,7 @@ _resolveOPn2a(CLUREF name, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -929,6 +940,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
         }
         goto end_1;
         ex_1:
+            __CLU_EX_HANDLER;
             if ((err == ERR_bounds)) {
 
   LINE(166);
@@ -998,6 +1010,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
     }
     goto end_2;
     ex_2:
+        __CLU_EX_HANDLER;
         if (err == ERR_timeout) {signal(ERR_timeout);}
         else {
             goto ex_0;}
@@ -1295,7 +1308,8 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
             {signal (ERR_ok);}}
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(196);
     {
@@ -1303,6 +1317,7 @@ _resolveOPqry(CLUREF name, CLUREF domain, CLUREF *ret_1, CLUREF *ret_2)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1475,7 +1490,8 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
             if (err != ERR_ok) goto ex_0;
             }
             }
-            end_while_2:;
+            end_while_2:
+            __CLU_END_LABEL;
 
   LINE(221);
         {
@@ -1538,7 +1554,8 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
         idx.num = T_2_1.num;
         }
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(229);
     {
@@ -1573,6 +1590,7 @@ _resolveOPnstore(CLUREF dname, CLUREF idx, CLUREF max, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1671,7 +1689,8 @@ _resolveOPnskip(CLUREF idx, CLUREF *ret_1)
   LINE(246);
         goto end_while_1;
         }
-        end_while_1:;
+        end_while_1:
+        __CLU_END_LABEL;
 
   LINE(248);
     {
@@ -1682,6 +1701,7 @@ _resolveOPnskip(CLUREF idx, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
@@ -1815,6 +1835,7 @@ _resolveOPsend(CLUREF len, CLUREF *ret_1)
                 }
                 goto end_1;
                 ex_1:
+                    __CLU_EX_HANDLER;
                     if ((err == ERR_not_possible)) {
                     }
                     else {
@@ -1823,7 +1844,8 @@ _resolveOPsend(CLUREF len, CLUREF *ret_1)
                 end_1:;
         }
     }
-    end_inline_for_1:;
+    end_inline_for_1:
+    __CLU_END_LABEL;
 
   LINE(267);
     {
@@ -1837,6 +1859,7 @@ _resolveOPsend(CLUREF len, CLUREF *ret_1)
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);

@@ -31,7 +31,7 @@ _cleanup_()
 
   LINE(5);
     {
-    err = _gprofOPcontrol(CLU_0);
+    err = _gprofOPcontrol(CLU_false);
     if (err != ERR_ok) goto ex_0;
     }
 
@@ -43,6 +43,7 @@ _cleanup_()
 
     goto end_0;
   ex_0:
+    __CLU_EX_HANDLER;
     if (err != ERR_failure)
         elist[0] = _pclu_erstr(err);
     signal(ERR_failure);
