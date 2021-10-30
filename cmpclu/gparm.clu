@@ -478,7 +478,6 @@ pb_inst_parms_count = proc(p: pb) returns (int) signals (a_cons)
 midn = oneof[idn:idn, none:null]
 
 g_parm_table = proc(e: g_env, each_pb: pb, pass: int)
-    index: int
     % pb_print(each_pb)
     tagcase each_pb
        tag apply, op:
@@ -867,7 +866,6 @@ is_internal_op_parmd = proc(nm: string) returns (bool)
     end is_internal_op_parmd
 
 g_parm_build_one = proc(e: g_env, each_pb:pb)
-    index: int
     % pb_print(each_pb)
     tagcase each_pb
        tag apply, op:
