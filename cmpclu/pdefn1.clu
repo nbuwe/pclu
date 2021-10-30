@@ -23,7 +23,6 @@ p_definition = proc (e: p_env) returns (definition) signals (eof)
 	end
     if ~p_find_a_defn(e, not_oper)
        then signal eof end
-    def: definition
     tagcase p_env$peek(e, 3)
        tag defnkey (k: defnkey):
 	   tagcase k
