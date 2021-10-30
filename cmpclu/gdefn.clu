@@ -159,6 +159,7 @@ g_applydefn = proc (e: g_env, a: applydefn, cname: str)
 	g_env$outdent(e)
 	g_env$putl(e, "  " || ex$get_current_ex_label() || ":")
 	g_env$indent(e)
+	g_env$putl(e, "__CLU_EX_HANDLER;")
 	g_env$puts(e, "if (")
 	g_err(e)
 	g_env$putl(e, " != ERR_failure)")
@@ -601,6 +602,7 @@ g_pownvars_init = proc (e: g_env, ilist: initlist)
 	   g_env$outdent(e)
 	   g_env$putl(e, "  ex_0:");
 	   g_env$indent(e)
+	   g_env$putl(e, "__CLU_EX_HANDLER;")
 	   g_env$putl(e, "pclu_unhandled(" || s_locals() || "err);");
 	   g_env$putl(e, "signal(ERR_failure);")
 	 end
@@ -692,6 +694,7 @@ g_ownvars_init = proc (e: g_env, ilist: initlist)
 	    g_env$outdent(e)
 	    g_env$putl(e, "  ex_0:");
 	    g_env$indent(e)
+	    g_env$putl(e, "__CLU_EX_HANDLER;")
 	    g_env$putl(e, "pclu_unhandled(" || s_locals() || "err);");
 	    g_env$putl(e, "signal(ERR_failure);")
 	  end

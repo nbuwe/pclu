@@ -14,6 +14,8 @@
 
 #define __CLU_COMMON  __attribute__((__common__))
 
+#define __CLU_EX_HANDLER	__attribute__((__unused__, __cold__))
+
 #define CLU_NOREF(var) ((void)(var))
 
 #define	CLU_roundup(x, y)	((((x)+((y)-1))/(y))*(y))
