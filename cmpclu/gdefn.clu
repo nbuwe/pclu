@@ -856,7 +856,9 @@ g_localvars_vars = proc (e: g_env, ap: applydefn, locals: array[decl],
 g_localvars = proc (e: g_env, ap: applydefn, locals: array[decl],
 			   iterp: bool)
 
-    if (iterp) then g_env$putl(e, "errcode ecode;") end
+    if (iterp) then
+	% not used at all now as far as i can tell
+	g_env$putl(e, "errcode ecode __CLU_UNUSED;") end
     g_tbl$build_tables(e, 0)
 
     if ib$exist() cor dbg_info$active() then
