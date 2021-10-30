@@ -36,7 +36,7 @@ p_stmt = proc (e: p_env) returns (stmt) signals (none, bad)
 		   tag continue_: abs := stmtabs$make_continue_(nil)
 		   tag begin_:    abs := stmtabs$make_body(p_body(e, misc_body))
 				  p_end(e, "END of BEGIN-END statement")
-		   tag own_:	     abs := p_ownstmt(e)
+		   tag own_:      abs := p_ownstmt(e)
 		   end
 	   tag idn:
 		tagcase p_env$peek(e, 2)
