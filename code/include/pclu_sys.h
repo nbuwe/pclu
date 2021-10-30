@@ -12,7 +12,8 @@
 #include <stddef.h>
 #include <string.h>
 
-#define __CLU_COMMON  __attribute__((__common__))
+#define __CLU_COMMON		__attribute__((__common__))
+#define __CLU_UNUSED		__attribute__((__unused__))
 
 #define __CLU_EX_HANDLER	__attribute__((__unused__, __cold__))
 #define __CLU_END_LABEL		__attribute__((__unused__))
