@@ -406,16 +406,23 @@ g_powninit = proc (e: g_env, ilist:initlist)
 
     own_defn_name: string := current_type$get_name() || "_OWN_DEFN"
 
-    if dbg_info$active() then
+    locals_struct: bool := dbg_info$active()
+    if locals_struct then
 	g_env$putl(e, "struct {")
 	g_env$indent(e)
       end
 
     g_tbl$build_tables(e, 0)
-    g_env$putl(e, "errcode err;")
+    g_env$puts(e, "errcode err")
+    if ~locals_struct then
+	% err may be unused if there are no owns
+	% check own_init(ilist)?
+	g_env$puts(e, " __CLU_UNUSED")
+      end
+    g_env$putl(e, ";")
     g_env$putl(e, own_defn_name || " *type_own_ptr;")
 
-    if dbg_info$active() then
+    if locals_struct then
 	g_env$outdent(e)
 	g_env$putl(e, "} locals;")
       end
