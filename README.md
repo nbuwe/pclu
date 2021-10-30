@@ -76,11 +76,11 @@ what I do for now:
 
     # build the libpclu_opt.a library
     cd $CLUHOME/code
-    make -w OPT_FLAGS='-g -O0 -Wall -Wextra -Wno-unused-label -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-unused-variable'
+    make -w OPT_FLAGS='-g -O0 -Wall -Wextra'
 
     # build the compiler from the pre-generated sources
     cd $CLUHOME/code/cmp
-    make -w OPT_FLAGS='-g -O0 -Wall -Wextra -Wno-unused-label -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-unused-variable'
+    make -w OPT_FLAGS='-g -O0 -Wall -Wextra'
 
     # dump clu libraries: lowlev.lib  misc.lib  useful.lib
     # (think precompiled headers)
@@ -90,10 +90,10 @@ what I do for now:
     # rebuild the compiler
     cd $CLUHOME/cmpclu
     make lib	# dump cmp.lib for the compiler sources
-    make -w OPT_FLAGS='-g -O0 -Wall -Wextra -Wno-unused-label -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-unused-variable'
+    make -w OPT_FLAGS='-g -O0 -Wall -Wextra'
 
     # rebuild the compiler again
-    make -w OPT_FLAGS='-g -O0 -Wall -Wextra -Wno-unused-label -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-unused-variable'
+    make -w OPT_FLAGS='-g -O0 -Wall -Wextra'
 
     # verify the output is the same (or, if you changed the compiler,
     # check the effect of your change)
