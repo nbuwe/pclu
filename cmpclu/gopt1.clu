@@ -497,7 +497,6 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_idn_plain(e, residn)
 	    g_env$puts(e, ".num = (")
 	    % 6/18/90: revamped again
-	    a1, a2: idn
 	    tagcase args[1].abs
 	       tag idn(i:idn):
 		   g_idn_plain(e, i)   % 5/29/90 from g_expr2
@@ -528,7 +527,6 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_idn_plain(e, residn)
 	    g_env$puts(e, ".num = (")
 	    % 6/18/90: revamped again
-	    a1, a2: idn
 	    tagcase args[1].abs
 	       tag idn(i:idn):
 		   g_idn_plain(e, i)   % 5/29/90 from g_expr2
