@@ -12,6 +12,9 @@ LIBS 	  = misc.lib lowlev.lib useful.lib
 RM        = /bin/rm -f
 FLUFF     = *~ *.old *.bak .*~ .*.old .*.bak
 
+
+MISC_SPECS = ${LIB_DIR}/random.spc
+
 MISC_SOURCES = \
 	${LIB_CLU}/_int_range.clu 	${LIB_CLU}/bigint.clu 		\
 	${LIB_CLU}/dparse.clu 		${LIB_CLU}/heap.clu		\
@@ -96,7 +99,6 @@ NOT_USE = \
 	_set_priority _split_name_part _stat _termcap_entry _umask 	  \
 	_unparse_real istream2chan now stream2chan user_name
 
-MISC_SPECS = ${LIB_DIR}/random.spc
 
 libs: ${LIBS}
 
