@@ -53,9 +53,7 @@ _byteptr8OPcreate(CLUREF wv, CLUREF i, CLUREF cnt, CLUREF *ans)
 	len = size;
 
     clu_alloc(sizeof(WP), &temp);
-    temp->typ.val = 0;
-    temp->typ.mark = 0;
-    temp->typ.refp = 0;
+    CLUTYPE_set(temp->typ, 0);
 
     temp->buf.vec = wv.vec;
     temp->idx.num = i.num + 2;

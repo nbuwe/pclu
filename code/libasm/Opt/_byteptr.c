@@ -51,9 +51,7 @@ _byteptrOPcreate(CLUREF bv, CLUREF i, CLUREF cnt, CLUREF *ans)
 	len = size;
 
     clu_alloc(sizeof(BP), &temp);
-    temp->typ.val = 0;
-    temp->typ.mark = 0;
-    temp->typ.refp = 0;
+    CLUTYPE_set(temp->typ, 0);
 
     temp->buf.vec = bv.vec;
     temp->idx.num = i.num + 2;
