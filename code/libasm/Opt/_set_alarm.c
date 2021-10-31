@@ -23,9 +23,6 @@ errcode
 _set_alarm(CLUREF secs, CLUREF *ans)
 {
     int uerr;
-    char *addr;
-    errcode err;
-    CLUREF temp;
     struct sigaction vec;
     struct itimerval value;
     int which;
