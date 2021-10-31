@@ -32,7 +32,7 @@ initialize_compiler = proc () returns (bool)
 		       undefs:      undefs}
     cmpvar$set_stuffs(e)
     initialize_specs()
-    e.genv := maybe_g_env$make_one(g_env$create(comp, outst, fn))
+    e.genv := maybe_g_env$make_one(g_env$create(comp, outst, fn, fn))
     save_compiler()
     return(true)
     end initialize_compiler
@@ -67,9 +67,9 @@ reset_compiler = proc ()
     comp: CE := e.ce
     CE$reset(comp)
     e.ce_reset := true
-    p_env$reset(e.penv, comp, inst, outst)
-    c_env$reset(e.cenv, comp, outst)
-    g_env$reset(maybe_g_env$value_one(e.genv), comp, outst, fn)
+    p_env$reset(e.penv, comp, outst, inst, "")
+    c_env$reset(e.cenv, comp, outst, "")
+    g_env$reset(maybe_g_env$value_one(e.genv), comp, outst, fn, fn)
     stream$close(inst)
     stream$close(outst)
     xref$flush(e.exts)

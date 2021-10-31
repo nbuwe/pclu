@@ -81,7 +81,7 @@ p_include = proc (e: p_env) returns (definition) signals (include_failed)
 	fn := file_name_fill(fn, equate_suffix())
 	inst: stream := stream$open(check_file_name(fn), "read")
 	x.inst := inst
-	e1: p_env := p_env$new_env(e, inst)
+	e1: p_env := p_env$new_env(e, inst, s)
 	def: definition := definition$make_equates(
 			       p_slist[equate](e1, p_equate))
 	tagcase e1.peek1

@@ -129,12 +129,11 @@ compile1 = proc (e: stuff, fn: fname) returns (bool)
     return (allok)
     end compile1
 
-reset_stuff = proc (e: stuff, fn: fname) signals (open_failed)
+reset_stuff = proc (e: stuff, infn: fname) signals (open_failed)
     outst: stream := e.outst
     mode: int := e.mode
-    inst: stream := open_stream(fn, "read", outst)
+    inst: stream := open_stream(infn, "read", outst)
        except when open_failed: signal open_failed end
-    fn := inst.name
     begin
 	% stream$putc(outst, '\n')
 	if mode = parse_
@@ -150,28 +149,30 @@ reset_stuff = proc (e: stuff, fn: fname) signals (open_failed)
 	 elseif mode = specs_
 	   then stream$puts(outst, "Creating DU specs from")
 	 else stream$puts(outst, "Adding to CE from") end
+	% print full file name here
 	stream$putc(outst, ' ')
-	stream$putl(outst, fname$unparse(fn))
+	stream$putl(outst, fname$unparse(inst.name))
 	% stream$putc(outst, '\n')
 	end except when not_possible (*): end
-    srcfn: file_name := fn
+
+    outfn: fname
     if mode = binary_
        then dname: str := cmpvar$dir()
 	    if str$empty(dname)
-	       then dname := fn.dir end
-	    fn := fname$create(dname,
-			       str$substr(fn.name, 1, _dir_ent_size() - 4),
-			       "_b_",
-			       "")
-       else fn := fname$parse(nul_dev())
+	       then dname := infn.dir end
+	    outfn := fname$create(dname,
+				  str$substr(infn.name, 1, _dir_ent_size() - 4),
+				  "_b_",
+				  "")
+       else outfn := fname$parse(nul_dev())
        end
     comp: CE := e.ce
-    p_env$reset(e.penv, comp, inst, outst)
-    c_env$reset(e.cenv, comp, outst)
+    src: string := fname$unparse(infn)
+    p_env$reset(e.penv, comp, outst, inst, src)
+    c_env$reset(e.cenv, comp, outst, src)
     tagcase e.genv
        tag one (ge: g_env):
-	   g_env$reset(ge, comp, outst, fn)
-	   g_env$set_file_name(ge, srcfn)
+	   g_env$reset(ge, comp, outst, outfn, infn)
        others:
        end
     e.inst := inst

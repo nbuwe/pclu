@@ -101,10 +101,10 @@ chrvecdef = klist$[illegal, illegal, illegal, illegal,
 		illegal]
 
 p_env = cluster is	create,			% CE, stream, stream -> p_env
-			new_env,		% p_env, stream ->
+			new_env,		% p_env, stream, str ->
 			push,			% p_env, stream -> p_env
 			pop,			% p_env -> p_env
-			reset,			% p_env, CE, stream, stream ->
+			reset,			% p_env, CE, stream, stream, string ->
 			hack,			% p_env ->
 			unhack,			% p_env ->
 			is_hacked,		% p_env -> bool
@@ -144,7 +144,7 @@ rep = record[ce:       CE,		% compilation environment
 	     errst:    stream,		% output stream for errors
 	     err:      parerr,
 	     inst:     stream,		% input stream
-	     fname:    str,		% input file name (~"" iff include file)
+	     fname:    str,		% input file name
 	     line:     int,		% current line number of input
 	     peek1:    token,		% first lookahead
 	     line1:    int,		% line number of first lookahead
@@ -195,11 +195,11 @@ create = proc (comp: CE, inst: stream, errst: stream) returns (cvt)
 	return(e)
 	end create
 
-new_env = proc (e: cvt, inst: stream) returns (cvt)
+new_env = proc (e: cvt, inst: stream, src: string) returns (cvt)
 	e.reset := false
 	e1: rep := rep$copy1(e)
 	e1.inst := inst
-	e1.fname := "(" || fname$unparse(inst.name) || ") "
+	e1.fname := src
 	e1.line1 := 1
 	e1.iline := 0
 	e1.peeks := tokenlist$predict(1, 50)
@@ -215,7 +215,8 @@ push = proc(e:cvt, inst: stream) returns (cvt)
 	e.reset := false
 	e1: rep := rep$copy1(e)
 	e1.inst := inst
-%	e1.fname := "(" || fname$unparse(inst.name) || ") "
+	% this op is used to inject source code with a string input
+	% stream so don't change e1.fname
 	e1.line1 := 1
 	e1.iline := 0
 	e1.peeks := tokenlist$predict(1, 50)
@@ -230,11 +231,12 @@ pop = proc(e: cvt) returns (cvt)
 	return(saved_env)
 	end pop
 
-reset = proc (e: cvt, comp: CE, inst: stream, errst: stream)
+reset = proc (e: cvt, comp: CE, errst: stream, inst: stream, src: string)
 	e.ce := comp
 	e.errst := errst
 	e.err := none
 	e.inst := inst
+	e.fname := src
 	e.line1 := 1
 	e.iline := 0
 	if ~e.reset
@@ -345,10 +347,10 @@ get_bad_expr = proc (e: cvt) returns (expr)
 assume = proc (e: cvt, what: str)
 	st: stream := e.errst
 	begin
-	stream$puts(st, int$unparse(e.line))	% Output line number and what happened
-	stream$puts(st, ":\t")
 	stream$puts(st, e.fname)
-	stream$puts(st, "missing ")
+	stream$putc(st, ':')
+	stream$puts(st, int$unparse(e.line))
+	stream$puts(st, ": error: missing ")
 	stream$puts(st, what)
 	stream$puts(st, " - assumed present")
 	end except when not_possible (*): end
@@ -371,9 +373,12 @@ reset_err = proc (e: cvt)
 err = proc (e: cvt, why: str, deg: parerr)
 	st: stream := e.errst
 	begin
-	stream$puts(st, int$unparse(e.line))	% Output line number and what happened
-	stream$puts(st, ":\t")
 	stream$puts(st, e.fname)
+	stream$putc(st, ':')
+	stream$puts(st, int$unparse(e.line))
+	stream$puts(st, ": ")
+	if deg = none then stream$puts(st, "info: ")
+	  else stream$puts(st, "error: ") end
 	stream$puts(st, why)
 	end except when not_possible (*): end
 	line(e, deg)

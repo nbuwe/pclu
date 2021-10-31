@@ -119,6 +119,7 @@ xent_for_loop_	= 2
 
 rep		= record[ce:        CE,
 			 hacked:    bool,
+			 fname:     str,
 			 line:      int,
 			 scopes:    ai,
 			 idns:      idnstack,
@@ -146,6 +147,7 @@ create = proc (comp: CE, errst: stream) returns (cvt)
 	gen: DU := comp.proc_
 	return(rep${ce:		comp,
 		    hacked:     false,
+		    fname:      "",
 		    line:	0,
 		    scopes:	ai$predict(1, 20),
 		    idns:	idnstack$predict(1, 300),
@@ -173,8 +175,9 @@ create = proc (comp: CE, errst: stream) returns (cvt)
 					   types: typelist$[comp.str_type]}})
 	end create
 
-reset = proc (e: cvt, comp: CE, errst: stream)
+reset = proc (e: cvt, comp: CE, errst: stream, src: string)
 	e.ce := comp
+	e.fname := src
 	e.line := 0
 	ai$trim(e.scopes, 1, 0)
 	idnstack$trim(e.idns, 1, 0)
@@ -518,17 +521,17 @@ rechecking_types = proc (e: cvt) returns (bool)
 
 err = proc (e: cvt, msg: qs)
 	e.err := baderr
-	output(e, msg)
+	output(e, baderr, msg)
 	end err
 
 err1 = proc (e: cvt, msg: str)
 	e.err := baderr
-	output1(e, msg)
+	output1(e, baderr, msg)
 	end err1
 
 errt = proc (e: cvt, msg: qs, t1, t2: typespec)
 	e.err := baderr
-	output(e, qs$addh(msg, " of wrong type"))
+	output(e, baderr, qs$addh(msg, " of wrong type"))
 	st: stream := e.errst
 	begin
 	stream$puts(st, "\texpected type: ")
@@ -540,29 +543,36 @@ errt = proc (e: cvt, msg: qs, t1, t2: typespec)
 
 warn = proc (e: cvt, msg: qs)
 	if e.err = none then e.err := warning end
-	output(e, msg)
+	output(e, warning, msg)
 	end warn
 
 warn1 = proc (e: cvt, msg: str)
 	if e.err = none then e.err := warning end
-	output1(e, msg)
+	output1(e, warning, msg)
 	end warn1
 
 eval_err = proc (e: cvt, type_: str, op: str, sig: str)
 	e.err := baderr
-	output(e, qs$[type_, "$", op, " invocation evaluates to '", sig,
-								"' exception"])
+	output(e, baderr, qs$[type_, "$", op,
+			      " invocation evaluates to '", sig, "' exception"])
 	end eval_err
 
-output = proc (e: rep, msg: qs)
+output = proc (e: rep, deg: int, msg: qs)
 	st: stream := e.errst
 	l: int := e.line
 	begin
+	if ~string$empty(e.fname)
+	   then stream$puts(st, e.fname)
+	   else stream$puts(st, "<unknown>")
+	   end
+	stream$putc(st, ':')
 	if l > 0
 	   then	stream$puts(st, int$unparse(e.line))
 		stream$putc(st, ':')
 	   end
-	stream$putc(st, '\t')
+	if deg = none then stream$puts(st, " info: ")
+	  elseif deg = warning then stream$puts(st, " warning: ")
+	  else stream$puts(st, " error: ") end
 	for s: str in qs$elements(msg) do
 		stream$puts(st, s)
 		end
@@ -570,15 +580,22 @@ output = proc (e: rep, msg: qs)
 	end except others: end
 	end output
 
-output1 = proc (e: rep, msg: str)
+output1 = proc (e: rep, deg: int, msg: str)
 	st: stream := e.errst
-	l: int := e.line
 	begin
+	if ~string$empty(e.fname)
+	   then stream$puts(st, e.fname)
+	   else stream$puts(st, "<unknown>")
+	   end
+	stream$putc(st, ':')
+	l: int := e.line
 	if l > 0
 	   then	stream$puts(st, int$unparse(e.line))
 		stream$putc(st, ':')
 	   end
-	stream$putc(st, '\t')
+	if deg = none then stream$puts(st, " info: ")
+	  elseif deg = warning then stream$puts(st, " warning: ")
+	  else stream$puts(st, " error: ") end
 	stream$putl(st, msg)
 	end except others: end
 	end output1
