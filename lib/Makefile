@@ -103,7 +103,7 @@ libs: ${LIBS}
 misc.lib: ${MISC_SOURCES} ${MISC_SPECS}
 	$(CLU) -externals false -newlib \
 	    -spec ${MISC_SOURCES} ${MISC_SPECS} \
-	    -dump misc
+	    -dump misc.lib
 
 lowlev.lib: ${LOW_SPECS} ${LOW_EQU} ${LOWLIB_SOURCES} ${LOWSYS_SOURCES}
 	$(CLU) -externals false -newlib \
@@ -111,7 +111,7 @@ lowlev.lib: ${LOW_SPECS} ${LOW_EQU} ${LOWLIB_SOURCES} ${LOWSYS_SOURCES}
 	    -spec ${LOWLIB_SOURCES} ${LOW_SPECS} ${LOWLIB_SOURCES} \
 	    -spec ${LOWSYS_SOURCES} \
 	    -forget ${NOT_LOW}	\
-	    -dump lowlev
+	    -dump lowlev.lib
 
 useful.lib: lowlev.lib ${LOW_EQU} ${USE_SPECS} ${USELIB_SOURCES} \
 	    ${USESYS_SOURCES}
@@ -119,7 +119,7 @@ useful.lib: lowlev.lib ${LOW_EQU} ${USE_SPECS} ${USELIB_SOURCES} \
             -merge lowlev.lib -ce ${LOW_EQU} \
             -spec ${USE_SPECS} ${USELIB_SOURCES} ${USESYS_SOURCES} \
 	    -forget ${NOT_USE} -unmerge lowlev.lib \
-	    -dump useful
+	    -dump useful.lib
 
 clean:
 	${RM} ${FLUFF}
