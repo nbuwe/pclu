@@ -1162,10 +1162,8 @@ arrayOPdecode(CLUREF ist, CLUREF *ans) /* use t$decode */
     const array_of_t_OPS *ops
 	= ((array_OWN_DEFN *)CUR_PROC_VAR.proc->type_owns)->t_ops;
     errcode err;
-    long i;
-    CLUREF size, low, predict;
-    CLUREF elt, temp;
 
+    CLUREF low;
     err = istreamOPgeti(ist, &low);
     if (err == ERR_end_of_file)
 	signal(err);
@@ -1173,7 +1171,6 @@ arrayOPdecode(CLUREF ist, CLUREF *ans) /* use t$decode */
 	signal(err);
     if (err != ERR_ok)
 	resignal(err);
-
 #if 0
     if (low.num < (long)MIN_ARR_INDEX) {
 	elist[0] = bad_format_STRING;
@@ -1181,6 +1178,7 @@ arrayOPdecode(CLUREF ist, CLUREF *ans) /* use t$decode */
     }
 #endif
 
+    CLUREF size;
     err = istreamOPgeti(ist, &size);
     if (err == ERR_end_of_file)
 	signal(err);
@@ -1199,6 +1197,7 @@ arrayOPdecode(CLUREF ist, CLUREF *ans) /* use t$decode */
     }
 
 #if 0
+    CLUREF predict;
     err = istreamOPgeti(ist, &predict);
     if (err == ERR_end_of_file)
 	signal(err);
@@ -1213,6 +1212,7 @@ arrayOPdecode(CLUREF ist, CLUREF *ans) /* use t$decode */
     }
 #endif
 
+    CLUREF temp;
     err = arrayOPfill(low, size, CLU_0, &temp);
     if (err != ERR_ok)
 	resignal(err);
@@ -1223,7 +1223,9 @@ arrayOPdecode(CLUREF ist, CLUREF *ans) /* use t$decode */
     }
 
     CLUREF tOPdecode = { .proc = ops->decode.fcn };
-    for (i = 0; i < size.num; ++i) {
+    for (long i = 0; i < size.num; ++i) {
+	CLUREF elt;
+
 	CUR_PROC_VAR = tOPdecode;
 	err = (*tOPdecode.proc->proc)(ist, &elt);
 	if (err == ERR_end_of_file)
