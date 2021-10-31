@@ -37,8 +37,6 @@ _byteptr8OPcreate(CLUREF wv, CLUREF i, CLUREF cnt, CLUREF *ans)
 {
     int size = wv.vec->size;
     int len;
-    WP *temp;
-    CLUREF t;
 
     if (i.num - 1 > size)
 	signal(ERR_bounds);
@@ -52,15 +50,15 @@ _byteptr8OPcreate(CLUREF wv, CLUREF i, CLUREF cnt, CLUREF *ans)
     if (len > size)
 	len = size;
 
-    clu_alloc(sizeof(WP), &temp);
-    CLUTYPE_set(temp->typ, 0);
+    WP *b;
+    clu_alloc(sizeof(WP), &b);
+    CLUTYPE_set(b->typ, 0);
 
-    temp->buf.vec = wv.vec;
-    temp->idx.num = i.num + 2;
-    temp->max.num = len + 3;
+    b->buf.vec = wv.vec;
+    b->idx.num = i.num + 2;
+    b->max.num = len + 3;
 
-    t = *((CLUREF *)&temp);
-    ans->vec = t.vec;
+    ans->ref = (void *)b;
     signal(ERR_ok);
 }
 
