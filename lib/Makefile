@@ -101,25 +101,25 @@ MISC_SPECS = ${LIB_DIR}/random.spc
 libs: ${LIBS}
 
 misc.lib: ${MISC_SOURCES} ${MISC_SPECS}
-	$(CLU) \#ext false \#newlib \
-	    \#spec ${MISC_SOURCES} ${MISC_SPECS} \
-	    \#dump misc 
+	$(CLU) -ext false -newlib \
+	    -spec ${MISC_SOURCES} ${MISC_SPECS} \
+	    -dump misc
 
 lowlev.lib: ${LOW_SPECS} ${LOW_EQU} ${LOWLIB_SOURCES} ${LOWSYS_SOURCES}
-	$(CLU) \#ext false \#newlib \
-            \#spec ${LOW_SPECS} \#ce ${LOW_EQU} \
-	    \#spec ${LOWLIB_SOURCES} ${LOW_SPECS} ${LOWLIB_SOURCES} \
-	    \#spec ${LOWSYS_SOURCES} \
-	    \#forget ${NOT_LOW}	\
-	    \#dump lowlev 
+	$(CLU) -ext false -newlib \
+            -spec ${LOW_SPECS} -ce ${LOW_EQU} \
+	    -spec ${LOWLIB_SOURCES} ${LOW_SPECS} ${LOWLIB_SOURCES} \
+	    -spec ${LOWSYS_SOURCES} \
+	    -forget ${NOT_LOW}	\
+	    -dump lowlev
 
 useful.lib: lowlev.lib ${LOW_EQU} ${USE_SPECS} ${USELIB_SOURCES} \
 	    ${USESYS_SOURCES}
-	$(CLU) \#ext false \#newlib \
-            \#me lowlev.lib \#ce ${LOW_EQU} \
-            \#spec ${USE_SPECS} ${USELIB_SOURCES} ${USESYS_SOURCES} \
-	    \#forget ${NOT_USE} \#unmerge lowlev.lib \
-	    \#dump useful 
+	$(CLU) -ext false -newlib \
+            -me lowlev.lib -ce ${LOW_EQU} \
+            -spec ${USE_SPECS} ${USELIB_SOURCES} ${USESYS_SOURCES} \
+	    -forget ${NOT_USE} -unmerge lowlev.lib \
+	    -dump useful
 
 clean:
 	${RM} ${FLUFF}
