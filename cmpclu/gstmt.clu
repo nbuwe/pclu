@@ -852,12 +852,12 @@ g_signal = proc (e: g_env, cond: condition)
 	    iterp: bool := current_apply$is_iter()
 	    if iterp 
 	       then
-		    g_env$putl(e, "*iecode = " || sig$name(cond.name) || ";")
+		    g_env$putl(e, "*iecode = " || sig$expr(cond.name) || ";")
 		    g_locals(e)
 		    g_env$putl(e, "body_ctrl_req = true;")
 		    g_env$putl(e, "{signal(ERR_iteriterbodysignal);}")
 	       else
-	            g_env$putl(e, "*iecode = " || sig$name(cond.name) || ";")
+	            g_env$putl(e, "*iecode = " || sig$expr(cond.name) || ";")
 		    g_env$putl(e, "{signal(ERR_iterbodysignal);}")
 	       end
        end
@@ -887,13 +887,9 @@ g_exit = proc (e: g_env, cond: condition)
 	i := i + 1
 	end % for
 
-    sig_name: string := sig$name(cond.name)
-    if sig_name[1] = '"' then
-	% error string - cast (coerce) it for the assignment
-	sig_name := "(long)" || sig_name
-      end
+    sig_expr: string := sig$expr(cond.name)
     g_err(e)
-    g_env$putl(e, " = " || sig_name || ";")
+    g_env$putl(e, " = " || sig_expr || ";")
     g_env$putl(e, "goto " || ex$get_current_ex_label() || ";")
     g_env$putl(e, "}")
     g_env$outdent(e)
