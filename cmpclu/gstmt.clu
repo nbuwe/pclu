@@ -1080,8 +1080,8 @@ g_resignal = proc (e: g_env, stmnt: resignalstmt)
     g_env$putl(e, "goto " || el || ";")
 
     % emit exception handlers' label
-    g_env$putl(e, ex$get_current_ex_label()||":")
-    g_env$indent(e)
+    g_label(e, ex$get_current_ex_label())
+    g_env$newline()
     g_env$putl(e, "__CLU_EX_HANDLER;")
 
     % let further signals be caught by surrounding scope
@@ -1136,10 +1136,9 @@ g_resignal = proc (e: g_env, stmnt: resignalstmt)
     g_env$puts(e, "goto " || ex$get_current_ex_label() || ";")
     g_env$outdent(e)
     g_env$putl(e, "}")
-    g_env$outdent(e)
 
     % emit end of statement and exception handler label
     % not marked with __CLU_END_LABEL b/c we emit the goto just above
-    g_env$puts(e, el || ":;")
-    g_env$ensure_newline(e)
+    g_label(e, el)
+    g_env$putl(e, ";")
     end g_resignal
