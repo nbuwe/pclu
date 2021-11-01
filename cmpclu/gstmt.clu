@@ -954,7 +954,7 @@ g_continue = proc (e: g_env)
        then
 	    g_env$putl(e, "continue;")
        else
-	    g_env$putl(e, "{signal(ERR_ok);}")
+	    g_env$putl(e, "signal(ERR_ok); /* continue */")
        end
     end g_continue
 
