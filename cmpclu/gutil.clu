@@ -2,6 +2,16 @@
 %  Copyright    Massachusetts Institute of Technology     1990,1991
 
 
+%%%
+%%% Helpers for small code fragments
+%%%
+
+% Emit half-outdented label, but don't start the new line yet.
+%
+%     ...
+%   label:<!>
+%     ...
+%
 g_label = proc (e: g_env, label: string)
     g_env$outdent(e)
     g_env$puts(e, "  ")			 % assumes INDENT_AMOUNT > 2
