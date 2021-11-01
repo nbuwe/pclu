@@ -1096,21 +1096,7 @@ g_resignal = proc (e: g_env, stmnt: resignalstmt)
 	g_env$puts(e, melse)
 	melse := "else "
 	g_env$puts(e, "if (")
-	sig_name: string := sig$name(each_sig)
-	if sig$lookup(each_sig)
-	   then
-		% if (err == ERR_foo)
-		g_err(e)
-		g_env$puts(e, " == ")
-		g_env$puts(e, sig_name)
-	   else
-		% if (errcmp(err, "ERR_foo"))
-		g_env$puts(e, "errcmp(")
-		g_err(e)
-		g_env$puts(e, ", ")
-		g_env$puts(e, sig_name)
-		g_env$puts(e, ")")
-	   end
+	g_errcmp(e, each_sig)
 	g_env$puts(e, ")")
 	if ib$bodies()
 	   then
