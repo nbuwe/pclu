@@ -1021,8 +1021,9 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
 	    g_errcmp(e, each_name)
 	    align := align_indent
 	    end
-	if one_line then g_env$puts(e, ") ")
-	   else g_env$putl(e, ")") end
+	g_env$puts(e, ")")
+	if one_line then g_env$puts(e, " ")
+	   else g_env$newline(e) end
 	g_env$putl(e, "{")
 	g_env$indent(e)
 
