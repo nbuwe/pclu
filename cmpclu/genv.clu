@@ -15,6 +15,7 @@ g_env = cluster is create, reset, end_all, force_signal, reset_err, set_space,
     intlist = sequence[int]
     MAXVLIST = 50
     MAXSIGLIST = 11
+    INDENT_AMOUNT = 4
 
     rep = record [out,
 		  err: stream,
@@ -201,7 +202,7 @@ g_env = cluster is create, reset, end_all, force_signal, reset_err, set_space,
     indent = proc (e: cvt)
 	% increment current indent. if at beginning of line, add space to current
 	% line. 
-	e.indent := e.indent + 4
+	e.indent := e.indent + INDENT_AMOUNT
 	if as$empty(e.curline)
 	   then e.curspaces := string$substr(spaces, 1, e.indent)
 	   end
@@ -210,7 +211,7 @@ g_env = cluster is create, reset, end_all, force_signal, reset_err, set_space,
     outdent = proc (e: cvt)
 	% decrement current indent. if at beginning of line, remove space from
 	% current line.
-	e.indent := e.indent - 4
+	e.indent := e.indent - INDENT_AMOUNT
 	if as$empty(e.curline)
 	   then e.curspaces := string$substr(spaces, 1, e.indent)
 	   end
