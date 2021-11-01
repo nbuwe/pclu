@@ -101,47 +101,35 @@ typ = cluster is begin_local_idn_types,
 %			and user defined signals
 %	also uniquifies user uses of "ok"
 
-sig = cluster is name, lookup, index
-    as = array[string]
-    rep = as
+sig = cluster is lookup, name
+    rep = array[string]
 
-    own known: rep := rep$new()
+    own known: rep := rep$predict(1, 100)
     own init: bool := false
 
-    name = proc(n: string) returns (string)
-	if lookup(n)
-	   then
-		return ("ERR_" || n)
-	   else
-		if string$equal(n, "ok")
-		   then
-			return ("\"ERR_ok_UNIQ\"")
-		   else
-			return ("\"ERR_" || n || "\"")
-		   end
-	   end
+    name = proc(nm: string) returns (string)
+	sig_name: string, predefined: bool := lookup(nm)
+	return (sig_name)
 	end name
 
-
-    lookup = proc (nm: string) returns (bool)
+    lookup = proc (nm: string) returns (string, bool)
 	if ~init then init_known() end
-	if nm = "ok" then nm := "ok_UNIQ" end
 
-	for each_s: string in as$elements(known) do
-	    if nm = each_s then return (true) end
+	% Map user-defined "ok" to "ERR_ok_UNIQ" string,
+	% NOT to the predefined ERR_ok constant for no signal
+	if nm = "ok" then
+	   return ("\"ERR_ok_UNIQ\"", false)
+	   end
+
+	for each_s: string in rep$elements(known) do
+	    if nm = each_s then
+	       % predefined: C preprocessor define
+	       return ("ERR_" || nm, true)
+	       end
 	    end
-	return (false)
+	% user-defined: string
+	return ("\"ERR_" || nm || "\"", false)
 	end lookup
-
-    index = proc (nm: string) returns (int) signals (not_found)
-	if ~init = false then init_known() end
-	if nm = "ok" then nm := "ok_UNIQ" end
-
-	for i: int in rep$indexes(known) do
-	    if nm = known[i] then return (i-1) end
-	    end
-	signal not_found
-	end index
 
     % read the list of predefined signals from pclu_err.h
     init_known = proc()
@@ -165,7 +153,7 @@ sig = cluster is name, lookup, index
 	    if pos3 = 0 then pos3 := pos4 end
 	    if pos3 = 0 then continue end
 	    pos3 := int$min(pos3, pos4)
-	    as$addh(known, string$substr(l2, 5, pos3-5))
+	    rep$addh(known, string$substr(l2, 5, pos3-5))
 	    end
 	   except when end_of_file: return end
 	end init_known

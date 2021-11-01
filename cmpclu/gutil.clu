@@ -23,14 +23,12 @@ g_label = proc (e: g_env, label: string)
 
 % name is undecorated
 g_errcmp = proc (e: g_env, nm: string)
-    sig_name: string := sig$name(nm)
-    if sig$lookup(nm) then
-	% predefined, can compare directly
+    sig_name: string, predefined: bool := sig$lookup(nm)
+    if predefined then
 	g_err(e)
 	g_env$puts(e, " == ")
 	g_env$puts(e, sig_name)
       else
-	% user-defined, use errcmp
 	g_env$puts(e, "errcmp(")
 	g_err(e)
 	g_env$puts(e, ", ")
