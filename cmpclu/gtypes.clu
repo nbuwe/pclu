@@ -101,16 +101,25 @@ typ = cluster is begin_local_idn_types,
 %			and user defined signals
 %	also uniquifies user uses of "ok"
 
-sig = cluster is lookup, name
+sig = cluster is expr, lookup, name
     rep = array[string]
 
     own known: rep := rep$predict(1, 100)
     own init: bool := false
 
-    name = proc(nm: string) returns (string)
+    name = proc (nm: string) returns (string)
 	sig_name: string, predefined: bool := lookup(nm)
 	return (sig_name)
 	end name
+
+    % like name, but casts the user-defined string
+    expr = proc (nm: string) returns (string)
+	sig_name: string, predefined: bool := lookup(nm)
+	if ~predefined then
+	   sig_name := "((errcode)" || sig_name || ")";
+	   end
+	return (sig_name)
+	end expr
 
     lookup = proc (nm: string) returns (string, bool)
 	if ~init then init_known() end
