@@ -924,7 +924,7 @@ g_break = proc (e: g_env)
 
     %% BREAK
 
-    if loop_context$is_while() 
+    if loop_context$is_while()
        then
 	    n: int := loop_context$get_current_while_count()
 	    g_env$putl(e, "goto end_while_" || int$unparse(n) || ";")
@@ -936,13 +936,10 @@ g_break = proc (e: g_env)
 	  iterp: bool := current_apply$is_iter()
 	  if ib$bodies() cand iterp then
 	     % 8/1/93: added body_ctrl_req clause
-	     g_env$puts(e, "{")
 	     g_locals(e)
-	     g_env$puts(e, "body_ctrl_req = true; ")
-	     g_env$putl(e, "{signal(ERR_break);}}")
-	     else
-		  g_env$putl(e, "{signal(ERR_break);}")
+	     g_env$putl(e, "body_ctrl_req = true;")
 	     end
+	  g_env$putl(e, "signal(ERR_break);")
      end
     end g_break
 
