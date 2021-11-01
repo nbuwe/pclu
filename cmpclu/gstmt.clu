@@ -984,23 +984,33 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
     ex$leave()
 
     melse: string := ""
+    align_indent: string := "    "	 % ^if (^)
+
     for h: handler in handlerlist$elements(stmnt.arms) do
 
 	% [else] if (conditions ...)
 	g_env$puts(e, melse)
-	melse := "else "
 	g_env$puts(e, "if (")
 
-	nthn: bool := false
+	align: string := ""
+	one_line: bool := true
 	for each_name: string in namelist$elements(h.names) do
-	    if nthn then
+	    if ~string$empty(align) then
+	       one_line := false
 	       g_env$newline(e)
-	       g_env$puts(e, " || ")
-	       else nthn := true end
+	       g_env$puts(e, align)
+	       g_env$puts(e, "|| ")
+	       end
 	    g_errcmp(e, each_name)
+	    align := align_indent
 	    end
-	g_env$putl(e, ") {")
+	if one_line then g_env$puts(e, ") ")
+	   else g_env$putl(e, ")") end
+	g_env$putl(e, "{")
 	g_env$indent(e)
+
+	melse := "else "
+	align_indent := "         "	 % ^else if (^)
 
 	% assign exception results
 	tagcase h.vars
