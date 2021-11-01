@@ -1006,6 +1006,8 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
 	       end
 	    end
 	g_env$putl(e, ") {")
+	g_env$indent(e)
+
 	tagcase h.vars
 	   tag decls (dlist: decllist):
 	       i: int := 0
@@ -1021,8 +1023,7 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
 	   tag star:
 	   others:
 	   end
-	g_env$indent(e)
-	g_env$newline(e)
+
 	g_body(e, h.body)
 	g_env$outdent(e)
 	g_env$newline(e)
