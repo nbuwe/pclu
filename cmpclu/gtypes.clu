@@ -109,8 +109,7 @@ sig = cluster is name, lookup, index
     own init: bool := false
 
     name = proc(n: string) returns (string)
-
-	if lookup(n) 
+	if lookup(n)
 	   then
 		return ("ERR_" || n)
 	   else
@@ -123,33 +122,33 @@ sig = cluster is name, lookup, index
 	   end
 	end name
 
-    lookup = proc(n:string) returns (bool)
 
-	if init = false then init_known() end
-	if n = "ok" then n := "ok_UNIQ" end  
+    lookup = proc (nm: string) returns (bool)
+	if ~init then init_known() end
+	if nm = "ok" then nm := "ok_UNIQ" end
+
 	for each_s: string in as$elements(known) do
-	    if n = each_s then return (true) end
+	    if nm = each_s then return (true) end
 	    end
 	return (false)
-
 	end lookup
 
-    index = proc(n:string) returns (int) signals (not_found)
+    index = proc (nm: string) returns (int) signals (not_found)
+	if ~init = false then init_known() end
+	if nm = "ok" then nm := "ok_UNIQ" end
 
-	if init = false then init_known() end
-	if n = "ok" then n := "ok_UNIQ" end  
 	for i: int in rep$indexes(known) do
-	    if n = known[i] then return (i-1) end
+	    if nm = known[i] then return (i-1) end
 	    end
 	signal not_found
 	end index
 
+    % read the list of predefined signals from pclu_err.h
     init_known = proc()
-	
+	if init then return end
 	init := true
 
 	err_file_name: file_name := err_name()
-
 	err_stream: stream := stream$open(err_file_name, "read")
 	   except others: return end
 
@@ -169,9 +168,6 @@ sig = cluster is name, lookup, index
 	    as$addh(known, string$substr(l2, 5, pos3-5))
 	    end
 	   except when end_of_file: return end
-
-
-
 	end init_known
 
     end sig
