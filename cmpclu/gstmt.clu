@@ -969,7 +969,7 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
     %%		  :
     %%		 WHEN stmnt.arms[n]
     %%		 OTHERS ( stmnt.others_.arm.decl) :
-    %%			stmnt.others_.asm.body
+    %%			stmnt.others_.arm.body
     %%	  END
 
     ex$enter()
