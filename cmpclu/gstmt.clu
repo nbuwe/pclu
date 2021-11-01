@@ -994,16 +994,7 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
 	       g_env$newline(e)
 	       g_env$puts(e, " || ")
 	       else nthn := true end
-	    if sig$lookup(each_name)
-	       then
-		    g_env$puts(e, "(")
-		    g_err(e)
-		    g_env$puts(e, " == " || sig$name(each_name) || ")")
-	       else
-		    g_env$puts(e, "errcmp(")
-		    g_err(e)
-		    g_env$puts(e, ", " || sig$name(each_name) || ")")
-	       end
+	    g_errcmp(e, each_name)
 	    end
 	g_env$putl(e, ") {")
 	g_env$indent(e)
