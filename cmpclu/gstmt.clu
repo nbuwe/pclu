@@ -832,33 +832,33 @@ g_signal = proc (e: g_env, cond: condition)
     %% SIGNAL cond.name ( cond.args )
 
     g_env$putl(e, "{")
+
+    % declare temps we will need to compute exception results
     for each_e: expr in exprlist$elements(cond.args) do
 	g_expr0(e, each_e)
-	end % for
+	end
+
+    % compute and store exception results in elist[i]
     i: int := 0
     for each_e: expr in exprlist$elements(cond.args) do
 	el: exprlist := g_expr1(e, each_e)
 	g_sig_assn(e, i, exprlist$bottom(el))
-	% g_env$puts(e, "elist["||int$unparse(i)||"].num = ")
-	% ref to num 6/26/90
-	% g_expr2(e, exprlist$bottom(el))
-	% g_env$putl(e, ";")
 	i := i + 1
-	end % for
+	end
+
+    % signal the exception
     if ~ib$bodies()
        then
-	    g_env$puts(e, "{signal (" || sig$name(cond.name) ||");}")
+	    g_env$putl(e, "signal(" || sig$name(cond.name) || ");")
        else
-	    iterp: bool := current_apply$is_iter()
-	    if iterp 
+	    g_env$putl(e, "*iecode = " || sig$expr(cond.name) || ";")
+	    if current_apply$is_iter()
 	       then
-		    g_env$putl(e, "*iecode = " || sig$expr(cond.name) || ";")
 		    g_locals(e)
 		    g_env$putl(e, "body_ctrl_req = true;")
-		    g_env$putl(e, "{signal(ERR_iteriterbodysignal);}")
+		    g_env$putl(e, "signal(ERR_iteriterbodysignal);")
 	       else
-	            g_env$putl(e, "*iecode = " || sig$expr(cond.name) || ";")
-		    g_env$putl(e, "{signal(ERR_iterbodysignal);}")
+		    g_env$putl(e, "signal(ERR_iterbodysignal);")
 	       end
        end
     g_env$putl(e, "}")
