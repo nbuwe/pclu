@@ -983,11 +983,14 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
     g_env$putl(e, "__CLU_EX_HANDLER;")
     ex$leave()
 
-    firsth: bool := true
+    melse: string := ""
     for h: handler in handlerlist$elements(stmnt.arms) do
-	if firsth then g_env$puts(e, "if (")
-		       firsth := false
-	   else g_env$puts(e, "else if (") end
+
+	% [else] if (conditions ...)
+	g_env$puts(e, melse)
+	melse := "else "
+	g_env$puts(e, "if (")
+
 	nthn: bool := false
 	for each_name: string in namelist$elements(h.names) do
 	    if nthn then
@@ -999,6 +1002,7 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
 	g_env$putl(e, ") {")
 	g_env$indent(e)
 
+	% assign exception results
 	tagcase h.vars
 	   tag decls (dlist: decllist):
 	       i: int := 0
@@ -1016,16 +1020,17 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
 	   end
 
 	g_body(e, h.body)
+	g_env$ensure_newline(e)
 	g_env$outdent(e)
-	g_env$newline(e)
 	g_env$putl(e, "}")
 	end
-    if (handlerlist$size(stmnt.arms)) ~= 0
-       then g_env$puts(e, "else ") end
+    % [else] others/unhandled
+    g_env$puts(e, melse)
+    g_env$puts(e, "{")
+    g_env$indent(e)
     if mothersarm$is_arm(stmnt.others_)
        then arm: othersarm := mothersarm$value_arm(stmnt.others_)
-	    g_env$putl(e, "{")
-	    g_env$indent(e)
+	    g_env$putl(e, " /* others */")
 	    if mdecl$is_decl(arm.decl)
 	       then
 		    d: decl := mdecl$value_decl(arm.decl)
@@ -1038,15 +1043,12 @@ g_except = proc (e: g_env, stmnt: exceptstmt)
 	       end
 	    g_env$newline(e)
 	    g_body(e, arm.body)
-	    g_env$outdent(e)
-	    g_env$putl(e, "}")
        else
-	    g_env$putl(e, "{")
-	    g_env$indent(e)
+	    g_env$putl(e, " /* not handled */")
 	    g_env$putl(e, "goto " || ex$get_current_ex_label() || ";")
-	    g_env$outdent(e)
-	    g_env$putl(e, "}")
        end
+    g_env$outdent(e)
+    g_env$putl(e, "}")
     g_env$newline(e)
 
     g_label(e, el)
