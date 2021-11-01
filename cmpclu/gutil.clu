@@ -1,6 +1,16 @@
 
 %  Copyright    Massachusetts Institute of Technology     1990,1991
 
+
+g_label = proc (e: g_env, label: string)
+    g_env$outdent(e)
+    g_env$puts(e, "  ")			 % assumes INDENT_AMOUNT > 2
+    g_env$puts(e, label)
+    g_env$puts(e, ":")
+    g_env$indent(e)
+  end g_label
+
+
 %%%
 %%% Print routines
 %%%
