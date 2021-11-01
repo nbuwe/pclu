@@ -209,9 +209,13 @@ g_env = cluster is create, reset, end_all, force_signal, reset_err, set_space,
 	end indent
 
     outdent = proc (e: cvt)
-	% decrement current indent. if at beginning of line, remove space from
-	% current line.
+	% decrement current indent. if at beginning of line, remove
+	% space from current line.
 	e.indent := e.indent - INDENT_AMOUNT
+	if e.indent < 0 then		 % indicates a bug in the code
+	   % signal underflow		 % (during development)
+	   e.indent := 0
+	   end
 	if as$empty(e.curline)
 	   then e.curspaces := string$substr(spaces, 1, e.indent)
 	   end
