@@ -966,12 +966,11 @@ g_beginend = proc (e: g_env, bod: body)
     % (can leave out BEGIN END if only 1 stmnt, otherwise might need it if
     % this body has attached exception handlers)
 
-    g_env$putl(e, "{")
+    g_env$putl(e, "{ /* begin */")
     g_env$indent(e)
     g_body(e, bod)
-    g_env$puts(e, "}")
     g_env$outdent(e)
-    g_env$ensure_newline(e)
+    g_env$putl(e, "}")
     end g_beginend
 
 g_body = proc (e: g_env, bod: body)
