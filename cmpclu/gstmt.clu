@@ -1081,7 +1081,7 @@ g_resignal = proc (e: g_env, stmnt: resignalstmt)
 
     % emit exception handlers' label
     g_label(e, ex$get_current_ex_label())
-    g_env$newline()
+    g_env$putl(e, " /* resignal */")
     g_env$putl(e, "__CLU_EX_HANDLER;")
 
     % let further signals be caught by surrounding scope
@@ -1089,53 +1089,60 @@ g_resignal = proc (e: g_env, stmnt: resignalstmt)
 
     % emit a nested if statement for each possible signal and
     %	generate a signal for it; (results are already sitting in elist)
-    first: bool := true
+    melse: string := ""
     for each_sig: name in namelist$elements(stmnt.resigs) do
-	if first
-	   then
-		g_env$puts(e, "if ") first := false
-	   else
-		g_env$puts(e, "else if ")
-	   end
-	g_env$puts(e, "(")
+	g_env$puts(e, melse)
+	melse := "else "
+	g_env$puts(e, "if (")
 	sig_name: string := sig$name(each_sig)
 	if sig$lookup(each_sig)
 	   then
+		% if (err == ERR_foo)
 		g_err(e)
-		g_env$puts(e, " == " || sig_name || ")")
+		g_env$puts(e, " == ")
+		g_env$puts(e, sig_name)
 	   else
+		% if (errcmp(err, "ERR_foo"))
 		g_env$puts(e, "errcmp(")
 		g_err(e)
-		g_env$puts(e, ", " || sig_name || "))")
+		g_env$puts(e, ", ")
+		g_env$puts(e, sig_name)
+		g_env$puts(e, ")")
 	   end
+	g_env$puts(e, ")")
 	if ib$bodies()
 	   then
-		iterp: bool := current_apply$is_iter()
-		if iterp
+		g_env$putl(e, " {");
+		g_env$indent(e)
+		g_env$puts(e, "*iecode = ")
+		g_err(e)
+		g_env$putl(e, ";")
+		if current_apply$is_iter()
 		   then
-			g_env$puts(e, "{*iecode = ")
-			g_err(e)
-			g_env$putl(e, ";")
 			g_locals(e)
 			g_env$putl(e, "body_ctrl_req = true;")
-			g_env$putl(e, "{signal(ERR_iteriterbodysignal);}}")
+			g_env$putl(e, "signal(ERR_iteriterbodysignal);")
+
 		   else
-			g_env$puts(e, " {*iecode = ")
-			g_err(e)
-			g_env$putl(e, ";")
-			g_env$putl(e, " {signal(ERR_iterbodysignal);}}")
+			g_env$putl(e, "signal(ERR_iterbodysignal);")
 		   end
+		g_env$outdent(e)
+		g_env$putl(e, "}")
 	   else
-		g_env$putl(e, " {signal(" ||sig_name || ");}")
+		g_env$newline(e)
+		g_env$indent(e)
+		g_env$puts(e, "signal(");
+		g_err(e)
+		g_env$putl(e, ");")
+		g_env$outdent(e)
 	   end
 	end
 
     % send other signals to surrounding handler
-    g_env$putl(e, "else {")
+    g_env$putl(e, "else")
     g_env$indent(e)
-    g_env$puts(e, "goto " || ex$get_current_ex_label() || ";")
+    g_env$putl(e, "goto " || ex$get_current_ex_label() || ";")
     g_env$outdent(e)
-    g_env$putl(e, "}")
 
     % emit end of statement and exception handler label
     % not marked with __CLU_END_LABEL b/c we emit the goto just above
