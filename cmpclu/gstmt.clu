@@ -480,42 +480,57 @@ g_if = proc (e: g_env, stmnt: ifstmt)
     %%  	   stmnt.else_.body
     %%  END
 
-    g_env$putl(e, "{")
+    g_env$putl(e, "/* if */ {")
+
+    % if
     g_expr0(e, stmnt.arms[1].test)
     el: exprlist := g_expr1(e, stmnt.arms[1].test)
     g_env$puts(e, "if (")
     g_expr2(e, exprlist$bottom(el))
-    g_env$putl(e, " == true) {")
+    g_env$putl(e, " == true) { /* if */")
+
+    % then
     g_env$indent(e)
     g_body(e, stmnt.arms[1].body)
-    g_env$putl(e, "}")
     g_env$outdent(e)
+    g_env$putl(e, "}")
+
     for i: int in int$from_to(2, ifarmlist$size(stmnt.arms)) do
         g_env$putl(e, "else {")
+	e.lineno := stmnt.arms[i].line
+
+	% elseif
 	g_expr0(e, stmnt.arms[i].test)
 	el := g_expr1(e, stmnt.arms[i].test)
         g_env$puts(e, "if (")
         g_expr2(e, exprlist$bottom(el))
-        g_env$putl(e, " == true) {")
+        g_env$putl(e, " == true) { /* elseif */")
+
+	% then
         g_env$indent(e)
         g_body(e, stmnt.arms[i].body)
-        g_env$putl(e, "}")
         g_env$outdent(e)
+        g_env$putl(e, "}")
+
+	% NB: unclosed brace for "else" at the start
+	% will close them all at once at the end
         end
+
+    % else
     if mbody$is_body(stmnt.else_)
        then g_env$newline(e)
-	    g_env$putl(e, "else {")
+	    g_env$putl(e, "else { /* else */")
+
 	    g_env$indent(e)
 	    g_body(e, mbody$value_body(stmnt.else_))
-	    g_env$puts(e, "}")
 	    g_env$outdent(e)
+	    g_env$puts(e, "}")
        end
-    g_env$indent(e)
-    for i:int in int$from_to(1, ifarmlist$size(stmnt.arms)) do
+
+    % close elseif braces all at once
+    for i:int in int$from_to(2, ifarmlist$size(stmnt.arms)) do
 	g_env$puts(e, "}") end
-    g_env$putl(e, "/* end if */")
-    g_env$ensure_newline(e)
-    g_env$outdent(e)
+    g_env$putl(e, "} /* end if */")
     end g_if
 
 g_tagcase = proc (e: g_env, stmnt: tagstmt)
