@@ -657,8 +657,9 @@ g_err = proc (e: g_env)
 
 
 g_proc = proc (e: g_env)
+    g_env$puts(e, "(*")
     g_locals(e)
-    g_env$puts(e, "proc")
+    g_env$puts(e, "proc)")
   end g_proc
 
 
