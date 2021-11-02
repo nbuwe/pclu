@@ -897,7 +897,8 @@ g_exit = proc (e: g_env, cond: condition)
 	end
 
     % compute and store exception results in elist[i]
-    % XXX: uwe: why is this different from g_signal?
+    % XXX: uwe: why is this different from g_signal?  An oversight?
+    % Cf. commented out old code in g_return for iterbodies
     el: exprlist := exprlist$new()
     for each_e: expr in exprlist$elements(cond.args) do
 	new_el: exprlist := g_expr1(e, each_e)
