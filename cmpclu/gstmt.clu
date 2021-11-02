@@ -480,7 +480,7 @@ g_if = proc (e: g_env, stmnt: ifstmt)
     %%  	   stmnt.else_.body
     %%  END
 
-    g_env$putl(e, "/* if */ {")
+    g_env$putl(e, "{ /* if */")
 
     % if
     g_expr0(e, stmnt.arms[1].test)
