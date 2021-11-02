@@ -542,7 +542,7 @@ handlers = cluster is init, enter, leave_resig, leave_except, new_signals,
     aae = array[ae]
     own scopes: aae
     own current_scope: ae
-    own lineno: int
+    own lineno: int := 0   % XXX: suppress warning about no initializations
     own env: g_env
 
     init = proc(ge: g_env)
