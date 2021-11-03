@@ -730,11 +730,13 @@ g_tagcase = proc (e: g_env, stmnt: tagstmt)
        except when bounds: end
     end g_tagcase
 
+
 g_return = proc (e: g_env, exp: exprlist)
 
     %% RETURN ( exp )
 
-    g_env$putl(e, "{")
+    g_env$putl(e, "{ /* return */")
+
     if ib$bodies()
        then
 	    iterp: bool := current_apply$is_iter()
@@ -742,7 +744,7 @@ g_return = proc (e: g_env, exp: exprlist)
 	       % an iter's iterbody
 	       g_locals(e)
 	       g_env$putl(e, "body_ctrl_req = true;")
-	       g_env$putl(e, "{signal(ERR_iteriterbodyreturn);}")
+	       g_env$putl(e, "signal(ERR_iteriterbodyreturn);")
 	       else
 		    % a proc's iterbody
 		    i: int := 0
@@ -759,7 +761,7 @@ g_return = proc (e: g_env, exp: exprlist)
 			i := i + 1
 			end % for
 		    g_env$putl(e, "*iecode = ERR_ok;")
-		    g_env$putl(e, "{signal(ERR_iterbodyreturn);}")
+		    g_env$putl(e, "signal(ERR_iterbodyreturn);")
 	       end
        else
 	    % not in an iterbody, i.e. a normal return
@@ -777,7 +779,7 @@ g_return = proc (e: g_env, exp: exprlist)
 		g_env$putl(e, "}")
 		i := i + 1
 		end % for
-    	    g_env$puts(e, "{signal (ERR_ok);}")
+    	    g_env$putl(e, "signal (ERR_ok);")
        end
        except when bounds: end
     g_env$putl(e, "}")
