@@ -860,15 +860,14 @@ g_yield = proc (e: g_env, exp: exprlist)
 	    g_env$putl(e, " != ERR_ok) {")
 	    g_env$indent(e)
 
-	    % XXX: uwe: why spell these out separately when the
-	    % signal() at the end will propagate them anyway?  The
-	    % "revision control" comments above seem to suggest that
-	    % different calling convention was used for them.
-	    g_propagate(e, "ERR_break")
-	    g_propagate(e, "ERR_iterbodyreturn")
-	    g_propagate(e, "ERR_iterbodyexit")
-	    g_propagate(e, "ERR_iterbodysignal")
-	    % propagate all else as-is
+	    % % XXX: uwe: Don't spell these out separately when the
+	    % % signal() at the end will propagate them anyway.  The
+	    % % "revision control" comments above seem to suggest that
+	    % % different calling convention was used for them.
+	    % g_propagate(e, "ERR_break")
+	    % g_propagate(e, "ERR_iterbodyreturn")
+	    % g_propagate(e, "ERR_iterbodyexit")
+	    % g_propagate(e, "ERR_iterbodysignal")
 	    g_env$puts(e, "signal(")
 	    g_err(e)
 	    g_env$putl(e, ");")
