@@ -198,6 +198,22 @@ g_temp_decl = proc (e: g_env, n: int)
     return
     end g_temp_decl
 
+
+% helper for emitting a bunch of re-signals
+g_propagate = proc (e: g_env, sig_name: string)
+    g_env$puts(e, "if (")
+    g_err(e)
+    g_env$puts(e, " == ")
+    g_env$puts(e, sig_name)
+    g_env$putl(e, ")")
+    g_env$indent(e)
+    g_env$puts(e, "signal(")
+    g_env$puts(e, sig_name)
+    g_env$putl(e, ");")
+    g_env$outdent(e)
+    end g_propagate
+
+
 g_while = proc (e: g_env, stmnt: whilestmt)
 
     %% WHILE ( stmnt.test ) DO
@@ -767,54 +783,68 @@ g_return = proc (e: g_env, exp: exprlist)
     g_env$putl(e, "}")
     end g_return
 
+
 g_yield = proc (e: g_env, exp: exprlist)
 
     %% YIELD ( exp )
     %%    occurs only in iterators (and their bodies)
 
+    g_env$putl(e, "{ /* yield */")
 
-    g_env$putl(e, "{")
+    % declare temps we will need to compute yielded values
     for each_exp:expr in exprlist$elements(exp) do
 	g_expr_arg0(e, each_exp)
-	end % for
+	end
+
+    % compute the values
     el:exprlist := exprlist$new()
     for each_exp: expr in exprlist$elements(exp) do
 	new_el: exprlist := g_expr_arg1(e, each_exp)
 	el := seq_extend[expr](el, new_el)
 	end
+
+    % call the caller's iterbody passed to us as "proc"
     g_err(e)
     g_env$puts(e, " = ")
     g_proc(e)
     g_env$puts(e, "(")
+    % ... pass computed values to the iterbody
     for each_exp: expr in exprlist$elements(el) do
 	g_expr_arg(e, each_exp)
 	g_env$puts(e, ", ")
-	end % for
+	end
+    % ... also pass pointers to the caller's locals and ecode2
     g_user_locals(e)
     g_env$puts(e, ", ")
-    g_env$putl(e, "iecode);")  % NO & here!
-    if ib$bodies() 
+    g_env$putl(e, "iecode);")  % NO "&" here!
+
+    if ib$bodies()
        then
 	    % ITERATOR BODY:
 	    %	attempt to process iteriterbodyexit (8/21/93 if bcr set!)
 	    %	propagate everything else
 	    % 5/31/90: probably should just propagate iteriterbodyexit
-	    g_env$puts(e, "if ((")
+	    g_env$puts(e, "if (")
 	    g_locals(e)
-	    g_env$puts(e, "body_ctrl_req == true) && (")
+	    g_env$puts(e, "body_ctrl_req && ")
 	    g_err(e)
-	    g_env$putl(e, " == ERR_iteriterbodyexit)) {")
+	    g_env$putl(e, " == ERR_iteriterbodyexit) {")
 	    g_env$indent(e)
 	    g_err(e)
 	    g_env$putl(e, " = *iecode;")
-	    g_env$putl(e, "goto " || ex$get_current_ex_label() || ";}")
+	    g_env$putl(e, "goto " || ex$get_current_ex_label() || ";")
 	    g_env$outdent(e)
+	    g_env$putl(e, "}")
+
+	    % propagate other errors
 	    g_env$puts(e, "if (")
 	    g_err(e)
 	    g_env$putl(e, " != ERR_ok) {")
+	    g_env$indent(e)
 	    g_env$puts(e, "signal(")
 	    g_err(e)
 	    g_env$putl(e, ");")
+	    g_env$outdent(e)
 	    g_env$putl(e, "}")
        else
 	    % ITERATOR PROPER:
@@ -825,22 +855,30 @@ g_yield = proc (e: g_env, exp: exprlist)
 	    % 5/31/90: removed irrelevant comments;
 	    %	       propagated ibs directly (needed) (formerly signal(*iecode)
 	    %	       propagated everything else (not *iecode) (?appropriate)
-	    g_env$puts(e, "if (") g_err(e) g_env$putl(e, " != ERR_ok) {")
-	    g_env$puts(e, "if (") g_err(e) g_env$putl(e, " == ERR_break) {signal(ERR_break);}")
-	    g_env$puts(e, "if (") g_err(e) 
-	    g_env$putl(e, " == ERR_iterbodyreturn) {signal(ERR_iterbodyreturn);}")
-	    g_env$puts(e, "if (") g_err(e)
-	    g_env$putl(e, " == ERR_iterbodyexit) {signal(ERR_iterbodyexit);}")
-	    g_env$puts(e, "if (") g_err(e) 
-	    g_env$putl(e, " == ERR_iterbodysignal) {signal(ERR_iterbodysignal);}")
-	    g_env$puts(e, "{signal(") g_err(e) g_env$putl(e, ");")
+	    g_env$puts(e, "if (")
+	    g_err(e)
+	    g_env$putl(e, " != ERR_ok) {")
 	    g_env$indent(e)
-	    g_env$putl(e, "}}")
+
+	    % XXX: uwe: why spell these out separately when the
+	    % signal() at the end will propagate them anyway?  The
+	    % "revision control" comments above seem to suggest that
+	    % different calling convention was used for them.
+	    g_propagate(e, "ERR_break")
+	    g_propagate(e, "ERR_iterbodyreturn")
+	    g_propagate(e, "ERR_iterbodyexit")
+	    g_propagate(e, "ERR_iterbodysignal")
+	    % propagate all else as-is
+	    g_env$puts(e, "signal(")
+	    g_err(e)
+	    g_env$putl(e, ");")
+
 	    g_env$outdent(e)
+	    g_env$putl(e, "}")
        end
     g_env$putl(e, "}")
-
     end g_yield
+
 
 g_signal = proc (e: g_env, cond: condition)
 
