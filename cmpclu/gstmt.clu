@@ -221,21 +221,28 @@ g_while = proc (e: g_env, stmnt: whilestmt)
     %% END
 
     loop_context$enter_while()
-    g_env$putl(e, "for (;;) {")
+    g_env$putl(e, "for (;;) { /* while */")
     g_env$indent(e)
+
     g_expr0(e, stmnt.test)
     el: exprlist := g_expr1(e, stmnt.test)
     g_env$puts(e, "if (")
     g_expr2(e, exprlist$bottom(el))
-    g_env$putl(e, " != true) { break; }")
+    g_env$putl(e, " != true)")
+    g_env$indent(e)
+    g_env$putl(e, "break;")
+    g_env$outdent(e)
+
     g_body(e, stmnt.body)
+
+    g_env$outdent(e)
     g_env$putl(e, "}")
     n: int := loop_context$get_current_while_count()
     g_env$putl(e, "end_while_" || int$unparse(n) || ":")
     g_env$putl(e, "__CLU_END_LABEL;")	 % only used by "break"
-    g_env$outdent(e)
     loop_context$leave()
     end g_while
+
 
 g_for = proc (e: g_env, stmnt: forstmt)
 
