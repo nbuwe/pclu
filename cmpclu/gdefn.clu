@@ -574,8 +574,7 @@ g_pownvars_init = proc (e: g_env, ilist: initlist)
 	   g_env$putl(e, generic_name || ".op_owns = 0;")
 	   g_env$putl(e, generic_name || ".proc = " || type_own_init_proc || ";")
 	   g_env$putl(e, s_locals() || "err = "||generic_name||".proc();")
-
-	   g_env$putl(e, "if (" || s_locals() || "err != ERR_ok) goto ex_0;")
+	   g_err_goto(e, "ex_0")
 	   g_env$outdent(e)
 	   g_env$putl(e, "}")
 	 else
@@ -583,8 +582,7 @@ g_pownvars_init = proc (e: g_env, ilist: initlist)
 	   g_env$putl(e, "if (" ||  type_own_init || " == 0) {")
 	   g_env$indent(e)
 	   g_env$putl(e, s_locals() || "err = " || type_own_init_proc || "();")
-
-	   g_env$putl(e, "if (" || s_locals() || "err != ERR_ok) goto ex_0;")
+	   g_err_goto(e, "ex_0")
 	   g_env$outdent(e)
 	   g_env$putl(e, "}")
 	 end
@@ -681,7 +679,7 @@ g_ownvars_init = proc (e: g_env, ilist: initlist)
 	% catching of err added 8/24/90
 	g_env$putl(e, s_locals() || "err = " || current_type$get_name() ||
 		   "_own_init_proc();")
-	g_env$putl(e, "if (" || s_locals() || "err != ERR_ok) goto ex_0;")
+	g_err_goto(e, "ex_0");
 	g_env$outdent(e)
 	g_env$putl(e, "}")
       end
