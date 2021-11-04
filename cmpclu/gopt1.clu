@@ -1057,7 +1057,8 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 	   if sel.gen.common ~= "oneof" cand sel.gen.common ~= "variant"
 	      then return (false) end
 	   else return (false) end
-	g_env$putl(e, "{")
+
+	g_env$putl(e, "{ /* qtagcase */")
 	g_expr0(e, stmt.obj)
 	el0: exprlist := g_expr1(e, stmt.obj)
 	flist: fieldspeclist := fieldspeclist$new()
@@ -1068,7 +1069,6 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 	       logit(501, "tagcase: not select!?")
 	   end
 
-
 	g_env$puts(e, "switch (")
 	tagidn: idn := exprabs$value_idn(el0[1].abs)
 	g_idn_plain(e, tagidn)
@@ -1077,10 +1077,11 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 	for t: tagarm in tagarmlist$elements(stmt.arms) do
 	    for nm: name in namelist$elements(t.tags) do
 		junk: string, ind: int := field_index("is_" || nm, flist)
-	        g_env$putl(e, "case " || int$unparse(ind) || ":")
+	        g_env$putl(e, "case " || int$unparse(ind)
+				|| ": /* " || nm || " */")
 		end % for
 	    g_env$indent(e)
-	    g_env$puts(e, " {")
+	    g_env$puts(e, "{")
 	    if mdecl$is_decl(t.var)
 	       then
 		    dl: decl :=  mdecl$value_decl(t.var)
@@ -1117,11 +1118,12 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 	   end
 	g_env$ensure_newline(e)
 	g_env$putl(e, "}")
-	g_env$putl(e, "}")
+	g_env$putl(e, "} /* end qtagcase */")
 	end
        except when bounds: end
     return (true)
     end g_qtagcase
+
 
 g_expr_plain = proc(e:g_env, exp: expr)
     tagcase exp.abs
