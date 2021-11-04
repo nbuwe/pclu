@@ -1009,15 +1009,18 @@ g_einvoke = proc (e: g_env, stmt: invoke) returns(exprlist)
 		g_env$puts(e, "&")
 		g_expr_arg(e, each_res)
 		end % for
-	    g_env$puts(e, ");")
-	    g_env$newline(e)
+	    g_env$putl(e, ");")
+
 	    g_env$puts(e, "if (")
 	    g_err(e)
-	    g_env$putl(e, " != ERR_ok) goto "||
-			  ex$get_current_ex_label()||";")
+	    g_env$putl(e, " != ERR_ok)")
+	    g_env$indent(e)
+	    g_env$putl(e, "goto " || ex$get_current_ex_label() || ";")
+	    g_env$outdent(e)
        end
     return(reslist)
     end g_einvoke
+
 
 g_apply1 = proc(e: g_env, exp:expr, ct: clutype) returns (exprlist)
     % MOST OF THE FOLLOWING IS BROKEN FOR SELECTORS
