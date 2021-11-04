@@ -913,11 +913,11 @@ idnlit = proc (i: idn) returns (string)
     return(nm)
     end idnlit
 
+
 g_einvoke = proc (e: g_env, stmt: invoke) returns(exprlist)
 	      signals(specs_missing)
 
     % see if we have specs
-    
     ap: expr := stmt.apply
     tagcase ap.abs
        tag apply (ct: clutype):
@@ -929,9 +929,8 @@ g_einvoke = proc (e: g_env, stmt: invoke) returns(exprlist)
 	      end
        others:
        end
-    
-    % generate code to compute intermediate results
 
+    % generate code to compute intermediate results
     el: exprlist := exprlist$new()
     for each_arg: expr in exprlist$elements(stmt.args) do
 	new_el: exprlist := g_expr_arg1(e, each_arg)
@@ -940,7 +939,6 @@ g_einvoke = proc (e: g_env, stmt: invoke) returns(exprlist)
     reslist: exprlist := exprlist$new()
 
     % generate exprs (names) for return values
-
     ty: typespec := stmt.apply.typespec
     tagcase ty.abs
        tag apply (a: applytype):
@@ -982,16 +980,13 @@ g_einvoke = proc (e: g_env, stmt: invoke) returns(exprlist)
 		   signal specs_missing
 	      end
        end
-    %    res: expr := tv$idn_next(stmt.apply.typespec)
+    % res: expr := tv$idn_next(stmt.apply.typespec)
 
     % compute proctype to be invoked
-
     quick: bool := g_qinv_test(stmt.apply)
     proc_id: expr := stmt.apply
 
-
     % generate the actual invocation
-
     if quick
        then
 	    g_qinv(e, proc_id, el, reslist)
