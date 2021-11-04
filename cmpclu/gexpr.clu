@@ -1137,9 +1137,8 @@ g_op1 = proc(e: g_env, exp: expr, cop: clusterop) returns (exprlist)
     g_env$puts(e, " = proctype" || sep || "new(CLU_"|| int$unparse(parm_count) ||", &")
     g_expr_arg(e, proc_id)
     g_env$putl(e, ");")
-    g_env$puts(e, "if (")
-    g_err(e)
-    g_env$putl(e, "!= ERR_ok) goto " || ex$get_current_ex_label() || ";")
+    g_err_handle(e)
+
     if exprlist$size(parm_list) ~= 0 then
        g_idnlit(e, exprabs$value_idn(proc_id.abs))
 	  except when wrong_tag:
@@ -1335,9 +1334,7 @@ g_condop = proc (e: g_env, cop: condop, opn: string) returns (exprlist)
 %       end
 %    g_expr_arg(e, res)
 %    g_env$putl(e,  ");")
-%    g_env$puts(e, "if (")
-%    g_err(e)
-%    g_env$putl(e, " != ERR_ok) goto " || ex$get_current_ex_label()||";")
+%    g_err_handle(e)
 %    return(exprlist$fill(1, res))
 %    end g_string_const
 
@@ -1413,12 +1410,9 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
        end
     g_env$puts(e, "&")
     g_expr_arg(e, arr)
-    g_env$puts(e, ");")
-    g_env$newline(e)
-    g_env$puts(e, "if (")
-    g_err(e)
-    g_env$putl(e, " != ERR_ok) goto "||
-		  ex$get_current_ex_label()||";")
+    g_env$putl(e, ");")
+    g_err_handle(e)
+
     % the following keeps idn's lined up: it really should be used
     %	to do array$predict
     if ~int_const$exists(exprlist$size(ac.elts)) then
@@ -1438,12 +1432,8 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
 	    g_expr_arg(e, arr)
 	    g_env$puts(e, ", ")
 	    g_expr_arg(e, exprlist$bottom(elti))
-	    g_env$puts(e, ");")
-	    g_env$newline(e)
-	    g_env$puts(e, "if (")
-	    g_err(e)
-	    g_env$putl(e, " != ERR_ok) goto "||
-			  ex$get_current_ex_label()||";")
+	    g_env$putl(e, ");")
+	    g_err_handle(e)
 	    end % for
 	end
        except when bounds: end
@@ -1514,9 +1504,7 @@ g_selectcons = proc (e: g_env, sc: selectcons) returns (exprlist)
     %    g_env$puts(e, " = record$new(" || int$unparse(size) || ", &")
     %    g_expr2(e, rec)
     %    g_env$putl(e, ", elist);")
-    %    g_env$puts(e, "if (")
-    %    g_err(e)
-    %    g_env$putl(e, " != ERR_ok) goto " || ex$get_current_ex_label()||";")
+    %    g_err_handle(e)
     %    g_env$newline(e)
 
     % compute field values and insert into record fields
