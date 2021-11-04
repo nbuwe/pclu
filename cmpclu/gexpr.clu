@@ -1034,9 +1034,13 @@ g_apply1 = proc(e: g_env, exp:expr, ct: clutype) returns (exprlist)
     g_env$puts(e, " = proctype" || sep || "new(CLU_"|| int$unparse(parm_count) ||", &")
     g_expr_arg(e, proc_id)
     g_env$putl(e, ");")
+
     g_env$puts(e, "if (")
     g_err(e)
-    g_env$putl(e, "!= ERR_ok) goto " || ex$get_current_ex_label() || ";")
+    g_env$putl(e, " != ERR_ok)")
+    g_env$indent(e)
+    g_env$putl(e, " goto " || ex$get_current_ex_label() || ";")
+    g_env$outdent(e)
 
     g_idnlit(e, exprabs$value_idn(proc_id.abs))
        except when wrong_tag:
@@ -1070,6 +1074,7 @@ g_apply1 = proc(e: g_env, exp:expr, ct: clutype) returns (exprlist)
     g_env$putl(e, ";")
     return(exprlist$fill(1, proc_id))
     end g_apply1
+
 
 g_op1 = proc(e: g_env, exp: expr, cop: clusterop) returns (exprlist)
 
