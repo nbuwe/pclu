@@ -1051,23 +1051,24 @@ is_temp = proc(i: idn) returns (bool)
 
 g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
     begin
+	flist: fieldspeclist
+
+	% only handle oneof or variant, get its list of fields
 	ty: typespec := stmt.obj.typespec
-	if typeabs$is_select(ty.abs) then
-	   sel: seltype := typeabs$value_select(ty.abs)
-	   if sel.gen.common ~= "oneof" cand sel.gen.common ~= "variant"
-	      then return (false) end
-	   else return (false) end
+	tagcase ty.abs
+	   tag select (sel: seltype):
+	       if sel.gen.common ~= "oneof" cand sel.gen.common ~= "variant"
+		  then return (false) end
+	       flist := sel.parms
+	   others:
+	       return (false)
+	   end
 
 	g_env$putl(e, "{ /* qtagcase */")
+
+	% evaluate the tagcase object
 	g_expr0(e, stmt.obj)
 	el0: exprlist := g_expr1(e, stmt.obj)
-	flist: fieldspeclist := fieldspeclist$new()
-	tagcase ty.abs
-	   tag select (ta: seltype):
-	       flist := ta.parms
-	   others:
-	       logit(501, "tagcase: not select!?")
-	   end
 
 	g_env$puts(e, "switch (")
 	tagidn: idn := exprabs$value_idn(el0[1].abs)
