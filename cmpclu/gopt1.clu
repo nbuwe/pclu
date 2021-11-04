@@ -1076,12 +1076,16 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 	g_env$putl(e, ".cell->tag) {")
 
 	for t: tagarm in tagarmlist$elements(stmt.arms) do
+	    fallthrough: string := ""
 	    for nm: name in namelist$elements(t.tags) do
 		junk: string, ind: int := field_index("is_" || nm, flist)
-	        g_env$putl(e, "case " || int$unparse(ind)
+		if ~string$empty(fallthrough) % avoid spaces-only line
+		    then g_env$putl(e, fallthrough) end
+		fallthrough := " /* FALLTHROUGH */"
+	        g_env$puts(e, "case " || int$unparse(ind)
 				|| ": /* " || nm || " */")
-		end % for
-	    g_env$putl(e, "{")
+		end
+	    g_env$putl(e, " {")
 	    g_env$indent(e)
 
 	    if mdecl$is_decl(t.var)
