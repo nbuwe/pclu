@@ -1080,8 +1080,9 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 	        g_env$putl(e, "case " || int$unparse(ind)
 				|| ": /* " || nm || " */")
 		end % for
+	    g_env$putl(e, "{")
 	    g_env$indent(e)
-	    g_env$puts(e, "{")
+
 	    if mdecl$is_decl(t.var)
 	       then
 		    dl: decl :=  mdecl$value_decl(t.var)
@@ -1098,25 +1099,23 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 		    % g_env$puts(e, " = ")
 		    % g_expr2(e, this_temp)
 		    % g_env$putl(e, ";")
-
 	       end
-	    g_env$indent(e)
 	    g_env$newline(e)
+
 	    g_body(e, t.body)
+
 	    g_env$putl(e, "break;")
+	    g_env$outdent(e)
 	    g_env$putl(e, "}")
-	    g_env$outdent(e)
-	    g_env$outdent(e)
 	    end
 	if mbody$is_body(stmt.others_)
 	   then g_env$putl(e, "default: {")
 		g_env$indent(e)
 		g_body(e, mbody$value_body(stmt.others_))
+		g_env$ensure_newline(e)
 		g_env$outdent(e)
-		g_env$newline(e)
-		g_env$puts(e, "}")
+		g_env$putl(e, "}")
 	   end
-	g_env$ensure_newline(e)
 	g_env$putl(e, "}")
 	g_env$putl(e, "} /* end qtagcase */")
 	end
