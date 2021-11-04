@@ -548,17 +548,9 @@ g_if = proc (e: g_env, stmnt: ifstmt)
     g_env$putl(e, "} /* end if */")
     end g_if
 
+
 g_tagcase = proc (e: g_env, stmnt: tagstmt)
 
-    % First I did this via switch and case statements
-    % Second I redid it via if statements, because case labels in C must
-    %	be constants and for awhile I thought the tags in CLU were not
-    %	constants
-    % Third, I could go back to switch/case statements or continue on this
-    %	path, but I need to decide how oneofs are represented in C:
-    %	? a struct of a tag and a union of values as in mercury?
-    %	and generate tags and tag fields wherever appropriate.
-    %
     %% TAGCASE stmnt.obj
     %%	   TAG stmnt.arms[1].tags ( stmnt.arms[1].var ) :
     %%		stmnt.arms[1].body
@@ -566,8 +558,14 @@ g_tagcase = proc (e: g_env, stmnt: tagstmt)
     %%     OTHERS:
     %%		stmnt.others_.body
     %% END
-    % Note: the parser doesn't eliminate the tagcase sugar (enabled by #extend)
+
+    % NB: the parser doesn't eliminate the tagcase sugar (enabled by #extend)
     % so it is possible that stmnt.obj is not a oneof or variant.
+
+    % If it *is* a oneof or variant, handle it quickly with a C switch
+    if g_qtagcase(e, stmnt) then return end
+
+
     % In either case, this statement is equivalent to the following:
     %    % t is type_of(stmnt.obj)
     %	 % tagij is stmnt.arms[i].tags[j]
@@ -580,7 +578,6 @@ g_tagcase = proc (e: g_env, stmnt: tagstmt)
     %	     stmnt.others_.body
     %    END
 
-    if g_qtagcase(e, stmnt) then return end
     begin
 
 	ty: typespec := stmnt.obj.typespec
