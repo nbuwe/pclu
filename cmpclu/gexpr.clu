@@ -655,6 +655,23 @@ g_err = proc (e: g_env)
   end g_err
 
 
+g_err_goto = proc (e: g_env, ex_label: string)
+    g_env$puts(e, "if (")
+    g_err(e)
+    g_env$putl(e, " != ERR_ok)")
+    g_env$indent(e)
+    g_env$puts(e, "goto ")
+    g_env$puts(e, ex_label)
+    g_env$putl(e, ";")
+    g_env$outdent(e)
+    end g_err_goto
+
+
+g_err_handle = proc (e: g_env)
+    g_err_goto(e, ex$get_current_ex_label())
+    end g_err_handle
+
+
 g_proc = proc (e: g_env)
     g_env$puts(e, "(*")
     g_locals(e)
@@ -1005,13 +1022,7 @@ g_einvoke = proc (e: g_env, stmt: invoke) returns(exprlist)
 		g_expr_arg(e, each_res)
 		end % for
 	    g_env$putl(e, ");")
-
-	    g_env$puts(e, "if (")
-	    g_err(e)
-	    g_env$putl(e, " != ERR_ok)")
-	    g_env$indent(e)
-	    g_env$putl(e, "goto " || ex$get_current_ex_label() || ";")
-	    g_env$outdent(e)
+	    g_err_handle(e)
        end
     return(reslist)
     end g_einvoke
@@ -1034,13 +1045,7 @@ g_apply1 = proc(e: g_env, exp:expr, ct: clutype) returns (exprlist)
     g_env$puts(e, " = proctype" || sep || "new(CLU_"|| int$unparse(parm_count) ||", &")
     g_expr_arg(e, proc_id)
     g_env$putl(e, ");")
-
-    g_env$puts(e, "if (")
-    g_err(e)
-    g_env$putl(e, " != ERR_ok)")
-    g_env$indent(e)
-    g_env$putl(e, " goto " || ex$get_current_ex_label() || ";")
-    g_env$outdent(e)
+    g_err_handle(e)
 
     g_idnlit(e, exprabs$value_idn(proc_id.abs))
        except when wrong_tag:
