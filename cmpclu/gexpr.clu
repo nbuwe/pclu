@@ -554,6 +554,8 @@ specs_exist = proc(ct: clutype) returns (bool)
        end
     end specs_exist
 
+
+% the caller is expected to emit the arglist in parens and the semicolon
 g_inv = proc(e: g_env, exp, gen_clu_proc_val: expr)
 
     tagcase exp.abs
@@ -568,7 +570,6 @@ g_inv = proc(e: g_env, exp, gen_clu_proc_val: expr)
 	      g_err(e)
 	      g_env$puts(e, " = ")
 	      g_expr2(e, gen_clu_proc_val)
-	      g_env$puts(e, "(")
 	      return
 	    elseif idnkind$is_ownvar(i.kind) then
 		 g_env$puts(e, "CUR_PROC_VAR = ")
@@ -586,7 +587,7 @@ g_inv = proc(e: g_env, exp, gen_clu_proc_val: expr)
 	   g_err(e)
 	   g_env$puts(e, " = ")
 	   g_expr2(e, exp)
-	   g_env$puts(e, "->proc(")
+	   g_env$puts(e, "->proc")
        tag op (cop: clusterop):
 	   if parm$member(cop.type_)
 	      then
@@ -596,7 +597,7 @@ g_inv = proc(e: g_env, exp, gen_clu_proc_val: expr)
 		   g_err(e)
 		   g_env$puts(e, " = ")
 		   g_expr2(e, exp)
-		   g_env$puts(e, "->proc(")
+		   g_env$puts(e, "->proc")
 	    elseif parmd_cluster(cop)
 	      then
 		   g_env$puts(e, "CUR_PROC_VAR = ")
@@ -605,13 +606,12 @@ g_inv = proc(e: g_env, exp, gen_clu_proc_val: expr)
 		   g_err(e)
 		   g_env$puts(e, " = ")
 		   g_expr2(e, exp)
-		   g_env$puts(e, "->proc(")
+		   g_env$puts(e, "->proc")
 	    else
 		 logit(406, "INV: here")
 		 g_err(e)
 		 g_env$puts(e, " = ")
 		 g_expr2(e, exp)
-		 g_env$puts(e, "(")
 	    end
 	   % apply (clutype) (use ct.gen.common to get name)
 	   %	eg hash_obj used in gcd_tab
@@ -622,7 +622,6 @@ g_inv = proc(e: g_env, exp, gen_clu_proc_val: expr)
 	   g_err(e)
 	   g_env$puts(e, " = ")
 	   g_expr2(e, exp)
-	   g_env$puts(e, "(")
        end
 
     end g_inv
@@ -999,6 +998,7 @@ g_einvoke = proc (e: g_env, stmt: invoke) returns(exprlist)
        else
 	    gen_proc_id: expr := exprlist$bottom(g_inv1(e, stmt.apply))
 	    g_inv(e, gen_proc_id, proc_id)
+	    g_env$puts(e, "(")
 	    first: bool := true
 	    for each_arg: expr in exprlist$elements(el) do
 		if ~first then g_env$puts(e, ", ") else first := false end

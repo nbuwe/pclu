@@ -279,17 +279,20 @@ g_for = proc (e: g_env, stmnt: forstmt)
        else
 	    gen_proc_id: expr := exprlist$bottom(g_inv1(e, stmnt.call.apply))
 	    g_inv(e, gen_proc_id, proc_id)
-
+	    g_env$puts(e, "(")
 	    for each_arg: expr in exprlist$elements(el) do
 		g_expr_arg(e, each_arg)
 		g_env$puts(e, ", ")
 		end % for
+
+	    g_env$puts(e, ibname)
 	    if ib$bodies()
 	       then
-		    g_env$putl(e, ibname || ", locals, iecode);")
+		    g_env$puts(e, ", locals, iecode")
 	       else
-		    g_env$putl(e, ibname || ", &locals, &locals.ecode2);")
+		    g_env$puts(e, ", &locals, &locals.ecode2")
 	       end
+	    g_env$putl(e, ");")
        end
 
     % Generate code to process end of iterator invocation:
