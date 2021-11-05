@@ -516,8 +516,8 @@ g_for = proc (e: g_env, stmnt: forstmt)
 		    g_err_handle(e)
 	       end
        end
-    g_env$putl(e, "}")
     g_env$outdent(e)
+    g_env$putl(e, "}")
 
     g_anys(e, stmnt.anys)
     g_env$newline(e)
