@@ -563,21 +563,12 @@ g_tagcase = proc (e: g_env, stmnt: tagstmt)
     % so it is possible that stmnt.obj is not a oneof or variant.
 
     % If it *is* a oneof or variant, handle it quickly with a C switch
+    % by using knowledge of selector data structures.
     if g_qtagcase(e, stmnt) then return end
 
 
-    % In either case, this statement is equivalent to the following:
-    %    % t is type_of(stmnt.obj)
-    %	 % tagij is stmnt.arms[i].tags[j]
-    %    IF t$is_tag11(stmnt.obj) COR ... COR t$is_tag1n(stmnt.obj) then
-    %	     stmnt.arms[1].var := t$value_tag1(stmnt.obj)
-    %        stmnt.arms[1].body
-    %    ELSEIF t$is_tag21(stmnt.obj) COR...
-    %     :
-    %    ELSE
-    %	     stmnt.others_.body
-    %    END
-
+    % Compile tagcase sugar for cluster types.  This should work for
+    % selectors too, but g_qtagcase emits much simpler code.
     begin
 	is_clutype: bool := false
 	flist: fieldspeclist := fieldspeclist$new()
