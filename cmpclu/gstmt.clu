@@ -579,140 +579,160 @@ g_tagcase = proc (e: g_env, stmnt: tagstmt)
     %    END
 
     begin
-
-	ty: typespec := stmnt.obj.typespec
 	is_clutype: bool := false
 	flist: fieldspeclist := fieldspeclist$new()
+	type_prefix: string
+
+	ty: typespec := stmnt.obj.typespec
 	tagcase ty.abs
-	   tag select (ta: seltype):
-	       flist := ta.parms
+	   tag select (st: seltype):
+	       flist := st.parms
+	       type_prefix := st.gen.common || sep
 	   tag cluster_ (ct: clutype):
 	       is_clutype := true
+	       type_prefix := ct.gen.common || sep
 	   others:
 	       logit(801, "tagcase: not select!?")
 	       typespec_print(ty)
 	   end
 
-	g_env$putl(e, "{")
+	g_env$puts(e, "do { /* tagcase")
+	if is_clutype then g_env$puts(e, " sugar") end
+	g_env$putl(e, " */")
+
+	% declare temporary variables to evaluate the tagcase expression
 	g_expr0(e, stmnt.obj)
-	for t: tagarm in tagarmlist$elements(stmnt.arms) do
-	    for nm: name in namelist$elements(t.tags) do
-		tv$decl_next(e, e.comp.bool_type)
+
+	% temporary for the is_<tag> test result
+	tv$decl_next(e, e.comp.bool_type)
+	ttag: expr := tv$idn_next(e.comp.bool_type)
+
+	% evaluate tagcase expression
+	tobj: expr := exprlist$bottom(g_expr1(e, stmnt.obj))
+
+	for each_arm: tagarm in tagarmlist$elements(stmnt.arms) do
+	    % make it possible to break before the is_tag calls
+	    e.lineno := each_arm.line
+
+	    % list arm's tags in the block comment
+	    g_env$puts(e, "{ /* ")
+	    intro: string := "tag "
+	    for each_tag: name in namelist$elements(each_arm.tags) do
+		g_env$puts(e, intro)
+		intro := ", "
+		g_env$puts(e, each_tag)
 		end
-	    end
-	el0: exprlist := g_expr1(e, stmnt.obj)
-	tlist: exprlist := exprlist$new()
-	for t: tagarm in tagarmlist$elements(stmnt.arms) do
-	    for nm: name in namelist$elements(t.tags) do
-		junk: string := ""
-		ind: int := 0
+	    g_env$putl(e, " */")
+
+	    % optional temporary for the tag value
+	    tval: mexpr
+	    tagcase each_arm.var
+	       tag decl (d: decl):
+		   tv$decl_next(e, d.type_)
+		   tval := mexpr$make_one(tv$idn_next(d.type_))
+	       others:
+		   tval := mexpr$make_none(nil)
+	       end
+
+	    melse: string := ""
+	    for each_tag: name in namelist$elements(each_arm.tags) do
+		if string$empty(melse)
+		   then melse := "else {"
+		   else g_env$putl(e, melse) end
+
+		% accessors: for selectors names are mapped to indices
+		tag_suffix: string := each_tag
 		if ~is_clutype then
-		   junk, ind := field_index("is_" || nm, flist)
+		   % XXX: add prefix ("is_") just for field_index to strip it
+		   _: string, idx: int := field_index("is_" || each_tag, flist)
+		   tag_suffix := int$unparse(idx)
+
+		   % comment for the cryptic numeric accessors
+		   g_env$puts(e, "/* ")
+		   g_env$puts(e, each_tag)
+		   g_env$putl(e, " */")
 		   end
-		g_err(e)
-		g_env$puts(e, " = ")
-		if is_clutype 
-		   then
-			g_typespec(e, stmnt.obj.typespec)
-			g_env$puts(e, sep || "is_" || nm || "(")
-		   else
-			g_term_typespec(e, stmnt.obj.typespec)
-			g_env$puts(e, sep || "is_" || int$unparse(ind) || "(")
-		   end
-		g_expr_arg(e, exprlist$bottom(el0))
-		g_env$puts(e, ", &")
-		next_idn: expr := tv$idn_next(e.comp.bool_type)
-		g_expr_arg(e, next_idn)
-		g_env$putl(e, ");")
-		tlist := exprlist$addh(tlist, next_idn)
-		g_err_handle(e)
-		end
-	    end
-	tindex: int := 1
-	first: bool := true
-	for t: tagarm in tagarmlist$elements(stmnt.arms) do
-	    if first then
-	       g_env$puts(e, "if (")
-	       first := false
-	       else
-		    g_env$puts(e, "else if (")
-	       end
-	    nth: bool := false
-	    el2: exprlist := exprlist$new()
-	    for nm: name in namelist$elements(t.tags) do
-		%logit("tindex: " || int$unparse(tindex))
-		if nth then g_env$puts(e, " || ")
-		   else nth := true end
-		g_expr2(e, tlist[tindex])
-		el2 := exprlist$addh(el2, tlist[tindex])
-		g_env$puts(e, " == true")
-		tindex := tindex + 1
-		end % for
-	    g_env$putl(e, ")")
-	    g_env$indent(e)
-	    g_env$puts(e, "{")
-	    if mdecl$is_decl(t.var)
-	       then
-		    dl: decl :=  mdecl$value_decl(t.var)
-		    tv$decl_next(e, dl.type_)
-		    this_temp: expr := tv$idn_next(dl.type_)
-		    if ~is_clutype 
-		       then
-			    junk: str, ind: int := field_index
-						       ("is_" || namelist$bottom(t.tags), flist)
-			    g_err(e)
-			    g_env$puts(e, " = ")
-			    g_term_typespec(e, stmnt.obj.typespec)
-			    g_env$puts(e, sep || "value(")    % a small amount of cheating
-			    g_expr_arg(e, exprlist$bottom(el0))
-			    g_env$puts(e, ", &")
-			    g_expr_arg(e, this_temp)
-			    g_env$putl(e, ");")
-			    g_err_handle(e)
-		       else
-			    for index: int in namelist$indexes(t.tags) do
-				each_nm: name := t.tags[index]
-				each_expr: expr := el2[index]
-				g_env$puts(e, "if (")
-				g_expr2(e, each_expr)
-				g_env$putl(e, " == true) {")
-				g_env$indent(e)
-				g_err(e)
-				g_env$puts(e, " = ")
-				g_typespec(e, stmnt.obj.typespec)
-				g_env$puts(e, sep ||"value_" || namelist$bottom(t.tags)
-						|| "(")
-				g_expr_arg(e, exprlist$bottom(el0))
-				g_env$puts(e, ", &")
-				g_expr_arg(e, this_temp)
-				g_env$putl(e, ");")
-				g_err_handle(e)
-				g_env$putl(e, "}")
-				g_env$outdent(e)
-				end
-		       end
-		    g_idn(e, idnlist$bottom(dl.idns))  % maybe more?
-		    g_env$puts(e, " = ")
-		    g_expr2(e, this_temp)
-		    g_env$putl(e, ";")
-	       end
-	    g_env$indent(e)
-	    g_env$newline(e)
-	    g_body(e, t.body)
-	    g_env$putl(e, "}")
-	    g_env$outdent(e)
-	    g_env$outdent(e)
-	    end
-	if mbody$is_body(stmnt.others_)
-	   then g_env$putl(e, "else {")
+
+		% typeOPis_tag(tobj, &ttag)
+		g_err(e);
+		g_env$puts(e, " = ");
+		g_env$puts(e, type_prefix)
+		g_env$puts(e, "is_")
+		g_env$puts(e, tag_suffix)
+		g_env$puts(e, "(");
+		g_expr_arg(e, tobj)
+		g_env$puts(e, ", &");
+		g_expr_arg(e, ttag);
+		g_env$putl(e, ");");
+		g_err_handle(e);
+
+		g_env$puts(e, "if (")
+		g_expr_arg(e, ttag)	 % XXX
+		g_env$putl(e, ".tf) {")
 		g_env$indent(e)
-		g_body(e, mbody$value_body(stmnt.others_))
+		tagcase tval		 % do we have a variable?
+		   tag one (dst: expr):  % fetch value into a temp
+		       % typeOPvalue_tag(tobj, &dst)
+		       g_err(e)
+		       g_env$puts(e, " = ");
+		       g_env$puts(e, type_prefix)
+		       g_env$puts(e, "value_")
+		       g_env$puts(e, tag_suffix)
+		       g_env$puts(e, "(");
+		       g_expr_arg(e, tobj)
+		       g_env$puts(e, ", &");
+		       g_expr_arg(e, dst);
+		       g_env$putl(e, ");");
+		       g_err_handle(e);
+		   others:
+		       g_env$putl(e, ";")   % stub
+		   end % may be fetch value
 		g_env$outdent(e)
-		g_env$newline(e)
+		g_env$putl(e, "}")
+
+		end % each_tag of this arm
+
+	    % close outstanding else's
+	    for i: int in int$from_to(2, namelist$size(each_arm.tags)) do
 		g_env$puts(e, "}")
+		end
+	    g_env$ensure_newline(e)
+
+	    % did we get a match on any of the tags in this arm?
+	    g_env$puts(e, "if (")
+	    g_expr_arg(e, ttag)		 % XXX
+	    g_env$putl(e, ".tf) {")
+	    g_env$indent(e)
+
+	    tagcase each_arm.var		 % do we have a variable?
+	       tag decl (d: decl):
+		   var: idn := idnlist$bottom(d.idns) % there can be only one
+		   val: expr := mexpr$value_one(tval) % value in the temporary
+		   g_c_assn(e, var, val)
+	       others:
+	       end
+	    g_body(e, each_arm.body)
+
+	    g_env$putl(e, "break; /* tagcase */")
+	    g_env$outdent(e)
+	    g_env$putl(e, "}")
+	    g_env$putl(e, "}")
+	    end % each_arm
+
+	% emit others arm if present
+	tagcase stmnt.others_
+	   tag body (bod: body):
+	       g_env$putl(e, "{ /* others */")
+	       g_env$indent(e)
+
+	       g_body(e, bod)
+
+	       g_env$outdent(e)
+	       g_env$putl(e, "}")
+	   others:
 	   end
-	g_env$ensure_newline(e)
-	g_env$putl(e, "}")
+
+	g_env$putl(e, "} while (0); /* end tagcase */")
 	end
        except when bounds: end
     end g_tagcase
