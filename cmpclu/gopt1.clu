@@ -119,20 +119,20 @@ g_qiinv = proc(e: g_env, exp:expr, args: exprlist, ibname: name)
     return
     end g_qiinv
 
-g_inline_iter_test = proc(exp:expr) returns (bool)
 
-    ans: bool, junk1, junk2: string := g_inline_iter_test_and_info(exp)
-    return (ans)
+g_inline_iter_test = proc (exp: expr) returns (bool)
+    yes: bool, typ, op: string :=
+	g_inline_iter_test_and_info(exp)
+    return (yes)
     end g_inline_iter_test
 
-g_inline_iter_test_and_info = proc(exp:expr) returns (bool, string, string)
 
-%%%
-%%%  Inlining of iterators is suppressed unless user has selected opt time
-%%%		1/21/93 dwc
-%%%
+g_inline_iter_test_and_info = proc (exp: expr) returns (bool, string, string)
+    % Inlining of iterators is suppressed unless user has selected
+    % -opt time 1/21/93 dwc
+    if g_env$min_inline()
+       then return (false, "", "") end
 
-    if g_env$min_inline() then return (false, "", "") end
     ty: typeabs
     tagcase exp.abs
        tag op (cop: clusterop):
@@ -147,24 +147,25 @@ g_inline_iter_test_and_info = proc(exp:expr) returns (bool, string, string)
 		   cor (gen.common = "int" cand cop.name = "from_to")
 		   cor (gen.common = "int" cand cop.name = "from_to_by")
 		 then
-		      return (true, gen.common, cop.name) end
+		      return (true, gen.common, cop.name)
+		 end
 	      end
        others:
-	   return(false, "", "")
-       end %   tag
+       end
     return (false, "", "")
     end g_inline_iter_test_and_info
 
-g_inline_iter = proc(e:g_env, fstmt: forstmt) returns (bool)
 
-    maybe_idn = oneof[none:null, idn: idn]
+g_inline_iter = proc (e: g_env, fstmt: forstmt) returns (bool)
 
-    yes: bool, typ, op: string := 
+    maybe_idn = oneof[none: null, idn: idn]
+
+    yes: bool, typ, op: string :=
 	g_inline_iter_test_and_info(fstmt.call.apply)
     %if yes then logit(" iter inlined ") else logit (" iter not inlined ") end
     if ~yes then return (false) end
+
     loop_context$enter_inline_for()
-    
     g_env$putl(e, "{")
 
     % declare iteration variable, temps for args to iterator
@@ -197,7 +198,7 @@ g_inline_iter = proc(e:g_env, fstmt: forstmt) returns (bool)
        end
 
     if typ = "int" cand (op = "from_to" cor op = "from_to_by") then
-	%logit(99, "int iterator")
+       %logit(99, "int iterator")
        limit_idn: idn := exprabs$value_idn(limit_var.abs)
        g_c_assn(e, limit_idn, el[2])
        if op = "from_to_by" then
@@ -260,10 +261,10 @@ g_inline_iter = proc(e:g_env, fstmt: forstmt) returns (bool)
 		 g_env$putl(e, ";")
 		 end
 	  end % tag
-       
+
      elseif (typ = "sequence" cor typ = "array")
 	      cand (op = "indexes" cor op = "elements") then
-	%logit(99, "seq/array iterator")
+       %logit(99, "seq/array iterator")
        elidn: idn := exprabs$value_idn(el[1].abs)
        g_expr2(e, limit_var)
        g_env$puts(e, " = ")
@@ -360,7 +361,7 @@ g_inline_iter = proc(e:g_env, fstmt: forstmt) returns (bool)
 	      g_env$putl(e, ";")
 	  others:
 	  end % tag
-       
+
      else
 	  logit(500, "shouldn't get here: g_inline_iter: " || typ || sep || op)
      end
@@ -368,7 +369,7 @@ g_inline_iter = proc(e:g_env, fstmt: forstmt) returns (bool)
     for s: stmt in stmtlist$elements(fstmt.body.stmts) do
 	g_stmt(e, s)
 	end
-	
+
     g_env$outdent(e)
     g_env$putl(e, "}")
     g_env$outdent(e)
@@ -381,6 +382,7 @@ g_inline_iter = proc(e:g_env, fstmt: forstmt) returns (bool)
     return (true)
 
     end g_inline_iter
+
 
 g_qselop = proc(nm: name) returns (bool)
     loc_of_sep : int := string$indexc('_', nm)
