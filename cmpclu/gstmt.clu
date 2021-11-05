@@ -325,9 +325,6 @@ g_for = proc (e: g_env, stmnt: forstmt)
 	  g_err(e)
 	  g_env$putl(e, " = *iecode;")	% * new 2/26/90 (_a_f_n_)
 	  g_env$outdent(e)
-
-	  g_err_handle(e)
-	  g_env$putl(e, "}")
 	  else          % an ITERBODY of an ITER
 	       g_propagate(e, "ERR_iterbodyreturn")
 	       g_propagate(e, "ERR_iterbodysignal")
@@ -371,10 +368,9 @@ g_for = proc (e: g_env, stmnt: forstmt)
 	       g_err(e)
 	       g_env$putl(e, " = *iecode;")	% * new 2/26/90 (_a_f_n_)
 	       g_env$outdent(e)
-
-	       g_err_handle(e)
-	       g_env$putl(e, "}")
 	  end
+	  g_err_handle(e)
+	  g_env$putl(e, "}")
        else	% (TOP-LEVEL) ITER OR PROC
 	    if iterp then % ITER
 	       g_propagate(e, "ERR_iterbodyreturn")
