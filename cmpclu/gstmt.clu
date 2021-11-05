@@ -305,12 +305,9 @@ g_for = proc (e: g_env, stmnt: forstmt)
        g_env$putl(e, " != ERR_ok) {")
 
        if ~iterp then % an ITERBODY of a PROC
-	  g_env$puts(e, "if (")
-	  g_err(e)
-	  g_env$putl(e, " == ERR_iterbodyreturn) {signal(ERR_iterbodyreturn);}")
-	  g_env$puts(e, "if (")
-	  g_err(e)
-	  g_env$putl(e, " == ERR_iterbodysignal) {signal(ERR_iterbodysignal);}")
+	  g_propagate(e, "ERR_iterbodyreturn")
+	  g_propagate(e, "ERR_iterbodysignal")
+
 	  % 7/1/93: added resignalling for break
 	  % 9/10/93: nope: convert break to ok here
 	  g_env$puts(e, "if (")
@@ -326,21 +323,12 @@ g_for = proc (e: g_env, stmnt: forstmt)
 	  g_err_handle(e)
 	  g_env$putl(e, "}")
 	  else          % an ITERBODY of an ITER
-	       g_env$puts(e, "if (")
-	       g_err(e)
-	       g_env$putl(e, " == ERR_iterbodyreturn) {signal(ERR_iterbodyreturn);}")
-	       g_env$puts(e, "if (")
-	       g_err(e)
-	       g_env$putl(e, " == ERR_iterbodysignal) {signal(ERR_iterbodysignal);}")
-	       g_env$puts(e, "if (")
-	       g_err(e)
-	       g_env$putl(e, " == ERR_iterbodyexit) {signal(ERR_iterbodyexit);}")
-	       g_env$puts(e, "if (")
-	       g_err(e)
-	       g_env$putl(e, " == ERR_iteriterbodyreturn) {signal(ERR_iteriterbodyreturn);}")
-	       g_env$puts(e, "if (")
-	       g_err(e)
-	       g_env$putl(e, " == ERR_iteriterbodysignal) {signal(ERR_iteriterbodysignal);}")
+	       g_propagate(e, "ERR_iterbodyreturn")
+	       g_propagate(e, "ERR_iterbodysignal")
+	       g_propagate(e, "ERR_iterbodyexit")
+	       g_propagate(e, "ERR_iteriterbodyreturn")
+	       g_propagate(e, "ERR_iteriterbodysignal")
+
 	       % 7/1/93: added resignalling for break % 9/8/93 as long as no bcr
 	       g_env$puts(e, "if (")
 	       g_err(e)
@@ -369,9 +357,8 @@ g_for = proc (e: g_env, stmnt: forstmt)
 	  end
        else	% (TOP-LEVEL) ITER OR PROC
 	    if iterp then % ITER
-	       g_env$puts(e, "if (")
-	       g_err(e)
-	       g_env$putl(e, " == ERR_iterbodyreturn) {signal(ERR_iterbodyreturn);}")
+	       g_propagate(e, "ERR_iterbodyreturn")
+
 	       g_env$puts(e, "if (")
 	       g_err(e)
 	       % added code to move locals.ecode2 to iecode 6/5/90
@@ -417,17 +404,15 @@ g_for = proc (e: g_env, stmnt: forstmt)
 	       g_env$putl(e, " = locals.ecode2;")   % 6/5/90 formerly *iecode
 	       g_env$putl(e, "}")
 	       g_env$outdent(e)
+
 	       %else
 	       %just propagate
 	       g_env$putl(e, "else {")
 	       g_env$indent(e)
-	       g_env$puts(e, "if (")
-	       g_err(e)
-	       g_env$putl(e, " == ERR_iteriterbodyreturn) {signal(ERR_iteriterbodyreturn);}")
+	       g_propagate(e, "ERR_iteriterbodyreturn")
 	       % 7/1/93: added resignalling of break
-	       g_env$puts(e, "if (")
-	       g_err(e)
-	       g_env$putl(e, " == ERR_break) {signal(ERR_break);}")
+	       g_propagate(e, "ERR_break")
+
 	       g_env$puts(e, "if (")
 	       g_err(e)
 	       g_env$putl(e, " == ERR_iteriterbodysignal) {")
