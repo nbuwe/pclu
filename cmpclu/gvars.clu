@@ -57,10 +57,15 @@ g_expr_proc_names = proc(a: an, bod: stmtlist)
 		  end
 	       for arm: tagarm in tagarmlist$elements(t.arms) do
 		   % if flag set, look at arm.tags which is a namelist
-		   %	and cause type$is_each_name to be an external
+		   %	and cause type$is_each_name and optionally
+		   %	type$value_each_name to be an external
 		   if ~string$empty(nm) then
+		      uses_value: bool := mdecl$is_decl(arm.var)
 		      for each_nm: name in namelist$elements(arm.tags) do
-			  addh_if_new[name](a, nm || sep ||"is_" || each_nm)
+			  addh_if_new[name](a, nm || sep || "is_" || each_nm)
+			  if uses_value then
+			     addh_if_new[name](a, nm || sep || "value_" || each_nm)
+			     end
 			  end
 		      end
 		   g_expr_proc_names(a, arm.body.stmts)
