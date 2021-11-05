@@ -77,16 +77,16 @@ g_decl_debug = proc (e: g_env, stmnt: decl)
 	end
     end g_decl_debug
 
+
 g_declinit = proc (e: g_env, stmnt: declinit)
 
     %% stmnt.idns : stmnt.type_ := stmnt.expr
 
-    g_env$puts(e, "{")
-    g_env$indent(e)
-    g_env$newline(e)
-    g_env$puts(e, "{")
+    g_env$putl(e, "{")
+
     g_expr0(e, stmnt.expr)
     el: exprlist := g_expr1(e, stmnt.expr)
+
     i: int := 1
     for d:decl in decllist$elements(stmnt.decls) do
 	for each_idn:idn in idnlist$elements(d.idns) do
@@ -99,10 +99,10 @@ g_declinit = proc (e: g_env, stmnt: declinit)
 	    end % for
 	end % for
     g_anys(e, stmnt.anys)
+
     g_env$putl(e, "}")
-    g_env$putl(e, "}")
-    g_env$outdent(e)
     end g_declinit
+
 
 g_assn = proc (e: g_env, stmnt: assn)
 
