@@ -245,19 +245,20 @@ g_while = proc (e: g_env, stmnt: whilestmt)
 
 
 g_for = proc (e: g_env, stmnt: forstmt)
-
+    % try to inline it as a C for-loop if we can
     if g_inline_iter(e, stmnt) then return end
+
     g_env$putl(e, "{")
     g_env$indent(e)
+
     for each_arg: expr in exprlist$elements(stmnt.call.args) do
 	g_expr_arg0(e, each_arg)
-	end % for
+	end
     if ~g_qinv_test(stmnt.call.apply) then
        g_inv0(e, stmnt.call.apply)
        end
 
     % generate the call similarly to g_einvoke
-
     el: exprlist := exprlist$new()
     for each_arg: expr in exprlist$elements(stmnt.call.args) do
 	new_el: exprlist := g_expr_arg1(e, each_arg)
@@ -265,7 +266,6 @@ g_for = proc (e: g_env, stmnt: forstmt)
 	end % for
 
     % compute proctype to be invoked
-
     quick: bool := g_qinv_test(stmnt.call.apply)
     proc_id: expr := stmnt.call.apply
 
@@ -283,7 +283,7 @@ g_for = proc (e: g_env, stmnt: forstmt)
 	    for each_arg: expr in exprlist$elements(el) do
 		g_expr_arg(e, each_arg)
 		g_env$puts(e, ", ")
-		end % for
+		end
 
 	    g_env$puts(e, ibname)
 	    if ib$bodies()
@@ -297,7 +297,6 @@ g_for = proc (e: g_env, stmnt: forstmt)
 
     % Generate code to process end of iterator invocation:
     %	i.e., the end of the for statement (bodies generated elsewhere)
-
     if ib$bodies() then
 
        g_env$puts(e, "if (")
