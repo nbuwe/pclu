@@ -312,14 +312,20 @@ g_for = proc (e: g_env, stmnt: forstmt)
 	  % 9/10/93: nope: convert break to ok here
 	  g_env$puts(e, "if (")
 	  g_err(e)
-	  g_env$puts(e, " == ERR_break) ")
+	  g_env$putl(e, " == ERR_break)")
+	  g_env$indent(e)
 	  g_err(e)
 	  g_env$putl(e, " = ERR_ok;")
+	  g_env$outdent(e)
+
 	  g_env$puts(e, "if (")
 	  g_err(e)
 	  g_env$putl(e, " == ERR_iterbodyexit)")
+	  g_env$indent(e)
 	  g_err(e)
 	  g_env$putl(e, " = *iecode;")	% * new 2/26/90 (_a_f_n_)
+	  g_env$outdent(e)
+
 	  g_err_handle(e)
 	  g_env$putl(e, "}")
 	  else          % an ITERBODY of an ITER
@@ -334,24 +340,38 @@ g_for = proc (e: g_env, stmnt: forstmt)
 	       g_err(e)
 	       g_env$puts(e, " == ERR_break && !")
 	       g_locals(e)
-	       g_env$putl(e, "body_ctrl_req) {signal(ERR_break);}")
+	       g_env$putl(e, "body_ctrl_req)")
+	       g_env$indent(e)
+	       g_env$putl(e, "signal(ERR_break);")
+	       g_env$outdent(e)
+
 	       % 3/3/94: added resignalling for iibe as long as no bcr
 	       % 	this fix supersedes 2/7/94 fix
 	       g_env$puts(e, "if (")
 	       g_err(e)
 	       g_env$puts(e, " == ERR_iteriterbodyexit && !")
 	       g_locals(e)
-	       g_env$putl(e, "body_ctrl_req) {signal(ERR_iteriterbodyexit);}")
+	       g_env$putl(e, "body_ctrl_req)")
+	       g_env$indent(e)
+	       g_env$putl(e, "signal(ERR_iteriterbodyexit);")
+	       g_env$outdent(e)
+
 	       g_env$puts(e, "if (")
 	       g_err(e)
-	       g_env$puts(e, " == ERR_break) ")
+	       g_env$putl(e, " == ERR_break)")
+	       g_env$indent(e)
 	       g_err(e)
 	       g_env$putl(e, " = ERR_ok;")
+	       g_env$outdent(e)
+
 	       g_env$puts(e, "if (")
 	       g_err(e)
 	       g_env$putl(e, " == ERR_iteriterbodyexit)")
+	       g_env$indent(e)
 	       g_err(e)
 	       g_env$putl(e, " = *iecode;")	% * new 2/26/90 (_a_f_n_)
+	       g_env$outdent(e)
+
 	       g_err_handle(e)
 	       g_env$putl(e, "}")
 	  end
@@ -361,54 +381,71 @@ g_for = proc (e: g_env, stmnt: forstmt)
 
 	       g_env$puts(e, "if (")
 	       g_err(e)
-	       % added code to move locals.ecode2 to iecode 6/5/90
 	       g_env$putl(e, " == ERR_iterbodysignal) {")
 	       g_env$indent(e)
-	       g_env$putl(e, "*iecode = locals.ecode2; signal(ERR_iterbodysignal);}")
+	       % added code to move locals.ecode2 to iecode 6/5/90
+	       g_env$putl(e, "*iecode = locals.ecode2;")
+	       g_env$putl(e, "signal(ERR_iterbodysignal);")
 	       g_env$outdent(e)
+	       g_env$putl(e, "}")
+
 	       g_env$puts(e, "if (")
 	       g_err(e)
 	       g_env$putl(e, " == ERR_iterbodyexit) {")
 	       g_env$indent(e)
 	       % added code to move locals.ecode2 to iecode 6/5/90
-	       g_env$putl(e, "*iecode = locals.ecode2; signal(ERR_iterbodyexit);}")
+	       g_env$putl(e, "*iecode = locals.ecode2;")
+	       g_env$putl(e, "signal(ERR_iterbodyexit);")
 	       g_env$outdent(e)
+	       g_env$putl(e, "}")
 
-	       % preserved behavior in case this a body of this iter caused
+	       % preserved behavior in case a body of this iter caused
 	       % signal/return/exit - otherwise just propagate it 8/17/90
-	       %if bcr
-	       %clear bcr
+	       % if bcr - clear bcr
 	       g_env$puts(e, "if (")
 	       g_locals(e)
-	       g_env$putl(e, "body_ctrl_req == true) {")
+	       g_env$putl(e, "body_ctrl_req) {")
 	       g_env$indent(e)
+
 	       g_locals(e)
 	       g_env$putl(e, "body_ctrl_req = false;")
+
 	       g_env$puts(e, "if (")
 	       g_err(e)
-	       g_env$putl(e, " == ERR_iteriterbodyreturn) {signal(ERR_ok);}")
+	       g_env$putl(e, " == ERR_iteriterbodyreturn)")
+	       g_env$indent(e)
+	       g_env$putl(e, "signal(ERR_ok);")
+	       g_env$outdent(e)
+
 	       g_env$puts(e, "if (")
-	       g_err(e)
-	       % formerly *iecode 6/5/90
-	       g_env$putl(e, " == ERR_iteriterbodysignal) {signal(locals.ecode2);}")
+	       g_err(e) % formerly *iecode 6/5/90
+	       g_env$putl(e, " == ERR_iteriterbodysignal)")
+	       g_env$indent(e)
+	       g_env$putl(e, "signal(locals.ecode2);")
+	       g_env$outdent(e)
+
 	       % 7/1/93: added break to ok conversion
 	       g_env$puts(e, "if (")
 	       g_err(e)
-	       g_env$puts(e, " == ERR_break) ")
+	       g_env$putl(e, " == ERR_break)")
+	       g_env$indent(e)
 	       g_err(e)
 	       g_env$putl(e, " = ERR_ok;")   % 6/5/90 formerly *iecode
-	       g_env$puts(e, "if (")
-	       g_err(e)
-	       g_env$puts(e, " == ERR_iteriterbodyexit) ")
-	       g_err(e)
-	       g_env$putl(e, " = locals.ecode2;")   % 6/5/90 formerly *iecode
-	       g_env$putl(e, "}")
 	       g_env$outdent(e)
 
-	       %else
-	       %just propagate
-	       g_env$putl(e, "else {")
+	       g_env$puts(e, "if (")
+	       g_err(e)
+	       g_env$putl(e, " == ERR_iteriterbodyexit)")
 	       g_env$indent(e)
+	       g_err(e)
+	       g_env$putl(e, " = locals.ecode2;")   % 6/5/90 formerly *iecode
+	       g_env$outdent(e)
+
+	       g_env$outdent(e)
+	       g_env$putl(e, "}")
+	       g_env$putl(e, "else {") % !bcr - just propagate
+	       g_env$indent(e)
+
 	       g_propagate(e, "ERR_iteriterbodyreturn")
 	       % 7/1/93: added resignalling of break
 	       g_propagate(e, "ERR_break")
@@ -416,16 +453,25 @@ g_for = proc (e: g_env, stmnt: forstmt)
 	       g_env$puts(e, "if (")
 	       g_err(e)
 	       g_env$putl(e, " == ERR_iteriterbodysignal) {")
+	       g_env$indent(e)
 	       % added propagation of ecode2 to iecode 6/24/93
-	       g_env$putl(e, "      *iecode = locals.ecode2; signal(ERR_iteriterbodysignal);}")
+	       g_env$putl(e, "*iecode = locals.ecode2;")
+	       g_env$putl(e, "signal(ERR_iteriterbodysignal);")
+	       g_env$outdent(e)
+	       g_env$putl(e, "}")
+
 	       g_env$puts(e, "if (")
 	       g_err(e)
 	       g_env$putl(e, " == ERR_iteriterbodyexit) {")
+	       g_env$indent(e)
 	       % added propagation of ecode2 to iecode 6/24/93
-	       g_env$puts(e, "      *iecode = locals.ecode2; signal(ERR_iteriterbodyexit);}")
-	       g_env$putl(e, "}")
+	       g_env$putl(e, "*iecode = locals.ecode2;")
+	       g_env$putl(e, "signal(ERR_iteriterbodyexit);")
 	       g_env$outdent(e)
-	       %end
+	       g_env$putl(e, "}")
+
+	       g_env$outdent(e)
+	       g_env$putl(e, "}")
 	       g_err_handle(e)
 	       else % PROC
 		    g_env$puts(e, "if (")
@@ -442,20 +488,31 @@ g_for = proc (e: g_env, stmnt: forstmt)
 		    g_env$putl(e, "signal(ERR_ok);")
 		    g_env$outdent(e)
 		    g_env$putl(e, "}")
+
 		    g_env$puts(e, "if (")
 		    g_err(e)
-		    g_env$putl(e, " == ERR_iterbodysignal) {signal(locals.ecode2);}")
+		    g_env$putl(e, " == ERR_iterbodysignal)")
+		    g_env$indent(e)
+		    g_env$putl(e, "signal(locals.ecode2);")
+		    g_env$outdent(e)
+
 		    % 7/1/93: added break to ok conversion
 		    g_env$puts(e, "if (")
 		    g_err(e)
-		    g_env$puts(e, " == ERR_break) ")
+		    g_env$putl(e, " == ERR_break)")
+		    g_env$indent(e)
 		    g_err(e)
 		    g_env$putl(e, " = ERR_ok;")
+		    g_env$outdent(e)
+
 		    g_env$puts(e, "if (")
 		    g_err(e)
-		    g_env$puts(e, " == ERR_iterbodyexit) ")
+		    g_env$putl(e, " == ERR_iterbodyexit)")
+		    g_env$indent(e)
 		    g_err(e)
 		    g_env$putl(e, " = locals.ecode2;")
+		    g_env$outdent(e)
+
 		    g_err_handle(e)
 	       end
        end
@@ -466,6 +523,7 @@ g_for = proc (e: g_env, stmnt: forstmt)
     g_env$newline(e)
 
     end g_for
+
 
 g_if = proc (e: g_env, stmnt: ifstmt)
 
