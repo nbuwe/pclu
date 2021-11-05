@@ -248,7 +248,7 @@ g_for = proc (e: g_env, stmnt: forstmt)
     % try to inline it as a C for-loop if we can
     if g_inline_iter(e, stmnt) then return end
 
-    g_env$putl(e, "{")
+    g_env$putl(e, "{ /* for */")
     g_env$indent(e)
 
     for each_arg: expr in exprlist$elements(stmnt.call.args) do
@@ -297,6 +297,7 @@ g_for = proc (e: g_env, stmnt: forstmt)
 
     % Generate code to process end of iterator invocation:
     %	i.e., the end of the for statement (bodies generated elsewhere)
+    g_env$blankline(e)			 % separate verbiage that follows
     if ib$bodies() then
 
        g_env$puts(e, "if (")
