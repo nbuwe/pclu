@@ -1049,7 +1049,20 @@ is_temp = proc(i: idn) returns (bool)
        end
     end is_temp
 
+
+% Normal tagcase with oneof or variant object that can be compiled
+% into a C switch statement by using knowledge of selector data
+% structures.
 g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
+
+    %% TAGCASE stmnt.obj
+    %%	   TAG stmnt.arms[1].tags ( stmnt.arms[1].var ) :
+    %%		stmnt.arms[1].body
+    %%	    :
+    %%     OTHERS:
+    %%		stmnt.others_.body
+    %% END
+
     begin
 	flist: fieldspeclist
 
