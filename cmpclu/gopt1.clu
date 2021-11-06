@@ -1086,11 +1086,11 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 
 	% evaluate the tagcase object
 	g_expr0(e, stmt.obj)
-	el0: exprlist := g_expr1(e, stmt.obj)
+	el0: exprlist := g_expr1(e, stmt.obj) % single idn
+	objidn: idn := exprabs$value_idn(el0[1].abs)
 
 	g_env$puts(e, "switch (")
-	tagidn: idn := exprabs$value_idn(el0[1].abs)
-	g_idn_plain(e, tagidn)
+	g_idn_plain(e, objidn)
 	g_env$putl(e, ".cell->tag) {")
 
 	for t: tagarm in tagarmlist$elements(stmt.arms) do
@@ -1128,7 +1128,6 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 		    g_expr_plain(e, this_temp)
 		    % g_expr2(e, this_temp)
 		    g_env$puts(e, ".num = ")
-		    objidn: idn := exprabs$value_idn(el0[1].abs)
 		    g_idn_plain(e, objidn)
 		    g_env$putl(e, ".cell->value;")
 		    g_c_assn(e, idnlist$bottom(dl.idns), this_temp)
