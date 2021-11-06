@@ -1094,6 +1094,7 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 	g_env$putl(e, ".cell->tag) {")
 
 	for t: tagarm in tagarmlist$elements(stmt.arms) do
+	    % case tag1: [ /* FALLTHROUGH */ case tag2: ...]
 	    fallthrough: string := ""
 	    for nm: name in namelist$elements(t.tags) do
 		junk: string, ind: int := field_index("is_" || nm, flist)
@@ -1131,15 +1132,24 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 	    g_env$outdent(e)
 	    g_env$putl(e, "}")
 	    end
-	if mbody$is_body(stmt.others_)
-	   then g_env$putl(e, "default: {")
-		g_env$indent(e)
-		g_body(e, mbody$value_body(stmt.others_))
-		g_env$ensure_newline(e)
-		g_env$outdent(e)
-		g_env$putl(e, "}")
+
+	% optional default:
+	tagcase stmt.others_
+	   tag body (others_body: body):
+	       if ~stmtlist$empty(others_body.stmts)
+		  then g_env$putl(e, "default: {")
+		       g_env$indent(e)
+
+		       g_body(e, others_body)
+
+		       g_env$putl(e, "break;")
+		       g_env$outdent(e)
+		       g_env$putl(e, "}")
+		  end
+	   others:
 	   end
-	g_env$putl(e, "}")
+
+	g_env$putl(e, "}") % switch
 	g_env$putl(e, "} /* end qtagcase */")
 	end
        except when bounds: end
