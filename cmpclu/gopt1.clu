@@ -166,7 +166,11 @@ g_inline_iter = proc (e: g_env, fstmt: forstmt) returns (bool)
     if ~yes then return (false) end
 
     loop_context$enter_inline_for()
-    g_env$putl(e, "{")
+    g_env$puts(e, "{ /* for ")
+    g_env$puts(e, typ)
+    g_env$puts(e, "$")
+    g_env$puts(e, op)
+    g_env$putl(e, " */")
 
     % declare iteration variable, temps for args to iterator
     for each_arg: expr in exprlist$elements(fstmt.call.args) do
@@ -179,7 +183,6 @@ g_inline_iter = proc (e: g_env, fstmt: forstmt) returns (bool)
        end
 
     % compute intermediate results for args
-    g_env$indent(e)
     el: exprlist := exprlist$new()
     for each_arg: expr in exprlist$elements(fstmt.call.args) do
 	new_el: exprlist := g_expr1(e, each_arg)
@@ -373,7 +376,6 @@ g_inline_iter = proc (e: g_env, fstmt: forstmt) returns (bool)
     g_env$outdent(e)
     g_env$putl(e, "}")
 
-    g_env$outdent(e)
     g_env$putl(e, "}")
     n: int := loop_context$get_current_inline_for_count()
     g_env$putl(e, "end_inline_for_" || int$unparse(n) || ":")
