@@ -1094,6 +1094,19 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 	g_env$putl(e, ".cell->tag) {")
 
 	for t: tagarm in tagarmlist$elements(stmt.arms) do
+	    % Tags are ints, not enums, so -Wswitch wouldn't be upset
+	    % if we skipped empty cases.  pclu itself has already
+	    % verified that all tags are covered.
+
+	    % But if empty arms bind any variables, they become unused
+	    % (unless code later in the apply happens to reuse the
+	    % same variable name).  There's no convenient way to "use"
+	    % this variables in the middle of the switch.  We can
+	    % collect them and "use" them after the switch.
+
+	    % if stmtlist$empty(t.body.stmts) cand mbody$is_none(stmt.others_)
+	    %    then continue end
+
 	    % case tag1: [ /* FALLTHROUGH */ case tag2: ...]
 	    fallthrough: string := ""
 	    for nm: name in namelist$elements(t.tags) do
