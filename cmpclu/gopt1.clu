@@ -1123,18 +1123,16 @@ g_qtagcase = proc(e: g_env, stmt: tagstmt) returns (bool)
 	    if mdecl$is_decl(t.var)
 	       then
 		    dl: decl :=  mdecl$value_decl(t.var)
+		    var: idn := idnlist$bottom(dl.idns)
+
 		    tv$decl_next(e, dl.type_)
-		    this_temp: expr := tv$idn_next(dl.type_)
-		    g_expr_plain(e, this_temp)
-		    % g_expr2(e, this_temp)
+		    val: expr := tv$idn_next(dl.type_)
+		    g_expr_plain(e, val)
 		    g_env$puts(e, ".num = ")
 		    g_idn_plain(e, objidn)
 		    g_env$putl(e, ".cell->value;")
-		    g_c_assn(e, idnlist$bottom(dl.idns), this_temp)
-		    % g_idn(e, idnlist$bottom(dl.idns))  % maybe more?
-		    % g_env$puts(e, " = ")
-		    % g_expr2(e, this_temp)
-		    % g_env$putl(e, ";")
+
+		    g_c_assn(e, var, val)
 	       end
 	    g_env$newline(e)
 
