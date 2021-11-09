@@ -391,13 +391,16 @@ extern errlist elist;
 
 /*	Storage allocation macros	*/
 
-extern errcode oneofOPnew(CLUREF tag, CLUREF val, CLUREF *ans);
+/* emitted for T${ ... } record/struct cons sugar */
 extern errcode recordOPnew(CLUREF size, CLUREF *ans);
-
 #define RecordAlloc(Size, Result) \
-	    recordOPnew(CLUREF_make_num(Size), &Result)
+    recordOPnew(CLUREF_make_num(Size), &(Result))
+
+/* emitted for inlined variant/oneof T$make_<tag> */
+extern errcode variantOPnew(CLUREF tag, CLUREF val, CLUREF *ans);
 #define CellAlloc(Tag, Value, Result) \
-	    oneofOPnew(CLUREF_make_num(Tag), CLUREF_make_num(Value), &Result)
+    variantOPnew(CLUREF_make_num(Tag), CLUREF_make_num(Value), &(Result))
+
 
 
 /* 	Names for commonly used strings */
