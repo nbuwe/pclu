@@ -241,20 +241,12 @@ arrayOPnew(CLUREF *ans)
 {
     /* allocate array descriptor */
     CLUREF desc;
-#ifdef athena
     clu_alloc(sizeof(CLU_array), &desc);
-#else
-    Alloc(CLU_array_sizew, desc);
-#endif
     CLUTYPE_set(desc.array->typ, CT_ARRAY);
 
     /* allocate storage for data */
     CLUREF store;
-#ifdef athena
     clu_alloc(sizeof(CLU_store), &store);
-#else
-    Alloc(CLU_store_sizew, store);
-#endif
     CLUTYPE_set(store.store->typ, CT_STORE);
     store.store->size = 1;
 
