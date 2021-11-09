@@ -388,33 +388,9 @@ void pclu_unhandled(errcode err);
 typedef CLUREF errlist[MAX_SIG_VALS];
 extern errlist elist;
 
+
 /*	Storage allocation macros	*/
 
-/*	usage: Alloc(size_in_words, result_name) */
-
-#ifndef LINUX
-#ifdef MERGE_SIZES
-extern long size_map[];
-#define FL_SIZE_MAP(sz) (size_map[sz])
-#else
-#define FL_SIZE_MAP(sz) (sz)
-#endif
-#endif
-
-#ifdef LINUX
-#define allocobj _allocobj
-#endif
-
-#define athena
-
-#define Alloc(Size, Result) \
-	     NewObjPtr = &(objfreelist[FL_SIZE_MAP(Size)]); \
-	     if(*NewObjPtr == (struct obj *)0) allocobj(Size); \
-	     Result.obj = *NewObjPtr; \
-	     *NewObjPtr = Result.obj->obj_link; \
-	     Result.obj->obj_link = 0;
-
-#ifdef athena
 extern errcode oneofOPnew(CLUREF tag, CLUREF val, CLUREF *ans);
 extern errcode recordOPnew(CLUREF size, CLUREF *ans);
 
@@ -422,18 +398,7 @@ extern errcode recordOPnew(CLUREF size, CLUREF *ans);
 	    recordOPnew(CLUREF_make_num(Size), &Result)
 #define CellAlloc(Tag, Value, Result) \
 	    oneofOPnew(CLUREF_make_num(Tag), CLUREF_make_num(Value), &Result)
-#else
-#define RecordAlloc(Size, Result) \
-	     Alloc(Size + CLU_sequence_sizew, Result); \
-	     Result.vec->typ.val = CT_REC; \
-	     Result.vec->size = Size;
 
-#define CellAlloc(Tag, Value, Result) \
-	     Alloc(CLU_cell_sizew, Result); \
-	     Result.cell->typ.val = CT_VAR; \
-	     Result.cell->tag = Tag; \
-	     Result.cell->value = Value;
-#endif
 
 /* 	Names for commonly used strings */
 
