@@ -360,7 +360,6 @@ extern errcode debugOPbegin_line(long n);
 
 extern errcode force();
 
-extern struct obj **NewObjPtr;
 
 /*
  * Calling convention for parmd applies is to set CUR_PROC_VAR pointer

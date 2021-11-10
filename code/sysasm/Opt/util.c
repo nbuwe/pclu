@@ -61,7 +61,7 @@ char **environ;
 errlist elist;
 
 CLUREF CUR_PROC_VAR;
-struct obj **NewObjPtr;
+
 
 static int main_2(int _argc, char **_argv, char **_envp);
 int argc;
