@@ -1110,7 +1110,7 @@ debugopcmp_sig(CLUREF s1, const char *s2, CLUREF *ans)
 	ans->tf = false;
 	signal(ERR_ok);
     }
-    ans->tf = !bcmp(s1.str->data, s2, size);
+    ans->tf = !memcmp(s1.str->data, s2, size);
     signal(ERR_ok);
 }
 
