@@ -619,7 +619,7 @@ _chanOPOPset_tty(CLUREF chref, CLUREF *newch)
     ch->wr.num = 1;
     _chan_pri = ch;
     _chan_pro = ch;
-    bcopy(&sbuf, &tbuf, (sizeof (struct termios)));
+    memcpy(&tbuf, &sbuf, sizeof(sbuf));
     tbuf.c_iflag |= ICRNL;
     tbuf.c_oflag |= OPOST + ONLCR;
     tbuf.c_lflag &= ~(ICANON + ECHO);
@@ -1056,8 +1056,7 @@ _chanOPput(CLUREF chref, CLUREF bv, CLUREF low, CLUREF high,
 	    copy_count = string_chars_to_newline;
 
 	/* copy the chars */
-	bcopy(&s.str->data[string_offset], &bv.str->data[bv_offset],
-	      copy_count);
+	memcpy(&bv.str->data[bv_offset], &s.str->data[string_offset], copy_count);
 
 	/* write out bv if necessary */
 	if (force || copy_count == bv_space_left) {
