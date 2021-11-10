@@ -358,7 +358,7 @@ extern errcode debugOPleave_proc(errcode sig);
 extern errcode debugOPbegin_line(long n);
 #endif
 
-extern errcode force();
+extern errcode force(CLUREF x, CLUREF *ans);
 
 
 /*
