@@ -233,8 +233,12 @@ g_proc_signature = proc(e:g_env, a:applydefn, cname:str)
     g_env$putl(e, "errcode")
     g_env$puts(e, g_function_name(a, cname))
     g_env$puts(e, "(")
-    g_arglist(e, a.args)
-    g_retlist(e, a.vals, decllist$empty(a.args))
+    if decllist$empty(a.args) cand typelist$empty(a.vals)
+       then g_env$puts(e, "void")
+       else
+	    g_arglist(e, a.args)
+	    g_retlist(e, a.vals, decllist$empty(a.args))
+       end
     g_env$putl(e, ")")
 
     end g_proc_signature
