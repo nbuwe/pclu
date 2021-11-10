@@ -374,8 +374,6 @@ extern struct OPS *NULL_OPS;
 #define zero_ops (struct OPS**)0
 #define m1_ops (struct OPS**)-1
 
-extern void perror();
-
 extern void clu_alloc();
 extern void clu_alloc_atomic();
 
