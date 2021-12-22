@@ -1471,30 +1471,23 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
     end g_arraycons
 
 
-g_sequencecons = proc (e:g_env, ac:arraycons, nm: name) returns (exprlist)
+g_sequencecons = proc (e: g_env, ac: arraycons, nm: name) returns (exprlist)
 
-    % create sequence
-    seq: expr := tv$idn_next(ac.type_)
+    %% ac.type_$[ ac.elts ]
+
+    seq: expr := tv$idn_next(ac.type_)	 % declare temp to hold the result
     size: int := exprlist$size(ac.elts)
-    if int_const$exists(size)
-       then
-	    g_env$puts(e, "sequence" || sep || "new2(CLU_" ||
-        		  int$unparse(size) || ", &")
-       else
-	    size_nm: expr := tv$idn_next(e.comp.int_type)
-	    g_idnlit(e, exprabs$value_idn(size_nm.abs))
-	    g_env$putl(e, ".num = " || int$unparse(size) || ";")
-	    g_env$puts(e, "sequence" || sep || "new2(")
-	    g_expr_arg(e, size_nm)
-	    g_env$puts(e, ", &")
-       end
-    seqidn: idn := exprabs$value_idn(seq.abs)
-    g_idnlit(e, seqidn)
-    g_env$puts(e, ");")
-    g_env$newline(e)
+
+    % create the sequence (assume allocation always succeeds)
+    g_env$puts(e, "sequence" || sep || "new2(")
+    int_const$g_emit(e, size)
+    g_env$puts(e, ", &")
+    g_expr_arg(e, seq)
+    g_env$putl(e, ");")
 
     % stuff elements into the sequence
-    begin
+    if size > 0 then
+	seqidn: idn := exprabs$value_idn(seq.abs)
         i: int := 0
 	for each_elt: expr in exprlist$elements(ac.elts) do
 	    % g_expr1 -> g_expr_arg1 9/18/92 dwc
@@ -1509,7 +1502,7 @@ g_sequencecons = proc (e:g_env, ac:arraycons, nm: name) returns (exprlist)
 	    end % for
 	end
        except when bounds: end
-    return (exprlist$fill(1, seq))
+    return (exprlist$[seq])
     end g_sequencecons
 
 
