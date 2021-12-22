@@ -1374,22 +1374,23 @@ g_bool_const = proc(e: g_env, b: bool)
        end
     end g_bool_const
 
+
 g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
 
     %% ac.type_$[ ac.low : ac.elts ]
 
-    nm: str
-    %typespec_print(ac.type_)
+    % typespec_print(ac.type_)
+    nm: str				 % "array" or "sequence"?
     tagcase (ac.type_.abs)
        tag cluster_ (ct: clutype):
 	   nm := ct.gen.common
        others:
 	   logit(418, "g_arraycons: type_ not cluster_")
        end
-    if nm = "sequence" 
-       then
-	    return (g_sequencecons(e, ac, nm))
+    if nm = "sequence" then		 % handle sequence cons separately
+       return (g_sequencecons(e, ac, nm))
        end
+
     % create array
     arr: expr := tv$idn_next(ac.type_)
     each_expr: expr
@@ -1397,7 +1398,7 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
        ct: clutype := typeabs$value_cluster_(ac.type_.abs)
        each_expr := exprlist$bottom(ct.parms)
        end
-    if mexpr$is_one(ac.low) 
+    if mexpr$is_one(ac.low)
        then
 	    low: exprlist := g_expr_arg1(e, mexpr$value_one(ac.low))
 	    g_err(e)
@@ -1422,7 +1423,7 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
     %    g_env$puts(e, "CUR_PROC_VAR = ")
     %    g_idnlit(e, exprabs$value_idn(proc_id.abs))
     %    g_env$putl(e, ";")
-        
+
     % stuff elements into the array
     begin
 	for each_elt: expr in exprlist$elements(ac.elts) do
@@ -1437,8 +1438,9 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
 	    end % for
 	end
        except when bounds: end
-    return(exprlist$fill(1, arr))
+    return (exprlist$fill(1, arr))
     end g_arraycons
+
 
 g_sequencecons = proc (e:g_env, ac:arraycons, nm: name) returns (exprlist)
 
@@ -1483,8 +1485,9 @@ g_sequencecons = proc (e:g_env, ac:arraycons, nm: name) returns (exprlist)
 	    end % for
 	end
        except when bounds: end
-    return(exprlist$fill(1, seq))
+    return (exprlist$fill(1, seq))
     end g_sequencecons
+
 
 g_selectcons = proc (e: g_env, sc: selectcons) returns (exprlist)
 
