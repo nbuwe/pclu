@@ -1393,11 +1393,6 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
 
     % create array
     arr: expr := tv$idn_next(ac.type_)
-    each_expr: expr
-    if typeabs$is_cluster_(ac.type_.abs) then
-       ct: clutype := typeabs$value_cluster_(ac.type_.abs)
-       each_expr := exprlist$bottom(ct.parms)
-       end
     if mexpr$is_one(ac.low)
        then
 	    low: exprlist := g_expr_arg1(e, mexpr$value_one(ac.low))
@@ -1446,11 +1441,6 @@ g_sequencecons = proc (e:g_env, ac:arraycons, nm: name) returns (exprlist)
 
     % create sequence
     seq: expr := tv$idn_next(ac.type_)
-    each_expr: expr
-    if typeabs$is_cluster_(ac.type_.abs) then
-       ct: clutype := typeabs$value_cluster_(ac.type_.abs)
-       each_expr := exprlist$bottom(ct.parms)
-       end
     size: int := exprlist$size(ac.elts)
     if int_const$exists(size)
        then
