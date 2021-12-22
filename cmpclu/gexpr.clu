@@ -1409,11 +1409,6 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
     g_env$putl(e, ");")
     g_err_handle(e)
 
-    % the following keeps idn's lined up: it really should be used
-    %	to do array$predict
-    if ~int_const$exists(exprlist$size(ac.elts)) then
-       size_nm: expr := tv$idn_next(e.comp.int_type) end
-
     % ASSUMES no constructors for user defined types
     %    g_env$puts(e, "CUR_PROC_VAR = ")
     %    g_idnlit(e, exprabs$value_idn(proc_id.abs))
