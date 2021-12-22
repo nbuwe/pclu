@@ -231,9 +231,10 @@ g_env = cluster is create, reset, end_all, force_signal, reset_err, set_space,
 	end newdefn
 
     error = proc (e: cvt, s: string)
-	stream$puts(e.err, int$unparse(lineno))
+	stream$puts(e.err, fname$unparse(e.srcfn))
 	stream$putc(e.err, ':')
-	stream$putc(e.err, '\t')
+	stream$puts(e.err, int$unparse(lineno))
+	stream$puts(e.err, ": internal error: ")
 	stream$putl(e.err, s)
 	e.error := 2
 	end error
