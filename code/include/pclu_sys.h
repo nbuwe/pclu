@@ -340,10 +340,14 @@ typedef union {
 /* Entry point of a CLU program in the C code emitted by the compiler */
 errcode start_up(void);
 
-/* calls to private OPs emitted by the compiler */
+/* t$[] array cons sugar */
 extern errcode arrayOPaddh(CLUREF a, CLUREF elt);
 extern errcode arrayOPcreate(CLUREF low, CLUREF *ans);
+extern errcode arrayOPfill(CLUREF low, CLUREF size, CLUREF elt, CLUREF *ans);
 extern errcode arrayOPnew(CLUREF *ans);
+extern errcode arrayOPpredict(CLUREF low, CLUREF size, CLUREF *ans);
+
+/* calls to private OPs emitted by the compiler */
 extern errcode oneofOPnew(CLUREF tag, CLUREF val, CLUREF *ans);
 extern errcode proctypeOPnew(CLUREF nops, CLUREF *ans);
 extern errcode sequenceOPnew2(CLUREF size, CLUREF *ans);

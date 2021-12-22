@@ -1391,22 +1391,60 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
        return (g_sequencecons(e, ac, nm))
        end
 
-    % create array
-    arr: expr := tv$idn_next(ac.type_)
-    if mexpr$is_one(ac.low)
-       then
-	    low: exprlist := g_expr_arg1(e, mexpr$value_one(ac.low))
-	    g_err(e)
-	    g_env$puts(e, " = " || nm || sep || "create(")
-	    g_expr_arg(e, exprlist$bottom(low))
-	    g_env$puts(e, ", ")
-       else
+    arr: expr := tv$idn_next(ac.type_)	 % declare temp to hold the result
+    size: int := exprlist$size(ac.elts)
+    lowarg: expr
+    tagcase ac.low
+       tag none:
+	   lowarg := expr$create(exprabs$make_int_(1), e.comp.int_type)
+       tag one (low: expr):
+	   % emit code to eval it if needed
+	   lowarg := exprlist$bottom(g_expr_arg1(e, low))
+       end
+
+    % create the array
+    if size = 0 then
+	lowabs: exprabs := lowarg.abs
+	if exprabs$is_int_(lowabs) cand exprabs$value_int_(lowabs) = 1
+	  then
 	    g_err(e)
 	    g_env$puts(e, " = " || nm || sep || "new(")
-       end
-    g_env$puts(e, "&")
-    g_expr_arg(e, arr)
-    g_env$putl(e, ");")
+	    g_env$puts(e, "&")
+	    g_expr_arg(e, arr)
+	    g_env$putl(e, ");")
+	  else
+	    g_err(e)
+	    g_env$puts(e, " = " || nm || sep || "create(")
+	    g_expr_arg(e, lowarg)
+	    g_env$puts(e, ", &")
+	    g_expr_arg(e, arr)
+	    g_env$putl(e, ");")
+	  end
+      elseif size = 1 then
+	% evaluate the single element if necessary
+	elt: expr := exprlist$bottom(ac.elts)
+	eltarg: expr := exprlist$bottom(g_expr_arg1(e, elt))
+
+	g_err(e)
+	g_env$puts(e, " = " || nm || sep || "fill(")
+	g_expr_arg(e, lowarg)
+	g_env$puts(e, ", ")
+	int_const$g_emit(e, 1)		 % size
+	g_env$puts(e, ", ")
+	g_expr_arg(e, eltarg)
+	g_env$puts(e, ", &")
+	g_expr_arg(e, arr)
+	g_env$putl(e, ");")
+      else
+	g_err(e)
+	g_env$puts(e, " = " || nm || sep || "predict(")
+	g_expr_arg(e, lowarg)
+	g_env$puts(e, ", ")
+	int_const$g_emit(e, size)
+	g_env$puts(e, ", &")
+	g_expr_arg(e, arr)
+	g_env$putl(e, ");")
+      end
     g_err_handle(e)
 
     % ASSUMES no constructors for user defined types
@@ -1415,9 +1453,10 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
     %    g_env$putl(e, ";")
 
     % stuff elements into the array
-    begin
+    if size > 1 then
 	for each_elt: expr in exprlist$elements(ac.elts) do
 	    elti: exprlist := g_expr_arg1(e, each_elt)
+
 	    g_err(e)
 	    g_env$puts(e, " = "|| nm || sep || "addh(")
 	    g_expr_arg(e, arr)
@@ -1428,7 +1467,7 @@ g_arraycons = proc (e: g_env, ac: arraycons) returns (exprlist)
 	    end % for
 	end
        except when bounds: end
-    return (exprlist$fill(1, arr))
+    return (exprlist$[arr])
     end g_arraycons
 
 
