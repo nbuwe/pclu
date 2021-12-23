@@ -1,6 +1,9 @@
 % Copyright Massachusetts Institute of Technology 1983, 1989
 
-msgs = sequence[string]$[
+_error_messages = cluster is _erstr, _ernum
+    rep = sequence[string]
+
+    own msgs: rep := rep$[
 	   "not owner",						%  1
 	   "no such file or directory",				%  2
 	   "no such process",					%  3
@@ -66,15 +69,29 @@ msgs = sequence[string]$[
 	   "file name too long",				% 63
 	   "directory not empty"]				% 64
 
+    _erstr = proc (num: int) returns (string)
+	return (msgs[num])
+	 except when bounds:
+	    return ("error " || int$unparse(num))
+	  end
+      end _erstr
+
+    _ernum = proc (msg: string) returns (int) signals(not_found)
+	for i: int in rep$indexes(msgs) do
+	    if msg = msgs[i] then
+		return (i)
+	      end
+	  end
+	signal not_found
+      end _ernum
+  end _error_messages
+
+
 _erstr = proc (num: int) returns (string)
-    return(msgs[num])
-       except when bounds: end
-    return("error " || int$unparse(num))
-    end _erstr
+    return (_error_messages$_erstr(num))
+  end _erstr
 
 _ernum = proc (msg: string) returns (int) signals(not_found)
-    for i: int in sequence[string]$indexes(msgs) do
-	if msg = msgs[i] then return (i) end
-	end
-    signal not_found
-    end _ernum
+    return (_error_messages$_ernum(msg))
+	resignal not_found
+  end _ernum
