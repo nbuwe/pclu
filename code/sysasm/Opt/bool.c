@@ -27,9 +27,9 @@ boolOPor(CLUREF b1, CLUREF b2, CLUREF *ans)
 
 
 errcode
-boolOPnot(CLUREF b1, CLUREF *ans)
+boolOPnot(CLUREF b, CLUREF *ans)
 {
-    ans->tf = ~b1.tf & 1;
+    ans->tf = !b.tf;
     signal(ERR_ok);
 }
 
