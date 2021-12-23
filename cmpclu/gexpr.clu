@@ -78,9 +78,6 @@ g_expr0 = proc (e: g_env, exp: expr) signals (specs_missing)
 	   tv$decl_next(e, xa.type_)
 	   if mexpr$is_one(xa.low) then 
 	      g_expr_arg0(e, mexpr$value_one(xa.low)) end
-	   size: int := exprlist$size(xa.elts)
-	   if ~int_const$exists(size) then
-	      tv$decl_next(e, e.comp.int_type) end
 	   for each_elt: expr in exprlist$elements(xa.elts) do
 	       g_expr_arg0(e, each_elt)
 	       end
