@@ -885,7 +885,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[2])
 	    g_env$puts(e, " < 1 || (")
 	    g_expr2(e, args[2])
-	    g_env$puts(e, " * CLUREFSZ) > (") % XXX
+	    g_env$puts(e, " * CLUREFSZ) > (size_t)(") % XXX
 	    g_idn_plain(e, arg1idn)
 	    g_env$puts(e, ".str->size)) ")
 	    g_then_raise(e, "ERR_bounds")
