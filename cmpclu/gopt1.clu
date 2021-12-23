@@ -821,13 +821,14 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_env$putl(e, ";")
 
 	    g_expr_plain(e, arg1)
-	    g_env$puts(e, ".array->ext_size++; ")
+	    g_env$putl(e, ".array->ext_size++;")
 
 	    g_expr_plain(e, arg1)
-	    g_env$putl(e, ".array->ext_high++;}")
+	    g_env$putl(e, ".array->ext_high++;")
 
 	    % otherwise let the real function handle it
 	    g_env$outdent(e)
+	    g_env$putl(e, "}")
 	    g_env$putl(e, "else {")
 	    g_env$indent(e)
 	    g_err(e)
@@ -837,8 +838,8 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr_arg(e, arg2)
 	    g_env$putl(e, ");")
 	    g_err_handle(e)
-	    g_env$putl(e, "}")
 	    g_env$outdent(e)
+	    g_env$putl(e, "}")
 	    g_env$putl(e, "}")
 	    return(true)
 
