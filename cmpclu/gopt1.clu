@@ -420,22 +420,27 @@ g_qapply = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
        end
     end g_qapply
 
+
 g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	  returns(bool)
     if ~exprabs$is_op(exp.abs) then return (false) end
     cop: clusterop := exprabs$value_op(exp.abs)
+
     gen: DU
     flist: fieldspeclist
     tagcase cop.type_.abs
-       tag cluster_,type_ (ct: clutype):
+       tag cluster_, type_ (ct: clutype):
 	   gen := ct.gen
        tag select (xt: seltype):
 	   gen := xt.gen
 	   flist := xt.parms
-       others: return (false)
+       others:
+	   return (false)
        end
-    op_name: string := cop.name
+
     type_name: string := gen.common
+    op_name: string := cop.name
+
     if type_name = "bool" cand op_name = "not"
        then
 	%logit(99, "bool not")
@@ -445,6 +450,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, exprlist$bottom(args))
 	    g_env$putl(e, " ^ 1;")
 	    return (true)
+
      elseif type_name = "_obj" cand op_name = "equal"
        then
 	%logit(99, "_obj equal")
@@ -456,6 +462,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[2])
 	    g_env$putl(e, ")? true : false;")
 	    return (true)
+
      elseif type_name = "oneof" cand op_name = "equal"
        then
 	%logit(99, "oneof equal")
@@ -491,6 +498,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 		    % logit("all_field_types_null: false")
 		    return (false)
 	       end
+
      elseif type_name = "char" cand op_name = "equal"
        then
 	%logit(99, "char equal")
@@ -521,6 +529,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	       end
 	    g_env$putl(e, ")? true : false;")
 	    return (true)
+
      elseif type_name = "bool" cand op_name = "equal"
        then
 	%logit(99, "bool equal")
@@ -551,6 +560,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	       end
 	    g_env$putl(e, ")? true : false;")
 	    return (true)
+
      elseif type_name = "record" cand op_name = "equal"
        then
 	%logit(99, "record equal")
@@ -562,6 +572,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[2])
 	    g_env$putl(e, ")? true : false;")
 	    return (true)
+
      elseif type_name = "int" cand op_name = "equal"
        then
 	%logit(99, "int equal")
@@ -573,6 +584,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[2])
 	    g_env$putl(e, ")? true : false;")
 	    return (true)
+
      elseif type_name = "int" cand op_name = "lt"
        then
 	%logit(99, "int lt")
@@ -584,6 +596,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[2])
 	    g_env$putl(e, ")? true : false;")
 	    return (true)
+
      elseif type_name = "int" cand op_name = "le"
        then
 	%logit(99, "int le")
@@ -595,6 +608,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[2])
 	    g_env$putl(e, ")? true : false;")
 	    return (true)
+
      elseif type_name = "int" cand op_name = "ge"
        then
 	%logit(99, "int ge")
@@ -606,6 +620,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[2])
 	    g_env$putl(e, ")? true : false;")
 	    return (true)
+
      elseif type_name = "int" cand op_name = "gt"
        then
 	%logit(99, "int gt")
@@ -617,6 +632,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[2])
 	    g_env$putl(e, ")? true : false;")
 	    return (true)
+
      elseif type_name = "char" cand op_name = "c2i"
        then
 	%logit(99, "char c2i")
@@ -632,6 +648,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_idn_plain(e, argidn)
 	    g_env$putl(e, ".ch & 0xff);")	% 1/9/91 mips fix
 	    return (true)
+
      elseif type_name = "array" cand op_name = "low"
        then
 	%logit(99, "array low")
@@ -642,6 +659,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_idn_plain(e, argidn)
 	    g_env$putl(e, ".array->ext_low;")
 	    return (true)
+
      elseif type_name = "array" cand op_name = "high"
        then
 	%logit(99, "array high")
@@ -652,6 +670,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_idn_plain(e, argidn)
 	    g_env$putl(e, ".array->ext_high;")
 	    return (true)
+
      elseif type_name = "array" cand op_name = "empty"
        then
 	%logit(99, "array empty")
@@ -662,6 +681,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_idn_plain(e, argidn)
 	    g_env$putl(e, ".array->ext_size == 0)? true : false;")
 	    return (true)
+
      elseif type_name = "array" cand op_name = "size"
        then
 	%logit(99, "array size")
@@ -672,6 +692,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_idn_plain(e, argidn)
 	    g_env$putl(e, ".array->ext_size;")
 	    return (true)
+
      elseif type_name = "sequence" cand op_name = "size"
        then
 	%logit(99, "sequence size")
@@ -682,13 +703,17 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_idn_plain(e, argidn)
 	    g_env$putl(e, ".vec->size;")
 	    return (true)
-%%%
-%%%  Inlining after this point is suppressed unless user has specified opt time
-%%%	i.e. the following inlining significantly expands program size
-%%%	and is turned off during debugging (dwc 1/21/93)
-%%%
 
-     elseif g_env$min_inline() then return (false)
+     %%%
+     %%% Inlining after this point is suppressed unless user has
+     %%% specified opt time, i.e. the following inlining significantly
+     %%% expands program size and is turned off during debugging
+     %%% (dwc 1/21/93)
+     %%%
+     elseif g_env$min_inline()
+       then
+	    return (false)
+
      elseif type_name = "string" cand op_name = "equal"
        then
 	%logit(99, "string equal")
@@ -711,6 +736,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_env$putl(e, ".str->size)));")
 	    g_env$outdent(e)
 	    return (true)
+
      elseif type_name = "int" cand op_name = "add"
        then % new 8/22/90
 	%logit(99, "int add")
@@ -742,6 +768,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_env$outdent(e)
 	    g_env$putl(e, "}")
 	    return (true)
+
      elseif type_name = "int" cand op_name = "sub"
        then % new 8/22/90
 	%logit(99, "int sub")
@@ -773,6 +800,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_env$outdent(e)
 	    g_env$putl(e, "}")
 	    return (true)
+
      elseif op_name = "addh" cand type_name = "array"
        then
 	%logit(99, "array addh")
@@ -813,6 +841,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_env$outdent(e)
 	    g_env$putl(e, "}")
 	    return(true)
+
      elseif op_name = "store" cand type_name = "array"
        then
 	%logit(99, "array store")
@@ -848,6 +877,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_env$putl(e, ";")
 	    g_env$putl(e, "}")
 	    return(true)
+
      elseif type_name = "_wordvec" cand op_name = "fetch"
        then
 	%logit(99, "_wordvec fetch")
@@ -895,6 +925,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    %	    g_env$outdent(e)
 	    %	    g_env$putl(e, "}")
 	    return (true)
+
      elseif op_name = "fetch"
        then
 	%logit(99, "sequence/array/_bytevec fetch")
@@ -952,9 +983,11 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 		    g_env$putl(e, tail || "->int_low];")
 	       end
 	    return (true)
+
      else return (false)
      end
     end g_qop
+
 
 g_qsel = proc(e: g_env, exp: expr, args: exprlist, results: exprlist) 
 	   returns (bool)
