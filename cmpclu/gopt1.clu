@@ -987,7 +987,7 @@ g_qsel = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
     op: string, ind: int := field_index(nm, ta.parms)
 
     if prefix = "get_" then
-	%logit(99, "get_")
+       %logit(99, "get_")
        residn: idn := exprabs$value_idn(exprlist$bottom(results).abs)
        g_idn_plain(e, residn)
        g_env$puts(e, ".num = ")
@@ -996,9 +996,9 @@ g_qsel = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
        g_env$putl(e, ".vec->data[" || int$unparse(ind-1) || "];")
        return (true)
        end
-    
+
     if prefix = "set_" then
-	%logit(99, "set_")
+       %logit(99, "set_")
        arg1idn: idn := exprabs$value_idn(args[1].abs)
        g_idn_plain(e, arg1idn)
        g_env$puts(e, ".vec->data[" || int$unparse(ind-1) || "] = ")
@@ -1006,9 +1006,9 @@ g_qsel = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
        g_env$putl(e, ";")
        return (true)
        end
-    
+
     if prefix = "is_" then
-	%logit(99, "is_")
+       %logit(99, "is_")
        g_env$puts(e, "if (")
        argidn: idn := exprabs$value_idn(args[1].abs)
        g_idn_plain(e, argidn)
@@ -1019,9 +1019,9 @@ g_qsel = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
        g_env$putl(e, " = false;")
        return (true)
        end
-    
+
     if prefix = "value_" then
-	%logit(99, "value_")
+       %logit(99, "value_")
        g_env$puts(e, "if (")
        argidn: idn := exprabs$value_idn(args[1].abs)
        g_idn_plain(e, argidn)
@@ -1032,14 +1032,14 @@ g_qsel = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
        %       residn: idn := exprabs$value_idn(exprlist$bottom(results).abs)
        %      g_idnlit(e, residn)
        % g_env$puts(e, ".num = ")		AMENDED 5/10/90
-       g_env$puts(e, " = ")		
+       g_env$puts(e, " = ")
        g_idn_plain(e, argidn)
        g_env$putl(e, ".cell->value;")
        return (true)
        end
 
     if prefix = "make_" then
-	%logit(99, "make_")
+       %logit(99, "make_")
        g_env$puts(e, "CellAlloc(" || int$unparse(ind) ||  ", ")
        g_expr2a(e, exprlist$bottom(args))
        g_env$puts(e, ", ")
@@ -1048,7 +1048,7 @@ g_qsel = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
        g_env$putl(e, ");")
        return (true)
        end
-    
+
     return (false)
     end g_qsel
 
