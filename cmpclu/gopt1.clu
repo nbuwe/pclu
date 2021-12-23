@@ -929,46 +929,57 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
      elseif op_name = "fetch"
        then
 	    %logit(99, "sequence/array/_bytevec fetch")
-	    tail: string
-	    if type_name = "_vec" cor type_name = "sequence" 
-	       then tail := ".vec"
-	     elseif type_name = "_bytevec"
-	       then tail := ".str"
-	     elseif type_name = "array"
-	       then tail := ".array"
-	     else return (false) end
+	    is_array: bool := false
+	    tail: string		 % CLUREF member
+	    if type_name = "array" then
+	       tail := ".array"
+	       is_array := true
+	     elseif type_name = "sequence" cor type_name = "_vec" then
+	       tail := ".vec"
+	     elseif type_name = "_bytevec" then
+	       tail := ".str"
+	     else
+		  return (false)
+	     end
 	    residn: idn := exprabs$value_idn(exprlist$bottom(results).abs)
 	    arg1idn: idn := exprabs$value_idn(args[1].abs)
+
 	    g_env$puts(e, "if (")
+
+	    % check lower bound
 	    g_expr2(e, args[2])
-	    if type_name ~= "array"
+	    g_env$puts(e, " < ")
+	    if ~is_array
 	       then
-		    g_env$puts(e, " < 1 || ")
+		    g_env$puts(e, "1")
 	       else
-		    g_env$puts(e, " < ")
 		    g_idn_plain(e, arg1idn)
-		    g_env$puts(e, tail || "->ext_low || ")
+		    g_env$puts(e, tail || "->ext_low")
 	       end
+	    g_env$puts(e, " || ")
+
+	    % check upper  bound
 	    g_expr2(e, args[2])
 	    g_env$puts(e, " > ")
 	    g_idn_plain(e, arg1idn)
-	    if type_name ~= "array"
+	    g_env$puts(e, tail)
+	    if ~is_array
 	       then
-		    g_env$putl(e, tail || "->size ) {")
+		    g_env$puts(e, "->size")
 	       else
-		    g_env$putl(e, tail || "->ext_high ) {")
+		    g_env$puts(e, "->ext_high")
 	       end
-	    g_env$indent(e)
-	    g_err(e)
-	    g_env$putl(e, " = ERR_bounds;")
-	    g_env$putl(e, "goto " || ex$get_current_ex_label() || ";}")
-	    g_env$outdent(e)
+
+	    g_env$puts(e, ") ")
+	    g_then_raise(e, "ERR_bounds");
+
+	    % fetch
 	    g_idn_plain(e, residn)
 	    if type_name = "_bytevec" then
 	       g_env$puts(e, ".ch = ")         % 1/9/91 mips fix
 	       else g_env$puts(e, ".num = ") end
 	    g_idn_plain(e, arg1idn)
-	    if type_name ~= "array"
+	    if ~is_array
 	       then
 		    g_env$puts(e, tail || "->data[")
 		    g_expr2(e, args[2])
