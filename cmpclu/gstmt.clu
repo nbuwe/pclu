@@ -989,9 +989,7 @@ g_exit = proc (e: g_env, cond: condition)
 	end
 
     % signal the exception to a local handler
-    g_err(e)
-    g_env$putl(e, " = " || sig$expr(cond.name) || ";")
-    g_env$putl(e, "goto " || ex$get_current_ex_label() || ";")
+    g_raise(e, sig$expr(cond.name))
 
     g_env$outdent(e)
     g_env$putl(e, "}")
