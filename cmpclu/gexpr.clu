@@ -672,6 +672,26 @@ g_err_handle = proc (e: g_env)
     end g_err_handle
 
 
+g_raise = proc (e: g_env, sig: string)
+    g_err(e)
+    g_env$puts(e, " = ")
+    g_env$puts(e, sig)
+    g_env$putl(e, ";")
+    g_env$puts(e, "goto ")
+    g_env$puts(e, ex$get_current_ex_label())
+    g_env$putl(e, ";")
+    end g_raise
+
+
+g_then_raise = proc (e: g_env, sig: string)
+    g_env$putl(e, "{")
+    g_env$indent(e)
+    g_raise(e, sig)
+    g_env$outdent(e)
+    g_env$putl(e, "}")
+    end g_then_raise
+
+
 g_proc = proc (e: g_env)
     g_env$puts(e, "(*")
     g_locals(e)
