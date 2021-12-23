@@ -747,6 +747,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_env$puts(e, " + ")
 	    g_expr2(e, args[2])
 	    g_env$putl(e, ";")
+
 	    g_env$puts(e, "if ((")
 	    g_idn_plain(e, residn)
 	    g_env$puts(e, ".num > 0 && ")
@@ -760,13 +761,9 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[1])
 	    g_env$puts(e, " > 0 && ")
 	    g_expr2(e, args[2])
-	    g_env$putl(e, " > 0)) {")
-	    g_env$indent(e)
-	    g_err(e)
-	    g_env$putl(e, " = ERR_overflow;")   %  1/16/91 formerly bounds
-	    g_env$putl(e, "goto " || ex$get_current_ex_label() || ";")
-	    g_env$outdent(e)
-	    g_env$putl(e, "}")
+	    g_env$puts(e, " > 0)) ")
+	    g_then_raise(e, "ERR_overflow") %  1/16/91 formerly bounds
+
 	    return (true)
 
      elseif type_name = "int" cand op_name = "sub"
@@ -779,6 +776,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_env$puts(e, " - ")
 	    g_expr2(e, args[2])
 	    g_env$putl(e, ";")
+
 	    g_env$puts(e, "if ((")
 	    g_idn_plain(e, residn)
 	    g_env$puts(e, ".num >= 0 && ")
@@ -792,13 +790,8 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[1])
 	    g_env$puts(e, " > 0 && (-")
 	    g_expr2(e, args[2])
-	    g_env$putl(e, ") > 0)) {")
-	    g_env$indent(e)
-	    g_err(e)
-	    g_env$putl(e, " = ERR_overflow;")   % 1/16/91 formerly bounds
-            g_env$putl(e, "goto " || ex$get_current_ex_label() || ";")
-	    g_env$outdent(e)
-	    g_env$putl(e, "}")
+	    g_env$puts(e, ") > 0)) ")
+	    g_then_raise(e, "ERR_overflow") %  1/16/91 formerly bounds
 	    return (true)
 
      elseif op_name = "addh" cand type_name = "array"
@@ -806,6 +799,8 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    %logit(99, "array addh")
 	    arg1: expr := args[1]
 	    arg2: expr := args[2]
+
+	    % can we do it without re-allocation?
 	    g_env$putl(e, "{")
 	    g_env$puts(e, "if ((")
 	    g_expr_plain(e, arg1)
@@ -815,6 +810,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr_plain(e, arg1)
 	    g_env$putl(e, ".array->int_size) {")
 	    g_env$indent(e)
+
 	    g_expr_plain(e, arg1)
 	    g_env$puts(e, ".array->store->data[")
 	    g_expr_plain(e, arg1)
@@ -823,10 +819,14 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_env$puts(e, ".array->ext_size] = ")
 	    g_expr2a(e, arg2)
 	    g_env$putl(e, ";")
+
 	    g_expr_plain(e, arg1)
 	    g_env$puts(e, ".array->ext_size++; ")
+
 	    g_expr_plain(e, arg1)
 	    g_env$putl(e, ".array->ext_high++;}")
+
+	    % otherwise let the real function handle it
 	    g_env$outdent(e)
 	    g_env$putl(e, "else {")
 	    g_env$indent(e)
@@ -858,13 +858,9 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, arg2)
 	    g_env$puts(e, " > ")
 	    g_expr_plain(e, arg1)
-	    g_env$putl(e, ".array->ext_high) {")
-	    g_env$indent(e)
-	    g_err(e)
-	    g_env$putl(e, " = ERR_bounds;")
-	    g_env$putl(e, "goto " || 
-			  ex$get_current_ex_label() || ";}")
-	    g_env$outdent(e)
+	    g_env$puts(e, ".array->ext_high) ")
+	    g_then_raise(e, "ERR_bounds")
+
 	    g_expr_plain(e, arg1)
 	    g_env$puts(e, ".array->store->data[")
 	    g_expr2(e, arg2)
