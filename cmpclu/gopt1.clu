@@ -446,9 +446,9 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    %logit(99, "bool not")
 	    residn: idn := exprabs$value_idn(exprlist$bottom(results).abs)
 	    g_idn_plain(e, residn)
-	    g_env$puts(e, ".num = ")
+	    g_env$puts(e, ".num = !")
 	    g_expr2(e, exprlist$bottom(args))
-	    g_env$putl(e, " ^ 1;")
+	    g_env$putl(e, ";")
 	    return (true)
 
      elseif type_name = "_obj" cand op_name = "equal"
@@ -460,7 +460,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[1])
 	    g_env$puts(e, " == ")
 	    g_expr2(e, args[2])
-	    g_env$putl(e, ")? true : false;")
+	    g_env$putl(e, ");")
 	    return (true)
 
      elseif type_name = "oneof" cand op_name = "equal"
@@ -492,7 +492,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 		    g_env$puts(e, " == ")
 		    g_idn_plain(e, o2)
 		    g_env$puts(e, ".cell->tag")
-		    g_env$putl(e, ")? true : false;")
+		    g_env$putl(e, ");")
 		    return (true)
 	       else
 		    % logit("all_field_types_null: false")
@@ -527,7 +527,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 		   % logit("gopt1: char$equal 2")
 		   expr_print(args[2], 83)
 	       end
-	    g_env$putl(e, ")? true : false;")
+	    g_env$putl(e, ");")
 	    return (true)
 
      elseif type_name = "bool" cand op_name = "equal"
@@ -558,7 +558,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 		   % logit("gopt1: bool$equal 2")
 		   expr_print(args[2], 83)
 	       end
-	    g_env$putl(e, ")? true : false;")
+	    g_env$putl(e, ");")
 	    return (true)
 
      elseif type_name = "record" cand op_name = "equal"
@@ -570,7 +570,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[1])
 	    g_env$puts(e, " == ")
 	    g_expr2(e, args[2])
-	    g_env$putl(e, ")? true : false;")
+	    g_env$putl(e, ");")
 	    return (true)
 
      elseif type_name = "int" cand op_name = "equal"
@@ -582,7 +582,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[1])
 	    g_env$puts(e, " == ")
 	    g_expr2(e, args[2])
-	    g_env$putl(e, ")? true : false;")
+	    g_env$putl(e, ");")
 	    return (true)
 
      elseif type_name = "int" cand op_name = "lt"
@@ -594,7 +594,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[1])
 	    g_env$puts(e, " < ")
 	    g_expr2(e, args[2])
-	    g_env$putl(e, ")? true : false;")
+	    g_env$putl(e, ");")
 	    return (true)
 
      elseif type_name = "int" cand op_name = "le"
@@ -606,7 +606,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[1])
 	    g_env$puts(e, " <= ")
 	    g_expr2(e, args[2])
-	    g_env$putl(e, ")? true : false;")
+	    g_env$putl(e, ");")
 	    return (true)
 
      elseif type_name = "int" cand op_name = "ge"
@@ -618,7 +618,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[1])
 	    g_env$puts(e, " >= ")
 	    g_expr2(e, args[2])
-	    g_env$putl(e, ")? true : false;")
+	    g_env$putl(e, ");")
 	    return (true)
 
      elseif type_name = "int" cand op_name = "gt"
@@ -630,7 +630,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_expr2(e, args[1])
 	    g_env$puts(e, " > ")
 	    g_expr2(e, args[2])
-	    g_env$putl(e, ")? true : false;")
+	    g_env$putl(e, ");")
 	    return (true)
 
      elseif type_name = "char" cand op_name = "c2i"
@@ -679,7 +679,7 @@ g_qop = proc(e: g_env, exp: expr, args: exprlist, results: exprlist)
 	    g_idn_plain(e, residn)
 	    g_env$puts(e, ".num = (")
 	    g_idn_plain(e, argidn)
-	    g_env$putl(e, ".array->ext_size == 0)? true : false;")
+	    g_env$putl(e, ".array->ext_size == 0);")
 	    return (true)
 
      elseif type_name = "array" cand op_name = "size"
