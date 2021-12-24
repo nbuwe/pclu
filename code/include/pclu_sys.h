@@ -105,10 +105,6 @@ typedef char * string;
 #define true 1
 #define false 0
 
-#ifndef NULL
-#define NULL ((char *)0)
-#endif
-
 #define VARYING_LENGTH 1
 
 /* GCD_REF_SIZE defines the number of bytes that gcd_tab outputs for */
