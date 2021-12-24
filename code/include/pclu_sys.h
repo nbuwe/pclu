@@ -99,9 +99,6 @@
 typedef long bool;
 #define BOOL
 #endif
-typedef long gcd_tab;
-typedef char * string;
-
 #define true 1
 #define false 0
 
