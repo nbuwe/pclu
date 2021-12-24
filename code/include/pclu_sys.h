@@ -102,11 +102,13 @@ typedef long bool;
 #define true 1
 #define false 0
 
+/* flexible member kludge */
 #define VARYING_LENGTH 1
 
 /* GCD_REF_SIZE defines the number of bytes that gcd_tab outputs for */
 /*	a small base type or a reference */
 #define GCD_REF_SIZE (2*CLUREFSZ)
+
 
 /*					*/
 /*	HEADER DEFINITIONS		*/
@@ -130,11 +132,11 @@ typedef long bool;
    32 bits are used for the header and the size field */
 
 typedef struct  {
-	char	mark;	/* 4 bits for gc/alloc */
-	char	val;    /* type identifier */
-	char	refp;   /* immediate vs indirect */
-	char	spare;
-	} CLUTYPE;
+    char mark;			/* 4 bits for gc/alloc */
+    char val;			/* type identifier */
+    char refp;			/* immediate vs indirect */
+    char spare;
+} CLUTYPE;
 
 /*
  * The following is spelled in a somewhat roundabout way b/c gcc can
@@ -153,21 +155,16 @@ typedef struct  {
 #endif
 
 
-
 /*					*/
 /*	STRING DEFINITIONS		*/
 /*					*/
 
+typedef struct CLU_string {
+    CLUTYPE typ;
+    long size;
+    char data[VARYING_LENGTH];
+} CLU_string;
 
-typedef char * C_STRING;
-
-/* #define CLUSTR(x) string$cons(x, 1, strlen(x)) */
-
-typedef struct {
-	CLUTYPE   typ;
-	long	  size;
-	char	  data[1];
-	} CLU_string;
 typedef CLU_string *CLUSTRING;
 
 #define MAX_STR 150000
@@ -175,22 +172,21 @@ typedef CLU_string *CLUSTRING;
 #define MAX_CAP_CHAR 'Z'
 #define OFF_CHAR 'a' - 'A'
 
+
 /*					*/
 /*	SEQUENCE DEFINITIONS		*/
 /*					*/
 
-typedef struct {
-	CLUTYPE	typ;
-	long	size;
-	long	data[1];     /* CLUREF in disguise */
-	} CLU_sequence;
-
-#define CLU_sequence_sizew 2
-
+typedef struct CLU_sequence {
+    CLUTYPE typ;
+    long size;
+    long data[VARYING_LENGTH];	/* CLUREF in disguise */
+} CLU_sequence;
 
 typedef CLU_sequence *CLUSEQ;
 
 #define MAX_SEQ 262144			/* matches VAX CLU */
+
 
 /*					*/
 /*	ONEOF DEFINITIONS		*/
@@ -198,24 +194,24 @@ typedef CLU_sequence *CLUSEQ;
 
 #define nil 0
 
-typedef struct {
-	CLUTYPE typ;
-	long	tag;
-	long	value;
+typedef struct CLU_cell {
+    CLUTYPE typ;
+    long tag;
+    long value;
 } CLU_cell;
-#define CLU_cell_sizew 3	/* size of cell in 32-bit units */
-#define cellOPmaxtag 0x3fffffff
 
 typedef CLU_cell *CLUCELL;
+
+#define cellOPmaxtag 0x3fffffff
+
 
 /*					*/
 /*	OWN PTR DEFINITIONS		*/
 /*					*/
 
-
 typedef struct {
-long	init_flag;
-long	info[VARYING_LENGTH];	/* CLUREF in disguise */
+    long init_flag;
+    long info[VARYING_LENGTH];	/* CLUREF in disguise */
 } OWN_ptr;
 
 typedef  OWN_ptr *OWNPTR;
@@ -225,14 +221,14 @@ typedef  OWN_ptr *OWNPTR;
 /*	OWN REQ DEFINITION		*/
 /*					*/
 
-
-typedef struct {
-long	size;		/* sizeof own structure needed */
-			/*    own structure includes owns, parm values, hints */
-long	own_count;	/* number of owns */
+/* own structure includes owns, parm values, hints */
+typedef struct OWN_req {
+    long size;			/* sizeof own structure needed */
+    long own_count;		/* number of owns */
 } OWN_req;
 
-typedef  OWN_req *OWNREQ;
+typedef OWN_req *OWNREQ;
+
 
 /*					*/
 /*	PROC VAR DEFINITIONS		*/
@@ -241,12 +237,12 @@ typedef  OWN_req *OWNREQ;
 #define MAX_CONST_PARMS 7
 
 typedef errcode PROC();
-typedef struct {
-	CLUTYPE typ;
-	errcode (*proc)();
-	OWNPTR	type_owns;
-	OWNPTR  op_owns;
-	} CLU_proc;
+typedef struct CLU_proc {
+    CLUTYPE typ;
+    errcode (*proc)();
+    OWNPTR type_owns;
+    OWNPTR op_owns;
+} CLU_proc;
 
 typedef CLU_proc *CLUPROC;
 
@@ -264,31 +260,30 @@ typedef CLU_proc *CLUPROC;
 /*		the store can be reallocated when	*/
 /*		necessary				*/
 
-typedef struct {
-	CLUTYPE typ;
-	long	size;
-	long	data[1];	/* CLUREF in disguise */
-	} CLU_store;
+typedef struct CLU_store {
+    CLUTYPE typ;
+    long size;
+    long data[VARYING_LENGTH];	/* CLUREF in disguise */
+} CLU_store;
 
 typedef CLU_store *CLUSTORE;
-#define CLU_store_sizew 3
 
-typedef struct {
-	CLUTYPE typ;
-	long	ext_low;	/* low index for user */
-	long	ext_high;	/* high index for user */
-	long	ext_size;	/* size for user */
-	long	int_low;	/* index into store equiv to ext_low */
-	long	int_size;	/* size of store */
-	CLUSTORE store;
-	} CLU_array;
-#define CLU_array_sizew 7
+typedef struct CLU_array {
+    CLUTYPE typ;
+    long ext_low;	       /* low index for user */
+    long ext_high;	       /* high index for user */
+    long ext_size;	       /* size for user */
+    long int_low;	       /* index into store equiv to ext_low */
+    long int_size;	       /* size of store */
+    CLUSTORE store;
+} CLU_array;
 
 typedef CLU_array *CLUARRAY;
 
 #define MIN_ARR_INDEX intOPleastint
 #define MAX_ARR_INDEX intOPmaxint
 #define MAX_ARR_SIZE  (MAX_ARR_INDEX/2)
+
 
 /*					*/
 /*	CLUREF DEFINITIONS		*/
@@ -304,20 +299,20 @@ typedef CLU_array *CLUARRAY;
    so that aggregates can be defined, and then the second
    time including the aggregates */
 
-typedef union {
-	char 	*ref;
-	long	num;
-	float	real;
-	char	ch;
-	bool	tf;
-	unsigned short word;
-	CLUSTRING str;
-	CLUSEQ  vec;
-	CLUCELL cell;
-	CLUPROC proc;
-	CLUARRAY array;
-	CLUSTORE store;
-	struct obj * obj;
+typedef union CLUREF {
+    char       *ref;
+    long	num;
+    float	real;
+    char	ch;
+    bool	tf;
+    unsigned short word;
+    CLUSTRING	str;
+    CLUSEQ	vec;
+    CLUCELL	cell;
+    CLUPROC	proc;
+    CLUARRAY	array;
+    CLUSTORE	store;
+    struct obj *obj;
 } CLUREF;
 
 #define CLUREFSZ (sizeof(CLUREF))
