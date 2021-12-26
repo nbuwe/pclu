@@ -18,6 +18,12 @@
 errcode gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ans);
 errcode stringOPprint(CLUREF s, CLUREF pst);
 
+/*
+ * We pub/_cvt between _wordvec and string so observe the same
+ * allocation limit.
+ */
+#define MAX_WVEC	((MAX_STR - 1) / CLUREFSZ)
+
 
 static inline size_t
 _wordvecOPOPmemsize(size_t size)
@@ -38,10 +44,12 @@ _wordvecOPOPmemsize(size_t size)
 errcode
 _wordvecOPcreate(CLUREF sz, CLUREF *ans)
 {
-    int bsize = sz.num * CLUREFSZ; /* size of data in bytes */
-    if (bsize > MAX_STR)
+    if (sz.num < 0)
+	signal(ERR_negative_size);
+    if (sz.num > MAX_WVEC)
 	signal(ERR_toobig);
 
+    size_t bsize = sz.num * CLUREFSZ; /* size of data in bytes */
     int bufsz = _wordvecOPOPmemsize(bsize);
 
     CLUREF wv;

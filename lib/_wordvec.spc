@@ -6,7 +6,7 @@ _wordvec = cluster is create, fetch, store, fetch2, store2, xstore,
 
 rep = any
 
-create = proc (n: int) returns (cvt) signals (toobig)
+create = proc (n: int) returns (cvt) signals (negative_size, toobig)
 	% number of words
 	end create
 
