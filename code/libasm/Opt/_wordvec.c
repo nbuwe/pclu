@@ -19,7 +19,7 @@ errcode gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ans)
 errcode stringOPprint(CLUREF s, CLUREF pst);
 
 /*
- * We pub/_cvt between _wordvec and string so observe the same
+ * We pun/_cvt between _wordvec and string so observe the same
  * allocation limit.
  */
 #define MAX_WVEC	((MAX_STR - 1) / CLUREFSZ)
