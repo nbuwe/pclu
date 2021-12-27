@@ -46,7 +46,7 @@ _wordvecOPcreate(CLUREF sz, CLUREF *ans)
 {
     if (sz.num < 0)
 	signal(ERR_negative_size);
-    if (sz.num > MAX_WVEC)
+    if ((size_t)sz.num > MAX_WVEC)
 	signal(ERR_toobig);
 
     size_t bsize = sz.num * CLUREFSZ; /* size of data in bytes */
@@ -86,17 +86,15 @@ _wordvecOPcopy(CLUREF wv1, CLUREF *ans)
 errcode
 _wordvecOPfetch(CLUREF wv, CLUREF i, CLUREF *ans)
 {
-    int bi;
-    /* 1/10/91 : modified wrt gc_dump */
+    if (i.num < 1)
+	signal(ERR_bounds);
+    if ((size_t)i.num > wv.str->size / CLUREFSZ)
+	signal(ERR_bounds);
 
-    bi = (i.num - 1) * CLUREFSZ;
-    if (bi < 0)
-	signal(ERR_bounds);
-    if (bi > wv.str->size)
-	signal(ERR_bounds);
 #if 1
     ans->num = wv.vec->data[i.num - 1];
 #else
+    int bi = (i.num - 1) * CLUREFSZ;
     ans->num = (wv.str->data[bi]        & 0x000000ff)
 	+ ((wv.str->data[bi + 1] <<  8) & 0x0000ff00)
 	+ ((wv.str->data[bi + 2] << 16) & 0x00ff0000)
@@ -109,17 +107,15 @@ _wordvecOPfetch(CLUREF wv, CLUREF i, CLUREF *ans)
 errcode
 _wordvecOPstore(CLUREF wv, CLUREF i, CLUREF w)
 {
-    int bi;
-    /* 1/10/91 : modified wrt gc_dump */
+    if (i.num < 1)
+	signal(ERR_bounds);
+    if ((size_t)i.num > wv.str->size / CLUREFSZ)
+	signal(ERR_bounds);
 
-    bi = (i.num - 1) * CLUREFSZ;
-    if (bi < 0)
-	signal(ERR_bounds);
-    if (bi > wv.str->size)
-	signal(ERR_bounds);
 #if 1
     wv.vec->data[i.num - 1] = w.num;
 #else
+    int bi = (i.num - 1) * CLUREFSZ;
     wv.str->data[bi + 0] =  w.num        & 0xff;
     wv.str->data[bi + 1] = (w.num >>  8) & 0xff;
     wv.str->data[bi + 2] = (w.num >> 16) & 0xff;
@@ -132,18 +128,17 @@ _wordvecOPstore(CLUREF wv, CLUREF i, CLUREF w)
 errcode
 _wordvecOPfetch2(CLUREF wv, CLUREF i, CLUREF *ans1, CLUREF *ans2)
 {
-    int bi;
+    if (i.num < 1)
+	signal(ERR_bounds);
+    if ((size_t)i.num > wv.str->size / CLUREFSZ)
+	signal(ERR_bounds);
 
-    bi = (i.num - 1) * CLUREFSZ;
-    if (bi < 0)
-	signal(ERR_bounds);
-    if (bi > wv.str->size)
-	signal(ERR_bounds);
 #if 1
     int temp = wv.vec->data[i.num - 1];
     ans1->num = (temp & 0xffff0000) >> 16;
     ans2->num = (temp & 0x0000ffff);
 #else
+    int bi = (i.num - 1) * CLUREFSZ;
     ans1->num = (wv.str->data[bi + 1] << 8) || wv.str->data[bi + 0];
     ans2->num = (wv.str->data[bi + 3] << 8) || wv.str->data[bi + 2];
 #endif
@@ -154,16 +149,15 @@ _wordvecOPfetch2(CLUREF wv, CLUREF i, CLUREF *ans1, CLUREF *ans2)
 errcode
 _wordvecOPstore2(CLUREF wv, CLUREF i, CLUREF l, CLUREF r)
 {
-    int bi;
+    if (i.num < 1)
+	signal(ERR_bounds);
+    if ((size_t)i.num > wv.str->size / CLUREFSZ)
+	signal(ERR_bounds);
 
-    bi = (i.num - 1) * CLUREFSZ;
-    if (bi < 0)
-	signal(ERR_bounds);
-    if (bi > wv.str->size)
-	signal(ERR_bounds);
 #if 1
     wv.vec->data[i.num-1] = (r.num & 0xffff) | ((l.num & 0xffff) << 16);
 #else
+    int bi = (i.num - 1) * CLUREFSZ;
     wv.str->data[bi + 0] =  r.num       & 0xff;
     wv.str->data[bi + 1] = (r.num >> 8) & 0xff;
     wv.str->data[bi + 2] =  l.num       & 0xff;
@@ -176,16 +170,15 @@ _wordvecOPstore2(CLUREF wv, CLUREF i, CLUREF l, CLUREF r)
 errcode
 _wordvecOPxstore(CLUREF wv, CLUREF i, CLUREF b, CLUREF l)
 {
-    int bi;
+    if (i.num < 1)
+	signal(ERR_bounds);
+    if ((size_t)i.num > wv.str->size / CLUREFSZ)
+	signal(ERR_bounds);
 
-    bi = (i.num - 1) * CLUREFSZ;
-    if (bi < 0)
-	signal(ERR_bounds);
-    if (bi > wv.str->size)
-	signal(ERR_bounds);
 #if 1
     wv.vec->data[i.num - 1] = (l.num & 0xffffff) | ((b.num & 0xff) << 24);
 #else
+    int bi = (i.num - 1) * CLUREFSZ;
     wv.str->data[bi + 1] = (l.num >>  8) & 0xff;
     wv.str->data[bi + 2] = (l.num >> 16) & 0xff;
     wv.str->data[bi + 3] =  b.num        & 0xff;
@@ -204,6 +197,7 @@ _wordvecOPbfetch(CLUREF wv, CLUREF i, CLUREF *ans)
 	signal(ERR_bounds);
     if (bi > wv.str->size)
 	signal(ERR_bounds);
+
 #if 1
     int wi = bi / CLUREFSZ;
     int sub_index = bi - (wi * CLUREFSZ) + 1;
