@@ -155,7 +155,7 @@ _wordvecOPstore2(CLUREF wv, CLUREF i, CLUREF l, CLUREF r)
 	signal(ERR_bounds);
 
 #if 1
-    wv.vec->data[i.num-1] = (r.num & 0xffff) | ((l.num & 0xffff) << 16);
+    wv.vec->data[i.num-1] = (r.num & 0xffff) | (l.num << 16);
 #else
     int bi = (i.num - 1) * CLUREFSZ;
     wv.str->data[bi + 0] =  r.num       & 0xff;
