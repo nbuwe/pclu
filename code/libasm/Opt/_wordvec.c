@@ -134,9 +134,9 @@ _wordvecOPfetch2(CLUREF wv, CLUREF i, CLUREF *ans1, CLUREF *ans2)
 	signal(ERR_bounds);
 
 #if 1
-    int temp = wv.vec->data[i.num - 1];
-    ans1->num = (temp & 0xffff0000) >> 16;
-    ans2->num = (temp & 0x0000ffff);
+    unsigned long u = wv.vec->data[i.num - 1];
+    ans1->num = u >> 16;
+    ans2->num = u & 0xffff;
 #else
     int bi = (i.num - 1) * CLUREFSZ;
     ans1->num = (wv.str->data[bi + 1] << 8) || wv.str->data[bi + 0];
