@@ -170,7 +170,7 @@ _byteptr8OPget_buf(CLUREF bp, CLUREF *ans)
 errcode
 _byteptr8OPget_index(CLUREF bp, CLUREF *ans)
 {
-    WP *b = (WP*)bp.ref;
+    WP *b = (WP *)bp.ref;
 
     ans->num = b->idx.num - 2;
     signal(ERR_ok);
@@ -180,7 +180,7 @@ _byteptr8OPget_index(CLUREF bp, CLUREF *ans)
 errcode
 _byteptr8OPget_count(CLUREF bp, CLUREF *ans)
 {
-    WP *b = (WP*)bp.ref;
+    WP *b = (WP *)bp.ref;
 
     ans->num = b->max.num - b->idx.num;
     signal(ERR_ok);

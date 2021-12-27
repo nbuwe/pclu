@@ -298,7 +298,7 @@ static CLU_proc _byteptr_oe_get_buf = CLU_proc_INIT(_byteptrOPget_buf);
 static CLU_proc _byteptr_oe_get_index = CLU_proc_INIT(_byteptrOPget_index);
 static CLU_proc _byteptr_oe_get_count = CLU_proc_INIT(_byteptrOPget_count);
 
-static struct {
+static struct /* OPS */ {
     int count;
     OWNPTR type_owns;
     OWNPTR op_owns;
