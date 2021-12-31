@@ -1302,7 +1302,7 @@ cmpvarOPinit_base_cmd(CLUREF ty, CLUREF *ret_1)
 
 /**** END PROCEDURE init_base_cmd ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

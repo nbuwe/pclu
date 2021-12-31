@@ -1847,7 +1847,7 @@ g_constOPg_str_cons(CLUREF e, CLUREF s)
 
 /**** END PROCEDURE g_str_cons ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -2079,7 +2079,7 @@ const_defnOPstop(void)
 
 /**** END PROCEDURE stop ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

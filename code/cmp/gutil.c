@@ -4415,7 +4415,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } array_extend_of_t_OPS;
+} array_extend_of_t_OPS;
 
 extern errcode arrayOPaddh();
 
@@ -4498,7 +4498,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } array_concat_of_t_OPS;
+} array_concat_of_t_OPS;
 
 extern errcode arrayOPelements();
 
@@ -4852,7 +4852,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } g_commalist_of_elt_OPS;
+} g_commalist_of_elt_OPS;
 
 static errcode g_commalist_IB_1();
 
@@ -5014,7 +5014,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } g_next_commalist_of_elt_OPS;
+} g_next_commalist_of_elt_OPS;
 
 static errcode g_next_commalist_IB_1();
 

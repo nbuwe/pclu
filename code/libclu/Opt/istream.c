@@ -2095,7 +2095,7 @@ istreamOPputbv(CLUREF ist, CLUREF bvec)
 
 /**** END PROCEDURE putbv ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

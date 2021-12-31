@@ -2552,7 +2552,7 @@ pstreamOPprint(CLUREF ps1, CLUREF ps2)
 
 /**** END PROCEDURE print ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

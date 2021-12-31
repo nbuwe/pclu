@@ -1243,7 +1243,7 @@ stableOPunparse_IB_1(CLUREF iv_1, CLUREF iv_2, stableOPunparse_LOCALS_t *locals,
 
 /**** END ITERATOR BODIES for unparse ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

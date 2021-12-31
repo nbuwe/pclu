@@ -1252,7 +1252,7 @@ ibOPgen_body(CLUREF e, CLUREF f, CLUREF index)
 
 /**** END PROCEDURE gen_body ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -2543,7 +2543,7 @@ loop_contextOPget_current_inline_for_count(CLUREF *ret_1)
 
 /**** END PROCEDURE get_current_inline_for_count ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -3344,7 +3344,7 @@ current_applyOPreset(void)
 
 /**** END PROCEDURE reset ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -3966,7 +3966,7 @@ current_typeOPreset(void)
 
 /**** END PROCEDURE reset ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -4272,7 +4272,7 @@ ownsOPmember(CLUREF i, CLUREF *ret_1)
 
 /**** END PROCEDURE member ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

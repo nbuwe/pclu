@@ -4999,7 +4999,7 @@ bigintOPold_base(CLUREF a, CLUREF *ret_1)
 
 /**** END PROCEDURE old_base ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

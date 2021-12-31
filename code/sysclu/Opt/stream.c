@@ -12878,7 +12878,7 @@ streamOP_close_all(void)
 
 /**** END PROCEDURE _close_all ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

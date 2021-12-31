@@ -1050,7 +1050,7 @@ typespecOP_gcd(CLUREF t, CLUREF tab, CLUREF *ret_1)
 
 /**** END PROCEDURE _gcd ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -1577,7 +1577,7 @@ equateOP_gcd(CLUREF e, CLUREF tab, CLUREF *ret_1)
 
 /**** END PROCEDURE _gcd ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -2265,7 +2265,7 @@ stmtOP_gcd(CLUREF s, CLUREF tab, CLUREF *ret_1)
 
 /**** END PROCEDURE _gcd ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -2839,7 +2839,7 @@ exprOP_gcd(CLUREF x, CLUREF tab, CLUREF *ret_1)
 
 /**** END PROCEDURE _gcd ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

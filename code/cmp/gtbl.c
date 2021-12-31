@@ -5356,7 +5356,7 @@ g_tblOPprune(void)
 
 /**** END PROCEDURE prune ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -6596,7 +6596,7 @@ own_defnOPstop(void)
 
 /**** END PROCEDURE stop ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

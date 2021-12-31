@@ -20,7 +20,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } quicksort_of_t_OPS;
+} quicksort_of_t_OPS;
 
 extern errcode intOPsub();
 extern errcode intOPgt();
@@ -162,7 +162,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } lqsort_of_t_OPS;
+} lqsort_of_t_OPS;
 
 extern errcode intOPdiv();
 extern errcode intOPadd();
@@ -870,7 +870,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } sisort_of_t_OPS;
+} sisort_of_t_OPS;
 
 extern errcode intOPfrom_to();
 extern errcode intOPle();

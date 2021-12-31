@@ -20,7 +20,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } quick_sort_of_t_OPS;
+} quick_sort_of_t_OPS;
 
 extern errcode intOPadd();
 extern errcode intOPsub();

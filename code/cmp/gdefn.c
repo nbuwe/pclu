@@ -7678,7 +7678,6 @@ g_typedefn(CLUREF e, CLUREF t)
 
 /**** BEGIN PROCEDURE g_opstruct ****/
 
-static CLUREF STR_typedef_040struct_173;
 static CLUREF STR_OWNPTR_040type_137owns_073;
 static CLUREF STR_OWNPTR_040op_137owns_073;
 static CLUREF STR_struct_040OP_137ENTRY_040entry_133;
@@ -7716,7 +7715,7 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
     CLUREF nm;
     CLUREF nth;
     if (g_opstruct_own_init == 0) {
-        stringOPcons("typedef struct{", CLU_1, CLUREF_make_num(15), &STR_typedef_040struct_173);
+        stringOPcons("typedef struct {", CLU_1, CLUREF_make_num(16), &STR_typedef_040struct_040_173);
         stringOPcons("long count;", CLU_1, CLUREF_make_num(11), &STR_long_040count_073);
         stringOPcons("OWNPTR type_owns;", CLU_1, CLUREF_make_num(17), &STR_OWNPTR_040type_137owns_073);
         stringOPcons("OWNPTR op_owns;", CLU_1, CLUREF_make_num(15), &STR_OWNPTR_040op_137owns_073);
@@ -7761,7 +7760,7 @@ g_opstruct(CLUREF e, CLUREF id, CLUREF ops)
 
   LINE(1143);
     {
-    err = g_envOPputl(e, STR_typedef_040struct_173);
+    err = g_envOPputl(e, STR_typedef_040struct_040_173);
     if (err != ERR_ok)
         goto ex_0;
     }

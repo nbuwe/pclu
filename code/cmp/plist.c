@@ -21,7 +21,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } p_clist_of_t_OPS;
+} p_clist_of_t_OPS;
 
 extern errcode sequenceOPnew();
 extern errcode intOPfrom_to_by();
@@ -346,7 +346,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } p_slist_of_t_OPS;
+} p_slist_of_t_OPS;
 
 extern errcode p_semi();
 
@@ -464,7 +464,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } p_list_of_t_OPS;
+} p_list_of_t_OPS;
 
 extern errcode boolOPnot();
 
@@ -606,7 +606,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } p_blist_of_t_OPS;
+} p_blist_of_t_OPS;
 
 extern errcode p_clist();
 extern const struct REQS * const p_clist_of_t_reqs;
@@ -792,7 +792,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } p_plist_of_t_OPS;
+} p_plist_of_t_OPS;
 
 static CLUREF STR__050;
 static CLUREF STR__137list_051;

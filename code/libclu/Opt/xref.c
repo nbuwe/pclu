@@ -695,7 +695,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } xref_op_find_index_of_etype_OPS;
+} xref_op_find_index_of_etype_OPS;
 
 
 typedef struct {
@@ -1662,7 +1662,7 @@ xrefOPflush(CLUREF tab)
 
 /**** END PROCEDURE flush ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

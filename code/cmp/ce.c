@@ -3294,7 +3294,7 @@ ceOPall_dus_IB_1(CLUREF iv_1, CLUREF iv_2, ceOPall_dus_LOCALS_t *locals, errcode
 
 /**** END ITERATOR BODIES for all_dus ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

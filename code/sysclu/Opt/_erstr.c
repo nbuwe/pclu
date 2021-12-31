@@ -370,7 +370,7 @@ _error_messagesOP_ernum(CLUREF msg, CLUREF *ret_1)
 
 /**** END PROCEDURE _ernum ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

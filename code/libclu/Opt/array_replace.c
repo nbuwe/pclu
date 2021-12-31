@@ -20,7 +20,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } array_replace_of_t_OPS;
+} array_replace_of_t_OPS;
 
 extern errcode intOPsub();
 extern errcode arrayOPlow();

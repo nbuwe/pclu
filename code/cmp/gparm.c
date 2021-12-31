@@ -7940,7 +7940,7 @@ parmOPmember_op(CLUREF s, CLUREF *ret_1)
 
 /**** END PROCEDURE member_op ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -10665,6 +10665,13 @@ reqsOPoutput_no_ops(CLUREF e)
 
   LINE(1641);
                     {
+                    err = g_envOPoutdent(e);
+                    if (err != ERR_ok)
+                        goto ex_0;
+                    }
+
+  LINE(1642);
+                    {
                     CLUREF T_5_1;
                     CLUREF T_5_2;
                     err = stringOPconcat(STR__175_040, this_name, &T_5_1);
@@ -10674,13 +10681,6 @@ reqsOPoutput_no_ops(CLUREF e)
                     if (err != ERR_ok)
                         goto ex_0;
                     err = g_envOPputl(e, T_5_2);
-                    if (err != ERR_ok)
-                        goto ex_0;
-                    }
-
-  LINE(1642);
-                    {
-                    err = g_envOPoutdent(e);
                     if (err != ERR_ok)
                         goto ex_0;
                     }
@@ -10716,7 +10716,7 @@ reqsOPoutput_no_ops(CLUREF e)
 
 /**** END PROCEDURE output_no_ops ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

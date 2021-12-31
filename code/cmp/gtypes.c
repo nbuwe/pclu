@@ -617,7 +617,7 @@ typOPundo_global_idn_types(void)
 
 /**** END PROCEDURE undo_global_idn_types ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -1218,7 +1218,7 @@ sigOPinit_known(void)
 
 /**** END PROCEDURE init_known ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -1397,7 +1397,7 @@ int_constOPg_emit(CLUREF e, CLUREF i)
 
 /**** END PROCEDURE g_emit ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -2575,7 +2575,7 @@ g_xrefOPflush(void)
 
 /**** END PROCEDURE flush ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -5287,7 +5287,7 @@ handlersOPadd_signal(CLUREF sig, CLUREF procname)
 
 /**** END PROCEDURE add_signal ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

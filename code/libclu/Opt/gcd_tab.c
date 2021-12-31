@@ -2343,7 +2343,7 @@ gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ret_1)
 
 /**** END PROCEDURE insert ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -3587,7 +3587,7 @@ gcd_storeOPneed(CLUREF i, CLUREF *ret_1)
 
 /**** END PROCEDURE need ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

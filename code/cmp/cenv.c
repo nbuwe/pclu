@@ -6104,7 +6104,7 @@ c_envOPadd_cond(CLUREF e, CLUREF cond, CLUREF is_exit)
 
 /**** END PROCEDURE add_cond ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

@@ -19,7 +19,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } table_of_key_OPS;
+} table_of_key_OPS;
 
 
 static const struct /* REQS */ {
@@ -34,7 +34,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } table_of_val_OPS;
+} table_of_val_OPS;
 
 extern errcode intOPlt();
 extern errcode _objOPequal();
@@ -447,7 +447,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } table_op_pcond_flush_of_u_OPS;
+} table_op_pcond_flush_of_u_OPS;
 
 
 typedef struct {
@@ -3210,7 +3210,7 @@ tableOPsizes(CLUREF t, CLUREF *ret_1)
 
 /**** END PROCEDURE sizes ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

@@ -19,7 +19,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } heap_of_t_OPS;
+} heap_of_t_OPS;
 
 extern errcode arrayOPcreate();
 extern errcode arrayOPbottom();
@@ -705,7 +705,7 @@ heapOPcopy(CLUREF x, CLUREF *ret_1)
 
 /**** END PROCEDURE copy ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

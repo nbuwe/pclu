@@ -20,7 +20,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } gc_read_of_t_OPS;
+} gc_read_of_t_OPS;
 
 extern errcode gcbOPinit();
 extern errcode gcoOPinit();
@@ -1464,7 +1464,7 @@ gcrOPmake_adv2(CLUREF ch, CLUREF o)
 
 /**** END PROCEDURE make_adv2 ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -2634,7 +2634,7 @@ gcbOPskip(CLUREF ch, CLUREF i)
 
 /**** END PROCEDURE skip ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -2938,7 +2938,7 @@ gcoOPreset(void)
 
 /**** END PROCEDURE reset ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

@@ -6367,7 +6367,7 @@ p_envOPbad(CLUREF e, CLUREF text, CLUREF why)
 
 /**** END PROCEDURE bad ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

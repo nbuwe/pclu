@@ -2369,7 +2369,7 @@ fidOPg_fid(CLUREF ret, CLUREF *ret_1)
 
 /**** END PROCEDURE g_fid ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -2669,7 +2669,7 @@ exOPget_current_end_label(CLUREF *ret_1)
 
 /**** END PROCEDURE get_current_end_label ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
@@ -3311,7 +3311,7 @@ tvOPrestore(void)
 
 /**** END PROCEDURE restore ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

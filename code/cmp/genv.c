@@ -2638,7 +2638,7 @@ g_envOPadd_find_owns(CLUREF nm, CLUREF *ret_1)
 
 /**** END PROCEDURE add_find_owns ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

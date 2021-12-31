@@ -7271,7 +7271,7 @@ dbg_infoOPvars_in_decllist(CLUREF dl, CLUREF *ret_1)
 
 /**** END PROCEDURE vars_in_decllist ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

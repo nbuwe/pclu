@@ -20,7 +20,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } gc_copy_of_t_OPS;
+} gc_copy_of_t_OPS;
 
 extern errcode _eventOPdefer();
 extern errcode _cvt();
@@ -155,7 +155,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } gc_copy_to_of_t_OPS;
+} gc_copy_to_of_t_OPS;
 
 extern errcode arrayOPelements();
 extern errcode tableOPalter();

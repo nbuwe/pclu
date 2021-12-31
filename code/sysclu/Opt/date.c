@@ -1664,7 +1664,7 @@ dateOP_gcd(CLUREF d, CLUREF tab, CLUREF *ret_1)
 
 /**** END PROCEDURE _gcd ****/
 
-typedef struct{
+typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;

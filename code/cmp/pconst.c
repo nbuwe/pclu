@@ -1654,7 +1654,7 @@ typedef struct {
     long count;
     OWNPTR type_owns;
     OWNPTR op_owns;
-    } p_order_of_t_OPS;
+} p_order_of_t_OPS;
 
 extern errcode arrayOPnew();
 extern errcode intOPle();
