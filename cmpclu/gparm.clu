@@ -1638,8 +1638,8 @@ reqs = cluster is start, preprocessing, more, parms, output,
 		      g_env$putl(e, "long count;")
 		      g_env$putl(e, "OWNPTR type_owns;")
 		      g_env$putl(e, "OWNPTR op_owns;")
-		      g_env$putl(e, "} " || this_name || "_OPS;")
 		      g_env$outdent(e)
+		      g_env$putl(e, "} " || this_name || "_OPS;")
 		      g_env$blankline(e)
 
 		      end
