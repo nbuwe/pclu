@@ -1140,7 +1140,7 @@ g_typedefn = proc (e: g_env, t: typedefn)
 
 g_opstruct = proc(e:g_env, id:idn, ops:idnlist)
     g_env$newline(e)
-    g_env$putl(e, "typedef struct{")
+    g_env$putl(e, "typedef struct {")
     g_env$indent(e)
     g_env$putl(e, "long count;")
     g_env$putl(e, "OWNPTR type_owns;")
