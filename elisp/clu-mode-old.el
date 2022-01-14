@@ -2,7 +2,6 @@
 ;; CLU mode for GNU Emacs
 ;;
 ;; clu-mode: S. Blau, February 1987
-;; clu-doc:  Boaz Ben-Zvi, January 30, 1991
 ;;
 
 (defvar clu-mode-syntax-table nil
