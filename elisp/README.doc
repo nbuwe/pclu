@@ -3,7 +3,7 @@
 
   The emacs-lisp  directory contains the files needed to put the
 CLU manual online as part of the Emacs help facility.
-  (Basically the Emacs help facility is extended with operations to support 
+  (Basically the Emacs help facility is extended with operations to support
 CLU help in a manner similar to Emacs help).
 
 --------------------------------------------------------------------------
@@ -25,7 +25,7 @@ TO USE:
 
 Just call help (normally by hitting Control-h) followed by one of the keys:
 
-1. 'd' -- for help on CLU symbols (types or operations. Examples: int$mul, 
+1. 'd' -- for help on CLU symbols (types or operations. Examples: int$mul,
 	  array, ARRAY$FILL, FILE_NAME, stream$primary_output, string$s2ac)
 2. 'g' -- for general CLU documentation topics (Examples: TERMINAL_I/O, FILE,
 	  own_variables, CLUSTERS, syntactic_sugar).
@@ -34,20 +34,20 @@ Just call help (normally by hitting Control-h) followed by one of the keys:
 
 EXAMPLE:
   You type  		 C-h d
-  Emacs prompts with	 Describe CLU symbol: 
+  Emacs prompts with	 Describe CLU symbol:
   You type		 oneof$make_  <RETURN>
   Emacs splits your screen and gives help about the operation ONEOF$MAKE_
 
 Note that:
-- case is unimportant. 
+- case is unimportant.
 - The help text is taken from the CLU manual (Appendix A in the Liskov-Guttag
   book).
 - Symbol completion works (hit the TAB key); for example, if you type ARRAY$
-  followed by TAB, you'll get a list of possible completions (all the 
+  followed by TAB, you'll get a list of possible completions (all the
   operations of ARRAY in this case).
-- If the cursor is placed on a CLU symbol when you call C-h d, emacs will 
-  propose that symbol as default; for example, if your cursor is placed 
-  someplace on "ARRAY[foo]$FILL" in your file, and you type C-h d, emacs 
+- If the cursor is placed on a CLU symbol when you call C-h d, emacs will
+  propose that symbol as default; for example, if your cursor is placed
+  someplace on "ARRAY[foo]$FILL" in your file, and you type C-h d, emacs
   will prompt with "Describe CLU symbol (default ARRAY$FILL): "; simply
   type RETURN to select this default.
 
@@ -83,7 +83,7 @@ also asks you about adding the dumped spec to the current session of the CLU
 manual).
 
      Use  M-x clu-doc-load-file  to load a dump file.
-   
+
      To make life easy: when Emacs initializes a new session of the CLU manual,
 it loads all the dump files listed in the list clu-doc-dumped-files-to-load.
 Thus, by setting this variable to the list of your dump files, you do not have
