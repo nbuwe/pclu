@@ -13,12 +13,12 @@
 
 ;;;;;    INSTALLATION
 ;; To use, you should have the CLU-DOC file installed; this files contains
-;; the CLU manual in a format similar to Emacs' DOC file. 
+;; the CLU manual in a format similar to Emacs' DOC file.
 ;;   You can set the variable  clu-doc-file-name  (in your .emacs or in this
-;; file) to the full path name of your CLU-DOC file, else you will be 
+;; file) to the full path name of your CLU-DOC file, else you will be
 ;; prompted for that name (can also be set by calling  M-x clu-doc-visit-file).
-;;   The elisp file  CLU-DOC-keys.el  (in the same directory as the CLU-DOC 
-;; file) contains keys and indexes for the CLU-DOC file; you can generate 
+;;   The elisp file  CLU-DOC-keys.el  (in the same directory as the CLU-DOC
+;; file) contains keys and indexes for the CLU-DOC file; you can generate
 ;; the CLU-DOC-keys.el yourself by typing   M-x  clu-doc-snarf-file .
 
 ;;;;;;    USE
@@ -32,29 +32,29 @@
 
 ;;;;;;    ADDING USER DEFINED  ABSTRACTIONS
 ;; You can add your user defined abstractions (i.e. procedures, iterators,
-;; and clusters+operations ) to this on-line manual facility.  Calling  
-;; M-x clu-doc-add-file would prompt you for a Clu file name to add to the 
-;; current Clu manual.  Once added, you can apply the regular CLU help 
+;; and clusters+operations ) to this on-line manual facility.  Calling
+;; M-x clu-doc-add-file would prompt you for a Clu file name to add to the
+;; current Clu manual.  Once added, you can apply the regular CLU help
 ;; operations above to the abstractions defined in your file.
-;;    For each user defined abstraction, this program extracts the definition 
+;;    For each user defined abstraction, this program extracts the definition
 ;; and all the following comments up to the beginning of the code itself.
 ;;    To add all the CLU files in some directory use M-x clu-doc-add-directory.
 ;; Note that the CLU files are identified by the suffix kept in the variable
-;; clu-doc-file-suffix (normally ".clu"), if you want to load all the files 
+;; clu-doc-file-suffix (normally ".clu"), if you want to load all the files
 ;; with different suffix (e.g., ".spc") you should modify this variable.
 ;;     LIFETIME: Once added, your definitions remain in the current Clu manual
 ;; for the rest of the Emacs session. There is no way to "erase" or "replace"
-;; definitions. Your definitions disappear when you exit emacs unless you 
+;; definitions. Your definitions disappear when you exit emacs unless you
 ;; dump them.
 ;;     DUMPING: To dump only your definitions use M-x clu-doc-dump-file. Your
 ;; definitions would be APPENDED to the dump file, so you can dump several
-;; Clu files into a single dump file. To load the dump file (i.e., add your 
-;; dumped definitions to the current Clu manual) use  M-x clu-doc-load-file 
+;; Clu files into a single dump file. To load the dump file (i.e., add your
+;; dumped definitions to the current Clu manual) use  M-x clu-doc-load-file
 ;; or set the variable  clu-doc-dumped-files-to-load  to a list of names
 ;; of dump files to be loaded with the CLU-DOC file.
-;;     TOTAL DUMPING: M-x clu-doc-total-dump  dumps the whole current CLU 
-;; manual (including any added user definitions) into a new CLU-DOC file 
-;; (and makes a new -keys.el file); the new CLU-DOC file can be used instead 
+;;     TOTAL DUMPING: M-x clu-doc-total-dump  dumps the whole current CLU
+;; manual (including any added user definitions) into a new CLU-DOC file
+;; (and makes a new -keys.el file); the new CLU-DOC file can be used instead
 ;; of the original CLU-DOC.
 
 ;;;
@@ -90,12 +90,12 @@ This is useful for editing that file.")
 
 (defvar clu-doc-file-name nil
 "*File name of the current CLU-DOC file, if null user is prompted for it.")
-;; Usually CLU-DOC should be the name used and CLU-DOC-keys.el will hold 
+;; Usually CLU-DOC should be the name used and CLU-DOC-keys.el will hold
 ;; the keys to that file.
 
 (defvar clu-doc-file-suffix ".clu" "*Suffix of Clu files")
 
-(defvar clu-doc-dumped-files-to-load nil 
+(defvar clu-doc-dumped-files-to-load nil
     "*List of clu doc files (each created by clu-doc-dump-file) that is loaded
 at initialization time into the current session of the CLU help facility")
 
@@ -151,8 +151,8 @@ at initialization time into the current session of the CLU help facility")
 ;;;   SNARF-FILE
 ;;;
 (defun clu-doc-snarf-file (file)
-  "Takes a clu-doc FILE, records the pointers into that file, and writes out 
-a list of doc pointers into FILE-keys.el.  The list is suitable for the 
+  "Takes a clu-doc FILE, records the pointers into that file, and writes out
+a list of doc pointers into FILE-keys.el.  The list is suitable for the
 clu-doc-find-entry command."
   (interactive "FMake -keys.el for file: ")
   (find-file file)
@@ -203,7 +203,7 @@ clu-doc-find-entry command."
 	  (error "File %s in not readable." file)
       (let ((keys-file (concat file "-keys.el")))
 	  (setq clu-doc-file-name file)
-	  (if (not (file-exists-p keys-file)) 
+	  (if (not (file-exists-p keys-file))
 		  (error (concat "File %s does not exist. Use "
 				 "clu-doc-snarf-file to generate it")
 			 keys-file))
@@ -217,8 +217,8 @@ clu-doc-find-entry command."
 (defun require-doc-file-in-buffer ()
     (cond ((boundp 'clu-symbols-doc) nil)  ;; already called clu-doc-visit-file
 	  ((null clu-doc-file-name)
-	   (clu-doc-visit-file 
-	    (read-file-name 
+	   (clu-doc-visit-file
+	    (read-file-name
 	     "Visit clu doc table: (default CLU-DOC) "  default-directory
 	     (concat default-directory "CLU-DOC") t)))
 	  (t (clu-doc-visit-file clu-doc-file-name)))
@@ -257,14 +257,14 @@ clu-doc-find-entry command."
 ;;;
 ;;;  FIND CLU DOC
 ;;;
-(defun clu-doc-find-symbol() 
+(defun clu-doc-find-symbol()
     "Ask for a Clu symbol. Return documentation as a Clu type or operation."
-    (interactive)  
+    (interactive)
     (clu-doc-find-entry 'symbols))
 
-(defun clu-doc-find-topic() 
+(defun clu-doc-find-topic()
     "Ask for a Clu topic (e.g. TERMINAL_I/O) . Return documentation."
-    (interactive)  
+    (interactive)
     (clu-doc-find-entry 'general))
 
 (defun clu-doc-find-entry (option)
@@ -273,10 +273,10 @@ clu-doc-find-entry command."
     (let ((completion-ignore-case  t)
 	  (till-dollar nil)
 	  (clu-table (if (eq option 'symbols) clu-symbols-doc clu-general-doc))
-	  (prompt (if (eq option 'general) "Describe CLU topic" 
+	  (prompt (if (eq option 'general) "Describe CLU topic"
 		      "Describe CLU symbol"))
-	  current-word result from-point to-point 
-	  (keep-point (point))) 
+	  current-word result from-point to-point
+	  (keep-point (point)))
 	(condition-case er  ;;; try to guess word under cursor as CLU entry
 		(progn
 		    (if (looking-at "\\$") (forward-char 1)) ;; bug when on $
@@ -293,18 +293,18 @@ clu-doc-find-entry command."
 			   (re-search-forward "\\[")
 			   (if (> (point) to-point) (error))
 			   (setq to-point (1- (point)))
-			   (setq current-word 
+			   (setq current-word
 				 (concat (buffer-substring from-point to-point)
 					 current-word)))))
 	    (error))
 	(goto-char keep-point) ;; return to original point
 	(or (and current-word (assoc (upcase current-word) clu-table))
 	    (setq current-word nil))
-	(setq prompt (if current-word (concat prompt 
+	(setq prompt (if current-word (concat prompt
 					      " (default " current-word "): ")
 			 (concat prompt ": ")))
 	(let ((symbol (completing-read prompt clu-table nil t)))
-	    (if (equal symbol "") 
+	    (if (equal symbol "")
 		    (if current-word (setq symbol current-word)  ;; default
 			(error "No default for CLU symbol")))
 	    (setq result (assoc symbol clu-table))
@@ -321,7 +321,7 @@ clu-doc-find-entry command."
 		   (with-output-to-temp-buffer "*Help*"
 		       (cond ((looking-at "B") (princ "Built-in "))
 			     ((looking-at "U") (princ "User defined "))
-			     ((looking-at "O") 
+			     ((looking-at "O")
 			      (setq till-dollar t)
 			      (princ "Operation on "))
 			     ((looking-at "GD")
@@ -340,7 +340,7 @@ clu-doc-find-entry command."
 			   (re-search-forward "\n"))
 		       (forward-char -1)
 		       (princ (buffer-substring from-point (point)))
-		       (terpri) 
+		       (terpri)
 		       (cond (till-dollar (re-search-forward "\n")  (terpri)))
 		       (setq from-point (point))
 		       (re-search-forward clu-doc-start (point-max) 'to-end)
@@ -381,13 +381,13 @@ If current point is in middle of identifier ID, return rest of ID"
     "Handle procedure defined after START-POINT (== current point). INTERNAL,
 if non-nil, is the name of the cluster"
     (let ((name (get-next-identifier))
-	  eop ) ;; end of procedure 
+	  eop ) ;; end of procedure
 	(princ clu-doc-start)
 	(if (not internal)
 		(princ (concat "UP" (upcase name) "\n"))
 	    (princ (concat "OU" (upcase internal) "$" (upcase name) "\n")))
 	(if (null (re-search-forward (concat bol "end[ \t\n]+" name) nil t))
-		(error "Procedure %s does not terminate with \"end %s\"" 
+		(error "Procedure %s does not terminate with \"end %s\""
 		       name name))
 	(setq eop (point))
 	;; search of end of header == where the code begins
@@ -410,7 +410,7 @@ if non-nil, is the name of the cluster"
 		(princ (concat "UI" (upcase name) "\n"))
 	    (princ (concat "OU" (upcase internal) "$" (upcase name) "\n")))
 	(if (null (re-search-forward (concat bol "end[ \t\n]+" name) nil t))
-		(error "Iterator %s does not terminate with \"end %s\"" 
+		(error "Iterator %s does not terminate with \"end %s\""
 		       name name))
 	(setq eoi (point))
 	;; search of end of header == where the code begins
@@ -444,11 +444,11 @@ if non-nil, is the name of the cluster"
     (let ((cluster-name (get-next-identifier))
 	  (ops nil) ;; operations of this cluster
 	  end-point ;; to be set dynamically to end of cluster header
-	  eoc ) ;; end of cluster 
+	  eoc ) ;; end of cluster
 	(princ (concat clu-doc-start "UT" (upcase cluster-name) "\n"))
 	(if (null (re-search-forward (concat bol "end[ \t\n]+" cluster-name)
 				     nil t))
-		(error "Cluster %s does not terminate with \"end %s\"" 
+		(error "Cluster %s does not terminate with \"end %s\""
 		       cluster-name cluster-name))
 	(setq eoc (point))
 	;; search of end of header == where the code begins
@@ -458,12 +458,12 @@ if non-nil, is the name of the cluster"
 	(re-search-forward "\\bis\\b")
 	;; collect names of operations (assumes at least one exists)
 	(setq ops (nreverse (get-ops ops)))    ;; also sets end-point
-	(princ (buffer-substring start-point end-point)) 
+	(princ (buffer-substring start-point end-point))
 	;; extract documentation for ops
 	(while (not (null ops))
 	    (goto-char start-point)
 	    (if (null (re-search-forward (concat bol (car ops) sep "=") eoc t))
-		    (error 
+		    (error
 		     "Operation %s declared but not found inside cluster %s"
 		     (car ops) cluster-name))
 	    (cond ((looking-at (concat sep "proc"))
@@ -472,7 +472,7 @@ if non-nil, is the name of the cluster"
 		  ((looking-at (concat sep "iter"))
 		   (re-search-backward (concat bol (car ops)))
 		   (handle-iter (point) cluster-name))
-		  (t (error 
+		  (t (error
 		      "Expecting iter or proc %s but not found in cluster %s"
 		      (car ops) cluster-name)))
 	    (setq ops (cdr ops))
@@ -482,7 +482,7 @@ if non-nil, is the name of the cluster"
 
 (defun clu-doc-add-directory (dname)
     "Add specifications of all the Clu files in directory DNAME to the current
-session of the CLU manual on-line help facility. The Clu files are all the 
+session of the CLU manual on-line help facility. The Clu files are all the
 files whose suffix matches clu-doc-file-suffix"
     (interactive "DGive name of directory with CLU files: ")
     (let ((files (directory-files dname t (concat clu-doc-file-suffix "$"))))
@@ -526,7 +526,7 @@ format) into clu-doc-temp-buffer (erasing previous contents in this buffer)."
 	))
 
 (defun clu-doc-load-buffer (doc-buf)
-    "DOC-BUF should contain file in CLU-DOC format. Adds DOC-BUF contents 
+    "DOC-BUF should contain file in CLU-DOC format. Adds DOC-BUF contents
 into the current CLU manual"
     (require-doc-file-in-buffer)
     (set-buffer clu-doc-buffer)
@@ -543,14 +543,14 @@ into the current CLU manual"
 	(forward-sexp 1)
 	(setq clu-symbols-doc
 	      (cons
-	       (cons (buffer-substring from-point (point)) 
+	       (cons (buffer-substring from-point (point))
 		     code-point)
 	       clu-symbols-doc))
 	)
     )
 
 (defun clu-doc-load-file (dumped-file)
-    "Load DUMPED-FILE into the current session of the CLU manual. 
+    "Load DUMPED-FILE into the current session of the CLU manual.
 DUMPED-FILE should have been created by clu-doc-dump-file"
     (interactive "fGive name of a CLU dump file: ")
     (setq dumped-file (expand-file-name dumped-file))
@@ -564,7 +564,7 @@ DUMPED-FILE should have been created by clu-doc-dump-file"
 (defun clu-doc-dump-file (clu-file dump-file)
     "Extracts specifications from CLU-FILE and appends them to DUMP-FILE (in
 CLU-DOC format). DUMP-FILE can be later loaded using  M-x clu-doc-load-file.
-Asks user whether these specifications should also be added to the current 
+Asks user whether these specifications should also be added to the current
 session of the Clu manual."
     (interactive "fGive name of a CLU file: \nFFile to append this dump to: ")
     (clu-doc-parse-file clu-file)
@@ -577,7 +577,7 @@ session of the Clu manual."
     )
 
 (defun clu-doc-total-dump (dfile)
-    "Dump the whole current Clu help manual into a new DFILE, also generate 
+    "Dump the whole current Clu help manual into a new DFILE, also generate
 -keys.el file. The new DFILE can be used later in lieu of CLU-DOC file"
     (interactive "FGive name for a new CLU DOC file: ")
     (setq dfile (expand-file-name dfile))
