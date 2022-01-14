@@ -177,7 +177,7 @@ clu-doc-find-entry command."
 	(set-buffer (generate-new-buffer "-keys.el"))
 	(insert ";; This file is generated automatically by clu-doc-")
 	(insert which-one "-file")
-	(insert " ; it contains \n;; pointers to entries in the file  ")
+	(insert " ; it contains\n;; pointers to entries in the file ")
 	(insert file " .\n\n")
 	(insert "(setq clu-symbols-doc '")
 	(insert (prin1-to-string symbol-list))
