@@ -222,7 +222,7 @@ clu-doc-find-entry command."
 	     "Visit clu doc table: (default CLU-DOC) "  default-directory
 	     (concat default-directory "CLU-DOC") t)))
 	  (t (clu-doc-visit-file clu-doc-file-name)))
-    (or clu-doc-buffer    ;; already set buffer for CLU-DOC
+    (or (buffer-live-p clu-doc-buffer) ;; already set buffer for CLU-DOC
 	(save-excursion
 		(set-buffer (find-file-noselect clu-doc-file-name))
 		(rename-buffer "*CLU-DOC*")
