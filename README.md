@@ -117,14 +117,6 @@ nothing refers debug info symbols and so they are not linked.
 
 # Emacs
 
-There are two emacs-related directories in the original distribution:
-`emacs` and `elisp`.  The latter seems to contain a bit more modern
-`clu-mode`, but the older version in `emacs` has support for running
-the compiler interactively.
-
-Both versions have identical `clu-doc.el` and `CLU-DOC`, but I didn't
-get about to actually try it.
-
 I fixed `elisp/clu.el` to work with modern emacs and added `font-lock`
 support.  I actually like its indentation style more, but Clu code in
 the distribution uses `cludent` style.  It would be nice to make the
