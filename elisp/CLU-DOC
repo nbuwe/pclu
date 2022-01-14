@@ -1,5 +1,5 @@
 GDSYNTAX
-We use an extended BNF grammar to define the syntax. The general form of 
+We use an extended BNF grammar to define the syntax. The general form of
 a production is
 
 	nonterminal ::= alternative | alternative | ... |	alternative
@@ -20,7 +20,7 @@ module	   ::=	{ equate } procedure
 	     |	{ equate } iterator
 	     |	{ equate } cluster
 
-procedure  ::=	idn = proc [ parms ] args [ returns ] [ signals ] [ where ] 
+procedure  ::=	idn = proc [ parms ] args [ returns ] [ signals ] [ where ]
 			routine_body
 			end idn
 
@@ -301,12 +301,12 @@ scoping unit is a body and an associated "heading."  The scoping units are
 5. from a tag or others in a tagcase statement to the end of the corresponding
    body,
 
-6. from a when or others in an except statement to the end of the 
+6. from a when or others in an except statement to the end of the
    corresponding body, and
 
 7. from the start of a type_set to its end.
 
-In this section we discuss only cases 1 - 6; the scope in a type_set is 
+In this section we discuss only cases 1 - 6; the scope in a type_set is
 discussed under Clu topic PARAMETERS.
 
 The structure of scoping units is such that if one scoping unit overlaps
@@ -398,7 +398,7 @@ defined later.)
 
 The syntax of equates is
 
-	equate	  ::=	idn = constant | idn = type_set	
+	equate	  ::=	idn = constant | idn = type_set
 
 	constant  ::=	type_spec | expression
 
@@ -451,9 +451,9 @@ to produce an immutable object of a built-in type.  Specifically this includes
 4. procedure and iterator names, including force[t] for any type t , and
 
 5. invocations of procedure operations of the built-in constant types,
-   provided that all operands and all results are constant expressions; 
-   however, we explicitly forbid the use of formal parameters as operands to 
-   invocations in constant expressions, since the values of formal parameters 
+   provided that all operands and all results are constant expressions;
+   however, we explicitly forbid the use of formal parameters as operands to
+   invocations in constant expressions, since the values of formal parameters
    are not known at compile time.
 
 The built-in constant types are null, int, real, bool, char, string, sequence
@@ -553,15 +553,15 @@ The sequence of activities in performing an invocation are as follows:
 
 2. The expressions are evaluated, from left to right.
 
-3. New variables are introduced corresponding to the formal arguments of the 
-   routine being invoked (that is, a new environment is created for the 
+3. New variables are introduced corresponding to the formal arguments of the
+   routine being invoked (that is, a new environment is created for the
    invoked routine to execute in).
 
 4. The objects resulting from evaluating the expressions (the actual arguments)
    are assigned to the corresponding new variables (the formal arguments).
    The first formal is assigned the first actual, the second formal the second
    actual, and so on.
-   The type of each expression must be included in the type of the 
+   The type of each expression must be included in the type of the
    corresponding formal argument.
 
 5. Control is transferred to the routine at the start of its body.
@@ -673,12 +673,12 @@ procedure is invoked with these arguments, and the object returned is the
 result of the entire expression.  For a more detailed discussion see Clu topic
 INVOCATION.
 
-Any procedure invocation P(E_1, ..., E_n) must satisfy two constraints: 
+Any procedure invocation P(E_1, ..., E_n) must satisfy two constraints:
 The type of P must be of the form
 
 	proctype (T_1, ..., T_n) returns (R) signals (...)
 
-and the type of each expression E_i must be included in the corresponding 
+and the type of each expression E_i must be included in the corresponding
 type T_i. The type of the entire invocation expression is given by R.
 
 Procedures can also be invoked as statements (see Clu topic
@@ -734,7 +734,7 @@ and is completely equivalent to
 
 	T$get_name (primary)
 
-where T is the type of primary .  For example, if x has type 
+where T is the type of primary .  For example, if x has type
 RT = record[first: int, second: real],  then
 
 	x.first
@@ -771,7 +771,7 @@ integer and becomes the low bound of the constructed array.  If this
 expression is omitted, the low bound is 1.  The expressions following the
 colon are evaluated to obtain the elements of the array.  They correspond
 (from left to right) to the indexes low_bound, low_bound+1, low_bound+2, ... .
-For an array of type array[T], the type of each element expression in the 
+For an array of type array[T], the type of each element expression in the
 constructor must be included in T.
 
 An array constructor is computationally equivalent to an array create
@@ -1078,7 +1078,7 @@ and is completely equivalent to the invocation statement
 
 	T$set_name(primary, expression)
 
-where T is the type of primary .  For example, if x has type 
+where T is the type of primary .  For example, if x has type
  RT = record[first: int, second: real], then
 
 	x.first := 6
@@ -1194,7 +1194,7 @@ The break statement has the form
 
 	break
 
-Its effect is to terminate execution of the smallest loop statement in which 
+Its effect is to terminate execution of the smallest loop statement in which
 it appears.
 
 GDTAGCASE_STATEMENT
@@ -1226,7 +1226,7 @@ satisfied.  The type of the expression must be some oneof or variant type T.
 The tags named in the tag_arms must be a subset of the tags of T, and no tag
 may occur more than once.  If all tags of T are present, there is no others
 arm; otherwise an others arm must be present.  Finally, on any tag_arm
-containing a declaration  (idn : type_spec), type_spec must equal (not 
+containing a declaration  (idn : type_spec), type_spec must equal (not
 include) the type specified as corresponding in T to the tag or tags
 named in the tag_arm.
 
@@ -1368,9 +1368,9 @@ has a declared variable:
 An invocation need not be surrounded by except statements that handle all
 potential exceptions.  This policy was adopted because in many cases the
 programmer can prove that a particular exception will not arise.  For example,
-the invocation  int$div (x, 7)  will never signal zero_divide. However, this 
-policy does lead to the possibility that some invocation may raise an 
-exception for which there is no handler.  To avoid this situation, every 
+the invocation  int$div (x, 7)  will never signal zero_divide. However, this
+policy does lead to the possibility that some invocation may raise an
+exception for which there is no handler.  To avoid this situation, every
 routine body is contained in an implicit except statement of the form
 
 	begin routine_body end
@@ -1523,7 +1523,7 @@ group of zero or more objects.  It has the form
 		routine_body
 		end idn
 
-where 
+where
 
 	yields ::= yields ( type_spec , ... )
 
@@ -1536,14 +1536,14 @@ OWN_VARIABLES.
 The form of an iterator is very similar to the form of a procedure.  There are
 only two differences:
 
-1. An iterator has a yields clause in its heading in place of the returns 
-   clause of a procedure. The yields clause specifies the number, order, 
-   and types of objects yielded each time the iterator produces the next 
-   item in the sequence. If zero objects are yielded, the yields clause 
+1. An iterator has a yields clause in its heading in place of the returns
+   clause of a procedure. The yields clause specifies the number, order,
+   and types of objects yielded each time the iterator produces the next
+   item in the sequence. If zero objects are yielded, the yields clause
    is omitted.
 
-2. Within the iterator body, the yield statement is used to present the 
-   caller with the next item in the sequence. An iterator terminates in the 
+2. Within the iterator body, the yield statement is used to present the
+   caller with the next item in the sequence. An iterator terminates in the
    same manner as a procedure, but it may not return any results.
 
 An iterator is an object of some iterator type.  For a nonparameterized
@@ -1558,7 +1558,7 @@ iterators is described under Clu topic FOR_STATEMENT.
 GDCLUSTERS
 
 A cluster is used to implement a new data type, distinct from any other
-built-in or user-defined data type.  The form is 
+built-in or user-defined data type.  The form is
 
 	idn = cluster	[ parms ] is idn , ... [ where ]
 	       cluster_body
@@ -1770,7 +1770,7 @@ that it exists for the life of the program, rather than being bound to the
 life of any particular routine activation.  Syntactically, own variable
 declarations must appear immediately after the equates in a routine or cluster
 body; they cannot appear in bodies nested within statements.  Own variable
-declarations have the form 
+declarations have the form
 
 	own_var	::=  own decl
 		  |  own idn : type_spec := expression
@@ -1846,11 +1846,11 @@ variables should not be used to modify the abstract behavior of a module.
  null = data type is copy, equal, similar
 
 Overview
- 
+
 The type null has exactly one, immutable object, represented by the literal
 nil. Nil is generally used as a place holder in type definitions
 using oneofs or variants.
- 
+
 OBNULL$COPY
  copy = proc (n: null) returns (null)
    effects  Returns nil.
@@ -1866,10 +1866,10 @@ using oneofs or variants.
  bool = data type is and, or, not, equal, similar, copy
 
 Overview
- 
+
 The two immutable objects of type bool, with literals true and false,
 represent logical truth values.
- 
+
 OBBOOL$AND
  and = proc (b1, b2: bool) returns (bool)
    effects  Returns the logical and of b1 and b2.
@@ -1883,7 +1883,7 @@ represent logical truth values.
  equal = proc (b1, b2: bool) returns (bool)
 OBBOOL$SIMILAR
  similar = proc (b1, b2: bool) returns (bool)
-   effects  Returns true if b1 and b2 are both true or both false; 
+   effects  Returns true if b1 and b2 are both true or both false;
 	otherwise returns false.
 OBBOOL$COPY
  copy = proc (b: bool) returns (bool)
@@ -1894,7 +1894,7 @@ represent logical truth values.
            le, ge, gt, equal, similar,copy, from_to_by, from_to, parse, unparse
 
 Overview
- 
+
 Objects of type int are immutable and are intended to model a subrange
 of the mathematical integers.  The exact range is not part of the
 language definition and can vary somewhat from implementation to
@@ -1904,8 +1904,8 @@ char_top (the number of characters). An overflow exception is signaled
 by an operation if the result would lie outside this interval.
 
 Integer literals are written as a sequence of one or more decimal digits.
- 
- 
+
+
 OBINT$ADD
  add = proc (x, y: int) returns (int) signals (overflow)
    effects  These is the standard integer addition operation. It signals
@@ -1915,31 +1915,31 @@ Integer literals are written as a sequence of one or more decimal digits.
    effects  These is the standard integer subtraction operation. It signals
 	overflow if the result would lie outside the represented interval.
 OBINT$MUL
- mul = proc (x, y: int) returns (int) signals (overflow) 
+ mul = proc (x, y: int) returns (int) signals (overflow)
    effects  These is the standard integer multiplication operation. It signals
 	overflow if the result would lie outside the represented interval.
 OBINT$MINUS
- minus = proc (x: int) returns (int) signals (overflow) 
+ minus = proc (x: int) returns (int) signals (overflow)
    effects  Returns the negative of x; signals overflow if the result
 	would lie outside the represented interval.
 OBINT$DIV
- div = proc (x, y: int) returns (int) signals (zero_divide, overflow) 
+ div = proc (x, y: int) returns (int) signals (zero_divide, overflow)
    effects  Signals zero_divide if y = 0.  Otherwise returns the integer
 	quotient of dividing x by y; signals overflow if the result
 	would lie outside the represented interval.
 OBINT$MOD
- mod = proc (x, y: int) returns (int) signals (zero_divide, overflow) 
+ mod = proc (x, y: int) returns (int) signals (zero_divide, overflow)
    effects  Signals zero_divide if y = 0.  Otherwise returns the
 	integer remainder of dividing x by y; signals overflow if
 	the result would lie outside the represented interval.
 OBINT$POWER
- power = proc (x, y: int) returns (int) signals (negative_exponent, overflow) 
+ power = proc (x, y: int) returns (int) signals (negative_exponent, overflow)
    effects  Signals negative_exponent if y < 0. Otherwise returns x^y ;
-	signals overflow if the result would lie outside the represented 
+	signals overflow if the result would lie outside the represented
 	interval.
 OBINT$ABS
- abs = proc (x: int) returns (int) signals (overflow) 
-   effects  Returns the absolute value of x; signals overflow if the 
+ abs = proc (x: int) returns (int) signals (overflow)
+   effects  Returns the absolute value of x; signals overflow if the
 	result would lie outside the represented interval.
 OBINT$MAX
  max = proc (x, y: int) returns (int)
@@ -1969,24 +1969,24 @@ Integer literals are written as a sequence of one or more decimal digits.
  copy = proc (x: int) returns (y: int)
    effects  Returns y such that x = y.
 OBINT$FROM_TO_BY
- from_to_by = iter (from, to, by: int) yields (int) 
+ from_to_by = iter (from, to, by: int) yields (int)
    effects  Yields the integers from 'from' to 'to', incrementing by 'by' each
 	time, that is, yields 'from', 'from'+'by', ... ,'from'+n*'by', where n
 	is the largest positive integer	such that 'from'+n*'by' <= ( >= when
 	'by' is negative) 'to' .
-	  If 'by' = 0, then yields 'from' indefinitely.  Yields nothing if 
+	  If 'by' = 0, then yields 'from' indefinitely.  Yields nothing if
 	'from' > 'to' and 'by' > 0, or if 'from' < 'to' and 'by' < 0.
 OBINT$FROM_TO
  from_to = iter (from, to: int) yields (int)
    effects  Identical to from_to_by('from', 'to', 1).
 OBINT$PARSE
- parse = proc (s: string) returns (int) signals (bad_format, overflow) 
+ parse = proc (s: string) returns (int) signals (bad_format, overflow)
    effects  s must be an integer literal, with an optional leading plus or
 	minus sign; if s is not of this form, signals bad_format. Otherwise
-	returns the integer corresponding to s; signals overflow if the 
+	returns the integer corresponding to s; signals overflow if the
 	result would be outside of the represented interval.
 OBINT$UNPARSE
- unparse = proc (x: int) returns (string) 
+ unparse = proc (x: int) returns (string)
    effects  Produces the string corresponding to the integer value of x,
 	preceded by a minus sign if x < 0.  Leading zeros are suppressed,
 	and there is no leading plus sign for positive integers.
@@ -1994,16 +1994,16 @@ Integer literals are written as a sequence of one or more decimal digits.
 
 BTREAL
  real = data type is add, sub, mul, minus, div, power, abs, max, min, exponent,
-	   mantissa, i2r, r2i, trunc, parse, unparse, lt, le, ge, gt, equal, 
+	   mantissa, i2r, r2i, trunc, parse, unparse, lt, le, ge, gt, equal,
 	   similar, copy
 
 Overview
 
-The type real models a subset of the mathematical real numbers. Reals are 
+The type real models a subset of the mathematical real numbers. Reals are
 immutable and are written as a mantissa with an optional exponent.
  A mantissa is either a sequence of one or more decimal digits or two
 sequences (one of which may be empty) joined by a period.
- The mantissa must contain at least one digit. An exponent is E or e, 
+ The mantissa must contain at least one digit. An exponent is E or e,
 optionally followed by + or -, followed by one or more decimal digits.
  An exponent is required if the mantissa does not contain a period.
 As is usual, _m_Ex = _m_*10^x. ( ^ stands for power )
@@ -2030,13 +2030,13 @@ digits of mantissa and no more than Exp_width digits of exponent.
 Real operations signal an exception if the result of a computation lies
 outside of D; overflow occurs if the magnitude exceeds real_max, and
 underflow occurs if the magnitude is less than real_min.
- 
+
  ( See also procedures E_FORM, F_FORM and G_FORM )
 
 OBREAL$ADD
- add = proc (x, y: real) returns (real) signals (overflow, underflow) 
+ add = proc (x, y: real) returns (real) signals (overflow, underflow)
    effects  Computes the sum z of x and y; signals overflow or underflow
-	 if z is outside of D, as explained earlier.  Otherwise returns 
+	 if z is outside of D, as explained earlier.  Otherwise returns
 	 approx(z) such that
 	(x,y >= 0 or x,y <= 0)	===> add(x,y) = approx(x+y)
 	add(x,y) = (1+epsilon)(x + y)      | epsilon | < 10^(1-p)
@@ -2044,24 +2044,24 @@ underflow occurs if the magnitude is less than real_min.
 	add(x,y) = add(y,x)
 	x <= x'  ===>  add(x,y) <= add(x',y)
 OBREAL$SUB
- sub = proc (x, y: real) returns (real) signals (overflow, underflow) 
+ sub = proc (x, y: real) returns (real) signals (overflow, underflow)
    effects  Computes x - y; the result is identical to add(x, -y).
 OBREAL$MINUS
  minus = proc (x: real) returns (real)
    effects  Returns  - x.
 OBREAL$MUL
- mul = proc (x, y: real) returns (real) signals (overflow, underflow) 
+ mul = proc (x, y: real) returns (real) signals (overflow, underflow)
    effects  Returns approx(x*y);
 	signals overflow or underflow if x*y is outside of D.
 OBREAL$DIV
- div = proc (x, y: real) returns (real) signals (zero_divide, overflow, 
-								   underflow) 
-   effects  If y = 0, signals zero_divide.  Otherwise returns 
-	approx(x/y); signals overflow or underflow if x/y is 
+ div = proc (x, y: real) returns (real) signals (zero_divide, overflow,
+								   underflow)
+   effects  If y = 0, signals zero_divide.  Otherwise returns
+	approx(x/y); signals overflow or underflow if x/y is
 	outside of D.
 OBREAL$POWER
  power = proc (x, y: real) returns (real) signals (zero_divide, complex_result,
-							 overflow, underflow) 
+							 overflow, underflow)
    effects  If x = 0 and y < 0, signals zero_divide.
 	If x < 0 and y is nonintegral, signals complex_result.  Otherwise
 	 returns an approximation to x^y ; signals overflow or underflow
@@ -2076,42 +2076,42 @@ underflow occurs if the magnitude is less than real_min.
  min = proc (x, y: real) returns (real)
    effects  Returns the smaller of x and y.
 OBREAL$EXPONENT
- exponent = proc (x: real) returns (int) signals (undefined) 
+ exponent = proc (x: real) returns (int) signals (undefined)
    effects  If x = 0, signals undefined.  Otherwise returns the exponent
 	that would be used in representing x as a literal in standard form,
 	that is, returns
 		max ({ i | abs(x) >= 10^i })
 OBREAL$MANTISSA
- mantissa = proc (x: real) returns (real) 
-   effects  Returns the mantissa of x when represented in standard form, 
+ mantissa = proc (x: real) returns (real)
+   effects  Returns the mantissa of x when represented in standard form,
 	that is, returns approx(x/10^e), where e = exponent(x). If x = 0.0,
 	returns 0.0.
 OBREAL$I2R
  i2r = proc (i: int) returns (real) signals (overflow)
    effects  Returns approx(i); signals overflow if i is not in D.
 OBREAL$R2I
- r2i = proc (x: real) returns (int) signals (overflow) 
+ r2i = proc (x: real) returns (int) signals (overflow)
    effects  Rounds x to the nearest integer and toward zero in case of a tie.
 	Signals overflow if the result lies outside the represented range of
 	integers.
 OBREAL$TRUNC
- trunc = proc (x: real) returns (int) signals (overflow) 
+ trunc = proc (x: real) returns (int) signals (overflow)
    effects  Truncates x toward zero; signals overflow if the result would
 	be outside the represented range of integers.
 OBREAL$PARSE
- parse = proc (s: string) returns (real) signals (bad_format, overflow, 
-								underflow) 
+ parse = proc (s: string) returns (real) signals (bad_format, overflow,
+								underflow)
    effects  Computes the exact value z corresponding to a real or integer
 	literal and returns approx(z).  s must be a real or integer
 	literal with an optional leading plus or minus sign; otherwise
 	signals bad_format.  Signals underflow or overflow if z is not in D.
 OBREAL$UNPARSE
- unparse = proc (x: real) returns (string) 
+ unparse = proc (x: real) returns (string)
    effects  Returns a real literal such that parse(unparse(x)) = x.
 	The general form of the literal is
 	   [ - ]  i_field.f_field  [ e +/- x_field ]
 	Leading zeros in i_field and trailing zeros in f_field are suppressed.
-	If x is integral and within the range of CLU integers, then 
+	If x is integral and within the range of CLU integers, then
 	f_field and the exponent are not present.
 	If x can be represented by a mantissa of no more than Max_width
 	digits and no exponent (that is, if -1 <= exponent(arg1) < Max_width),
@@ -2143,7 +2143,7 @@ underflow occurs if the magnitude is less than real_min.
  char = data type is i2c, c2i, lt, le, ge, gt, equal, similar, copy
 
 Overview
- 
+
 Type char provides the alphabet for text manipulation. Characters are
 immutable and form an ordered set.  Every implementation must provide at
 least 128, but no more than 512, characters; the first 128 characters are
@@ -2174,11 +2174,11 @@ escape sequences in single quotes:
 
 The escape sequences may also be written using upper case letters.
 Examples of character literals are
-  '7'  'a'  ""  '\"'  '\''  '\B'  '\177' 
+  '7'  'a'  ""  '\"'  '\''  '\B'  '\177'
 
 OBCHAR$I2C
- i2c = proc (x: int) returns (char) signals (illegal_char) 
-   effects  Returns the character corresponding the x; signals 
+ i2c = proc (x: int) returns (char) signals (illegal_char)
+   effects  Returns the character corresponding the x; signals
 	illegal_argument if x is not in the range [0, char_top].
 OBCHAR$C2I
  c2i = proc (c: char) returns (int)
@@ -2200,7 +2200,7 @@ Examples of character literals are
    effects  The standard greater-than ordering relation, where the
 	order is consistent with the numbering of characters.
 OBCHAR$EQUAL
- equal = proc (c1, c2: char) returns (bool) 
+ equal = proc (c1, c2: char) returns (bool)
    effects  The standard equal ordering relation, where the
 	order is consistent with the numbering of characters.
 OBCHAR$SIMILAR
@@ -2212,12 +2212,12 @@ Examples of character literals are
 
 
 BTSTRING
- string = data type is size, empty, concat, append, fetch, rest, indexs, 
-		indexc, substr, lt, le, ge, gt,	equal, similar, copy, c2s, 
+ string = data type is size, empty, concat, append, fetch, rest, indexs,
+		indexc, substr, lt, le, ge, gt,	equal, similar, copy, c2s,
 		s2ac, ac2s, s2sc, sc2s, chars
 
 Overview
- 
+
 Type string is used for representing text.  A string is an immutable
 sequence of zero or more characters.  The characters of a string are indexed
 sequentially starting from one.  Strings are lexicographically ordered based
@@ -2228,63 +2228,63 @@ enclosed in double quotes.  Within a string literal, a printing ASCII
 character other than double quote or backslash is represented by itself.
 Any character can be represented by using the escape sequences listed for
 characters.  Examples of string literals are
- 
-	"Item\tCost"	"altmode (\033) = \\033"	""		" " 
+
+	"Item\tCost"	"altmode (\033) = \\033"	""		" "
 
 If the result of a string operation would be a string containing more than
 int_max characters, the operation signals failure.
- 
+
 OBSTRING$SIZE
  size = proc (s: string) returns (int)
    effects  Returns the number of characters in s.
 OBSTRING$EMPTY
  empty = proc (s: string) returns (bool)
-   effects  Returns true if s is empty (contains no characters); 
+   effects  Returns true if s is empty (contains no characters);
 	otherwise returns false.
 OBSTRING$CONCAT
- concat = proc (s1, s2: string) returns (string) 
-   effects  Returns a new string containing the characters of s1 followed 
+ concat = proc (s1, s2: string) returns (string)
+   effects  Returns a new string containing the characters of s1 followed
 	by the characters of s2.  Signals failure if the new string would
 	contain more than int_max characters.
 OBSTRING$APPEND
- append = proc (s: string, c: char) returns (string) 
-   effects  Returns a new string containing the characters of s followed 
+ append = proc (s: string, c: char) returns (string)
+   effects  Returns a new string containing the characters of s followed
 	by c.  Signals failure if the new string would contain more than
 	int_max characters.
 OBSTRING$FETCH
- fetch = proc (s: string, i: int) returns (char) signals (bounds) 
+ fetch = proc (s: string, i: int) returns (char) signals (bounds)
    effects  Signals bounds if i < 1 or i > size(s); otherwise
 	returns the i-th character of s.
 OBSTRING$REST
- rest = proc (s: string, i: int) returns (string) signals (bounds) 
+ rest = proc (s: string, i: int) returns (string) signals (bounds)
    effects  Signals bounds if i < 1 or i > size(s) + 1; otherwise
 	returns a new string containing the characters s[i], s[i+1],
 	 ..., s[size(s)].
 	Note that if i = size(s)+1, rest returns the empty string.
 OBSTRING$INDEXS
- indexs = proc (s1, s2: string) returns (int) 
-   effects  If s1 occurs as a substring in s2, returns the least index 
+ indexs = proc (s1, s2: string) returns (int)
+   effects  If s1 occurs as a substring in s2, returns the least index
 	at which s1 occurs. Returns 0 if s1 does not occur in s2,
 	and 1 if s1 is the empty string.
 	  For example,
 		indexs("bc", "abcbc") = 2
 		indexs("", "abcde") = 1
 OBSTRING$INDEXC
- indexc = proc (c: char, s: string) returns (int) 
+ indexc = proc (c: char, s: string) returns (int)
    effects  If c occurs in s, returns the least index at which c occurs;
 	returns 0 if c does not occur in s.
 OBSTRING$SUBSTR
- substr = proc (s: string, at, cnt: int) returns (string) signals (bounds, 
-								negative_size) 
-   effects  If cnt < 0, signals negative_size.  If at < 1 or at > size(s)+1, 
-	signals bounds.  Otherwise returns a new string containing the 
-	characters s[at], s[at+1], ...; the new string contains 
+ substr = proc (s: string, at, cnt: int) returns (string) signals (bounds,
+								negative_size)
+   effects  If cnt < 0, signals negative_size.  If at < 1 or at > size(s)+1,
+	signals bounds.  Otherwise returns a new string containing the
+	characters s[at], s[at+1], ...; the new string contains
 	min(cnt, size - at + 1 ) characters.
 	For example,
 		substr ("abcdef", 2, 3) = "bcd"
 		substr ("abcdef", 2, 7) = "bcdef"
 		substr ("abcdef", 7, 1) = ""
-	Note that if min(cnt, size - at + 1 ) = 0, substr returns the 
+	Note that if min(cnt, size - at + 1 ) = 0, substr returns the
 	empty string.
 OBSTRING$LT
  lt = proc (s1, s2: string) returns (bool)
@@ -2315,8 +2315,8 @@ int_max characters, the operation signals failure.
 		"abca" > "abc"
 
 OBSTRING$EQUAL
- equal = proc (s1, s2: string) returns (bool) 
-   effects  This is the usual lexicographic ordering equality on strings, 
+ equal = proc (s1, s2: string) returns (bool)
+   effects  This is the usual lexicographic ordering equality on strings,
 	based on the ordering of characters.  For example,
 		"abc" < "aca"
 		"abc" < "abca"
@@ -2331,25 +2331,25 @@ int_max characters, the operation signals failure.
  c2s = proc (c: char) returns (string)
    effects  Returns a string containing c as its only character.
 OBSTRING$S2AC
- s2ac = proc (s: string) returns (array[char]) 
-   effects  Stores the characters of s as elements of a new array of 
-	characters, a. The low bound of the array is 1, the size is 
+ s2ac = proc (s: string) returns (array[char])
+   effects  Stores the characters of s as elements of a new array of
+	characters, a. The low bound of the array is 1, the size is
 	size(s), and the i-th element of the array is the i-th character
 	of s, for 1 <= i <= size(s).
 OBSTRING$AC2S
- ac2s = proc (a: array[char]) returns (string) 
+ ac2s = proc (a: array[char]) returns (string)
    effects  Does the inverse of s2ac. The result is a string with characters
-	in the same order as in a. That is, the i-th character of the 
+	in the same order as in a. That is, the i-th character of the
 	string is the ( i + low(a) - 1 ) th element of a.
 OBSTRING$S2SC
- s2sc = proc (s: string) returns (sequence[char]) 
+ s2sc = proc (s: string) returns (sequence[char])
    effects  Transforms a string into a sequence of characters. The size of the
 	sequence is size(s). The i-th element of the sequence is the i-th
 	character of s.
 OBSTRING$SC2S
- sc2s = proc (s: sequence[char]) returns (string) 
+ sc2s = proc (s: sequence[char]) returns (string)
    effects  Does the inverse of s2sc. The result is a string with characters
-	in the same order as in s. That is, the i-th character of the 
+	in the same order as in s. That is, the i-th character of the
 	string is the i-th element of s.
 OBSTRING$CHARS
  chars = iter (s: string) yields (char)
@@ -2374,13 +2374,13 @@ however, the base type of an object can be tested at runtime.
 
 
 BCARRAY
- array = data type [t: type] is create, new, predict, fill, low, high, size, 
-		empty, set_low, trim, fetch, bottom, top, store, addh, addl, 
+ array = data type [t: type] is create, new, predict, fill, low, high, size,
+		empty, set_low, trim, fetch, bottom, top, store, addh, addl,
 		remh, reml, elements, indexes, equal, similar, similar1, copy,
 		copy1, fill_copy
 
 Overview
- 
+
 Arrays are one-dimensional mutable objects that can grow and shrink
 dynamically.  Each array has a low bound and a sequence of elements that are
 indexed sequentially, starting from the low bound.  All elements of an array
@@ -2397,7 +2397,7 @@ bound can be omitted if it is 1; for example,
 creates a three-element array with low bound 1.
 
 Operations low, high, and size return the current low and high bounds and size
-of the array. For array a, size(a) is the number of elements in a, 
+of the array. For array a, size(a) is the number of elements in a,
 and   high(a) = low(a) + size(a) - 1.
 
 For any index i between the low and high bound of an array, there is a
@@ -2411,8 +2411,8 @@ type t provide certain operations.  No constraints are assumed on the
 behavior of these t operations; the behavior of the array operations is
 defined even if the t operation behaves strangely (for example, modifies
 the array being copied).
- 
- 
+
+
 OCARRAY$CREATE
  create = proc (lb: int) returns (array[t])
    effects  Returns a new, empty array with low bound lb.
@@ -2420,12 +2420,12 @@ the array being copied).
  new = proc ( ) returns (array[t])
    effects  Returns a new, empty array with low bound 1.
 OCARRAY$PREDICT
- predict = proc (lb, cnt: int) returns (array[t]) 
+ predict = proc (lb, cnt: int) returns (array[t])
    effects  Returns a new, empty array with low bound lb. Argument cnt is
-	a prediction of how many addh's or addl's are likely to be performed 
+	a prediction of how many addh's or addl's are likely to be performed
 	on this new array.
-	If cnt > 0, addh's are expected; otherwise addl's are expected. 
-	These operations may execute faster than if the array had been 
+	If cnt > 0, addh's are expected; otherwise addl's are expected.
+	These operations may execute faster than if the array had been
 	produced by calling create.
 OCARRAY$FILL
  fill = proc (lb, cnt: int, elem: t) returns (array[t]) signals (negative_size)
@@ -2446,28 +2446,28 @@ the array being copied).
    effects  Returns true if a contains no elements; otherwise returns false.
 OCARRAY$SET_LOW
  set_low = proc (a: array[t], lb: int)
-   modifies a. 
+   modifies a.
    effects Modifies the low and high bounds of a; the new low bound of a is
 	lb and the new high bound is  high(a[pre]) - low(a[pre]) + lb.
-	If the new high bound is outside the represented range of integers, 
+	If the new high bound is outside the represented range of integers,
 	signals failure and does not modify a.
 OCARRAY$TRIM
  trim = proc (a: array[t], lb, cnt: int) signals (bounds, negative_size)
-   modifies a. 
-   effects  If lb < low(a) or lb > high(a)+1, signals bounds. If cnt < 0, 
+   modifies a.
+   effects  If lb < low(a) or lb > high(a)+1, signals bounds. If cnt < 0,
 	signals negative_size.  Otherwise modifies a by removing all elements
-	with index < lb or greater than or equal to lb+cnt; the new low 
+	with index < lb or greater than or equal to lb+cnt; the new low
 	bound is lb.
 	For example, if a = array[int]$[1,2,3,4,5], then
 		trim(a, 2, 2) results in a having value [2: 2, 3]
 		trim(a, 4, 3) results in a having value [4: 4, 5]
 OCARRAY$FETCH
- fetch = proc (a: array[t], i: int) returns (t) signals (bounds) 
+ fetch = proc (a: array[t], i: int) returns (t) signals (bounds)
    effects  If i < low(a) or i > high(a), signals bounds; otherwise
 	returns the element of a with index i.
 OCARRAY$STORE
  store = proc (a: array[t], i: int, elem: t) signals (bounds)
-   modifies a. 
+   modifies a.
    effects  If i < low(a) or i > high(a), signals bounds; otherwise
 	makes elem the element of a with index i.
 OCARRAY$BOTTOM
@@ -2478,53 +2478,53 @@ the array being copied).
    effects  If a is empty, signals bounds; otherwise returns a[high(a)].
 OCARRAY$ADDH
  addh = proc (a: array[t], elem: t)
-   modifies a. 
+   modifies a.
    effects  If extending a on the high end causes the high bound or size of
 	a to be outside the defined range of integers, signals failure.
 	Otherwise extends a by 1 in the high direction and stores elem as
 	the new element.
 OCARRAY$ADDL
  addl = proc (a: array[t], elem: t) signals (overflow)
-   modifies a. 
-   effects  If extending a on the low end causes the low bound or size of 
-	a to be outside the defined range of integers, signals failure.  
-	Otherwise extends a by 1 in the low direction and stores elem as 
+   modifies a.
+   effects  If extending a on the low end causes the low bound or size of
+	a to be outside the defined range of integers, signals failure.
+	Otherwise extends a by 1 in the low direction and stores elem as
 	the new element.
 OCARRAY$REMH
  remh = proc (a: array[t]) returns (t) signals (bounds)
-   modifies a. 
-   effects  If a is empty, signals bounds.  Otherwise shrinks a by 
+   modifies a.
+   effects  If a is empty, signals bounds.  Otherwise shrinks a by
 	removing its high element and returning the removed element.
 OCARRAY$REML
  reml = proc (a: array[t]) returns (t) signals (bounds)
-   modifies a. 
-   effects  If a is empty, signals bounds.  Otherwise shrinks a by 
+   modifies a.
+   effects  If a is empty, signals bounds.  Otherwise shrinks a by
 	removing its low element and returning the removed element.
 OCARRAY$ELEMENTS
- elements = iter (a: array[t]) yields (t) 
+ elements = iter (a: array[t]) yields (t)
    effects  The effect is equivalent to the following body:
 	   for i: int in int$from_to(array[t]$low(a), array[t]$high(a)) do
 		yield (a[i])
-		end except when bounds: 
+		end except when bounds:
 			signal failure ("array bounds exception") end
 	Note that if a is not modified by the loop body, the effect is to
-	yield the elements of a, each exactly once, from the low bound to 
+	yield the elements of a, each exactly once, from the low bound to
 	the high bound.
 OCARRAY$INDEXES
- indexes = iter (a: array[t]) yields (int) 
-   effects  Yields the indexes of a from the low bound of a[pre] to the 
-	high bound of a[pre].  Note that 'indexes' is unaffected by any 
+ indexes = iter (a: array[t]) yields (int)
+   effects  Yields the indexes of a from the low bound of a[pre] to the
+	high bound of a[pre].  Note that 'indexes' is unaffected by any
 	modifications done by the loop body.
 OCARRAY$EQUAL
- equal = proc (a1, a2: array[t]) returns (bool) 
-   effects  Returns true if a1 and a2 refer to the same array object; 
+ equal = proc (a1, a2: array[t]) returns (bool)
+   effects  Returns true if a1 and a2 refer to the same array object;
 	otherwise returns false.
 OCARRAY$SIMILAR
  similar  = proc (a1, a2: array[t]) returns (bool)
    requires  t has operation
-	similar: proctype (t, t) returns (bool) 
-   effects  Returns true if a1 and a2 have the same low and high bounds 
-	and if their elements are pairwise similar as determined by 
+	similar: proctype (t, t) returns (bool)
+   effects  Returns true if a1 and a2 have the same low and high bounds
+	and if their elements are pairwise similar as determined by
 	t$similar. This operation is equivalent to the following body:
 	   at = array[t]
 	   if at$low(a1) ~= at$low(a2)  cor  at$size(a1) ~= at$size(a2)
@@ -2537,7 +2537,7 @@ the array being copied).
 OCARRAY$SIMILAR1
  similar1  = proc (a1, a2: array[t]) returns (bool)
    requires  t has operation
-	equal: proctype (t, t) returns (bool) 
+	equal: proctype (t, t) returns (bool)
    effects  Returns true if a1 and a2 have the same low and high bounds
 	and if their elements are pairwise equal as determined by t$equal.
 	 This operation works the same way as similar, except that t$equal
@@ -2545,7 +2545,7 @@ the array being copied).
 OCARRAY$COPY
  copy = proc (a: array[t]) returns (b: array[t])
    requires  t has operation
-	copy: proctype (t) returns (t) 
+	copy: proctype (t) returns (t)
    effects  Returns a new array b with the same low and high bounds as a
 	and such that each element b[i] contains t$copy(a[i]).
 	This operation is equivalent to the following body:
@@ -2555,20 +2555,20 @@ the array being copied).
 		end
 	   return (b)
 OCARRAY$COPY1
- copy1 = proc (a: array[t]) returns (b: array[t]) 
+ copy1 = proc (a: array[t]) returns (b: array[t])
    effects  Returns a new array b with the same low and high bounds as a
 	and such that each element b[i] contains the same element as \
 	a[i].
 OCARRAY$FILL_COPY
- fill_copy = proc (lb, cnt: int, elem: t) returns (array[t]) signals 
+ fill_copy = proc (lb, cnt: int, elem: t) returns (array[t]) signals
 								(negative_size)
    requires  t has operation
-	copy: proctype (t) returns (t) 
-   effects  The effect is like 'fill' except that elem is copied. 
-	If cnt < 0, signals negative_size. Otherwise returns a new array 
+	copy: proctype (t) returns (t)
+   effects  The effect is like 'fill' except that elem is copied.
+	If cnt < 0, signals negative_size. Otherwise returns a new array
 	with low bound lb and size cnt and with each element a distinct
-	copy of elem, as produced by t$copy; if the new array has high 
-	bound < int_min  or  > int_max, signals failure.  
+	copy of elem, as produced by t$copy; if the new array has high
+	bound < int_min  or  > int_max, signals failure.
 	This operation is equivalent to the following body:
 	   if cnt < 0 then signal negative_size end
 	   x: array[t] := array[t]$predict(lb, cnt)
@@ -2584,7 +2584,7 @@ the array being copied).
 		elements, indexes, equal, similar, copy, fill_copy
 
 Overview
- 
+
 Sequences are immutable sequences of elements; they always have low bound 1.
 The elements of the sequence can be indexed sequentially from 1 up to the
 size of the sequence.
@@ -2599,13 +2599,13 @@ Any operation call that attempts to access a sequence with an index that
 is not within the defined range terminates with the bounds exception.
 Any operation call that would give rise to a sequence whose size
 is greater than int_max terminates with the failure exception.
- 
+
 OCSEQUENCE$NEW
  new = proc ( ) returns (sequence[t])
    effects  Returns the empty sequence.
 OCSEQUENCE$FILL
- fill = proc (cnt: int, elem: t) returns (sequence[t]) signals (negative_size) 
-   effects  If cnt < 0, signals @i(negative_size).  Otherwise returns a 
+ fill = proc (cnt: int, elem: t) returns (sequence[t]) signals (negative_size)
+   effects  If cnt < 0, signals @i(negative_size).  Otherwise returns a
 	sequence containing cnt elements each of which is elem.
 OCSEQUENCE$SIZE
  size = proc (s: sequence[t]) returns (int)
@@ -2614,55 +2614,55 @@ is greater than int_max terminates with the failure exception.
  empty = proc (s: sequence[t]) returns (bool)
    effects  Returns true if s contains no elements; otherwise returns false.
 OCSEQUENCE$FETCH
- fetch = proc (s: sequence[t], i: int) returns (t) signals (bounds) 
+ fetch = proc (s: sequence[t], i: int) returns (t) signals (bounds)
    effects  If i < 1 or i > size(s), signals bounds.  Otherwise
 	returns the i-th element of s.
 OCSEQUENCE$BOTTOM
- bottom = proc (s: sequence[t]) returns (t) signals (bounds) 
+ bottom = proc (s: sequence[t]) returns (t) signals (bounds)
    effects  If s is empty, signals bounds. Otherwise returns s[1].
 OCSEQUENCE$TOP
  top = proc (s: sequence[t]) returns (t) signals (bounds)
    effects  If s is empty, signals bounds.  Otherwise returns s[size(s)].
 OCSEQUENCE$REPLACE
- replace = proc (s: sequence[t], i: int, elem: t) returns (sequence[t]) 
-							      signals (bounds) 
-   effects  If i < 1 or i > high(s), signals bounds.  Otherwise returns 
+ replace = proc (s: sequence[t], i: int, elem: t) returns (sequence[t])
+							      signals (bounds)
+   effects  If i < 1 or i > high(s), signals bounds.  Otherwise returns
 	a new sequence containing the same elements as s, except that elem
 	is in the i-th position.  For example,
 	   replace(sequence[int]$[2,5], 1, 6]) = [6, 5]
 OCSEQUENCE$ADDH
- addh = proc (s: sequence[t], elem: t) returns (sequence[t]) 
-   effects  Returns a new sequence containing the same elements as s 
+ addh = proc (s: sequence[t], elem: t) returns (sequence[t])
+   effects  Returns a new sequence containing the same elements as s
 	followed by one additional element, elem. If the resulting sequence
 	has size > int_max, signals failure.
 OCSEQUENCE$ADDL
- addl = proc (s: sequence[t], elem: t) returns (sequence[t]) 
+ addl = proc (s: sequence[t], elem: t) returns (sequence[t])
    effects  Returns a new sequence containing elem as the first element
-	followed by the elements of s. If the resulting sequence has 
+	followed by the elements of s. If the resulting sequence has
 	size > int_max, signals failure.
 OCSEQUENCE$REMH
- remh = proc (s: sequence[t]) returns (sequence[t]) signals (bounds) 
+ remh = proc (s: sequence[t]) returns (sequence[t]) signals (bounds)
    effects  If s is empty, signals bounds.  Otherwise returns a new sequence
 	containing all elements of s except the last one.
 OCSEQUENCE$REML
- reml = proc (s: sequence[t]) returns (sequence[t]) signals (bounds) 
+ reml = proc (s: sequence[t]) returns (sequence[t]) signals (bounds)
    effects  If s is empty, signals bounds.  Otherwise returns a new sequence
 	containing all elements of s except the first one.
 OCSEQUENCE$CONCAT
- concat = proc (s1, s2: sequence[t]) returns (sequence[t]) 
+ concat = proc (s1, s2: sequence[t]) returns (sequence[t])
    effects  Returns a new sequence containing the elements of s1 followed by
 	the elements of s2.  Signals failure if the size of the new sequence
 	is > int_max.
 OCSEQUENCE$E2S
  e2s = proc (elem: t) returns (sequence[t])
-   effects  Returns a one-element sequence containing elem as its only 
+   effects  Returns a one-element sequence containing elem as its only
 	element.
 OCSEQUENCE$A2S
  a2s = proc (a: array[t]) returns (sequence[t])
-   effects  Returns a sequence containing the elements of a in the same 
+   effects  Returns a sequence containing the elements of a in the same
 	order as in a.
 OCSEQUENCE$S2A
- s2a = proc (s: sequence[t]) returns (array[t]) 
+ s2a = proc (s: sequence[t]) returns (array[t])
    effects  Returns a new array with low bound 1 and containing the elements
 	of s in the same order as in s.
 OCSEQUENCE$ELEMENTS
@@ -2674,8 +2674,8 @@ is greater than int_max terminates with the failure exception.
 OCSEQUENCE$EQUAL
  equal = proc (s1, s2: sequence[t]) returns (bool)
    requires t has operation
-	equal: proctype (t, t) returns (bool) 
-   effects  Returns true if s1 and s2 have equal values as determined 
+	equal: proctype (t, t) returns (bool)
+   effects  Returns true if s1 and s2 have equal values as determined
 	by t$equal.
 	This operation is equivalent to the following body:
 	   qt = sequence [t]
@@ -2687,15 +2687,15 @@ is greater than int_max terminates with the failure exception.
 OCSEQUENCE$SIMILAR
  similar = proc (s1, s2: sequence[t]) returns (bool)
    requires t has operation
-	similar: proctype (t, t) returns (bool) 
-   effects  Returns true if s1 and s2 have similar values as determined 
-	by t$similar. 'Similar' works in the same way as 'equal', except 
+	similar: proctype (t, t) returns (bool)
+   effects  Returns true if s1 and s2 have similar values as determined
+	by t$similar. 'Similar' works in the same way as 'equal', except
 	that t$similar is used instead of t$equal.
 OCSEQUENCE$COPY
  copy = proc (s: sequence[t]) returns (sequence[t])
    requires t has operation
-	copy: proctype (t) returns (t) 
-   effects  Returns a new sequence containing as elements copies of the 
+	copy: proctype (t) returns (t)
+   effects  Returns a new sequence containing as elements copies of the
 	elements of s.
 	This operation is equivalent to the following body:
 	   qt = sequence[t]
@@ -2705,11 +2705,11 @@ is greater than int_max terminates with the failure exception.
 		end
 	   return (y)
 OCSEQUENCE$FILL_COPY
- fill_copy = proc (cnt: int, elem: t) returns (sequence[t]) signals 
+ fill_copy = proc (cnt: int, elem: t) returns (sequence[t]) signals
 								(negative_size)
    requires t has operation
-	copy: proctype (t) returns (t) 
-   effects  If cnt < 0, signals negative_size. Otherwise returns a new 
+	copy: proctype (t) returns (t)
+   effects  If cnt < 0, signals negative_size. Otherwise returns a new
 	sequence containing cnt elements each of which is a copy of elem.
 	This operation is equivalent to the following body:
 	   qt = sequence[t]
@@ -2719,14 +2719,14 @@ is greater than int_max terminates with the failure exception.
 		x := qt$addh(x, T$copy(elem))
 		end
 	   return (x)
- 
+
 
 BCRECORD
- record = data type [n_1 : t_1, ..., n_k: t_k] is get_ , set_ , r_gets_r, 
+ record = data type [n_1 : t_1, ..., n_k: t_k] is get_ , set_ , r_gets_r,
 		r_gets_s, equal,similar, similar1, copy, copy1
 
 Overview
- 
+
 A record is a mutable collection of one or more named objects.  The names
 are called selectors, and the objects are called components.  Different
 components may have different types.  A record type specification has the
@@ -2742,24 +2742,24 @@ same type:
 A record is created using a record constructor, such as
 	info $ {last: "Jones",   first: "John",   age: 32,  middle: "J."}
 (assuming that "info" has been equated to one of the above type specifications)
-An expression must be given for each selector, but the order and grouping of 
+An expression must be given for each selector, but the order and grouping of
 selectors need not resemble the corresponding type specification.
 
 In the following definitions of record operations, let
 	rt = record[n_1: t_1, ..., n_k: t_k]
- 
+
 OCRECORD$GET_
- get_n_[i] = proc (r: rt) returns (t_[i]) 
+ get_n_[i] = proc (r: rt) returns (t_[i])
    effects  Returns the component of r whose selector is n_i.
 	There is a get_ operation for each selector.
 
   (  rt = record[n_1: t_1, ..., n_k: t_k]  )
 OCRECORD$SET_
  set_n = proc (r: rt, e: t_[i])
-   modifies r. 
+   modifies r.
    effects  Modifies r by making the component whose selector is
 	n_[i] be e.  There is a set_ operation for each selector.
- 
+
   (  rt = record[n_1: t_1, ..., n_k: t_k]  )
 OCRECORD$R_GETS_R
  r_gets_r = proc (r1, r2: rt)
@@ -2769,62 +2769,62 @@ In the following definitions of record operations, let
   (  rt = record[n_1: t_1, ..., n_k: t_k]  )
 OCRECORD$R_GETS_S
  r_gets_s = proc (r: rt, s: st)
-   modifies r. 
-   effects  Here st is a struct type whose components have the same 
-	selectors and types as rt.  Sets each component of r to be the 
+   modifies r.
+   effects  Here st is a struct type whose components have the same
+	selectors and types as rt.  Sets each component of r to be the
 	corresponding component of s.
- 
+
   (  rt = record[n_1: t_1, ..., n_k: t_k]  )
 OCRECORD$EQUAL
- equal = proc (r1, r2: rt) returns (bool) 
-   effects  Returns true if r1 and r2 are the very same record object; 
+ equal = proc (r1, r2: rt) returns (bool)
+   effects  Returns true if r1 and r2 are the very same record object;
 	otherwise returns false.
- 
+
   (  rt = record[n_1: t_1, ..., n_k: t_k]  )
 OCRECORD$SIMILAR
  similar = proc (r1, r2: rt) returns (bool)
    requires  Each t_[i] has operation
-	similar: proctype (t_[i], t_[i]) returns (bool) 
-   effects  Returns true if r1 and r2 contain similar objects for each 
-	component as determined by the t_[i]$similar operations. 
-	The comparison is done in lexicographic order; if any comparison 
+	similar: proctype (t_[i], t_[i]) returns (bool)
+   effects  Returns true if r1 and r2 contain similar objects for each
+	component as determined by the t_[i]$similar operations.
+	The comparison is done in lexicographic order; if any comparison
 	returns false, false is returned immediately.
- 
+
   (  rt = record[n_1: t_1, ..., n_k: t_k]  )
 OCRECORD$SIMILAR1
  similar1 = proc (r1, r2: rt) returns (bool)
    requires  Each t_[i] has operation
-	equal: proctype (t_[i], t_[i]) returns (bool) 
-   effects  Returns true if r1 and r2 contain equal objects for each 
+	equal: proctype (t_[i], t_[i]) returns (bool)
+   effects  Returns true if r1 and r2 contain equal objects for each
 	component as determined by the t_[i]$equal operations. The comparison
-	is done in lexicographic order; if any comparison returns false, 
+	is done in lexicographic order; if any comparison returns false,
 	false is returned immediately.
- 
+
   (  rt = record[n_1: t_1, ..., n_k: t_k]  )
 OCRECORD$COPY1
- copy1 = proc (r: rt) returns (rt) 
-   effects  Returns a new record containing the components of r as its 
+ copy1 = proc (r: rt) returns (rt)
+   effects  Returns a new record containing the components of r as its
 	components.
 
   (  rt = record[n_1: t_1, ..., n_k: t_k]  )
 OCRECORD$COPY
  copy = proc (r: rt) returns (rt)
    requires  Each t_[i] has operation
-	copy: proctype (t_[i]) returns (t_[i]) 
-   effects  Returns a new record obtained by performing copy1(r) and then 
+	copy: proctype (t_[i]) returns (t_[i])
+   effects  Returns a new record obtained by performing copy1(r) and then
 	replacing each component with a copy of the corresponding component
 	of r. Copies are obtained by calling the t_[i]$copy operations.
 	Copying is done in lexicographic order.
- 
+
   (  rt = record[n_1: t_1, ..., n_k: t_k]  )
 
 
 BCSTRUCT
- struct = data type [n_1 : t_1, ..., n_k: t_k] is get_ , replace_ , s2r, 
+ struct = data type [n_1 : t_1, ..., n_k: t_k] is get_ , replace_ , s2r,
 		r2s, equal, similar, copy
 
 Overview
- 
+
 A struct is an immutable record. A struct type specification has the form
 	struct [ field_spec, ... ]
 where (as for records)
@@ -2834,63 +2834,63 @@ A struct is created using a struct constructor,
 which syntactically is identical to a record constructor.
 
 In the following operation descriptions,
-	st = struct[n_1: t_1, ..., n_k: t_k] 
- 
+	st = struct[n_1: t_1, ..., n_k: t_k]
+
 OCSTRUCT$GET_
- get_n_[i] = proc (s: st) returns (t_[i]) 
+ get_n_[i] = proc (s: st) returns (t_[i])
    effects  Returns the component of s whose selector is n_[i].
 	There is a get_ operation for each selector.
- 
+
   (  st = struct[n_1: t_1, ..., n_k: t_k]  )
 OCSTRUCT$REPLACE_
- replace_n_[i] = proc (s: st, e: t_[i]) returns (st) 
+ replace_n_[i] = proc (s: st, e: t_[i]) returns (st)
    effects  Returns a new struct object whose components are those of s
 	except that component n_[i] is e.
 	There is a replace_ operation for each selector.
 
   (  st = struct[n_1: t_1, ..., n_k: t_k]  )
 OCSTRUCT$S2R
- s2r = proc (s: st) returns (rt) 
+ s2r = proc (s: st) returns (rt)
    effects  Here rt is a record type whose components have the same selectors
-	and types as st.  Returns a new record object whose components are 
+	and types as st.  Returns a new record object whose components are
 	those of s.
- 
+
   (  st = struct[n_1: t_1, ..., n_k: t_k]  )
 OCSTRUCT$R2S
- r2s = proc (r: rt) returns (st) 
+ r2s = proc (r: rt) returns (st)
    effects  Here rt is a record type whose components have the same selectors
 	and types as st.  Returns a struct object whose components are those
 	of r.
- 
+
   (  st = struct[n_1: t_1, ..., n_k: t_k]  )
 OCSTRUCT$EQUAL
  equal = proc (s1, s2: st) returns (bool)
    requires  Each t_[i] has operation
-	equal: proctype (t_[i], t_[i]) returns (bool) 
-   effects  Returns true if s1 and s2 contain equal objects for each 
+	equal: proctype (t_[i], t_[i]) returns (bool)
+   effects  Returns true if s1 and s2 contain equal objects for each
 	component as determined by the t_[i]$equal operations. The comparison
-	is done in lexicographic order; if any comparison returns false, 
+	is done in lexicographic order; if any comparison returns false,
 	false is returned immediately.
- 
+
   (  st = struct[n_1: t_1, ..., n_k: t_k]  )
 OCSTRUCT$SIMILAR
  similar = proc (s1, s2: st) returns (bool)
    requires  Each t_[i] has operation
-	similar: proctype (t_[i], t_[i]) returns (bool) 
-   effects  Returns true if s1 and s2 contain similar objects for each 
-	component as determined by the t_[i]$similar operations. The 
+	similar: proctype (t_[i], t_[i]) returns (bool)
+   effects  Returns true if s1 and s2 contain similar objects for each
+	component as determined by the t_[i]$similar operations. The
 	comparison is done in lexicographic order; if any comparison returns
 	false, false is returned immediately.
- 
+
   (  st = struct[n_1: t_1, ..., n_k: t_k]  )
 OCSTRUCT$COPY
  copy = proc (s: st) returns (st)
    requires  Each t_[i] has operation
-	copy: proctype (t_[i]) returns (t_[i]) 
-   effects  Returns a struct containing a copy of each component of s; 
+	copy: proctype (t_[i]) returns (t_[i])
+   effects  Returns a struct containing a copy of each component of s;
 	copies are obtained by calling the t_[i]$copy operations.
 	Copying is done in lexicographic order.
- 
+
   (  st = struct[n_1: t_1, ..., n_k: t_k]  )
 
 
@@ -2899,7 +2899,7 @@ In the following operation descriptions,
 		v2o, equal, similar, copy
 
 Overview
- 
+
 A oneof type is a tagged, discriminated union.  A oneof is a labeled object,
 to be thought of as "one of" a set of alternatives.  The label is called the
 'tag', and the object is called the 'value'.  A oneof type specification has
@@ -2915,33 +2915,33 @@ are usually decomposed via the 'tagcase' statement.
 
 In the following descriptions of oneof operations,
 	ot = oneof[n_1 : t_1, ..., n_k: t_k]
- 
+
 OCONEOF$MAKE_
- make_n_[i] = proc (e: t_[i]) returns (ot) 
+ make_n_[i] = proc (e: t_[i]) returns (ot)
    effects  Returns a oneof object with tag n_[i] and value e.
 	There is a make_ operation for each selector.
- 
+
   (  ot = oneof[n_1 : t_1, ..., n_k: t_k]  )
 OCONEOF$IS_
- is_n_[i] = proc (o: ot) returns (bool) 
+ is_n_[i] = proc (o: ot) returns (bool)
    effects  Returns true if the tag of o is n_[i], else returns false.
 	There is an is_ operation for each selector.
- 
+
   (  ot = oneof[n_1 : t_1, ..., n_k: t_k]  )
 OCONEOF$VALUE_
- value_n_[i] = proc (o: ot) returns (t_[i]) signals (wrong_tag) 
+ value_n_[i] = proc (o: ot) returns (t_[i]) signals (wrong_tag)
    effects  If the tag of o is n_[i], returns the value of o; otherwise
 	signals wrong_tag.  There is a value_ operation for each selector.
 
   (  ot = oneof[n_1 : t_1, ..., n_k: t_k]  )
 OCONEOF$O2V
- o2v = proc (o: ot) returns (vt) 
-   effects  Here vt is a variant type with the same selectors and types as 
+ o2v = proc (o: ot) returns (vt)
+   effects  Here vt is a variant type with the same selectors and types as
 	ot.  Returns a new variant object with the same tag and value as o.
- 
+
   (  ot = oneof[n_1 : t_1, ..., n_k: t_k]  )
 OCONEOF$V2O
- v2o = proc (v: vt) returns (ot) 
+ v2o = proc (v: vt) returns (ot)
    effects  Here vt is a variant type with the same selectors and types as ot.
 	Returns a oneof object with the same tag and value as v.
 
@@ -2949,15 +2949,15 @@ In the following descriptions of oneof operations,
 OCONEOF$EQUAL
  equal = proc (o1, o2: ot) returns (bool)
    requires  Each t_[i] has operation
-	equal: proctype (t_[i], t_[i]) returns (bool) 
-   effects  Returns true if o1 and o2 have the same tag and equal values 
+	equal: proctype (t_[i], t_[i]) returns (bool)
+   effects  Returns true if o1 and o2 have the same tag and equal values
 	as determined by the equal operation of their type.
- 
+
   (  ot = oneof[n_1 : t_1, ..., n_k: t_k]  )
 OCONEOF$SIMILAR
  similar = proc (o1, o2: ot) returns (bool)
    requires  Each t_[i] has operation
-	similar: proctype (t_[i], t_[i]) returns (bool) 
+	similar: proctype (t_[i], t_[i]) returns (bool)
    effects  Returns true if o1 and o2 have the same tag and similar values
 	as determined by the similar operation of their type.
 
@@ -2965,11 +2965,11 @@ In the following descriptions of oneof operations,
 OCONEOF$COPY
  copy = proc (o: ot) returns (ot)
    requires  Each t_[i] must have operation
-	copy: proctype (t_[i]) returns (t_[i]) 
+	copy: proctype (t_[i]) returns (t_[i])
    effects  Returns a oneof object with the same tag as o and containing
 	as a value a copy of o's value; the copy is made using the copy
 	operation of the value's type.
- 
+
   (  ot = oneof[n_1 : t_1, ..., n_k: t_k]  )
 
 
@@ -2978,7 +2978,7 @@ In the following descriptions of oneof operations,
 		v_gets_v, v_gets_0, equal, similar, similar1, copy, copy1
 
 Overview
- 
+
 A variant is a mutable oneof. A variant type specification has the form
 	variant [ field_spec , ... ]
 where (as for records)
@@ -2989,28 +2989,28 @@ are usually decomposed via the 'tagcase' statement.
 
 In the following descriptions of variant operations,
 	vt = variant[n_1 : t_1, ..., n_k: t_k]
- 
+
 OCVARIANT$MAKE_
- make_n_[i] = proc (e: t_[i]) returns (vt) 
+ make_n_[i] = proc (e: t_[i]) returns (vt)
    effects  Returns a new variant object with tag n_[i] and value e.
 	There is a make_ operation for each selector.
- 
+
   (  vt = variant[n_1 : t_1, ..., n_k: t_k]  )
 OCVARIANT$CHANGE_
  change_n_[i] = proc (v: vt, e: t_[i])
-   modifies v. 
+   modifies v.
    effects  Modifies v to have tag n_[i] and value e. There is a change_
 	operation for each selector.
- 
+
   (  vt = variant[n_1 : t_1, ..., n_k: t_k]  )
 OCVARIANT$IS_
- is_n_[i] = proc (v: vt) returns (bool) 
+ is_n_[i] = proc (v: vt) returns (bool)
    effects  Returns true if the tag of v is n_[i]; otherwise returns false.
 	There is an is_ operation for each selector.
- 
+
   (  vt = variant[n_1 : t_1, ..., n_k: t_k]  )
 OCVARIANT$VALUE_
- value_n_[i] = proc (v: vt) returns (t_[i]) signals (wrong_tag) 
+ value_n_[i] = proc (v: vt) returns (t_[i]) signals (wrong_tag)
    effects  If the tag of v is n_[i], returns the value of v; otherwise
 	signals wrong_tag. There is a value_ operation for each selector.
 
@@ -3023,10 +3023,10 @@ In the following descriptions of variant operations,
   (  vt = variant[n_1 : t_1, ..., n_k: t_k]  )
 OCVARIANT$V_GETS_O
  v_gets_o = proc (v: vt, o: ot)
-   modifies  v. 
+   modifies  v.
    effects  Here ot is the oneof type with the same selectors and types as vt.
 	Modifies v to contain the same tag and value as o.
- 
+
   (  vt = variant[n_1 : t_1, ..., n_k: t_k]  )
 OCVARIANT$EQUAL
  equal = proc (v1, v2: vt) returns (bool)
@@ -3036,15 +3036,15 @@ In the following descriptions of variant operations,
 OCVARIANT$SIMILAR
  similar = proc (v1, v2: vt) returns (bool)
    requires  Each t_[i] must have operation
-	similar: proctype (t_[i], t_[i]) returns (bool) 
+	similar: proctype (t_[i], t_[i]) returns (bool)
    effects  Returns true if v1 and v2 have the same tag and similar
 	values as determined by the similar operation of their type.
- 
+
   (  vt = variant[n_1 : t_1, ..., n_k: t_k]  )
 OCVARIANT$SIMILAR1
  similar1 = proc (v1, v2: vt) returns (bool)
    requires  Each t_[i] must have operation
-	equal: proctype (t_[i], t_[i]) returns (bool) 
+	equal: proctype (t_[i], t_[i]) returns (bool)
    effects  Returns true if v1 and v2 have the same tag and equal values
 	as determined by the equal operation of their type.
 
@@ -3052,24 +3052,24 @@ In the following descriptions of variant operations,
 OCVARIANT$COPY
  copy = proc (v: vt) returns (vt)
    requires  Each t_[i] must have operation
-	copy: proctype (t_[i]) returns (t_[i]) 
+	copy: proctype (t_[i]) returns (t_[i])
    effects  Returns a variant object with the same tag as v and containing
 	as a value a copy of v's value; the copy is made using the copy
 	operation of the value's type.
- 
+
   (  vt = variant[n_1 : t_1, ..., n_k: t_k]  )
 OCVARIANT$COPY1
- copy1 = proc (v: vt) returns (vt) 
-   effects  Returns a new variant object with the same tag as v and 
+ copy1 = proc (v: vt) returns (vt)
+   effects  Returns a new variant object with the same tag as v and
 	containing v's value as its value.
- 
+
 
   (  vt = variant[n_1 : t_1, ..., n_k: t_k]  )
 
 
 
 BCPROCEDURE
-Procedures are objects created by the CLU system. The type specification for 
+Procedures are objects created by the CLU system. The type specification for
 a procedure contains most of the information stated in a procedure heading;
 a procedure type specification has the form
 
@@ -3084,13 +3084,13 @@ where
 	exception ::= name [ (type_spec , ...) ]
 
 The first list of type specifications describes the number, types, and order
-of arguments. The returns clause gives the number, types, and order of the 
-objects to be returned. The signals clause lists the exceptions raised by the 
-procedure; for each exception name, the number, types, and order of the 
+of arguments. The returns clause gives the number, types, and order of the
+objects to be returned. The signals clause lists the exceptions raised by the
+procedure; for each exception name, the number, types, and order of the
 objects to be returned are also given.
-All names used in a signals clause must be unique, and none can be failure, 
-which has a standard meaning in CLU. The ordering of exceptions is not 
-important. For example, both of the following type specifications name the 
+All names used in a signals clause must be unique, and none can be failure,
+which has a standard meaning in CLU. The ordering of exceptions is not
+important. For example, both of the following type specifications name the
 procedure type for string$substr:
 
   proctype (string, int, int) returns (string) signals (bounds, negative_size)
@@ -3098,14 +3098,14 @@ procedure type for string$substr:
 
 OCPROCEDURE$EQUAL
  equal = proc (x, y: t) returns (bool)
-   effects  Return true if and only if x and y are the same module with the 
+   effects  Return true if and only if x and y are the same module with the
 	same parameters.
 
   ( t stands for a proctype )
 
 OCPROCEDURE$SIMILAR
- similar = proc (x, y: t) returns (bool) 
-   effects  Return true if and only if x and y are the same module with the 
+ similar = proc (x, y: t) returns (bool)
+   effects  Return true if and only if x and y are the same module with the
 	same parameters.
 
   ( t stands for a proctype )
@@ -3132,24 +3132,24 @@ where
 	exception ::= name [ (type_spec , ...) ]
 
 The first list of type specifications describes the number, types, and order
-of arguments. The yields clause gives the number, types, and order of the 
+of arguments. The yields clause gives the number, types, and order of the
 objects to be yielded. The signals clause lists the exceptions raised by the
 iterator; for each exception name, the number, types, and order of the objects
 to be returned are also given.
-All names used in a signals clause must be unique, and none can be failure, 
-which has a standard meaning in CLU. The ordering of exceptions is not 
+All names used in a signals clause must be unique, and none can be failure,
+which has a standard meaning in CLU. The ordering of exceptions is not
 important.
 
 OCITERATOR$EQUAL
  equal = proc (x, y: t) returns (bool)
-   effects  Return true if and only if x and y are the same module with the 
+   effects  Return true if and only if x and y are the same module with the
 	same parameters.
 
   ( t stands for a itertype )
 
 OCITERATOR$SIMILAR
- similar = proc (x, y: t) returns (bool) 
-   effects  Return true if and only if x and y are the same module with the 
+ similar = proc (x, y: t) returns (bool)
+   effects  Return true if and only if x and y are the same module with the
 	same parameters.
 
   ( t stands for a itertype )
@@ -3166,7 +3166,7 @@ This section describes a set of standard "library" data types and procedures
 for CLU, provided primarily to support I/O. We do not consider this facility
 to be part of the language proper, but we feel the need for a set of commonly
 used functions that have some meaning on most systems.
-This facility is minimal because we wish it to be general, that is, to be 
+This facility is minimal because we wish it to be general, that is, to be
 implementable, at least in large part, under almost any operating system.
 The facility also provides a framework in which some other operations that are
 not always available can be expressed.
@@ -3239,16 +3239,16 @@ two different files.  We cannot guarantee anything about what happens to a
 file after a program obtains a stream to it.
 
 BTFILE_NAME
- file_name = data type is create, get_dir, get_name, get_suffix, get_other, 
+ file_name = data type is create, get_dir, get_name, get_suffix, get_other,
 		parse, unparse,	make_output, make_temp, equal, similar, copy
 
 Overview
- 
+
 File names are immutable objects used to name files.  The system file name
 format is viewed as consisting of four string components:
  1. directory -- specifies a file directory or device;
  2. name -- the primary name of the file (for example, "thesis");
- 3. suffix -- a name normally indicating the type of file (for example, 
+ 3. suffix -- a name normally indicating the type of file (for example,
 	"clu" for a CLU source file);
  4. other -- all other components of the system file name form.
 
@@ -3260,85 +3260,85 @@ the suffix is "lpt", and the other is "3".  In the UNIX path name
 "refman", the suffix is "r", and there is no other.)
 
 A null component has the following interpretation:
- 1. directory -- denotes the current "working" directory (for example, the 
-	"connected directory" under TOPS-20 and the "current directory" 
+ 1. directory -- denotes the current "working" directory (for example, the
+	"connected directory" under TOPS-20 and the "current directory"
 	under UNIX).
- 2. name -- may be illegal, have a unique interpretation, or be ignored (for 
-	example, under TOPS-20, a null name is illegal for most directories, 
+ 2. name -- may be illegal, have a unique interpretation, or be ignored (for
+	example, under TOPS-20, a null name is illegal for most directories,
 	but for some devices the name is ignored);
  3. suffix -- may be illegal, have a unique interpretation, or be ignored (for
 	example, under TOPS-20, a null suffix is legal, as in "<rws>foo");
  4. other -- should imply a reasonable default.
 
-See also documentation for Clu operations WORKING_DIR, SET_WORKING_DIR, 
+See also documentation for Clu operations WORKING_DIR, SET_WORKING_DIR,
 DELETE_FILE and RENAME_FILE.
- 
+
 OBFILE_NAME$CREATE
  create = proc (dir, name, suffix, other: string) returns (file_name)
-			signals (bad_format) 
+			signals (bad_format)
    effects  Creates a new file name from its components; if any component is
 	not in the form required by the underlying system, signals bad_format.
-	In the process of creating a file name, the string arguments may be 
+	In the process of creating a file name, the string arguments may be
 	transformed -- for example, by truncation or case-conversion.
 
 OBFILE_NAME$GET_DIR
  get_dir = proc (fn: file_name) returns (string)
    effects  Return the string form of the directory component of fn. (Note that
-	the riginal name given to FILE_NAME$CREATE may be truncated or 
+	the riginal name given to FILE_NAME$CREATE may be truncated or
 	case-converted).
 OBFILE_NAME$GET_NAME
  get_name = proc (fn: file_name) returns (string)
    effects  Return the string form of the name component of fn. (Note that
-	the riginal name given to FILE_NAME$CREATE may be truncated or 
+	the riginal name given to FILE_NAME$CREATE may be truncated or
 	case-converted).
 OBFILE_NAME$GET_SUFFIX
  get_suffix = proc (fn: file_name) returns (string)
    effects  Return the string form of the suffix component of fn. (Note that
-	the riginal name given to FILE_NAME$CREATE may be truncated or 
+	the riginal name given to FILE_NAME$CREATE may be truncated or
 	case-converted).
 
 OBFILE_NAME$GET_OTHER
- get_other = proc (fn: file_name) returns (string) 
+ get_other = proc (fn: file_name) returns (string)
    effects  Return the string form of the other components of fn. (Note that
-	the riginal name given to FILE_NAME$CREATE may be truncated or 
+	the riginal name given to FILE_NAME$CREATE may be truncated or
 	case-converted).
 
 OBFILE_NAME$PARSE
- parse = proc (s: string) returns (file_name) signals (bad_format) 
-   effects  This operation creates a file name given a string in the system 
+ parse = proc (s: string) returns (file_name) signals (bad_format)
+   effects  This operation creates a file name given a string in the system
 	standard file name syntax.
- 
+
 OBFILE_NAME$UNPARSE
- unparse = proc (fn: file_name) returns (string) 
-   effects  This operation transforms a file name into the system standard 
+ unparse = proc (fn: file_name) returns (string)
+   effects  This operation transforms a file name into the system standard
 	file name syntax. We require that
 		parse(unparse(fn)) = fn
 		create(fn.dir, fn.name, fn.suffix, fn.other) = fn
 	for all file names @i(fn).  One implication of this rule is that there
 	can be no file name that can be created by create but not by parse; if
-	a system does have file names that have no string representation in 
-	the system standard file name syntax, create must reject those file 
+	a system does have file names that have no string representation in
+	the system standard file name syntax, create must reject those file
 	names as having a bad format.  Alternatively, the file name syntax can
 	be extended so that it can express all possible file names.
 
 OBFILE_NAME$MAKE_OUTPUT
  make_output = proc (fn: file_name, suffix: string) returns (file_name)
-			signals (bad_format) 
+			signals (bad_format)
    effects  This operation is used by programs that take input from a file and
-	write new files whose names are based on the input file name. The 
-	operation transforms the file name into one that is suitable for an 
-	output file.  The transformation is done as follows: 
+	write new files whose names are based on the input file name. The
+	operation transforms the file name into one that is suitable for an
+	output file.  The transformation is done as follows:
 	  (1) the suffix is set to 'suffix';
-	  (2) if the old directory is not suitable for writing, it is set to 
+	  (2) if the old directory is not suitable for writing, it is set to
 	      null;
 	  (3) the name, if null and meaningless, is set to "output".
-	(Examples of directories that may not be suitable for writing are 
+	(Examples of directories that may not be suitable for writing are
 	directories that involve transferring files over a slow network.)
 
 OBFILE_NAME$MAKE_TEMP
- make_temp = proc (dir, prog, file_id: string) returns (file_name) 
-							signals (bad_format) 
-   effects  This operation creates a file name appropriate for a temporary 
+ make_temp = proc (dir, prog, file_id: string) returns (file_name)
+							signals (bad_format)
+   effects  This operation creates a file name appropriate for a temporary
 	file, using the given preferred directory name (dir), program name
 	(prog), and file identifier (file_id). To be useful, both prog and
 	file_id should be short and alphabetic. The returned file name,
@@ -3349,8 +3349,8 @@ DELETE_FILE and RENAME_FILE.
 	the name returned by the STREAM$GET_NAME or ISTREAM$GET_NAME .
 
 OBFILE_NAME$EQUAL
- equal = proc (fn1, fn2: file_name) returns (bool) 
-   effects  Returns true if and only if the two file_names will unparse to 
+ equal = proc (fn1, fn2: file_name) returns (bool)
+   effects  Returns true if and only if the two file_names will unparse to
 	equal strings.
 OBFILE_NAME$SIMILAR
  similar = proc (fn1, fn2: file_name) returns (bool)
@@ -3360,21 +3360,21 @@ DELETE_FILE and RENAME_FILE.
    effects  Returns a file_name that is equal to fn.
 
 BTSTREAM
- stream = data type is open, primary_input, primary_output, error_output, 
-		can_read, can_write, reset, flush, close, abort, is_closed, 
-		is_terminal, getc, peekc, empty, getl, gets, putc, putl, puts, 
-		putzero, putleft, putright, putspace, getc_image, putc_image, 
-		puts_image, gets_image, get_lineno, set_lineno, 
+ stream = data type is open, primary_input, primary_output, error_output,
+		can_read, can_write, reset, flush, close, abort, is_closed,
+		is_terminal, getc, peekc, empty, getl, gets, putc, putl, puts,
+		putzero, putleft, putright, putspace, getc_image, putc_image,
+		puts_image, gets_image, get_lineno, set_lineno,
 		get_line_length, get_page_length, get_date, set_date,
-		get_name, set_output_buffered, get_output_buffered, equal, 
-		similar, copy, 
+		get_name, set_output_buffered, get_output_buffered, equal,
+		similar, copy,
 		create_input, create_output, get_contents,     % string I/O
 		get_buf, get_prompt, set_prompt,           % terminal I/O
 		get_input_buffered, set_input_buffered,    % terminal I/O
 		add_script, rem_script, unscript    % scripting
 
 Overview
- 
+
 Streams provide the means to read and write text files and to perform some
 other operations on file objects.  The operations allowed on any particular
 stream depend upon the access mode.  In addition, certain operations may have
@@ -3391,38 +3391,38 @@ user at a terminal, and to record input/output in one stream on another.
 These operations are described in subsequent sections.
 
 OBSTREAM$OPEN
- open = proc (fn: file_name, mode: string) returns (stream) 
+ open = proc (fn: file_name, mode: string) returns (stream)
 						signals (not_possible(string))
-   effects  Opens a stream to fn in the given mode. The possible access modes 
+   effects  Opens a stream to fn in the given mode. The possible access modes
 	are "read", "write", and "append". If mode is not one of these strings,
-	not_possible("bad access mode") is signaled. In those cases where the 
-	system is able to detect that the specified preexisting file is not a 
-	text file, not_possible("wrong file type") is signaled. If mode is 
-	"read", the named file must exist and a stream is returned upon which 
+	not_possible("bad access mode") is signaled. In those cases where the
+	system is able to detect that the specified preexisting file is not a
+	text file, not_possible("wrong file type") is signaled. If mode is
+	"read", the named file must exist and a stream is returned upon which
 	input operations can be performed.
 	If mode is "write", a new file is created or an old file is rewritten.
 	A stream is returned upon which output operations can be performed.
-	Write mode to storage files should guarantee exclusive access to the 
-	file, if possible. 
-	If mode is "append" and if the named file does not exist, one is 
-	created.  A stream is returned, positioned at the end of the file, 
+	Write mode to storage files should guarantee exclusive access to the
+	file, if possible.
+	If mode is "append" and if the named file does not exist, one is
+	created.  A stream is returned, positioned at the end of the file,
 	upon which output operations can be performed. Append mode to storage
 	files should guarantee exclusive access to the file, if possible.
 
 OBSTREAM$PRIMARY_INPUT
- primary_input = proc( ) returns (stream) 
-   effects  Returns the "primary" input stream, suitable for reading. This is 
-	usually a stream to the user's terminal, but may be set by the 
+ primary_input = proc( ) returns (stream)
+   effects  Returns the "primary" input stream, suitable for reading. This is
+	usually a stream to the user's terminal, but may be set by the
 	operating system.
 OBSTREAM$PRIMARY_OUTPUT
- primary_output = proc( ) returns (stream) 
+ primary_output = proc( ) returns (stream)
    effects  Returns the "primary" output stream, suitable for writing. This is
-	usually a stream to the user's terminal, but may be set by the 
+	usually a stream to the user's terminal, but may be set by the
 	operating system.
 OBSTREAM$ERROR_OUTPUT
- error_output = proc( ) returns (stream) 
-   effects  Returns the "primary" output stream for error messages, suitable 
-	for writing. This is usually a stream to the user's terminal, but may 
+ error_output = proc( ) returns (stream)
+   effects  Returns the "primary" output stream for error messages, suitable
+	for writing. This is usually a stream to the user's terminal, but may
 	be set by the operating system.
 OBSTREAM$CAN_READ
  can_read = proc (s: stream) returns (bool)
@@ -3431,147 +3431,147 @@ These operations are described in subsequent sections.
  can_write = proc (s: stream) returns (bool)
    effects  Returns true if output operations appear possible on s.
 OBSTREAM$GETC
- getc = proc (s: stream) returns (char) 
+ getc = proc (s: stream) returns (char)
 				signals (end_of_file, not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Removes the next character from s and returns it.
 	Signals end_of_file if there are no more characters.
 OBSTREAM$PEEKC
- peekc = proc (s: stream) returns (char) 
-				signals (end_of_file, not_possible(string)) 
-   effects  This input operation is like STREAM$GETC, except that the 
+ peekc = proc (s: stream) returns (char)
+				signals (end_of_file, not_possible(string))
+   effects  This input operation is like STREAM$GETC, except that the
 	character is not removed from s.
 OBSTREAM$EMPTY
- empty = proc (s: stream) returns (bool) signals (not_possible(string)) 
-   effects  Returns true if and only if there are no more characters in the 
+ empty = proc (s: stream) returns (bool) signals (not_possible(string))
+   effects  Returns true if and only if there are no more characters in the
 	stream.  It is equivalent to an invocation of STREAM$PEEKC, where true
 	is returned if PEEKC returns a character and false is returned if
 	PEEKC signals end_of_file. Thus in the case of terminals, for example,
-	this operation may wait until additional characters have been 
+	this operation may wait until additional characters have been
 	typed by the user.
 OBSTREAM$GETL
- getl = proc (s: stream) returns (string) 
+ getl = proc (s: stream) returns (string)
 				signals (end_of_file, not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Reads and returns (the remainder of) the current input line and
 	reads but does not return the terminating newline (if any).
-	This operation signals end_of_file only if there are no characters 
+	This operation signals end_of_file only if there are no characters
 	and end-of-file is detected.
 OBSTREAM$GETS
  gets = proc (s: stream, term: string) returns (string)
 				signals (end_of_file, not_possible(string))
-   modifies  s. 
-   effects  Reads characters until a terminating character (one in term) or 
+   modifies  s.
+   effects  Reads characters until a terminating character (one in term) or
 	end-of-file is seen. The characters up to the terminator are returned;
 	the terminator (if any) is left in the stream. Signals end_of_file
 	only if there are no characters and end-of-file is detected.
 OBSTREAM$PUTC
  putc = proc (s: stream, c: char) signals (not_possible(string))
-   modifies  s. 
-   effects  Appends c to s. Writing a newline indicates the end of the 
+   modifies  s.
+   effects  Appends c to s. Writing a newline indicates the end of the
 	current line.
 OBSTREAM$PUTL
  putl = proc (s: stream, str: string) signals (not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Writes the characters of @i(str) onto s, followed by a newline.
 OBSTREAM$PUTS
  puts = proc (s: stream, str: string) signals (not_possible(string))
-   modifies  s. 
-   effects  Writes the characters in str using STREAM$PUTC. Naturally it may 
+   modifies  s.
+   effects  Writes the characters in str using STREAM$PUTC. Naturally it may
 	be somewhat more efficient than doing a series of individual PUTCs.
 OBSTREAM$PUTZERO
  putzero = proc (s: stream, str: string, cnt: int)
 			signals (negative_field_width, not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Outputs str. However, if the length of str is less than cnt,
 	outputs   cnt - length(str)   zeros before the first digit or period
 	in the string (or at the end, if no such characters).
 OBSTREAM$PUTLEFT
  putleft = proc (s: stream, str: string, cnt: int)
 			signals (negative_field_width, not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Outputs str. However, if the length of str is less than cnt,
 	outputs   cnt - length(str)   spaces after the string.
 OBSTREAM$PUTRIGHT
  putright = proc (s: stream, str: string, cnt: int)
 			signals (negative_field_width, not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Outputs str. However, if the length of str is less than cnt,
 	outputs    cnt - length(str)   spaces before the string.
 OBSTREAM$PUTSPACE
- putspace = proc (s: stream, cnt: int) 
+ putspace = proc (s: stream, cnt: int)
 			signals (negative_field_width, not_possible(string))
    modifies  s.
    effects  Outputs cnt spaces on s.
 OBSTREAM$PUTC_IMAGE
  putc_image = proc (s: stream, c: char)  signals (not_possible(string))
-   modifies  s. 
-   effects  Like STREAM$PUTC, except that an arbitrary character may be 
+   modifies  s.
+   effects  Like STREAM$PUTC, except that an arbitrary character may be
 	written and the character is not interpreted by the CLU I/O system.
 	(For example, the ITS XGP program expects a text file containing
-	certain escape sequences.  An escape sequence consists of a special 
-	character followed by a fixed number of arbitrary characters.  
-	These characters could be the same as an end-of-line mark, but they 
+	certain escape sequences.  An escape sequence consists of a special
+	character followed by a fixed number of arbitrary characters.
+	These characters could be the same as an end-of-line mark, but they
 	are recognized as data by their context.
 	On a record-oriented system, such characters would be part of the data.
-	In either case, writing a newline in image mode would not be 
+	In either case, writing a newline in image mode would not be
 	interpreted by the CLU system as indicating an end-of-line.)
-	Characters written to a terminal stream with this operation can be 
+	Characters written to a terminal stream with this operation can be
 	used to cause terminal-dependent control functions.
 OBSTREAM$GETC_IMAGE
- getc_image = proc (s: stream) returns (char) 
+ getc_image = proc (s: stream) returns (char)
 				signals (end_of_file, not_possible(string))
-   modifies  s. 
-   effects  Provided to read escape sequences in text files, as might be 
+   modifies  s.
+   effects  Provided to read escape sequences in text files, as might be
 	written using STREAM$PUTC_IMAGE.  Using this operation inhibits the
 	recognition of end-of-line marks, where used.  When reading from a
 	terminal stream, the character is not echoed and is not subject to
 	interpretation as an editing command.
 OBSTREAM$PUTS_IMAGE
  puts_image = proc (s: stream, str: string) signals (not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Writes the characters in str using STREAM$PUTC_IMAGE. Naturally
 	it may be somewhat more efficient than doing a series of individual
 	PUTC_IMAGEs.
 OBSTREAM$GETS_IMAGE
  gets_image = proc (s: stream, str: string) returns (string)
 				signals (end_of_file, not_possible(string))
-   modifies  s. 
-   effects  Reads characters until a terminating character (one in str) or 
-	end-of-file is seen. Using this operation inhibits the recognition 
+   modifies  s.
+   effects  Reads characters until a terminating character (one in str) or
+	end-of-file is seen. Using this operation inhibits the recognition
 	of end-of-line marks, where used.  When reading from a terminal stream,
-	the characters read are not echoed and are not subject to 
+	the characters read are not echoed and are not subject to
 	interpretation as editing commands.
-	The characters up to the terminator are returned; the terminator (if 
+	The characters up to the terminator are returned; the terminator (if
 	any) is left in the stream.
-	This operation signals end_of_file only if there are no characters 
+	This operation signals end_of_file only if there are no characters
 	and end-of-file is detected.
 OBSTREAM$RESET
  reset = proc (s: stream) signals (not_possible(string))
-   modifies  s. 
-   effects  Resets s so that the next input or output operation will read 
+   modifies  s.
+   effects  Resets s so that the next input or output operation will read
 	or write the first character in the file. The line number is reset
-	to its initial value. The end-of-file status is cleared on a 
+	to its initial value. The end-of-file status is cleared on a
 	terminal stream.
 OBSTREAM$FLUSH
  flush = proc (s: stream) signals (not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Any output buffered on s is written to the file, if possible. This
-	operation should be used for streams that record the progress of a 
-	program. It can be used to maximize the amount of recorded status 
+	operation should be used for streams that record the progress of a
+	program. It can be used to maximize the amount of recorded status
 	visible to the user or available in case the program terminates
 	prematurely.
 OBSTREAM$CLOSE
  close = proc (s: stream) signals (not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Attempts to terminate I/O and remove the association between
-	the stream and the file.  If successful, further use of operations 
+	the stream and the file.  If successful, further use of operations
 	that signal not_possible will signal not_possible.
 	This operation will fail if buffered output cannot be written.
 OBSTREAM$ABORT
  abort = proc (s: stream)
-   modifies  s. 
-   effects  Terminates I/O and removes the association between the stream 
+   modifies  s.
+   effects  Terminates I/O and removes the association between the stream
 	and the file.
 	If buffered output cannot be written, it will be lost, and if a new
 	file is being written, it may or may not exist.
@@ -3579,63 +3579,63 @@ These operations are described in subsequent sections.
  is_closed = proc (s: stream) returns (bool)
    effects  Returns true if and only if the stream is closed.
 OBSTREAM$IS_TERMINAL
- is_terminal = proc (s: stream) returns (bool) 
+ is_terminal = proc (s: stream) returns (bool)
    effects  Returns true if and only if the stream is attached to
 	an interactive terminal (see TERMINAL_I/O).
 OBSTREAM$GET_LINENO
- get_lineno = proc (s: stream) returns (int) 
-				signals (end_of_file, not_possible(string)) 
+ get_lineno = proc (s: stream) returns (int)
+				signals (end_of_file, not_possible(string))
    effects  Returns the line number of the current (being or about to be read)
 	line.  If the system maintains explicit line numbers in the file,
 	said line numbers are returned.  Otherwise lines are implicitly
 	numbered, starting with 1.
 OBSTREAM$SET_LINENO
  set_lineno = proc (s: stream, num: int) signals (not_possible(string))
-   modifies  s. 
-   effects  If the system maintains explicit line numbers in the file, sets 
+   modifies  s.
+   effects  If the system maintains explicit line numbers in the file, sets
 	the line number of the next (not yet started) line to num. Otherwise
 	it is ignored.
 OBSTREAM$GET_LINE_LENGTH
- get_line_length = proc (s: stream) returns (int) signals (no_limit) 
-   effects  If the file or device to which the stream is attached has a 
-	natural maximum line length, that length is returned. Otherwise 
-	no_limit is signaled.  The line length does not include newline 
+ get_line_length = proc (s: stream) returns (int) signals (no_limit)
+   effects  If the file or device to which the stream is attached has a
+	natural maximum line length, that length is returned. Otherwise
+	no_limit is signaled.  The line length does not include newline
 	characters.
 OBSTREAM$GET_PAGE_LENGTH
- get_page_length = proc (s: stream) returns (int) signals (no_limit) 
-   effects  If the device to which the stream is attached has a natural 
-	maximum page length, that length is returned. Otherwise no_limit is 
+ get_page_length = proc (s: stream) returns (int) signals (no_limit)
+   effects  If the device to which the stream is attached has a natural
+	maximum page length, that length is returned. Otherwise no_limit is
 	signaled.  Storage files will generally not have page lengths.
 OBSTREAM$GET_DATE
- get_date = proc (s: stream) returns (date) signals (not_possible(string)) 
-   effects  Returns the date of the last modification of the corresponding 
+ get_date = proc (s: stream) returns (date) signals (not_possible(string))
+   effects  Returns the date of the last modification of the corresponding
 	storage file.
 OBSTREAM$SET_DATE
  set_date = proc (s: stream, d: date) signals (not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Sets the modification date of the corresponding storage file.
 	The modification date is set automatically when a file is opened in
 	"write" or "append" mode.
 OBSTREAM$GET_NAME
  get_name = proc (s: stream) returns (file_name) signals (not_possible(string))
    effects  Returns the name of the corresponding file.  It may be different
-	than the name used to open the file, in that defaults have been 
+	than the name used to open the file, in that defaults have been
 	resolved and link indirections have been followed.
 OBSTREAM$SET_OUTPUT_BUFFERED
  set_output_buffered = proc (s: stream, b: bool) signals (not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Sets the output buffering mode. Normally output may be arbitrarily
-	buffered before it is actually written out. Unbuffered output can be 
-	used on some systems to decrease the amount of information lost if 
+	buffered before it is actually written out. Unbuffered output can be
+	used on some systems to decrease the amount of information lost if
 	the program terminates prematurely.
-	For terminal streams, unbuffered output is useful in programs that 
+	For terminal streams, unbuffered output is useful in programs that
 	output incomplete lines as they are working to allow the user to watch
 	the progress of the program.
 OBSTREAM$GET_OUTPUT_BUFFERED
- get_output_buffered = proc (s: stream) returns (bool) 
+ get_output_buffered = proc (s: stream) returns (bool)
    effects  Returns true if and only if output to the stream is being buffered.
 OBSTREAM$EQUAL
- equal = proc (s1, s2: stream) returns (bool) 
+ equal = proc (s1, s2: stream) returns (bool)
    effects  Returns true if and only if both arguments are the same stream.
 OBSTREAM$SIMILAR
  similar = proc (s1, s2: stream) returns (bool)
@@ -3658,24 +3658,24 @@ The following stream operations deal with string streams:
   STREAM$CREATE_INPUT, STREAM$CREATE_OUTPUT and STREAM$GET_CONTENTS.
 
 OBSTREAM$CREATE_INPUT
- create_input = proc (s: string) returns (stream) 
+ create_input = proc (s: string) returns (stream)
    effects  An input stream is created that will return the characters in the
-	given string.  If the string is nonempty and does not end with a 
+	given string.  If the string is nonempty and does not end with a
 	newline, an extra terminating newline will be appended to the string.
 
  ( See documentation for Clu topic STRING_I/O ).
 
 OBSTREAM$CREATE_OUTPUT
- create_output = proc( ) returns (stream) 
+ create_output = proc( ) returns (stream)
    effects  An output stream is created that will collect output text in an
 	internal buffer. The text may be extracted using STREAM$GET_CONTENTS.
 
  ( See documentation for Clu topic STRING_I/O ).
 
 OBSTREAM$GET_CONTENTS
- get_contents = proc (s: stream) returns (string) 
-					signals (not_possible(string)) 
-   effects  Returns the text that has so far been output to s.	Signals 
+ get_contents = proc (s: stream) returns (string)
+					signals (not_possible(string))
+   effects  Returns the text that has so far been output to s.	Signals
 	not_possible if the stream was not created by STREAM$CREATE_INPUT.
 
  ( See documentation for Clu topic STRING_I/O ).
@@ -3733,16 +3733,16 @@ operations are provided:
 OBSTREAM$GETBUF
  getbuf = proc (s: stream, str: string) returns (string)
 				signals (end_of_file, not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  This operation is the same as STREAM$GETS, but for terminals with
-	input buffering, the new input read by getbuf is buffered as a unit, 
-	rather than a line at a time, allowing input editing of the entire 
+	input buffering, the new input read by getbuf is buffered as a unit,
+	rather than a line at a time, allowing input editing of the entire
 	text.
 
   ( See documentation for Clu topic TERMINAL_I/O )
 
 OBSTREAM$GET_PROMPT
- get_prompt = proc (s: stream) returns (string) 
+ get_prompt = proc (s: stream) returns (string)
    effects  Returns the current prompt string.  The prompt string is initially
 	empty ("").  The empty string is returned for nonterminal streams.
 
@@ -3750,14 +3750,14 @@ operations are provided:
 
 OBSTREAM$SET_PROMPT
  set_prompt = proc (s: stream. str: string)
-   modifies  s. 
+   modifies  s.
    effects  Sets the string to be used for prompting to str.  For nonterminal
 	streams there is no effect.
 
   ( See documentation for Clu topic TERMINAL_I/O )
 
 OBSTREAM$GET_INPUT_BUFFERED
- get_input_buffered = proc (s: stream) returns (bool) 
+ get_input_buffered = proc (s: stream) returns (bool)
    effects  Returns true if and only if s is attached to a terminal and input
 	is being buffered.
 
@@ -3765,13 +3765,13 @@ operations are provided:
 
 OBSTREAM$SET_INPUT_BUFFERED
  set_input_buffered = proc (s: stream, b: bool) signals (not_possible(string))
-   modifies  s. 
-   effects  Sets the input buffering mode. Only buffered terminal input is 
+   modifies  s.
+   effects  Sets the input buffering mode. Only buffered terminal input is
 	subject to editing.
 
   ( See documentation for Clu topic TERMINAL_I/O )
 
-GDSCRIPTING 
+GDSCRIPTING
 Streams provide a mechanism for recording the input and/or output from one
 stream onto any number of other streams.  This can be particularly useful in
 recording terminal sessions.  The following additional operations are
@@ -3781,13 +3781,13 @@ provided:
 
 OBSTREAM$ADD_SCRIPT
  add_script = proc (s1, s2: stream) signals (script_failed)
-   modifies  s1. 
-   effects  Adds s2 as a script stream of s1. All subsequent input from and 
+   modifies  s1.
+   effects  Adds s2 as a script stream of s1. All subsequent input from and
 	output to s1 will also be output to s2.  Not_possible exceptions
 	that arise in actually outputting to s2 will be ignored.
-	This operation will fail if s2 cannot be written to or if either 
+	This operation will fail if s2 cannot be written to or if either
 	stream is a direct or indirect script stream of the other.
- 
+
   ( See documentation for Clu topic SCRIPTING )
 
 OBSTREAM$REM_SCRIPT
@@ -3804,12 +3804,12 @@ provided:
   ( See documentation for Clu topic SCRIPTING )
 
 BTISTREAM
- istream = data type is open, can_read, can_write, empty, reset, flush,	
-		get_date, set_date, get_name, close, abort, is_closed, 
+ istream = data type is open, can_read, can_write, empty, reset, flush,
+		get_date, set_date, get_name, close, abort, is_closed,
 		equal, similar, copy
 
 Overview
- 
+
 Istreams provide the means to read and write image files and to perform some
 other operations on file objects.  The operations allowed on any particular
 istream depend upon the access mode.  In addition, certain operations may be
@@ -3827,9 +3827,9 @@ types, provide these operations.  Designers of abstract types are encouraged
 to provide them also.  The type specifications of the encode and decode
 operations for a type T are
 
-	encode = proc (c: T, s: istream) 
+	encode = proc (c: T, s: istream)
 		 signals (not_possible(string))
-	decode = proc (s: istream) returns (T) 
+	decode = proc (s: istream) returns (T)
 		 signals (end_of_file not_possible(string))
 
 For parameterized types, encode will have a 'where' clause requiring encode
@@ -3847,20 +3847,20 @@ not_possible("bad format").  The system is not guaranteed to detect all such
 errors.
 
 OBISTREAM$OPEN
- open = proc (fn: file_name, mode: string) signals (not_possible(string)) 
+ open = proc (fn: file_name, mode: string) signals (not_possible(string))
    effects  The possible access modes are "read", "write", and "append".
 	If mode is not one of these strings, not_possible("bad access mode")
-	is signaled. In those cases where the system is able to detect that 
-	the specified preexisting file is not an image file, 
+	is signaled. In those cases where the system is able to detect that
+	the specified preexisting file is not an image file,
 	not_possible("wrong file type") is signaled.
-	If mode is "read", the named file must exist. If the file exists, an 
+	If mode is "read", the named file must exist. If the file exists, an
 	image stream is returned upon which decode operations can be performed.
 	If mode is "write", a new file is created or an old file is rewritten.
-	An image stream is returned upon which encode operations can be 
-	performed.  Write mode to storage files should guarantee exclusive 
+	An image stream is returned upon which encode operations can be
+	performed.  Write mode to storage files should guarantee exclusive
 	access to the file, if possible.
-	If mode is "append" and if the named file does not exist, one is 
-	created.  An image stream is returned, positioned at the end of the 
+	If mode is "append" and if the named file does not exist, one is
+	created.  An image stream is returned, positioned at the end of the
 	file, upon which encode operations can be performed.
 	Append mode to storage files should guarantee exclusive access to the
 	file, if possible.
@@ -3871,42 +3871,42 @@ errors.
  can_write = proc (s: istream) returns (bool)
    effects  Returns true if encode operations appear possible on s.
 OBISTREAM$EMPTY
- empty = proc (istream) returns (bool) 
-   effects  Returns true if and only if there are no more objects in the 
+ empty = proc (istream) returns (bool)
+   effects  Returns true if and only if there are no more objects in the
 	associated file.
 OBISTREAM$RESET
- reset = proc (s: istream) signals (not_possible(string)) 
+ reset = proc (s: istream) signals (not_possible(string))
    effects  Resets s so that the next input or output operation will read or
 	write the first item in the file.
 OBISTREAM$FLUSH
  flush = proc (s: istream) signals (not_possible(string))
    effects   Writes any buffered output to the associated file, if possible.
 OBISTREAM$GET_DATE
- get_date = proc (s: istream) returns (date) signals (not_possible(string)) 
-   effects  Returns the date of the last modification of the corresponding 
+ get_date = proc (s: istream) returns (date) signals (not_possible(string))
+   effects  Returns the date of the last modification of the corresponding
 	storage file.
 OBISTREAM$SET_DATE
  set_date = proc (s: istream, d: date) signals (not_possible(string))
-   modifies  s. 
+   modifies  s.
    effects  Sets the modification date of the corresponding storage file.
-	The modification date is set automatically when a file is opened in 
+	The modification date is set automatically when a file is opened in
 	"write" or "append" mode.
 OBISTREAM$GET_NAME
- get_name = proc (s: istream) returns (file_name) 
-   effects  Returns the name of the corresponding file.  It may be different 
-	than the name used to open the file, in that defaults have been 
+ get_name = proc (s: istream) returns (file_name)
+   effects  Returns the name of the corresponding file.  It may be different
+	than the name used to open the file, in that defaults have been
 	resolved and link indirections have been followed.
 OBISTREAM$CLOSE
  close = proc (s: istream) signals (not_possible(string))
-   modifies  s. 
-   effects  Attempts to terminate I/O and remove the association between s 
+   modifies  s.
+   effects  Attempts to terminate I/O and remove the association between s
 	and the file.  If successful, further use of operations that signal
 	not_possible will signal not_possible.
 	This operation will fail if buffered output cannot be written.
 OBISTREAM$ABORT
  abort = proc (s: istream)
-   modifies  s. 
-   effects  Terminates I/O and removes the association between the istream 
+   modifies  s.
+   effects  Terminates I/O and removes the association between the istream
 	and the file.
 	If buffered output cannot be written, it will be lost, and if a new
 	file is being written, it may or may not exist.
@@ -3928,41 +3928,41 @@ There are a number of miscellaneous procedures that are useful
 for input/output:
 @begin(format)
 BPWORKING_DIR
- working_dir = proc ( ) returns (string) 
-   effects  Returns the name of the current working directory. 
-	The working directory is used by the I/O system to fill in a 
+ working_dir = proc ( ) returns (string)
+   effects  Returns the name of the current working directory.
+	The working directory is used by the I/O system to fill in a
 	null directory in a file name.
 BPSET_WORKING_DIR
- set_working_dir = proc (s: string) signals (bad_format) 
+ set_working_dir = proc (s: string) signals (bad_format)
    effects  Used to change the working directory.
 	No checking of directory access privileges is performed.
 BPDELETE_FILE
- delete_file = proc (fn: file_name) signals (not_possible(string)) 
-   effects  Deletes the specified storage file. An exception may be signaled 
-	even if the specified file does not exist, but an exception will not 
+ delete_file = proc (fn: file_name) signals (not_possible(string))
+   effects  Deletes the specified storage file. An exception may be signaled
+	even if the specified file does not exist, but an exception will not
 	be signaled solely because the file does not exist.
-	For example, an exception may be signaled if the specified directory 
+	For example, an exception may be signaled if the specified directory
 	does not exist or if the user does not have access to the directory.
 BPRENAME_FILE
- rename_file = proc (fn1, fn2: file_name) signals (not_possible(string)) 
+ rename_file = proc (fn1, fn2: file_name) signals (not_possible(string))
    effects  Renames the file specified by fn1 to have the name specified by
 	fn2. Renaming across directories and devices may or may not be allowed.
 BPUSER_NAME
- user_name = proc ( ) returns (string) 
-   effects  Returns some identification of the user who is associated with 
+ user_name = proc ( ) returns (string)
+   effects  Returns some identification of the user who is associated with
 	the executing process.
 BPNOW
  now = proc ( ) returns (date)
    effects  Returns the current date and time (see DATE).
 BPE_FORM
- e_form = proc (r: real, x,y: int) returns (string) 
+ e_form = proc (r: real, x,y: int) returns (string)
 					signals (illegal_field_width)
    effects  Returns a real literal of the form
 
 		[ - ] i_field [.f_field] e +/- x_field
 
 	where i_field is x digits, f_field is y digits, and x_field is
-	Exp_width digits (see REAL). If y = 0, the decimal point and 
+	Exp_width digits (see REAL). If y = 0, the decimal point and
 	f_field are not present.
 	If r not equal 0.0, the leftmost digit of i_field is not zero.
 	If r = 0.0, x_field is all zeros.
@@ -3970,7 +3970,7 @@ for input/output:
 	If necessary, x may be rounded off to fit the specified form.
 BPF_FORM
  f_form = proc (r: real, x,y: int) returns (string)
-		       signals (illegal_field_width, insufficient_field_width) 
+		       signals (illegal_field_width, insufficient_field_width)
    effects  Returns a real literal of the form
 
 		[ - ] i_field.f_field
@@ -3984,9 +3984,9 @@ for input/output:
 	after any rounding.
 BPG_FORM
  g_form = proc (r: real, x,y: int) returns (string)
-		       signals (illegal_field_width, insufficient_field_width) 
-   effects  If  r = 0.0   or     -1 <= real$exponent(r) < x , the result 
-	returned is  F_FORM(r, x, y). Otherwise, the result is 
+		       signals (illegal_field_width, insufficient_field_width)
+   effects  If  r = 0.0   or     -1 <= real$exponent(r) < x , the result
+	returned is  F_FORM(r, x, y). Otherwise, the result is
 	E_FORM(r, 1, x + y - Exp_width -3).
 	Illegal_field_width occurs if x < 0 or y < 0 or x+y < 1.
 	If necessary, r may be rounded off to fit the specified form.
@@ -3995,18 +3995,18 @@ for input/output:
 	after any rounding.
 
 BTDATE
- date = data type is create, get_all, get_day, get_month, get_year, get_hour, 
+ date = data type is create, get_all, get_day, get_month, get_year, get_hour,
 	get_minute, get_second
 
 Overview
 
 	Dates are immutable objects that represent calendar dates and times.
- 
+
   ( See also the procedure NOW ).
 
 OBDATE$CREATE
  create = proc (day, month, year, hour, minute, second: int) returns (date)
-				signals (bad_format) 
+				signals (bad_format)
    effects  Creates the specified date.  The ranges for the arguments are
 	  (1 .. 31),  (1 .. 12),  (1 .. ),  (0 .. 23),  (0 .. 59),  (0 .. 59),
 	respectively; bad_format is signaled if an argument is out of range.
@@ -4032,16 +4032,16 @@ Overview
  get_second = proc (d: date) returns (int)
    effects  Returns the second component of d.
 OBDATE$UNPARSE
- unparse = proc (d: date) returns (string) 
-   effects  Returns a string representation of d -- for example, 
+ unparse = proc (d: date) returns (string)
+   effects  Returns a string representation of d -- for example,
 	"12 January 1978 01:36:59".
 OBDATE$UNPARSE_DATE
- unparse_date = proc (d: date) returns (string) 
-   effects  Returns a string representation of the date part of d -- for 
+ unparse_date = proc (d: date) returns (string)
+   effects  Returns a string representation of the date part of d -- for
 	example, "12 January 1978".
 OBDATE$UNPARSE_TIME
- unparse_time = proc (d: date) returns (string) 
-   effects  Returns a string representation of the time part of d -- for 
+ unparse_time = proc (d: date) returns (string)
+   effects  Returns a string representation of the time part of d -- for
 	example, "01:36:59".
 OBDATE$LT
  lt = proc (d1, d2: date) returns (bool)
@@ -4056,7 +4056,7 @@ Overview
  gt = proc (d1, d2: date) returns (bool)
    effects  Returns true if and only if d1 > d2 . (d1 is later)
 OBDATE$EQUAL
- equal = proc (d1, d2: date) returns (bool) 
+ equal = proc (d1, d2: date) returns (bool)
    effects  Returns true if and only if d1 = d2 . (same time)
 OBDATE$SIMILAR
  similar = proc (d1, d2: date) returns (bool)
@@ -4064,6 +4064,3 @@ Overview
 OBDATE$COPY
  copy = proc (d: date) returns (date)
    effects  Returns a date equal to d.
-
-
-
