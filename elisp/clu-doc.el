@@ -24,7 +24,7 @@
 ;;;;;;    USE
 ;; To get CLU help (after loading this file), type <help-key> (typically C-h)
 ;; followed by one of:
-;;   d - for documentation on a CLU type or operation (e.g., REAL, stream$copy)
+;;   D - for documentation on a CLU type or operation (e.g., REAL, stream$copy)
 ;;   g - for a CLU general topic (e.g., CLUSTERS, input/output, SYNTAX)
 ;;   / - for CLU apropos, all entries matching some string (e.g., file)
 ;; note: case is unimpotrtant, use TAB for completion, word under cursor is
@@ -102,7 +102,7 @@ at initialization time into the current session of the CLU help facility")
 ;;;
 ;;;  Key Binding in the help-map
 ;;;
-(defvar clu-doc-symbol-key "d" "*Help key for CLU symbols")
+(defvar clu-doc-symbol-key "D" "*Help key for CLU symbols")
 (defvar clu-doc-general-key "g" "*Help key for CLU general topics")
 (defvar clu-doc-apropos-key "/" "*Help key for CLU apropos")
 (define-key help-map clu-doc-symbol-key 'clu-doc-find-symbol)
