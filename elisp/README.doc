@@ -25,7 +25,7 @@ TO USE:
 
 Just call help (normally by hitting Control-h) followed by one of the keys:
 
-1. 'd' -- for help on CLU symbols (types or operations. Examples: int$mul,
+1. 'D' -- for help on CLU symbols (types or operations. Examples: int$mul,
 	  array, ARRAY$FILL, FILE_NAME, stream$primary_output, string$s2ac)
 2. 'g' -- for general CLU documentation topics (Examples: TERMINAL_I/O, FILE,
 	  own_variables, CLUSTERS, syntactic_sugar).
