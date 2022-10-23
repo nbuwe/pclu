@@ -11,8 +11,6 @@
 .Op Ar commands \&...
 .\"
 .Sh DESCRIPTION
-.\"
-.\" .XFILE
 .Pp
 .Nm
 compiles CLU programs by executing commands to the compiler.
@@ -32,6 +30,7 @@ can also be used instead of a dash to start a compiler command, which
 is obviously quite inconvenient in a Unix environment where hash is a
 shell comment character, but you can still find that usage in the old
 makefiles.
+Command names are case-insensitive.
 .Pp
 A CLU program consists of one or more modules, also known as
 .Em abstractions .
@@ -75,12 +74,175 @@ Such
 .Dq equates
 are generally kept in a separate file, the name of which ends with
 .Ic \&.equ .
+.Bl -tag -width Ic
+.\" --------
+.\" HELP
+.\"
+.It Ic \&? , Ic help
+Print short help.
+.\" --------
+.\" ALLOW
+.\"
+.It Ic allow Op Ic true No \(ba Ic false
+Generate code even if there are errors.
+.\" --------
+.\" BINDIR
+.\"
+.It Ic bindir Op Ar directory
+Set or reset the directory for the binary files.
+Note that in the case of
+.Nm
+.Po
+as opposed to the original native clu compilers
+.Pc
+the
+.Ic \&.c
+files are
+the
+.Dq binary
+files.
+.\" --------
+.\" BINSUF
+.\"
+.It Ic binsuf Op Ar suffix
+Set or reset the suffix for the
+.Dq binary
+.Tn C
+files.
+.\" --------
+.\" CCDBG
+.\"
+.It Ic ccdbg Op Ar command No \(ba Ic reset
+Show, set, or reset the command to compile
+.Tn C
+output from the compiler to the native code in the debug case
+.Po
+when
+.Ic optimize
+is set to
+.Ic false
+.Pc .
+.\" --------
+.\" CCOPT
+.\"
+.It Ic ccopt Op Ar command No \(ba Ic reset
+Show, set, or reset the command to compile
+.Tn C
+output from the compiler to the native code in the optimized case.
+.Pp
+You can prevent
+.Nm
+from further compiling its
+.Tn C
+output by setting
+.Ic ccopt
+.Pq respectively, Ic ccdbg
+command to a very short string.
+The common idiom is to use
+.Fl ccopt Ic 0 .
+.\" --------
+.\" CE
+.\"
+.It Ic ce Op Ar input \&...
+Create new
+.Em compilation environment
+.Pq CE .
+.\" --------
+.\" CFILES
+.\"
+.It Ic cfiles Op Ic true No \(ba Ic false
+Do (don't) keep the intermediate
+.Ic \&.c
+files.
+By default the compiler doesn't keep them.
+The default argument to this command is
+.Ic true .
+.\" --------
+.\" CHECK
+.\"
+.It Ic check Ar input \&...
+Check
+.Tn CLU
+files for semantic errors but don't compile them
+.Pq cf. Ic compile .
+.\" --------
+.\" CLU
+.\" COMPILE
+.\"
+.It Ic clu Ar input \&...
+Synonym for
+.Ic compile .
+.It Ic compile Ar input \&...
+Compile
+.Tn CLU
+sources.
+See also
+.Ic ccopt ,
+.Ic ccdbg ,
+and
+.Ic cfiles .
+.\" --------
+.\" DIR
+.\"
+.It Ic dir Op Ar directory
+Set or reset working directory.
+.\" DUMP      filename                 % dump in-core library to file
+.\" ESCAPE                             % temporarily exit CLU
+.\" EXPUNGE   [ TRUE | FALSE ]         % do/don't remember non-cluster specs
+.\" EXTERNALS [ TRUE | FALSE ]         % do/don't list external references
+.\" FORCE     [ TRUE | FALSE ]         % do/don't generator code for FORCE[t]
+.\" FORGET    module { , module }      % forget DU specs of modules
+.\" HELP                               % print this file
+.\" KILL                               % kill CLU
+.\" LOCALS    [ TRUE | FALSE ]         % do/don't generate local var names
+.\" MERGE     input { , input }        % merge libraries with in-core one
+.\" NEWLIB                             % flush in-core library
+.\" OPTIMIZE  [ TIME | SPACE | FALSE ] % set/clear optimization mode
+.\" PARSE     input { , input }        % check for syntactic errors
+.\" QUIT                               % kill CLU
+.\" SAFE      [ TRUE | FALSE ]         % do/don't check if idns used in system
+.\" SPECS     input { , input }        % create DU specs
+.\" UNMERGE   input { , input }        % forget DU specs of library modules
+.\" XCE       input { , input }        % add to existing CE
+.\" XFILE     input { , input }        % execute commands in files
+.\"
+.El
 .\"
 .Sh ENVIRONMENT
 .Bl -tag -width Ev
+.\"
+.It Ev CLUCC
+The
+.Tn C
+compiler used by the default
+.Ic ccdbg
+and
+.Ic ccopt
+commands to compile the
+.Nm
+.Tn C
+output to the native code.
+If not set, the value of
+.Ev CC
+environment variable is used, otherwise
+.Xr cc 1 .
+.\"
+.It Ev CLUCFLAGS
+The options to the
+.Tn C
+compiler.
+If this variable is not set, the default
+.Ic ccdbg
+and
+.Ic ccopt
+commands use appropriate
+.Fl g
+and
+.Fl O
+options.
+.\"
 .It Ev CLUHOME		\" cf. sys/clu/_home_dir.clu
 The CLU library location.
-.El
 .Pp
 If this variable is not set, but the user named
 .Li CLU
@@ -95,6 +257,7 @@ Otherwise a set of fallback locations is tried.
 A packaged version of
 .Nm
 will probably be modified to use just the package installed location.
+.El
 .\"
 .Sh FILES
 .Bl -tag -width Pa
