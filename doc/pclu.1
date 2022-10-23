@@ -1,0 +1,109 @@
+.\" This manual page is based on the "CLU User's Guide" in pclu.tex
+.Dd October 23, 2022
+.Dt PCLU 1
+.Os
+.Sh NAME
+.Nm pclu
+.Nd portable CLU compiler
+.\"
+.Sh SYNOPSIS
+.Nm
+.Op Ar commands \&...
+.\"
+.Sh DESCRIPTION
+.\"
+.\" .XFILE
+.Pp
+.Nm
+compiles CLU programs by executing commands to the compiler.
+If no command line arguments are specified
+.Nm
+starts an interactive session.
+.Pp
+The command line arguments are interpreted as a set of compiler
+commands.
+Command line arguments that start with a dash
+.Pq Sq Fl
+are compiler commands and command line arguments until the next
+compiler command are the arguments of that compiler command.
+For historical reasons a hash sign
+.Pq Sq Ic \&#
+can also be used instead of a dash to start a compiler command, which
+is obviously quite inconvenient in a Unix environment where hash is a
+shell comment character, but you can still find that usage in the old
+makefiles.
+.Pp
+A CLU program consists of one or more modules, also known as
+.Em abstractions .
+The
+.Em interface specification
+for an abstraction completely describes how clients (i.e., other
+abstractions) see the abstraction and how they can use it.
+The interface specification for a procedural or iteration abstraction
+is determined by the header for that procedure or iterator;
+the interface specification for a data abstraction (i.e., a cluster)
+is determined by the header for the cluster together with the headers
+for the operations named in the cluster header.
+The implementation of each abstraction is theoretically invisible to
+its clients.
+.\"
+.\" .CLU
+.Pp
+Generally, the code for each module is kept in a separate file, the name
+of which ends with
+.Ic \&.clu .
+.\"
+.\" .SPC
+.Pp
+Interface specifications of abstractions may be provided in a
+.Dq spec
+file the name of which ends with
+.Ic \&.spc .
+A spec file differs from a
+.Ic \&.clu
+file in that it contains procedure and cluster headers, but no
+implementations.
+.\"
+.\" .EQU
+.Pp
+Sometimes it is convenient for several
+modules to employ common declarations for compile-time constants, e.g.,
+.Li "maxLen = 100"
+or
+.Li "intSeq = seq[int]" .
+Such
+.Dq equates
+are generally kept in a separate file, the name of which ends with
+.Ic \&.equ .
+.\"
+.Sh ENVIRONMENT
+.Bl -tag -width Ev
+.It Ev CLUHOME		\" cf. sys/clu/_home_dir.clu
+The CLU library location.
+.El
+.Pp
+If this variable is not set, but the user named
+.Li CLU
+exists in the system, then its home directory
+.Pa \&~CLU
+is used
+.Po
+hence the name of the variable
+.Pc .
+.Pp \" XXX
+Otherwise a set of fallback locations is tried.
+A packaged version of
+.Nm
+will probably be modified to use just the package installed location.
+.\"
+.Sh FILES
+.Bl -tag -width Pa
+.\"
+.It Pa /usr/local/lib/clu
+The default location of the CLU library.
+Overriden by
+.Ev CLUHOME .
+.El
+.\"
+.Sh SEE ALSO
+.Xr plink 1
