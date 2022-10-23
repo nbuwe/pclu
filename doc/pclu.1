@@ -78,8 +78,10 @@ are generally kept in a separate file, the name of which ends with
 .\" --------
 .\" HELP
 .\"
-.It Ic \&? , Ic help
+.It Ic \&?
 Print short help.
+Synonym with
+.Ic help .
 .\" --------
 .\" ALLOW
 .\"
@@ -154,9 +156,6 @@ Create new
 Do (don't) keep the intermediate
 .Ic \&.c
 files.
-By default the compiler doesn't keep them.
-The default argument to this command is
-.Ic true .
 .\" --------
 .\" CHECK
 .\"
@@ -186,20 +185,73 @@ and
 .\"
 .It Ic dir Op Ar directory
 Set or reset working directory.
-.\" DUMP      filename                 % dump in-core library to file
-.\" ESCAPE                             % temporarily exit CLU
-.\" EXPUNGE   [ TRUE | FALSE ]         % do/don't remember non-cluster specs
-.\" EXTERNALS [ TRUE | FALSE ]         % do/don't list external references
-.\" FORCE     [ TRUE | FALSE ]         % do/don't generator code for FORCE[t]
-.\" FORGET    module { , module }      % forget DU specs of modules
-.\" HELP                               % print this file
-.\" KILL                               % kill CLU
-.\" LOCALS    [ TRUE | FALSE ]         % do/don't generate local var names
-.\" MERGE     input { , input }        % merge libraries with in-core one
-.\" NEWLIB                             % flush in-core library
+.\" --------
+.\" DUMP
+.\"
+.It Ic dump Ar file
+Dump in-core library to
+.Ar file .
+.\" --------
+.\" ESCAPE
+.\"
+.It Ic escape
+Suspend the compiler process.
+.\" --------
+.\" EXPUNGE
+.\"
+.It Ic expunge Op Ic true No \(ba Ic false
+Do (don't) remember non-cluster specs.
+.\" --------
+.\" EXTERNALS
+.\"
+.It Ic externals Op Ic true No \(ba Ic false
+Do (don't) list external references.
+.\" FORCE
+.It Ic force Op Ic true No \(ba Ic false
+Do (don't) generate code for
+.Ic force Ns Li \&[ Ns Ar t Ns Li \&] .
+.\" --------
+.\" FORGET
+.\"
+.It Ic forget Ar module \&...
+Forget DU specs of modules.
+.\" --------
+.\" HELP
+.\"
+.It Ic help
+Print short help.
+Synonym with
+.Ic \&? .
+.\" --------
+.\" KILL
+.\"
+.It Ic kill
+Exit CLU.  Synonym with
+.Ic quit .
+.\" --------
+.\" LOCALS
+.\"
+.It Ic locals Op Ic true No \(ba Ic false
+Ignored by
+.Nm .
+Do (don't) generate local variable names.
+.\" --------
+.\" MERGE
+.\"
+.It Ic merge Ar input \&...
+Merge specified libraries with the in-core one.
+.\" --------
+.\" NEWLIB
+.\"
+.It Ic newlib
+Flush the in-core library.
 .\" OPTIMIZE  [ TIME | SPACE | FALSE ] % set/clear optimization mode
 .\" PARSE     input { , input }        % check for syntactic errors
-.\" QUIT                               % kill CLU
+.\" --------
+.\" QUIT
+.It Ic quit
+Exit CLU.  Synonym with
+.Ic kill .
 .\" SAFE      [ TRUE | FALSE ]         % do/don't check if idns used in system
 .\" SPECS     input { , input }        % create DU specs
 .\" UNMERGE   input { , input }        % forget DU specs of library modules
