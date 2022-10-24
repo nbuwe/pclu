@@ -80,7 +80,7 @@ are generally kept in a separate file, the name of which ends with
 .\"
 .It Ic \&?
 Print short help.
-Synonym with
+Synonym of
 .Ic help .
 .\" --------
 .\" ALLOW
@@ -169,12 +169,18 @@ files for semantic errors but don't compile them
 .\" COMPILE
 .\"
 .It Ic clu Ar input \&...
-Synonym for
+Synonym of
 .Ic compile .
 .It Ic compile Ar input \&...
 Compile
 .Tn CLU
-sources.
+files.
+If
+.Ar input
+name doesn't have a suffix,
+the suffix
+.Ic \&.clu
+is added automatically.
 See also
 .Ic ccopt ,
 .Ic ccdbg ,
@@ -220,13 +226,13 @@ Forget DU specs of modules.
 .\"
 .It Ic help
 Print short help.
-Synonym with
+Synonym of
 .Ic \&? .
 .\" --------
 .\" KILL
 .\"
 .It Ic kill
-Exit CLU.  Synonym with
+Exit CLU.  Synonym of
 .Ic quit .
 .\" --------
 .\" LOCALS
@@ -245,18 +251,66 @@ Merge specified libraries with the in-core one.
 .\"
 .It Ic newlib
 Flush the in-core library.
-.\" OPTIMIZE  [ TIME | SPACE | FALSE ] % set/clear optimization mode
-.\" PARSE     input { , input }        % check for syntactic errors
+.\" --------
+.\" OPTIMIZE
+.\"
+.It Ic optimize Op Ic time No \(ba Ic space No \(ba Ic false
+Set or clear optimization mode.
+When optimization is turned off, the code is compiled in debug mode.
+.\" --------
+.\" PARSE
+.\"
+.It Ic parse Ar input \&...
+Check
+.Tn CLU
+files for syntactic errors.
+.Pq cf. Ic compile .
 .\" --------
 .\" QUIT
 .It Ic quit
-Exit CLU.  Synonym with
+Exit CLU.  Synonym of
 .Ic kill .
-.\" SAFE      [ TRUE | FALSE ]         % do/don't check if idns used in system
-.\" SPECS     input { , input }        % create DU specs
-.\" UNMERGE   input { , input }        % forget DU specs of library modules
-.\" XCE       input { , input }        % add to existing CE
-.\" XFILE     input { , input }        % execute commands in files
+.\" --------
+.\" SAFE
+.\"
+.It Ic safe Op Ic true No \(ba Ic false
+Do (don't) check for redefining identifiers used in the system.
+.\" --------
+.\" SPECS
+.\"
+.It Ic specs Ar input \&...
+Create
+.Em description unit
+.Pq DU
+specs.
+If
+.Ar input
+name doesn't have a suffix,
+the suffix
+.Ic \&.spc
+is added automatically.
+.\" --------
+.\" UNMERGE
+.\"
+.It Ic unmerge Ar input \&...
+Forget DU specs of library modules.
+.\" --------
+.\" XCE
+.\"
+.It Ic xce Ar input \&...
+Extent the current compilation environment
+.Pq CE .
+.\" --------
+.\" XFILE
+.\"
+.It Ic xfile Ar input \&...
+Execute compiler commands from the specified files.
+If
+.Ar input
+name doesn't have a suffix,
+the suffix
+.Ic \&.xfile
+is added automatically.
 .\"
 .El
 .\"
@@ -318,6 +372,13 @@ will probably be modified to use just the package installed location.
 The default location of the CLU library.
 Overriden by
 .Ev CLUHOME .
+Referred to as
+.Pa \&~CLU
+in file names below.
+.It Pa \&~CLU/system.names
+The list of identifiers checked when
+.Ic safe
+mode is enabled.
 .El
 .\"
 .Sh SEE ALSO
