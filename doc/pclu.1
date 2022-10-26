@@ -30,13 +30,28 @@ can also be used instead of a dash to start a compiler command, which
 is obviously quite inconvenient in a Unix environment where hash is a
 shell comment character, but you can still find that usage in the old
 makefiles.
-Command names are case-insensitive.
 .Pp
 A CLU program consists of one or more modules, also known as
 .Em abstractions .
+.\"
+.\" The term "DU" is not explained anywhere in the distribution it
+.\" seems.  It is defined in the CLU manual MIT/LCS/TR-225 (Chatper 4.
+.\" The Library, p.17), but most extant copies of the manual are scans
+.\" without the OCR layer, so it cannot be easily searched for.
+.\"
+.\"   The library provides a hierarchical name space for retrieving
+.\"   information about abstractions.  The leaf node of the library are
+.\"   _description units_ (DUs), one for each abstraction. [...]  A DU
+.\"   contains all system-maintained information about its abstraction.
+.\"
 The
 .Em interface specification
-for an abstraction completely describes how clients (i.e., other
+for an abstraction
+.Po
+also sometimes referred to as DU \(em a
+.Em description unit
+.Pc
+completely describes how clients (i.e., other
 abstractions) see the abstraction and how they can use it.
 The interface specification for a procedural or iteration abstraction
 is determined by the header for that procedure or iterator;
@@ -74,6 +89,28 @@ Such
 .Dq equates
 are generally kept in a separate file, the name of which ends with
 .Ic \&.equ .
+.Pp
+The CLU compiler maintains an in-core type library and a
+.Em compilation environment
+.Pq CE .
+.Pp
+The CE contains
+.Dq equate
+information; it is initially empty.
+.Pp
+In order to do proper type checking between abstractions, the CLU
+compiler adds interface specifications to its type library.
+When it processes an abstraction, the compiler remembers the interface
+of the abstraction in the type library and uses it in future type
+checking.
+.\"
+.\"
+.Ss Compiler commands
+Command names are case-insensitive.
+They can be abbreviated up to unique prefix.
+If a command takes an optional boolean argument and the argument is
+not supplied, it's taken to be
+.Ic true .
 .Bl -tag -width Ic
 .\" --------
 .\" HELP
@@ -86,7 +123,9 @@ Synonym of
 .\" ALLOW
 .\"
 .It Ic allow Op Ic true No \(ba Ic false
-Generate code even if there are errors.
+Allow
+.Ic compile
+to generate code even if there are errors.
 .\" --------
 .\" BINDIR
 .\"
@@ -95,13 +134,13 @@ Set or reset the directory for the binary files.
 Note that in the case of
 .Nm
 .Po
-as opposed to the original native clu compilers
+as opposed to the original native compilers
 .Pc
 the
-.Ic \&.c
+.Dq binary
 files are
 the
-.Dq binary
+.Ic \&.c
 files.
 .\" --------
 .\" BINSUF
@@ -117,20 +156,19 @@ files.
 .It Ic ccdbg Op Ar command No \(ba Ic reset
 Show, set, or reset the command to compile
 .Tn C
-output from the compiler to the native code in the debug case
-.Po
+output from the compiler to the native code
 when
 .Ic optimize
-is set to
-.Ic false
-.Pc .
+is turned off.
 .\" --------
 .\" CCOPT
 .\"
 .It Ic ccopt Op Ar command No \(ba Ic reset
 Show, set, or reset the command to compile
 .Tn C
-output from the compiler to the native code in the optimized case.
+output from the compiler to the native code when
+.Ic optimize
+is turned on.
 .Pp
 You can prevent
 .Nm
@@ -145,10 +183,19 @@ The common idiom is to use
 .\" --------
 .\" CE
 .\"
-.It Ic ce Op Ar input \&...
-Create new
+.It Ic ce Op Ar filename \&...
+Create a new
 .Em compilation environment
-.Pq CE .
+.Pq CE
+from the named
+.Ic \&.equ
+files.
+Any previously existing compilation environment is forgotten.
+The compiler will supply the suffix
+.Ic \&.equ
+if it is not part of
+.Ar filename .
+Each file named in this command must contain only equates.
 .\" --------
 .\" CFILES
 .\"
@@ -159,28 +206,49 @@ files.
 .\" --------
 .\" CHECK
 .\"
-.It Ic check Ar input \&...
-Check
-.Tn CLU
-files for semantic errors but don't compile them
-.Pq cf. Ic compile .
+.It Ic check Ar filename \&...
+Check for syntax and type errors in the named
+.Ic \&.clu
+files.
+The compiler will supply the suffix
+.Ic \&.clu
+if it is not part of
+.Ar filename .
+See also
+.Ic compile ,
+.Ic parse .
 .\" --------
 .\" CLU
 .\" COMPILE
 .\"
-.It Ic clu Ar input \&...
+.It Ic clu Ar filename \&...
 Synonym of
 .Ic compile .
-.It Ic compile Ar input \&...
-Compile
-.Tn CLU
-files.
-If
-.Ar input
-name doesn't have a suffix,
-the suffix
+.It Ic compile Ar filename \&...
+Compile the named
 .Ic \&.clu
-is added automatically.
+files into
+.Ic \&.o
+files.
+The compiler will supply the suffix
+.Ic \&.clu
+if it is not part of
+.Ar filename .
+A
+.Ic \&.o
+file is produced only if there are no errors
+.Pq but see Ic allow .
+The compiler generally produces
+.Ic \&.o
+files that are suitable for use with the CLU debugger.
+Once a program has been debugged, more efficient
+.Ic \&.o
+files can be produced by issuing the
+.Ic optimize
+command to the compiler before
+.Ic compile
+command.
+.Pp
 See also
 .Ic ccopt ,
 .Ic ccdbg ,
@@ -194,9 +262,21 @@ Set or reset working directory.
 .\" --------
 .\" DUMP
 .\"
-.It Ic dump Ar file
-Dump in-core library to
-.Ar file .
+.It Ic dump Ar filename
+The compiler retains in the type library the interface of every module it sees.
+This library can be dumped to a
+.Ic \&.lib
+file with the
+.Ic dump
+command and later reloaded with the
+.Ic merge
+command.
+The compiler will supply the suffix
+.Ic \&.lib
+if it is not part of
+.Ar filename .
+Libraries make complete type-checking much easier and faster,
+particularly for very large programs.
 .\" --------
 .\" ESCAPE
 .\"
@@ -211,7 +291,8 @@ Do (don't) remember non-cluster specs.
 .\" EXTERNALS
 .\"
 .It Ic externals Op Ic true No \(ba Ic false
-Do (don't) list external references.
+Do (don't) list abstractions used in the file being processed whose
+specifications are known.
 .\" FORCE
 .It Ic force Op Ic true No \(ba Ic false
 Do (don't) generate code for
@@ -244,27 +325,46 @@ Do (don't) generate local variable names.
 .\" --------
 .\" MERGE
 .\"
-.It Ic merge Ar input \&...
-Merge specified libraries with the in-core one.
+.It Ic merge Ar filename \&...
+Load libraries from the given
+.Ic \&.lib
+files and merge them with the current type library.
+The compiler will supply the suffix
+.Ic \&.lib
+if it is not part of
+.Ar filename .
+If the current library already contains an interface for a module in
+the library being loaded, the new interface will replace the old.
 .\" --------
 .\" NEWLIB
 .\"
 .It Ic newlib
-Flush the in-core library.
+Flush the in-core type library.
 .\" --------
 .\" OPTIMIZE
 .\"
 .It Ic optimize Op Ic time No \(ba Ic space No \(ba Ic false
-Set or clear optimization mode.
-When optimization is turned off, the code is compiled in debug mode.
+Turn code optimization on or off.
+Optimized code runs faster.
+Unoptimized code provides more information when used with the CLU
+debugger.
+See also
+.Ic ccopt ,
+.Ic ccdbg .
 .\" --------
 .\" PARSE
 .\"
-.It Ic parse Ar input \&...
-Check
-.Tn CLU
-files for syntactic errors.
-.Pq cf. Ic compile .
+.It Ic parse Ar filename \&...
+Check for syntax errors in the named
+.Ic \&.clu
+files.
+The compiler will supply the suffix
+.Ic \&.clu
+if it is not part of
+.Ar filename .
+See also
+.Ic check ,
+.Ic compile .
 .\" --------
 .\" QUIT
 .It Ic quit
@@ -278,17 +378,19 @@ Do (don't) check for redefining identifiers used in the system.
 .\" --------
 .\" SPECS
 .\"
-.It Ic specs Ar input \&...
-Create
-.Em description unit
-.Pq DU
-specs.
-If
-.Ar input
-name doesn't have a suffix,
-the suffix
+.It Ic specs Ar filename \&...
+Enter the interfaces of the abstractions in the named
 .Ic \&.spc
-is added automatically.
+or
+.Ic \&.clu
+files into the type library without type-checking any implementation
+bodies.
+The compiler will supply the suffix
+.Ic \&.spc
+or
+.Ic \&.clu
+if it is not part of
+.Ar filename .
 .\" --------
 .\" UNMERGE
 .\"
@@ -297,20 +399,21 @@ Forget DU specs of library modules.
 .\" --------
 .\" XCE
 .\"
-.It Ic xce Ar input \&...
-Extent the current compilation environment
-.Pq CE .
+.It Ic xce Ar filename \&...
+Add the equates in the named
+.Ic \&.equ
+files to the current compilation environment.
+See
+.Ic ce .
 .\" --------
 .\" XFILE
 .\"
-.It Ic xfile Ar input \&...
+.It Ic xfile Ar filename \&...
 Execute compiler commands from the specified files.
-If
-.Ar input
-name doesn't have a suffix,
-the suffix
+The compiler will supply the suffix
 .Ic \&.xfile
-is added automatically.
+if it is not part of
+.Ar filename .
 .\"
 .El
 .\"
