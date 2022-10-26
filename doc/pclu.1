@@ -515,6 +515,7 @@ readline configuration file.
 .El
 .\"
 .Sh EXAMPLES
+.Ss Hello, World
 You can compile your first CLU program:
 .Bd -literal -offset indent
 start_up = proc ()
@@ -616,6 +617,24 @@ Finally we call
 .Xr plink 1
 script to link the output from the compier with the CLU standard
 library to obtain a program.
+.\"
+.Pp
+You can put
+.Nm
+commands into a file so as not to type them repeatedly or to make
+them a proper dependency in a makefile.
+For example you can compile your hello world program as follows.
+This example omits implied suffixes to demonstrate that feature, but
+normally you would want to be explicit for the sake of clarity:
+.Bd -literal -offset indent
+$ cat hello.xfile
+optimize
+cfiles true
+merge ~CLU/lib/lowlev
+spec hello
+compile hello
+$ pclu -xf hello
+.Ed
 .\"
 .Sh SEE ALSO
 .Xr plink 1
