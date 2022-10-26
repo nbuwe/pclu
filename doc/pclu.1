@@ -514,6 +514,109 @@ Key bindings for line editing in the interactive mode.
 readline configuration file.
 .El
 .\"
+.Sh EXAMPLES
+You can compile your first CLU program:
+.Bd -literal -offset indent
+start_up = proc ()
+    stdout: stream := stream$primary_output()
+
+    who: string := get_name()
+    stream$puts(stdout, "hello, " || who)
+  end start_up
+
+get_name = proc () returns (string)
+    user: string := _environ("USER")
+     except when not_found:
+        user := "world"
+      end
+    return (user)
+  end get_name
+.Ed
+with
+.Bd -literal -offset indent
+$ pclu -merge ~CLU/lib/lowlev.lib -spec hello.clu -clu hello.clu
+\&...
+$ plink -o hello hello.o
+$ ./hello
+hello, uwe
+$ env - ./hello
+hello, world
+.Ed
+.\"
+.Pp
+Here
+.Fl merge\|
+loads
+.Pq Dq includes
+the dumped type library
+.Pq Dq precompiled header
+.Pa lowlev.lib
+from the
+.Nm
+library location.
+The compiler automatically replaces
+.Pa ~CLU\|
+with the path to the library, either the hardcoded one or the one
+specified in the
+.Ev CLUHOME
+environment variable, you don't need the user named
+.Li CLU
+to exist on your system.
+.Pp
+We merge
+.Pa lowlev.lib
+because our program uses
+.Fn _environ
+procedure from the standard library.
+.Pp
+Next we
+.Fl spec
+our program source
+.Po
+note that the full name of the compiler command is
+.Ic specs ,
+but we can abbreviate it
+.Pc .
+The compiler is single pass and CLU does not support declarations the
+way e.g.\&
+.Tn C
+does.
+Thus for the compiler to know the type of
+.Fn get_name
+when it compiles
+.Fn start_up
+you need to get it from somewhere.
+For public interface specifications you would typically use a spec
+file to declare them, but for small programs and for
+.Dq private
+procedures the common idiom is to spec the source before compiling it.
+If you program is small and simple and only has backward references
+(e.g. if we wrote
+.Fn get_name
+before
+.Fn start_up
+that uses it)
+you can get away with not speccing the source.
+.Pp
+Then finally we can compile the program itself with
+.Fl clu Li hello.clu .
+The compiler emits the
+.Pa hello.c
+file and then invokes
+.Xr cc 1
+to compile it to
+.Pa hello.o .
+The
+.Tn C
+file is then removed unless
+.Fl cfiles
+was specified.
+.Pp
+Finally we call
+.Xr plink 1
+script to link the output from the compier with the CLU standard
+library to obtain a program.
+.\"
 .Sh SEE ALSO
 .Xr plink 1
 .\"
