@@ -33,25 +33,9 @@ makefiles.
 .Pp
 A CLU program consists of one or more modules, also known as
 .Em abstractions .
-.\"
-.\" The term "DU" is not explained anywhere in the distribution it
-.\" seems.  It is defined in the CLU manual MIT/LCS/TR-225 (Chatper 4.
-.\" The Library, p.17), but most extant copies of the manual are scans
-.\" without the OCR layer, so it cannot be easily searched for.
-.\"
-.\"   The library provides a hierarchical name space for retrieving
-.\"   information about abstractions.  The leaf node of the library are
-.\"   _description units_ (DUs), one for each abstraction. [...]  A DU
-.\"   contains all system-maintained information about its abstraction.
-.\"
 The
 .Em interface specification
-for an abstraction
-.Po
-also sometimes referred to as DU \(em a
-.Em description unit
-.Pc
-completely describes how clients (i.e., other
+for an abstraction completely describes how clients (i.e., other
 abstractions) see the abstraction and how they can use it.
 The interface specification for a procedural or iteration abstraction
 is determined by the header for that procedure or iterator;
@@ -99,7 +83,21 @@ The CE contains
 information; it is initially empty.
 .Pp
 In order to do proper type checking between abstractions, the CLU
-compiler adds interface specifications to its type library.
+compiler adds interface specifications to its in-core type library.
+.\"
+.\" The term "DU" is not explained anywhere in the distribution it
+.\" seems.  It is defined in the CLU manual MIT/LCS/TR-225 (Chatper 4.
+.\" The Library, p.17), but most extant copies of the manual are scans
+.\" without the OCR layer, so it cannot be easily searched for.
+.\"
+.\"   The library provides a hierarchical name space for retrieving
+.\"   information about abstractions.  The leaf node of the library are
+.\"   _description units_ (DUs), one for each abstraction. [...]  A DU
+.\"   contains all system-maintained information about its abstraction.
+.\"
+This internal information about an abstraction is sometimes referred
+to as DU
+.Pq Em description unit .
 When it processes an abstraction, the compiler remembers the interface
 of the abstraction in the type library and uses it in future type
 checking.
