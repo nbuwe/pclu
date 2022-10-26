@@ -116,9 +116,26 @@ compilers.
 .Ss Compiler commands
 Command names are case-insensitive.
 They can be abbreviated up to unique prefix.
+.Pp
 If a command takes an optional boolean argument and the argument is
 not supplied, it's taken to be
 .Ic true .
+.Pp
+Commands that accept file names automatically supply the appropriate
+suffix if necessary.
+.Pp
+If a command takes multiple arguments you may use spaces and/or commas
+to separate them
+.Pq the use of commas is not reflected in the descriptions below .
+.Pp
+Thus to compile the files
+.Li a.clu
+and
+.Li b.clu
+you can use either
+.D1 Ic compile Li a.clu b.clu
+or
+.Dl Ic CO Li a,b
 .Bl -tag -width Ic
 .\" --------
 .\" HELP
