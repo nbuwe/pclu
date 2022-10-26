@@ -482,7 +482,25 @@ in file names below.
 The list of identifiers checked when
 .Ic safe
 mode is enabled.
+.It Pa ~/.lineedit.keys
+Key bindings for line editing in the interactive mode.
+.It Pa ~/.inputrc
+.Tn GNU
+readline configuration file.
 .El
 .\"
 .Sh SEE ALSO
 .Xr plink 1
+.\"
+.Sh CAVEATS
+When
+.Nm
+is started interactively
+.Pq without arguments
+it supports line editing and reads user's
+.Pa \&.inputrc
+file
+.Dq for compatibility with the user's Tn GNU keys .
+Be aware of potential compatibility problems if your
+.Pa \&.inputrc
+uses advanced readline features.
