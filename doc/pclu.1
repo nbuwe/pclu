@@ -96,11 +96,21 @@ compiler adds interface specifications to its in-core type library.
 .\"   contains all system-maintained information about its abstraction.
 .\"
 This internal information about an abstraction is sometimes referred
-to as DU
-.Pq Em description unit .
+to as DU \(em
+.Em description unit
+.Po
+you may encounter this otherwise cryptic abbreviation is various
+compiler messages
+.Pc .
 When it processes an abstraction, the compiler remembers the interface
 of the abstraction in the type library and uses it in future type
-checking.
+checking during the same compiler run.
+The in-core library may be dumped into a
+.Ic \&.lib
+file that can be quickly loaded when compiling other code.
+This is similar to precompiled headers supported by
+.Tn C
+compilers.
 .\"
 .\"
 .Ss Compiler commands
