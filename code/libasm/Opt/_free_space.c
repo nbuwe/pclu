@@ -25,20 +25,13 @@ _free_space(CLUREF *ans)
 
 #else  /* LINUX */
 
-/*
- * Work around a bug in gc-7.x that defines GC_jmp_buf in gc_priv.h
- * instead of declaring it.  Make it work with -fno-common.
- */
-#define GC_jmp_buf GC_jmp_buf_libasm__free_space
-#include <gc/private/gc_priv.h>
+#include <gc/gc.h>
 
 errcode
 _free_space(CLUREF *ans)
 {
-    /* XXX: GC_max_heapsize is zero when unlimited */
-    ans->num = BYTES_TO_WORDS(GC_max_heapsize
-			      - GC_atomic_in_use
-			      - GC_composite_in_use);
+    /* unsynchronized, but we have no threads */
+    ans->num = GC_get_free_bytes() / sizeof(long);
     signal(ERR_ok);
 }
 #endif

@@ -14,17 +14,22 @@ _get_active_heap(CLUREF *ans)
 
 #else  /* LINUX */
 
-/*
- * Work around a bug in gc-7.x that defines GC_jmp_buf in gc_priv.h
- * instead of declaring it.  Make it work with -fno-common.
- */
-#define GC_jmp_buf GC_jmp_buf_libasm__get_active_heap
-#include <gc/private/gc_priv.h>
+#include <gc/gc.h>
 
 errcode
 _get_active_heap(CLUREF *ans)
 {
+    /*
+     * This code used to peek at gc-7.2 internals.  The other "heap
+     * size" fumction is _heap_size that also peeked at the gc
+     * internals and returned just the GC_composite_in_use.  There was
+     * probably some reason for that. (Also note that this function
+     * returns bytes, and the other one returns words).
+     */
+#if 0
     ans->num = GC_composite_in_use + GC_atomic_in_use;
+#endif
+    ans->num = GC_get_heap_size();
     signal(ERR_ok);
 }
 

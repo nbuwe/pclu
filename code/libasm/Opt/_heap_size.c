@@ -10,12 +10,7 @@
 #include "pclu_sys.h"
 
 #ifdef LINUX
-/*
- * Work around a bug in gc-7.x that defines GC_jmp_buf in gc_priv.h
- * instead of declaring it.  Make it work with -fno-common.
- */
-#define GC_jmp_buf GC_jmp_buf_libasm__heap_size
-#include <gc/private/gc_priv.h>
+#include <gc/gc.h>
 #else
 extern int composite_in_use;
 #endif
@@ -30,10 +25,20 @@ extern int composite_in_use;
 errcode
 _heap_size(CLUREF *ans)
 {
-/*  ans->num = (heaphi - heaplo) / 4; */
 #ifdef LINUX
-    ans->num = GC_composite_in_use;
+    /*
+     * This code used to peek at gc-7.2 internals.  The other "heap
+     * size" fumction is _get_active_heap that also peeked at the gc
+     * internals and returned GC_composite_in_use + GC_atomic_in_use.
+     * There was probably some reason for that. (Also note that this
+     * function returns words, and the other one returns bytes).
+     */
+#if 0
+    ans->num = GC_composite_in_use; / sizeof(long);
+#endif
+    ans->num = GC_get_heap_size() / sizeof(long);
 #else
+/*  ans->num = (heaphi - heaplo) / 4; */
     ans->num = composite_in_use;
 #endif
     signal(ERR_ok);
