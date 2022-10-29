@@ -640,6 +640,58 @@ compile hello
 $ pclu -xf hello
 .Ed
 .\"
+.Ss The CLU Debugger
+.Bd -ragged -offset indent
+.Em WARNING:
+restoring the CLU debugger to working order is still work in progress.
+Use at your own risk.
+.Ed
+.Pp
+The CLU debugger is in-process.
+To use it you need to link it in when you link your program by specifying
+.Fl debug
+flag to
+.Xr plink 1 .
+.Pp
+.Dl $ plink -debug -o hello hello.o
+.Pp
+When a program linked with the debugger is started you are dropped
+into the debugger:
+.Bd -literal -offset indent
+$ ./hello
+
+
+***** PCLU DEBUGGER 0.2 *****
+
+command: b start_up
+command: r
+
+Entering: start_up
+
+command: l
+*>1:	start_up = proc ()
+  2:	    stdout: stream := stream$primary_output()
+  3:
+  4:	    who: string := get_name()
+  5:	    stream$puts(stdout, "hello, " || who)
+  6:	  end start_up
+  7:
+  8:	get_name = proc () returns (string)
+  9:	    user: string := _environ("USER")
+  10:	     except when not_found:
+  11:	        user := "world"
+command: b 5
+command: c
+start_up: line 5:     stream$puts(stdout, "hello, " || who)
+command: p who
+who: "uwe"
+command: c
+hello, uwe
+Leaving: start_up
+
+command: quit
+.Ed
+.\"
 .Sh SEE ALSO
 .Xr plink 1
 .\"
