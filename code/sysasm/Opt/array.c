@@ -5,6 +5,15 @@
 /*						*/
 /*						*/
 
+#ifdef LINUX
+/*
+ * Work around a bug in gc-7.x that defines GC_jmp_buf in gc_priv.h
+ * instead of declaring it.  Make it work with -fno-common.
+ */
+#define GC_jmp_buf GC_jmp_buf_libasm_array
+#include <gc/private/gc_priv.h>
+#endif
+
 /* FIX: since low can be a negative number and size can be greater
  * 	than all positive numbers need to change int_low from having
  * 	a minimum of 0
@@ -19,13 +28,6 @@
 
 #include "pclu_err.h"
 #include "pclu_sys.h"
-
-/*
- * Work around a bug in gc-7.x that defines GC_jmp_buf in gc_priv.h
- * instead of declaring it.  Make it work with -fno-common.
- */
-#define GC_jmp_buf GC_jmp_buf_libasm_array
-#include <gc/private/gc_priv.h>
 
 errcode gcd_tabOPinsert(CLUREF tab, CLUREF z, CLUREF inf, CLUREF x, CLUREF *ans);
 errcode intOPprint(CLUREF i, CLUREF pst);
