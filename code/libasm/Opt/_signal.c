@@ -33,6 +33,7 @@ extern int gcflag;
 errcode sequenceOPfill(CLUREF length, CLUREF x, CLUREF *ans);
 #ifdef CLU_DEBUG_IMPL
 extern errcode debugOPwhere_cmd(CLUREF args);
+#undef _exit /* _OPexit */
 #endif
 
 typedef void (VPROC)();
