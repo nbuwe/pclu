@@ -27,7 +27,9 @@
 .\"
 .Sh DESCRIPTION
 .Nm
-compiles CLU programs by executing commands to the compiler.
+compiles
+.Tn CLU
+programs by executing commands to the compiler.
 If no command line arguments are specified
 .Nm
 starts an interactive session.
@@ -45,7 +47,9 @@ is obviously quite inconvenient in a Unix environment where hash is a
 shell comment character, but you can still find that usage in the old
 makefiles.
 .Pp
-A CLU program consists of one or more modules, also known as
+A
+.Tn CLU
+program consists of one or more modules, also known as
 .Em abstractions .
 The
 .Em interface specification
@@ -88,15 +92,20 @@ Such
 are generally kept in a separate file, the name of which ends with
 .Ic \&.equ .
 .Pp
-The CLU compiler maintains an in-core type library and a
+The
+.Tn CLU
+compiler maintains an in-core type library and a
 .Em compilation environment
-.Pq CE .
+.Pq Tn CE .
 .Pp
-The CE contains
+The
+.Tn CE
+contains
 .Dq equate
 information; it is initially empty.
 .Pp
-In order to do proper type checking between abstractions, the CLU
+In order to do proper type checking between abstractions, the
+.Tn CLU
 compiler adds interface specifications to its in-core type library.
 .\"
 .\" The term "DU" is not explained anywhere in the distribution it
@@ -110,7 +119,9 @@ compiler adds interface specifications to its in-core type library.
 .\"   contains all system-maintained information about its abstraction.
 .\"
 This internal information about an abstraction is sometimes referred
-to as DU \(em
+to as
+.Tn DU
+\(em
 .Em description unit
 .Po
 you may encounter this otherwise cryptic abbreviation in various
@@ -225,7 +236,7 @@ The common idiom is to use
 .It Ic ce Op Ar filename \&...
 Create a new
 .Em compilation environment
-.Pq CE
+.Pq Tn CE
 from the named
 .Ic \&.equ
 files.
@@ -279,7 +290,9 @@ file is produced only if there are no errors
 .Pq but see Ic allow .
 The compiler generally produces
 .Ic \&.o
-files that are suitable for use with the CLU debugger.
+files that are suitable for use with the
+.Tn CLU
+debugger.
 Once a program has been debugged, more efficient
 .Ic \&.o
 files can be produced by issuing the
@@ -340,7 +353,9 @@ Do (don't) generate code for
 .\" FORGET
 .\"
 .It Ic forget Ar module \&...
-Forget DU specs of modules.
+Forget
+.Tn DU
+specs of modules.
 .\" --------
 .\" HELP
 .\"
@@ -352,7 +367,9 @@ Synonym of
 .\" KILL
 .\"
 .It Ic kill
-Exit CLU.  Synonym of
+Exit
+.Tn CLU .
+Synonym of
 .Ic quit .
 .\" --------
 .\" LOCALS
@@ -385,7 +402,8 @@ Flush the in-core type library.
 .It Ic optimize Op Ic time No \(ba Ic space No \(ba Ic false
 Turn code optimization on or off.
 Optimized code runs faster.
-Unoptimized code provides more information when used with the CLU
+Unoptimized code provides more information when used with the
+.Tn CLU
 debugger.
 See also
 .Ic ccopt ,
@@ -407,7 +425,9 @@ See also
 .\" --------
 .\" QUIT
 .It Ic quit
-Exit CLU.  Synonym of
+Exit
+.Tn CLU .
+Synonym of
 .Ic kill .
 .\" --------
 .\" SAFE
@@ -434,7 +454,9 @@ if it is not part of
 .\" UNMERGE
 .\"
 .It Ic unmerge Ar filename \&...
-Forget DU specs of library modules.
+Forget
+.Tn DU
+specs of library modules.
 The compiler will supply the suffix
 .Ic \&.lib
 if it is not part of
@@ -494,7 +516,9 @@ and
 options.
 .\"
 .It Ev CLUHOME		\" cf. sys/clu/_home_dir.clu
-The CLU library location.
+The
+.Tn CLU
+library location.
 .Pp
 If this variable is not set, but the user named
 .Li CLU
@@ -515,7 +539,9 @@ will probably be modified to use just the package installed location.
 .Bl -tag -width Pa
 .\"
 .It Pa /usr/local/lib/clu
-The default location of the CLU library.
+The default location of the
+.Tn CLU
+library.
 Overridden by
 .Ev CLUHOME .
 Referred to as
@@ -534,7 +560,9 @@ readline configuration file.
 .\"
 .Sh EXAMPLES
 .Ss Hello, World
-You can compile your first CLU program:
+You can compile your first
+.Tn CLU
+program:
 .Bd -literal -offset indent
 start_up = proc ()
     stdout: stream := stream$primary_output()
@@ -596,8 +624,9 @@ note that the full name of the compiler command is
 .Ic specs ,
 but we can abbreviate it
 .Pc .
-The compiler is single pass and CLU does not support declarations the
-way e.g.\&
+The compiler is single pass and
+.Tn CLU
+does not support declarations the way e.g.\&
 .Tn C
 does.
 Thus for the compiler to know the type of
@@ -633,8 +662,9 @@ was specified.
 .Pp
 Finally we call
 .Xr plink 1
-script to link the output from the compiler with the CLU standard
-library to obtain a program.
+script to link the output from the compiler with the
+.Tn CLU
+standard library to obtain a program.
 .\"
 .Pp
 You can put
@@ -657,11 +687,15 @@ $ pclu -xf hello
 .Ss The CLU Debugger
 .Bd -ragged -offset indent
 .Em WARNING:
-restoring the CLU debugger to working order is still work in progress.
+restoring the
+.Tn CLU
+debugger to working order is still work in progress.
 Use at your own risk.
 .Ed
 .Pp
-The CLU debugger is in-process.
+The
+.Tn CLU
+debugger is in-process.
 To use it you need to link it in when you link your program by specifying
 .Fl debug
 flag to
