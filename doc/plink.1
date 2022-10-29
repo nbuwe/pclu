@@ -32,9 +32,9 @@
 .Sh SYNOPSIS
 .Nm
 .Op Fl v
-.Op Fl Fl debug Ns No \&| Ns Fl Fl opt
-.Op Fl Fl verbose
-.Op Fl Fl
+.Op Fl -debug\| Ns No \&| Ns Fl -opt
+.Op Fl -verbose
+.Op Fl \&-
 .Ar linker options \&...
 .\"
 .Sh DESCRIPTION
@@ -52,7 +52,7 @@ documented below must come first on its command line, the first option
 that is not recognized by the wrapper and the remainder of the command
 line are passed to the linker directly.
 You can also use
-.Fl Fl
+.Fl \&-
 to tell
 .Nm
 to pass the rest of the arguments on
@@ -63,23 +63,23 @@ to the linker
 .Pc .
 .\"
 .Bl -tag -width Fl
-.It Fl debug , Fl Fl debug
+.It Fl debug , Fl -debug
 Link the output with the in-process
 .Tn CLU
 debugger and debug version of the
 .Tn CLU
 library.
 See
-.Xr plink 1
+.Xr pclu 1
 for more information.
 Currently this disables
 .Tn ASLR .
-.It Fl opt , Fl Fl opt
+.It Fl opt , Fl -opt
 Link the output with the optimized version of the
 .Tn CLU
 library.
 This is the default.
-.It Fl v , Fl Fl verbose
+.It Fl v , Fl -verbose
 Print the linker command executed by
 .Nm .
 .El
