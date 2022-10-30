@@ -17,7 +17,7 @@ extern errcode sequenceOPinternal_print(CLUREF s, CLUREF pst, CLUREF pfcn);
 /*
  * What _vec[T] requires of T.
  */
-static struct /* REQS */ {
+static const struct /* REQS */ {
     int count;
     struct REQ_ENTRY entry[2];
 } _vec_of_t_reqs_actual = {

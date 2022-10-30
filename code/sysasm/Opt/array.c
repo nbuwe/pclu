@@ -45,7 +45,7 @@ errcode arrayOPinternal_print(CLUREF a, CLUREF pst, CLUREF pfcn);
 /*
  * What array[T] requires of T.
  */
-static struct /* REQS */ {
+static const struct /* REQS */ {
     long count;
     struct REQ_ENTRY entry[8];
 } array_of_t_reqs_actual = {
