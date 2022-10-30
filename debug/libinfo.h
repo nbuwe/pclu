@@ -788,7 +788,7 @@ const dbg_info_generic dbg_info_realOPi2r_data = {0, 14, "real$i2r", "real", 0, 
 const struct dbg_info * const dbg_info_realOPi2r = (const struct dbg_info *)&dbg_info_realOPi2r_data;
 extern errcode realOPr2i();
 static const Vlist1 vals_realOPr2i = {0, 1, {{0, 2, "", &int_ops, ""}}};
-static const sig_desc0 sig_realOPr2i_1 = {0, 2, "oveflow", {0,0}};
+static const sig_desc0 sig_realOPr2i_1 = {0, 2, "overflow", {0,0}};
 static const siglist1 sigs_realOPr2i = {0, 1, {(const sig_desc *)&sig_realOPr2i_1}};
 const dbg_info_generic dbg_info_realOPr2i_data = {0, 14, "real$r2i", "real", 0, 0, realOPr2i, 1, (const Vlist0 *)&vals_realOPr2i, (const siglist0 *)&sigs_realOPr2i,&NO_VALS,&NO_VALS,&NO_VALS,&NO_VALS,&NO_PARMS,&NO_PARMS};
 const struct dbg_info * const dbg_info_realOPr2i = (const struct dbg_info *)&dbg_info_realOPr2i_data;
