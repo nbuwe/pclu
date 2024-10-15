@@ -147,7 +147,11 @@ not supplied, it's taken to be
 .Ic true .
 .Pp
 Commands that accept file names automatically supply the appropriate
-suffix if necessary.
+default suffix if necessary.
+If the file name ends with the default suffix, it is used as is.
+If the file name does not have the default suffix, the suffix is
+appended and the suffixed file name is used if it exists.
+Otherwise the file name is used as specified.
 .Pp
 If a command takes multiple arguments you may use spaces and/or commas
 to separate them
@@ -161,6 +165,19 @@ you can use either
 .D1 Ic compile Li a.clu b.clu
 or
 .Dl Ic CO Li a,b
+.Pp
+Commands that take a list of
+.Ar input Ns s
+may either take directly a
+.Ar filename
+or an indirect list of inputs specified as
+.Ic \&@ Ns Ar filename .
+Such an @-file contains a sequence of input specifications, separated
+by newlines.
+An @-file may reference @-files.
+The default suffix for @-files is
+.Ic \&.xload .
+.
 .Bl -tag -width Ic
 .\" --------
 .\" HELP
@@ -188,9 +205,8 @@ as opposed to the original native compilers
 .Pc
 the
 .Dq binary
-files are
-the
-.Ic \&.c
+files are the
+.Tn C
 files.
 .\" --------
 .\" BINSUF
@@ -200,6 +216,8 @@ Set or reset the suffix for the
 .Dq binary
 .Tn C
 files.
+The default suffix is
+.Ic \&.c .
 .\" --------
 .\" CCDBG
 .\"
@@ -233,37 +251,33 @@ The common idiom is to use
 .\" --------
 .\" CE
 .\"
-.It Ic ce Op Ar filename \&...
+.It Ic ce Op Ar input \&...
 Create a new
 .Em compilation environment
 .Pq Tn CE
-from the named
-.Ic \&.equ
-files.
+from the named files.
 Any previously existing compilation environment is forgotten.
-The compiler will supply the suffix
-.Ic \&.equ
-if it is not part of
-.Ar filename .
+The default suffix is
+.Ic \&.equ .
 Each file named in this command must contain only equates.
+See also
+.Ic xce .
 .\" --------
 .\" CFILES
 .\"
 .It Ic cfiles Op Ic true No \(ba Ic false
 Do (don't) keep the intermediate
-.Ic \&.c
+.Tn C
 files.
 .\" --------
 .\" CHECK
 .\"
-.It Ic check Ar filename \&...
+.It Ic check Ar input \&...
 Check for syntax and type errors in the named
-.Ic \&.clu
+.Tn CLU
 files.
-The compiler will supply the suffix
-.Ic \&.clu
-if it is not part of
-.Ar filename .
+The default suffix is
+.Ic \&.clu .
 See also
 .Ic compile ,
 .Ic parse .
@@ -271,19 +285,17 @@ See also
 .\" CLU
 .\" COMPILE
 .\"
-.It Ic clu Ar filename \&...
+.It Ic clu Ar input \&...
 Synonym of
 .Ic compile .
-.It Ic compile Ar filename \&...
+.It Ic compile Ar input \&...
 Compile the named
-.Ic \&.clu
+.Tn CLU
 files into
 .Ic \&.o
 files.
-The compiler will supply the suffix
-.Ic \&.clu
-if it is not part of
-.Ar filename .
+The default suffix is
+.Ic \&.clu .
 A
 .Ic \&.o
 file is produced only if there are no errors
@@ -329,6 +341,13 @@ if it is not part of
 .Ar filename .
 Libraries make complete type-checking much easier and faster,
 particularly for very large programs.
+.Pp
+See also
+.Ic forget ,
+.Ic merge ,
+.Ic newlib ,
+.Ic spec ,
+.Ic unmerge .
 .\" --------
 .\" ESCAPE
 .\"
@@ -381,14 +400,11 @@ Do (don't) generate local variable names.
 .\" --------
 .\" MERGE
 .\"
-.It Ic merge Ar filename \&...
-Load libraries from the given
-.Ic \&.lib
-files and merge them with the current type library.
-The compiler will supply the suffix
-.Ic \&.lib
-if it is not part of
-.Ar filename .
+.It Ic merge Ar input \&...
+Load libraries from the given library files and merge them with the
+current in-core type library.
+The default suffix is
+.Ic \&.lib .
 If the current library already contains an interface for a module in
 the library being loaded, the new interface will replace the old.
 .\" --------
@@ -411,14 +427,12 @@ See also
 .\" --------
 .\" PARSE
 .\"
-.It Ic parse Ar filename \&...
+.It Ic parse Ar input \&...
 Check for syntax errors in the named
-.Ic \&.clu
+.Tn CLU
 files.
-The compiler will supply the suffix
-.Ic \&.clu
-if it is not part of
-.Ar filename .
+The default suffix is
+.Ic \&.clu .
 See also
 .Ic check ,
 .Ic compile .
@@ -437,48 +451,44 @@ Do (don't) check for redefining identifiers used in the system.
 .\" --------
 .\" SPECS
 .\"
-.It Ic specs Ar filename \&...
-Enter the interfaces of the abstractions in the named
+.It Ic specs Ar input \&...
+Enter the interfaces of the abstractions in the named files into the
+in-core type library.
+The default suffixes are
 .Ic \&.spc
 or
-.Ic \&.clu
-files into the type library without type-checking any implementation
-bodies.
-The compiler will supply the suffix
-.Ic \&.spc
-or
-.Ic \&.clu
-if it is not part of
-.Ar filename .
+.Ic \&.clu .
+Any implementation bodies in
+.Tn CLU
+files are not type-checked.
+See also
+.Ic merge .
 .\" --------
 .\" UNMERGE
 .\"
-.It Ic unmerge Ar filename \&...
+.It Ic unmerge Ar input \&...
 Forget
 .Tn DU
 specs of library modules.
-The compiler will supply the suffix
-.Ic \&.lib
-if it is not part of
-.Ar filename .
+The default suffix is
+.Ic \&.lib .
 .\" --------
 .\" XCE
 .\"
-.It Ic xce Ar filename \&...
-Add the equates in the named
-.Ic \&.equ
-files to the current compilation environment.
-See
+.It Ic xce Ar input \&...
+Extend the current compilation environment adding the equates from the
+named files.
+The default suffix is
+.Ic \&.ce .
+See also
 .Ic ce .
 .\" --------
 .\" XFILE
 .\"
-.It Ic xfile Ar filename \&...
+.It Ic xfile Ar input \&...
 Execute compiler commands from the specified files.
-The compiler will supply the suffix
-.Ic \&.xfile
-if it is not part of
-.Ar filename .
+The default suffix is
+.Ic \&.xfile .
 .\"
 .El
 .\"
